@@ -1,0 +1,32 @@
+# Software 
+
+
+
+## Microsoft Excel 
+
+The demonstrations and instructions in this document are based on Microsoft Excel for Microsoft 365. Current U of T students with a UTmail+ account (i.e. you) can access the full desktop and mobile versions. For assistance downloading the software, consult the [UofT libraries webpage](https://onesearch.library.utoronto.ca/ic-faq-categories/office-365-proplus). 
+
+Microsoft Excel is available for both Windows and Mac operating systems. If you are using an different OS (i.e. Linux), you can still use Excel, and other Microsoft Office web programs, from the web. More details can be found [here](https://support.microsoft.com/en-us/topic/get-started-with-office-for-the-web-in-microsoft-365-5622c7c9-721d-4b3d-8cb9-a7276c2470e5?ui=en-us&rs=en-us&ad=us). Note you'll still need to login using your UtorID. 
+
+
+## R
+
+The R is a computer language used for data analysis and visualization. It is extremely popular in academia, and is one of the most popular language for data sciences. While it might seem overkill to learn R to tackle your undergraduate work, it is well worth the time investment especially as your progress to more complicated projects. *To know R is to constantly find uses for it.* 
+
+ R is most easily written in the R Studio IDE. If you have not done so, download R from the comprehensive R archive network (CRAN), link here: `http://cran.utstat.utoronto.ca/`, and R Studio, link here: `https://rstudio.com/products/rstudio/download/`). Follow the listed instructions and you should be well on your way. You can also see the accompanying *Working with RStudio* document on Quercus for additional top tips. 
+ 
+### R Markdown
+ 
+In a nutshell, R Markdown allows you to analyse your data with R and write your report in the same place (this document is written with R Markdown). This has loads of benefits including increased reproducibility, and streamlined thinking. No more flipping back and forth between coding and writing to figure out what's going on. Let's run some simple code as an example: 
+
+```{r}
+# Look at me go mom
+x <- 2+2
+x
+```
+
+What we've done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn't anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R.
+
+Pretty neat, eh? You might not think so, but let's imagine a scenario you'll encounter soon enough. You're about to submit your assignment, you've spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to *subtract* value `x` and not value `y` in your analysis. If you did all your work in *Excel* (tsk tsk), you'll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which is never does with looming deadlines). Now if you did all your work in R markdown, you go to your one `.rmd` document, briefly apply the changes and re-compile your document.
+
+To further illustate the verstility of R Markdown, this entire book was writting with it! See Appen

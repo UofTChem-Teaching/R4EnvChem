@@ -1,0 +1,17 @@
+--- 
+title: "Test Title"
+author: "Test author"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+
+
+# Preface {-}
+
+In this book, we will introduce an interesting method. 
