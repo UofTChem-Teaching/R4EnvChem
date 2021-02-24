@@ -11,7 +11,7 @@ Microsoft Excel is available for both Windows and Mac operating systems. If you 
 
 ## R
 
-The R is a computer language used for data analysis and visualization. It is extremely popular in academia, and is one of the most popular language for data sciences. While it might seem overkill to learn R to tackle your undergraduate work, it is well worth the time investment especially as your progress to more complicated projects. *To know R is to constantly find uses for it.* 
+R is a computer language used for data analysis and visualization. It is extremely popular in academia, and is one of the most popular language for data sciences. While it might seem overkill to learn R to tackle your undergraduate work, it is well worth the time investment especially as your progress to more complicated projects. *To know R is to constantly find uses for it.* 
 
  R is most easily written in the R Studio IDE. If you have not done so, download R from the comprehensive R archive network (CRAN), link here: `http://cran.utstat.utoronto.ca/`, and R Studio, link here: `https://rstudio.com/products/rstudio/download/`). Follow the listed instructions and you should be well on your way. You can also see the accompanying *Working with RStudio* document on Quercus for additional top tips. 
  

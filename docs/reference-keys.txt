@@ -5,6 +5,11 @@ software
 microsoft-excel
 r
 r-markdown
+importing
+importing-data-into-excel
+notes-on-comma-separated-values-csv-files
+notes-on-filenames
+appendix
 first-off-what-is-r-markdown
 how-do-i-get-started-with-r-markdown
 great-now-whats-going-on-with-this-r-markdown-document

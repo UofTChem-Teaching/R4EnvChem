@@ -1,6 +1,6 @@
 --- 
-title: "Test Title"
-author: "Test author"
+title: "Tentative Title goes here"
+author: "David Hall & Folks whose names will go here"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -8,10 +8,14 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+description: "This is a proof-of-concept for a further full length textbook."
 ---
 
 
 # Preface {-}
 
-In this book, we will introduce an interesting method. 
+Howdy, 
+
+This is a a proof-of-concept for how a textbook can be written in R markdown, and published to the web. All of the web stuff is done automatically so we only need to focus on the content. 
+
+I'd added some quick sections from documents I've written for previous courses to illustrate some of the possibilities. 
