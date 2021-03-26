@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Appendix | Tentative Title goes here</title>
+  <title>Chapter 5 Appendix | Tentative Title goes here</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Appendix | Tentative Title goes here" />
+  <meta property="og:title" content="Chapter 5 Appendix | Tentative Title goes here" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Appendix | Tentative Title goes here" />
+  <meta name="twitter:title" content="Chapter 5 Appendix | Tentative Title goes here" />
   
   <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="David Hall &amp; Folks whose names will go here" />
 
 
-<meta name="date" content="2021-02-24" />
+<meta name="date" content="2021-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="importing.html"/>
+<link rel="prev" href="exploring-spectroscopy-data.html"/>
 
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -51,6 +51,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -145,23 +152,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="importing.html"><a href="importing.html#notes-on-comma-separated-values-csv-files"><i class="fa fa-check"></i><b>3.2</b> Notes on comma-separated values (CSV) files</a></li>
 <li class="chapter" data-level="3.3" data-path="importing.html"><a href="importing.html#notes-on-filenames"><i class="fa fa-check"></i><b>3.3</b> Notes on filenames</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>4</b> Appendix</a>
+<li class="chapter" data-level="4" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html"><i class="fa fa-check"></i><b>4</b> Exploring Spectroscopy Data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="appendix.html"><a href="appendix.html#first-off-what-is-r-markdown"><i class="fa fa-check"></i><b>4.1</b> First off, what is R Markdown?</a></li>
-<li class="chapter" data-level="4.2" data-path="appendix.html"><a href="appendix.html#how-do-i-get-started-with-r-markdown"><i class="fa fa-check"></i><b>4.2</b> How do I get started with R markdown?</a>
+<li class="chapter" data-level="4.1" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#setting-up-data-for-efficient-plotting"><i class="fa fa-check"></i><b>4.1</b> Setting up data for efficient plotting</a></li>
+<li class="chapter" data-level="4.2" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#plotting-data"><i class="fa fa-check"></i><b>4.2</b> Plotting data</a></li>
+<li class="chapter" data-level="4.3" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#creating-interactive-plots"><i class="fa fa-check"></i><b>4.3</b> Creating interactive plots</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="appendix.html"><a href="appendix.html#great-now-whats-going-on-with-this-r-markdown-document"><i class="fa fa-check"></i><b>4.2.1</b> Great, now what’s going on with this R markdown document?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="appendix.html"><a href="appendix.html#how-to-run-r-code-in-r-markdown"><i class="fa fa-check"></i><b>4.2.2</b> How to run R code in R Markdown</a></li>
-<li class="chapter" data-level="4.2.3" data-path="appendix.html"><a href="appendix.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><i class="fa fa-check"></i><b>4.2.3</b> How do I go from R markdown to something I can hand-in</a></li>
+<li class="chapter" data-level="4.3.1" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#some-notes-about-working-with-plotly"><i class="fa fa-check"></i><b>4.3.1</b> Some notes about working with Plotly</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="appendix.html"><a href="appendix.html#so-now-what-do-i-do-with-r-markdown"><i class="fa fa-check"></i><b>4.3</b> So now what do I do with R Markdown?</a>
+</ul></li>
+<li class="chapter" data-level="5" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>5</b> Appendix</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="appendix.html"><a href="appendix.html#r-markdown-resources-and-further-reading"><i class="fa fa-check"></i><b>4.3.1</b> R Markdown resources and further reading</a></li>
-<li class="chapter" data-level="4.3.2" data-path="appendix.html"><a href="appendix.html#r-code-chunk-options"><i class="fa fa-check"></i><b>4.3.2</b> R code chunk options</a></li>
-<li class="chapter" data-level="4.3.3" data-path="appendix.html"><a href="appendix.html#inserting-images-into-markdown-documents"><i class="fa fa-check"></i><b>4.3.3</b> Inserting images into markdown documents</a></li>
-<li class="chapter" data-level="4.3.4" data-path="appendix.html"><a href="appendix.html#generating-tables"><i class="fa fa-check"></i><b>4.3.4</b> Generating Tables</a></li>
-<li class="chapter" data-level="4.3.5" data-path="appendix.html"><a href="appendix.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>4.3.5</b> Spellcheck in R Markdown</a></li>
-<li class="chapter" data-level="4.3.6" data-path="appendix.html"><a href="appendix.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>4.3.6</b> Quick reference on R markdown syntax</a></li>
+<li class="chapter" data-level="5.1" data-path="appendix.html"><a href="appendix.html#first-off-what-is-r-markdown"><i class="fa fa-check"></i><b>5.1</b> First off, what is R Markdown?</a></li>
+<li class="chapter" data-level="5.2" data-path="appendix.html"><a href="appendix.html#how-do-i-get-started-with-r-markdown"><i class="fa fa-check"></i><b>5.2</b> How do I get started with R markdown?</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="appendix.html"><a href="appendix.html#great-now-whats-going-on-with-this-r-markdown-document"><i class="fa fa-check"></i><b>5.2.1</b> Great, now what’s going on with this R markdown document?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="appendix.html"><a href="appendix.html#how-to-run-r-code-in-r-markdown"><i class="fa fa-check"></i><b>5.2.2</b> How to run R code in R Markdown</a></li>
+<li class="chapter" data-level="5.2.3" data-path="appendix.html"><a href="appendix.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><i class="fa fa-check"></i><b>5.2.3</b> How do I go from R markdown to something I can hand-in</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="appendix.html"><a href="appendix.html#so-now-what-do-i-do-with-r-markdown"><i class="fa fa-check"></i><b>5.3</b> So now what do I do with R Markdown?</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="appendix.html"><a href="appendix.html#r-markdown-resources-and-further-reading"><i class="fa fa-check"></i><b>5.3.1</b> R Markdown resources and further reading</a></li>
+<li class="chapter" data-level="5.3.2" data-path="appendix.html"><a href="appendix.html#r-code-chunk-options"><i class="fa fa-check"></i><b>5.3.2</b> R code chunk options</a></li>
+<li class="chapter" data-level="5.3.3" data-path="appendix.html"><a href="appendix.html#inserting-images-into-markdown-documents"><i class="fa fa-check"></i><b>5.3.3</b> Inserting images into markdown documents</a></li>
+<li class="chapter" data-level="5.3.4" data-path="appendix.html"><a href="appendix.html#generating-tables"><i class="fa fa-check"></i><b>5.3.4</b> Generating Tables</a></li>
+<li class="chapter" data-level="5.3.5" data-path="appendix.html"><a href="appendix.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>5.3.5</b> Spellcheck in R Markdown</a></li>
+<li class="chapter" data-level="5.3.6" data-path="appendix.html"><a href="appendix.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>5.3.6</b> Quick reference on R markdown syntax</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -181,25 +197,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Appendix</h1>
-<div id="first-off-what-is-r-markdown" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> First off, what is R Markdown?</h2>
+<div id="appendix" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Appendix</h1>
+<div id="first-off-what-is-r-markdown" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> First off, what is R Markdown?</h2>
 <p>In a nutshell, R Markdown allows you to analyse your data with R and write your report in the same place (this document is written with R Markdown). This has loads of benefits including increased reproducibility, and streamlined thinking. No more flipping back and forth between coding and writing to figure out what’s going on. Let’s run some simple code as an example:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="appendix.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at me go mom</span></span>
-<span id="cb3-2"><a href="appendix.html#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
-<span id="cb3-3"><a href="appendix.html#cb3-3" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="appendix.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at me go mom</span></span>
+<span id="cb10-2"><a href="appendix.html#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
+<span id="cb10-3"><a href="appendix.html#cb10-3" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>What we’ve done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn’t anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="appendix.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code></pre></div>
-<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.0.3</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="appendix.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb7-2"><a href="appendix.html#cb7-2" aria-hidden="true" tabindex="-1"></a>airPol <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./data/Toronto_60433_2018_Jan2to8.csv&quot;</span>,</span>
-<span id="cb7-3"><a href="appendix.html#cb7-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
-<span id="cb7-4"><a href="appendix.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(airPol[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ], </span>
-<span id="cb7-5"><a href="appendix.html#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">&quot;Example table of airborne pollutant levels used for Figure 1.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="appendix.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb12-2"><a href="appendix.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb12-3"><a href="appendix.html#cb12-3" aria-hidden="true" tabindex="-1"></a>airPol <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./data/Toronto_60433_2018_Jan2to8.csv&quot;</span>,</span>
+<span id="cb12-4"><a href="appendix.html#cb12-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
+<span id="cb12-5"><a href="appendix.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(airPol[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ], </span>
+<span id="cb12-6"><a href="appendix.html#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">&quot;Example table of airborne pollutant levels used for Figure 1.&quot;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-4">Table 4.1: </span>Example table of airborne pollutant levels used for Figure 1.</caption>
+<caption><span id="tab:unnamed-chunk-9">Table 5.1: </span>Example table of airborne pollutant levels used for Figure 1.</caption>
 <thead>
 <tr class="header">
 <th align="right">temperature</th>
@@ -241,42 +256,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="appendix.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airPol, <span class="fu">aes</span>(date, concentration, <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="appendix.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb8-3"><a href="appendix.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" alt="Time series of 2018 ambient atmospheric O~3~ and NO~2~ concentrations (ppb) in downtown Toronto" width="672" />
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="appendix.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airPol, <span class="fu">aes</span>(date, concentration, <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="appendix.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="appendix.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-9"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" alt="Time series of 2018 ambient atmospheric O~3~ and NO~2~ concentrations (ppb) in downtown Toronto" width="672" />
 <p class="caption">
-Figure 4.1: Time series of 2018 ambient atmospheric O<sub>3</sub> and NO<sub>2</sub> concentrations (ppb) in downtown Toronto
+Figure 5.1: Time series of 2018 ambient atmospheric O<sub>3</sub> and NO<sub>2</sub> concentrations (ppb) in downtown Toronto
 </p>
 </div>
 <p>Pretty neat, eh? You might not think so, but let’s imagine a scenario you’ll encounter soon enough. You’re about to submit your assignment, you’ve spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to <em>subtract</em> value <code>x</code> and not value <code>y</code> in your analysis. If you did all your work in <em>Excel</em> (tsk tsk), you’ll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which is never does with looming deadlines). Now if you did all your work in R markdown, you go to your one <code>.rmd</code> document, briefly apply the changes and re-compile your document.</p>
 </div>
-<div id="how-do-i-get-started-with-r-markdown" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> How do I get started with R markdown?</h2>
+<div id="how-do-i-get-started-with-r-markdown" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> How do I get started with R markdown?</h2>
 <p>As you’ve already guessed, R markdown documents use R and are most easily written and assembled in the R Studio IDE. If you have not done so, download R from the comprehensive R archive network (CRAN), link here: <code>http://cran.utstat.utoronto.ca/</code>, and R Studio, link here: <code>https://rstudio.com/products/rstudio/download/</code>). Follow the listed instructions and you should be well on your way. You can also see the accompanying <em>Working with RStudio</em> document on Quercus for additional top tips.</p>
 <p>Once setup with R and R Studio, we’ll need to install the <code>rmarkdown</code> and <code>tinytex</code> packages. In the console, simply run the following code:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="appendix.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>) <span class="co"># downloaded from CRAN</span></span>
-<span id="cb9-2"><a href="appendix.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="appendix.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
-<span id="cb9-4"><a href="appendix.html#cb9-4" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="appendix.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>) <span class="co"># downloaded from CRAN</span></span>
+<span id="cb14-2"><a href="appendix.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="appendix.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb14-4"><a href="appendix.html#cb14-4" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>The <code>rmarkdown</code> package is what we’ll use to generate our documents, and the <code>tinytex</code> package enables compiling documents as PDFs. There’s a lot more going on behind the scenes, but you shouldn’t need to worry about it.</p>
 <p>Now that everything is setup, you can create your first R Markdown document by opening up R Studio, selecting <code>FILE -&gt; NEW FILE -&gt; Rmarkdown</code>. A dialog box will appear asking for some basic input parameters for your R markdown document. Add your title and select PDF as your default output format (you can always change these later if you want). A new file should appear that’s already populated with some basic script illustrating the key components of an R markdown document.</p>
-<div id="great-now-whats-going-on-with-this-r-markdown-document" class="section level3" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Great, now what’s going on with this R markdown document?</h3>
+<div id="great-now-whats-going-on-with-this-r-markdown-document" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Great, now what’s going on with this R markdown document?</h3>
 <p>Your first reaction when you opened your newly created R markdown document is probably that it doesn’t look anything at all like something you’d show your TA. You’re right, what you’re seeing is the plain text code which needs to be compiled (called <em>knit</em> in R Studio) to create the final document. Let’s break down what the R markdown syntax means then let’s knit our document.</p>
 <p>When you create a R markdown document like this in R Studio a bunch of example code is already written. You can compile this document (see below) to see what it looks like, but let’s break down the primary components. At the top of the document you’ll see something that looks like this:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="appendix.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb10-2"><a href="appendix.html#cb10-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Untitled&quot;</span></span>
-<span id="cb10-3"><a href="appendix.html#cb10-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;David Hall&quot;</span></span>
-<span id="cb10-4"><a href="appendix.html#cb10-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;24/08/2020&quot;</span></span>
-<span id="cb10-5"><a href="appendix.html#cb10-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> pdf_document</span>
-<span id="cb10-6"><a href="appendix.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="appendix.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb15-2"><a href="appendix.html#cb15-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Untitled&quot;</span></span>
+<span id="cb15-3"><a href="appendix.html#cb15-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;David Hall&quot;</span></span>
+<span id="cb15-4"><a href="appendix.html#cb15-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;24/08/2020&quot;</span></span>
+<span id="cb15-5"><a href="appendix.html#cb15-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> pdf_document</span>
+<span id="cb15-6"><a href="appendix.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
 <p>This section is known as the <em>preamble</em> and it’s where you specify most of the document parameters. In the example we can see that the document title is “Untitled,” it’s written by yours truly, on the 24th of August, and the default output is a PDF document. You can modify the preamble to suit your needs. For example, if you wanted to change the title you would write <code>title: "Your Title Here"</code> in the preamble. Note that none of this is <code>R</code> code, rather it’s <code>YAML</code>, the syntax for the document’s metadata. Apart from what’s shown you shouldn’t need to worry about this much, just remember that indentation in YAML matters.</p>
 <p>Reading further down the default R markdown code, you’ll see different blocks of text. In R markdown anything you write will be interpreted as body text (i.e .the stuff you want folks reading like this) in the knitted document. <strong>To actually run R code</strong> you’ll need to see the next section.</p>
 </div>
-<div id="how-to-run-r-code-in-r-markdown" class="section level3" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> How to run R code in R Markdown</h3>
+<div id="how-to-run-r-code-in-r-markdown" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> How to run R code in R Markdown</h3>
 <p>There’s two ways to write <code>R</code> code in markdown:</p>
 <ul>
 <li><p><strong>Setup a code chunk</strong>. Code chunks start with three back-ticks like this: <code>```{r}</code>, where <code>r</code> indicates you’re using the R languauge. You end a code chunk using three more backticks like this <code>```</code>.</p>
@@ -295,18 +310,18 @@ Figure 4.1: Time series of 2018 ambient atmospheric O<sub>3</sub> and NO<sub>2</
 <p class="caption">How this document, the one you’re reading, appeared in RStudio; to see the final results scroll up to Figure 1. Note the “knit” and “run current chunk” buttons.</p>
 </div>
 </div>
-<div id="how-do-i-go-from-r-markdown-to-something-i-can-hand-in" class="section level3" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> How do I go from R markdown to something I can hand-in</h3>
+<div id="how-do-i-go-from-r-markdown-to-something-i-can-hand-in" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> How do I go from R markdown to something I can hand-in</h3>
 <p>To create a PDF to hand in you’ll need to compile, or knit, your entire markdown document as mentioned above. To knit (or compile) your R markdown script, simply click the <em>knit</em> button in R Studio (yellow box, Figure 2). You can specify what output you would like and R Studio will (hopefully) compile your script.</p>
 <p>If you want to test how your code chunks will run, R Studio shows a little green ‘play button’ on the top right of every code chunk. this is the ‘run current chunk’ button, and clicking it will run your code chunk and output whatever it would in the final R markdown document. This is a great way to tweak figures and codes as it avoids the need to compile the entire document to check if you managed to change the lines from ‘black’ to ‘blue’ in your plot.</p>
 </div>
 </div>
-<div id="so-now-what-do-i-do-with-r-markdown" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> So now what do I do with R Markdown?</h2>
+<div id="so-now-what-do-i-do-with-r-markdown" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> So now what do I do with R Markdown?</h2>
 <p>You do science and you write it down!</p>
 <p>In all seriousness though, this document was only meant to introduce you to R markdown, and to make the case that you should use it for your ENV 316 coursework. A couple of the most useful elements are talked about below, and there is a wealth of helpful resources for formatting your documents. Just remember to keep it simple, there’s no need to reinvent the wheel. The default R markdown outputs are plenty fine with us.</p>
-<div id="r-markdown-resources-and-further-reading" class="section level3" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> R Markdown resources and further reading</h3>
+<div id="r-markdown-resources-and-further-reading" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> R Markdown resources and further reading</h3>
 <p>There’s a plethora of helpful online resources to help hone your R markdown skills. We’ll list a couple below (the titles are links to the corresponding document):</p>
 <ul>
 <li><a href="https://bookdown.org/yihui/rmarkdown/basics.html">Chapter 2</a> of the <em><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></em> by Xie, Allair &amp; Grolemund (2020). This is the simplest, most comprehensive, guide to learning R markdown and it’s available freely online.</li>
@@ -314,14 +329,14 @@ Figure 4.1: Time series of 2018 ambient atmospheric O<sub>3</sub> and NO<sub>2</
 <li><em><a href="https://bookdown.org/yihui/bookdown/">Bookdown: Authoring Books and Technical Documents with R Markdown</a></em> (2020) by Yihui Xie. Explains the <code>bookdown</code> package which greatly expands the capabilities of R markdown. For example, the table of contents of this document is created with <code>bookdown</code>.</li>
 </ul>
 </div>
-<div id="r-code-chunk-options" class="section level3" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> R code chunk options</h3>
+<div id="r-code-chunk-options" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> R code chunk options</h3>
 <p>You can specify a number of options for an individual R code chunk. You include these at the top of the code chunk. For example the following code tells markdown you’re running code written in <code>R</code>, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption “Some Caption.” A list of code chunk options is shown below:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb11-1"><a href="appendix.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE, fig.cap = &quot;Some caption&quot;}</span></span>
-<span id="cb11-2"><a href="appendix.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="appendix.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="in"># some code to generate a plot worth captioning. </span></span>
-<span id="cb11-4"><a href="appendix.html#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="appendix.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb16-1"><a href="appendix.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE, fig.cap = &quot;Some caption&quot;}</span></span>
+<span id="cb16-2"><a href="appendix.html#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="appendix.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in"># some code to generate a plot worth captioning. </span></span>
+<span id="cb16-4"><a href="appendix.html#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="appendix.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -379,21 +394,21 @@ Figure 4.1: Time series of 2018 ambient atmospheric O<sub>3</sub> and NO<sub>2</
 </tbody>
 </table>
 </div>
-<div id="inserting-images-into-markdown-documents" class="section level3" number="4.3.3">
-<h3><span class="header-section-number">4.3.3</span> Inserting images into markdown documents</h3>
+<div id="inserting-images-into-markdown-documents" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Inserting images into markdown documents</h3>
 <p>Images not produced by R code can easily be inserted into your document. The markdown code isn’t R code, so between paragraphs of bodytext insert the following code. Note that compiling to PDF, the LaTeX call will place your image in the “optimal” location, so you might find your image isn’t exactly where you though it would be. A quick google search can help you out if this is problem.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="appendix.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption for the picture.](path/to/image.png)</span>{width=50%, height=50%}</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb17-1"><a href="appendix.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption for the picture.](path/to/image.png)</span>{width=50%, height=50%}</span></code></pre></div>
 <p>Note that in the above the use of image atributes, the <code>{width=50%, height=50%}</code> at the end. This is how you’ll adjust the size of your image. Other dimensions you can use include <code>px, cm, mm, in, inch</code>, and <code>%</code>.</p>
 </div>
-<div id="generating-tables" class="section level3" number="4.3.4">
-<h3><span class="header-section-number">4.3.4</span> Generating Tables</h3>
+<div id="generating-tables" class="section level3" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Generating Tables</h3>
 <p>There’s multiple methods to create tables in R markdown. Assuming you want to display results calculated through R code, you can use the <code>kable()</code> function. Please consult <a href="https://bookdown.org/yihui/rmarkdown-cookbook/kable.html">Chapter 10</a> of the <em>R Markdown Cookbook</em> for additional support.</p>
 <p>Alternatively, if you want to create simple tables manually use the following code in the main body, outside of an <code>R</code> code chunk. You can increase the number of rows/columns and the location of the horizontal lines. To generate more complex tables, see the <code>kable()</code> function and the <code>kableExtra</code> package.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb13-1"><a href="appendix.html#cb13-1" aria-hidden="true" tabindex="-1"></a>Header 1 | Header 2| Header 3</span>
-<span id="cb13-2"><a href="appendix.html#cb13-2" aria-hidden="true" tabindex="-1"></a>---------|---------|---------|</span>
-<span id="cb13-3"><a href="appendix.html#cb13-3" aria-hidden="true" tabindex="-1"></a>Row 1    | Data    | Some other Data</span>
-<span id="cb13-4"><a href="appendix.html#cb13-4" aria-hidden="true" tabindex="-1"></a>Row 2    | Data    | Some other Data</span>
-<span id="cb13-5"><a href="appendix.html#cb13-5" aria-hidden="true" tabindex="-1"></a>---------|---------|---------|</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb18-1"><a href="appendix.html#cb18-1" aria-hidden="true" tabindex="-1"></a>Header 1 | Header 2| Header 3</span>
+<span id="cb18-2"><a href="appendix.html#cb18-2" aria-hidden="true" tabindex="-1"></a>---------|---------|---------|</span>
+<span id="cb18-3"><a href="appendix.html#cb18-3" aria-hidden="true" tabindex="-1"></a>Row 1    | Data    | Some other Data</span>
+<span id="cb18-4"><a href="appendix.html#cb18-4" aria-hidden="true" tabindex="-1"></a>Row 2    | Data    | Some other Data</span>
+<span id="cb18-5"><a href="appendix.html#cb18-5" aria-hidden="true" tabindex="-1"></a>---------|---------|---------|</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -416,12 +431,12 @@ Figure 4.1: Time series of 2018 ambient atmospheric O<sub>3</sub> and NO<sub>2</
 </tbody>
 </table>
 </div>
-<div id="spellcheck-in-r-markdown" class="section level3" number="4.3.5">
-<h3><span class="header-section-number">4.3.5</span> Spellcheck in R Markdown</h3>
+<div id="spellcheck-in-r-markdown" class="section level3" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Spellcheck in R Markdown</h3>
 <p>While writing an R markdown document in R studio, go to the <code>Edit</code> tab at the top of the window and select <code>Check Spelling</code>. You can also use the <code>F7</code> key as a shortcut. The spell checker will literally go through every word it thinks you’ve misspelled in your document. You can add words to it so your spell checker’s utility grows as you use it. <strong>Note</strong> that the spell check with also check your R code; be wary of changing words in your code chunks because you may get an error down the line.</p>
 </div>
-<div id="quick-reference-on-r-markdown-syntax" class="section level3" number="4.3.6">
-<h3><span class="header-section-number">4.3.6</span> Quick reference on R markdown syntax</h3>
+<div id="quick-reference-on-r-markdown-syntax" class="section level3" number="5.3.6">
+<h3><span class="header-section-number">5.3.6</span> Quick reference on R markdown syntax</h3>
 <ul>
 <li><strong>Inline formatting</strong>; <em>which</em> is <sub>used</sub> to <sup>format</sup> <code>your text</code>.</li>
 </ul>
@@ -436,16 +451,16 @@ Figure 4.1: Time series of 2018 ambient atmospheric O<sub>3</sub> and NO<sub>2</
 <li><strong>Block-level elements</strong>, i.e. you’re section headers</li>
 </ul>
 <p>Example R markdown syntax used for formatting shown above:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="appendix.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> <span class="er">**</span>Inline formatting<span class="sc">**</span>; <span class="sc">*</span>which<span class="sc">*</span> is <span class="sc">~</span>used<span class="sc">~</span> to <span class="sc">^</span>format<span class="sc">^</span> <span class="st">`</span><span class="at">your text</span><span class="st">`</span>.</span>
-<span id="cb14-2"><a href="appendix.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Numbered lists</span>
-<span id="cb14-3"><a href="appendix.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Normal lists</span>
-<span id="cb14-4"><a href="appendix.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> Lists</span>
-<span id="cb14-5"><a href="appendix.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-6"><a href="appendix.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> <span class="er">**</span>Block<span class="sc">-</span>level elements<span class="sc">**</span>, i.e. your section headers</span>
-<span id="cb14-7"><a href="appendix.html#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="appendix.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Headers</span></span>
-<span id="cb14-9"><a href="appendix.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Headers</span></span>
-<span id="cb14-10"><a href="appendix.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Headers</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="appendix.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> <span class="er">**</span>Inline formatting<span class="sc">**</span>; <span class="sc">*</span>which<span class="sc">*</span> is <span class="sc">~</span>used<span class="sc">~</span> to <span class="sc">^</span>format<span class="sc">^</span> <span class="st">`</span><span class="at">your text</span><span class="st">`</span>.</span>
+<span id="cb19-2"><a href="appendix.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Numbered lists</span>
+<span id="cb19-3"><a href="appendix.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Normal lists</span>
+<span id="cb19-4"><a href="appendix.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> Lists</span>
+<span id="cb19-5"><a href="appendix.html#cb19-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb19-6"><a href="appendix.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> <span class="er">**</span>Block<span class="sc">-</span>level elements<span class="sc">**</span>, i.e. your section headers</span>
+<span id="cb19-7"><a href="appendix.html#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="appendix.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Headers</span></span>
+<span id="cb19-9"><a href="appendix.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Headers</span></span>
+<span id="cb19-10"><a href="appendix.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Headers</span></span></code></pre></div>
 
 </div>
 </div>
@@ -455,7 +470,7 @@ Figure 4.1: Time series of 2018 ambient atmospheric O<sub>3</sub> and NO<sub>2</
           </div>
         </div>
       </div>
-<a href="importing.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exploring-spectroscopy-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

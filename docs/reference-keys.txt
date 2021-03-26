@@ -1,5 +1,5 @@
-tab:unnamed-chunk-4
-fig:unnamed-chunk-4
+tab:unnamed-chunk-9
+fig:unnamed-chunk-9
 introduction
 software
 microsoft-excel
@@ -9,6 +9,11 @@ importing
 importing-data-into-excel
 notes-on-comma-separated-values-csv-files
 notes-on-filenames
+exploring-spectroscopy-data
+setting-up-data-for-efficient-plotting
+plotting-data
+creating-interactive-plots
+some-notes-about-working-with-plotly
 appendix
 first-off-what-is-r-markdown
 how-do-i-get-started-with-r-markdown
