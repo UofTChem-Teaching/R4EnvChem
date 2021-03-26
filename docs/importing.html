@@ -24,7 +24,7 @@
 <meta name="author" content="David Hall &amp; Folks whose names will go here" />
 
 
-<meta name="date" content="2021-02-24" />
+<meta name="date" content="2021-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="software.html"/>
-<link rel="next" href="appendix.html"/>
+<link rel="next" href="exploring-spectroscopy-data.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,6 +51,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -145,23 +152,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="importing.html"><a href="importing.html#notes-on-comma-separated-values-csv-files"><i class="fa fa-check"></i><b>3.2</b> Notes on comma-separated values (CSV) files</a></li>
 <li class="chapter" data-level="3.3" data-path="importing.html"><a href="importing.html#notes-on-filenames"><i class="fa fa-check"></i><b>3.3</b> Notes on filenames</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>4</b> Appendix</a>
+<li class="chapter" data-level="4" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html"><i class="fa fa-check"></i><b>4</b> Exploring Spectroscopy Data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="appendix.html"><a href="appendix.html#first-off-what-is-r-markdown"><i class="fa fa-check"></i><b>4.1</b> First off, what is R Markdown?</a></li>
-<li class="chapter" data-level="4.2" data-path="appendix.html"><a href="appendix.html#how-do-i-get-started-with-r-markdown"><i class="fa fa-check"></i><b>4.2</b> How do I get started with R markdown?</a>
+<li class="chapter" data-level="4.1" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#setting-up-data-for-efficient-plotting"><i class="fa fa-check"></i><b>4.1</b> Setting up data for efficient plotting</a></li>
+<li class="chapter" data-level="4.2" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#plotting-data"><i class="fa fa-check"></i><b>4.2</b> Plotting data</a></li>
+<li class="chapter" data-level="4.3" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#creating-interactive-plots"><i class="fa fa-check"></i><b>4.3</b> Creating interactive plots</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="appendix.html"><a href="appendix.html#great-now-whats-going-on-with-this-r-markdown-document"><i class="fa fa-check"></i><b>4.2.1</b> Great, now what’s going on with this R markdown document?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="appendix.html"><a href="appendix.html#how-to-run-r-code-in-r-markdown"><i class="fa fa-check"></i><b>4.2.2</b> How to run R code in R Markdown</a></li>
-<li class="chapter" data-level="4.2.3" data-path="appendix.html"><a href="appendix.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><i class="fa fa-check"></i><b>4.2.3</b> How do I go from R markdown to something I can hand-in</a></li>
+<li class="chapter" data-level="4.3.1" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#some-notes-about-working-with-plotly"><i class="fa fa-check"></i><b>4.3.1</b> Some notes about working with Plotly</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="appendix.html"><a href="appendix.html#so-now-what-do-i-do-with-r-markdown"><i class="fa fa-check"></i><b>4.3</b> So now what do I do with R Markdown?</a>
+</ul></li>
+<li class="chapter" data-level="5" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>5</b> Appendix</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="appendix.html"><a href="appendix.html#r-markdown-resources-and-further-reading"><i class="fa fa-check"></i><b>4.3.1</b> R Markdown resources and further reading</a></li>
-<li class="chapter" data-level="4.3.2" data-path="appendix.html"><a href="appendix.html#r-code-chunk-options"><i class="fa fa-check"></i><b>4.3.2</b> R code chunk options</a></li>
-<li class="chapter" data-level="4.3.3" data-path="appendix.html"><a href="appendix.html#inserting-images-into-markdown-documents"><i class="fa fa-check"></i><b>4.3.3</b> Inserting images into markdown documents</a></li>
-<li class="chapter" data-level="4.3.4" data-path="appendix.html"><a href="appendix.html#generating-tables"><i class="fa fa-check"></i><b>4.3.4</b> Generating Tables</a></li>
-<li class="chapter" data-level="4.3.5" data-path="appendix.html"><a href="appendix.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>4.3.5</b> Spellcheck in R Markdown</a></li>
-<li class="chapter" data-level="4.3.6" data-path="appendix.html"><a href="appendix.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>4.3.6</b> Quick reference on R markdown syntax</a></li>
+<li class="chapter" data-level="5.1" data-path="appendix.html"><a href="appendix.html#first-off-what-is-r-markdown"><i class="fa fa-check"></i><b>5.1</b> First off, what is R Markdown?</a></li>
+<li class="chapter" data-level="5.2" data-path="appendix.html"><a href="appendix.html#how-do-i-get-started-with-r-markdown"><i class="fa fa-check"></i><b>5.2</b> How do I get started with R markdown?</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="appendix.html"><a href="appendix.html#great-now-whats-going-on-with-this-r-markdown-document"><i class="fa fa-check"></i><b>5.2.1</b> Great, now what’s going on with this R markdown document?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="appendix.html"><a href="appendix.html#how-to-run-r-code-in-r-markdown"><i class="fa fa-check"></i><b>5.2.2</b> How to run R code in R Markdown</a></li>
+<li class="chapter" data-level="5.2.3" data-path="appendix.html"><a href="appendix.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><i class="fa fa-check"></i><b>5.2.3</b> How do I go from R markdown to something I can hand-in</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="appendix.html"><a href="appendix.html#so-now-what-do-i-do-with-r-markdown"><i class="fa fa-check"></i><b>5.3</b> So now what do I do with R Markdown?</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="appendix.html"><a href="appendix.html#r-markdown-resources-and-further-reading"><i class="fa fa-check"></i><b>5.3.1</b> R Markdown resources and further reading</a></li>
+<li class="chapter" data-level="5.3.2" data-path="appendix.html"><a href="appendix.html#r-code-chunk-options"><i class="fa fa-check"></i><b>5.3.2</b> R code chunk options</a></li>
+<li class="chapter" data-level="5.3.3" data-path="appendix.html"><a href="appendix.html#inserting-images-into-markdown-documents"><i class="fa fa-check"></i><b>5.3.3</b> Inserting images into markdown documents</a></li>
+<li class="chapter" data-level="5.3.4" data-path="appendix.html"><a href="appendix.html#generating-tables"><i class="fa fa-check"></i><b>5.3.4</b> Generating Tables</a></li>
+<li class="chapter" data-level="5.3.5" data-path="appendix.html"><a href="appendix.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>5.3.5</b> Spellcheck in R Markdown</a></li>
+<li class="chapter" data-level="5.3.6" data-path="appendix.html"><a href="appendix.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>5.3.6</b> Quick reference on R markdown syntax</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -209,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="software.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exploring-spectroscopy-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
