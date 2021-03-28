@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Software | R for Environmental Chemist</title>
+  <title>Howdy, | R for Environmental Chemist</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Software | R for Environmental Chemist" />
+  <meta property="og:title" content="Howdy, | R for Environmental Chemist" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Software | R for Environmental Chemist" />
+  <meta name="twitter:title" content="Howdy, | R for Environmental Chemist" />
   
   <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction.html"/>
-<link rel="next" href="importing.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="introduction.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>R4EnvChem</a></li>
-<li class="chapter" data-level="" data-path="r4envchem-1.html"><a href="r4envchem-1.html"><i class="fa fa-check"></i>R4EnvChem</a></li>
+<li class="chapter" data-level="" data-path="howdy.html"><a href="howdy.html"><i class="fa fa-check"></i>Howdy,</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>2</b> Software</a>
 <ul>
@@ -198,38 +198,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="software" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Software</h1>
-<div id="microsoft-excel" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Microsoft Excel</h2>
-<p>The demonstrations and instructions in this document are based on Microsoft Excel for Microsoft 365. Current U of T students with a UTmail+ account (i.e. you) can access the full desktop and mobile versions. For assistance downloading the software, consult the <a href="https://onesearch.library.utoronto.ca/ic-faq-categories/office-365-proplus">UofT libraries webpage</a>.</p>
-<p>Microsoft Excel is available for both Windows and Mac operating systems. If you are using an different OS (i.e. Linux), you can still use Excel, and other Microsoft Office web programs, from the web. More details can be found <a href="https://support.microsoft.com/en-us/topic/get-started-with-office-for-the-web-in-microsoft-365-5622c7c9-721d-4b3d-8cb9-a7276c2470e5?ui=en-us&amp;rs=en-us&amp;ad=us">here</a>. Note you’ll still need to login using your UtorID.</p>
-</div>
-<div id="r" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> R</h2>
-<p>R is a computer language used for data analysis and visualization. It is extremely popular in academia, and is one of the most popular language for data sciences. While it might seem overkill to learn R to tackle your undergraduate work, it is well worth the time investment especially as your progress to more complicated projects. <em>To know R is to constantly find uses for it.</em></p>
-<p>R is most easily written in the R Studio IDE. If you have not done so, download R from the comprehensive R archive network (CRAN), link here: <code>http://cran.utstat.utoronto.ca/</code>, and R Studio, link here: <code>https://rstudio.com/products/rstudio/download/</code>). Follow the listed instructions and you should be well on your way. You can also see the accompanying <em>Working with RStudio</em> document on Quercus for additional top tips.</p>
-<div id="r-markdown" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> R Markdown</h3>
-<p>In a nutshell, R Markdown allows you to analyse your data with R and write your report in the same place (this document is written with R Markdown). This has loads of benefits including increased reproducibility, and streamlined thinking. No more flipping back and forth between coding and writing to figure out what’s going on. Let’s run some simple code as an example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="software.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at me go mom</span></span>
-<span id="cb1-2"><a href="software.html#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
-<span id="cb1-3"><a href="software.html#cb1-3" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<p>What we’ve done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn’t anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R.</p>
-<p>Pretty neat, eh? You might not think so, but let’s imagine a scenario you’ll encounter soon enough. You’re about to submit your assignment, you’ve spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to <em>subtract</em> value <code>x</code> and not value <code>y</code> in your analysis. If you did all your work in <em>Excel</em> (tsk tsk), you’ll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which is never does with looming deadlines). Now if you did all your work in R markdown, you go to your one <code>.rmd</code> document, briefly apply the changes and re-compile your document.</p>
-<p>To further illustate the verstility of R Markdown, this entire book was writting with it! See Appen</p>
+<div id="howdy" class="section level1 unnumbered">
+<h1>Howdy,</h1>
+<p>This website is more-or-less the living results of a collaborative project between the three of us. Our ultimate goal is not to be an exhaustive resource for all environmental chemist. Rather, we’re focused on developing broadly applicable data science course content (tutorials and recipes) based in <code>R</code> for undergraduate environmental chemistry courses. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum.</p>
+<p>Check out the index for what’s already live, and the list below for some of our proposals.</p>
+<ul>
+<li>Setup and workflows for working with R and R Studio</li>
+<li>Data tidying
+<ul>
+<li>Best practices when recording data</li>
+<li>Tidying data either in <code>R</code> or Excel for downstream analysis in <code>R</code></li>
+<li>Recipes for tidying common datasets (i.e. <a href="https://open.canada.ca/data/en/dataset/1b36a356-defd-4813-acea-47bc3abd859b">ECCC NAPS</a> hourly measurements)</li>
+</ul></li>
+<li>Data Visualization
+<ul>
+<li>Map, cartograms, and other related stuff</li>
+<li>Volcano plots</li>
+<li>Bar charts<br />
+</li>
+</ul></li>
+<li>Data analysis
+<ul>
+<li>Calibration curves and quantitative analysis</li>
+<li>Various statistical comparisons (t.test, ANOVA, …)</li>
+<li>Correlation plots</li>
+</ul></li>
+<li>Advice on beautifying visualizations for publication</li>
+</ul>
+<p>If you have any questions/comments/suggestions/concerns please email:</p>
+<ul>
+<li><a href="https://sites.chem.utoronto.ca/penglab/content/people">Dave</a> at <a href="davidross.hall@mail.utoronto.ca">davidross.hall@mail.utoronto.ca</a></li>
+<li><a href="https://sites.chem.utoronto.ca/penglab/content/people">Steven</a> at <a href="steven.kutarna@mail.utoronto.ca">steven.kutarna@mail.utoronto.ca</a></li>
+<li><a href="https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon">Dr. D’eon</a> at <a href="jessica.deon@utoronto.ca">jessica.deon@utoronto.ca</a></li>
+</ul>
 
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="importing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

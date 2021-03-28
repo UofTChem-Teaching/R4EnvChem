@@ -11,10 +11,15 @@ link-citations: yes
 description: "This is a proof-of-concept for a further full length textbook."
 ---
 
-
 # R4EnvChem {-}
 
 Howdy,
+
+This website is more-or-less the living results of a collaborative project between the three of us. Our ultimate goal is not to be an exhaustive resource for all environmental chemist. Rather, we're focused on developing broadly applicable data science course content (tutorials and recipes) based in `R` for undergraduate environmental chemistry courses. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum. 
+
+Check out the index for what's already live, and the list below for some of our proposals. 
+
+# R4EnvChem {-}
 
 This website is more-or-less the living results of a collaborative project between the three of us. Our ultimate goal is not to be an exhaustive resource for all environmental chemist. Rather, we're focused on developing broadly applicable data science course content (tutorials and recipes) based in `R` for undergraduate environmental chemistry courses. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum. 
 
@@ -32,7 +37,7 @@ Check out the index for what's already live, and the list below for some of our 
   - Data analysis
     - Calibration curves and quantitative analysis
     - Various statistical comparisons (t.test, ANOVA, ...)
-    - Coorelation plots
+    - Correlation plots
   - Advice on beautifying visualizations for publication
   
   If you have any questions/comments/suggestions/concerns please email:
