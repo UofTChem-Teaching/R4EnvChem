@@ -1,6 +1,6 @@
 --- 
-title: "Tentative Title goes here"
-author: "David Hall & Folks whose names will go here"
+title: "R for Environmental Chemist"
+author: "David Hall, Steven Kutarna, and Jessica D'eon"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -12,10 +12,31 @@ description: "This is a proof-of-concept for a further full length textbook."
 ---
 
 
-# Preface {-}
+# Howdy, {-}
 
-Howdy, 
+This website is more-or-less the living results of a collaborative project between the three of us. Our ultimate goal is not to be an exhaustive resource for all environmental chemist. Rather, we're focused on developing broadly applicable data science course content (tutorials and recipes) based in `R` for undergraduate environmental chemistry courses. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum. 
 
-This is a a proof-of-concept for how a textbook can be written in R markdown, and published to the web. All of the web stuff is done automatically so we only need to focus on the content. 
+Check out the index for what's already live, and the list below for some of our proposals. 
 
-I'd added some quick sections from documents I've written for previous courses to illustrate some of the possibilities. 
+  - Setup and workflows for working with R and R Studio
+  - Data tidying
+    - Best practices when recording data
+    - Tidying data either in `R` or Excel for downstream analysis in `R`
+    - Recipes for tidying common datasets (i.e. [ECCC NAPS](https://open.canada.ca/data/en/dataset/1b36a356-defd-4813-acea-47bc3abd859b) hourly measurements)
+  - Data Visualization
+    - Map, cartograms, and other related stuff 
+    - Volcano plots
+    - Bar charts    
+  - Data analysis
+    - Calibration curves and quantitative analysis
+    - Various statistical comparisons (t.test, ANOVA, ...)
+    - Coorelation plots
+  - Advice on beautifying visualizations for publication
+  
+  If you have any questions/comments/suggestions/concerns please email:
+  
+  - [Dave](https://sites.chem.utoronto.ca/penglab/content/people) at [davidross.hall@mail.utoronto.ca](davidross.hall@mail.utoronto.ca)
+  - [Steven](https://sites.chem.utoronto.ca/penglab/content/people) at [steven.kutarna@mail.utoronto.ca](steven.kutarna@mail.utoronto.ca)
+  - [Dr. D'eon](https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon) at [jessica.deon@utoronto.ca](jessica.deon@utoronto.ca)
+  
+  
