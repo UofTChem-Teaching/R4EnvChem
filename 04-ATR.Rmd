@@ -30,7 +30,7 @@ spectrum <- spectrum %>%
 head(spectrum, n = 10)
 ```
 
-In a long format, each column is a variable, and each row is an observation. So in this format you can read across and note that at 550.0952 cm^-1, EPDM had an asorbance of 0.212. This format makes working with the tidyverse family of functions. 
+In a long format, each column is a variable, and each row is an observation. So in this format you can read across and note that at 550.0952 cm^-1, EPDM had an absorbance of 0.212. This format makes working with the tidyverse family of functions much easier and intuitive once you understand the layout. 
 
 ## Plotting data
 
