@@ -60,6 +60,7 @@ fig <- ggplot(spectrum, aes(x = wavenumber,
 
 fig
 ```
+
 Note the use of 'geom_path()' in our new plot. This will connect the individual points in a plot creating a smooth line. 
 
 ## Creating interactive plots
