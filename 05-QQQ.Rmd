@@ -1,0 +1,4 @@
+# Peak intergration of QQQ Data
+
+Every vendor has their own file storage format, and consequently their own software to analyze it. But under the hood, triple quad data is relatively simple. There's a finite number of targeted *m/z*s over a finite chromatographic run that can produce a finite intrusmental response. 
+
