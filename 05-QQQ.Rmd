@@ -1,3 +1,8 @@
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # Peak intergration of QQQ Data
 
 Every vendor has their own file storage format, and consequently their own software to analyze it. But under the hood, triple quad data is relatively simple. There's a finite number of targeted *m/z*s over a finite chromatographic run that can produce a finite instrumental response. 
@@ -43,10 +48,11 @@ Since the Lake Niamco samples were analysed at a different time then the 20 Mile
 QQQ <- QQQ %>%
     mutate(location = case_when(
       str_detect(sampleID, regex("20MC", ignore_case=TRUE)) ~ "20MC",
-      TRUE ~ "NIA"))
+      str_detect(sampleID, regex("NIA", ignore_case=TRUE)) ~ "NIA",
+      TRUE ~ "NA"))
 ```
 
-The code above will search through every row in the `sampleID` column. If it finds the string of characters `20MC`, which we used to denote samples from 20 mile creak, it will record this in a new column called `location`. Because all our samples possess the string `20MC` or `NIA` (for Lake Niamco), we can simply say if if a given `sampleID` row value doesn't possess the string `20MC`, then it must be from `NIA`. Note, if we had more complex `sampleID` names, we could expand our `case_when` arguments accordingly. 
+The code above will search through every row in the `sampleID` column. If it finds the string of characters `20MC`, which we used to denote samples from 20 mile creak, it will record this in a new column called `location`. Same with NIA. If neither `20MC` or `NIA` are detected, it returns `NA`. Note, if we had more complex `sampleID` names, we could expand our `case_when` arguments accordingly. 
 
 
 Let's make a quick plot to verify everything is looking alright: 
@@ -56,26 +62,144 @@ Let's make a quick plot to verify everything is looking alright:
 ggplot(QQQ, aes(x = RT, y = peakArea, colour = group)) +
   geom_point() +
   facet_grid(cols = vars(cmpd),
-             rows = vars(location)) 
+             rows = vars(location)) +
+  theme(legend.position = "bottom")
 ```
 
-Alright, busy plot, but let's see what we got. First off, this is a *small multiple*, basically a grid of small, individual, plots that share a common axis. So each small plot is our retention time (`RT`) on the x-axis vs. integrated peak area (`peakArea`) on the y-axis. Now our small multiple is organized in a grid, with the columns of the grid corresponding to the ions we analyzed, and the rows of the grid being the location grouping. So, the top-right plot shows the peak area vs. retention time of PFOS from the 20 Mile Creek samples. E
+Alright, busy plot, but let's see what we got. First off, this is a *small multiple*, basically a grid of small, individual, plots that share a common axis. So each small plot is our retention time (`RT`) on the x-axis vs. integrated peak area (`peakArea`) on the y-axis. Now our small multiple is organized in a grid, with the columns of the grid corresponding to the ions we analyzed, and the rows of the grid being the location grouping. So, the top-right plot shows the peak area vs. retention time of PFOS from the 20 Mile Creek samples. Lastly, the colour of a point corresponds to the group to which that value belongs. So we see multiple `calCurve` values at the same RT for a given compound, but with vastly different peak areas. This makes sense, as these are our standards from which we'll construct our calibration curve. 
 
+Now that we understand what we're looking at, let's inspect our data. Here are some things I note: 
+
+ - Some compounds have a `RT` and `peakArea` of 0. Now they're actual concentration isn't 0, rather the vendor software used to calculate peak areas will return `0` if a given ion wasn't detected. However, R will interpret this number literally, so we'll need to address this later on. 
+ - Most compounds elute at approximately 4 minutes. The grouping of retention times makes sense because of the structural similarity of our targeted compounds, and the short retention time. 
+  - **However** some compounds appear to elute earlier. Often these outliers have a low `peakArea`, so they may be the result of the vendor algorithm integrating noise, and mislabelling it. We'll need to review this later on. 
+- The internal standards all have similar peak areas values. This makes sense, as we've spiked in the same amount of internal standard for each sample. 
+- No signal is greater than a `calCurve` signal, this is good as it means all of our unknowns should fall within our calibration curve. 
+
+
+## Calculating calibration curves
+
+Now that we're all organized in terms of importing our LC-MS results, let's being the work of actually quantifying the samples we injected into the LC-MS before back calculating and quantifying our actual field samples. 
+
+First thing, we'll need to normalize our peak areas to account for matrix effects. To achieve this, we'll need to pair each analyte of interest with it's assigned internal standard. Recall however that we did not have an exact isotopic standard for each compound. The pairing, from the lab manual, is below: 
+
+| Analyte | Full name                     | Carboxylic acid? | Sulfonic acid? | Number of  Carbons | Number of  perfluorinated carbons | Internal Standard  to use |
+|---------|-------------------------------|------------------|----------------|--------------------|-----------------------------------|---------------------------|
+| PFHxA   | Perfluorohexanoic acid        | x                |                | 6                  | 5                                 | 13C4 PFHxA                |
+| PFHpA   | Perfluoroheptanoic acid       | x                |                | 7                  | 6                                 | 13C4 PFOA                 |
+| PFHxS   | Perfluorohexane sulfonic acid |                  | x              | 6                  | 6                                 | 13C4 PFHxS                |
+| PFOA    | Perfluorooctanoic acid        | x                |                | 8                  | 7                                 | 13C4 PFOA                 |
+| PFNA    | Perfluorononanoic acid        | x                |                | 9                  | 8                                 | 13C5 PFNA                 |
+| PFOS    | Perfluorooctane sulfonic acid |                  | x              | 8                  | 8                                 | 13C4 PFOS                 |
+| PFDA    | Perfluorodecanoic acid        | x                |                | 10                 | 9                                 | 13C2 PFDA                 |
+
+So according to the table above, both `PFHpA` and `PFOA` use `13C4PFOA` as an internal standard. Given
+
+
+
+For fun, let's gauge how much our internal standards varied between samples. After all, they're all supposed to be the same... We'll create a new column to annotate which compounds are from our internal standard (i.e. those with $^{13}C$). For that, we'll recycle  a bit of code from above to search for the "13C" string. Then we can compare the peak areas of the internal standards and our analytes of interest.
+
+As for pairing, there's a couple of ways we could do this. Let's just create a new column where we remove the `13C.` string, so we get the same compounds. Some things to note about the string search: 
+
+- The regex `13C.`, will look up any string with `13C` and one additional wildcard character (noted by the `.`). This way we can account for the different numbers of 13C in the name, such as `13C4` and `13C2`. 
+- `PFHpA` will not have an isotopic pair. We'll need to resolve this later by subtracting the `13C4PFOA` values from it. 
 
 ```{r}
 
-stds <- QQQAnot %>%
-  filter(type == "standard") %>%
-  mutate(conc = as.numeric(str_extract(SampleID, "(?<=_)(.*?)(?=p)")))  %>%
+# annotating internal and external standards
+QQQ <- QQQ %>%
   mutate(stdType = case_when(
       str_detect(cmpd, regex("13C", ignore_case=TRUE)) ~ "internal",
       TRUE ~ "external"))
-  
 
-ggplot(stds, aes(x = conc, y = PeakArea, colour = cmpd)) +
+# pairing analytes w/ internal standard
+
+QQQ <- QQQ %>%
+  mutate(pair = str_remove(cmpd, regex("13C.")))
+
+
+ggplot(data = QQQ, aes(x = stdType, y = peakArea)) +
+  geom_violin() +
+  geom_jitter(position=position_jitter(0.1), alpha = 0.25) +
+  scale_y_continuous(trans="log10") +
+  facet_grid(cols = vars(pair),
+             rows = vars(location)) +
+  theme(legend.position = "bottom") +
+  ylab("log10 Peak Area")
+```
+
+Wow look at this. This is small multiple of violin plots shows some neat trends. For those not in the know, a violin plot is similar to a box plot, but the width of the 'bar' is a function of the density of the data around that point. In other words, the more points at a given value, the wider the plot. We also plotted the individual points themselves to help convey this. It helps us better visualize groupings of data, and can shed some light if a grouping of data might actually be many smaller groupings. 
+
+Anyways, let's see what else this says about our data. First, we can see that there's much less variation between internal standards (the "internal" column") compared to the non-isotopically labelled analytes (the "external" column). Makes sense, all the internal standards are supposed to be the same concentration. However, even then there is still at least an order of magnitude variation in peak area for a given internal standard. Looking at the internal standard peak areas, it appears that they cluster into two groups, albeit with some overlap. We might have missed this with a boxplot, but the violin plot helps us see it. This clustering around two points might be the result of people using two different pipettes to spike in their internal standard. The variation between pipettes could account for the clustering of the internal standard peak areas. Speaking of two groups, again, we can see a large number of the "external" were not detected, as denoted by their peak area value of `0`. Lastly, between internal standards, we can clearly see that sulfonic acids have a weaker instrumental response then carboxylic acid. This is most likely due to difference in ionizability between the aforementioned functional groups. 
+
+## Normalizing peak areas
+
+Moving onward, the entire point of spiking the same internal standard is to use those values to normalize our external measurements. For this we'll divide the external peak area by the internal peak area for a given sample. *Note this is how I was told CHM410 did it, holler it it's wrong*.
+
+```{r}
+
+# Note removal of PFHpA, because it doesn't have an isotope pair
+# Also note RTDif column, which is difference in retention time between internal and external standard
+QQQNorm <- QQQ %>%
+  filter(pair != "PFHpA") %>%
+  group_by(sampleID, pair) %>%
+  mutate(normPeakArea = peakArea[stdType == 'external'] / peakArea[stdType == 'internal']) %>%
+  mutate(RTdif = RT[stdType == 'external'] - RT[stdType == 'internal'])
+
+# Normalizing PFHpA seperatly; not removal of 13C4PFOA data at end
+QQQPFHpA <- QQQ %>%
+  filter(cmpd %in% c("PFHpA", "13C4PFOA")) %>%
+  group_by(sampleID, ) %>%
+  mutate(normPeakArea = peakArea[cmpd == 'PFHpA'] / peakArea[cmpd == '13C4PFOA']) %>%
+  mutate(RTdif = RT[cmpd == 'PFHpA'] - RT[cmpd == '13C4PFOA']) %>%
+  filter(cmpd %in% c("PFHpA"))
+
+# Rejoining data and dropping internal standard values as they're no longer needed.
+QQQNorm <- QQQNorm %>%
+  bind_rows(QQQPFHpA) %>%
+  filter(stdType %in% "external")
+
+```
+
+So the above code did double duty. First we normalized the external peak areas by the internal standard peak areas. This has a couple of consequence;
+
+1. If a compounds wasn't detected, it has a peak area of 0. When divided by the internal peak area, the result will be zero. 
+2. If an internal standard wasn't detected, the external peak area will be divided by 0 resulting in `NA`. 
+
+Let's see how our internal and external standards match up by comparing internal and external retention times. 
+
+```{r}
+ggplot(QQQNorm, aes(x = RT, y = RTdif, colour = cmpd)) +
+  geom_point() 
+```
+
+Alright, it appears that most of our compounds are clustering around themselves, and there's little variation among the `RTdif` axis, meaning there isn't a large difference between the retention times of the internal and external peaks. This means our peak picking algorithm chose peaks at the correct retention time. Of course, the clustering around `RT = 0` is from compounds that weren't detected, but whose internal standards were; this is fine.  However, there is a line of outliers. These are probably all from the same sample. Let's annotate our plot to see if this is true.
+
+
+
+```{r}
+ggplot(QQQNorm, aes(x = RT, y = RTdif, colour = cmpd, label = sampleID)) +
   geom_point() +
-  facet_grid(cols = vars(location),
-             rows = vars(stdType)) 
+  ggrepel::geom_text_repel(aes(label=ifelse(RTdif > 0.25 | (RTdif < -0.25 & RT > 0), as.character(sampleID),'')),hjust=0,vjust=0)
+
+```
+
+So something strange happening with the `20MC 0 ppb` run. Maybe it was the first one of the day, and the instrument was exceptionally noisy, leading to sloppy peak picking by the algorithm. After all, there shouldn't be any signal as the concentration of the external standard for this compound should be 0 ppb. Likewise, we don't see this effect with the NIA calibration curve standards. 
+
+```{r}
+
+# stds <- QQQAnot %>%
+#   filter(type == "standard") %>%
+#   mutate(conc = as.numeric(str_extract(SampleID, "(?<=_)(.*?)(?=p)")))  %>%
+#   mutate(stdType = case_when(
+#       str_detect(cmpd, regex("13C", ignore_case=TRUE)) ~ "internal",
+#       TRUE ~ "external"))
+#   
+# 
+# ggplot(stds, aes(x = conc, y = PeakArea, colour = cmpd)) +
+#   geom_point() +
+#   facet_grid(cols = vars(location),
+#              rows = vars(stdType)) 
 ```
 
 
