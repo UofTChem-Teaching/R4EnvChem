@@ -1,0 +1,56 @@
+group,sampleID,matrix,extraction,type,location,sampleMass,FishLength
+A,Grp A 20MC Biota Spike #1,biota,Mortar/Pestle,spike,20MC,,
+A,Grp A 20MC Mortar/Pestle Blank #1,biota,Mortar/Pestle,blank,20MC,,
+A,Grp A 20MC Blender Blank #1,biota,Blender,unknown,20MC,,
+A,Grp A 20MC Crayfish #1 (Replicate 1),biota,Mortar/Pestle,unknown,20MC,1.0527,
+A,Grp A 20MC Crayfish #1 (Replicate 2),biota,Mortar/Pestle,unknown,20MC,1.0751,
+A,Grp A 20MC Catfish #1 (Replicate 1),biota,Blender,unknown,20MC,1.0718,6.5
+A,Grp A 20MC Catfish #1 (Replicate 2),biota,Blender,unknown,20MC,1.152,6.2
+A,Grp A 20MC Hard Shell Bug #1,biota,Mortar/Pestle,unknown,20MC,0.1101,
+B,Grp B 20MC Biota Spike #2,biota,Mortar/Pestle,spike,20MC,,
+B,Grp B 20MC Mortar/Pestle Blank #2,biota,Mortar/Pestle,blank,20MC,,
+B,Grp B 20MC Blender Blank #2,biota,Blender,blank,20MC,,
+B,Grp B 20MC Hard Shell Bug #2 (Replicate 1),biota,Mortar/Pestle,unknown,20MC,0.2389,
+B,Grp B 20MC Hard Shell Bug #2 (Replicate 2),biota,Mortar/Pestle,unknown,20MC,0.0209,
+B,Grp B 20MC Crayfish #2 (Replicate 1),biota,Mortar/Pestle,unknown,20MC,0.8841,
+B,Grp B 20MC Crayfish #2 (Replicate 2),biota,Mortar/Pestle,unknown,20MC,1.0013,
+B,Grp B 20MC Catfish #2,biota,Blender,unknown,20MC,1.9834,5.8
+C,Grp C 20MC Biota Spike #3,biota,Mortar/Pestle,spike,20MC,,
+C,Grp C 20MC Mortar/Pestle Blank #3,biota,Mortar/Pestle,blank,20MC,,
+C,Grp C 20MC Blender Blank #3,biota,Blender,blank,20MC,,
+C,Grp C 20MC Crayfish #3,biota,Mortar/Pestle,unknown,20MC,0.8155,
+C,Grp C 20MC Bluegill Sunfish #3,biota,Blender,unknown,20MC,0.1946,2.65
+C,Grp C 20MC Catfish #3,biota,Blender,unknown,20MC,1.0773,6.85
+C,Grp C 20MC Nymph #3,biota,Mortar/Pestle,unknown,20MC,0.5289,
+C,Grp C 20MC Slug #3,biota,Blender,unknown,20MC,0.5593,
+C,Grp C 20MC Beetle #3,biota,Mortar/Pestle,unknown,20MC,0.2705,
+C,Grp C 20MC Whirligig #3,biota,Mortar/Pestle,unknown,20MC,0.0547,
+D,Grp D NIA Biota Spike #1,biota,,unknown,NIA,,
+D,Grp D NIA Mortar/Pestle Blank #1,biota,Mortar/Pestle,unknown,NIA,,
+D,Grp D NIA Blender Blank #1,biota,Blender,unknown,NIA,,
+D,Grp D NIA Handheld Homogenizer Blank #1,biota,Handheld Homogenizer,unknown,NIA,,
+D,Grp D NIA Crayfish #1,biota,Mortar/Pestle,unknown,NIA,1.338,
+D,Grp D NIA Hardshell Bug #1,biota,Mortar/Pestle,unknown,NIA,0.2843,
+D,Grp D NIA Shrimp #1 (Replicate 1),biota,Handheld Homogenizer,unknown,NIA,0.9854,
+D,Grp D NIA Shrimp #1 (Replicate 2),biota,Handheld Homogenizer,unknown,NIA,1.0054,
+D,Grp D NIA Catfish #1 (Replicate 1),biota,Blender,unknown,NIA,1.0587,7.5
+D,Grp D NIA Catfish #1 (Replicate 2),biota,Blender,unknown,NIA,1.1866,7.5
+D,Grp D NIA Catfish #1 (Replicate 3),biota,Blender,unknown,NIA,1.4201,7.5
+E,Grp E NIA Biota Spike #2,biota,,unknown,NIA,,
+E,Grp E NIA Mortar/Pestle Blank #2,biota,Mortar/Pestle,unknown,NIA,,
+E,Grp E NIA Blender Blank #2,biota,Blender,unknown,NIA,,
+E,Grp E NIA Bluegill Sunfish #2 (Replicate 1),biota,Blender,unknown,NIA,0.4212,3.5
+E,Grp E NIA Bluegill Sunfish #2 (Replicate 2),biota,Blender,unknown,NIA,0.3059,3.5
+E,Grp E NIA Bluegill Sunfish #2 (Replicate 3),biota,Blender,unknown,NIA,0.5911,3.5
+E,Grp E NIA Crayfish #2,biota,Mortar/Pestle,unknown,NIA,1.0304,
+E,Grp E NIA Hard Shell Bug #2,biota,Mortar/Pestle,unknown,NIA,0.2205,
+F,Grp F NIA Biota Spike #3,biota,,unknown,NIA,,
+F,Grp F NIA Mortar/Pestle Blank #3,biota,Mortar/Pestle,unknown,NIA,,
+F,Grp F NIA Blender Blank #3,biota,Blender,unknown,NIA,,
+F,Grp F NIA Handheld Homogenizer Blank #3,biota,Handheld Homogenizer,unknown,NIA,,
+F,Grp F NIA Shrimp #3 (Replicate 1),biota,Handheld Homogenizer,unknown,NIA,1.0419,
+F,Grp F NIA Shrimp #3 (Replicate 2),biota,Handheld Homogenizer,unknown,NIA,1.0003,
+F,Grp F NIA Pumpkinseed Fish #3 (Replicate 1),biota,Blender,unknown,NIA,0.8698,4.2
+F,Grp F NIA Pumpkinseed Fish #3 (Replicate 2),biota,Blender,unknown,NIA,0.8784,4.2
+F,Grp F NIA Whirligig #3,biota,Mortar/Pestle,unknown,NIA,0.07,
+F,Grp F NIA Nymph #3,biota,Mortar/Pestle,unknown,NIA,0.2131,

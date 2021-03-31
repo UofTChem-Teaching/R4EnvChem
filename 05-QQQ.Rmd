@@ -1,4 +1,91 @@
 # Peak intergration of QQQ Data
 
-Every vendor has their own file storage format, and consequently their own software to analyze it. But under the hood, triple quad data is relatively simple. There's a finite number of targeted *m/z*s over a finite chromatographic run that can produce a finite intrusmental response. 
+Every vendor has their own file storage format, and consequently their own software to analyze it. But under the hood, triple quad data is relatively simple. There's a finite number of targeted *m/z*s over a finite chromatographic run that can produce a finite instrumental response. 
+
+```{r}
+library(tidyverse) # for dplyr, readr, stringr, and ggplot
+library(broom)
+```
+
+
+
+First off let's import the peak area information for all of our analytes. *Note I cleaned up the data in Excel, mostly because of issues with merged cells, as well as generated unique `sampleID` values for each sample by combining the sample name and the group letter.*
+
+```{r}
+
+QQQ <- read_csv("data/CHM410/lab4_qqq.csv") 
+
+head(QQQ)
+
+```
+
+Note how it's in a wide format, with columns for the peak area and retention times for each targeted ion. This served the TA well when they wrote down the data from the LC-MS analysis, but let's tidy it up so it's easier to work with in R. 
+
+```{r}
+
+### Find cleaner way of doing this...
+
+QQQ <- QQQ %>%
+  pivot_longer(cols = -c("group", "type", "sampleID"),
+               names_to = c("cmpd", "measurement"),
+               names_sep = "_",
+               values_to = "value") %>%
+  pivot_wider(names_from = measurement, 
+              values_from = value)
+
+head(QQQ)
+```
+
+
+Since the Lake Niamco samples were analysed at a different time then the 20 Mile Creek samples, let's quickly annotate our data to differentiate the two. Since we used (overly) descriptive sample names (stored in the `sampleID` column), we can create a new column to specify the location by searchign for matching string values. 
+
+```{r}
+QQQ <- QQQ %>%
+    mutate(location = case_when(
+      str_detect(sampleID, regex("20MC", ignore_case=TRUE)) ~ "20MC",
+      TRUE ~ "NIA"))
+```
+
+The code above will search through every row in the `sampleID` column. If it finds the string of characters `20MC`, which we used to denote samples from 20 mile creak, it will record this in a new column called `location`. Because all our samples possess the string `20MC` or `NIA` (for Lake Niamco), we can simply say if if a given `sampleID` row value doesn't possess the string `20MC`, then it must be from `NIA`. Note, if we had more complex `sampleID` names, we could expand our `case_when` arguments accordingly. 
+
+
+Let's make a quick plot to verify everything is looking alright: 
+
+```{r}
+
+ggplot(QQQ, aes(x = RT, y = peakArea, colour = group)) +
+  geom_point() +
+  facet_grid(cols = vars(cmpd),
+             rows = vars(location)) 
+```
+
+Alright, busy plot, but let's see what we got. First off, this is a *small multiple*, basically a grid of small, individual, plots that share a common axis. So each small plot is our retention time (`RT`) on the x-axis vs. integrated peak area (`peakArea`) on the y-axis. Now our small multiple is organized in a grid, with the columns of the grid corresponding to the ions we analyzed, and the rows of the grid being the location grouping. So, the top-right plot shows the peak area vs. retention time of PFOS from the 20 Mile Creek samples. E
+
+
+```{r}
+
+stds <- QQQAnot %>%
+  filter(type == "standard") %>%
+  mutate(conc = as.numeric(str_extract(SampleID, "(?<=_)(.*?)(?=p)")))  %>%
+  mutate(stdType = case_when(
+      str_detect(cmpd, regex("13C", ignore_case=TRUE)) ~ "internal",
+      TRUE ~ "external"))
+  
+
+ggplot(stds, aes(x = conc, y = PeakArea, colour = cmpd)) +
+  geom_point() +
+  facet_grid(cols = vars(location),
+             rows = vars(stdType)) 
+```
+
+
+
+
+
+
+
+
+
+
+
 
