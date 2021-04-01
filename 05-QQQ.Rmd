@@ -118,7 +118,9 @@ QQQ <- QQQ %>%
 
 ggplot(data = QQQ, aes(x = stdType, y = peakArea)) +
   geom_violin() +
-  geom_jitter(position=position_jitter(0.1), alpha = 0.25) +
+  geom_jitter(aes(colour = type), 
+              position=position_jitter(0.2), 
+              alpha = 0.75) +
   scale_y_continuous(trans="log10") +
   facet_grid(cols = vars(pair),
              rows = vars(location)) +
@@ -128,7 +130,7 @@ ggplot(data = QQQ, aes(x = stdType, y = peakArea)) +
 
 Boy howdy let's break this down. This is small multiple of violin plots that shows some neat trends. For those not in the know, a violin plot is similar to a box plot, but the width of the 'bar' is a function of the density of the data around that point. In other words, the more points at a given value, the wider the plot; we've also plotted the individual points themselves to help convey this. Violin plots help us better visualize groupings of data, and can shed some light if a grouping of data might actually be many smaller groupings. 
 
-Anyways, let's see what else this says about our data. First, we can see that there's much less variation between internal standards (the "internal" column") compared to the non-isotopically labelled analytes (the "external" column). Makes sense, all the internal standards are supposed to be the same concentration. However, even then there is still at least an order of magnitude variation in peak area for a given internal standard. Some of this is due to matrix effects, and is why we added the internal standards in the first place. However, looking at the internal standard peak areas, it appears that they cluster into two groups, albeit with some overlap. We might have missed this with a boxplot, but the violin plot helps us see it. This clustering around two points might be the result of people using two different pipettes to spike in their internal standard. The variation between pipettes could account for the clustering of the internal standard peak areas. Speaking of two groups, again, we can see a large number of the "external" were not detected, as denoted by their peak area value of `0`. These are probably from the samples originating from the 'clean' reference site. Lastly, between internal standards, we can clearly see that sulfonic acids have a weaker instrumental response then carboxylic acid. This is most likely due to difference in ionizability between the aforementioned functional groups. 
+Anyways, let's see what else this says about our data. First, we can see that there's much less variation between internal standards (the "internal" column") compared to the non-isotopically labelled analytes (the "external" column). Makes sense, all the internal standards are supposed to be the same concentration. However, even then there is still at least an order of magnitude variation in peak area for a given internal standard. Some of this is due to matrix effects, and is why we added the internal standards in the first place. However, looking at the internal standard peak areas, it appears that they cluster into two groups, albeit with some overlap. We might have missed this with a boxplot, but the violin plot helps us see it. You might imagine that the clustering is due to the differences between the external calibration curve samples, and real samples, with the latter having lowered internal standard peak areas due to matrix effects. However, looking at the colouring of the dots, we see that while the `std` internal standard peak areas are generally the highest (no matrix effect), they don't account for all of the upper cluster. So there might be another reason for this. This clustering around two points might be the result of people using two different pipettes to spike in their internal standard. The variation between pipettes could account for the clustering of the internal standard peak areas. Speaking of two groups, again, we can see a large number of the "external" were not detected, as denoted by their peak area value of `0`. These are probably from the samples originating from the 'clean' reference site. Lastly, between internal standards, we can clearly see that sulfonic acids have a weaker instrumental response then carboxylic acid. This is most likely due to difference in ionizability between the aforementioned functional groups. 
 
 ### Normalizing peak areas
 
@@ -170,7 +172,9 @@ Let's see how our internal and external standards match up by comparing internal
 
 ```{r QQQ_RTDif, message = FALSE, error = FALSE, warning = FALSE}
 ggplot(QQQNorm, aes(x = RT, y = RTdif, colour = cmpd)) +
-  geom_point() 
+  geom_point() +
+  xlab("External RT (min)") +
+  ylab("External RT - Internal RT (min)") 
 ```
 
 Alright, it appears that most of our compounds are clustering around themselves, and there's little variation among the `RTdif` axis, meaning there isn't a large difference between the retention times of the internal and external peaks. This means our peak picking algorithm chose peaks at the correct retention time. Of course, the clustering around `RT = 0` is from compounds that weren't detected, but whose internal standards were; this is fine.  However, there appears to be some outliers somewhere between these two clusters. These are probably all from the same sample. Let's annotate our plot to see if this is true.
@@ -180,6 +184,8 @@ Alright, it appears that most of our compounds are clustering around themselves,
 ```{r QQQ_RTDifAnot, message = FALSE, error = FALSE, warning = FALSE}
 ggplot(QQQNorm, aes(x = RT, y = RTdif, colour = cmpd, label = sampleID)) +
   geom_point() +
+    xlab("External RT (min)") +
+  ylab("External RT - Internal RT (min)") +
   ggrepel::geom_text_repel(aes(label=ifelse(RTdif > 0.25 | (RTdif < -0.25 & RT > 0), as.character(sampleID),'')),hjust=0,vjust=0)
 
 ```
