@@ -1,5 +1,5 @@
 --- 
-title: "R for Environmental Chemist"
+title: "R for Environmental Chemists"
 author: "David Hall, Steven Kutarna, and Jessica D'eon"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -29,7 +29,7 @@ Check out the index for what's already live, and the list below for some of our 
     - Volcano plots
     - Bar charts    
   - Data analysis
-    - Calibration curves and quantitative analysis
+    - ~~Calibration curves~~ and quantitative analysis
     - Various statistical comparisons (t.test, ANOVA, ...)
     - Correlation plots
   - Advice on beautifying visualizations for publication

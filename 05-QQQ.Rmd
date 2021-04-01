@@ -1,8 +1,4 @@
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Calibration Curves with QQQ Data
 
 *Note I didn't actually take the CHM410 course, so Jess will need to review this part. As well, i expect this entire chapter will get chopped up in later drafts of the book. As well, will review modelling stuff to find an easier pay. Probably with purrr and what not. -DH*
