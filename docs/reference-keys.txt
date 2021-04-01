@@ -19,6 +19,7 @@ normalizing-peak-areas
 calculating-calibration-curves
 plotting-regression-curves
 quantifying-sample-concentrations
+appendix
 first-off-what-is-r-markdown
 how-do-i-get-started-with-r-markdown
 great-now-whats-going-on-with-this-r-markdown-document

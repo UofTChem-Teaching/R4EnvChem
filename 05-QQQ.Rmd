@@ -236,7 +236,7 @@ tidied
 
 Again, a lot more to unpack compared to *Excel*. That's because the `lm` function in R calculates a generalized linear model. `lm` performs a linear regression model, which we normally think of as an equation of the form $y= mx+b$. But, regression models can be expanded to account for multiple variables (hence *multiple linear regression*) of the form 
 
-$$y = \Beta _{0} + \Beta _{1} x_{1} + \Beta _{2} x_{2} ... \Beta _{p} x_{p}$$]
+$$y = \beta _{0} + \beta _{1} x_{1} + \beta _{2} x_{2} ... \beta _{p} x_{p}$$]
  
  where, 
  
@@ -245,7 +245,7 @@ $$y = \Beta _{0} + \Beta _{1} x_{1} + \Beta _{2} x_{2} ... \Beta _{p} x_{p}$$]
  - $\Beta _{0}$ = y-intercept (constant term) 
  - $\Beta _{p}$ = slope coefficient for each explanatory variable
 
-In our situation, we only have one input variable for our model (`conc`), so the above formula collapses down to $y = \Beta _{0} + \Beta _{1} x_{1}$. So looking at our results above, each row corresponds to a model parameter for a given compound and location. For each modelling parameter, we're provided an estimate of it's numerical value (`estimate`, the values we'll use to calculate concentration). The other parameters are useful to understand but not necessary at this point (again, check out the *Modelling* section). 
+In our situation, we only have one input variable for our model (`conc`), so the above formula collapses down to $y = \beta _{0} + \beta _{1} x_{1}$. So looking at our results above, each row corresponds to a model parameter for a given compound and location. For each modelling parameter, we're provided an estimate of it's numerical value (`estimate`, the values we'll use to calculate concentration). The other parameters are useful to understand but not necessary at this point (again, check out the *Modelling* section). 
 
 ### Plotting regression curves
 
