@@ -1,0 +1,125 @@
+# Visualizing Light Spectra
+
+Instrument details 
+
+| Instrumental   Settings   |                 |
+|---------------------------|----------------:|
+| Instrument Name           |          LS50-B |
+| Excitation Wavelength     |          480 nm |
+| Emission Wavelength Range | 500 to 650.5 nm |
+| Excitation Slit Width     |          2.5 nm |
+| Emission Slit Width       |            3 nm |
+| Scan Speed                |      250 nm/min |
+
+```{r, message = FALSE, error = FALSE, warning=FALSE}
+library(tidyverse)
+
+
+sdsWide <- read_csv("data/CHM317/fluoro_SDSCMC.csv") 
+
+head(sds)
+```
+
+Looking at our data headers we can see the familiar 'wide' format, with a wavelength column corresponding to the emission wavelength and the remainder accounting for the emission intensity at various concentration of SDS. Note that the intensity columns contains two pieces of information: 1) the concentration in moles per liter and 2) the identity of the chemical, SDS in this case. So when we tidy our data we'll need to split these column headers up so we get a column corresponding to the numerical  value of the concentration, and another with the identity of the column.
+
+```{r}
+
+sds <- sdsWide %>%
+  pivot_longer(cols = !`Wavelength (nm)`, # select all columns BESIDES `Wavelength (nm)`
+               names_to = c("conc", "conc.units", "chemical"),
+               names_pattern = "(.*) (.) (.*)",
+               values_to = "intensity",
+               names_transform = list(conc = as.numeric)
+  ) %>%
+  rename(wavelength = 'Wavelength (nm)') # renaming column, less typing later on. 
+
+head(sds)
+
+```
+
+The key bit of code here is `names_to` and `names_pattern`. The first part creates three new columns, and the second part searches and subsequently breaks up those headers. Recall our original headers looked like this: `0.001 M SDS`, where we had the concentration, a space (which is a character!), the concentration units, another space, and finally the chemical. What `names_pattern = "(.*) (.) (.*)`.is searching for three chunks of characters separated by a space. We specify the chunk of characters in the parentheses. So the first bit, `(.*)`, means look for any character (`.` in this context is a placeholder for *any* character) and the chunk of characters can be any length (as denoted by `*`). So extending this, we see our code looks for three chunks of characters, delimited by a space between them. The first can be any length, the second is 1 character long, and the third can be any length. You could have specified to look for `M` or `SDS` explicitly, but if we had different chemicals or units in our dataset these would be lost. 
+
+Lastly note `names_transform`. We split up our original headers to populate rows. However our original headers were stored as characters, and when w split them up we created three separate strings of characters, so R will treat out `conc` values as characters rather than numbers. By using `names_transform` we tell R to treat `conc` values as numbers. 
+
+Oh and we renamed our original `Wavelength (nm)` column to `wavelength` using the `rename` function. It's always a good idea to use the simplest column names you can (and no simpler!). A good practice is to remove any spaces (you can use `snake_case` or `camelCase` instead) as well as removing special character such as parentheses. 
+
+
+## Visually inspecting our data
+
+Let's make a quick plot of our fluorescence intensity data and see what we have. 
+
+```{r}
+
+ggplot(data = sds, 
+       aes(x = wavelength,
+           y = intensity, 
+           colour = conc)) +
+  geom_point() 
+
+
+```
+
+Alright, alright, alright. Things are looking like we'd expect with some well behaved data. By plotting each point individually, we can really see the noise inherent with each reading. For a more robust analysis we'd typically conduct several replicates and average out the spectra for each concentration or apply some kind of model to smooth each peak. But today, we're just interested in getting the maximal fluorescence emission intensity from each reading. 
+
+Let's first annotate our plate to find the highest point, then go about extracting our data for analysis. 
+
+### Annotating maximal values
+
+Annotating the maximal point on the plot will take a bit more code then actually obtaining it from the data. For this we'll need to use the `ggpmisc` package which contains miscellaneous extensions for `ggplot2`, and `ggrepel` so our labels won't overlap. 
+
+```{r}
+library(ggpmisc)
+library(ggrepel)
+
+ggplot(data = sds, 
+       aes(x = wavelength,
+           y = intensity, 
+           colour = conc)) +
+  geom_point() +
+  stat_peaks(span = NULL,
+             geom = "text_repel",
+             mapping = aes(label = paste(..y.label.., ..x.label..)),
+             x.label.fmt = "at %.0f nm",
+             y.label.fmt = "Max intensity = %.0f",
+             segment.colour = "black",
+             arrow = grid::arrow(length = unit(0.1, "inches")),
+             nudge_x = 60,
+             nudge_y = 200) +
+  facet_grid(rows = vars(conc))
+
+
+```
+
+By facetting the plot (i.e. arranging many smaller plots vs. one large one), we can easily see the increase in emission peak intensity as the concentration of SDS increases. Likewise, we can avoid the messy overlap of the max intensity annotations. 
+
+This is only one way to plot this data, but this is sufficient because we're simply inspecting our data at this point. And here we can see that the intensity all occur around a similar wavelength (~ 528 nm)
+
+## Extracting maximal values
+
+The plots we made above are great for inspecting our data, but what we really want is the maximal emission intensity value to calculate the CMC of SDS. We can see the maximal values on the plots, but there's no way we're typing those in manually. So let's go ahead and get out maximal values from our dataset:
+
+```{r}
+
+sdsMax <- sds %>%
+  group_by(chemical, conc.units, conc) %>%
+  filter(intensity == max(intensity)) %>%
+  ungroup()
+
+head(sdsMax)
+
+```
+
+
+All we did was tell R to take the row with the highest emission intensity value per group. We specified `chemical`, `conc.units`, and `conc`, in case we had more chemicals in our dataset. 
+
+Are maximum values match those we see in our plot above. Let's see how they stack up againt each other: 
+
+```{r}
+
+ggplot(data = sdsMax, 
+       aes(x = conc, 
+           y = intensity)) +
+  geom_point()
+
+```
+
