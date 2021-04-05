@@ -17,7 +17,7 @@ library(tidyverse)
 
 sdsWide <- read_csv("data/CHM317/fluoro_SDSCMC.csv") 
 
-head(sds)
+head(sdsWide)
 ```
 
 Looking at our data headers we can see the familiar 'wide' format, with a wavelength column corresponding to the emission wavelength and the remainder accounting for the emission intensity at various concentration of SDS. Note that the intensity columns contains two pieces of information: 1) the concentration in moles per liter and 2) the identity of the chemical, SDS in this case. So when we tidy our data we'll need to split these column headers up so we get a column corresponding to the numerical  value of the concentration, and another with the identity of the column.
@@ -122,4 +122,134 @@ ggplot(data = sdsMax,
   geom_point()
 
 ```
+
+## Modelling Sigmoidal Curve 
+
+So we want to find the critical micellular concentration of SDS using the maximum fluorescence emission. The CMC is at the 'midpoint of the sigmoidal curve'. Which means we'll need to a) plot a sigmoidal curve and b) extract the midpoint. 
+
+
+###  Calculating Sigmoidal Curve
+
+- define sigmoidal curve...
+- talk about nls...
+```{r}
+ggplot(sdsMax, aes(x = conc, 
+                   y = intensity)) +
+  geom_point() +
+  geom_smooth(method = "nls", 
+              method.args = list(formula = intensity ~ Asym/(1+exp((xmid-conc)/scal)), 
+                                 start = list(Asym = 821, xmid = 0.0075, scal = 1, intensity = 1, conc = 0)), 
+              data = sdsMax,
+              se = FALSE
+              )
+
+# 
+#   mutate(fit = map(data,
+#                    ~ nls(intensity ~ SSlogis(conc,
+#                                              Asym,
+#                                              xmid,
+#                                              scal
+#                                              ),
+#                          data = .x)
+#                    ),
+
+```
+
+```{r}
+library(ggplot2)
+df1 <- structure(list(Concentration = c(500, 250, 100, 62.5, 50, 25, 12.5, 5, 
+                                        500, 250, 100, 62.5, 50, 25, 12.5, 5), 
+                      drug = c(1, 1, 1, 1, 1, 1, 1, 1, 
+                               2, 2, 2, 2, 2, 2, 2, 2), 
+                      rate = c(1.88922, 1.4265, 0.86472, 0.66221, 0.56434, 0.34314, 
+                               0.18112, 0.07717, 3.995055, 3.0118, 1.824505, 1.397237, 
+                               1.190078, 0.723637, 0.381865, 0.162771)),
+                      .Names = c("Concentration", "drug", "rate"), 
+                      row.names = c(NA, -16L), 
+                      class = "data.frame")
+
+# could use e.g. Km = min(df1$Concentration) for start
+# but here we use arbitrary values
+ggplot(df1, aes(Concentration, rate)) + 
+  geom_point() + 
+  geom_smooth(method = "nls", 
+              method.args = list(formula = y ~ Vmax * x / (Km + x),
+                                 start = list(Km = 50, Vmax = 2)), 
+              data = df1,
+              se = FALSE,
+              aes(color = factor(drug)))
+```
+
+```{r}
+library(broom)
+
+
+# sdsMax <- sdsMax %>%
+#   group_by(chemical) %>%
+#   nest() %>%
+#   mutate(fit = map(data,
+#                    ~ nls(intensity ~ SSlogis(conc,
+#                                              Asym,
+#                                              xmid,
+#                                              scal
+#                                              ),
+#                          data = .x)
+#                    ),
+#          tidied = map(fit, tidy),
+#          glanced = map(fit, glance),
+#          predict = map(fit, predict),
+#          augment = map(fit,augment)
+#          )
+
+sdsMax2 <- sdsMax %>%
+  group_by(chemical) %>%
+  nest() %>%
+  mutate(fit = map(data,
+                   ~ lm(intensity ~ conc,
+                         data = .x,
+                       )),
+         tidied = map(fit, tidy),
+         glanced = map(fit, glance),
+         predict = map(fit, predict),
+         augment = map(fit,augment)
+         )
+
+nls(density ~ 1/(1 + exp((xmid - log(conc))/scal)),
+                 data = DNase1,
+                 start = list(xmid = 0, scal = 1)
+
+tidied <-  sdsMax %>%
+  unnest(tidied)
+
+tidied
+
+```
+
+
+
+```{r}
+
+x <- as.data.frame(sdsMax$augment[1])
+x
+```
+
+
+
+
+```{r}
+# ggplot(data = x,
+#        aes(x = conc, y= intensity)) +
+#   geom_point() +
+#   geom_point(aes(x = conc, 
+#                 y = .fitted),
+#              colour = "red")
+
+ggplot()
+```
+
+
+
+
+
+
 
