@@ -24,7 +24,7 @@
 <meta name="author" content="David Hall, Steven Kutarna, and Jessica D’eon" />
 
 
-<meta name="date" content="2021-04-05" />
+<meta name="date" content="2021-04-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="calibration-curves-with-qqq-data.html"/>
-<link rel="next" href="appendix.html"/>
+<link rel="next" href="correlation-heatmaps.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,7 +137,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>R4EnvChem</a></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>1.2</b> Creating an RStudio Project</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#navigating-rstudio"><i class="fa fa-check"></i><b>1.3</b> Navigating RStudio</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="getting-started.html"><a href="getting-started.html#r-environment"><i class="fa fa-check"></i><b>1.3.1</b> R Environment</a></li>
+<li class="chapter" data-level="1.3.2" data-path="getting-started.html"><a href="getting-started.html#viewer"><i class="fa fa-check"></i><b>1.3.2</b> Viewer</a></li>
+<li class="chapter" data-level="1.3.3" data-path="getting-started.html"><a href="getting-started.html#console"><i class="fa fa-check"></i><b>1.3.3</b> Console</a></li>
+<li class="chapter" data-level="1.3.4" data-path="getting-started.html"><a href="getting-started.html#scripts"><i class="fa fa-check"></i><b>1.3.4</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#dark-mode"><i class="fa fa-check"></i><b>1.4</b> Dark Mode</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>2</b> Software</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="software.html"><a href="software.html#microsoft-excel"><i class="fa fa-check"></i><b>2.1</b> Microsoft Excel</a></li>
@@ -146,7 +158,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="software.html"><a href="software.html#r-markdown"><i class="fa fa-check"></i><b>2.2.1</b> R Markdown</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="importing.html"><a href="importing.html"><i class="fa fa-check"></i><b>3</b> Importing</a></li>
+<li class="chapter" data-level="3" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3</b> Importing Data Into R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#long-vs.-wide"><i class="fa fa-check"></i><b>3.1</b> Long vs. Wide</a></li>
+<li class="chapter" data-level="3.2" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#converting-data-to-long-format-in-excel"><i class="fa fa-check"></i><b>3.2</b> Converting Data to Long Format in Excel</a></li>
+<li class="chapter" data-level="3.3" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#converting-data-to-long-format-in-r"><i class="fa fa-check"></i><b>3.3</b> Converting Data to Long Format in R</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html"><i class="fa fa-check"></i><b>4</b> Exploring Spectroscopy Data</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#setting-up-data-for-efficient-plotting"><i class="fa fa-check"></i><b>4.1</b> Setting up data for efficient plotting</a></li>
@@ -183,23 +200,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="logistic-regression-modelling.html"><a href="logistic-regression-modelling.html#extracting-model-parameters"><i class="fa fa-check"></i><b>6.3.2</b> Extracting model parameters</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>7</b> Appendix</a>
+<li class="chapter" data-level="7" data-path="correlation-heatmaps.html"><a href="correlation-heatmaps.html"><i class="fa fa-check"></i><b>7</b> Correlation Heatmaps</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="appendix.html"><a href="appendix.html#first-off-what-is-r-markdown"><i class="fa fa-check"></i><b>7.1</b> First off, what is R Markdown?</a></li>
-<li class="chapter" data-level="7.2" data-path="appendix.html"><a href="appendix.html#how-do-i-get-started-with-r-markdown"><i class="fa fa-check"></i><b>7.2</b> How do I get started with R markdown?</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="appendix.html"><a href="appendix.html#great-now-whats-going-on-with-this-r-markdown-document"><i class="fa fa-check"></i><b>7.2.1</b> Great, now what’s going on with this R markdown document?</a></li>
-<li class="chapter" data-level="7.2.2" data-path="appendix.html"><a href="appendix.html#how-to-run-r-code-in-r-markdown"><i class="fa fa-check"></i><b>7.2.2</b> How to run R code in R Markdown</a></li>
-<li class="chapter" data-level="7.2.3" data-path="appendix.html"><a href="appendix.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><i class="fa fa-check"></i><b>7.2.3</b> How do I go from R markdown to something I can hand-in</a></li>
+<li class="chapter" data-level="7.1" data-path="correlation-heatmaps.html"><a href="correlation-heatmaps.html#correlation-scores"><i class="fa fa-check"></i><b>7.1</b> Correlation Scores</a></li>
+<li class="chapter" data-level="7.2" data-path="correlation-heatmaps.html"><a href="correlation-heatmaps.html#heatmap"><i class="fa fa-check"></i><b>7.2</b> Heatmap</a></li>
+<li class="chapter" data-level="7.3" data-path="correlation-heatmaps.html"><a href="correlation-heatmaps.html#heatmap-with-dendrogram"><i class="fa fa-check"></i><b>7.3</b> Heatmap with Dendrogram</a></li>
+<li class="chapter" data-level="7.4" data-path="correlation-heatmaps.html"><a href="correlation-heatmaps.html#heatmap-but-pretty"><i class="fa fa-check"></i><b>7.4</b> Heatmap, But Pretty</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="appendix.html"><a href="appendix.html#so-now-what-do-i-do-with-r-markdown"><i class="fa fa-check"></i><b>7.3</b> So now what do I do with R Markdown?</a>
+<li class="chapter" data-level="8" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="appendix.html"><a href="appendix.html#r-markdown-resources-and-further-reading"><i class="fa fa-check"></i><b>7.3.1</b> R Markdown resources and further reading</a></li>
-<li class="chapter" data-level="7.3.2" data-path="appendix.html"><a href="appendix.html#r-code-chunk-options"><i class="fa fa-check"></i><b>7.3.2</b> R code chunk options</a></li>
-<li class="chapter" data-level="7.3.3" data-path="appendix.html"><a href="appendix.html#inserting-images-into-markdown-documents"><i class="fa fa-check"></i><b>7.3.3</b> Inserting images into markdown documents</a></li>
-<li class="chapter" data-level="7.3.4" data-path="appendix.html"><a href="appendix.html#generating-tables"><i class="fa fa-check"></i><b>7.3.4</b> Generating Tables</a></li>
-<li class="chapter" data-level="7.3.5" data-path="appendix.html"><a href="appendix.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>7.3.5</b> Spellcheck in R Markdown</a></li>
-<li class="chapter" data-level="7.3.6" data-path="appendix.html"><a href="appendix.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>7.3.6</b> Quick reference on R markdown syntax</a></li>
+<li class="chapter" data-level="8.1" data-path="appendix.html"><a href="appendix.html#first-off-what-is-r-markdown"><i class="fa fa-check"></i><b>8.1</b> First off, what is R Markdown?</a></li>
+<li class="chapter" data-level="8.2" data-path="appendix.html"><a href="appendix.html#how-do-i-get-started-with-r-markdown"><i class="fa fa-check"></i><b>8.2</b> How do I get started with R markdown?</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="appendix.html"><a href="appendix.html#great-now-whats-going-on-with-this-r-markdown-document"><i class="fa fa-check"></i><b>8.2.1</b> Great, now what’s going on with this R markdown document?</a></li>
+<li class="chapter" data-level="8.2.2" data-path="appendix.html"><a href="appendix.html#how-to-run-r-code-in-r-markdown"><i class="fa fa-check"></i><b>8.2.2</b> How to run R code in R Markdown</a></li>
+<li class="chapter" data-level="8.2.3" data-path="appendix.html"><a href="appendix.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><i class="fa fa-check"></i><b>8.2.3</b> How do I go from R markdown to something I can hand-in</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="appendix.html"><a href="appendix.html#so-now-what-do-i-do-with-r-markdown"><i class="fa fa-check"></i><b>8.3</b> So now what do I do with R Markdown?</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="appendix.html"><a href="appendix.html#r-markdown-resources-and-further-reading"><i class="fa fa-check"></i><b>8.3.1</b> R Markdown resources and further reading</a></li>
+<li class="chapter" data-level="8.3.2" data-path="appendix.html"><a href="appendix.html#r-code-chunk-options"><i class="fa fa-check"></i><b>8.3.2</b> R code chunk options</a></li>
+<li class="chapter" data-level="8.3.3" data-path="appendix.html"><a href="appendix.html#inserting-images-into-markdown-documents"><i class="fa fa-check"></i><b>8.3.3</b> Inserting images into markdown documents</a></li>
+<li class="chapter" data-level="8.3.4" data-path="appendix.html"><a href="appendix.html#generating-tables"><i class="fa fa-check"></i><b>8.3.4</b> Generating Tables</a></li>
+<li class="chapter" data-level="8.3.5" data-path="appendix.html"><a href="appendix.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>8.3.5</b> Spellcheck in R Markdown</a></li>
+<li class="chapter" data-level="8.3.6" data-path="appendix.html"><a href="appendix.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>8.3.6</b> Quick reference on R markdown syntax</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -258,11 +282,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Let’s go ahead and import our data:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="logistic-regression-modelling.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb31-2"><a href="logistic-regression-modelling.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="logistic-regression-modelling.html#cb31-3" aria-hidden="true" tabindex="-1"></a>sdsWide <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/CHM317/fluoro_SDSCMC.csv&quot;</span>) </span>
-<span id="cb31-4"><a href="logistic-regression-modelling.html#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="logistic-regression-modelling.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sdsWide)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="logistic-regression-modelling.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb39-2"><a href="logistic-regression-modelling.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="logistic-regression-modelling.html#cb39-3" aria-hidden="true" tabindex="-1"></a>sdsWide <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/CHM317/fluoro_SDSCMC.csv&quot;</span>) </span>
+<span id="cb39-4"><a href="logistic-regression-modelling.html#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="logistic-regression-modelling.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sdsWide)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 10
 ##   `Wavelength (nm~ `0.001 M SDS` `0.0016 M SDS` `0.004 M SDS` `0.0048 M SDS`
 ##              &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;
@@ -275,16 +299,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ... with 5 more variables: `0.0056 M SDS` &lt;dbl&gt;, `0.0064 M SDS` &lt;dbl&gt;,
 ## #   `0.0072 M SDS` &lt;dbl&gt;, `0.008 M SDS` &lt;dbl&gt;, `0.012 M SDS` &lt;dbl&gt;</code></pre>
 <p>Looking at our data headers we can see the familiar ‘wide’ format, with a wavelength column corresponding to the emission wavelength and the remainder accounting for the emission intensity at various concentration of SDS. Note that the intensity columns contains two pieces of information: 1) the concentration in moles per liter and 2) the identity of the chemical, SDS in this case. So when we tidy our data we’ll need to split these column headers up so we get a column corresponding to the numerical value of the concentration, and another with the identity of the column.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="logistic-regression-modelling.html#cb33-1" aria-hidden="true" tabindex="-1"></a>sds <span class="ot">&lt;-</span> sdsWide <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="logistic-regression-modelling.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span><span class="st">`</span><span class="at">Wavelength (nm)</span><span class="st">`</span>, <span class="co"># select all columns BESIDES `Wavelength (nm)`</span></span>
-<span id="cb33-3"><a href="logistic-regression-modelling.html#cb33-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&quot;conc&quot;</span>, <span class="st">&quot;conc.units&quot;</span>, <span class="st">&quot;chemical&quot;</span>),</span>
-<span id="cb33-4"><a href="logistic-regression-modelling.html#cb33-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_pattern =</span> <span class="st">&quot;(.*) (.) (.*)&quot;</span>,</span>
-<span id="cb33-5"><a href="logistic-regression-modelling.html#cb33-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;intensity&quot;</span>,</span>
-<span id="cb33-6"><a href="logistic-regression-modelling.html#cb33-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">conc =</span> as.numeric)</span>
-<span id="cb33-7"><a href="logistic-regression-modelling.html#cb33-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb33-8"><a href="logistic-regression-modelling.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">wavelength =</span> <span class="st">&#39;Wavelength (nm)&#39;</span>) <span class="co"># renaming column, less typing later on. </span></span>
-<span id="cb33-9"><a href="logistic-regression-modelling.html#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="logistic-regression-modelling.html#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sds)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="logistic-regression-modelling.html#cb41-1" aria-hidden="true" tabindex="-1"></a>sds <span class="ot">&lt;-</span> sdsWide <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="logistic-regression-modelling.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span><span class="st">`</span><span class="at">Wavelength (nm)</span><span class="st">`</span>, <span class="co"># select all columns BESIDES `Wavelength (nm)`</span></span>
+<span id="cb41-3"><a href="logistic-regression-modelling.html#cb41-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&quot;conc&quot;</span>, <span class="st">&quot;conc.units&quot;</span>, <span class="st">&quot;chemical&quot;</span>),</span>
+<span id="cb41-4"><a href="logistic-regression-modelling.html#cb41-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_pattern =</span> <span class="st">&quot;(.*) (.) (.*)&quot;</span>,</span>
+<span id="cb41-5"><a href="logistic-regression-modelling.html#cb41-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;intensity&quot;</span>,</span>
+<span id="cb41-6"><a href="logistic-regression-modelling.html#cb41-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">conc =</span> as.numeric)</span>
+<span id="cb41-7"><a href="logistic-regression-modelling.html#cb41-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb41-8"><a href="logistic-regression-modelling.html#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">wavelength =</span> <span class="st">&#39;Wavelength (nm)&#39;</span>) <span class="co"># renaming column, less typing later on. </span></span>
+<span id="cb41-9"><a href="logistic-regression-modelling.html#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="logistic-regression-modelling.html#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   wavelength    conc conc.units chemical intensity
 ##        &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;
@@ -300,36 +324,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="visually-inspecting-our-data" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Visually inspecting our data</h2>
 <p>Let’s make a quick plot of our fluorescence intensity data and see what we have.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="logistic-regression-modelling.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sds, </span>
-<span id="cb35-2"><a href="logistic-regression-modelling.html#cb35-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> wavelength,</span>
-<span id="cb35-3"><a href="logistic-regression-modelling.html#cb35-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
-<span id="cb35-4"><a href="logistic-regression-modelling.html#cb35-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
-<span id="cb35-5"><a href="logistic-regression-modelling.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="logistic-regression-modelling.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sds, </span>
+<span id="cb43-2"><a href="logistic-regression-modelling.html#cb43-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> wavelength,</span>
+<span id="cb43-3"><a href="logistic-regression-modelling.html#cb43-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
+<span id="cb43-4"><a href="logistic-regression-modelling.html#cb43-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="logistic-regression-modelling.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Alright, alright, alright. Things are looking like we’d expect with some well behaved data. By plotting each point individually, we can really see the noise inherent with each reading. For a more robust analysis we’d typically conduct several replicates and average out the spectra for each concentration or apply some kind of model to smooth each peak. But today, we’re just interested in getting the maximal fluorescence emission intensity from each reading.</p>
 <p>Let’s first annotate our plate to find the highest point, then go about extracting our data for analysis.</p>
 <div id="annotating-maximal-values" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Annotating maximal values</h3>
 <p>Annotating the maximal point on the plot will take a bit more code then actually obtaining it from the data. For this we’ll need to use the <code>ggpmisc</code> package which contains miscellaneous extensions for <code>ggplot2</code>, and <code>ggrepel</code> so our labels won’t overlap.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="logistic-regression-modelling.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpmisc)</span>
-<span id="cb36-2"><a href="logistic-regression-modelling.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb36-3"><a href="logistic-regression-modelling.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="logistic-regression-modelling.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sds, </span>
-<span id="cb36-5"><a href="logistic-regression-modelling.html#cb36-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> wavelength,</span>
-<span id="cb36-6"><a href="logistic-regression-modelling.html#cb36-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
-<span id="cb36-7"><a href="logistic-regression-modelling.html#cb36-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
-<span id="cb36-8"><a href="logistic-regression-modelling.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb36-9"><a href="logistic-regression-modelling.html#cb36-9" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_peaks</span>(<span class="at">span =</span> <span class="cn">NULL</span>,</span>
-<span id="cb36-10"><a href="logistic-regression-modelling.html#cb36-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">geom =</span> <span class="st">&quot;text_repel&quot;</span>, <span class="co"># From ggrepel</span></span>
-<span id="cb36-11"><a href="logistic-regression-modelling.html#cb36-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..y.label.., ..x.label..)),</span>
-<span id="cb36-12"><a href="logistic-regression-modelling.html#cb36-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">x.label.fmt =</span> <span class="st">&quot;at %.0f nm&quot;</span>,</span>
-<span id="cb36-13"><a href="logistic-regression-modelling.html#cb36-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y.label.fmt =</span> <span class="st">&quot;Max intensity = %.0f&quot;</span>,</span>
-<span id="cb36-14"><a href="logistic-regression-modelling.html#cb36-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">segment.colour =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb36-15"><a href="logistic-regression-modelling.html#cb36-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">arrow =</span> grid<span class="sc">::</span><span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;inches&quot;</span>)),</span>
-<span id="cb36-16"><a href="logistic-regression-modelling.html#cb36-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_x =</span> <span class="dv">60</span>,</span>
-<span id="cb36-17"><a href="logistic-regression-modelling.html#cb36-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_y =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
-<span id="cb36-18"><a href="logistic-regression-modelling.html#cb36-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(conc))</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="logistic-regression-modelling.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpmisc)</span>
+<span id="cb44-2"><a href="logistic-regression-modelling.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb44-3"><a href="logistic-regression-modelling.html#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="logistic-regression-modelling.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sds, </span>
+<span id="cb44-5"><a href="logistic-regression-modelling.html#cb44-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> wavelength,</span>
+<span id="cb44-6"><a href="logistic-regression-modelling.html#cb44-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
+<span id="cb44-7"><a href="logistic-regression-modelling.html#cb44-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
+<span id="cb44-8"><a href="logistic-regression-modelling.html#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-9"><a href="logistic-regression-modelling.html#cb44-9" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_peaks</span>(<span class="at">span =</span> <span class="cn">NULL</span>,</span>
+<span id="cb44-10"><a href="logistic-regression-modelling.html#cb44-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">geom =</span> <span class="st">&quot;text_repel&quot;</span>, <span class="co"># From ggrepel</span></span>
+<span id="cb44-11"><a href="logistic-regression-modelling.html#cb44-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..y.label.., ..x.label..)),</span>
+<span id="cb44-12"><a href="logistic-regression-modelling.html#cb44-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">x.label.fmt =</span> <span class="st">&quot;at %.0f nm&quot;</span>,</span>
+<span id="cb44-13"><a href="logistic-regression-modelling.html#cb44-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y.label.fmt =</span> <span class="st">&quot;Max intensity = %.0f&quot;</span>,</span>
+<span id="cb44-14"><a href="logistic-regression-modelling.html#cb44-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">segment.colour =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb44-15"><a href="logistic-regression-modelling.html#cb44-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">arrow =</span> grid<span class="sc">::</span><span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;inches&quot;</span>)),</span>
+<span id="cb44-16"><a href="logistic-regression-modelling.html#cb44-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_x =</span> <span class="dv">60</span>,</span>
+<span id="cb44-17"><a href="logistic-regression-modelling.html#cb44-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_y =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
+<span id="cb44-18"><a href="logistic-regression-modelling.html#cb44-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(conc))</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>By facetting the plot (i.e. arranging many smaller plots vs. one large one), we can easily see the increase in emission peak intensity as the concentration of SDS increases. Likewise, we can avoid the messy overlap of the max intensity annotations.</p>
 <p>This is only one way to plot this data, but this is sufficient because we’re simply inspecting our data at this point. And here we can see that the intensity all occur around a similar wavelength (~ 528 nm)</p>
 </div>
@@ -337,12 +361,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="extracting-maximal-values" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Extracting maximal values</h2>
 <p>The plots we made above are great for inspecting our data, but what we really want is the maximal emission intensity value to calculate the CMC of SDS. We can see the maximal values on the plots, but there’s no way we’re typing those in manually. So let’s go ahead and get out maximal values from our dataset:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="logistic-regression-modelling.html#cb37-1" aria-hidden="true" tabindex="-1"></a>sdsMax <span class="ot">&lt;-</span> sds <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="logistic-regression-modelling.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chemical, conc.units, conc) <span class="sc">%&gt;%</span></span>
-<span id="cb37-3"><a href="logistic-regression-modelling.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(intensity <span class="sc">==</span> <span class="fu">max</span>(intensity)) <span class="sc">%&gt;%</span></span>
-<span id="cb37-4"><a href="logistic-regression-modelling.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb37-5"><a href="logistic-regression-modelling.html#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-6"><a href="logistic-regression-modelling.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sdsMax)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="logistic-regression-modelling.html#cb45-1" aria-hidden="true" tabindex="-1"></a>sdsMax <span class="ot">&lt;-</span> sds <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="logistic-regression-modelling.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chemical, conc.units, conc) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="logistic-regression-modelling.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(intensity <span class="sc">==</span> <span class="fu">max</span>(intensity)) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href="logistic-regression-modelling.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb45-5"><a href="logistic-regression-modelling.html#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="logistic-regression-modelling.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sdsMax)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   wavelength    conc conc.units chemical intensity
 ##        &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;
@@ -354,10 +378,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6       528  0.00480 M          SDS           22.0</code></pre>
 <p>All we did was tell R to take the row with the highest emission intensity value per group. We specified <code>chemical</code>, <code>conc.units</code>, and <code>conc</code>, in case we had more chemicals in our dataset.</p>
 <p>Are maximum values match those we see in our plot above. Let’s see how they stack up againt each other:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="logistic-regression-modelling.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sdsMax, </span>
-<span id="cb39-2"><a href="logistic-regression-modelling.html#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc, </span>
-<span id="cb39-3"><a href="logistic-regression-modelling.html#cb39-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity)) <span class="sc">+</span></span>
-<span id="cb39-4"><a href="logistic-regression-modelling.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="logistic-regression-modelling.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sdsMax, </span>
+<span id="cb47-2"><a href="logistic-regression-modelling.html#cb47-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc, </span>
+<span id="cb47-3"><a href="logistic-regression-modelling.html#cb47-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity)) <span class="sc">+</span></span>
+<span id="cb47-4"><a href="logistic-regression-modelling.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <div class="figure"><span id="fig:sdsMaxPlot"></span>
 <img src="R4EnvChem_files/figure-html/sdsMaxPlot-1.png" alt="Plot of maximal fluoresence intensity at various concentrations of SDS." width="672" />
 <p class="caption">
@@ -388,30 +412,30 @@ Figure 6.1: Plot of maximal fluoresence intensity at various concentrations of S
 <p>A strength of <code>R</code> is it’s flexibility in running various models, and logistic regression is no different. We can use a number of packages to reach these ends, specifically the <code>drc</code> package contains a plethora of functions for modelling dose response curves (hence <code>drc</code>). However, for this example well use a more generalized approach. Earlier we talked about linear regression, where we plot adjust the slope and intercept of a linear equation to best fit our data (see Calibration Curves). Recall that this optimization is based on minimizing the distance between the model and all of the experimental points (<em>least squares</em>). Well the <code>stats</code> package has a function called <code>nls</code> that expands upon the this to nonlinear models. Per the <code>nls</code> function description: “[nls] determine[s] the nonlinear (weighted) least_squared estimates of the parameters of a nonlinear model.”</p>
 <p>So we can create a formula in <code>R</code> based on the four-parameter logistic regression described above. After that, we’ll need to produce some starting details from which the model can build off of. If we don’t tell <code>nls</code> where to start, it can’t function, as the search space is too large. Looking at @ref{fig:sdsMaxPlot}, the intensity appears to floor around 20; the intensity appears to max out around 820; the midpoint appears to be around 0.0075 M, and let’s say the slope is 1. Remember, these are starting values from which <code>nls</code> starts to optimize from, and not the actual values used to construct the model.</p>
 <p>So, let’s create our model</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="logistic-regression-modelling.html#cb40-1" aria-hidden="true" tabindex="-1"></a>logisModel <span class="ot">&lt;-</span> <span class="fu">nls</span>(intensity <span class="sc">~</span>  (a<span class="sc">-</span>d)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> (conc <span class="sc">/</span>c)<span class="sc">^</span>b) <span class="sc">+</span> d, </span>
-<span id="cb40-2"><a href="logistic-regression-modelling.html#cb40-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> sdsMax, </span>
-<span id="cb40-3"><a href="logistic-regression-modelling.html#cb40-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">20</span>,       <span class="co"># min intensity</span></span>
-<span id="cb40-4"><a href="logistic-regression-modelling.html#cb40-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">b =</span> <span class="dv">1</span>,        <span class="co"># slope</span></span>
-<span id="cb40-5"><a href="logistic-regression-modelling.html#cb40-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">c =</span> <span class="fl">0.0075</span>,   <span class="co"># CMC</span></span>
-<span id="cb40-6"><a href="logistic-regression-modelling.html#cb40-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">d=</span> <span class="dv">820</span>)       <span class="co"># max intensity</span></span>
-<span id="cb40-7"><a href="logistic-regression-modelling.html#cb40-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="logistic-regression-modelling.html#cb48-1" aria-hidden="true" tabindex="-1"></a>logisModel <span class="ot">&lt;-</span> <span class="fu">nls</span>(intensity <span class="sc">~</span>  (a<span class="sc">-</span>d)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> (conc <span class="sc">/</span>c)<span class="sc">^</span>b) <span class="sc">+</span> d, </span>
+<span id="cb48-2"><a href="logistic-regression-modelling.html#cb48-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> sdsMax, </span>
+<span id="cb48-3"><a href="logistic-regression-modelling.html#cb48-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">20</span>,       <span class="co"># min intensity</span></span>
+<span id="cb48-4"><a href="logistic-regression-modelling.html#cb48-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">b =</span> <span class="dv">1</span>,        <span class="co"># slope</span></span>
+<span id="cb48-5"><a href="logistic-regression-modelling.html#cb48-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">c =</span> <span class="fl">0.0075</span>,   <span class="co"># CMC</span></span>
+<span id="cb48-6"><a href="logistic-regression-modelling.html#cb48-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">d=</span> <span class="dv">820</span>)       <span class="co"># max intensity</span></span>
+<span id="cb48-7"><a href="logistic-regression-modelling.html#cb48-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
 <pre><code>## Error in numericDeriv(form[[3L]], names(ind), env): Missing value or an infinity produced when evaluating the model</code></pre>
 <p>… and we get an error message. Get used to these when modelling! Don’t worry about understanding it completely, error messages are often written with programmers in mind so they can be a bit cryptic. You can often copy and paste these directly into any search engine to get some more information, but this one is simple enough: we either have a missing value or an infinity produced. Well we have six input parameters in our model: <code>a, b, c, d</code>, our independent variable <code>conc</code>, and our dependant variable <code>intensity</code>. We’ve also supplied starting values to all of them via the list we created inside the function. Therefore, one of our starting values must be too far off from a plausible start point and is causing troubles in the <code>nls</code> function. They all look good except for the slope start value <code>b = 1</code>.</p>
 <p>The slope here is an approximation for the slope between the min value <code>a</code> and max value <code>d</code>. Looking at our data in @ref{fig:sdsMaxPlot}, that slope may be a bit shallow consider the large jump in intensity. Let’s increase the value of <code>b</code> and try again:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="logistic-regression-modelling.html#cb42-1" aria-hidden="true" tabindex="-1"></a>logisModel <span class="ot">&lt;-</span> <span class="fu">nls</span>(intensity <span class="sc">~</span>  (a<span class="sc">-</span>d)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> (conc <span class="sc">/</span>c)<span class="sc">^</span>b) <span class="sc">+</span> d, </span>
-<span id="cb42-2"><a href="logistic-regression-modelling.html#cb42-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> sdsMax, </span>
-<span id="cb42-3"><a href="logistic-regression-modelling.html#cb42-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">20</span>,       <span class="co"># min intensity</span></span>
-<span id="cb42-4"><a href="logistic-regression-modelling.html#cb42-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">b =</span> <span class="dv">10</span>,       <span class="co"># new slope</span></span>
-<span id="cb42-5"><a href="logistic-regression-modelling.html#cb42-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">c =</span> <span class="fl">0.0075</span>,   <span class="co"># CMC</span></span>
-<span id="cb42-6"><a href="logistic-regression-modelling.html#cb42-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">d=</span> <span class="dv">820</span>)       <span class="co"># max intensity</span></span>
-<span id="cb42-7"><a href="logistic-regression-modelling.html#cb42-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="logistic-regression-modelling.html#cb50-1" aria-hidden="true" tabindex="-1"></a>logisModel <span class="ot">&lt;-</span> <span class="fu">nls</span>(intensity <span class="sc">~</span>  (a<span class="sc">-</span>d)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> (conc <span class="sc">/</span>c)<span class="sc">^</span>b) <span class="sc">+</span> d, </span>
+<span id="cb50-2"><a href="logistic-regression-modelling.html#cb50-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> sdsMax, </span>
+<span id="cb50-3"><a href="logistic-regression-modelling.html#cb50-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">20</span>,       <span class="co"># min intensity</span></span>
+<span id="cb50-4"><a href="logistic-regression-modelling.html#cb50-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">b =</span> <span class="dv">10</span>,       <span class="co"># new slope</span></span>
+<span id="cb50-5"><a href="logistic-regression-modelling.html#cb50-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">c =</span> <span class="fl">0.0075</span>,   <span class="co"># CMC</span></span>
+<span id="cb50-6"><a href="logistic-regression-modelling.html#cb50-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">d=</span> <span class="dv">820</span>)       <span class="co"># max intensity</span></span>
+<span id="cb50-7"><a href="logistic-regression-modelling.html#cb50-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
 <p>Ey, no errors! Once you progress beyond simple linear regressions, modelling becomes more of a craft. If we were trying to apply this model to multiple datasets, we would probably want to shop around <code>cran</code> to find a package with self-starting models. This way we can circument having to supply starting parameters. Anyways, that’s for another day.</p>
 <p>For now, let’s take a look at our model outputs which are all stored in the <code>logisModel</code> variable. To this end, we’ll use the <code>broom</code> package which cleans up the default model outputs in <code>R</code>. Specifically, we’ll use <code>tidy</code> to get an output of our estimated model parameters (i.e. <code>a,b,c</code>, and <code>d</code>), and <code>augment</code> for a data frame of containing the input values, and the estimated intensity values.</p>
 <p>Let’s look at our fitted values:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="logistic-regression-modelling.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb43-2"><a href="logistic-regression-modelling.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="logistic-regression-modelling.html#cb43-3" aria-hidden="true" tabindex="-1"></a>augment <span class="ot">&lt;-</span> <span class="fu">augment</span>(logisModel)</span>
-<span id="cb43-4"><a href="logistic-regression-modelling.html#cb43-4" aria-hidden="true" tabindex="-1"></a>augment</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="logistic-regression-modelling.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb51-2"><a href="logistic-regression-modelling.html#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="logistic-regression-modelling.html#cb51-3" aria-hidden="true" tabindex="-1"></a>augment <span class="ot">&lt;-</span> <span class="fu">augment</span>(logisModel)</span>
+<span id="cb51-4"><a href="logistic-regression-modelling.html#cb51-4" aria-hidden="true" tabindex="-1"></a>augment</span></code></pre></div>
 <pre><code>## # A tibble: 9 x 4
 ##   intensity    conc .fitted   .resid
 ##       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
@@ -426,25 +450,25 @@ Figure 6.1: Plot of maximal fluoresence intensity at various concentrations of S
 ## 9      57.0 0.0016     49.4   7.51</code></pre>
 <p>What we can see here from <code>augment</code> are the <code>intensity</code> and <code>conc</code> values we inputted into R. <code>.fitted</code> are the intenisty values for a given concentration fitted to out model, and <code>.resid</code> is the residuals, the difference between the actual and estimated values.</p>
 <p>Let’s go ahead and plot our actual and fitted values against each other.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="logistic-regression-modelling.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> intensity, <span class="at">colour =</span> <span class="st">&quot;actual&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb45-2"><a href="logistic-regression-modelling.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb45-3"><a href="logistic-regression-modelling.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
-<span id="cb45-4"><a href="logistic-regression-modelling.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">&quot;fitted&quot;</span>)) </span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="logistic-regression-modelling.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> intensity, <span class="at">colour =</span> <span class="st">&quot;actual&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="logistic-regression-modelling.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb53-3"><a href="logistic-regression-modelling.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="logistic-regression-modelling.html#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">&quot;fitted&quot;</span>)) </span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Looks pretty good, although it’s interesting how the baseline at lower concentrations doesn’t plateau like the model values. You’ll note that the line produced by <code>geom_line</code> will only draw a straight line between points. There’s ways to address this, but we don’t need to for our needs right now.</p>
 <p>Looking again at our model results, there doesn’t appear to be any gross outliers, so our model seems to have done a good job. We can verify this by checking the residuals:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="logistic-regression-modelling.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb46-2"><a href="logistic-regression-modelling.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="logistic-regression-modelling.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb54-2"><a href="logistic-regression-modelling.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>We can’t see any obvious patterns in the residuals (i.e. all are negative), so we can have further confidence in the fit of out model.</p>
 </div>
 <div id="extracting-model-parameters" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Extracting model parameters</h3>
 <p>To extrac the model parameters <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> we can use the <code>tidy</code> function:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="logistic-regression-modelling.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb47-2"><a href="logistic-regression-modelling.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="logistic-regression-modelling.html#cb47-3" aria-hidden="true" tabindex="-1"></a>tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(logisModel)</span>
-<span id="cb47-4"><a href="logistic-regression-modelling.html#cb47-4" aria-hidden="true" tabindex="-1"></a>tidy</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="logistic-regression-modelling.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb55-2"><a href="logistic-regression-modelling.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="logistic-regression-modelling.html#cb55-3" aria-hidden="true" tabindex="-1"></a>tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(logisModel)</span>
+<span id="cb55-4"><a href="logistic-regression-modelling.html#cb55-4" aria-hidden="true" tabindex="-1"></a>tidy</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 5
 ##   term   estimate  std.error statistic       p.value
 ##   &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
@@ -463,7 +487,7 @@ Figure 6.1: Plot of maximal fluoresence intensity at various concentrations of S
         </div>
       </div>
 <a href="calibration-curves-with-qqq-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="correlation-heatmaps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
