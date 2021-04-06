@@ -49,7 +49,7 @@ This window is the least important for our purposes. In brief, it will list all 
 The Viewer window has a couple of useful tabs. We will mainly use it to export plots (more on that in later chapters), but you can also open code files from the "Files" tab without having to leave RStudio. 
 
 ### Console
-This is where you can type and run code directly, but we will mainly be using the Scripts window for our code (see below). Another thing that the Console window is useful for is quick arithmetic. Try typing "2+2" in the console, then hit Enter.
+This is where you can type and run code directly, but you will mainly be using the Scripts window to run code (see below). Your primary use of the console will be for installing packages (more on that later). Another thing that the Console window is useful for is quick arithmetic. Try typing "2+2" in the console, then hit Enter.
 
 ``` {r console_math}
 2+2
