@@ -76,15 +76,15 @@ ggplot(data = sds,
            y = intensity, 
            colour = conc)) +
   geom_point() +
-  stat_peaks(span = NULL,
-             geom = "text_repel",
-             mapping = aes(label = paste(..y.label.., ..x.label..)),
-             x.label.fmt = "at %.0f nm",
-             y.label.fmt = "Max intensity = %.0f",
-             segment.colour = "black",
-             arrow = grid::arrow(length = unit(0.1, "inches")),
-             nudge_x = 60,
-             nudge_y = 200) +
+  ggpmisc::stat_peaks(span = NULL,
+                      geom = "text_repel", # From ggrepel
+                      mapping = aes(label = paste(..y.label.., ..x.label..)),
+                      x.label.fmt = "at %.0f nm",
+                      y.label.fmt = "Max intensity = %.0f",
+                      segment.colour = "black",
+                      arrow = grid::arrow(length = unit(0.1, "inches")),
+                      nudge_x = 60,
+                      nudge_y = 200) +
   facet_grid(rows = vars(conc))
 
 
@@ -114,140 +114,119 @@ All we did was tell R to take the row with the highest emission intensity value 
 
 Are maximum values match those we see in our plot above. Let's see how they stack up againt each other: 
 
-```{r}
+```{r sdsMaxPlot, fig.cap = "Plot of maximal fluoresence intensity at various concentrations of SDS."}
 
 ggplot(data = sdsMax, 
        aes(x = conc, 
            y = intensity)) +
-  geom_point()
-
+  geom_point() 
 ```
 
 ## Modelling Sigmoidal Curve 
 
 So we want to find the critical micellular concentration of SDS using the maximum fluorescence emission. The CMC is at the 'midpoint of the sigmoidal curve'. Which means we'll need to a) plot a sigmoidal curve and b) extract the midpoint. 
 
+The 'sigmoidal' or 'S-shaped' curve mentioned in the lab manual is known as a *logistic regression*. Logistic regressions are often used to model systems with a largely binary outcome. In other words, the system starts at point A, and remains there for awhile, before 'quickly' jumping up (or down) to level B and remain there for the remainder. Examples include saturation and dose response curves.  
 
-###  Calculating Sigmoidal Curve
+For our CMC working data, the fluorescence intensity is low when the $[SDS] < CMC$, as micelles are not able to form. However once $[SDS] > CMC$, micelles form and the fluorescence intensity increases. We can see this trend in \@ref(fig:sdsMaxPlot). 
 
-- define sigmoidal curve...
-- talk about nls...
-```{r}
-ggplot(sdsMax, aes(x = conc, 
-                   y = intensity)) +
-  geom_point() +
-  geom_smooth(method = "nls", 
-              method.args = list(formula = intensity ~ Asym/(1+exp((xmid-conc)/scal)), 
-                                 start = list(Asym = 821, xmid = 0.0075, scal = 1, intensity = 1, conc = 0)), 
-              data = sdsMax,
-              se = FALSE
-              )
+There are different forms of logistic regression equations. The simplest form is the 1 parameter, or sigmoid, function which looks like $f(x) = \frac{1}{1+e^{-x}}$. The outputs for this function are between 0 and 1. We could apply this formula to our model if we somehow normalized our fluoresence intensity accordingly. An alternative is to use the *four parameter logistic regression*, which looks like: 
 
-# 
-#   mutate(fit = map(data,
-#                    ~ nls(intensity ~ SSlogis(conc,
-#                                              Asym,
-#                                              xmid,
-#                                              scal
-#                                              ),
-#                          data = .x)
-#                    ),
+$$f(x) =  \frac{a - d}{\left[ 1 + \left( \frac{x}{c} \right)^b \right ]} + d$$
 
+where: 
+
+  - **a** = the theoretical response when $x = 0$
+  - **b** = the slope factor
+  - **c** = the mid-range concentration (inflection point)
+     - This is commonly referred to as the *EC50* or *LC50* in toxicology/pharmacology. 
+  - **d** = the theoretical response when $x = \infty$ 
+
+Why do we need such a complicated formula for our model? Well, looking again at \@ref(fig:sdsMaxPlot) we see that the lower point is approximately 20, and not zero. Likewise, the upper limit appears to be around 825. The slope factor is necessary because the transition from the low to high steady state occurs over a small, but not immeasurable, concentration range. And lastly, by including the inflection point, we can calculate exactly for this value using `R` to get the CMC estimate. 
+
+### Calculating Logistic Regression 
+
+A strength of `R` is it's flexibility in running various models, and logistic regression is no different. We can use a number of packages to reach these ends, specifically the `drc` package contains a plethora of functions for modelling dose response curves (hence `drc`). However, for this example well use a more generalized approach. Earlier we talked about linear regression, where we plot adjust the slope and intercept of a linear equation to best fit our data (see Calibration Curves). Recall that this optimization is based on minimizing the distance between the model and all of the experimental points (*least squares*). Well the `stats` package has a function called `nls` that expands upon the this to nonlinear models. Per the `nls` function description: "[nls] determine[s] the nonlinear (weighted) least_squared estimates of the parameters of a nonlinear model." 
+
+So we can create a formula in `R` based on the four-parameter logistic regression described above. After that, we'll need to produce some starting details from which the model can build off of. If we don't tell `nls` where to start, it can't function, as the search space is too large. Looking at \@ref{fig:sdsMaxPlot}, the intensity appears to floor around 20; the intensity appears to max out around 820; the midpoint appears to be around 0.0075 M, and let's say the slope is 1.  Remember, these are starting values from which `nls` starts to optimize from, and not the actual values used to construct the model. 
+
+So, let's create our model
+
+
+```{r, error =TRUE}
+logisModel <- nls(intensity ~  (a-d)/(1 + (conc /c)^b) + d, 
+                  data = sdsMax, 
+                  start = list(a = 20,       # min intensity
+                               b = 1,        # slope
+                               c = 0.0075,   # CMC
+                               d= 820)       # max intensity
+                  )
 ```
 
-```{r}
-library(ggplot2)
-df1 <- structure(list(Concentration = c(500, 250, 100, 62.5, 50, 25, 12.5, 5, 
-                                        500, 250, 100, 62.5, 50, 25, 12.5, 5), 
-                      drug = c(1, 1, 1, 1, 1, 1, 1, 1, 
-                               2, 2, 2, 2, 2, 2, 2, 2), 
-                      rate = c(1.88922, 1.4265, 0.86472, 0.66221, 0.56434, 0.34314, 
-                               0.18112, 0.07717, 3.995055, 3.0118, 1.824505, 1.397237, 
-                               1.190078, 0.723637, 0.381865, 0.162771)),
-                      .Names = c("Concentration", "drug", "rate"), 
-                      row.names = c(NA, -16L), 
-                      class = "data.frame")
+... and we get an error message. Get used to these when modelling! Don't worry about understanding it completely, error messages are often written with programmers in mind so they can be a bit cryptic. You can often copy and paste these directly into any search engine to get some more information, but this one is simple enough: we either have a missing value or an infinity produced. Well we have six input parameters in our model: `a, b, c, d`,  our independent variable `conc`, and our dependant variable `intensity`. We've also supplied starting values to all of them via the list we created inside the function. Therefore, one of our starting values must be too far off from a plausible start point and is causing troubles in the `nls` function. They all look good except for the slope start value `b = 1`. 
 
-# could use e.g. Km = min(df1$Concentration) for start
-# but here we use arbitrary values
-ggplot(df1, aes(Concentration, rate)) + 
-  geom_point() + 
-  geom_smooth(method = "nls", 
-              method.args = list(formula = y ~ Vmax * x / (Km + x),
-                                 start = list(Km = 50, Vmax = 2)), 
-              data = df1,
-              se = FALSE,
-              aes(color = factor(drug)))
+The slope here is an approximation for the slope between the min value `a` and max value `d`. Looking at our data in \@ref{fig:sdsMax}, that slope may be a bit shallow consider the large jump in intensity. Let's increase the value of `b` and try again: 
+
+```{r}
+
+logisModel <- nls(intensity ~  (a-d)/(1 + (conc /c)^b) + d, 
+                  data = sdsMax, 
+                  start = list(a = 20,       # min intensity
+                               b = 10,      # new slope
+                               c = 0.0075,   # CMC
+                               d= 820)       # max intensity
+                  )
 ```
+
+Ey, no errors! Once you progress beyond simple linear regressions, modelling becomes more of a craft. If we were trying to apply this model to multiple datasets, we would probably want to shop around `cran` to find a package with self-starting models. This way we can circument having to supply starting parameters. Anyways, that's for another day. 
+
+For now, let's take a look at our model outputs which are all stored in the `logisModel` variable. To this end, we'll use the `broom` package which cleans up the default model outputs in `R`. Specifically, we'll use `tidy` to get an output of our estimated model parameters (i.e. `a,b,c`, and `d`), and `augment` for a data frame of containing the input values, and the estimated intensity values. 
+
+Let's look at our fitted values:
 
 ```{r}
 library(broom)
 
+augment <- augment(logisModel)
+augment
+```
 
-# sdsMax <- sdsMax %>%
-#   group_by(chemical) %>%
-#   nest() %>%
-#   mutate(fit = map(data,
-#                    ~ nls(intensity ~ SSlogis(conc,
-#                                              Asym,
-#                                              xmid,
-#                                              scal
-#                                              ),
-#                          data = .x)
-#                    ),
-#          tidied = map(fit, tidy),
-#          glanced = map(fit, glance),
-#          predict = map(fit, predict),
-#          augment = map(fit,augment)
-#          )
+What we can see here from `augment` are the `intensity` and `conc` values we inputted into R. `.fitted` are the intenisty values for a given concentration fitted to out model, and `.resid` is the residuals, the difference between the actual and estimated values. 
 
-sdsMax2 <- sdsMax %>%
-  group_by(chemical) %>%
-  nest() %>%
-  mutate(fit = map(data,
-                   ~ lm(intensity ~ conc,
-                         data = .x,
-                       )),
-         tidied = map(fit, tidy),
-         glanced = map(fit, glance),
-         predict = map(fit, predict),
-         augment = map(fit,augment)
-         )
+Let's go ahead and plot our actual and fitted values against each other. 
 
-nls(density ~ 1/(1 + exp((xmid - log(conc))/scal)),
-                 data = DNase1,
-                 start = list(xmid = 0, scal = 1)
-
-tidied <-  sdsMax %>%
-  unnest(tidied)
-
-tidied
+```{r}
+ggplot(augment, aes(x = conc, y = intensity, colour = "actual")) +
+  geom_point() +
+  geom_line(aes(y = .fitted)) +
+  geom_point(aes(y = .fitted, colour = "fitted")) 
 
 ```
 
+Looks pretty good, although it's interesting how the baseline at lower concentrations doesn't plateau like the model values. You'll note that the line produced by `geom_line` will only draw a straight line between points. There's ways to address this, but we don't need to for our needs right now. 
 
+Looking again at our model results, there doesn't appear to be any gross outliers, so our model seems to have done a good job. We can verify this by checking the residuals: 
 
 ```{r}
 
-x <- as.data.frame(sdsMax$augment[1])
-x
+ggplot(augment, aes(x = conc, y = .resid)) +
+  geom_point() 
 ```
 
+We can't see any obvious patterns in the residuals (i.e. all are negative), so we can have further confidence in the fit of out model. 
 
+### Extracting model parameters
 
+To extrac the model parameters `a`, `b`, `c`, and `d` we can use the `tidy` function: 
 
 ```{r}
-# ggplot(data = x,
-#        aes(x = conc, y= intensity)) +
-#   geom_point() +
-#   geom_point(aes(x = conc, 
-#                 y = .fitted),
-#              colour = "red")
+library(broom)
 
-ggplot()
+tidy <- tidy(logisModel)
+tidy
 ```
 
-
+Looking past the scientific notation, our model values are pretty similar to what we estimated. Specifically, `c`, our midpoint value is 0.0076 M. Not too bad from our original estimate.  And recall that the midpoint of our curve corresponds to the critical micellular concentration of SDS, which we've estimated to be 0.0076M. Not too far from the literature value of 0.0081 M. 
 
 
 
