@@ -1,5 +1,6 @@
-tab:unnamed-chunk-9
-fig:unnamed-chunk-9
+fig:sdsMaxPlot
+tab:unnamed-chunk-20
+fig:unnamed-chunk-20
 introduction
 software
 microsoft-excel
@@ -19,6 +20,13 @@ normalizing-peak-areas
 calculating-calibration-curves
 plotting-regression-curves
 quantifying-sample-concentrations
+logistic-regression-modelling
+visually-inspecting-our-data
+annotating-maximal-values
+extracting-maximal-values
+modelling-sigmoidal-curve
+calculating-logistic-regression
+extracting-model-parameters
 appendix
 first-off-what-is-r-markdown
 how-do-i-get-started-with-r-markdown
