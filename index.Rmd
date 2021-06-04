@@ -1,15 +1,12 @@
 --- 
+knit: "bookdown::render_book"
 title: "R for Environmental Chemists"
 author: "David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D'eon"
 date: "`r Sys.Date()`"
 url: 'https://davidrosshall.github.io/R4EnvChem/'
 site: bookdown::bookdown_site
-output: bookdown::gitbook
-documentclass: book
-bibliography: [book.bib, packages.bib]
-biblio-style: apalike
-link-citations: yes
 description: "This is a proof-of-concept for a further full length textbook."
+documentclass: book
 ---
 
 # Howdy {-}
@@ -26,5 +23,6 @@ This website is more-or-less the living results of a collaborative project betwe
   - [Dave](https://sites.chem.utoronto.ca/penglab/content/people) at [davidross.hall@mail.utoronto.ca](davidross.hall@mail.utoronto.ca)
   - [Steven](https://sites.chem.utoronto.ca/penglab/content/people) at [steven.kutarna@mail.utoronto.ca](steven.kutarna@mail.utoronto.ca)
   - [Dr. D'eon](https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon) at [jessica.deon@utoronto.ca](jessica.deon@utoronto.ca)
+  
   
   
