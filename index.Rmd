@@ -1,7 +1,8 @@
 --- 
 title: "R for Environmental Chemists"
-author: "David Hall, Steven Kutarna, and Jessica D'eon"
+author: "David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D'eon"
 date: "`r Sys.Date()`"
+url: 'https://davidrosshall.github.io/R4EnvChem/'
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -11,30 +12,14 @@ link-citations: yes
 description: "This is a proof-of-concept for a further full length textbook."
 ---
 
-# R4EnvChem {-}
+# Howdy {-}
 
 Howdy, 
 
-This website is more-or-less the living results of a collaborative project between the three of us. Our ultimate goal is not to be an exhaustive resource for all environmental chemist. Rather, we're focused on developing broadly applicable data science course content (tutorials and recipes) based in `R` for undergraduate environmental chemistry courses. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum. 
+This website is more-or-less the living results of a collaborative project between the four of us. Our ultimate goal is not to be an exhaustive resource for all environmental chemist. Rather, we're focused on developing broadly applicable data science course content (tutorials and recipes) based in `R` for undergraduate environmental chemistry courses. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum. 
 
-Check out the index for what's already live, and the list below for some of our proposals. 
-
-  - Setup and workflows for working with R and R Studio
-  - Data tidying
-    - Best practices when recording data
-    - Tidying data either in `R` or Excel for downstream analysis in `R`
-    - Recipes for tidying common datasets (i.e. [ECCC NAPS](https://open.canada.ca/data/en/dataset/1b36a356-defd-4813-acea-47bc3abd859b) hourly measurements)
-  - Data Visualization
-    - Map, cartograms, and other related stuff 
-    - Volcano plots
-    - Bar charts    
-  - Data analysis
-    - ~~Calibration curves~~ and quantitative analysis
-    - Various statistical comparisons (t.test, ANOVA, ...)
-    - Correlation plots
-  - Advice on beautifying visualizations for publication
   
-  ## Questions: 
+## Authors {-}
   
   If you have any questions/comments/suggestions/concerns please email:
   

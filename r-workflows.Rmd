@@ -1,20 +1,9 @@
-# Getting Started
+# R Workflows
 
-In this section, we will cover:
-- Installing R and RStudio
-- Navigating RStudio
-- Saving in RStudio
-- RStudio Dark Themes
+Just like there's a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there's a workflow when working with R. This is by no means the only way to work, but it's tried and true and will serve you well as you tackle your coursework. 
 
-## Installing R and RStudio
-In order to use this book you will first need to download and install **R** on your computer. The latest build as of March 2021 is v4.0.5. [Download the appropriate version of R for your Operating System here](https://utstat.toronto.edu/cran/).
 
-We recommend using the default settings for installation (i.e. just keep clicking "Next"). *Note that you will not need shortcuts for launching R, as you will always be using Rstudio to run provided code.*
-
-Once R is installed on your computer, you will need to download and install RStudio. [Download the appropriate version of RStudio for your Operating System here](https://www.rstudio.com/products/rstudio/download/#download)
-
-Again, just use the default installation settings.
-
+<!-- This is stuff Steven wrote, feel free to modify as you need --> 
 
 ## Creating an RStudio Project
 

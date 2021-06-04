@@ -4,3 +4,18 @@ language:
     chapter_name: "Chapter "
 delete_merged_file: true
 output_dir: "docs"
+
+# used to specify chapter order in book_filename
+
+rmd_files:  [
+  
+  "index.Rmd",
+  
+  "intro.Rmd",
+  
+  "running-r-code.Rmd",
+  "r-workflows.Rmd",
+  
+  "intro-data-analysis.Rmd"
+  
+  ]
