@@ -1,0 +1,22 @@
+<!-- This header creates the book section -->
+# (PART\*) Getting Setup in R{-}
+
+<!-- This header creates teh chapter -->
+# Running R Code
+
+- Where to run code in RStudio (script vs. console) 
+- Basic coding building blocks 
+- Variable assignment (howdy <- “Howdy world”) 
+- Importing packages  
+- Calling functions 
+- R Studio basics 
+  - Environment windows to inspect workspace data/variables (in conjunction with above); this needs to be explicitly shown as kids never realize they can inspect their data à la Excel in RStudio 
+  - Plot window 
+  - Files window (expanded on in R Workflow chapter) 
+  - Tearable tabs; again, kids don’t realize you can tear off a tab into a new window so you can see your data and code side-by-side (click and drag tab to tear off).  
+  - Customization (i.e. themes for dark-mode) 
+- Brief style guide 
+  - Packages loaded at the top. 
+  - How to comment code (#I’m cold and there are wolves after me) 
+  -Suggestion for variable names (good_name vs. thisNameWillWork_butIsAwfulToType); including forbidden names 
+  -Script headers (i.e. # heading1, ## subheading); These are picked-up by RStudio and displayed in the Document Outline box allowing easy navigation of long scripts.  

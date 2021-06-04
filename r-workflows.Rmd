@@ -1,0 +1,58 @@
+# R Workflows
+
+Just like there's a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there's a workflow when working with R. This is by no means the only way to work, but it's tried and true and will serve you well as you tackle your coursework. 
+
+
+<!-- This is stuff Steven wrote, feel free to modify as you need --> 
+
+## Creating an RStudio Project
+
+When you open RStudio for the first time, this is what you should see:
+
+![RStudio Default View](images/Rstudio_startup.png)
+
+The version of R you just installed should appear in the main window here:
+
+![RStudio - R Version](images/Rstudio_Rversion_consolezoom.png)
+
+(If this message does not appear, go to *Tools*->*Global Options* and make sure that the "R version" box is set to the correct folder.)
+
+
+Before doing anything else, let's create an **R Project**. This will establish a default folder for RStudio and bundle together all your code files in one place.
+Go to *File*->*New Project*. Click *New Directory*, then *New Project*. Next, you'll be asked to choose a subdirectory name and location. The name can be whatever you want, but we highly recommend that you create the directory in the same parent folder as your data. Click *Create Project*, and you should now see your chosen file path displayed in the bottom-right window:
+
+![RStudio Project Folder](images/Rstudio_Rproj.png)
+
+You are now ready to use R! If you're in a hurry, you can skip straight to Chapter 2: Organizing Your Data, but we recommend you finish this chapter to familiarize yourself with RStudio's layout.
+
+## Navigating RStudio
+
+RStudio has 4 main windows, 3 of which should currently be visible. To see the fourth window, go to *File*->*New File*->*R Script*. You should now be able to see all 4 main windows:
+
+![RStudio Quadrants](images/Rstudio_quadrants.png)
+
+### R Environment
+This window is the least important for our purposes. In brief, it will list all variables, packages, and functions which you have run since opening RStudio.
+
+### Viewer
+The Viewer window has a couple of useful tabs. We will mainly use it to export plots (more on that in later chapters), but you can also open code files from the "Files" tab without having to leave RStudio. 
+
+### Console
+This is where you can type and run code directly, but you will mainly be using the Scripts window to run code (see below). Your primary use of the console will be for installing packages (more on that later). Another thing that the Console window is useful for is quick arithmetic. Try typing "2+2" in the console, then hit Enter.
+
+``` {r console_math}
+2+2
+```
+
+
+### Scripts
+R code files are called scripts, and are saved as \*.R files. Whenever you copy code blocks from this website, paste them into the Scripts window. You can then run specific lines by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or clicking the "Run" button in the top right of this window.
+
+
+## Dark Mode
+
+Lastly, some of you may be interested in how to set RStudio to Dark Mode. Simply go to *Tools*->*Global Options*, then click "Appearance" on the left. Then select your preferred Editor Theme from the list. (My personal preference is "Tomorrow Night Bright")
+
+![RStudio Dark Themes](images/Rstudio_darkthemes.png)
+
+

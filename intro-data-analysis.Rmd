@@ -1,0 +1,7 @@
+# (PART\*) Data Analysis in R {-}
+
+# Intro to Data Analysis
+
+- introducing the import -> tidy -> transform <-> visualize <-> model <-> communicate workflow
+- map where they'll learn these in the upcoming sections 
+- emphasis this is how they should tackle every problem from now on. 
