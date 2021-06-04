@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Introduction | R for Environmental Chemists</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction | R for Environmental Chemists" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:url" content="https://davidrosshall.github.io/R4EnvChem/" />
   
   <meta property="og:description" content="This is a proof-of-concept for a further full length textbook." />
   
@@ -21,10 +21,10 @@
   <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
   
 
-<meta name="author" content="David Hall, Steven Kutarna, and Jessica D’eon" />
+<meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
 
 
-<meta name="date" content="2021-04-05" />
+<meta name="date" content="2021-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +32,8 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="software.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<link rel="next" href="running-r-code.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,19 +51,15 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -124,6 +120,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 </head>
 
 <body>
@@ -136,72 +133,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>R4EnvChem</a></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>2</b> Software</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Howdy</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="software.html"><a href="software.html#microsoft-excel"><i class="fa fa-check"></i><b>2.1</b> Microsoft Excel</a></li>
-<li class="chapter" data-level="2.2" data-path="software.html"><a href="software.html#r"><i class="fa fa-check"></i><b>2.2</b> R</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="software.html"><a href="software.html#r-markdown"><i class="fa fa-check"></i><b>2.2.1</b> R Markdown</a></li>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prerequisite-software"><i class="fa fa-check"></i><b>1.1</b> Prerequisite software</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#where-to-get-help"><i class="fa fa-check"></i><b>1.2</b> Where to get help</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="importing.html"><a href="importing.html"><i class="fa fa-check"></i><b>3</b> Importing</a></li>
-<li class="chapter" data-level="4" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html"><i class="fa fa-check"></i><b>4</b> Exploring Spectroscopy Data</a>
+<li class="part"><span><b>Getting Setup in R</b></span></li>
+<li class="chapter" data-level="2" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>2</b> Running R Code</a></li>
+<li class="chapter" data-level="3" data-path="r-workflows.html"><a href="r-workflows.html"><i class="fa fa-check"></i><b>3</b> R Workflows</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#setting-up-data-for-efficient-plotting"><i class="fa fa-check"></i><b>4.1</b> Setting up data for efficient plotting</a></li>
-<li class="chapter" data-level="4.2" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#plotting-data"><i class="fa fa-check"></i><b>4.2</b> Plotting data</a></li>
-<li class="chapter" data-level="4.3" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#creating-interactive-plots"><i class="fa fa-check"></i><b>4.3</b> Creating interactive plots</a>
+<li class="chapter" data-level="3.1" data-path="r-workflows.html"><a href="r-workflows.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>3.1</b> Creating an RStudio Project</a></li>
+<li class="chapter" data-level="3.2" data-path="r-workflows.html"><a href="r-workflows.html#navigating-rstudio"><i class="fa fa-check"></i><b>3.2</b> Navigating RStudio</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="exploring-spectroscopy-data.html"><a href="exploring-spectroscopy-data.html#some-notes-about-working-with-plotly"><i class="fa fa-check"></i><b>4.3.1</b> Some notes about working with Plotly</a></li>
+<li class="chapter" data-level="3.2.1" data-path="r-workflows.html"><a href="r-workflows.html#r-environment"><i class="fa fa-check"></i><b>3.2.1</b> R Environment</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-workflows.html"><a href="r-workflows.html#viewer"><i class="fa fa-check"></i><b>3.2.2</b> Viewer</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-workflows.html"><a href="r-workflows.html#console"><i class="fa fa-check"></i><b>3.2.3</b> Console</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-workflows.html"><a href="r-workflows.html#scripts"><i class="fa fa-check"></i><b>3.2.4</b> Scripts</a></li>
 </ul></li>
+<li class="chapter" data-level="3.3" data-path="r-workflows.html"><a href="r-workflows.html#dark-mode"><i class="fa fa-check"></i><b>3.3</b> Dark Mode</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="calibration-curves-with-qqq-data.html"><a href="calibration-curves-with-qqq-data.html"><i class="fa fa-check"></i><b>5</b> Calibration Curves with QQQ Data</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="calibration-curves-with-qqq-data.html"><a href="calibration-curves-with-qqq-data.html#importing-and-tidying-data"><i class="fa fa-check"></i><b>5.1</b> Importing and tidying data</a></li>
-<li class="chapter" data-level="5.2" data-path="calibration-curves-with-qqq-data.html"><a href="calibration-curves-with-qqq-data.html#normalizing-qqq-data"><i class="fa fa-check"></i><b>5.2</b> Normalizing QQQ Data</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="calibration-curves-with-qqq-data.html"><a href="calibration-curves-with-qqq-data.html#assessing-internal-stds"><i class="fa fa-check"></i><b>5.2.1</b> Assessing Internal Stds</a></li>
-<li class="chapter" data-level="5.2.2" data-path="calibration-curves-with-qqq-data.html"><a href="calibration-curves-with-qqq-data.html#normalizing-peak-areas"><i class="fa fa-check"></i><b>5.2.2</b> Normalizing peak areas</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="calibration-curves-with-qqq-data.html"><a href="calibration-curves-with-qqq-data.html#calculating-calibration-curves"><i class="fa fa-check"></i><b>5.3</b> Calculating Calibration Curves</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="calibration-curves-with-qqq-data.html"><a href="calibration-curves-with-qqq-data.html#plotting-regression-curves"><i class="fa fa-check"></i><b>5.3.1</b> Plotting regression curves</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="calibration-curves-with-qqq-data.html"><a href="calibration-curves-with-qqq-data.html#quantifying-sample-concentrations"><i class="fa fa-check"></i><b>5.4</b> Quantifying sample concentrations</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="logistic-regression-modelling.html"><a href="logistic-regression-modelling.html"><i class="fa fa-check"></i><b>6</b> Logistic Regression Modelling</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="logistic-regression-modelling.html"><a href="logistic-regression-modelling.html#visually-inspecting-our-data"><i class="fa fa-check"></i><b>6.1</b> Visually inspecting our data</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="logistic-regression-modelling.html"><a href="logistic-regression-modelling.html#annotating-maximal-values"><i class="fa fa-check"></i><b>6.1.1</b> Annotating maximal values</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="logistic-regression-modelling.html"><a href="logistic-regression-modelling.html#extracting-maximal-values"><i class="fa fa-check"></i><b>6.2</b> Extracting maximal values</a></li>
-<li class="chapter" data-level="6.3" data-path="logistic-regression-modelling.html"><a href="logistic-regression-modelling.html#modelling-sigmoidal-curve"><i class="fa fa-check"></i><b>6.3</b> Modelling Sigmoidal Curve</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="logistic-regression-modelling.html"><a href="logistic-regression-modelling.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>6.3.1</b> Calculating Logistic Regression</a></li>
-<li class="chapter" data-level="6.3.2" data-path="logistic-regression-modelling.html"><a href="logistic-regression-modelling.html#extracting-model-parameters"><i class="fa fa-check"></i><b>6.3.2</b> Extracting model parameters</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>7</b> Appendix</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="appendix.html"><a href="appendix.html#first-off-what-is-r-markdown"><i class="fa fa-check"></i><b>7.1</b> First off, what is R Markdown?</a></li>
-<li class="chapter" data-level="7.2" data-path="appendix.html"><a href="appendix.html#how-do-i-get-started-with-r-markdown"><i class="fa fa-check"></i><b>7.2</b> How do I get started with R markdown?</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="appendix.html"><a href="appendix.html#great-now-whats-going-on-with-this-r-markdown-document"><i class="fa fa-check"></i><b>7.2.1</b> Great, now what’s going on with this R markdown document?</a></li>
-<li class="chapter" data-level="7.2.2" data-path="appendix.html"><a href="appendix.html#how-to-run-r-code-in-r-markdown"><i class="fa fa-check"></i><b>7.2.2</b> How to run R code in R Markdown</a></li>
-<li class="chapter" data-level="7.2.3" data-path="appendix.html"><a href="appendix.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><i class="fa fa-check"></i><b>7.2.3</b> How do I go from R markdown to something I can hand-in</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="appendix.html"><a href="appendix.html#so-now-what-do-i-do-with-r-markdown"><i class="fa fa-check"></i><b>7.3</b> So now what do I do with R Markdown?</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="appendix.html"><a href="appendix.html#r-markdown-resources-and-further-reading"><i class="fa fa-check"></i><b>7.3.1</b> R Markdown resources and further reading</a></li>
-<li class="chapter" data-level="7.3.2" data-path="appendix.html"><a href="appendix.html#r-code-chunk-options"><i class="fa fa-check"></i><b>7.3.2</b> R code chunk options</a></li>
-<li class="chapter" data-level="7.3.3" data-path="appendix.html"><a href="appendix.html#inserting-images-into-markdown-documents"><i class="fa fa-check"></i><b>7.3.3</b> Inserting images into markdown documents</a></li>
-<li class="chapter" data-level="7.3.4" data-path="appendix.html"><a href="appendix.html#generating-tables"><i class="fa fa-check"></i><b>7.3.4</b> Generating Tables</a></li>
-<li class="chapter" data-level="7.3.5" data-path="appendix.html"><a href="appendix.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>7.3.5</b> Spellcheck in R Markdown</a></li>
-<li class="chapter" data-level="7.3.6" data-path="appendix.html"><a href="appendix.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>7.3.6</b> Quick reference on R markdown syntax</a></li>
-</ul></li>
-</ul></li>
+<li class="part"><span><b>Data Analysis in R</b></span></li>
+<li class="chapter" data-level="4" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Intro to Data Analysis</a></li>
 </ul>
 
       </nav>
@@ -221,7 +177,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p><em>more to come</em></p>
+<ul>
+<li>What you’ll learn (and won’t learn)
+<ul>
+<li>learn = basic understanding of R</li>
+<li>won’t learn = <em>L33T hax0r Skillz</em></li>
+</ul></li>
+<li>How book is organized
+<ul>
+<li>code is covered in chunks or monospaced (<code>like this</code>)</li>
+</ul></li>
+<li>Prerequisite software</li>
+<li>getting help</li>
+</ul>
+<div id="prerequisite-software" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Prerequisite software</h2>
+<p>In order to use this book you will first need to download and install <strong>R</strong> on your computer. The latest build as of March 2021 is v4.0.5. <a href="https://utstat.toronto.edu/cran/">Download the appropriate version of R for your Operating System here</a>.</p>
+<p>We recommend using the default settings for installation (i.e. just keep clicking “Next”). <em>Note that you will not need shortcuts for launching R, as you will always be using Rstudio to run provided code.</em></p>
+<p>Once R is installed on your computer, you will need to download and install RStudio. <a href="https://www.rstudio.com/products/rstudio/download/#download">Download the appropriate version of RStudio for your Operating System here</a></p>
+<p>Again, just use the default installation settings.</p>
+</div>
+<div id="where-to-get-help" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Where to get help</h2>
+<p>While it’s often tempting to contact your TA/Prof at the sign of first trouble, it’s often better to try and resolve your issues on your own, especially if they’re related to technical issues in R. Given the popularity of R, if you’ve run into an issue, someone else has… and they’ve complained about it and someone else has solved it! An oft unappreciated aspect of coding/data science is knowing how to get help, how to search for it, and how to translate someone’s solutions to your unique situation. <!-- needs to be fleshed out some, mostly just placeholder text at this point, DH --></p>
+<p>Places to get help include:</p>
+<ul>
+<li>Stack overflow</li>
+<li>Using built-in documentation (<code>?help</code>)</li>
+<li>reference book such as the invaluable (<em>R for Data Science</em>)[<a href="https://r4ds.had.co.nz/index.html" class="uri">https://r4ds.had.co.nz/index.html</a>], which inspired this entire project.</li>
+<li>All else fails,holler at your TA/profs.</li>
+</ul>
+
+<!-- This header creates the book section -->
+</div>
+</div>
+
+
 
 </div>
             </section>
@@ -230,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="software.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="running-r-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -253,6 +244,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -280,20 +272,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
