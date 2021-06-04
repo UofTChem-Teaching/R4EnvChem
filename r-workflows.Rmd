@@ -13,7 +13,7 @@ When you open RStudio for the first time, this is what you should see:
 
 The version of R you just installed should appear in the main window here:
 
-![RStudio - R Version](images/Rstudio_Rversion_consolezoom.png)
+![RStudio - R Version](images/Rstudio_Rversion.png)
 
 (If this message does not appear, go to *Tools*->*Global Options* and make sure that the "R version" box is set to the correct folder.)
 
