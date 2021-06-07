@@ -8,17 +8,25 @@
 
 Now you should have both R and RStudio downloaded and installed. When you open RStudio for the first time, this is what you should see:
 
-![RStudio default startup view.](images/Rstudio_startup.png)
+
+```{r echo = FALSE, out.width = '100%', fig.cap = "RStudio default startup view."} 
+knitr::include_graphics(rep("images/Rstudio_startup.png"), 1)
+```
 
 The version of R you just installed should appear in the main window, or console, here:
 
-![Locating R Version in RStudio.](images/Rstudio_Rversion.png)
+``` {r echo = FALSE, out.width = '100%', fig.cap = "Locating R version in RStudio."}
+knitr::include_graphics(rep("images/Rstudio_Rversion.png"), 1)
+```
 
 (If this message does not appear, go to *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, and make sure that the "R version" box is set to the correct folder.)
 
 Currently, the RStudio interface has three key regions, as highlighted below.
 
-![Important regions in the RStudio interface.](images/Rstudio_startup_regions.png)
+
+``` {r echo = FALSE, out.width = '100%', fig.cap = "Important regions in the RStudio interface."}
+knitr::include_graphics(rep("images/Rstudio_startup_regions.png",1))
+```
 
 ### Console
 
@@ -28,17 +36,16 @@ You can run code directly by typing your R code into the console pane. The conso
 2+2
 ```
 
-While the console is useful for short-and-sweet commands, you will mainly be using the Scripts window to run chunks of code (see 2.2 Script vs. Console).
+While the console is useful for short-and-sweet commands, you will mainly be using the Scripts window to run chunks of code (see **2.2 Where to run code in RStudio**).
 
 ### Environment
 
-The environment window lists all variables, packages, and functions which you have run since opening RStudio. This window is particularly useful if you want to view your data in a format similar to an Excel spreadsheet directly from RStudio, which we will discuss in Section 3 of this book.
+The environment window lists all variables, packages, and functions which you have run since opening RStudio. This window is particularly useful if you want to view your data in a format similar to an Excel spreadsheet directly from RStudio, which we will discuss in Chapter 3 of this book.
 
 
 ### Viewer
 
-The Viewer window has a couple of useful tabs. We will mainly use it to export plots (more on that in later chapters), but you can also open code files from the "Files" tab without having to leave RStudio (expanded on in Section 3). 
-
+The Viewer window has a couple of useful tabs. We will mainly use it to export plots (more on that in later chapters), but you can also open code files from the "Files" tab without having to leave RStudio (expanded on in Chapter 3). 
 
 
 ### Customizing RStudio
@@ -47,13 +54,16 @@ As many of us spend an absurd amount of time staring at bright screens, some of 
 
 You can customize the appearance of your RStudio interface by clicking *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, then click "Appearance" on the left. Select your preferred Editor Theme from the list.
 
-![RStudio with the Editor Theme set to "Tomorrow Night Bright".](images/Rstudio_darkthemes.png)
 
-  - Tearable tabs; again, kids don’t realize you can tear off a tab into a new window so you can see your data and code side-by-side (click and drag tab to tear off).
+``` {r echo = FALSE, out.width = '100%', fig.cap = "RStudio Appearance customization window."}
+knitr::include_graphics(rep("images/Rstudio_darkthemes.png",1))
+```
 
-## Script vs. Console
+## Where to run code in RStudio
 
-- Where to run code in RStudio (script vs. console) 
+### Script vs. console
+
+
 
 ## Coding building blocks
 
@@ -69,4 +79,8 @@ You can customize the appearance of your RStudio interface by clicking *Tools*->
   - How to comment code (#I’m cold and there are wolves after me) 
   -Suggestion for variable names (good_name vs. thisNameWillWork_butIsAwfulToType); including forbidden names 
   -Script headers (i.e. # heading1, ## subheading); These are picked-up by RStudio and displayed in the Document Outline box allowing easy navigation of long scripts.  
-  
+
+## Viewing data and code simultaneously
+
+ - Tearable tabs; again, kids don’t realize you can tear off a tab into a new window so you can see your data and code side-by-side (click and drag tab to tear off).
+
