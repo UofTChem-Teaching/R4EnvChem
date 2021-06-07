@@ -2,6 +2,32 @@
 
 # Intro to Data Analysis
 
-- introducing the import -> tidy -> transform <-> visualize <-> model <-> communicate workflow
-- map where they'll learn these in the upcoming sections 
-- emphasis this is how they should tackle every problem from now on. 
+This section will teach you **how** to use R to meet your data analysis needs using a common workflow. Whether it takes 10 minutes or 10 hrs, *you'll use this workflow for every data analysis project*. By explicitly understanding the workflow steps, and how to execute them in R, you'll be more than capable of expanding the limited tools learned from this book to any number of data analysis projects you'll soon encounter.
+
+The explicit workflow we'll be teaching was originally described by Wickham and Grolemund, and consists of six key steps: 
+
+
+![Data science workflow describes by Wickham and Grolemund; image from *R for Data Science, Wickham and Grolemund (2021)](images/data-science-workflow.png){width=99%}
+
+
+- **Import** is the first step and consist of getting your data into R. Seems obvious, but doing it correctly will save you time and headaches down the line. 
+- **Tidy** refers to organizing your data in a *tidy* manner where each variable is a column, and each observation a row. This is often the least intuitive part about working with R, especially if you've only used Excel, but it's critical. If you don't tidy your data, you'll be fighting it every step of the way.
+- **Transform** is anything you do to your data including any mathematical operations or narrowing in on a set of observations.
+- **Visualize** is any of the plots/graphics you'll generate with R. Take advantage of R and plot often, it's the easiest way to spot an errors. 
+- **Model** is an extension of mathematical operations to help understand your data. The *linear regressions* needed for a calibration curve are an example of a model. 
+- **Communicate** is the final step and is where you share the *knowledge* you've squeezed out of the information in the original data. 
+
+The *Transform*, *Visualize*, and *Model* cycle exists because these steps often feed into one another. For example, you'll often transform your data, make a quick model, then visualize it to see how it performs. Other times, you'll visualize your data to see what type of model can explain it, and if any transformations are necessary. This is the beauty of R (and coding in general). Once you've setup everything, these steps are fairly simple to execute allowing you to quickly explore your data from a number of different angles. The next section will explore the theory (the **why**) behind these steps, and introduce some tools you can use to better explore your data. 
+
+
+## Further Reading
+
+In case it hasn't been apparent enough, this entire endeavour was inspired by the *R for Data Science* reference book by Hadley Wickham and Garrett Grolemund. Every step described above is explored in more detail in their book, which can be read freely online at [https://r4ds.had.co.nz/](https://r4ds.had.co.nz/). We strongly encourage you to read through the book to supplement your R data analysis skills. 
+
+
+
+
+
+
+
+
