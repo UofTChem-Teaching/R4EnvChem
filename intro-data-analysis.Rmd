@@ -7,7 +7,7 @@ This section will teach you **how** to use R to meet your data analysis needs us
 The explicit workflow we'll be teaching was originally described by Wickham and Grolemund, and consists of six key steps: 
 
 
-![Data science workflow describes by Wickham and Grolemund; image from *R for Data Science, Wickham and Grolemund (2021)](images/data-science-workflow.png){width=99%}
+![Data science workflow describes by Wickham and Grolemund; image from *R for Data Science*, Wickham and Grolemund (2021)](images/data-science-workflow.png){width=99%}
 
 
 - **Import** is the first step and consist of getting your data into R. Seems obvious, but doing it correctly will save you time and headaches down the line. 

@@ -8,7 +8,7 @@ output_dir: "docs"
 # used to specify chapter order in book_filename
 
 rmd_files:  [
-  
+
   "index.Rmd",
   
   "intro.Rmd",
@@ -17,6 +17,7 @@ rmd_files:  [
   "r-workflows.Rmd",
   "r-markdown.Rmd",
   
-  "intro-data-analysis.Rmd"
+  "intro-data-analysis.Rmd",
+  "import.Rmd"
   
   ]
