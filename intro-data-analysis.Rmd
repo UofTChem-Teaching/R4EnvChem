@@ -12,7 +12,7 @@ The explicit workflow we'll be teaching was originally described by Wickham and 
 
 - **Import** is the first step and consist of getting your data into R. Seems obvious, but doing it correctly will save you time and headaches down the line. 
 - **Tidy** refers to organizing your data in a *tidy* manner where each variable is a column, and each observation a row. This is often the least intuitive part about working with R, especially if you've only used Excel, but it's critical. If you don't tidy your data, you'll be fighting it every step of the way.
-- **Transform** is anything you do to your data including any mathematical operations or narrowing in on a set of observations.
+- **Transform** is anything you do to your data including any mathematical operations or narrowing in on a set of observations. It's often the first stage of the cycle as you'll need to transform your data in some manner to obtain a desired plot.
 - **Visualize** is any of the plots/graphics you'll generate with R. Take advantage of R and plot often, it's the easiest way to spot an errors. 
 - **Model** is an extension of mathematical operations to help understand your data. The *linear regressions* needed for a calibration curve are an example of a model. 
 - **Communicate** is the final step and is where you share the *knowledge* you've squeezed out of the information in the original data. 
