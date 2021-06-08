@@ -24,7 +24,7 @@
 <meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
 
 
-<meta name="date" content="2021-06-04" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="using-r-markdown.html"/>
-
+<link rel="next" href="importing-data-into-r.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -179,7 +179,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Data Analysis in R</b></span></li>
-<li class="chapter" data-level="5" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>5</b> Intro to Data Analysis</a></li>
+<li class="chapter" data-level="5" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>5</b> Intro to Data Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#further-reading"><i class="fa fa-check"></i><b>5.1</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>6</b> Importing data into R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#how-data-is-stored"><i class="fa fa-check"></i><b>6.1</b> How data is stored</a></li>
+<li class="chapter" data-level="6.2" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#read_csv"><i class="fa fa-check"></i><b>6.2</b> read_csv</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#tibbles-vs.-data-frames"><i class="fa fa-check"></i><b>6.2.1</b> Tibbles vs. data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#importing-other-data-types"><i class="fa fa-check"></i><b>6.3</b> Importing other data types</a></li>
+<li class="chapter" data-level="6.4" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#saving-data"><i class="fa fa-check"></i><b>6.4</b> Saving data</a></li>
+<li class="chapter" data-level="6.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#further-reading-1"><i class="fa fa-check"></i><b>6.5</b> Further Reading</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -199,20 +213,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro-to-data-analysis" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Intro to Data Analysis</h1>
+<p>This section will teach you <strong>how</strong> to use R to meet your data analysis needs using a common workflow. Whether it takes 10 minutes or 10 hrs, <em>you’ll use this workflow for every data analysis project</em>. By explicitly understanding the workflow steps, and how to execute them in R, you’ll be more than capable of expanding the limited tools learned from this book to any number of data analysis projects you’ll soon encounter.</p>
+<p>The explicit workflow we’ll be teaching was originally described by Wickham and Grolemund, and consists of six key steps:</p>
+<div class="figure">
+<img src="images/data-science-workflow.png" style="width:99.0%" alt="" />
+<p class="caption">Data science workflow describes by Wickham and Grolemund; image from <em>R for Data Science</em>, Wickham and Grolemund (2021)</p>
+</div>
 <ul>
-<li>introducing the import -&gt; tidy -&gt; transform &lt;-&gt; visualize &lt;-&gt; model &lt;-&gt; communicate workflow</li>
-<li>map where they’ll learn these in the upcoming sections</li>
-<li>emphasis this is how they should tackle every problem from now on.</li>
+<li><strong>Import</strong> is the first step and consist of getting your data into R. Seems obvious, but doing it correctly will save you time and headaches down the line.</li>
+<li><strong>Tidy</strong> refers to organizing your data in a <em>tidy</em> manner where each variable is a column, and each observation a row. This is often the least intuitive part about working with R, especially if you’ve only used Excel, but it’s critical. If you don’t tidy your data, you’ll be fighting it every step of the way.</li>
+<li><strong>Transform</strong> is anything you do to your data including any mathematical operations or narrowing in on a set of observations. It’s often the first stage of the cycle as you’ll need to transform your data in some manner to obtain a desired plot.</li>
+<li><strong>Visualize</strong> is any of the plots/graphics you’ll generate with R. Take advantage of R and plot often, it’s the easiest way to spot an errors.</li>
+<li><strong>Model</strong> is an extension of mathematical operations to help understand your data. The <em>linear regressions</em> needed for a calibration curve are an example of a model.</li>
+<li><strong>Communicate</strong> is the final step and is where you share the <em>knowledge</em> you’ve squeezed out of the information in the original data.</li>
 </ul>
+<p>The <em>Transform</em>, <em>Visualize</em>, and <em>Model</em> cycle exists because these steps often feed into one another. For example, you’ll often transform your data, make a quick model, then visualize it to see how it performs. Other times, you’ll visualize your data to see what type of model can explain it, and if any transformations are necessary. This is the beauty of R (and coding in general). Once you’ve setup everything, these steps are fairly simple to execute allowing you to quickly explore your data from a number of different angles. The next section will explore the theory (the <strong>why</strong>) behind these steps, and introduce some tools you can use to better explore your data.</p>
+<div id="further-reading" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Further Reading</h2>
+<p>In case it hasn’t been apparent enough, this entire endeavour was inspired by the <em>R for Data Science</em> reference book by Hadley Wickham and Garrett Grolemund. Every step described above is explored in more detail in their book, which can be read freely online at <a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>. We strongly encourage you to read through the book to supplement your R data analysis skills.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="using-r-markdown.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="using-r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importing-data-into-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

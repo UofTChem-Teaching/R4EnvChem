@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 R Workflows | R for Environmental Chemists</title>
+  <title>Chapter 6 Import data | R for Environmental Chemists</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 R Workflows | R for Environmental Chemists" />
+  <meta property="og:title" content="Chapter 6 Import data | R for Environmental Chemists" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://davidrosshall.github.io/R4EnvChem/" />
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 R Workflows | R for Environmental Chemists" />
+  <meta name="twitter:title" content="Chapter 6 Import data | R for Environmental Chemists" />
   
   <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="running-r-code.html"/>
-<link rel="next" href="using-r-markdown.html"/>
+<link rel="prev" href="intro-to-data-analysis.html"/>
+
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -183,16 +183,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#further-reading"><i class="fa fa-check"></i><b>5.1</b> Further Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>6</b> Importing data into R</a>
+<li class="chapter" data-level="6" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>6</b> Import data</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#how-data-is-stored"><i class="fa fa-check"></i><b>6.1</b> How data is stored</a></li>
-<li class="chapter" data-level="6.2" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#read_csv"><i class="fa fa-check"></i><b>6.2</b> read_csv</a>
+<li class="chapter" data-level="6.1" data-path="import-data.html"><a href="import-data.html#how-data-is-stored"><i class="fa fa-check"></i><b>6.1</b> How data is stored</a></li>
+<li class="chapter" data-level="6.2" data-path="import-data.html"><a href="import-data.html#read_csv"><i class="fa fa-check"></i><b>6.2</b> read_csv</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#tibbles-vs.-data-frames"><i class="fa fa-check"></i><b>6.2.1</b> Tibbles vs. data frames</a></li>
+<li class="chapter" data-level="6.2.1" data-path="import-data.html"><a href="import-data.html#tibbles-vs.-data-frames"><i class="fa fa-check"></i><b>6.2.1</b> Tibbles vs. data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#importing-other-data-types"><i class="fa fa-check"></i><b>6.3</b> Importing other data types</a></li>
-<li class="chapter" data-level="6.4" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#saving-data"><i class="fa fa-check"></i><b>6.4</b> Saving data</a></li>
-<li class="chapter" data-level="6.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#further-reading-1"><i class="fa fa-check"></i><b>6.5</b> Further Reading</a></li>
+<li class="chapter" data-level="6.3" data-path="import-data.html"><a href="import-data.html#importing-other-data-types"><i class="fa fa-check"></i><b>6.3</b> Importing other data types</a></li>
+<li class="chapter" data-level="6.4" data-path="import-data.html"><a href="import-data.html#saving-data"><i class="fa fa-check"></i><b>6.4</b> Saving data</a></li>
+<li class="chapter" data-level="6.5" data-path="import-data.html"><a href="import-data.html#further-reading-1"><i class="fa fa-check"></i><b>6.5</b> Further Reading</a></li>
 </ul></li>
 </ul>
 
@@ -211,64 +211,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-workflows" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> R Workflows</h1>
-<p>Just like there’s a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there’s a workflow when working with R. This is by no means the only way to work, but it’s tried and true and will serve you well as you tackle your coursework.</p>
-<!-- This is stuff Steven wrote, feel free to modify as you need -->
-<div id="creating-an-rstudio-project" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Creating an RStudio Project</h2>
-<p>When you open RStudio for the first time, this is what you should see:</p>
-<div class="figure">
-<img src="images/RStudio_startup.png" alt="" />
-<p class="caption">RStudio Default View</p>
+<div id="import-data" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Import data</h1>
+<p>Unlike <em>Excel</em>, you can’t copy and paste your data into R (or RStudio). Instead you need to <em>import</em> your data into R so you can work with it. This chapter will discuss how your data is stored, and how to import it into R (with some accompanying nuancses).</p>
+<div id="how-data-is-stored" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> How data is stored</h2>
+<p>While there are a miriad of ways data is stored, notably raw instrument often record results in a proprietary vendor format, the data you’re likely to encounter in an undergraduate lab will be in the form of a <code>.csv</code> or <em>comma-seperated values</em> file. As the name implies, values are seperated by commas (go ahead and open any <code>.csv</code> file in any text editor to observe this). Essentially you can think of each line as a row and commas as seprating values into columns, which is exactly how R and <em>Excel</em> handle <code>.csv</code> files.</p>
 </div>
-<p>The version of R you just installed should appear in the main window here:</p>
-<div class="figure">
-<img src="images/RStudio_Rversion_consolezoom.png" alt="" />
-<p class="caption">RStudio - R Version</p>
+<div id="read_csv" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> read_csv</h2>
+<p>Importing a <code>.csv</code> file into R simply requires the <code>read.csv</code> or the <code>read_csv</code> function from tidyverse. The first variable is the most important as it’s the file path. Recall that R, unless specified, uses relative referencing. So in the example below we’re importing the <code>ATR_plastics.csv</code> from the <code>data</code> subfolder in our project by specifying <code>"data/ATR_plastics.csv"</code> and assigning it to the variable <code>atr_plastics</code>. Note the inclusion of the file extension.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="import-data.html#cb13-1" aria-hidden="true" tabindex="-1"></a>atr_plastics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   wavenumber = col_double(),
+##   EPDM = col_double(),
+##   Polystyrene = col_double(),
+##   Polyethylene = col_double(),
+##   `Sample: Shopping bag` = col_double()
+## )</code></pre>
+<p>A benefit of using <code>read_csv</code> is that it prints out the column specifications with each column’s name (how you’ll reference it in code) and the column value type. Columns can have different data types, but a data type must be consistent within any given column. Having the columns specifications is a good way to ensure R is correctly reading your data.</p>
+<p>We can also quickly inspect either through the <em>Environment</em> pane in <em>RStudio</em> or quickly with the <code>head()</code> function. Note the column speficications under the column name.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="import-data.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atr_plastics)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   wavenumber  EPDM Polystyrene Polyethylene `Sample: Shopping bag`
+##        &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;                  &lt;dbl&gt;
+## 1       550. 0.212      0.0746     0.000873               115.    
+## 2       551. 0.212      0.0746     0.000834                 0.0238
+## 3       551. 0.213      0.0745     0.000819                 0.0239
+## 4       552. 0.213      0.0745     0.000825                 0.0239
+## 5       552. 0.214      0.0745     0.000868                 0.0240
+## 6       553. 0.214      0.0746     0.000949                 0.0240</code></pre>
+<p>Note how the first line of the <code>ATR_plastics.csv</code> has been interpreted as columns names (or <em>headers</em>) by R. This is common practice, and gives you a handle by which you can manipulate your data. If you did not intend for R to interprete the first row as headers you can suppress this with the addtional argument <code>col_names = FALSE</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="import-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/atr_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   X1 = col_character(),
+##   X2 = col_character(),
+##   X3 = col_character(),
+##   X4 = col_character(),
+##   X5 = col_character()
+## )</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   X1         X2        X3          X4           X5                  
+##   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               
+## 1 wavenumber EPDM      Polystyrene Polyethylene Sample: Shopping bag
+## 2 550.0952   0.2119556 0.07463058  0.000873196  115.079             
+## 3 550.5773   0.2124079 0.07455246  0.000834192  0.02382648          
+## 4 551.0594   0.2128818 0.07450471  0.000819447  0.02387163          
+## 5 551.5415   0.2133267 0.07449704  0.000825491  0.02391921          
+## 6 552.0236   0.2137241 0.07452058  0.000868397  0.02396947</code></pre>
+<p>Note in the example below that since the headers are now considered data, the entire column is interpreteted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our <code>.csv</code>), we can use the <code>skip = n</code> to skip n rows:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="import-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/atr_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   X1 = col_double(),
+##   X2 = col_double(),
+##   X3 = col_double(),
+##   X4 = col_double(),
+##   X5 = col_double()
+## )</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##      X1    X2     X3       X4       X5
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1  550. 0.212 0.0746 0.000873 115.    
+## 2  551. 0.212 0.0746 0.000834   0.0238
+## 3  551. 0.213 0.0745 0.000819   0.0239
+## 4  552. 0.213 0.0745 0.000825   0.0239
+## 5  552. 0.214 0.0745 0.000868   0.0240
+## 6  553. 0.214 0.0746 0.000949   0.0240</code></pre>
+<div id="tibbles-vs.-data-frames" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Tibbles vs. data frames</h3>
+<p>Quick eyes will notice the first line outputted above is <code># A tibble: 6 x 5</code>. <code>tibbles</code> are a variation of <code>data.frames</code> introduced in section one, but built specifically for the <code>tidyverse</code> family of packages. While <code>data.frames</code> and <code>tibbles</code> are often interchangeable, it’s important to be aware of the difference in case you do run into a rare conflict. In these situations you can readily transform a <code>tibble</code> into a <code>data.frame</code> by coercion with the <code>as.data.frame()</code> function, and vice-versa with the <code>as_tibble()</code> function.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="import-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.data.frame</span>(atr_plastics))</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
-<p>(If this message does not appear, go to <em>Tools</em>-&gt;<em>Global Options</em> and make sure that the “R version” box is set to the correct folder.)</p>
-<p>Before doing anything else, let’s create an <strong>R Project</strong>. This will establish a default folder for RStudio and bundle together all your code files in one place.
-Go to <em>File</em>-&gt;<em>New Project</em>. Click <em>New Directory</em>, then <em>New Project</em>. Next, you’ll be asked to choose a subdirectory name and location. The name can be whatever you want, but we highly recommend that you create the directory in the same parent folder as your data. Click <em>Create Project</em>, and you should now see your chosen file path displayed in the bottom-right window:</p>
-<div class="figure">
-<img src="images/Rstudio_Rproj.png" alt="" />
-<p class="caption">RStudio Project Folder</p>
 </div>
-<p>You are now ready to use R! If you’re in a hurry, you can skip straight to Chapter 2: Organizing Your Data, but we recommend you finish this chapter to familiarize yourself with RStudio’s layout.</p>
+<div id="importing-other-data-types" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Importing other data types</h2>
+<p>There are other functiosn to import different types of tabular data which all function like <code>read_csv</code>, such as <code>read_tsv</code> for tab-seperate value files (<code>.tsv</code>) and <code>read_excel</code> and <code>read_xlsx</code> from the <code>readxl</code> pacakge to import <em>Excel</em> files. Note most <em>Excel</em> files have probably been formatted for legibility (i.e. merged columns), which can lead to errors when importing into R. If you plan on importing <em>Excel</em> files, it’s probably best to open them in <em>Excel</em> to remove any formatting, and then save as <code>.csv</code> for smoother importing into R.</p>
 </div>
-<div id="navigating-rstudio" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Navigating RStudio</h2>
-<p>RStudio has 4 main windows, 3 of which should currently be visible. To see the fourth window, go to <em>File</em>-&gt;<em>New File</em>-&gt;<em>R Script</em>. You should now be able to see all 4 main windows:</p>
-<div class="figure">
-<img src="images/Rstudio_quadrants.png" alt="" />
-<p class="caption">RStudio Quadrants</p>
+<div id="saving-data" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Saving data</h2>
+<p>As you progress with your analysis you may want to save intermediate or final datasets. This is readily accomplished using the <code>write.csv</code> (base R) or <code>write_csv</code> (tidyverse) functions. Similar rules apply to how we used <code>read_csv</code>, but now the second argument specifies the save location and file name, the first argument is which <code>tibble</code>/<code>data.frame</code> we’re saving. Note that R <em>will not</em> create a folder this way, so if you’re saving to a subfolder you’ll have to make sure it exists or create it yourself.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="import-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(atr_plastics, <span class="st">&quot;data/ATRSaveExample.csv&quot;</span>)</span></code></pre></div>
+<p>A benefit of <code>write_csv</code> is that it will always save in <code>UTF-8</code> encoding and ISO8601 time format. This standardization makes it easier to share your <code>.csv</code> files with collaboraters/yourself.</p>
 </div>
-<div id="r-environment" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> R Environment</h3>
-<p>This window is the least important for our purposes. In brief, it will list all variables, packages, and functions which you have run since opening RStudio.</p>
-</div>
-<div id="viewer" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Viewer</h3>
-<p>The Viewer window has a couple of useful tabs. We will mainly use it to export plots (more on that in later chapters), but you can also open code files from the “Files” tab without having to leave RStudio.</p>
-</div>
-<div id="console" class="section level3" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> Console</h3>
-<p>This is where you can type and run code directly, but you will mainly be using the Scripts window to run code (see below). Your primary use of the console will be for installing packages (more on that later). Another thing that the Console window is useful for is quick arithmetic. Try typing “2+2” in the console, then hit Enter.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-workflows.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-</div>
-<div id="scripts" class="section level3" number="3.2.4">
-<h3><span class="header-section-number">3.2.4</span> Scripts</h3>
-<p>R code files are called scripts, and are saved as *.R files. Whenever you copy code blocks from this website, paste them into the Scripts window. You can then run specific lines by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or clicking the “Run” button in the top right of this window.</p>
-</div>
-</div>
-<div id="dark-mode" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Dark Mode</h2>
-<p>Lastly, some of you may be interested in how to set RStudio to Dark Mode. Simply go to <em>Tools</em>-&gt;<em>Global Options</em>, then click “Appearance” on the left. Then select your preferred Editor Theme from the list. (My personal preference is “Tomorrow Night Bright”)</p>
-<div class="figure">
-<img src="images/RStudio_darkthemes.png" alt="" />
-<p class="caption">RStudio Dark Themes</p>
-</div>
+<div id="further-reading-1" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Further Reading</h2>
+<p>See Chapters <a href="https://r4ds.had.co.nz/tibbles.html">10</a> and <a href="https://r4ds.had.co.nz/data-import.html">11</a> of <em>R for Data Science</em> for some more details on <code>tibbles</code> and <code>read_csv</code>.</p>
 
 </div>
 </div>
@@ -277,8 +311,8 @@ Go to <em>File</em>-&gt;<em>New Project</em>. Click <em>New Directory</em>, then
           </div>
         </div>
       </div>
-<a href="running-r-code.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="using-r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro-to-data-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -300,7 +334,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavidRossHall/R4EnvChem/r-workflows.Rmd",
+"link": "https://github.com/DavidRossHall/R4EnvChem/import.Rmd",
 "text": "Edit"
 },
 "history": {
