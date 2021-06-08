@@ -19,10 +19,11 @@ The version of R you just installed should appear in the main window, or console
 knitr::include_graphics(rep("images/Rstudio_Rversion.png"), 1)
 ```
 
-(If this message does not appear, go to *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, and make sure that the "R version" box is set to the correct folder.)
+(If this message does not appear, go to *Tools*->*Global Options* and make sure that the "R version" box is set to the correct folder.)
+
+It is important to be aware of the version of R you are using, especially when using R packages which may not be compatible with outdated versions of R (more on this in subsequent sections). 
 
 Currently, the RStudio interface has three key regions, as highlighted below.
-
 
 ``` {r echo = FALSE, out.width = '100%', fig.cap = "Important regions in the RStudio interface."}
 knitr::include_graphics(rep("images/Rstudio_startup_regions.png",1))
@@ -52,7 +53,7 @@ The Viewer window has a couple of useful tabs. We will mainly use it to export p
 
 As many of us spend an absurd amount of time staring at bright screens, some of you may be interested in setting your RStudio to Dark Mode. 
 
-You can customize the appearance of your RStudio interface by clicking *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, then click "Appearance" on the left. Select your preferred Editor Theme from the list.
+You can customize the appearance of your RStudio interface by clicking *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, then clicking "Appearance" on the left. Select your preferred Editor Theme from the list.
 
 
 ``` {r echo = FALSE, out.width = '100%', fig.cap = "RStudio Appearance customization window."}
@@ -61,20 +62,140 @@ knitr::include_graphics(rep("images/Rstudio_darkthemes.png",1))
 
 ## Where to run code in RStudio
 
-### Script vs. console
+Files of R code are called scripts, which are saved in the `.R` format. Let's open up a new script in RStudio by going to *File*->*New File*->*R Script*, or by clicking on the highlighted button in the image below.
 
+``` {r echo = FALSE, out.width = '100%', fig.cap = "Opening a new script in RStudio."}
+knitr::include_graphics(rep("images/Rstudio_newscript.png",1))
+```
 
+This should open up a new window in the RStudio interface, as shown in the following image.
+
+``` {r echo = FALSE, out.width = '100%', fig.cap = "Scripts window in RStudio."}
+knitr::include_graphics(rep("images/Rstudio_scriptwindow.png",1))
+```
+
+Whenever you copy code blocks from this website (or other online sources), you should paste them into the Scripts window. You can then run the specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the "Run" button in the top right corner of the Scripts window.
+
+### Scripts vs. console
+
+Using the Scripts window to write, edit, and run your code has many advantages over using the console directly. Mainly, writing your code in scripts allows you to save your code in the R file format, as mentioned previously. This means you can open old files of code and easily run commands which you've previously written.
+
+Additionally, the Scripts window allows you to review and edit your code without the risk of accidentally running an incomplete command. When typing directly into the console, any time you hit Enter, R will try to execute the line of code you have entered, whether or not you have completed the command. This is not an issue when typing your code into the Scripts window, as code in this window is only executed when the "Run" button is clicked, or when the code has been highlighted and you have pressed Ctrl+Enter (Cmd+Enter on Mac).
+
+Scripts are also very useful when you are coding repetitive tasks. Let's say you want to run the same function on 10 different data sets. In the console, you would have to write out that function 10 times, and alter the input data set each time. In the Scripts window, you can write out the function once, then copy-paste it 9 times to subsequent lines in the script. You can then use the *Find/Replace* button, highlighted in the following image, to adjust the input data set in each call of the function. You would then run the code by highlighting all 10 lines at once, and hitting Ctrl+Enter (Cmd+Enter on Mac). 
+
+``` {r echo = FALSE, out.width = '100%', fig.cap = "Find and replace button in the Scripts window of RStudio."}
+knitr::include_graphics(rep("images/Rstudio_findreplace.png",1))
+```
+
+While the value of typing your code into the Scripts window is hard to articulate without getting into some examples of the coding language, you will come to appreciate using scripts and saving them as `.R` files as you become more familiar with coding in the RStudio interface.
 
 ## Coding building blocks
 
-- Basic coding building blocks 
-  - Variable assignment (howdy <- “Howdy world”) 
-  - Creating vectors, matrices, lists, DFs
-  - Importing packages
-  - Calling functions
+Now that you know how to navigate RStudio, and the different places we can enter code, let's learn some basic coding building blocks.
 
+As mentioned earlier, R can be used as a calculator. 
+
+```{r}
+(1000 * pi) / 2
+
+(2 * 3) + (5 * 4)
+```
+
+### Variable assignment
+
+You can assign the outputs of your arithmetic to variables using `<-`, as shown below. To view the contents of the variable, simply type your assigned variable name and press Enter.
+
+```{r}
+x <- 10 / 2
+x
+```
+
+You can also assign single values, character strings (text) or logical statements (TRUE or FALSE) to variables using the same notation. 
+ 
+```{r}
+fifty <- 50
+fifty
+
+howdy <- "Howdy world!"
+howdy
+
+t <- TRUE
+t
+```
+
+These are examples of assignment statements. We will cover more assignments of more complex objects in the following section and in subsequent chapters.
+
+### Basic data structures
+
+R has several data structures which will be briefly introduced here. There are many freely available resources online which dive more in depth into different data structures in R. If you are interested in learning more about different structures, you can check out the *Data structures* chapter of (*Advanced R*)[http://adv-r.had.co.nz/Data-structures.html] by Hadley Wickham, one of the authors of the *R for Data Science* referenced in the Introduction.
+
+Data structures in R include vectors, lists, matrices, and data frames. Vectors and lists are examples of one dimensional data structures, while matrices and data frames are examples of two dimensional data structures.
+
+**Vectors** contain multiple elements of the same type; either numeric, character (text), logical, or integer. Vectors are created using `c()`, which is short for combine. Some examples of vectors are shown below.
+
+```{r}
+num <- c(1, 2, 3, 4, 5)
+num
+
+char <- c("blue", "green", "red")
+char
+
+log <- c(T, T, T, F, F, F)
+log
+```
+
+**Lists** are similar to vectors in that they are one dimensional data structures which contain multiple elements. However, lists can contain multiple elements of different types, while vectors only contain a single type of data. You can create lists using `list()`. Some examples of lists are shown below. You can use `str()` to reveal the different components of a list, in a more detailed format than if you were to simply type the assigned name of the list.
+
+```{r}
+hi <- list("Hello", c(5,10,15,20), c(T, T, F))
+str(hi)
+hi
+```
+
+**Matrices** and **data frames** are two dimensional data structures, similar to tables you would create in Excel. Matrices are created using `matrix()`, and three internal arguments; `data`, `ncol`, and `nrow`. An example of a matrix is shown below.
+
+```{r}
+mat <- matrix(data = c(3, 4, 1, 6, 2, 9), ncol = 3, nrow = 2)
+mat
+```
+
+Data frames are lists of equal-length vectors. While they are two dimensional data structures like matrices, data frames also share properties with one dimensional lists. Data frames are created using `data.frame()`.
+
+### R packages and functions
+
+While there are many functions and operations available in base R, sometimes you may need to perform a task which base R functions do not cover. Fortunately, there are many R packages freely available online, each with their own suite of functions and capabilities. Some commonly used packages for data visualization and organization include `ggplot2` and `dplyr`. These are both included in the `tidyverse` package, which will be used in subsequent chapters.
+
+In order to use an R package, you need to install the package in R. Usually this is done in the console, using the command `install.packages()`. You would then load the package into R, using the command `library()`. The `ggplot2` package is installed and loaded below.
+
+```{r eval = FALSE}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+While you only need to install a package once, you will need to reload it every time you start a new R session or open a new R project. We will expand on R sessions and R projects Chapter 3.
+
+Now that we have installed and loaded `ggplot2`, we can use the `ggplot` function to to visualize some data. First, we're going load the `readr` package, and use the `read_csv()` function to import some ozone concentration data. We will then use `ggplot()` with `geom_point()` to plot the ozone concentration over time in a scatter plot.
+
+```{r message = FALSE}
+# load relevant packages
+library(readr)
+library(ggplot2)
+
+# import ozone data set
+ozone <- read_csv("./data/Ozone_oxidationexp.csv")
+
+# plot ozone concentration vs. time
+ggplot(data = ozone, aes(x = Time, y = Concentration)) +
+  geom_point()
+```
+  
 ## Script formatting
-- Brief style guide 
+
+
+
+
+
   - Packages loaded at the top. 
   - How to comment code (#I’m cold and there are wolves after me) 
   -Suggestion for variable names (good_name vs. thisNameWillWork_butIsAwfulToType); including forbidden names 
