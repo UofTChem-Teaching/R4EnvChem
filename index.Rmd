@@ -7,6 +7,7 @@ url: 'https://davidrosshall.github.io/R4EnvChem/'
 site: bookdown::bookdown_site
 description: "This is a proof-of-concept for a further full length textbook."
 documentclass: book
+bibliography: references.bib
 ---
 
 # Howdy {-}
@@ -24,3 +25,5 @@ This website is more-or-less the living results of a collaborative project betwe
   - [Steven](https://sites.chem.utoronto.ca/penglab/content/people) at [steven.kutarna@mail.utoronto.ca](steven.kutarna@mail.utoronto.ca)
   - [Kristen](https://www.abbattgroup.ca/members/) at [kristen.yeh@mail.utoronto.ca](kristen.yeh@mail.utoronto.ca)
   - [Dr. D'eon](https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon) at [jessica.deon@utoronto.ca](jessica.deon@utoronto.ca)
+  
+  

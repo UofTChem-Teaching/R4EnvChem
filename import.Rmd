@@ -68,14 +68,3 @@ A benefit of `write_csv` is that it will always save in `UTF-8` encoding and ISO
 
 See Chapters [10](https://r4ds.had.co.nz/tibbles.html) and [11](https://r4ds.had.co.nz/data-import.html) of *R for Data Science* for some more details on `tibbles` and `read_csv`. 
 
-
-
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,3 @@
-bookdown::bs4_book:
-  theme:
-    primary: "#00204E"
-  repo: https://github.com/DavidRossHall/R4EnvChem
 
 bookdown::gitbook:
   config:
@@ -13,6 +9,5 @@ bookdown::gitbook:
       link: https://github.com/DavidRossHall/R4EnvChem/%s
       text: "Edit"
     sharing: no
-
 bookdown::pdf_book:
   latex_engine: "xelatex"
