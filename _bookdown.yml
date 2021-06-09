@@ -18,6 +18,8 @@ rmd_files:  [
   "r-markdown.Rmd",
   
   "intro-data-analysis.Rmd",
-  "import.Rmd"
+  "import.Rmd",
+  "tidy.Rmd"
   
   ]
+  

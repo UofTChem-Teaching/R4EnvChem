@@ -1,0 +1,36 @@
+# Tidying your data
+
+You might not have explicitly thoug habout how you store your data, whether workign in *Excel* or elsewhere. Data is data after all. But having your data organized in a systematic maner that is conducive to your goal is paramount for working not only with R, but all of your experimental data. This chapter will introduce the concept of *tidy* data, and some of the tools of the *dplyr* package to get there.
+
+## What is tidy data?
+
+Tidy data has "...each variable in a column, and each observation in a row..." [@wickham2014] This may seem obvious to you, but let's consider how data is often recorded in lab, as exemplified in Figure \@ref(fig:tidy-example)A. Here the instrument response of two chemicals (*A* and *B*) for two samples (*blank* and *unknown*) are recorded. Note how the samples are on each row and the chemical are columns. However, someone else may record the same data differently as shown in Figure \@ref(fig:tidy-example)B, with the samples occupying distinct columns, and the chemical rows. Either layout may work well, but analyzing both would require re-tooling your approach. This is where the concept of *tidy* data comes into play. By reclassifying our data into *obversavations* and *variables* we can restructure out data into a common format: the *tidy* format (Figure \@ref(fig:tidy-example)C).
+
+
+```{r tidy-example, echo = FALSE, fig.cap="(A and B) The same data can be recorded in multiple formats. (C) The same data in the tidy format. Note how the tidy data typically has more rows, hence why it's sometimes refered to as 'long' data."}
+
+knitr::include_graphics("images/tidy-example.png")
+```
+
+In the *tidy* or *long* format, we reclassified out data into three variables (*Sample*, *Chemical*, and *Reading*). This makes the observations clearer as now we know we measured two chemicals (*A* and *B*) in two samples (*blank* and *unknown*), Moreover, we can read across a row to get the gist of one data point (i.e. "Our blank has a reading of 0 for Chemical A"). Again we haven't changed any information, we've simply reorganized our data to be clearer, consistent, and compatible with the `tidyverse` suit of tools. 
+
+This might seem pedantic now, but as you progress you'll want to reuse code you've previously written. This is greatly facilitated by making every data set as consistently structured as possible, and the *tidy* format is an ideal starting place. 
+
+## Tools to tidy your data
+
+
+
+
+
+
+-   Explain concept of tidy data, and why it's important for working with R.
+
+-   Pivoting data to make it tidy; critical for how data is recorded in lab and how it needs to be setup for working in R.
+
+-   Unite and separate; breaking up or merging columns.
+
+-   Relational data; \_joins and stuff. Useful for linking experimental metadata to observational stuff; good for final project.
+
+-   Renaming headers, etc.
+
+`r if (knitr:::is_html_output()) '## Chapter References'`
