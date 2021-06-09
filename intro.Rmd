@@ -10,7 +10,7 @@
 
 ## Prerequisite software
 
-In order to use this book you will first need to download and install **R** on your computer. The latest build as of March 2021 is v4.0.5. [Download the appropriate version of R for your Operating System here](https://utstat.toronto.edu/cran/).
+In order to use this book you will first need to download and install **R** on your computer. The latest build as of May 2021 is v4.1.0. [Download the appropriate version of R for your Operating System here](https://utstat.toronto.edu/cran/).
 
 We recommend using the default settings for installation (i.e. just keep clicking "Next"). *Note that you will not need shortcuts for launching R, as you will always be using Rstudio to run provided code.*
 
@@ -21,11 +21,11 @@ Again, just use the default installation settings.
 
 ## Where to get help
 
-While it's often tempting to contact your TA/Prof at the sign of first trouble, it's often better to try and resolve your issues on your own, especially if they're related to technical issues in R. Given the popularity of R, if you've run into an issue, someone else has... and they've complained about it and someone else has solved it! An oft unappreciated aspect of coding/data science is knowing how to get help, how to search for it, and how to translate someone's solutions to your unique situation. <!-- needs to be fleshed out some, mostly just placeholder text at this point, DH --> 
+While it's often tempting to contact your TA or Professor at the sign of first trouble, it's often better to try and resolve your issues on your own, especially if they're related to technical issues in R. Given the popularity of R, if you've run into an issue, someone else has too... and they've complained about it and someone else has solved it! An often unappreciated aspect of coding/data science is knowing how to get help, how to search for it, and how to translate someone's solutions to your unique situation. <!-- needs to be fleshed out some, mostly just placeholder text at this point, DH --> 
 
 Places to get help include: 
 
 - Stack overflow
 - Using built-in documentation (`?help`)
 - reference book such as the invaluable (*R for Data Science*)[https://r4ds.had.co.nz/index.html], which inspired this entire project. 
-- All else fails,holler at your TA/profs. 
+- All else fails, holler at your TA/profs. 
