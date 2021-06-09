@@ -8,11 +8,11 @@
 
 Now you should have both R and RStudio downloaded and installed. When you open RStudio for the first time, this is what you should see:
 
-![RStudio default startup view.](images/Rstudio_startup.png){width = 100%}
+![RStudio default startup view.](images/Rstudio_startup.png){width=100%}
 
 The version of R you just installed should appear in the main window, or console, here:
 
-![Locating R version in RStudio.](images/Rstudio_Rversion.png){width = 100%}
+![Locating R version in RStudio.](images/Rstudio_Rversion.png){width=100%}
 
 (If this message does not appear, go to *Tools*->*Global Options* and make sure that the "R version" box is set to the correct folder.)
 
@@ -20,13 +20,13 @@ It is important to be aware of the version of R you are using, especially when u
 
 Currently, the RStudio interface has three key regions, as highlighted below.
 
-![Important regions in the RStudio interface.](images/Rstudio_startup_regions.png){width = 100%}
+![Important regions in the RStudio interface.](images/Rstudio_startup_regions.png){width=100%}
 
 ### Console
 
 You can run code directly by typing your R code into the console pane. The console is mainly used for installing packages (more on that later), but can also be used for quick arithmetic. Try typing "2+2" into the console, then hit Enter.
 
-``` {r console_math}
+``` {r console_math1}
 2+2
 ```
 
@@ -48,17 +48,17 @@ As many of us spend an absurd amount of time staring at bright screens, some of 
 
 You can customize the appearance of your RStudio interface by clicking *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, then clicking "Appearance" on the left. Select your preferred Editor Theme from the list.
 
-![RStudio Appearance customization window.](images/Rstudio_darkthemes.png){width = 100%}
+![RStudio Appearance customization window.](images/Rstudio_darkthemes.png){width=100%}
 
 ## Where to run code in RStudio
 
 Files of R code are called scripts, which are saved in the `.R` format. Let's open up a new script in RStudio by going to *File*->*New File*->*R Script*, or by clicking on the highlighted button in the image below.
 
-![Opening a new script in RStudio.](images/Rstudio_newscript.png){width = 100%}
+![Opening a new script in RStudio.](images/Rstudio_newscript.png){width=100%}
 
 This should open up a new window in the RStudio interface, as shown in the following image.
 
-![Scripts window in RStudio.](images/Rstudio_scriptwindow.png){width = 100%}
+![Scripts window in RStudio.](images/Rstudio_scriptwindow.png){width=100%}
 
 Whenever you copy code blocks from this website (or other online sources), you should paste them into the Scripts window. You can then run the specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the "Run" button in the top right corner of the Scripts window.
 
@@ -70,7 +70,7 @@ Additionally, the Scripts window allows you to review and edit your code without
 
 Scripts are also very useful when you are coding repetitive tasks. Let's say you want to run the same function on 10 different data sets. In the console, you would have to write out that function 10 times, and alter the input data set each time. In the Scripts window, you can write out the function once, then copy-paste it 9 times to subsequent lines in the script. You can then use the *Find/Replace* button, highlighted in the following image, to adjust the input data set in each call of the function. You would then run the code by highlighting all 10 lines at once, and hitting Ctrl+Enter (Cmd+Enter on Mac). 
 
-![Find and replace button in the Scripts window of RStudio.](images/Rstudio_findreplace.png){width = 100%}
+![Find and replace button in the Scripts window of RStudio.](images/Rstudio_findreplace.png){width=100%}
 
 While the value of typing your code into the Scripts window is hard to articulate without getting into some examples of the coding language, you will come to appreciate using scripts and saving them as `.R` files as you become more familiar with coding in the RStudio interface.
 
@@ -222,7 +222,7 @@ You can also use headers and sub-headers in your scripts using `#` and `##` befo
 
 Headings and subheadings are picked up by RStudio and displayed in the Document Outline box. You can open the Document Outline box by clicking the button highlighted in the image below. Use of these headings allows easy navigation of long scripts, as you can navigate between sections using the Document Outline box. 
 
-![How to open the Document Outline box.](images/Rstudio_documentoutline.png){width = 100%}
+![How to open the Document Outline box.](images/Rstudio_documentoutline.png){width=100%}
 
 ### Script diagnostics
 
@@ -234,6 +234,6 @@ Writing complex code in the Script window is particularly advantageous over writ
 
 Before we get into more about coding and workflows, you may want to know how to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio (may not be compatible with Mac), or by clicking the button highlighted in the image below. 
 
-![How to open an R script/plot/data set in a new window.](images/Rstudio_newwindow.png){width = 100%}
+![How to open an R script/plot/data set in a new window.](images/Rstudio_newwindow.png){width=100%}
 
 Now that you're familiar with navigating RStudio and some basic coding building blocks, let's move over to Chapter 3, where we'll review a normal workflow in R.
