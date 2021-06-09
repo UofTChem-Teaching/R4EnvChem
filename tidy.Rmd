@@ -1,5 +1,10 @@
 # Tidying your data
 
+```{r}
+library(tidyverse)
+```
+
+
 You might not have explicitly thoug habout how you store your data, whether workign in *Excel* or elsewhere. Data is data after all. But having your data organized in a systematic maner that is conducive to your goal is paramount for working not only with R, but all of your experimental data. This chapter will introduce the concept of *tidy* data, and some of the tools of the *dplyr* package to get there.
 
 ## What is tidy data?
@@ -12,15 +17,75 @@ Tidy data has "...each variable in a column, and each observation in a row..." [
 knitr::include_graphics("images/tidy-example.png")
 ```
 
-In the *tidy* or *long* format, we reclassified out data into three variables (*Sample*, *Chemical*, and *Reading*). This makes the observations clearer as now we know we measured two chemicals (*A* and *B*) in two samples (*blank* and *unknown*), Moreover, we can read across a row to get the gist of one data point (i.e. "Our blank has a reading of 0 for Chemical A"). Again we haven't changed any information, we've simply reorganized our data to be clearer, consistent, and compatible with the `tidyverse` suit of tools. 
+In the *tidy* or *long* format, we reclassified out data into three variables (*Sample*, *Chemical*, and *Reading*). This makes the observations clearer as now we know we measured two chemicals (*A* and *B*) in two samples (*blank* and *unknown*) and we've explicitly declared the *Reading* variable for our measured instrument response, which was only implied in the orignal layouts. Moreover, we can read across a row to get the gist of one data point (i.e. "Our blank has a reading of 0 for Chemical A"). Again we haven't changed any information, we've simply reorganized our data to be clearer, consistent, and compatible with the `tidyverse` suit of tools. 
 
 This might seem pedantic now, but as you progress you'll want to reuse code you've previously written. This is greatly facilitated by making every data set as consistently structured as possible, and the *tidy* format is an ideal starting place. 
 
 ## Tools to tidy your data
 
+Now one of the more laborious parts of data science is tidying your data. If you can follow the tips in the [Tips for recording data] section, but the truth is you often won't have control. To this end, the `tidyverse` offers several tools, notable `dplyr` (pronounces 'd-pliers'), to help you get there. 
+
+Let's revisit our spectroscopy data from the previous chapter:
 
 
+```{r atr-ex-import2, echo=TRUE, message=FALSE}
 
+atr_plastics <- read_csv("data/ATR_plastics.csv")
+
+# This just outputs a table you can explore within your browser
+DT::datatable(atr_plastics)
+
+```
+
+
+As we can see this our ATR spectroscopy results of several plastics, as recorded for a *CHM 317* lab, is structured similarly to the example in Figure \@ref(fig:tidy-example)A. The specsotrscopy absorbances of the four plastics are recorded in seperate columns. Again, this format makes intuitive sense when recording in the lab, and for working in Excel, but isn't the friendliest with R. In the example below we can only specify one `y` value for `ggplot` to plot. In our example it's the absorbance spectrum of `Polystyrene`. However, if wanted to plot the other spectra for comparison, we'd need to repeat our `geom_point` call.
+
+```{r}
+# Plotting Polystyrene absorbance spectra
+ggplot(data = atr_plastics, 
+       aes( x = wavenumber,
+            y = Polystyrene)) +
+  geom_point()
+
+# Plotting Polystyrene and Polyethylene absorbance spectra
+ggplot(data = atr_plastics, 
+       aes( x = wavenumber,
+            y = Polystyrene)) +
+  geom_point() +
+  geom_point(data = atr_plastics, 
+             aes(x = wavenumber, 
+                 y = Polyethylene))
+```
+
+
+### Making data 'longer'
+
+While code above works, it's not partilarly handy and undermines much of the utility of `ggplot` because the data *isn't* tidy. Fortunately the `pivot_longer` function can easily restructure our data into the *long* format to work with `ggplot`. Let's demonstrate that: 
+
+```{r}
+
+atr_long <- atr_plastics %>%
+  pivot_longer(cols = -wavenumber, 
+               names_to = "sample",
+               values_to = "absorbance") 
+
+head(atr_long)
+
+```
+
+Now we've reclassified out data into the 'longer', we can explout the explicitly introduced *sample* variable to easily plot all of our spectra:
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)
+       ) +
+  geom_point()
+```
+
+
+We'll talk more about `ggplot` in the *Visualizations* chapter, but for now you can understand how our code could scale to accomodate any number of different samples, whereas the previous attempt would require an explicit call to each column. 
 
 
 -   Explain concept of tidy data, and why it's important for working with R.
