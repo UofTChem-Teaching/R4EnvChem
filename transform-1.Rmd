@@ -1,0 +1,25 @@
+# Transform: Manipulating your data
+
+<!-- focus on subsetting and mutate & dplyr stuff --> 
+
+- Reviewing mathematical operations and formula 
+
+
+<!-- Will need to mention the pipe earlier --> 
+- Introduction to the pipe (%>%), and common dplyr transformation tools 
+  - Mutate  
+  - Group-by 
+  - Filter 
+  - Select 
+  - Case_when 
+- style guide for pipping 
+
+
+<!-- Could probably make this a seperate chapter w/ focus on functions and programming... --> 
+- Functions: how to make them, and why they’re useful 
+  - Conditional execution (if, else) 
+  - Arguments 
+- Iterating 
+  - For loops 
+  - Talk about vectors 
+  - When it’s useful, etc.

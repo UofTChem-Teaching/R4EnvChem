@@ -19,7 +19,8 @@ rmd_files:  [
   
   "intro-data-analysis.Rmd",
   "import.Rmd",
-  "tidy.Rmd"
+  "tidy.Rmd",
+  "transform-1.Rmd"
   
   ]
   
