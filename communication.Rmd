@@ -1,0 +1,6 @@
+# Communication
+
+- R markdown <!-- maybe move r markdown section here? or just expand on it...-->
+- slides
+- exporting
+- tips on automating Rmd generation? 

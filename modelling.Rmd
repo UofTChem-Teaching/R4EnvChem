@@ -1,0 +1,6 @@
+# Modelling
+
+- formulas in R
+- focus on LM linear model 
+- broom package
+- non-linear models (explored in own chapter later on...?)
