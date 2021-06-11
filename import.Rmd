@@ -20,7 +20,13 @@ Importing a `.csv` file into R simply requires the `read.csv` or the `read_csv` 
 
 atr_plastics <- read_csv("data/ATR_plastics.csv")
 ```
-A benefit of using `read_csv` is that it prints out the column specifications with each column's name (how you'll reference it in code) and the column value type. Columns can have different data types, but a data type must be consistent within any given column. Having the columns specifications is a good way to ensure R is correctly reading your data. 
+A benefit of using `read_csv` is that it prints out the column specifications with each column's name (how you'll reference it in code) and the column value type. Columns can have different data types, but a data type must be consistent within any given column. Having the columns specifications is a good way to ensure R is correctly reading your data. The most common data types are:
+
+  - **int** for integer values (*-1,1, 2, 10, etc.*)
+  - **dbl** for doubles or real numbers (*-1.20, 0.0, 1.200, 1e7, etc.*)
+  - **chr** for character vectors or strings (*"A", "chemical", "Howdy ma'am", etc.*)
+    - note numbers can be encoded as strings, so while you might read "1" as a number, R treats it as a character, limiting how you can use this value.
+  - **lgl** for logical values, either `TRUE` or `FALSE`
 
 We can also quickly inspect either through the *Environment* pane in *RStudio* or quickly with the `head()` function. Note the column specifications under the column name.
 

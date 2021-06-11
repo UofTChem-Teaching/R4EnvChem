@@ -1,7 +1,107 @@
-# Transform: Manipulating your data
+# Transform: dplyr and data manipulation
 
-Once your data in imported and tidied, you can now start to *transform* it, an all encompassing step to data science. Essentially here is where you'll 
+Transformation encompasses any steps you take to manipulate, reshape, refine, or transform your data. We've already touched upon some useful transformation functions in previous example code snippets, such as the `mutate` function for adding columns. This section will explore some of the most useful functionailities of the `dplyr` package, explicitly introduce the pipe operator `%>%`, and showcase how you can leverage these tools to quickly manipulate your data.
 
+The benchmark `dplyr` functions are :
+
+  - `mutate()` to create new columns/varibales from existing data
+  - `arrange()` to reorder rows 
+  - `filter()` to refine obersvartions by their values (in otherwords by row)
+  - `select()` to pick variables by name (in otherwords by column)
+  - `summarize` to collapse many values down to a single summary. 
+  
+We'll go through each of these functions, but we highly recommend you read [Chapter 3: Data Transformation](https://r4ds.had.co.nz/transform.html) from *R for Data Science* to get a more comprehensive breakdown of these functions. 
+
+Let's explore the functionaility of `dplyr` using some flame absorbption/emuission spectroscdopy (FAES) data from a *CHM317* lab. This data represents the emission signal of five sodium (Na) standards injected in triplicate:
+
+```{r, message = FALSE}
+library(tidyverse)
+# Importing using tips from Import chapter
+FAES <- read_csv(file = "data/FAESdata.csv") %>% # see section on Pipe
+  pivot_longer(cols = -std_Na_conc,
+               names_to = "replicate", 
+               names_prefix = "reading_",
+               values_to = "signal") %>%
+  separate(col = std_Na_conc,
+           into = c("type", "conc_Na", "units"),
+           sep = " ")
+
+DT::datatable(FAES)
+```
+## Filter()
+
+`filter()` allows up to subset our data based on obersvational (row) values. 
+
+```{r}
+filter(FAES, conc_Na == 0)
+```
+
+Note how we need to pass logical operations to `filter()`. In the above code, we used `filter()` to get all rows where the concentration of sodium is equal to 0 (`== 0`). Note the presence of two equal signs (`==`). In R one equal sign (`=`) is used to pass an argument, two equal signs (`==`) is the logical operation "is equal" and is used to test equality (i.e. that both sides have the same value). A frequent mistake is to use `=` instead of `==` when testing for equality. 
+
+### Logical oeprators
+
+`filter()` can use other *relational* and *logical* operators, or combinatiosn thereof, to improve your subsetting. Relational operators compare values and logical operators carry out Boolean operations (TRUE or FALSE). Logical operators are used to combine multiple relational operators... let's just list what they are and how we can use them:
+
+```{r, echo = FALSE}
+
+ops <- data.frame("Operator" = c(">", "<","<=",">=","==","!=", "&","!","|", "is.na()"),
+                  "Type" = c("relational", "relational", "relational", "relational", "relational", "relational", "logical", "logical", "logical", "function"), 
+                  Description = c("Less than", "Greater than", "Less than or equal to", "Greater than or equal to", "Equal to", "Not equal to", "AND", "NOT", "OR", "Checks for missing values, TRUE if NA" ))
+
+
+knitr::kable(ops)
+```
+
+- Selecting all signals below a threshold value
+
+```{r}
+filter(FAES, signal < 4450)
+```
+
+- Selecting signals between values 
+
+```{r}
+filter(FAES, signal >= 4450 & signal < 8150)
+```
+
+- Selecting all other replicates other than replicate `2`
+
+```{r}
+filter(FAES, replicate != 2)
+```
+
+- selecting the first standard replicate OR any of the blanks.
+
+```{r}
+filter(FAES, (type == "standard" & replicate == 1) | (type == "blank"))
+```
+- removing any missing values (`NA`) using `is.na()`. Note there are no missing values in our dataset so nothing will be removed, if we removed the NOT operator (`!`) we would have selected all rows *with* missing values. 
+
+```{r}
+filter(FAES, !is.na(signal))
+```
+
+
+
+These are just some examples, but you can combine the logical operators in any way that works for you. Likewise, there are multiple combinations that will yield the same result, it's up to you do figure out which works best for you. One thing we haven't covered is **missing values** (`NA`). If you want to preserve 
+
+
+
+In our example data set we have hypothetical sample concentrations for two chemicals, `A` and `B`, with measured sample concentrations in mM, and the sample dilution factors. Now, if we want to find the true concentration, we'll need to account for the dilution factor (`dil_factor`) by multiplying the sample concentration by the dilution factor and storing our calculated values in a new column. Using `mutate` it would look like this: 
+
+
+
+Breaking down the code above, the first argument of the `mutate` function is the `data.frame`/`tibble` to be operated on, `exampleData` in this example. The next argument, `"true_conc_mM" = sample_conc_mM * dil_factor`, tells mutate to create a new variable/column called `true_conc_mM`, and it's values should be a rowise multiplication of the values in the `sample_conc_mM` and `dil_factor` columns. Note how the new variable we've created is in quotation marks (`"true_conc_mM`) whereas the referenced variables are not (`sample_conc_mM` and  `dil_factor`). Also note the multiplication operator `*`. This is an example of a mutate function, explored later on in this chapter. 
+
+
+
+
+
+## The pipe: live it, love it
+
+The pipe operator `%>%` is an incredibly useful tool for writting more legible and understandable code. We've already made use of it in previous example code, but it's worth exploring in greater depth so you can better understand it's power and limitations. 
+
+The
 <!-- focus on subsetting and mutate & dplyr stuff --> 
 
 - Reviewing mathematical operations and formula 
