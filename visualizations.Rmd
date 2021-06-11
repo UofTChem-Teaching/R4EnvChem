@@ -1,0 +1,13 @@
+# Visualizations
+
+- theory undergirding ggplot (focus on geom_point)
+  - Geoms
+  - aesL x,y, ccolour, shape, size, alpha
+  - arranging plots in a grid (grid.arrange) and facets...
+- How to plot
+  - labels
+  - scales 
+  - annotations
+  - themes
+- building a plot layer by layer 
+- saving/exporting plots. 

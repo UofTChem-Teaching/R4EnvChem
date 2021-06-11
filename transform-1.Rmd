@@ -1,5 +1,7 @@
 # Transform: Manipulating your data
 
+Once your data in imported and tidied, you can now start to *transform* it, an all encompassing step to data science. Essentially here is where you'll 
+
 <!-- focus on subsetting and mutate & dplyr stuff --> 
 
 - Reviewing mathematical operations and formula 
@@ -15,7 +17,8 @@
 - style guide for pipping 
 
 
-<!-- Could probably make this a seperate chapter w/ focus on functions and programming... --> 
+
+
 - Functions: how to make them, and why they’re useful 
   - Conditional execution (if, else) 
   - Arguments 

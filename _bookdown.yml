@@ -20,7 +20,13 @@ rmd_files:  [
   "intro-data-analysis.Rmd",
   "import.Rmd",
   "tidy.Rmd",
-  "transform-1.Rmd"
+  "transform-1.Rmd",
+  "prog-with-r.Rmd",
+  "modelling.Rmd",
+  "visualizations.Rmd",
+  "communication.Rmd"
+  
+  
   
   ]
   

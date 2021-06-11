@@ -1,0 +1,12 @@
+# Programming with R
+
+<!-- Aim of this is to show people how they can include programing features to enhance their coding. Mostly tips and shit to get them started no encompasing guide --> 
+
+<!-- Could probably make this a seperate chapter w/ focus on functions and programming... --> 
+- Functions: how to make them, and why they’re useful 
+  - Conditional execution (if, else) 
+  - Arguments 
+- Iterating 
+  - For loops 
+  - Talk about vectors 
+  - When it’s useful, etc.
