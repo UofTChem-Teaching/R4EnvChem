@@ -123,5 +123,5 @@ A good rule when coding is **Don't Repeat yourself!**. In practice, this means d
 These chapter has been intentional succinct. We've omitted several other aspects of programming in R such as `for` loops, and other iterative programming. To get a better sense of programming in R and to learn more, please see the following links:
 
   - [case_when()](https://dplyr.tidyverse.org/reference/case_when.html): the documentation for the `case_when()` function and several useful examples. 
-  - [Chapter 19: Functions](https://r4ds.had.co.nz/functions.html), [Chapter 20: Vectors](https://r4ds.had.co.nz/vectors.html), and [Chapter 21: Iteration](https://r4ds.had.co.nz/iteration.html) of [*R for Data Science](https://r4ds.had.co.nz/index.html) by H. Wickham and G. .  
+  - [Chapter 19: Functions](https://r4ds.had.co.nz/functions.html), [Chapter 20: Vectors](https://r4ds.had.co.nz/vectors.html), and [Chapter 21: Iteration](https://r4ds.had.co.nz/iteration.html) of [*R for Data Science*](https://r4ds.had.co.nz/index.html) by H. Wickham and G. Grolemund.  
   - [Hands-on Programming in R](https://rstudio-education.github.io/hopr/) by G. Grolemund for a more in-depth (but still approachable) take on programming in R. 

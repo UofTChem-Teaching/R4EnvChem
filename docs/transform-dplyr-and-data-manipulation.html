@@ -24,7 +24,7 @@
 <meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
 
 
-<meta name="date" content="2021-06-11" />
+<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -287,7 +287,16 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#further-reading-3"><i class="fa fa-check"></i><b>8.7</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="programming-with-r.html"><a href="programming-with-r.html"><i class="fa fa-check"></i><b>9</b> Programming with R</a></li>
+<li class="chapter" data-level="9" data-path="programming-with-r.html"><a href="programming-with-r.html"><i class="fa fa-check"></i><b>9</b> Programming with R</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="programming-with-r.html"><a href="programming-with-r.html#functions"><i class="fa fa-check"></i><b>9.1</b> Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="programming-with-r.html"><a href="programming-with-r.html#conditional-arguments"><i class="fa fa-check"></i><b>9.2</b> Conditional arguments</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="programming-with-r.html"><a href="programming-with-r.html#piping-conditional-statements"><i class="fa fa-check"></i><b>9.2.1</b> Piping conditional statements</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="programming-with-r.html"><a href="programming-with-r.html#when-to-use-functions"><i class="fa fa-check"></i><b>9.3</b> When to use functions</a></li>
+<li class="chapter" data-level="9.4" data-path="programming-with-r.html"><a href="programming-with-r.html#further-reading-4"><i class="fa fa-check"></i><b>9.4</b> Further Reading</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>10</b> Modelling</a></li>
 <li class="chapter" data-level="11" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>11</b> Visualizations</a></li>
 <li class="chapter" data-level="12" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>12</b> Communication</a></li>
@@ -319,7 +328,7 @@ div.csl-indent {
 <li><code>select()</code> to pick variables by name (in other words by column)</li>
 <li><code>summarize</code> to collapse many values down to a single summary.</li>
 </ul>
-<p>We’ll go through each of these functions, but we highly recommend you read <a href="https://r4ds.had.co.nz/transform.html">Chapter 3: Data Transformation</a> from <em>R for Data Science</em> to get a more comprehensive breakdown of these functions. Note that the information here is based on a <code>tidyverse</code> approach, but this is only one way of doing things. Please see the <a href="transform-dplyr-and-data-manipulation.html#further-reading-3">Further reading</a> section for links to other equally suitable approaches to data transformation.</p>
+<p>We’ll go through each of these functions, but we highly recommend you read <a href="https://r4ds.had.co.nz/transform.html">Chapter 3: Data Transformation</a> from <em>R for Data Science</em> to get a more comprehensive breakdown of these functions. Note that the information here is based on a <code>tidyverse</code> approach, but this is only one way of doing things. Please see the <a href="programming-with-r.html#further-reading-4">Further reading</a> section for links to other equally suitable approaches to data transformation.</p>
 <p>Let’s explore the functionality of <code>dplyr</code> using some flame absorption/emission spectroscopy (FAES) data from a <em>CHM317</em> lab. This data represents the emission signal of five sodium (Na) standards measured in triplicate:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="transform-dplyr-and-data-manipulation.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
 <span id="cb79-2"><a href="transform-dplyr-and-data-manipulation.html#cb79-2" aria-hidden="true" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># see section on Pipe</span></span>
@@ -332,8 +341,8 @@ div.csl-indent {
 <span id="cb79-9"><a href="transform-dplyr-and-data-manipulation.html#cb79-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span>
 <span id="cb79-10"><a href="transform-dplyr-and-data-manipulation.html#cb79-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb79-11"><a href="transform-dplyr-and-data-manipulation.html#cb79-11" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div id="htmlwidget-fc7325a4a07a45eba7fd" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fc7325a4a07a45eba7fd">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],["0","0","0","0.1","0.1","0.1","0.2","0.2","0.2","0.3","0.3","0.3","0.4","0.4","0.4"],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":5},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c8cf0fddb38811639623" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c8cf0fddb38811639623">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],["0","0","0","0.1","0.1","0.1","0.2","0.2","0.2","0.3","0.3","0.3","0.4","0.4","0.4"],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":5},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <div id="selecting-by-row-or-value" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Selecting by row or value</h2>
 <p><code>filter()</code> allows up to subset our data based on observation (row) values.</p>
@@ -832,6 +841,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

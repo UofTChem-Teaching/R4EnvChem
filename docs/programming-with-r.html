@@ -24,7 +24,7 @@
 <meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
 
 
-<meta name="date" content="2021-06-11" />
+<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -287,7 +287,16 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#further-reading-3"><i class="fa fa-check"></i><b>8.7</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="programming-with-r.html"><a href="programming-with-r.html"><i class="fa fa-check"></i><b>9</b> Programming with R</a></li>
+<li class="chapter" data-level="9" data-path="programming-with-r.html"><a href="programming-with-r.html"><i class="fa fa-check"></i><b>9</b> Programming with R</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="programming-with-r.html"><a href="programming-with-r.html#functions"><i class="fa fa-check"></i><b>9.1</b> Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="programming-with-r.html"><a href="programming-with-r.html#conditional-arguments"><i class="fa fa-check"></i><b>9.2</b> Conditional arguments</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="programming-with-r.html"><a href="programming-with-r.html#piping-conditional-statements"><i class="fa fa-check"></i><b>9.2.1</b> Piping conditional statements</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="programming-with-r.html"><a href="programming-with-r.html#when-to-use-functions"><i class="fa fa-check"></i><b>9.3</b> When to use functions</a></li>
+<li class="chapter" data-level="9.4" data-path="programming-with-r.html"><a href="programming-with-r.html#further-reading-4"><i class="fa fa-check"></i><b>9.4</b> Further Reading</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>10</b> Modelling</a></li>
 <li class="chapter" data-level="11" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>11</b> Visualizations</a></li>
 <li class="chapter" data-level="12" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>12</b> Communication</a></li>
@@ -310,22 +319,116 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="programming-with-r" class="section level1" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Programming with R</h1>
-<!-- Aim of this is to show people how they can include programing features to enhance their coding. Mostly tips and shit to get them started no encompasing guide -->
-<!-- Could probably make this a seperate chapter w/ focus on functions and programming... -->
+<!-- Aim of this is to show people how they can include programming features to enhance their coding. Mostly tips and shit to get them started no encompassing guide -->
+<p>Programming is writing instructions that tell the computer what to do. Like most things, learning a little goes a long way. And like most things, it’s easy to lose the forest for the trees. That’s why we won’t focus too much on programming (after all you’re chemist not computer scientist) but we will introduce a few simple yet incredibly powerful elements of programming to help you along with your data science quest.</p>
+<p>We’ll point to several sources for further reading on functions at the end of this chapter.</p>
+<div id="functions" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Functions</h2>
+<p>Functions allow you to write general purpose code to automate common tasks. They’re a great way to decrease repetition and make your code more legible and reproducible. To crease a function in R you only need <code>function()</code>:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="programming-with-r.html#cb119-1" aria-hidden="true" tabindex="-1"></a>funSum <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y){</span>
+<span id="cb119-2"><a href="programming-with-r.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
+<span id="cb119-3"><a href="programming-with-r.html#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(<span class="st">&quot;The sum of&quot;</span>, x, <span class="st">&quot;+&quot;</span>, y, <span class="st">&quot;is&quot;</span>, z, <span class="at">sep =</span><span class="st">&quot; &quot;</span>)</span>
+<span id="cb119-4"><a href="programming-with-r.html#cb119-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb119-5"><a href="programming-with-r.html#cb119-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-6"><a href="programming-with-r.html#cb119-6" aria-hidden="true" tabindex="-1"></a><span class="fu">funSum</span>(<span class="dv">1</span>, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;The sum of 1 + 3 is 4&quot;</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="programming-with-r.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funSum</span>(<span class="st">&quot;yes&quot;</span>,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Error in x + y: non-numeric argument to binary operator</code></pre>
+<p>What we’ve done is create a function called <code>funSum</code> which takes two numeric inputs <code>x</code> and <code>y</code>, sums the two into <code>z</code> and paste an output telling us the sum. A couple of things to note:</p>
 <ul>
-<li>Functions: how to make them, and why they’re useful
+<li>We need to <em>explicitly</em> state which arguments are function will take; in this example they are <code>x</code> and <code>y</code>. Whatever we pass to <code>x</code> or <code>y</code> will be carried into the function.</li>
+<li>We can’t sum non-numeric values, so R returns an error in the second instance</li>
+<li>Functions create their own environment, therefore <em>any variable</em> created inside a function only exists inside the function.
 <ul>
-<li>Conditional execution (if, else)</li>
-<li>Arguments</li>
+<li>In the above example, <code>x</code>, <code>y</code>, and <code>z</code> only exist inside the function.</li>
 </ul></li>
-<li>Iterating
+<li>R automatically returns whichever variable is on the last line of the body of the function; but you can explicitly ask for an output using <code>return()</code></li>
+</ul>
+<p>Let’s take a look at a more practical function, something that you might actually use. In mass spectrometry, a gauge of accuracy is the <em>mass error</em>, a measure of the difference between the observed and theoretical masses, and is reported in parts-per-million (ppm). The formula for calculating mass error is:</p>
+<p><span class="math display">\[ Mass~error~(ppm) = \frac{|mass_{theoretical} - mass_{experimental}|}{mass_{theorical}} \times 10^6 \]</span></p>
+<p>The formula is simple enough, but you may need to calculate any number of mass errors, so it behooves us to compose a quick formula to simplify our workload:</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="programming-with-r.html#cb123-1" aria-hidden="true" tabindex="-1"></a>ppmMS <span class="ot">&lt;-</span> <span class="cf">function</span>(theoMZ, expMZ){</span>
+<span id="cb123-2"><a href="programming-with-r.html#cb123-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-3"><a href="programming-with-r.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  ppm <span class="ot">&lt;-</span> <span class="fu">abs</span>(theoMZ <span class="sc">-</span> expMZ)<span class="sc">/</span>theoMZ <span class="sc">*</span> <span class="fl">1e6</span></span>
+<span id="cb123-4"><a href="programming-with-r.html#cb123-4" aria-hidden="true" tabindex="-1"></a>  ppm</span>
+<span id="cb123-5"><a href="programming-with-r.html#cb123-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb123-6"><a href="programming-with-r.html#cb123-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-7"><a href="programming-with-r.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Theoretical mass = 1479.63 m/z</span></span>
+<span id="cb123-8"><a href="programming-with-r.html#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="co"># experimental mass = 1480.10 m/z</span></span>
+<span id="cb123-9"><a href="programming-with-r.html#cb123-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ppmMS</span>(<span class="at">theoMZ =</span> <span class="fl">1479.63</span>, <span class="at">expMZ =</span> <span class="fl">1480.10</span>)</span></code></pre></div>
+<pre><code>## [1] 317.647</code></pre>
+<p>Pretty useful if you’re manually checking something, but we can also use our functions into the pipe to help our data transformation:</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="programming-with-r.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data</span></span>
+<span id="cb125-2"><a href="programming-with-r.html#cb125-2" aria-hidden="true" tabindex="-1"></a>masses <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;theo&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1479.63</span>, <span class="fl">1479.63</span>, <span class="fl">1479.63</span>),</span>
+<span id="cb125-3"><a href="programming-with-r.html#cb125-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;exp&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1478.63</span>, <span class="fl">1479.63</span>, <span class="fl">1480.10</span>))</span>
+<span id="cb125-4"><a href="programming-with-r.html#cb125-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-5"><a href="programming-with-r.html#cb125-5" aria-hidden="true" tabindex="-1"></a>masses <span class="sc">%&gt;%</span> </span>
+<span id="cb125-6"><a href="programming-with-r.html#cb125-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">massError =</span> <span class="fu">ppmMS</span>(theo, exp))</span></code></pre></div>
+<pre><code>##      theo     exp massError
+## 1 1479.63 1478.63  675.8446
+## 2 1479.63 1479.63    0.0000
+## 3 1479.63 1480.10  317.6470</code></pre>
+<p>This last part is critical as <em>functions make your code more legible</em>. We can clearly read that the code above is calculating the mass error between the theoretical and experimentally observed masses. This might not be as apparent if we put in a complex mathematical formula in the middle of our pipe.</p>
+</div>
+<div id="conditional-arguments" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Conditional arguments</h2>
+<p>Are used to specify a path in a function depending on whether a statement is <code>TRUE</code> or <code>FALSE</code>. These are explored in greater detail via the links in the <a href="programming-with-r.html#further-reading-4">Further Reading</a> section, but here’s a quick example of a function that uses the conditional <code>if</code> statement to print out which number is largest:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="programming-with-r.html#cb127-1" aria-hidden="true" tabindex="-1"></a>isGreater <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb127-2"><a href="programming-with-r.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> y){</span>
+<span id="cb127-3"><a href="programming-with-r.html#cb127-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">paste</span>(x, <span class="st">&quot;is greater than&quot;</span>, y, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb127-4"><a href="programming-with-r.html#cb127-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> y){ </span>
+<span id="cb127-5"><a href="programming-with-r.html#cb127-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">paste</span>(x, <span class="st">&quot;is less than&quot;</span>, y, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb127-6"><a href="programming-with-r.html#cb127-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb127-7"><a href="programming-with-r.html#cb127-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">paste</span>(x, <span class="st">&quot;is equal to&quot;</span>, y, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb127-8"><a href="programming-with-r.html#cb127-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb127-9"><a href="programming-with-r.html#cb127-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-10"><a href="programming-with-r.html#cb127-10" aria-hidden="true" tabindex="-1"></a><span class="fu">isGreater</span> (<span class="dv">2</span>, <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2 is greater than 1&quot;</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="programming-with-r.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isGreater</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1 is less than 2&quot;</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="programming-with-r.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isGreater</span> (<span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1 is equal to 1&quot;</code></pre>
+<p>Our simple function compares two numbers, <code>x</code> and <code>y</code> and if <code>x &gt; y</code> evaluate to <code>TRUE</code> it returns the pasted string <code>x is greater than y</code>. If <code>x &lt; y</code> evaluates to <code>FALSE</code>, as in <code>y &gt; x</code>, our function returns the pasted string <code>x is less than y</code>, and finally if neither <code>x &gt; y</code> and <code>x &lt; y</code> evaluate to TRUE, they must be equal! Therefore the final output is <code>x is equal to y</code>. This is an example of an <code>else if</code> statement. If you’re simply evaluating two conditions (<code>TRUE</code> or <code>FALSE</code>) you only need the <code>if()</code> conditional, see <a href="programming-with-r.html#further-reading-4">Further Reading</a> for more details.</p>
+<div id="piping-conditional-statements" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Piping conditional statements</h3>
+<p>You can already see the potential for simply conditional statements in the pipe. However, to keep piping operations legible, <code>dplyr</code> offers the <code>case_when</code> function, which works similarly to the <code>else if</code> statements showcased above. Let’s see how it works using a real world example.</p>
+<p>In mass spectrometry undetected compounds are recorded having an intensity of 0; it’s a common practice to replace 0 with <span class="math inline">\(\frac{limit~of~detection}{2}\)</span> for subsequent analysis However, we don’t want to replace every value with <span class="math inline">\(\frac{LOD}{2}\)</span>, only 0s. Let’s use the <code>case_when()</code> function to create a new values with the recorded intensities</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="programming-with-r.html#cb133-1" aria-hidden="true" tabindex="-1"></a>lod <span class="ot">&lt;-</span> <span class="dv">4000</span> <span class="co"># previously calculated LOD </span></span>
+<span id="cb133-2"><a href="programming-with-r.html#cb133-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;mz&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">308.97</span>, <span class="fl">380.81</span>, <span class="fl">410.11</span>, <span class="fl">445.34</span> ), <span class="co"># dummy data</span></span>
+<span id="cb133-3"><a href="programming-with-r.html#cb133-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;intensities&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>)) </span>
+<span id="cb133-4"><a href="programming-with-r.html#cb133-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-5"><a href="programming-with-r.html#cb133-5" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb133-6"><a href="programming-with-r.html#cb133-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">reportedIntensities =</span> <span class="fu">case_when</span>(intensities <span class="sc">&lt;</span> lod <span class="sc">~</span> lod<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb133-7"><a href="programming-with-r.html#cb133-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="cn">TRUE</span> <span class="sc">~</span> intensities))</span></code></pre></div>
+<pre><code>##       mz intensities reportedIntensities
+## 1 308.97           0                2000
+## 2 380.81        1000                2000
+## 3 410.11        5000                5000
+## 4 445.34       10000               10000</code></pre>
+<p>Firstly we’re creating a new column called <code>reportedIntesities</code> using <code>mutate()</code> and using <code>case_when()</code> to conditionally fill that column. The inputs we’ve passed to <code>case_when()</code> are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (<code>~</code>) evaluate to <code>TRUE</code>, <code>case_when</code> will execute the right-hand side. Thee first two-sided formula is <code>intensities &lt; lod ~ lod/2</code> and checks if the intensities value is less than the previously calculated limit of detection. If <code>intensitis &lt; lod</code> evaluates to <code>TRUE</code> we insert half of the LOD value for that row. If <code>intentisites &lt; lod</code> evaluates to <code>FALSE</code>, we move onto the next two-side formula and reevaluate again. The second two-sided formula <code>TRUE ~ intensities</code> basically means for everything that’s remaining (greater than LOD in our instance) just use the value from the <code>intensities</code> column.</p>
+<p>Some ideas to consider when working with <code>case-when()</code>:</p>
 <ul>
-<li>For loops</li>
-<li>Talk about vectors</li>
-<li>When it’s useful, etc.</li>
-</ul></li>
+<li>There’s no limits to the conditions you can pass to <code>case_when()</code>.</li>
+<li><em>However</em> <code>case_when()</code> evaluates in order so put the more specific conditions before the more general.</li>
+<li>Remember that the point of <code>case_when()</code> and piping is legibility. If you’re passing multiple conditions, consider writing a function using <code>else if</code> statements to keep the pipe legible.</li>
+</ul>
+</div>
+</div>
+<div id="when-to-use-functions" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> When to use functions</h2>
+<p>A good rule when coding is <strong>Don’t Repeat yourself!</strong>. In practice, this means don’t copy and paste blocks of code to multiple parts of your script. It’s more difficult to read (more lines), and if you identify an issue with one block, you’ll need to hunt down all the other blocks to rectify the situation (you’ll always miss something!). by using functions you’ll reduce the number of lines of code, but you’ll also only need to check one spot to rectify the issues.</p>
+</div>
+<div id="further-reading-4" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Further Reading</h2>
+<p>These chapter has been intentional succinct. We’ve omitted several other aspects of programming in R such as <code>for</code> loops, and other iterative programming. To get a better sense of programming in R and to learn more, please see the following links:</p>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a>: the documentation for the <code>case_when()</code> function and several useful examples.</li>
+<li><a href="https://r4ds.had.co.nz/functions.html">Chapter 19: Functions</a>, <a href="https://r4ds.had.co.nz/vectors.html">Chapter 20: Vectors</a>, and <a href="https://r4ds.had.co.nz/iteration.html">Chapter 21: Iteration</a> of <a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a> by H. Wickham and G. Grolemund.<br />
+</li>
+<li><a href="https://rstudio-education.github.io/hopr/">Hands-on Programming in R</a> by G. Grolemund for a more in-depth (but still approachable) take on programming in R.</li>
 </ul>
 
+</div>
 </div>
             </section>
 
@@ -374,6 +477,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
