@@ -2,6 +2,9 @@
 
 <!-- Aim of this is to show people how they can include programing features to enhance their coding. Mostly tips and shit to get them started no encompasing guide --> 
 
+Programming is basically writting instructions that tell the computer what to do, and like most things learning a little goes a long way. And like most things, it's easy to lose the forest for the trees. That's why we won't focus too much on programming (after all you're chemist not computer scientist) . What we will do is introduce a few simple yet incredibly powerful elements of programing to help you in your data science quest.
+
+
 <!-- Could probably make this a seperate chapter w/ focus on functions and programming... --> 
 - Functions: how to make them, and why they’re useful 
   - Conditional execution (if, else) 
@@ -10,3 +13,23 @@
   - For loops 
   - Talk about vectors 
   - When it’s useful, etc.
+
+## Functions  
+  
+Functions allow you to write general purpose code to automate common tasks. They're a great way to decrease repition and make your code more legible and reproducible. to createa a function in R you only need `function()`:
+
+```{r}
+funSum <- function(x,y){
+  z <- x + y
+  return(paste("The sum of", x, "+", y, "is", z, sep =" "))
+}
+
+funSum(1,3)
+```
+
+
+##  Tips for coding
+  
+
+## Further Reading
+
