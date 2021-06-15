@@ -27,5 +27,5 @@ Places to get help include:
 
 - Stack overflow
 - Using built-in documentation (`?help`)
-- reference book such as the invaluable (*R for Data Science*)[https://r4ds.had.co.nz/index.html], which inspired this entire project. 
+- reference book such as the invaluable [*R for Data Science*](https://r4ds.had.co.nz/index.html), which inspired this entire project. 
 - All else fails, holler at your TA/profs. 
