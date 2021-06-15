@@ -1,25 +1,16 @@
 # Programming with R
 
-<!-- Aim of this is to show people how they can include programing features to enhance their coding. Mostly tips and shit to get them started no encompasing guide --> 
+<!-- Aim of this is to show people how they can include programming features to enhance their coding. Mostly tips and shit to get them started no encompassing guide --> 
 
 Programming is writing instructions that tell the computer what to do. Like most things, learning a little goes a long way. And like most things, it's easy to lose the forest for the trees. That's why we won't focus too much on programming (after all you're chemist not computer scientist) but we will introduce a few simple yet incredibly powerful elements of programming to help you along with your data science quest.
 
 We'll point to several sources for further reading on functions at the end of this chapter. 
 
-
-- Functions: how to make them, and why they’re useful 
-  - Conditional execution (if, else) 
-  - Arguments 
-- Iterating 
-  - For loops 
-  - Talk about vectors 
-  - When it’s useful, etc.
-
 ## Functions  
   
 Functions allow you to write general purpose code to automate common tasks. They're a great way to decrease repetition and make your code more legible and reproducible. To crease a function in R you only need `function()`:
 
-```{r}
+```{r, error=TRUE}
 funSum <- function(x,y){
   z <- x + y
   paste("The sum of", x, "+", y, "is", z, sep =" ")
@@ -99,7 +90,7 @@ Our simple function compares two numbers, `x` and `y` and if `x > y` evaluate to
 
 You can already see the potential for simply conditional statements in the pipe. However, to keep piping operations legible, `dplyr` offers the `case_when` function, which works similarly to the `else if` statements showcased above. Let's see how it works using a real world example.
 
-In mass spectrometry undetected compounds are recorded having an intensity of 0; it's a common practice to replace 0 with $\frac{limit~of~detection}{2}$ for subsequent analysys. However, we don't want to replace every value with $\frac{LOD}{2}$, only 0s. Let's use the `case_when()` function to create a new values with the recorded intensities
+In mass spectrometry undetected compounds are recorded having an intensity of 0; it's a common practice to replace 0 with $\frac{limit~of~detection}{2}$ for subsequent analysis However, we don't want to replace every value with $\frac{LOD}{2}$, only 0s. Let's use the `case_when()` function to create a new values with the recorded intensities
 
 ```{r}
 
@@ -114,17 +105,23 @@ results %>%
 
 ```
 
+Firstly we're creating a new column called `reportedIntesities` using `mutate()` and using `case_when()` to conditionally fill that column. The inputs we've passed to `case_when()` are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (`~`) evaluate to `TRUE`, `case_when` will execute the right-hand side. Thee first two-sided formula is `intensities < lod ~ lod/2` and checks if the intensities value is less than the previously calculated limit of detection. If `intensitis < lod` evaluates to `TRUE` we insert half of the LOD value for that row. If `intentisites < lod` evaluates to `FALSE`, we move onto the next two-side formula and reevaluate again. The second two-sided formula `TRUE ~ intensities` basically means for everything that's remaining (greater than LOD in our instance) just use the value from the `intensities` column.
 
-### Piping conditional statements
+Some ideas to consider when working with `case-when()`:
 
-- case_when 
+  - There's no limits to the conditions you can pass to `case_when()`.
+  - *However* `case_when()` evaluates in order so put the more specific conditions before the more general. 
+  - Remember that the point of `case_when()` and piping is legibility. If you're passing multiple conditions, consider writing a function using `else if` statements to keep the pipe legible.  
+
 
 ## When to use functions
 
-
-
-###  Tips when using functions
-  
+A good rule when coding is **Don't Repeat yourself!**. In practice, this means don't copy and paste blocks of code to multiple parts of your script. It's more difficult to read (more lines), and if you identify an issue with one block, you'll need to hunt down all the other blocks to rectify the situation (you'll always miss something!). by using functions you'll reduce the number of lines of code, but you'll also only need to check one spot to rectify the issues. 
 
 ## Further Reading
 
+These chapter has been intentional succinct. We've omitted several other aspects of programming in R such as `for` loops, and other iterative programming. To get a better sense of programming in R and to learn more, please see the following links:
+
+  - [case_when()](https://dplyr.tidyverse.org/reference/case_when.html): the documentation for the `case_when()` function and several useful examples. 
+  - [Chapter 19: Functions](https://r4ds.had.co.nz/functions.html), [Chapter 20: Vectors](https://r4ds.had.co.nz/vectors.html), and [Chapter 21: Iteration](https://r4ds.had.co.nz/iteration.html) of [*R for Data Science](https://r4ds.had.co.nz/index.html) by H. Wickham and G. .  
+  - [Hands-on Programming in R](https://rstudio-education.github.io/hopr/) by G. Grolemund for a more in-depth (but still approachable) take on programming in R. 
