@@ -305,7 +305,15 @@ div.csl-indent {
 <li class="chapter" data-level="10.2" data-path="modelling.html"><a href="modelling.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>10.2</b> Cleaning up model ouputs</a></li>
 <li class="chapter" data-level="10.3" data-path="modelling.html"><a href="modelling.html#further-reading-5"><i class="fa fa-check"></i><b>10.3</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>11</b> Visualizations</a></li>
+<li class="chapter" data-level="11" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>11</b> Visualizations</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="visualizations.html"><a href="visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>11.1</b> Building plots ups</a></li>
+<li class="chapter" data-level="11.2" data-path="visualizations.html"><a href="visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>11.2</b> Basic plotting</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="visualizations.html"><a href="visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>11.2.1</b> Changing plot labels</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="visualizations.html"><a href="visualizations.html#further-reading-6"><i class="fa fa-check"></i><b>11.3</b> Further reading</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>12</b> Communication</a></li>
 </ul>
 
@@ -379,7 +387,7 @@ div.csl-indent {
 </div>
 <div id="conditional-arguments" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Conditional arguments</h2>
-<p>Are used to specify a path in a function depending on whether a statement is <code>TRUE</code> or <code>FALSE</code>. These are explored in greater detail via the links in the <a href="modelling.html#further-reading-5">Further Reading</a> section, but here’s a quick example of a function that uses the conditional <code>if</code> statement to print out which number is largest:</p>
+<p>Are used to specify a path in a function depending on whether a statement is <code>TRUE</code> or <code>FALSE</code>. These are explored in greater detail via the links in the <a href="visualizations.html#further-reading-6">Further Reading</a> section, but here’s a quick example of a function that uses the conditional <code>if</code> statement to print out which number is largest:</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="programming-with-r.html#cb150-1" aria-hidden="true" tabindex="-1"></a>isGreater <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
 <span id="cb150-2"><a href="programming-with-r.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> y){</span>
 <span id="cb150-3"><a href="programming-with-r.html#cb150-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">paste</span>(x, <span class="st">&quot;is greater than&quot;</span>, y, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
@@ -395,7 +403,7 @@ div.csl-indent {
 <pre><code>## [1] &quot;1 is less than 2&quot;</code></pre>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="programming-with-r.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isGreater</span> (<span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;1 is equal to 1&quot;</code></pre>
-<p>Our simple function compares two numbers, <code>x</code> and <code>y</code> and if <code>x &gt; y</code> evaluate to <code>TRUE</code> it returns the pasted string <code>x is greater than y</code>. If <code>x &lt; y</code> evaluates to <code>FALSE</code>, as in <code>y &gt; x</code>, our function returns the pasted string <code>x is less than y</code>, and finally if neither <code>x &gt; y</code> and <code>x &lt; y</code> evaluate to TRUE, they must be equal! Therefore the final output is <code>x is equal to y</code>. This is an example of an <code>else if</code> statement. If you’re simply evaluating two conditions (<code>TRUE</code> or <code>FALSE</code>) you only need the <code>if()</code> conditional, see <a href="modelling.html#further-reading-5">Further Reading</a> for more details.</p>
+<p>Our simple function compares two numbers, <code>x</code> and <code>y</code> and if <code>x &gt; y</code> evaluate to <code>TRUE</code> it returns the pasted string <code>x is greater than y</code>. If <code>x &lt; y</code> evaluates to <code>FALSE</code>, as in <code>y &gt; x</code>, our function returns the pasted string <code>x is less than y</code>, and finally if neither <code>x &gt; y</code> and <code>x &lt; y</code> evaluate to TRUE, they must be equal! Therefore the final output is <code>x is equal to y</code>. This is an example of an <code>else if</code> statement. If you’re simply evaluating two conditions (<code>TRUE</code> or <code>FALSE</code>) you only need the <code>if()</code> conditional, see <a href="visualizations.html#further-reading-6">Further Reading</a> for more details.</p>
 <div id="piping-conditional-statements" class="section level3" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Piping conditional statements</h3>
 <p>You can already see the potential for simply conditional statements in the pipe. However, to keep piping operations legible, <code>dplyr</code> offers the <code>case_when</code> function, which works similarly to the <code>else if</code> statements showcased above. Let’s see how it works using a real world example.</p>

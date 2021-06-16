@@ -305,7 +305,15 @@ div.csl-indent {
 <li class="chapter" data-level="10.2" data-path="modelling.html"><a href="modelling.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>10.2</b> Cleaning up model ouputs</a></li>
 <li class="chapter" data-level="10.3" data-path="modelling.html"><a href="modelling.html#further-reading-5"><i class="fa fa-check"></i><b>10.3</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>11</b> Visualizations</a></li>
+<li class="chapter" data-level="11" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>11</b> Visualizations</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="visualizations.html"><a href="visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>11.1</b> Building plots ups</a></li>
+<li class="chapter" data-level="11.2" data-path="visualizations.html"><a href="visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>11.2</b> Basic plotting</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="visualizations.html"><a href="visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>11.2.1</b> Changing plot labels</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="visualizations.html"><a href="visualizations.html#further-reading-6"><i class="fa fa-check"></i><b>11.3</b> Further reading</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>12</b> Communication</a></li>
 </ul>
 
@@ -343,8 +351,8 @@ div.csl-indent {
 <span id="cb158-12"><a href="modelling.html#cb158-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">&quot;standard&quot;</span>)</span>
 <span id="cb158-13"><a href="modelling.html#cb158-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb158-14"><a href="modelling.html#cb158-14" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div id="htmlwidget-327094d093b58cd1eb60" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-327094d093b58cd1eb60">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3,0.3,0.3,0.4,0.4,0.4],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8afc26b87212bad9098a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8afc26b87212bad9098a">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3,0.3,0.3,0.4,0.4,0.4],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>Note model is a general term, in this situation we’ll be calculating a <strong>calibration curve</strong>. All calibration curves are models, but not all models are calibration curves.</p>
 <div id="base-r-linear-model" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Base R Linear Model</h2>
