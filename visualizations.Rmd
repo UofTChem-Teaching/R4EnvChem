@@ -1,13 +1,112 @@
 # Visualizations
 
-- theory undergirding ggplot (focus on geom_point)
-  - Geoms
-  - aesL x,y, ccolour, shape, size, alpha
-  - arranging plots in a grid (grid.arrange) and facets...
-- How to plot
-  - labels
-  - scales 
-  - annotations
-  - themes
-- building a plot layer by layer 
-- saving/exporting plots. 
+-   theory undergirding ggplot (focus on geom_point)
+
+    -   Geoms
+    -   aesL x,y, ccolour, shape, size, alpha
+    -   arranging plots in a grid (grid.arrange) and facets...
+
+-   How to plot
+
+    -   labels
+    -   scales
+    -   annotations
+    -   themes
+
+-   building a plot layer by layer
+
+-   saving/exporting plots.
+
+Visualizations have always been an important part of data science and chemsitry. Good graphics illuminate trends and pattersn you may have otherwise missed and allow us to quickly inspect thousands of values. R via the `ggplot2` package is one of, if not the premier, data visualization langauge available. This chapter will formally introduce the `ggplot2` package, explain a bit of the logic undergirding it's operation, and give you some quick examples of how it works. Section 3 will delve deeper into specific visulizations you'll use and encounter in your studies.
+
+`ggplot2` is loaded by default with the `tidyverse` suite of pakacges. Let's revisit our spectroscopy data we encountered in [Tidying your data]:
+
+```{r}
+library(tidyverse)
+atr_long <- read_csv("data/ATR_plastics.csv") %>%
+    pivot_longer(cols = -wavenumber, 
+               names_to = "sample",
+               values_to = "absorbance") 
+
+# This just outputs a table you can explore within your browser
+DT::datatable(atr_long)
+
+```
+
+## Building plots ups
+
+The `gg` in `ggplot2` stands for the `grammar of graphics` [@wickham2010], and it's a way to break down graphcis (plots) into small pieces that can be discussed (hence grammar). WE'll take a look at this grammar via `geoms` (what kind of plot), `aes` (aesthetic choices), etc. For now, understand that this means we need to build up graphics/plots piece-by-piece and layer-by-layer. This extends beyond code to how we code. No sense in putting lipstick on a pig. PLot often, and discard the useless ones. Take the time to pretty up your plot *after* you're satisfied with the unerlying data. 
+
+## Basic plotting
+
+`ggplot2` uses `geoms` to specificyt what type of plot to create. Different plots are used to convey different meanings and have different strenghts and weakness. We'll explore these more in Section 3, but for now we'll focus on `geom_point()`, which simply plots data as poits on an [x,y] coordinate. In otherwords, a scatter plot. 
+
+Let's plot our tided `atr_long` data: 
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, y = absorbance)) +
+  geom_point()
+```
+Let's ignore the plot for now and look at our code down: 
+
+  1. `ggplot()` intilaizes a *ggplot object*, basically an empty plot. To this we've specified out data set (`data = atr_long`). 
+  2. We then specified our *aesthetic mappings* via `aes()`. Here we'll pass information for how we want the plot to look. 
+  3.To our aesthetic mappings we've specified which values from `atr_long` are supposed to be our x-axis values (`x = wavenumber`) and y-axis values (`y = absorbance`). 
+  4. We then add the `geom_point()` layer to create a scatter plot of [x,y] points . 
+  
+  Now let's look at our result. What we see is a point for every recorded absorbance measurements from our ATR analysis. We can clearly see the spectra of the different plastics in our data, however they're all colours the same. This is because we've only speciies the x and y values. As far as `ggplot()` is concerned, these are the only values that mattter, but we know different. 
+  
+  Fortuanely you can pass multiple variables to different `aes()` options to enahce our plot. For instance, we can pass the `sample` variable, which specifies which sample a spectrum originates from, to the `colour` option: 
+  
+```{r}
+
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)) +
+  geom_point()
+
+```
+Now we have a legend which clearly specifies which points are assosciated with each sample. But now the points are too large, potentially masking certain peaks. We can adjust the size of each point as follows: 
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)) +
+  geom_point(size = 0.5)
+```
+We specified `size = 0.5` in the `geom_point()` call because it's a constant. We can map `size` to any continuous variable, such as the absorbance: 
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample,
+           size = absorbance)) +
+  geom_point()
+```
+Sometimes this makes sense (i.e. a *bubble chart*) but for our example, having the size of the poitns increase as the absorbance increases doesn't provide any new information (it actually clutters our plot). 
+
+### Changing plot labels
+
+By default `ggplot` uses the header of the columns you passed for the `x` and `y` `aes()` options.  Because headers are written for code they're often poor label titles for plots. We can specify new labels and plot titles as follows: 
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)) +
+  geom_point() +
+  labs(title = "ATR Spetra",
+       subtitle = "Courtesey of CHM317 student data",
+       x = "Wavenumber, cm^-1",
+       y = "Absorbance (arbitrary units)",
+       caption = "hi mom")
+  
+```
+
+## Further reading 
+
+There's no shortage of options when playing around with `ggplot` and these will be explored in greater detail in Section 3 (including *when* you should and shouldn't do things).
