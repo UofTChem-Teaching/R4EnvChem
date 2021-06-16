@@ -1,6 +1,158 @@
 # Modelling
 
-- formulas in R
-- focus on LM linear model 
-- broom package
-- non-linear models (explored in own chapter later on...?)
+Modelling is basically math used to describe some type of system, and they are a forte of R, a language tailor made for statistical computing... Every model has assumptions, limitations, and all around tricky bits to working. We'll discuss model fitting and break down popular models you'll encounter in specific chapters in Section 3. For now, we'll introduce the `lm()` function for generalized linear models. 
+
+Linear models are the *trend lines* you used all the way back in *CHM135*. However, if you've been exposed to these, it's most likely via *Excel*'s 'add trend line' option. While `lm()` works much the same *mathematically*, unlike *Excel*, R returns *allllll* of the model outputs. Correspondingly, it's easy to get lost between juggling R code, the endless model outputs, and keeping yourself grounded in the real science you're attempting to model. 
+
+So let's take our `lm()` function at face value and learn *how* to model in R. Again we'll touch up the details later on, but for now let's import the FAES calibration results we saw in [Transform: dplyr and data manipulation]. As we've already seen, our data is composed of four standards and a blank analyzed in triplicate. Since we're focusing on modelling, *we'll treat the blank as a standard in our model fitting*:
+
+```{r, message = FALSE}
+
+library(tidyverse)
+# Importing using tips from Import chapter
+
+FAES <- read_csv(file = "data/FAESdata.csv") %>%
+  pivot_longer(cols = -std_Na_conc,
+               names_to = "replicate", 
+               names_prefix = "reading_",
+               values_to = "signal") %>%
+  separate(col = std_Na_conc,
+           into = c("type", "conc_Na", "units"),
+           sep = " ",
+           convert = TRUE) %>%
+  mutate(type = "standard")
+
+DT::datatable(FAES)
+```
+
+Note model is a general term, in this situation we'll be calculating a **calibration curve**. All calibration curves are models, but not all models are calibration curves. 
+
+
+## Base R Linear Model 
+
+R's base `lm()` function for linear regression is excellent, but it's outputs have some messy quirks. It's easier to show that, so let's calculate the linear relationship between the `signal` as a function of `conc_Na`:
+
+
+
+```{r}
+lm_fit <- lm(signal ~ conc_Na, data = FAES)
+lm_fit
+```
+Reading the code above (recall that we're reading it from *right to left* because it's base R):
+  
+  1. We're taking the FAES data
+  2. We're comparing `signal` (the dependent, y, variable) to `conc_Na` (the independent, x, variable) via the tilde `~`. The way to read this is: *"Signal depends on concentration"*.
+  3. We're comparing these two variables using the `lm()` function for generalized linear models.
+  4. All of the model outputs are stored in the `lm_fit` variable. 
+  
+As we can see, the model outputs are pretty brief and not more more than *Excel*'s outputs. We can use `summary()` to extract more information to better understand our model: 
+
+```{r}
+summary(lm_fit)
+```
+
+Now we have a lot more information from our model (don't worry about what everything means, it's discussed further in Section 3. For now, understand that it's a hot mess.
+
+## Cleaning up model ouputs
+
+ `summary()` provides a decent overview of our model's performance, but the outputs are difficult to work with. Let's turn to the `broom()` package to clean up our model outputs.
+
+```{r FAES-calCurves}
+library(broom)
+
+calCurve <- FAES %>%
+  group_by(type) %>%
+  nest() %>%
+  mutate(fit = map(data, ~lm(signal ~ conc_Na, data = .x)),
+         tidied = map(fit, tidy),
+         glanced = map(fit, glance)
+         )
+calCurve
+```
+
+Things look a bit more complicated than our earlier example, so let's break down our code line by line: 
+
+  1. We're taking the `FAES` dataset that we created earlier. 
+  2. `group_by(type` groups all rows by `type`, in this situation we have only one type: `standard`. 
+  3. `nest()` collapses everything other than the `type` column into smaller dataframes. In this situation, all other information is stored as a `tibble` under the `data` column; this is the data used to calculate the linear model. 
+  4. Withing the `mutate` function, we've created three columns: `fit`, `tidied` and `glanced`.
+  
+
+And it's the the `fit`, `tidied` and `glanced` that contains out cleaned up model outputs. `fit` contains the raw output from the linear regression model for `signal` as a function of `conc_Na` using the `lm()` function. The output is in the form of a list, similar to what `summary()` gave us above. Again, this is exceptionally messy, hence why we used the `tidy()`, and `glance()` function from the `broom` package . `map()` just means we're applying the function `tidy()` to the individual output list created by `lm()` and stored in the `fit` column. Note that the `tidy()` and `glanced()` outputs are tibbles. So we now have a tibble containing specific model output values (i.e. `(Intercept)`), lists (i.e. `fit`), and tibbles (`tidied`). This is known as **nested data*. We're no longer in Kansas anymore...
+
+Anyways, let's take a look at our model results. The `glanced` tibble contains "...a concise one-row summary of the model. This typically contains values such as R^2, adjusted R^2, and residual standard error that are computed once for the entire mode"^[From the *broom* package vignette.] Because the data is nested, we'll need to use `unnest()` to flatten it back out into regular columns:
+
+```{r FAES-lm-Glanced}
+calCurve %>% 
+  unnest(glanced)
+```
+What you see here is a bit more than what you'd get from *Excel*'s 'line-of-best fit' output. See the section on *Modelling* for a better breakdown of what everything means. But for now, we can see that our `r.squared` of each calibration curve is pretty good, and the `p.value` indicates each model is significant. the `adj.r.squared` is the same as `r.squared` in this situation. This is because `r.squared` will always increase if we add more exploratory variables to our model; the `adj.r.squared` accounts for the number of exploratory variables used in the model. However, in our case we only have one exploratory variable, hence they're the same. 
+
+But what about the slope and the intercept? After all, that's what we need to calculate the concentration in our unknowns. Let's take a look at `tidied` from the `tidy()` function "...which constructs a tibble that summarizes the model’s statistical findings. This includes coefficients and p-values for each term in a regression..."^[From the *broom* package vignette.]
+
+```{r FAES-lm-tidied}
+# storing because we'll use it later on. 
+
+tidied <- calCurve %>% 
+  unnest(tidied)
+
+tidied
+
+```
+
+Again, a lot more to unpack compared to *Excel*. That's because the `lm()` function in R calculates a generalized linear model. `lm()` performs a linear regression model, which we normally think of as an equation of the form $y= mx+b$. But, regression models can be expanded to account for multiple variables (hence *multiple linear regression*) of the form 
+
+$$y = \beta _{0} + \beta _{1} x_{1} + \beta _{2} x_{2} ... \beta _{p} x_{p}$$]
+ 
+ where, 
+ 
+ - $y$ = dependent variable
+ - $x$ = exploratory variable; there's no limit how many you can input
+ - $\Beta _{0}$ = y-intercept (constant term) 
+ - $\Beta _{p}$ = slope coefficient for each explanatory variable
+
+In our situation, we only have one input variable for our model (`conc`), so the above formula collapses down to $y = \beta _{0} + \beta _{1} x_{1}$. So looking at our results above, each row corresponds to a model parameter. For each modelling parameter, we're provided an estimate of it's numerical value (`estimate`, the values we'll use to calculate concentration). The other parameters are useful to understand but not necessary at this point (again, check out the *Modelling* section). 
+
+And we can extract these values to use in subsequent calculations: 
+
+```{r}
+intercept <- as.numeric(tidied[1,5])
+slope <- as.numeric(tidied[2,5])
+
+paste("The equation of our calibration curve is: y = ", slope, "x + ", intercept, sep="")
+
+```
+## Further reading
+
+The theory and use of these models are explored in greater details in Section 3. Please read up on it for an understanding of the model outputs and how to use them in your analysis. As well, see the [section on modelling](https://r4ds.had.co.nz/model-intro.html) in *R for Data Science*. 
+
+https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
