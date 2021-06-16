@@ -8,7 +8,6 @@ So let's take our `lm()` function at face value and learn *how* to model in R. A
 
 ```{r, message = FALSE}
 
-library(tidyverse)
 # Importing using tips from Import chapter
 
 FAES <- read_csv(file = "data/FAESdata.csv") %>%
