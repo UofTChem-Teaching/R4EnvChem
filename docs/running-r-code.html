@@ -196,23 +196,25 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.3" data-path="running-r-code.html"><a href="running-r-code.html#basic-data-structures"><i class="fa fa-check"></i><b>2.3.3</b> Basic data structures</a></li>
 <li class="chapter" data-level="2.3.4" data-path="running-r-code.html"><a href="running-r-code.html#r-packages-and-functions"><i class="fa fa-check"></i><b>2.3.4</b> R packages and functions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="running-r-code.html"><a href="running-r-code.html#script-formatting"><i class="fa fa-check"></i><b>2.4</b> Script formatting</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="running-r-code.html"><a href="running-r-code.html#script-diagnostics"><i class="fa fa-check"></i><b>2.4.1</b> Script diagnostics</a></li>
-</ul></li>
+<li class="chapter" data-level="2.4" data-path="running-r-code.html"><a href="running-r-code.html#script-formatting"><i class="fa fa-check"></i><b>2.4</b> Script formatting</a></li>
 <li class="chapter" data-level="2.5" data-path="running-r-code.html"><a href="running-r-code.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>2.5</b> Viewing data and code simultaneously</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-workflows.html"><a href="r-workflows.html"><i class="fa fa-check"></i><b>3</b> R Workflows</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-workflows.html"><a href="r-workflows.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>3.1</b> Creating an RStudio Project</a></li>
-<li class="chapter" data-level="3.2" data-path="r-workflows.html"><a href="r-workflows.html#navigating-rstudio-1"><i class="fa fa-check"></i><b>3.2</b> Navigating RStudio</a>
+<li class="chapter" data-level="3.1" data-path="r-workflows.html"><a href="r-workflows.html#paths-and-directories"><i class="fa fa-check"></i><b>3.1</b> Paths and directories</a></li>
+<li class="chapter" data-level="3.2" data-path="r-workflows.html"><a href="r-workflows.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>3.2</b> Creating an RStudio project</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="r-workflows.html"><a href="r-workflows.html#r-environment"><i class="fa fa-check"></i><b>3.2.1</b> R Environment</a></li>
-<li class="chapter" data-level="3.2.2" data-path="r-workflows.html"><a href="r-workflows.html#viewer-1"><i class="fa fa-check"></i><b>3.2.2</b> Viewer</a></li>
-<li class="chapter" data-level="3.2.3" data-path="r-workflows.html"><a href="r-workflows.html#console-1"><i class="fa fa-check"></i><b>3.2.3</b> Console</a></li>
-<li class="chapter" data-level="3.2.4" data-path="r-workflows.html"><a href="r-workflows.html#scripts"><i class="fa fa-check"></i><b>3.2.4</b> Scripts</a></li>
+<li class="chapter" data-level="3.2.1" data-path="r-workflows.html"><a href="r-workflows.html#the-value-of-r-projects"><i class="fa fa-check"></i><b>3.2.1</b> The value of R projects</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="r-workflows.html"><a href="r-workflows.html#dark-mode"><i class="fa fa-check"></i><b>3.3</b> Dark Mode</a></li>
+<li class="chapter" data-level="3.3" data-path="r-workflows.html"><a href="r-workflows.html#saving-things-in-r"><i class="fa fa-check"></i><b>3.3</b> Saving things in R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-workflows.html"><a href="r-workflows.html#what-should-i-save"><i class="fa fa-check"></i><b>3.3.1</b> What should I save?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-workflows.html"><a href="r-workflows.html#troubleshooting-error-messages"><i class="fa fa-check"></i><b>3.4</b> Troubleshooting error messages</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-workflows.html"><a href="r-workflows.html#script-diagnostics"><i class="fa fa-check"></i><b>3.4.1</b> Script diagnostics</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-workflows.html"><a href="r-workflows.html#reading-error-codes"><i class="fa fa-check"></i><b>3.4.2</b> Reading error codes</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="using-r-markdown.html"><a href="using-r-markdown.html"><i class="fa fa-check"></i><b>4</b> Using R Markdown</a>
 <ul>
@@ -324,19 +326,19 @@ div.csl-indent {
 <p>Now you should have both R and RStudio downloaded and installed. When you open RStudio for the first time, this is what you should see:</p>
 <div class="figure">
 <img src="images/RStudio_startup.png" style="width:100.0%" alt="" />
-<p class="caption">RStudio default startup view.</p>
+<p class="caption">Figure 2.1: RStudio default startup view.</p>
 </div>
 <p>The version of R you just installed should appear in the main window, or console, here:</p>
 <div class="figure">
 <img src="images/Rstudio_Rversion.png" style="width:100.0%" alt="" />
-<p class="caption">Locating R version in RStudio.</p>
+<p class="caption">Figure 2.2: Locating R version in RStudio.</p>
 </div>
 <p>(If this message does not appear, go to <em>Tools</em>-&gt;<em>Global Options</em> and make sure that the “R version” box is set to the correct folder.)</p>
 <p>It is important to be aware of the version of R you are using, especially when using R packages which may not be compatible with outdated versions of R (more on this in subsequent sections).</p>
 <p>Currently, the RStudio interface has three key regions, as highlighted below.</p>
 <div class="figure">
 <img src="images/Rstudio_startup_regions.png" style="width:100.0%" alt="" />
-<p class="caption">Important regions in the RStudio interface.</p>
+<p class="caption">Figure 2.3: Important regions in the RStudio interface.</p>
 </div>
 <div id="console" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Console</h3>
@@ -359,7 +361,7 @@ div.csl-indent {
 <p>You can customize the appearance of your RStudio interface by clicking <em>Tools</em>-&gt;<em>Global Options</em>, or <em>RStudio</em>-&gt;<em>Preferences</em> on Mac, then clicking “Appearance” on the left. Select your preferred Editor Theme from the list.</p>
 <div class="figure">
 <img src="images/RStudio_darkthemes.png" style="width:100.0%" alt="" />
-<p class="caption">RStudio Appearance customization window.</p>
+<p class="caption">Figure 2.4: RStudio Appearance customization window.</p>
 </div>
 </div>
 </div>
@@ -368,12 +370,12 @@ div.csl-indent {
 <p>Files of R code are called scripts, which are saved in the <code>.R</code> format. Let’s open up a new script in RStudio by going to <em>File</em>-&gt;<em>New File</em>-&gt;<em>R Script</em>, or by clicking on the highlighted button in the image below.</p>
 <div class="figure">
 <img src="images/Rstudio_newscript.png" style="width:100.0%" alt="" />
-<p class="caption">Opening a new script in RStudio.</p>
+<p class="caption">Figure 2.5: Opening a new script in RStudio.</p>
 </div>
 <p>This should open up a new window in the RStudio interface, as shown in the following image.</p>
 <div class="figure">
 <img src="images/Rstudio_scriptwindow.png" style="width:100.0%" alt="" />
-<p class="caption">Scripts window in RStudio.</p>
+<p class="caption">Figure 2.6: Scripts window in RStudio.</p>
 </div>
 <p>Whenever you copy code blocks from this website (or other online sources), you should paste them into the Scripts window. You can then run the specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the “Run” button in the top right corner of the Scripts window.</p>
 <div id="scripts-vs.-console" class="section level3" number="2.2.1">
@@ -383,7 +385,7 @@ div.csl-indent {
 <p>Scripts are also very useful when you are coding repetitive tasks. Let’s say you want to run the same function on 10 different data sets. In the console, you would have to write out that function 10 times, and alter the input data set each time. In the Scripts window, you can write out the function once, then copy-paste it 9 times to subsequent lines in the script. You can then use the <em>Find/Replace</em> button, highlighted in the following image, to adjust the input data set in each call of the function. You would then run the code by highlighting all 10 lines at once, and hitting Ctrl+Enter (Cmd+Enter on Mac).</p>
 <div class="figure">
 <img src="images/Rstudio_findreplace.png" style="width:100.0%" alt="" />
-<p class="caption">Find and replace button in the Scripts window of RStudio.</p>
+<p class="caption">Figure 2.7: Find and replace button in the Scripts window of RStudio.</p>
 </div>
 <p>While the value of typing your code into the Scripts window is hard to articulate without getting into some examples of the coding language, you will come to appreciate using scripts and saving them as <code>.R</code> files as you become more familiar with coding in the RStudio interface.</p>
 </div>
@@ -476,7 +478,8 @@ div.csl-indent {
 <span id="cb28-7"><a href="running-r-code.html#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-8"><a href="running-r-code.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#plot ozone concentration vs. time</span></span>
 <span id="cb28-9"><a href="running-r-code.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ozone, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Concentration)) <span class="sc">+</span></span>
-<span id="cb28-10"><a href="running-r-code.html#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<span id="cb28-10"><a href="running-r-code.html#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Ozone concentration over a 5 hr experiment&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a href="running-r-code.html#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span> (<span class="st">&quot;Concentration (ppb)&quot;</span>)</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 </div>
@@ -503,12 +506,7 @@ div.csl-indent {
 <p>Headings and subheadings are picked up by RStudio and displayed in the Document Outline box. You can open the Document Outline box by clicking the button highlighted in the image below. Use of these headings allows easy navigation of long scripts, as you can navigate between sections using the Document Outline box.</p>
 <div class="figure">
 <img src="images/Rstudio_documentoutline.png" style="width:100.0%" alt="" />
-<p class="caption">How to open the Document Outline box.</p>
-</div>
-<div id="script-diagnostics" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Script diagnostics</h3>
-<p>Writing complex code in the Script window is particularly advantageous over writing directly in the console as the script editor will highlight syntax errors in your code with a red squiggly line and an ‘x’ in the sidebar, as shown below. You can hover over the ‘x’ to see what is causing the error.</p>
-<p>!(RStudio highlights syntax errors in the Scripts window.)[images/Rstudio_diagnostics.png]{width = 50%}</p>
+<p class="caption">Figure 2.8: How to open the Document Outline box.</p>
 </div>
 </div>
 <div id="viewing-data-and-code-simultaneously" class="section level2" number="2.5">
@@ -516,7 +514,7 @@ div.csl-indent {
 <p>Before we get into more about coding and workflows, you may want to know how to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio (may not be compatible with Mac), or by clicking the button highlighted in the image below.</p>
 <div class="figure">
 <img src="images/Rstudio_newwindow.png" style="width:100.0%" alt="" />
-<p class="caption">How to open an R script/plot/data set in a new window.</p>
+<p class="caption">Figure 2.9: How to open an R script/plot/data set in a new window.</p>
 </div>
 <p>Now that you’re familiar with navigating RStudio and some basic coding building blocks, let’s move over to Chapter 3, where we’ll review a normal workflow in R.</p>
 

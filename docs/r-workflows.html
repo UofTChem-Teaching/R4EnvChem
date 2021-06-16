@@ -196,23 +196,25 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.3" data-path="running-r-code.html"><a href="running-r-code.html#basic-data-structures"><i class="fa fa-check"></i><b>2.3.3</b> Basic data structures</a></li>
 <li class="chapter" data-level="2.3.4" data-path="running-r-code.html"><a href="running-r-code.html#r-packages-and-functions"><i class="fa fa-check"></i><b>2.3.4</b> R packages and functions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="running-r-code.html"><a href="running-r-code.html#script-formatting"><i class="fa fa-check"></i><b>2.4</b> Script formatting</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="running-r-code.html"><a href="running-r-code.html#script-diagnostics"><i class="fa fa-check"></i><b>2.4.1</b> Script diagnostics</a></li>
-</ul></li>
+<li class="chapter" data-level="2.4" data-path="running-r-code.html"><a href="running-r-code.html#script-formatting"><i class="fa fa-check"></i><b>2.4</b> Script formatting</a></li>
 <li class="chapter" data-level="2.5" data-path="running-r-code.html"><a href="running-r-code.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>2.5</b> Viewing data and code simultaneously</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-workflows.html"><a href="r-workflows.html"><i class="fa fa-check"></i><b>3</b> R Workflows</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-workflows.html"><a href="r-workflows.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>3.1</b> Creating an RStudio Project</a></li>
-<li class="chapter" data-level="3.2" data-path="r-workflows.html"><a href="r-workflows.html#navigating-rstudio-1"><i class="fa fa-check"></i><b>3.2</b> Navigating RStudio</a>
+<li class="chapter" data-level="3.1" data-path="r-workflows.html"><a href="r-workflows.html#paths-and-directories"><i class="fa fa-check"></i><b>3.1</b> Paths and directories</a></li>
+<li class="chapter" data-level="3.2" data-path="r-workflows.html"><a href="r-workflows.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>3.2</b> Creating an RStudio project</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="r-workflows.html"><a href="r-workflows.html#r-environment"><i class="fa fa-check"></i><b>3.2.1</b> R Environment</a></li>
-<li class="chapter" data-level="3.2.2" data-path="r-workflows.html"><a href="r-workflows.html#viewer-1"><i class="fa fa-check"></i><b>3.2.2</b> Viewer</a></li>
-<li class="chapter" data-level="3.2.3" data-path="r-workflows.html"><a href="r-workflows.html#console-1"><i class="fa fa-check"></i><b>3.2.3</b> Console</a></li>
-<li class="chapter" data-level="3.2.4" data-path="r-workflows.html"><a href="r-workflows.html#scripts"><i class="fa fa-check"></i><b>3.2.4</b> Scripts</a></li>
+<li class="chapter" data-level="3.2.1" data-path="r-workflows.html"><a href="r-workflows.html#the-value-of-r-projects"><i class="fa fa-check"></i><b>3.2.1</b> The value of R projects</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="r-workflows.html"><a href="r-workflows.html#dark-mode"><i class="fa fa-check"></i><b>3.3</b> Dark Mode</a></li>
+<li class="chapter" data-level="3.3" data-path="r-workflows.html"><a href="r-workflows.html#saving-things-in-r"><i class="fa fa-check"></i><b>3.3</b> Saving things in R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-workflows.html"><a href="r-workflows.html#what-should-i-save"><i class="fa fa-check"></i><b>3.3.1</b> What should I save?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-workflows.html"><a href="r-workflows.html#troubleshooting-error-messages"><i class="fa fa-check"></i><b>3.4</b> Troubleshooting error messages</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-workflows.html"><a href="r-workflows.html#script-diagnostics"><i class="fa fa-check"></i><b>3.4.1</b> Script diagnostics</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-workflows.html"><a href="r-workflows.html#reading-error-codes"><i class="fa fa-check"></i><b>3.4.2</b> Reading error codes</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="using-r-markdown.html"><a href="using-r-markdown.html"><i class="fa fa-check"></i><b>4</b> Using R Markdown</a>
 <ul>
@@ -321,61 +323,185 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 3</span> R Workflows</h1>
 <p>Just like there’s a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there’s a workflow when working with R. This is by no means the only way to work, but it’s tried and true and will serve you well as you tackle your coursework.</p>
 <!-- This is stuff Steven wrote, feel free to modify as you need -->
-<div id="creating-an-rstudio-project" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Creating an RStudio Project</h2>
-<p>When you open RStudio for the first time, this is what you should see:</p>
+<div id="paths-and-directories" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Paths and directories</h2>
+<p>Before you get started with running your code, it is good to know where your analysis is actually occurring, or where your <strong>working directory</strong> is. The working directory is the folder where R looks for files that you have asked it to import, and the folder where R stores files that you have asked it to save.</p>
+<p>RStudio displays the current working directory at the top of the console, as shown below, but can also be printed to the console using the command <code>getwd()</code>.</p>
 <div class="figure">
-<img src="images/RStudio_startup.png" alt="" />
-<p class="caption">RStudio Default View</p>
+<img src="images/Rstudio_wd.png" alt="" />
+<p class="caption">Figure 3.1: Working directory path displayed in the RStudio console</p>
 </div>
-<p>The version of R you just installed should appear in the main window here:</p>
-<div class="figure">
-<img src="images/Rstudio_Rversion.png" alt="" />
-<p class="caption">RStudio - R Version</p>
+<p>By default, R usually sets the working directory to the home directory on your computer. The <code>~</code> symbol denotes the home directory, and can be used as a shortcut when writing a path that references the home directory.</p>
+<p>You can change the working directory using <code>setwd()</code> and an absolute file path. Absolute paths are references to files which point to the same file, regardless of what your working directory is set to. In Windows, absolute paths begin with <code>"C:"</code>, while they begin with with a slash in Mac and Linux (i.e., <code>"/Users/Vinny/Documents"</code>). It is important to note that absolute paths and <code>setwd()</code> should <strong>never</strong> be used in your scripts because they hinder sharing of code – no one else will have the same file configuration as you do. If you share your script with your TA or Prof, they will not be able to access the files you are referencing in an absolute path. Thus, they will not be able to run the code as-is in your script.</p>
+<p>In order to overcome the use of absolute paths and <code>setwd()</code>, we strongly recommend that you conduct all work in RStudio within an <strong>R project</strong>. When you create an R project, R sets the working directory to a file folder of your choice. Any files that your code needs to run (i.e., data sets, images, etc.) are placed within this folder. You can then use relative paths to refer to data files in the project folder, which is much more conducive to sharing code with colleagues, TAs, and Profs.</p>
 </div>
-<p>(If this message does not appear, go to <em>Tools</em>-&gt;<em>Global Options</em> and make sure that the “R version” box is set to the correct folder.)</p>
-<p>Before doing anything else, let’s create an <strong>R Project</strong>. This will establish a default folder for RStudio and bundle together all your code files in one place.
-Go to <em>File</em>-&gt;<em>New Project</em>. Click <em>New Directory</em>, then <em>New Project</em>. Next, you’ll be asked to choose a subdirectory name and location. The name can be whatever you want, but we highly recommend that you create the directory in the same parent folder as your data. Click <em>Create Project</em>, and you should now see your chosen file path displayed in the bottom-right window:</p>
+<div id="creating-an-rstudio-project" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Creating an RStudio project</h2>
+<p>Let’s go ahead and create a new <strong>R Project</strong>. Go to <em>File</em>-&gt;<em>New Project</em>, or click the button highlighted in the image below. Click <em>New Directory</em>, then <em>New Project</em>.</p>
+<p><img src="images/Rstudio_newproject.png" alt="Figure 3.2: How to open a new project in RStudio." />
+You may want your project directory to be a subfolder of an existing directory on your computer which already contains your data sets. If this is the case, click <em>Existing Directory</em> instead of <em>New Directory</em> at the previous step, and then select the folder of your choice.</p>
+<p>Next, you’ll be asked to choose a subdirectory name and location. Enter your selected name and choose an appropriate location for the folder on your computer. Click <em>Create Project</em>, and you should now see your chosen file path displayed in the bottom-right window:</p>
 <div class="figure">
 <img src="images/Rstudio_Rproj.png" alt="" />
-<p class="caption">RStudio Project Folder</p>
+<p class="caption">Figure 3.3: RStudio Project Folder</p>
 </div>
-<p>You are now ready to use R! If you’re in a hurry, you can skip straight to Chapter 2: Organizing Your Data, but we recommend you finish this chapter to familiarize yourself with RStudio’s layout.</p>
-</div>
-<div id="navigating-rstudio-1" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Navigating RStudio</h2>
-<p>RStudio has 4 main windows, 3 of which should currently be visible. To see the fourth window, go to <em>File</em>-&gt;<em>New File</em>-&gt;<em>R Script</em>. You should now be able to see all 4 main windows:</p>
+<p>As mentioned previously, you can also view the file path to your project directory using <code>getwd()</code>. The output should match the file path shown in the image above.</p>
+<p>When working on assignments for coursework, it is good practice to create a new R project for each assignment you work on. You should store the data, images, and any other files required for that assignment within the folder for the designated R project. You can create subfolders for data and images, however, you may want to avoid making too many nested subfolders, as this will make your paths long and tiresome to type.</p>
+<div id="the-value-of-r-projects" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> The value of R projects</h3>
+<p>To demonstrate the benefit of working in a project directory rather than using absolute paths, let’s review a quick example.</p>
+<p>Let’s say you have a data set called <code>absorbance.csv</code>, which is stored on your computer in the lengthy file path <code>/Users/Your_Name/Documents/School/Undergrad/Second_Year/CHM210/Assignment1/absorbance.csv</code>. You want to import the contents of this data set into R using <code>read_csv</code>.</p>
+<p><strong>Improper referencing:</strong> When working <em>outside</em> of an R project, you would need to reference the full, absolute file path in your scripts in order for R to recognize the file you are looking for. If you wanted to import the file, you would need to type something like this:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-workflows.html#cb32-1" aria-hidden="true" tabindex="-1"></a>abs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;/Users/Your_Name/Documents/School/Undergrad/Second_Year/CHM210/Assignment1/absorbance.csv&quot;</span>)</span></code></pre></div>
+<p>While this does the job, it is extremely tedious to type the entire file path without typos, and this also hinders sharing your work with colleagues. Other students/your instructors will not have <code>absorbance.csv</code> stored in the same, lengthy file path which you have referenced above. Thus, if they try to run your script, this line of code will throw an error, as there is no file named <code>absorbance.csv</code> on their computer at the given file path.</p>
+<p><strong>Proper referencing:</strong> When working <em>inside</em> of an R project, you would set your project directory to the folder <code>/Assignment1</code>, using the pop-up windows that appear after clicking <em>File</em>-&gt;<em>New Project</em>-&gt;<em>Existing Directory</em>. By default, whenever you open the R project, the working directory will automatically be set to <code>/Assignment1</code>, the folder containing the data set of interest. If you wanted to import the file now, you would write the following command:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r-workflows.html#cb33-1" aria-hidden="true" tabindex="-1"></a>abs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;absorbance.csv&quot;</span>)</span></code></pre></div>
+<p>This is much simpler to type, and is much more compatible with sharing your work. Even if you don’t share your entire project directory with your colleagues, they should still be able to run this line of code in the script, as long as they have the <code>absorbance.csv</code> data set in their current working directory folder.</p>
+<p>Not only does working within an R project make your scripts much easier to share with colleagues, TAs, and Profs, but it also makes it easier for you to resume working on your code after you have closed the RStudio application. Think of your scripts as tabs in a web browser. Sometimes a project may require you to have several scripts open at once.</p>
+<p>If you are working <em>outside</em> of an R project and have multiple scripts open, all of the scripts will close automatically when you quit RStudio. The next time you open RStudio you’ll have to manually locate and open up each of the scripts you were working on previously, which can be tedious if they’re not stored in convenient locations.</p>
+<p>If you are working <em>inside</em> of an R project and have multiple scripts open, R will leave the scripts open within the project even after you have quit RStudio. The next time you open RStudio and your project, the script tabs will remain open, allowing you to easily pick up where you left off.</p>
+<p>You can try this out for yourself. Open up a new script in your current project in RStudio using <em>File</em>-&gt;<em>New File</em>-&gt;<em>R Script</em>. (If you don’t have a project open currently, go to <em>File</em>-&gt;<em>New File</em>, click <em>New Directory</em>, then <em>New Project</em>.) Type in whatever you want. If you can’t think of anything, here’s an example:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-workflows.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R projects are life savers</span></span>
+<span id="cb34-2"><a href="r-workflows.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># wow</span></span>
+<span id="cb34-3"><a href="r-workflows.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># blessed</span></span></code></pre></div>
+<p>Save the script by going to <em>File</em>-&gt;<em>Save</em>, or by clicking the button highlighted in the image below. Keep the script open, but close RStudio.</p>
 <div class="figure">
-<img src="images/Rstudio_quadrants.png" alt="" />
-<p class="caption">RStudio Quadrants</p>
+<img src="images/Rstudio_save.png" alt="" />
+<p class="caption">Figure 3.4: Save button in RStudio.</p>
 </div>
-<div id="r-environment" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> R Environment</h3>
-<p>This window is the least important for our purposes. In brief, it will list all variables, packages, and functions which you have run since opening RStudio.</p>
-</div>
-<div id="viewer-1" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Viewer</h3>
-<p>The Viewer window has a couple of useful tabs. We will mainly use it to export plots (more on that in later chapters), but you can also open code files from the “Files” tab without having to leave RStudio.</p>
-</div>
-<div id="console-1" class="section level3" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> Console</h3>
-<p>This is where you can type and run code directly, but you will mainly be using the Scripts window to run code (see below). Your primary use of the console will be for installing packages (more on that later). Another thing that the Console window is useful for is quick arithmetic. Try typing “2+2” in the console, then hit Enter.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-workflows.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-</div>
-<div id="scripts" class="section level3" number="3.2.4">
-<h3><span class="header-section-number">3.2.4</span> Scripts</h3>
-<p>R code files are called scripts, and are saved as *.R files. Whenever you copy code blocks from this website, paste them into the Scripts window. You can then run specific lines by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or clicking the “Run” button in the top right of this window.</p>
-</div>
-</div>
-<div id="dark-mode" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Dark Mode</h2>
-<p>Lastly, some of you may be interested in how to set RStudio to Dark Mode. Simply go to <em>Tools</em>-&gt;<em>Global Options</em>, then click “Appearance” on the left. Then select your preferred Editor Theme from the list. (My personal preference is “Tomorrow Night Bright”)</p>
+<p>When you re-open RStudio, the script will still be there.</p>
+<p>Leave the script open. Let’s close the R project now. You can close the current project by going to <em>File</em>-&gt;<em>Close Project</em>, or by clicking the downwards arrow in the top right corner of RStudio, highlighted in the image below. Choose <em>Close Project</em> from the drop down menu.</p>
 <div class="figure">
-<img src="images/RStudio_darkthemes.png" alt="" />
-<p class="caption">RStudio Dark Themes</p>
+<img src="images/Rstudio_closeproject.png" alt="" />
+<p class="caption">Figure 3.5: How to close an R Project.</p>
 </div>
+<p>Now close RStudio. When you open RStudio again, no script will be open! The same is true when you work outside of an R project.</p>
+</div>
+</div>
+<div id="saving-things-in-r" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Saving things in R</h2>
+<p>As mentioned in the previous section, you can save an R script to a <code>.R</code> file by going to <em>File</em>-&gt;<em>Save</em>, or by clicking the button highlighted in Figure 3.4. Code saved to a <code>.R</code> file is considered <em>real</em>. Variables, plots, or data sets that only exist in your workspace (shown in the Environment window) are not.</p>
+<p>Whenever you close RStudio, any objects in R that are not considered <em>real</em> will be lost in that R session. For example, let’s say you have some vectors in your workspace. Even if you are working within an R project and have saved your script, those vectors will not be remain in the workspace after you close and re-open RStudio. You would need to re-run the code you used to generate those vectors the next time you open RStudio, in order to replicate the workspace you had before you closed the application.</p>
+<p>Let’s try this out in practice. Assign something of your choice to a variable (i.e., “text must be in quotations,” numbers, TRUE or FALSE), as is done below.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r-workflows.html#cb35-1" aria-hidden="true" tabindex="-1"></a>real <span class="ot">&lt;-</span> <span class="st">&quot;What is real?&quot;</span></span></code></pre></div>
+<p>The variable should now show up in your environment in RStudio, much like the image below.</p>
+<div class="figure">
+<img src="images/Rstudio_workspace.png" alt="" />
+<p class="caption">Figure 3.6: Items in the workspace/R environment.</p>
+</div>
+<p>When a variable exists within your workspace, you can simply type the variable name into the console to have R print out its contents (examples given in Chapter 2). However, when you close RStudio, and the variable is erased from the workspace, R will give you an error when you try to call your assigned variable. The errors will look a little bit like this:</p>
+<pre><code>## [[1]]
+## [1] &quot;Hello&quot;
+## 
+## [[2]]
+## [1]  5 10 15 20
+## 
+## [[3]]
+## [1]  TRUE  TRUE FALSE</code></pre>
+<p>Where <code>'hi'</code> is the name of your variable. This is common notation for errors that occur when you try to run code that references an object (variable, vector, data set, etc.) that might have once existed in your workspace, but currently does not. If you’re getting an <code>object not found</code> error, this generally means you need to go back and load your data set, or re-run the code used to generate your desired variable or vector. Once you’ve loaded the data set, or re-created the object in the workspace, the error will go away and your code should run as expected.</p>
+<p>While this might not seem like a major issue at this point in time, it certainly will when you start writing lengthy scripts that create variables in the early lines and then reference those variables in commands in later lines. One day you might find yourself opening up RStudio and immediately trying to run some code from the end of one of your scripts. <code>Object not found</code> is a common thing to see in response. Don’t fret - run the script from beginning to end, in order, and chances are this error will go away (provided that you have included your assignment statements in your saved script).</p>
+<div id="what-should-i-save" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> What should I save?</h3>
+<p>At this point in the chapter, two things should be clear:</p>
+<ol style="list-style-type: decimal">
+<li>R scripts saved to <code>.R</code> files are real.</li>
+<li>Objects in your workspace/environment are not real, and will not be available to you after you close and re-open RStudio unless you re-run the code used to generate the workspace.</li>
+</ol>
+<p>So what is important to save in R, and how often should you save these files?</p>
+<p>It is paramount that you save the scripts you code in, and that you save them regularly. Even if you’ve made small notation changes to the code, it is always a good idea to save your changes to the script before closing RStudio, as there is a good chance you will not remember the minor differences upon returning.</p>
+<p>While it is possible to save your workspace in RStudio, we do not recommend this. It is much easier to recreate your workspace from your R scripts than it is to recreate your scripts from your workspace. That being said, it is integral to get into good script formatting habits.</p>
+<p>You want to make sure that even if you lose an object in your environment, your script still contains the code you used to generate that object. You also want to make sure that you generate the object before you call it in part of another command, so that when you run your scripts from top-to-bottom, the variables are generated in the workspace before they are referenced by later commands. Let’s look at some examples.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-workflows.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate vectors</span></span>
+<span id="cb37-2"><a href="r-workflows.html#cb37-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">76</span>, <span class="dv">8</span>, <span class="dv">2</span>)</span>
+<span id="cb37-3"><a href="r-workflows.html#cb37-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(T, T, T, F, F, F, F)</span>
+<span id="cb37-4"><a href="r-workflows.html#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="r-workflows.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># turn vectors into data frame</span></span>
+<span id="cb37-6"><a href="r-workflows.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(x,y)</span></code></pre></div>
+<pre><code>##    x     y
+## 1  1  TRUE
+## 2  2  TRUE
+## 3  3  TRUE
+## 4  5 FALSE
+## 5 76 FALSE
+## 6  8 FALSE
+## 7  2 FALSE</code></pre>
+<p>The code above is ordered correctly. Your scripts should be ordered similar to this (with the exception that you will load R packages before you generate your variables), with your objects generated before you call them using a function.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-workflows.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make data frame</span></span>
+<span id="cb39-2"><a href="r-workflows.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(x,y)</span>
+<span id="cb39-3"><a href="r-workflows.html#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="r-workflows.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># generate vectors</span></span>
+<span id="cb39-5"><a href="r-workflows.html#cb39-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">76</span>, <span class="dv">8</span>, <span class="dv">2</span>)</span>
+<span id="cb39-6"><a href="r-workflows.html#cb39-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(T, T, T, F, F, F, F)</span></code></pre></div>
+<p>The code above is ordered <em>incorrectly</em>. You can see that using <code>data.frame()</code> before generating vectors <code>x</code> and <code>y</code> has resulted in an error, similar to what we saw in the previous section. You should follow the format from the first example to avoid errors of this sort in your scripts.</p>
+<div id="saving-objects" class="section level4" number="3.3.1.1">
+<h4><span class="header-section-number">3.3.1.1</span> Saving objects</h4>
+<p>In some cases, your code may be used to generate large data structures which require quite a bit of input to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data structure to a <em>real</em> file that you can simply import the next time you open the application. Fortunately, this is possible thanks to <code>save()</code> and <code>load()</code>.</p>
+<p>The <code>save()</code> function saves the input object or objects (i.e., vector, matrix, or data frame) to your working directory as an <code>.rda</code> file. Let’s try saving our vectors <code>x</code> and <code>y</code> from the previous examples to a file called <code>vec.rda</code>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-workflows.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save vectors</span></span>
+<span id="cb40-2"><a href="r-workflows.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(x, y, <span class="at">file =</span> <span class="st">&quot;vec.rda&quot;</span>)</span></code></pre></div>
+<p>An <code>.rda</code> file should now exist in your project directory, as shown in the image below.</p>
+<div class="figure">
+<img src="images/Rstudio_rda.png" alt="" />
+<p class="caption">Figure 3.7: Generated <code>.rda</code> file after using <code>save()</code>.</p>
+</div>
+<p>Now, let’s try removing our vectors from our workspace and loading them from the <code>.rda</code> file we just generated. You can use <code>rm()</code> to remove objects from your workspace, as shown below.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-workflows.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x, y)</span></code></pre></div>
+<p>Now that our workspace is empty, if you type <code>x</code> or <code>y</code> into the console, RStudio will not know what to return in response. We have to import the data back into our workspace so that RStudio knows what <code>x</code> and <code>y</code> contain.You can use <code>load()</code> to import the vectors to your current RStudio workspace, using the format below.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-workflows.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">&quot;vec.rda&quot;</span>)</span></code></pre></div>
+<p>The vectors should now be present in the workspace again, and can be printed to the console if you type in their respective names.</p>
+</div>
+</div>
+</div>
+<div id="troubleshooting-error-messages" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Troubleshooting error messages</h2>
+<p>In the previous section, you were introduced to your first error message in R, and we briefly discussed how to resolve the issue.</p>
+<p>As you become more familiar with R and start using more complex functions, you will become better acquainted with error messages in R, and how to deal with them accordingly.</p>
+<p>We’ll go through a few examples of error messages in the following sections, as well as how to read the errors, and how to fix your code to resolve the issues.</p>
+<div id="script-diagnostics" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Script diagnostics</h3>
+<p>When writing code in the Script window, RStudio will highlight any syntax errors in your code with a red squiggly line and an ‘x’ in the side bar, as shown below. You can hover over the ‘x’ to see what is causing the error.</p>
+<div class="figure">
+<img src="images/Rstudio_diagnostics.png" alt="" />
+<p class="caption">Figure 3.8: RStudio highlights syntax errors in the Scripts window.</p>
+</div>
+<p>In the above message, R is telling you that it is not sure what to do with <code>b</code>. As mentioned previously, variable assignment is done in the format <code>name &lt;- assignment</code>. However, in the above example, the variable assignment statement is written as <code>name name &lt;- assignment</code>. Since variable names cannot contain spaces, R reads <code>a b</code> as two separate input variable names, not as a single string. If you wanted to assign a value of 0 to both <code>a</code> and <code>b</code>, you would need to write the statement once per variable, as shown below.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-workflows.html#cb43-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb43-2"><a href="r-workflows.html#cb43-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
+<p>Let’s look at another example. Some functions require you to write code with nested parentheses. A good example would be the <code>aes()</code> argument that is called inside of <code>ggplot()</code>, as shown below.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-workflows.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot ozone concentration vs. time</span></span>
+<span id="cb44-2"><a href="r-workflows.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ozone, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Concentration))</span></code></pre></div>
+<p>(For more detail about importing and using <code>ggplot2</code>, please re-visit Chapter 2, section 2.3.4, or see Chapter 11.)</p>
+<p>If you were to forget one of the parentheses in the previous line of code, RStudio would highlight it similar to below:</p>
+<div class="figure">
+<img src="images/Rstudio_unmatched.png" alt="" />
+<p class="caption">Figure 3.9: RStudio highlights unmatched parentheses in the script window.</p>
+</div>
+<p>Here R is telling you that you have an unmatched opening bracket. To resolve the error, simply add a closing bracket to match.</p>
+<p>The <code>expected ',' after expression</code> is a common error that you will see accompanying unmatched opening brackets. Sometimes you might get this error in the console after running code that is missing a bracket somewhere. It is good practice to check your parentheses a few times before running your code to make sure that all the commands are closed, and that R doesn’t keep waiting for you to continue inputting code after you’ve click <em>Run</em>. If you notice that the <code>&gt;</code> in your R console has turned into a <code>+</code>, this is likely because you’ve just run a command that is missing a closing bracket, and thus, R is not aware that your code is finished. Simply input a closing bracket into the console, and the <code>&gt;</code> should return.</p>
+</div>
+<div id="reading-error-codes" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Reading error codes</h3>
+<p>While the script window is very useful for pointing out syntax errors in your code, there are many other errors that can arise in RStudio which the script window is not able to capture. These are generally errors that arise from trying to execute your code, rather than from mistakes in your syntax.</p>
+<p>The following is a prime example of such an error.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-workflows.html#cb45-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">+</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
+<pre><code>## Error in 8 + &quot;hi&quot;: non-numeric argument to binary operator</code></pre>
+<p>Here we are trying to add a numeric value (8) to a character string (“hi”), then set the sum of the two to variable <code>q</code>. R has given us an error in return, because there is no logical way for R to add a numeric value to non-numeric text.</p>
+<p>The error indicates that we have passed a <code>non-numeric argument to binary operator</code>, meaning we have used a non-numeric data type for an expression which is exclusively reserved for numeric data. If you try to add, divide or multiply two character strings using arithmetic operations in the console, you will get the same error.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-workflows.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;hey&quot;</span> <span class="sc">*</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
+<pre><code>## Error in &quot;hey&quot; * &quot;hi&quot;: non-numeric argument to binary operator</code></pre>
+<p>It is important to be aware of these error codes as many functions require specific data types as their inputs. You can always look at the required data type by looking at the documentation for the function (generally, this can be viewed by typing <code>?function</code> into the console, where <code>function</code> is the name of the function). If the function requires numeric data, inputting character strings or logical values will throw the errors shown above. If the function requires logical values, inputting numeric data or character strings will throw the errors shown above.</p>
+<p>In order to avoid these errors, make sure that you are using the right type of data in your functions. You can always check your data type using <code>class()</code>. Some examples are shown below.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r-workflows.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">&quot;hi&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-workflows.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="r-workflows.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(1L)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="r-workflows.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>Now that you’re familiar with working in RStudio, saving your projects, scripts, and data, let’s move over to Chapter 4, where we’ll discuss the advantages and disadvantages of using <code>.Rmd</code> documents instead of <code>.R</code> scripts.</p>
 
+</div>
 </div>
 </div>
             </section>
