@@ -23,10 +23,14 @@ FAES <- read_csv(file = "data/FAESdata.csv") %>% # see section on Pipe
                values_to = "signal") %>%
   separate(col = std_Na_conc,
            into = c("type", "conc_Na", "units"),
-           sep = " ")
+           sep = " ",
+           convert = TRUE)
 
 DT::datatable(FAES)
 ```
+
+**Note** the use of `convert = TRUE` in the `separate()` call. This runs a type convert on new columns. If we didn't include this, the `conc_Na` column would be of type character because the numbers originated from a string. `convert()` ensures they're converted to numeric. **Always use `convert = TRUE`** when you separate columns. 
+
 ## Selecting by row or value
 
 `filter()` allows up to subset our data based on observation (row) values. 
