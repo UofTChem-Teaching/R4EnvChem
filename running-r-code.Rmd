@@ -1,58 +1,21 @@
-<!-- This header creates the book section -->
-# (PART\*) Getting Setup in R{-}
 
 <!-- This header creates the chapter -->
 # Running R Code
 
-## Navigating RStudio
+As we saw last chapter, you can run code directly from the console. It's handy for short and sweet snippets of code, something that can be typed in a single line. Examples of this is the `install.packages()` function, or to use R as a calculator:
 
-Now you should have both R and RStudio downloaded and installed. When you open RStudio for the first time, this is what you should see:
-
-![Figure 2.1: RStudio default startup view.](images/Rstudio_startup.png){width=100%}
-
-The version of R you just installed should appear in the main window, or console, here:
-
-![Figure 2.2: Locating R version in RStudio.](images/Rstudio_Rversion.png){width=100%}
-
-(If this message does not appear, go to *Tools*->*Global Options* and make sure that the "R version" box is set to the correct folder.)
-
-It is important to be aware of the version of R you are using, especially when using R packages which may not be compatible with outdated versions of R (more on this in subsequent sections). 
-
-Currently, the RStudio interface has three key regions, as highlighted below.
-
-![Figure 2.3: Important regions in the RStudio interface.](images/Rstudio_startup_regions.png){width=100%}
-
-### Console
-
-You can run code directly by typing your R code into the console pane. The console is mainly used for installing packages (more on that later), but can also be used for quick arithmetic. Try typing "2+2" into the console, then hit Enter.
-
-``` {r console_math1}
-2+2
+```{r}
+2 * 3
+```
+```{r}
+pi() * (10/2)
 ```
 
-While the console is useful for short-and-sweet commands, you will mainly be using the Scripts window to run chunks of code (see **2.2 Where to run code in RStudio**).
-
-### Environment
-
-The environment window lists all variables, packages, and functions which you have run since opening RStudio. This window is particularly useful if you want to view your data in a format similar to an Excel spreadsheet directly from RStudio, which we will discuss in Chapter 3 of this book.
-
-
-### Viewer
-
-The Viewer window has a couple of useful tabs. We will mainly use it to export plots (more on that in later chapters), but you can also open code files from the "Files" tab without having to leave RStudio (expanded on in Chapter 3). 
-
-
-### Customizing RStudio
-
-As many of us spend an absurd amount of time staring at bright screens, some of you may be interested in setting your RStudio to Dark Mode. 
-
-You can customize the appearance of your RStudio interface by clicking *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, then clicking "Appearance" on the left. Select your preferred Editor Theme from the list.
-
-![Figure 2.4: RStudio Appearance customization window.](images/Rstudio_darkthemes.png){width=100%}
+However, you'll soon run into issues when you write more complex code. That's why we write out code in *scripts*.
 
 ## Where to run code in RStudio
 
-Files of R code are called scripts, which are saved in the `.R` format. Let's open up a new script in RStudio by going to *File*->*New File*->*R Script*, or by clicking on the highlighted button in the image below.
+Scripts are a series of R commandes that will be executed one at a time, and are saved with the `.r` file extension. Let's open up a new script in RStudio by going to *File*->*New File*->*R Script*, or by clicking on the highlighted button in the image below.
 
 ![Figure 2.5: Opening a new script in RStudio.](images/Rstudio_newscript.png){width=100%}
 
@@ -63,6 +26,8 @@ This should open up a new window in the RStudio interface, as shown in the follo
 Whenever you copy code blocks from this website (or other online sources), you should paste them into the Scripts window. You can then run the specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the "Run" button in the top right corner of the Scripts window.
 
 ### Scripts vs. console
+
+
 
 Using the Scripts window to write, edit, and run your code has many advantages over using the console directly. Mainly, writing your code in scripts allows you to save your code in the R file format, as mentioned previously. This means you can open old files of code and easily run commands which you've previously written.
 

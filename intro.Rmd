@@ -1,3 +1,6 @@
+<!-- This header creates the book section -->
+# (PART\*) Getting Setup in R{-}
+
 # Introduction
 
 - What you'll learn (and won't learn)
@@ -10,13 +13,66 @@
 
 ## Prerequisite software
 
-In order to use this book you will first need to download and install **R** on your computer. The latest build as of May 2021 is v4.1.0. [Download the appropriate version of R for your Operating System here](https://utstat.toronto.edu/cran/).
+You'll need the following: 
 
-We recommend using the default settings for installation (i.e. just keep clicking "Next"). *Note that you will not need shortcuts for launching R, as you will always be using Rstudio to run provided code.*
+  - **R**
+  - **RStuido IDE**
+  - **tidyverse** family of packages
+  
+### Downloading R
 
-Once R is installed on your computer, you will need to download and install RStudio. [Download the appropriate version of RStudio for your Operating System here](https://www.rstudio.com/products/rstudio/download/#download)
+R is a free software environment for statisical computing and graphics. It's hosted on the Comprehensive R Archive Network (CRAN). R is one of the most popular programming languages for statisticians and scientist alike. [You can download the latest build for your operating system here](https://cloud.r-project.org/).
 
-Again, just use the default installation settings.
+### Downloading RStudio IDE
+
+RStudio is the *integrated development environment* of choice when working with R. It's where you'll actually be typing your code and interacting with R. [You can download the latest version of RStudio here](https://www.rstudio.com/products/rstudio/download/#download). 
+
+Once you have R and RStudio installed go ahead and open up RStudio. You should see a window broken up into three panes, highlighted below: 
+
+![The RStudio interface with annottated regions](images/Rstudio_startup_regions.png){width=100%}
+
+Each pane serves a specific role: 
+
+  - **The console** allows you to directly type and run your code. It's where your R code will eventually run. 
+  - **The environment**  window lists all variables, data, and functions you've created since the start of your coding session.  
+  - **The viewer** shows your outputs, help documents, etc. which each has their own tab. 
+  
+The version of R you just installed should appear in the main window, or console, as shown in the image above. If this message does not appear, go to *Tools*->*Global Options* and make sure that the "R version" box is set to the correct folder. It is important to be aware of the version of R you are using, especially when using R packages which may not be compatible with outdated versions of R. 
+
+### Installing packages
+
+Packages are previously written snippets of code that extend the capabilities of base R. Typically packages are created to address specific issues or worfklows in different types of analysis. This book will make frequent use of a family of pacakges called the `tidyverse`. These pacakges all share a common though process and integrate naturally with one another. 
+
+You can download the entire suite of `tidyverse` packages by simply copy and pasting the following code into the console and pressing 'enter'.
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
+
+You'll see a flurry of lines printed to the console indicating the status of the installation. Once installed you won't be able to use these fuctions until you load it with `library()`. Enter the code below into the console to load the `tidyverse` package.
+
+```{r}
+library(tidyverse)
+```
+
+## Running R Code
+
+As we've already seen, you can run bits of R code directly from the console. Throughout the book code you can copy and run will look like this: 
+
+```{r}
+2 + 2
+```
+
+Noticed that both the code (the first part) and what the code outputs (the second part) are shown. Throughout this book code outputs will be proceeded by `##`. We'll explore more about running R code in the next chapter.
+
+
+## Customizing RStudio
+
+As many of us spend an absurd amount of time staring at bright screens, some of you may be interested in setting your RStudio to Dark Mode. 
+
+You can customize the appearance of your RStudio interface by clicking *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, then clicking "Appearance" on the left. Select your preferred Editor Theme from the list.
+
+![Figure 2.4: RStudio Appearance customization window.](images/Rstudio_darkthemes.png){width=100%}
 
 
 ## Where to get help

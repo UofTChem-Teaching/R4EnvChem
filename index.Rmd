@@ -12,13 +12,13 @@ bibliography: references.bib
 
 ---
 
-# Howdy {-}
+# Preface {-}
 
 Howdy, 
-
+  
 This website is more-or-less the living results of a collaborative project between us. Our ultimate goal is not to be an exhaustive resource for all environmental chemist. Rather, we're focused on developing broadly applicable data science course content (tutorials and recipes) based in `R` for undergraduate environmental chemistry courses. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum. 
 
-  
+
 ## Authors {-}
   
   If you have any questions/comments/suggestions/concerns please email:
