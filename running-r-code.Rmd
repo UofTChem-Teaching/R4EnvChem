@@ -1,49 +1,8 @@
 
 <!-- This header creates the chapter -->
-# Running R Code
+# R coding basics
 
-As we saw last chapter, you can run code directly from the console. It's handy for short and sweet snippets of code, something that can be typed in a single line. Examples of this is the `install.packages()` function, or to use R as a calculator:
-
-```{r}
-2 * 3
-```
-```{r}
-pi() * (10/2)
-```
-
-However, you'll soon run into issues when you write more complex code. That's why we write out code in *scripts*.
-
-## Where to run code in RStudio
-
-Scripts are a series of R commandes that will be executed one at a time, and are saved with the `.r` file extension. Let's open up a new script in RStudio by going to *File*->*New File*->*R Script*, or by clicking on the highlighted button in the image below.
-
-![Figure 2.5: Opening a new script in RStudio.](images/Rstudio_newscript.png){width=100%}
-
-This should open up a new window in the RStudio interface, as shown in the following image.
-
-![Figure 2.6: Scripts window in RStudio.](images/Rstudio_scriptwindow.png){width=100%}
-
-Whenever you copy code blocks from this website (or other online sources), you should paste them into the Scripts window. You can then run the specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the "Run" button in the top right corner of the Scripts window.
-
-### Scripts vs. console
-
-
-
-Using the Scripts window to write, edit, and run your code has many advantages over using the console directly. Mainly, writing your code in scripts allows you to save your code in the R file format, as mentioned previously. This means you can open old files of code and easily run commands which you've previously written.
-
-Additionally, the Scripts window allows you to review and edit your code without the risk of accidentally running an incomplete command. When typing directly into the console, any time you hit Enter, R will try to execute the line of code you have entered, whether or not you have completed the command. This is not an issue when typing your code into the Scripts window, as code in this window is only executed when the "Run" button is clicked, or when the code has been highlighted and you have pressed Ctrl+Enter (Cmd+Enter on Mac).
-
-Scripts are also very useful when you are coding repetitive tasks. Let's say you want to run the same function on 10 different data sets. In the console, you would have to write out that function 10 times, and alter the input data set each time. In the Scripts window, you can write out the function once, then copy-paste it 9 times to subsequent lines in the script. You can then use the *Find/Replace* button, highlighted in the following image, to adjust the input data set in each call of the function. You would then run the code by highlighting all 10 lines at once, and hitting Ctrl+Enter (Cmd+Enter on Mac). 
-
-![Figure 2.7: Find and replace button in the Scripts window of RStudio.](images/Rstudio_findreplace.png){width=100%}
-
-While the value of typing your code into the Scripts window is hard to articulate without getting into some examples of the coding language, you will come to appreciate using scripts and saving them as `.R` files as you become more familiar with coding in the RStudio interface.
-
-## Coding building blocks
-
-Now that you know how to navigate RStudio, and the different places we can enter code, let's learn some basic coding building blocks.
-
-As mentioned earlier, R can be used as a calculator. 
+Now that you know how to navigate and run code in RStudio, we'll take a look at the basics of R. As we're chemist first, and not computer programmers, we'll try and avoid as much of the nitty-gritty underneath the hood aspects of R. However, a risk of this approach is being unable to understand errors and warnings preventing your code from running. As such, we'll introduce the most important and pertinent aspects of the R language to meet your environmental chemistry needs. 
 
 ```{r}
 (1000 * pi) / 2
@@ -51,16 +10,27 @@ As mentioned earlier, R can be used as a calculator.
 (2 * 3) + (5 * 4)
 ```
 
-### Variable assignment
+### Variables
 
-You can assign the outputs of your arithmetic to variables using `<-`, as shown below. To view the contents of the variable, simply type your assigned variable name and press Enter. Note that variable names are case sensitive, so if your variable is named `x` and you type `X` into the console, R will not be able to print the contents of `x`.
+Variables in R, like those you've encouintered in math class, can only have one value. Unliuke the variables in math classes, you can change that value whenever you want. Another way to think about it is to treat variables in R like a box which you use to store a value. Then you can simply open the box somewhere else without having to worry about the hassle of what's inside. 
+
+You can assign the outputs variables using `<-`, as shown below. 
 
 ```{r}
-x <- 10 / 2
+x <- 12
+x
+```
+In addition to reading code top to bottom, you often *read it from right to left*. `x <- 12` would be read as "store the numerical value of 6.0221e23 into the variable x". The second line of code, `x`, simply returns the value stored inside `x`. You can now use this variable in snippets of code:
+
+```{r}
+x
+x <- x * 6.022e23
 x
 ```
 
-You can also assign single values, character strings (text) or logical statements (`TRUE` or `FALSE`) to variables using the same notation. 
+Remember, we're evaluating from right to left, so the code above is taking the number `6.022e23` and multiplying it by the value of `x`, which is 12 and storing that value back into `x`. Note that variable names are case sensitive, so if your variable is named `x` and you type `X` into the console, R will not be able to print the contents of `x`.
+
+Variables can containe single values, character strings (text) or logical statements (`TRUE` or `FALSE`) to variables using the same notation. 
  
 ```{r}
 fifty <- 50
@@ -73,19 +43,68 @@ t <- TRUE
 t
 ```
 
-These are examples of assignment statements. We will cover more assignments of more complex objects in the following sections and in subsequent chapters.
+Variable names can consist of letters, numbers, dots (`.`) and/or underlines (`_`). Before you create variables of your own. Here are some rules and guidelines for naming variables in R: 
 
-### Naming variables
+  - **Rules** dictated by R
+    - names must begin with a letter or with the dot character, as long as not followed by a number. `var` and `.var` are acceptable.
+    - Variable names *cannot* start with a number or the `.` character cannot be preceeded by  number. `var1` is acceptable, `1var` and `.1var` are not. 
+    - Variable names *cannot* contain a space. `var 1` is interperated as two separate values, `var` and `1`. 
+    - Certain words are reserved for R, and cannot be used as variable names. These include, but are not limited to, `if`, `else`, `while`, `function`, `for`, `in`, `next`, `break`, `TRUE`, `FALSE`, `NULL`, `Inf`, `NA`, and `NaN
 
-In the previous section we learned how to assign variables to names of your choice. Before you create variables of your own, it is a good idea to review what makes a good variable name and what makes a bad variable name, as well as some forbidden names in R.
+Good names for variables are short, sweet, and easy to type while also being somewhat descriptive. For example, let's say you have an air pollution data set. A good name to assign the data set to would be `airPol` or `air_pol`, as these names tell us what is contained in the data set and are easy to type. A bad name for the data set would be `airPollution_NOx_O3_June20_1968`. While this name is much more descriptive than the previous names, it will take you a long time to type, and will become a bit of a nuisance when you have to type it 10+ times to refer to the data set in a single script. Please refer to the [*Style Guide*](http://adv-r.had.co.nz/Style.html) found in *Advanced R* by H. Wickham for more information. 
 
-Variable names can consist of letters, numbers, dots (`.`) and/or underlines (`_`). These names must begin with a letter or with the dot character, as long as not followed by a number (i.e., ".4five" is not a valid name). Variable names cannot begin with a number.
+### Data Types
 
-Good names for variables are short, sweet, and easy to type while also being somewhat descriptive. For example, let's say you have an air pollution data set. A good name to assign the data set to would be `airPol` or `air_pol`, as these names tell us what is contained in the data set and are easy to type. A bad name for the data set would be `airPollution_NOx_O3_June20_1968`. While this name is much more descriptive than the previous names, it will take you a long time to type, and will become a bit of a nuisance when you have to type it 10+ times to refer to the data set in a single script. 
+Data types refer to how data is stored and handled by and in R. You can really get into the weeds on this, but we'll focus on the most common types so you can get started on your work. Firstly, here are the data types you'll likely be working with:
 
-Forbidden variable names in R are words which are reserved for other functions or coding purposes. These include, but are not limited to, `if`, `else`, `while`, `function`, `for`, `in`, `next`, `break`, `TRUE`, `FALSE`, `NULL`, `Inf`, `NA`, and `NaN`.
+  - **character**: `"a"`, `"howdy"`, `"1"`, is used to represent string values in R. Basically it's text that you'd read. Note the quotation marks and the fact that `"1"`, despite being a number, is stored as a character.
+  - **numeric** (real or decimal): `2`, `3.14`, `6.022e23`.
+  - **intgeger**: `2L`, note the 'L' tells R this is an integer. 
+  - **logical**: either `TRUE` or `FALSE` 
+  
+There are some helpful functions to test the data type of a value in R as a frequent source of error and frustration are values stored in the wrong data type. For example: 
 
-### Basic data structures
+```{r, error = TRUE}
+x <- "6"
+
+x / 2
+
+```
+You'll see the error above frequently, and it's simply saying you're trying to do math on something you can't do math on. You might think if x is 6, why can't I divide it by 2? Let's see what type of data `x` is: 
+
+```{r}
+is.numeric(x)
+is.logical(x)
+is.integer(x)
+is.character(x)
+```
+So the value of `x` is a character, in otherwords R treats it as a word, and we can't do math on that (think, how would you divide a word by a number?). So let's convert the data type of `x` to numeric to proceed. 
+
+```{r}
+x <- as.numeric(x)
+is.numeric(x)
+x / 2
+```
+
+So we've converted our chjracter string `"6"` to the numerical value `6`. Keep in mind there are other conversion functions which are described [elsewhere](https://www.geeksforgeeks.org/conversion-functions-in-r-programming/), but you can't always convert types. In the above example we could convert a chracter to numeric because it was ultimately a number, but we couldn't do the same if the value of `x` was `"six"`. 
+  
+### Data Structures
+
+Data structures refers to how R stores data. Again, it's easy to get lsot in the weesd here so we'll focus on the most common and useful data types for your work. The vast majority of your work will be with data frames. This is data arranged in columns and rows, similar to how it looks in *Excel*. Here's an example of a data frame: 
+
+```{r, message = FALSE}
+airPol <- read_csv("data/2018-07-01_60430_Toronto_ON.csv")
+
+# datatable so you can browse the data online
+DT::datatable(airPol)
+```
+
+The above is air quality data measured in downtown Toronto around July 2018. Some of the variables are:
+
+  - `naps`, `city`, `p`, `latitude`, `longitude` to tell you where the data was measured. 
+  - `data.time` for when the measurements were taking. 
+  - `pollutant` for the chemical measured
+  - `concentration` for the measured concentration in parts-per-million (ppm). 
 
 R has several data structures which will be briefly introduced here. There are many freely available resources online which dive more in depth into different data structures in R. If you are interested in learning more about different structures, you can check out the *Data structures* chapter of [*Advanced R*](http://adv-r.had.co.nz/Data-structures.html) by Hadley Wickham, one of the authors of the *R for Data Science* referenced in the Introduction.
 
@@ -179,7 +198,7 @@ library(ggplot2)
 
 The rest of your script should be dedicated to executable code. It is good practice to include text comments throughout the script, in between different chunks of code, to remind yourself what the different sections of code are for (i.e., `#import packages` in the above example). This also makes it easy for anyone you share your code with to understand what you're trying to do with different sections within the script.
 
-You can also use headers and sub-headers in your scripts using `#` and `##` before your text. Headings are written with a single hashtag, followed by a space, as shown below. Subheadings are written with two hashtags, followed by a space, also shown below. 
+You can also use headers and sub-headers in your scripts using `#` and `##` before your text. Headings are written with a single hash-tag, followed by a space, as shown below. Subheadings are written with two hash-tags, followed by a space, also shown below. 
 
 ```{r}
 # Heading Text

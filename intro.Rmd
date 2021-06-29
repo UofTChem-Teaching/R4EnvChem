@@ -3,37 +3,26 @@
 
 # Introduction
 
-- What you'll learn (and won't learn)
-  - learn = basic understanding of R
-  - won't learn = *L33T hax0r Skillz*
-- How book is organized
-  - code is covered in chunks or monospaced (`like this`)
-- Prerequisite software
-- getting help
 
 ## Prerequisite software
 
-You'll need the following: 
-
-  - **R**
-  - **RStuido IDE**
-  - **tidyverse** family of packages
+Before we get started, you'll need to download *R*, *RStudio*, and the `tidyverse` family of packages. These are all open-source and free. Read on for instructions on downloading all three. 
   
 ### Downloading R
 
-R is a free software environment for statisical computing and graphics. It's hosted on the Comprehensive R Archive Network (CRAN). R is one of the most popular programming languages for statisticians and scientist alike. [You can download the latest build for your operating system here](https://cloud.r-project.org/).
+R is a free software environment for statistical computing and graphics. It's hosted on the Comprehensive R Archive Network (CRAN). R is one of the most popular programming languages for statisticians and scientist alike. [You can download the latest build for your operating system here](https://cloud.r-project.org/).
 
 ### Downloading RStudio IDE
 
 RStudio is the *integrated development environment* of choice when working with R. It's where you'll actually be typing your code and interacting with R. [You can download the latest version of RStudio here](https://www.rstudio.com/products/rstudio/download/#download). 
 
-Once you have R and RStudio installed go ahead and open up RStudio. You should see a window broken up into three panes, highlighted below: 
+Once you have R and RStudio installed go ahead and open up RStudio. Once you open Studio, you'll be greeted with an interface divided into numerous panes We've highlighted the major ones in the image below:  
 
 ![The RStudio interface with annottated regions](images/Rstudio_startup_regions.png){width=100%}
 
 Each pane serves a specific role: 
 
-  - **The console** allows you to directly type and run your code. It's where your R code will eventually run. 
+  - **The console** allows you to directly type and run your code. It also provides messages, warnings, and errors from any code you run. 
   - **The environment**  window lists all variables, data, and functions you've created since the start of your coding session.  
   - **The viewer** shows your outputs, help documents, etc. which each has their own tab. 
   
@@ -41,7 +30,7 @@ The version of R you just installed should appear in the main window, or console
 
 ### Installing packages
 
-Packages are previously written snippets of code that extend the capabilities of base R. Typically packages are created to address specific issues or worfklows in different types of analysis. This book will make frequent use of a family of pacakges called the `tidyverse`. These pacakges all share a common though process and integrate naturally with one another. 
+Packages are previously written snippets of code that extend the capabilities of base R. Typically packages are created to address specific issues or workflows in different types of analysis. This book will make frequent use of a family of packages called the `tidyverse`. These packages all share a common though process and integrate naturally with one another. 
 
 You can download the entire suite of `tidyverse` packages by simply copy and pasting the following code into the console and pressing 'enter'.
 
@@ -49,7 +38,7 @@ You can download the entire suite of `tidyverse` packages by simply copy and pas
 install.packages("tidyverse")
 ```
 
-You'll see a flurry of lines printed to the console indicating the status of the installation. Once installed you won't be able to use these fuctions until you load it with `library()`. Enter the code below into the console to load the `tidyverse` package.
+You'll see a flurry of lines printed to the console indicating the status of the installation. Once installed you won't be able to use these functions until you load it with `library()`. Enter the code below into the console to load the `tidyverse` package.
 
 ```{r}
 library(tidyverse)
@@ -63,8 +52,28 @@ As we've already seen, you can run bits of R code directly from the console. Thr
 2 + 2
 ```
 
-Noticed that both the code (the first part) and what the code outputs (the second part) are shown. Throughout this book code outputs will be proceeded by `##`. We'll explore more about running R code in the next chapter.
+Noticed that both the code (the first part) and what the code outputs (the second part) are shown. Throughout this book code outputs will be proceeded by `##`. You can run code directly from the console. It's handy for short and sweet snippets of code, something that can be typed in a single line. Examples of this is the `install.packages()` function, or to use R as a calculator:
 
+```{r}
+2 * 3
+```
+```{r}
+pi * (10/2)
+```
+ 
+However, running code like this often isn't very legible. Imagine printing a book one sentence at a time, you couldn't really go back and edit earlier work because it's already printed. That's why we write out code in *scripts*. *Scripts* are similar to recipes, in that they're a series of instructions that R evaluates from the top of the script to the bottom. More importantly, writing your code out in a script makes it *more readable* you humans (presumably this includes you). This cannot be understated as your code will evaluate in seconds or minutes whereas it may take you hours to understand what it does.
+
+Let's open up a new script in RStudio by going to *File*->*New File*->*R Script*, or by clicking on the highlighted button in the image below.
+
+![Figure 2.5: Opening a new script in RStudio.](images/Rstudio_newscript.png){width=100%}
+
+This should open up a new window in the RStudio interface, as shown in the following image.
+
+![Figure 2.6: Scripts window in RStudio.](images/Rstudio_scriptwindow.png){width=100%}
+
+You can copy and paste the code above into the script, save it, edit it, etc. and ultimately run specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the "Run" button in the top right corner of the Scripts window. Whenever you copy code blocks from this website (or other online sources). If you're reading this book online, you can easily copy an entire block of code using the `copy` button in the top right corner of the code block. 
+
+We'll dive into the basics of coding in R in the next chapter. 
 
 ## Customizing RStudio
 
@@ -77,7 +86,7 @@ You can customize the appearance of your RStudio interface by clicking *Tools*->
 
 ## Where to get help
 
-While it's often tempting to contact your TA or Professor at the sign of first trouble, it's often better to try and resolve your issues on your own, especially if they're related to technical issues in R. Given the popularity of R, if you've run into an issue, someone else has too... and they've complained about it and someone else has solved it! An often unappreciated aspect of coding/data science is knowing how to get help, how to search for it, and how to translate someone's solutions to your unique situation. <!-- needs to be fleshed out some, mostly just placeholder text at this point, DH --> 
+While it's often tempting to contact your TA or Professor at the first sign of trouble, it's often better to try and resolve your issues on your own, especially if they're related to technical issues in R. Given the popularity of R, if you've run into an issue, someone else has too... and they've complained about it and someone else has solved it! An often unappreciated aspect of coding/data science is knowing how to get help, how to search for it, and how to translate someone's solutions to your unique situation. <!-- needs to be fleshed out some, mostly just placeholder text at this point, DH --> 
 
 Places to get help include: 
 
