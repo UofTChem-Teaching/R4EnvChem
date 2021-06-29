@@ -1,6 +1,6 @@
-# R Workflows
+# Working with R
 
-Just like there's a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there's a workflow when working with R. This is by no means the only way to work, but it's tried and true and will serve you well as you tackle your coursework. 
+Just like there's a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there's a workflow when working with R. This is by no means the only way to work, but it's tried and true and will serve you well as you tackle your coursework. We'll start from th
 
 <!-- This is stuff Steven wrote, feel free to modify as you need --> 
 
@@ -80,6 +80,55 @@ Leave the script open. Let's close the R project now. You can close the current 
 ![Figure 3.5: How to close an R Project.](images/Rstudio_closeproject.png)
 
 Now close RStudio. When you open RStudio again, no script will be open! The same is true when you work outside of an R project. 
+
+  
+## Script formatting
+
+You should now be familiar with how to open the Scripts window, as well as some of the advantages of typing your code into this window rather than into the console directly. Before you write your first script, let's review some basic script formatting. 
+
+Before you enter any code into your script, it is good practice to fill the first few lines with text comments which indicate the script's title, author, and creation or last edit date. You can create a comment in a script by typing `#` before your text. An example is given below.
+
+```{r}
+#Title: Ozone time series script
+#Author: Georgia Green
+#Date: January 8, 2072
+```
+
+Below your script header, you should include any packages that need to be loaded for the script to run. Including the necessary packages at the top of the script allows you, and anyone you share your code with, to easily see what packages they need to install. This also means that if you decide to run an entire script at once, the necessary packages will always be loaded before any subsequent code that requires those packages to work. 
+
+The first few lines of your scripts should look something like the following.
+
+```{r eval = FALSE}
+#Title: Ozone time series script
+#Author: Georgia Green
+#Date: January 8, 2072
+
+#import packages
+library(dplyr)
+library(ggplot2)
+
+```
+
+The rest of your script should be dedicated to executable code. It is good practice to include text comments throughout the script, in between different chunks of code, to remind yourself what the different sections of code are for (i.e., `#import packages` in the above example). This also makes it easy for anyone you share your code with to understand what you're trying to do with different sections within the script.
+
+You can also use headers and sub-headers in your scripts using `#` and `##` before your text. Headings are written with a single hash-tag, followed by a space, as shown below. Subheadings are written with two hash-tags, followed by a space, also shown below. 
+
+```{r}
+# Heading Text
+## Subheading Text
+```
+
+Headings and subheadings are picked up by RStudio and displayed in the Document Outline box. You can open the Document Outline box by clicking the button highlighted in the image below. Use of these headings allows easy navigation of long scripts, as you can navigate between sections using the Document Outline box. 
+
+![Figure 2.8: How to open the Document Outline box.](images/Rstudio_documentoutline.png){width=100%}
+
+## Viewing data and code simultaneously
+
+Before we get into more about coding and workflows, you may want to know how to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio (may not be compatible with Mac), or by clicking the button highlighted in the image below. 
+
+![Figure 2.9: How to open an R script/plot/data set in a new window.](images/Rstudio_newwindow.png){width=100%}
+
+Now that you're familiar with navigating RStudio and some basic coding building blocks, let's move over to Chapter 3, where we'll review a normal workflow in R.
 
 ## Saving things in R
 

@@ -10,9 +10,9 @@ Now that you know how to navigate and run code in RStudio, we'll take a look at 
 (2 * 3) + (5 * 4)
 ```
 
-### Variables
+## Variables
 
-Variables in R, like those you've encouintered in math class, can only have one value. Unliuke the variables in math classes, you can change that value whenever you want. Another way to think about it is to treat variables in R like a box which you use to store a value. Then you can simply open the box somewhere else without having to worry about the hassle of what's inside. 
+Variables in R, like those you've encountered in math class, can only have one value. Unlike the variables in math classes, you can change that value whenever you want. Another way to think about it is to treat variables in R like a box which you use to store a value. Then you can simply open the box somewhere else without having to worry about the hassle of what's inside. 
 
 You can assign the outputs variables using `<-`, as shown below. 
 
@@ -20,7 +20,7 @@ You can assign the outputs variables using `<-`, as shown below.
 x <- 12
 x
 ```
-In addition to reading code top to bottom, you often *read it from right to left*. `x <- 12` would be read as "store the numerical value of 6.0221e23 into the variable x". The second line of code, `x`, simply returns the value stored inside `x`. You can now use this variable in snippets of code:
+In addition to reading code top to bottom, you often *read it from right to left*. `x <- 12` would be read as "take the value 6.0221e23 and store it into the variable x". The second line of code, `x`, simply returns the value stored inside `x`. You can now use this variable in snippets of code:
 
 ```{r}
 x
@@ -28,38 +28,23 @@ x <- x * 6.022e23
 x
 ```
 
-Remember, we're evaluating from right to left, so the code above is taking the number `6.022e23` and multiplying it by the value of `x`, which is 12 and storing that value back into `x`. Note that variable names are case sensitive, so if your variable is named `x` and you type `X` into the console, R will not be able to print the contents of `x`.
-
-Variables can containe single values, character strings (text) or logical statements (`TRUE` or `FALSE`) to variables using the same notation. 
- 
-```{r}
-fifty <- 50
-fifty
-
-howdy <- "Howdy world!"
-howdy
-
-t <- TRUE
-t
-```
-
-Variable names can consist of letters, numbers, dots (`.`) and/or underlines (`_`). Before you create variables of your own. Here are some rules and guidelines for naming variables in R: 
+Remember, we're evaluating from right to left, so the code above is taking the number `6.022e23` and multiplying it by the value of `x`, which is 12 and storing that value back into `x`. Note that variable names are case sensitive, so if your variable is named `x` and you type `X` into the console, R will not be able to print the contents of `x`. Variable names can consist of letters, numbers, dots (`.`) and/or underlines (`_`). Before you create variables of your own. Here are some rules and guidelines for naming variables in R: 
 
   - **Rules** dictated by R
-    - names must begin with a letter or with the dot character, as long as not followed by a number. `var` and `.var` are acceptable.
-    - Variable names *cannot* start with a number or the `.` character cannot be preceeded by  number. `var1` is acceptable, `1var` and `.1var` are not. 
-    - Variable names *cannot* contain a space. `var 1` is interperated as two separate values, `var` and `1`. 
-    - Certain words are reserved for R, and cannot be used as variable names. These include, but are not limited to, `if`, `else`, `while`, `function`, `for`, `in`, `next`, `break`, `TRUE`, `FALSE`, `NULL`, `Inf`, `NA`, and `NaN
+    - names must begin with a letter or with the dot character. `var` and `.var` are acceptable.
+    - Variable names *cannot* start with a number or the `.` character cannot be preceded by  number. `var1` is acceptable, `1var` and `.1var` are not. 
+    - Variable names *cannot* contain a space. `var 1` is interpreted as two separate values, `var` and `1`. 
+    - Certain words are reserved for R, and cannot be used as variable names. These include, but are not limited to, `if`, `else`, `while`, `function`, `for`, `in`, `next`, `break`, `TRUE`, `FALSE`, `NULL`, `Inf`, `NA`, and `NaN`
 
 Good names for variables are short, sweet, and easy to type while also being somewhat descriptive. For example, let's say you have an air pollution data set. A good name to assign the data set to would be `airPol` or `air_pol`, as these names tell us what is contained in the data set and are easy to type. A bad name for the data set would be `airPollution_NOx_O3_June20_1968`. While this name is much more descriptive than the previous names, it will take you a long time to type, and will become a bit of a nuisance when you have to type it 10+ times to refer to the data set in a single script. Please refer to the [*Style Guide*](http://adv-r.had.co.nz/Style.html) found in *Advanced R* by H. Wickham for more information. 
 
-### Data Types
+## Data Types
 
 Data types refer to how data is stored and handled by and in R. You can really get into the weeds on this, but we'll focus on the most common types so you can get started on your work. Firstly, here are the data types you'll likely be working with:
 
   - **character**: `"a"`, `"howdy"`, `"1"`, is used to represent string values in R. Basically it's text that you'd read. Note the quotation marks and the fact that `"1"`, despite being a number, is stored as a character.
   - **numeric** (real or decimal): `2`, `3.14`, `6.022e23`.
-  - **intgeger**: `2L`, note the 'L' tells R this is an integer. 
+  - **integer**: `2L`, note the 'L' tells R this is an integer. 
   - **logical**: either `TRUE` or `FALSE` 
   
 There are some helpful functions to test the data type of a value in R as a frequent source of error and frustration are values stored in the wrong data type. For example: 
@@ -68,17 +53,16 @@ There are some helpful functions to test the data type of a value in R as a freq
 x <- "6"
 
 x / 2
-
 ```
 You'll see the error above frequently, and it's simply saying you're trying to do math on something you can't do math on. You might think if x is 6, why can't I divide it by 2? Let's see what type of data `x` is: 
 
 ```{r}
-is.numeric(x)
-is.logical(x)
-is.integer(x)
-is.character(x)
+is.numeric(x)   # test if numeric 
+is.logical(x)   # test if logical
+is.integer(x)   # test if integer 
+is.character(x) # test if character
 ```
-So the value of `x` is a character, in otherwords R treats it as a word, and we can't do math on that (think, how would you divide a word by a number?). So let's convert the data type of `x` to numeric to proceed. 
+So the value of `x` is a character, in other words R treats it as a word, and we can't do math on that (think, how would you divide a word by a number?). So let's convert the data type of `x` to numeric to proceed. 
 
 ```{r}
 x <- as.numeric(x)
@@ -86,16 +70,18 @@ is.numeric(x)
 x / 2
 ```
 
-So we've converted our chjracter string `"6"` to the numerical value `6`. Keep in mind there are other conversion functions which are described [elsewhere](https://www.geeksforgeeks.org/conversion-functions-in-r-programming/), but you can't always convert types. In the above example we could convert a chracter to numeric because it was ultimately a number, but we couldn't do the same if the value of `x` was `"six"`. 
+So we've converted our character string `"6"` to the numerical value `6`. Keep in mind there are other conversion functions which are described [elsewhere](https://www.geeksforgeeks.org/conversion-functions-in-r-programming/), but you can't always convert types. In the above example we could convert a character to numeric because it was ultimately a number, but we couldn't do the same if the value of `x` was `"six"`. 
   
-### Data Structures
+## Data Structures
 
-Data structures refers to how R stores data. Again, it's easy to get lsot in the weesd here so we'll focus on the most common and useful data types for your work. The vast majority of your work will be with data frames. This is data arranged in columns and rows, similar to how it looks in *Excel*. Here's an example of a data frame: 
+Data structures refers to how R stores data. Again, it's easy to get lost in the weeds here so we'll focus on the most common and useful data types for your work which will overwhelmingly be data frames. Data frames consist of data stored in rows and columns. If you've ever worked with a spreadsheet (i.e. *Excel*), it's essentially like that with the caveat that *all data stored in a column must be of the same type*. Again, different columns can have different data types, but *within* a column all the data needs to be the same type. R will convert your data otherwise to make it all the same. A common error is a single character in a column of numerical values leading to the entire column to be interpreted as character values. Errors like this most often stem from errors in recording and importing your data so be careful!
+
+Let's import some data to see a data frame:
 
 ```{r, message = FALSE}
 airPol <- read_csv("data/2018-07-01_60430_Toronto_ON.csv")
 
-# datatable so you can browse the data online
+# data table so you can browse the data online
 DT::datatable(airPol)
 ```
 
@@ -106,11 +92,23 @@ The above is air quality data measured in downtown Toronto around July 2018. Som
   - `pollutant` for the chemical measured
   - `concentration` for the measured concentration in parts-per-million (ppm). 
 
-R has several data structures which will be briefly introduced here. There are many freely available resources online which dive more in depth into different data structures in R. If you are interested in learning more about different structures, you can check out the *Data structures* chapter of [*Advanced R*](http://adv-r.had.co.nz/Data-structures.html) by Hadley Wickham, one of the authors of the *R for Data Science* referenced in the Introduction.
+This data is stored **tidy**, which is to say each column is a variable and each row is an observation. So reading the first row, we know that the Toronto 60430 station on 2018-07-01 at midnight measured ambient O~3~ concentrations of 46 ppm. The concept of tidy data is important and is integral to working in R. It's discussed further in [Tidying your data]. For now, it allows us to easily plot our data using the `ggplot2` package (discussed further in [Visualizations]):
 
-Data structures in R include vectors, lists, matrices, and data frames. Vectors and lists are examples of one dimensional data structures, while matrices and data frames are examples of two dimensional data structures.
+```{r}
+library(tidyverse)
 
-**Vectors** contain multiple elements of the same type; either numeric, character (text), logical, or integer. Vectors are created using `c()`, which is short for combine. Some examples of vectors are shown below.
+ggplot(data = airPol, 
+       aes(x = date.time, 
+           y = concentration, 
+           colour = pollutant)) +
+  geom_line()
+```
+
+### Other data structures
+
+R has several other data structures. They aren't as frequently used, but it's worth being aware of their existence. Other structures include: 
+
+  - **Vectors** contain multiple elements *of the same type*; either numeric, character (text), logical, or integer. Vectors are created using `c()`, which is short for combine. A data frame is just multiple vectors arranged into columns. Some examples of vectors are shown below. 
 
 ```{r}
 num <- c(1, 2, 3, 4, 5)
@@ -122,8 +120,7 @@ char
 log <- c(T, T, T, F, F, F)
 log
 ```
-
-**Lists** are similar to vectors in that they are one dimensional data structures which contain multiple elements. However, lists can contain multiple elements of different types, while vectors only contain a single type of data. You can create lists using `list()`. Some examples of lists are shown below. You can use `str()` to reveal the different components of a list, in a more detailed format than if you were to simply type the assigned name of the list.
+  - **Lists** are similar to vectors in that they are one dimensional data structures which contain multiple elements. However, lists can contain multiple elements of different types, while vectors only contain a single type of data. You can create lists using `list()`. Some examples of lists are shown below. You can use `str()` to reveal the different components of a list, in a more detailed format than if you were to simply type the assigned name of the list.
 
 ```{r}
 hi <- list("Hello", c(5,10,15,20), c(T, T, F))
@@ -131,88 +128,18 @@ str(hi)
 hi
 ```
 
-**Matrices** and **data frames** are two dimensional data structures, similar to tables you would create in Excel. Matrices are created using `matrix()`, and three internal arguments; `data`, `ncol`, and `nrow`. An example of a matrix is shown below.
+There are many freely available resources online which dive more in depth into different data structures in R. If you are interested in learning more about different structures, you can check out the  [*Data structure*](http://adv-r.had.co.nz/Data-structures.html) chapter of *Advanced R* by Hadley Wickham.
+
+## R packages and functions
+
+Functions are bits of code written to execute a specific task. They offer a convenient means to reduce the amount of typing while making code more reliable and readable. Earlier we use the `ggplot` function to create a time series plot of ambient pollutant measurements in Toronto. We could have made a similar plot using functions written in base R, but often other people have done this and created improved functions to meet there's and others needs. Another example of packages is the `tidyverse` suite of packages that are the base of this book as shown in [Installing packages]. 
+
+An oft unappreciated aspect of packages is that they not only contain functions we can use, but documentation. Documentation provides a description of the function (what it does), what arguments it takes, details, and working examples.Often the easiest way to learn how to use a function is to take a working example and change it bit by bit to see how it works etc. To see documentation check the "help" tab in the "outputs" window or type a question mark in front of a functions name: 
 
 ```{r}
-mat <- matrix(data = c(3, 4, 1, 6, 2, 9), ncol = 3, nrow = 2)
-mat
+# Takes you to the help document for the ggplot function
+?ggplot
 ```
-
-Data frames are lists of equal-length vectors. While they are two dimensional data structures like matrices, data frames also share properties with one dimensional lists. Data frames are created using `data.frame()`.
-
-### R packages and functions
-
-While there are many functions and operations available in base R, sometimes you may need to perform a task which base R functions do not cover. Fortunately, there are many R packages freely available online, each with their own suite of functions and capabilities. Some commonly used packages for data visualization and organization include `ggplot2` and `dplyr`. These are both included in the `tidyverse` package, which will be used in subsequent chapters.
-
-In order to use an R package, you need to install the package in R. Usually this is done in the console, using the command `install.packages()`. You would then load the package into R, using the command `library()`. The `ggplot2` package is installed and loaded below.
-
-```{r eval = FALSE}
-install.packages("ggplot2")
-library(ggplot2)
-```
-
-While you only need to install a package once, you will need to reload it every time you start a new R session or open a new R project. We will expand on R sessions and R projects Chapter 3.
-
-Now that we have installed and loaded `ggplot2`, we can use the `ggplot` function to to visualize some data. First, we're going load the `readr` package, and use the `read_csv()` function to import some ozone concentration data. We will then use `ggplot()` with `geom_point()` to plot the ozone concentration over time in a scatter plot.
-
-```{r message = FALSE}
-#load relevant packages
-library(readr)
-library(ggplot2)
-
-#import ozone data set
-ozone <- read_csv("./data/Ozone_oxidationexp.csv")
-
-#plot ozone concentration vs. time
-ggplot(data = ozone, aes(x = Time, y = Concentration)) +
-  geom_point() + ggtitle("Ozone concentration over a 5 hr experiment") +
-  ylab ("Concentration (ppb)")
-```
+You can also write you're own functions. Please see [Programming with R] for additional details. 
   
-## Script formatting
-
-You should now be familiar with how to open the Scripts window, as well as some of the advantages of typing your code into this window rather than into the console directly. Before you write your first script, let's review some basic script formatting. 
-
-Before you enter any code into your script, it is good practice to fill the first few lines with text comments which indicate the script's title, author, and creation or last edit date. You can create a comment in a script by typing `#` before your text. An example is given below.
-
-```{r}
-#Title: Ozone time series script
-#Author: Georgia Green
-#Date: January 8, 2072
-```
-
-Below your script header, you should include any packages that need to be loaded for the script to run. Including the necessary packages at the top of the script allows you, and anyone you share your code with, to easily see what packages they need to install. This also means that if you decide to run an entire script at once, the necessary packages will always be loaded before any subsequent code that requires those packages to work. 
-
-The first few lines of your scripts should look something like the following.
-
-```{r eval = FALSE}
-#Title: Ozone time series script
-#Author: Georgia Green
-#Date: January 8, 2072
-
-#import packages
-library(dplyr)
-library(ggplot2)
-
-```
-
-The rest of your script should be dedicated to executable code. It is good practice to include text comments throughout the script, in between different chunks of code, to remind yourself what the different sections of code are for (i.e., `#import packages` in the above example). This also makes it easy for anyone you share your code with to understand what you're trying to do with different sections within the script.
-
-You can also use headers and sub-headers in your scripts using `#` and `##` before your text. Headings are written with a single hash-tag, followed by a space, as shown below. Subheadings are written with two hash-tags, followed by a space, also shown below. 
-
-```{r}
-# Heading Text
-## Subheading Text
-```
-
-Headings and subheadings are picked up by RStudio and displayed in the Document Outline box. You can open the Document Outline box by clicking the button highlighted in the image below. Use of these headings allows easy navigation of long scripts, as you can navigate between sections using the Document Outline box. 
-
-![Figure 2.8: How to open the Document Outline box.](images/Rstudio_documentoutline.png){width=100%}
-
-## Viewing data and code simultaneously
-
-Before we get into more about coding and workflows, you may want to know how to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio (may not be compatible with Mac), or by clicking the button highlighted in the image below. 
-
-![Figure 2.9: How to open an R script/plot/data set in a new window.](images/Rstudio_newwindow.png){width=100%}
-
 Now that you're familiar with navigating RStudio and some basic coding building blocks, let's move over to Chapter 3, where we'll review a normal workflow in R.
