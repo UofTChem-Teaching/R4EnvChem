@@ -2,7 +2,7 @@
 knit: "bookdown::render_book"
 title: "R for Environmental Chemists"
 author: "David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D'eon"
-date: "`r Sys.Date()`"
+date: "Last built on:`r Sys.Date()`"
 url: 'https://davidrosshall.github.io/R4EnvChem/'
 site: bookdown::bookdown_site
 description: "This is a proof-of-concept for a further full length textbook."
@@ -18,6 +18,14 @@ Howdy,
   
 This website is more-or-less the living results of a collaborative project between us. Our ultimate goal is not to be an exhaustive resource for all environmental chemist. Rather, we're focused on developing broadly applicable data science course content (tutorials and recipes) based in `R` for undergraduate environmental chemistry courses. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum. 
 
+This book will ultimately be broken up into four sections: 
+
+  - **Section 1** is a general guide for the complete novice that will help you install, setup, and run R code. It features a useful tutorial exercise to make sure you have a working script before starting courses. 
+  - **Section 2** introduces data analysis workflows and showcases *how* you can use R and the `tidyverse` to tackle the vast majority of the data science/analysis problems you'll encounter in undergraduate environmental chemistry courses. 
+  - **Section 3** explores the theory behind the most common data analysis practices in environmental chemistry. These include linear regression analysis, plotting, etc. 
+  - **Section 4** consist of chapters specific to individual laboratory experiments. They rely upon knowledge from the previous three sections to introduce concepts unique to individual labs. 
+
+We recommend everyone reads over the first two sections in sequential order to understand the general R workflow employed in this, and all other, environmental chemistry courses. 
 
 ## Authors {-}
   
@@ -28,6 +36,5 @@ This website is more-or-less the living results of a collaborative project betwe
   - [Kristen](https://www.abbattgroup.ca/members/) at [kristen.yeh@mail.utoronto.ca](kristen.yeh@mail.utoronto.ca)
   - [Dr. D'eon](https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon) at [jessica.deon@utoronto.ca](jessica.deon@utoronto.ca)
   
-  
-  
+
   
