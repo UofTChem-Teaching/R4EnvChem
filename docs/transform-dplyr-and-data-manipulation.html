@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Transform: dplyr and data manipulation | R for Environmental Chemists</title>
+  <title>Chapter 9 Transform: dplyr and data manipulation | R for Environmental Chemists</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Transform: dplyr and data manipulation | R for Environmental Chemists" />
+  <meta property="og:title" content="Chapter 9 Transform: dplyr and data manipulation | R for Environmental Chemists" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://davidrosshall.github.io/R4EnvChem/" />
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Transform: dplyr and data manipulation | R for Environmental Chemists" />
+  <meta name="twitter:title" content="Chapter 9 Transform: dplyr and data manipulation | R for Environmental Chemists" />
   
   <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
   
@@ -24,7 +24,6 @@
 <meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
 
 
-<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -166,54 +165,56 @@ div.csl-indent {
 <li><strong><a href="./">R for Environmental Chemistry</a></strong></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Howdy</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="part"><span><b>Section 1: Getting Setup in R</b></span></li>
+<li class="chapter" data-level="1" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>1</b> Installing R</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prerequisite-software"><i class="fa fa-check"></i><b>1.1</b> Prerequisite software</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#where-to-get-help"><i class="fa fa-check"></i><b>1.2</b> Where to get help</a></li>
+<li class="chapter" data-level="1.1" data-path="installing-r.html"><a href="installing-r.html#prerequisite-software"><i class="fa fa-check"></i><b>1.1</b> Prerequisite software</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="installing-r.html"><a href="installing-r.html#r"><i class="fa fa-check"></i><b>1.1.1</b> R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="installing-r.html"><a href="installing-r.html#downloading-rstudio-ide"><i class="fa fa-check"></i><b>1.1.2</b> Downloading RStudio IDE</a></li>
+<li class="chapter" data-level="1.1.3" data-path="installing-r.html"><a href="installing-r.html#installing-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing packages</a></li>
 </ul></li>
-<li class="part"><span><b>Getting Setup in R</b></span></li>
-<li class="chapter" data-level="2" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>2</b> Running R Code</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="running-r-code.html"><a href="running-r-code.html#navigating-rstudio"><i class="fa fa-check"></i><b>2.1</b> Navigating RStudio</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="running-r-code.html"><a href="running-r-code.html#console"><i class="fa fa-check"></i><b>2.1.1</b> Console</a></li>
-<li class="chapter" data-level="2.1.2" data-path="running-r-code.html"><a href="running-r-code.html#environment"><i class="fa fa-check"></i><b>2.1.2</b> Environment</a></li>
-<li class="chapter" data-level="2.1.3" data-path="running-r-code.html"><a href="running-r-code.html#viewer"><i class="fa fa-check"></i><b>2.1.3</b> Viewer</a></li>
-<li class="chapter" data-level="2.1.4" data-path="running-r-code.html"><a href="running-r-code.html#customizing-rstudio"><i class="fa fa-check"></i><b>2.1.4</b> Customizing RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="installing-r.html"><a href="installing-r.html#running-r-code"><i class="fa fa-check"></i><b>1.2</b> Running R Code</a></li>
+<li class="chapter" data-level="1.3" data-path="installing-r.html"><a href="installing-r.html#customizing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Customizing RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="installing-r.html"><a href="installing-r.html#where-to-get-help"><i class="fa fa-check"></i><b>1.4</b> Where to get help</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="running-r-code.html"><a href="running-r-code.html#where-to-run-code-in-rstudio"><i class="fa fa-check"></i><b>2.2</b> Where to run code in RStudio</a>
+<li class="chapter" data-level="2" data-path="r-coding-basics.html"><a href="r-coding-basics.html"><i class="fa fa-check"></i><b>2</b> R coding basics</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="running-r-code.html"><a href="running-r-code.html#scripts-vs.-console"><i class="fa fa-check"></i><b>2.2.1</b> Scripts vs. console</a></li>
+<li class="chapter" data-level="2.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-types"><i class="fa fa-check"></i><b>2.2</b> Data Types</a></li>
+<li class="chapter" data-level="2.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-structures"><i class="fa fa-check"></i><b>2.3</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#other-data-structures"><i class="fa fa-check"></i><b>2.3.1</b> Other data structures</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="running-r-code.html"><a href="running-r-code.html#coding-building-blocks"><i class="fa fa-check"></i><b>2.3</b> Coding building blocks</a>
+<li class="chapter" data-level="2.4" data-path="r-coding-basics.html"><a href="r-coding-basics.html#r-packages-and-functions"><i class="fa fa-check"></i><b>2.4</b> R packages and functions</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="running-r-code.html"><a href="running-r-code.html#variable-assignment"><i class="fa fa-check"></i><b>2.3.1</b> Variable assignment</a></li>
-<li class="chapter" data-level="2.3.2" data-path="running-r-code.html"><a href="running-r-code.html#naming-variables"><i class="fa fa-check"></i><b>2.3.2</b> Naming variables</a></li>
-<li class="chapter" data-level="2.3.3" data-path="running-r-code.html"><a href="running-r-code.html#basic-data-structures"><i class="fa fa-check"></i><b>2.3.3</b> Basic data structures</a></li>
-<li class="chapter" data-level="2.3.4" data-path="running-r-code.html"><a href="running-r-code.html#r-packages-and-functions"><i class="fa fa-check"></i><b>2.3.4</b> R packages and functions</a></li>
+<li class="chapter" data-level="2.4.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#ggplot2"><i class="fa fa-check"></i><b>2.4.1</b> ggplot2</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#function-documentation"><i class="fa fa-check"></i><b>2.4.2</b> Function Documentation</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="running-r-code.html"><a href="running-r-code.html#script-formatting"><i class="fa fa-check"></i><b>2.4</b> Script formatting</a></li>
-<li class="chapter" data-level="2.5" data-path="running-r-code.html"><a href="running-r-code.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>2.5</b> Viewing data and code simultaneously</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="r-workflows.html"><a href="r-workflows.html"><i class="fa fa-check"></i><b>3</b> R Workflows</a>
+<li class="chapter" data-level="3" data-path="working-with-r.html"><a href="working-with-r.html"><i class="fa fa-check"></i><b>3</b> Working with R</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-workflows.html"><a href="r-workflows.html#paths-and-directories"><i class="fa fa-check"></i><b>3.1</b> Paths and directories</a></li>
-<li class="chapter" data-level="3.2" data-path="r-workflows.html"><a href="r-workflows.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>3.2</b> Creating an RStudio project</a>
+<li class="chapter" data-level="3.1" data-path="working-with-r.html"><a href="working-with-r.html#paths-and-directories"><i class="fa fa-check"></i><b>3.1</b> Paths and directories</a></li>
+<li class="chapter" data-level="3.2" data-path="working-with-r.html"><a href="working-with-r.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>3.2</b> Creating an RStudio project</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="r-workflows.html"><a href="r-workflows.html#the-value-of-r-projects"><i class="fa fa-check"></i><b>3.2.1</b> The value of R projects</a></li>
+<li class="chapter" data-level="3.2.1" data-path="working-with-r.html"><a href="working-with-r.html#the-value-of-r-projects"><i class="fa fa-check"></i><b>3.2.1</b> The value of R projects</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="r-workflows.html"><a href="r-workflows.html#saving-things-in-r"><i class="fa fa-check"></i><b>3.3</b> Saving things in R</a>
+<li class="chapter" data-level="3.3" data-path="working-with-r.html"><a href="working-with-r.html#workspace-and-whats-real"><i class="fa fa-check"></i><b>3.3</b> Workspace and what’s real</a></li>
+<li class="chapter" data-level="3.4" data-path="working-with-r.html"><a href="working-with-r.html#saving-r-scripts"><i class="fa fa-check"></i><b>3.4</b> Saving R scripts</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="r-workflows.html"><a href="r-workflows.html#what-should-i-save"><i class="fa fa-check"></i><b>3.3.1</b> What should I save?</a></li>
+<li class="chapter" data-level="3.4.1" data-path="working-with-r.html"><a href="working-with-r.html#what-should-i-save"><i class="fa fa-check"></i><b>3.4.1</b> What should I save?</a></li>
+<li class="chapter" data-level="3.4.2" data-path="working-with-r.html"><a href="working-with-r.html#saving-objects"><i class="fa fa-check"></i><b>3.4.2</b> Saving objects</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="r-workflows.html"><a href="r-workflows.html#troubleshooting-error-messages"><i class="fa fa-check"></i><b>3.4</b> Troubleshooting error messages</a>
+<li class="chapter" data-level="3.5" data-path="working-with-r.html"><a href="working-with-r.html#script-formatting"><i class="fa fa-check"></i><b>3.5</b> Script formatting</a></li>
+<li class="chapter" data-level="3.6" data-path="working-with-r.html"><a href="working-with-r.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>3.6</b> Viewing data and code simultaneously</a></li>
+<li class="chapter" data-level="3.7" data-path="working-with-r.html"><a href="working-with-r.html#troubleshooting-error-messages"><i class="fa fa-check"></i><b>3.7</b> Troubleshooting error messages</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="r-workflows.html"><a href="r-workflows.html#script-diagnostics"><i class="fa fa-check"></i><b>3.4.1</b> Script diagnostics</a></li>
-<li class="chapter" data-level="3.4.2" data-path="r-workflows.html"><a href="r-workflows.html#reading-error-codes"><i class="fa fa-check"></i><b>3.4.2</b> Reading error codes</a></li>
+<li class="chapter" data-level="3.7.1" data-path="working-with-r.html"><a href="working-with-r.html#script-diagnostics"><i class="fa fa-check"></i><b>3.7.1</b> Script diagnostics</a></li>
+<li class="chapter" data-level="3.7.2" data-path="working-with-r.html"><a href="working-with-r.html#reading-error-codes"><i class="fa fa-check"></i><b>3.7.2</b> Reading error codes</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="using-r-markdown.html"><a href="using-r-markdown.html"><i class="fa fa-check"></i><b>4</b> Using R Markdown</a>
@@ -235,86 +236,87 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.6" data-path="using-r-markdown.html"><a href="using-r-markdown.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>4.3.6</b> Quick reference on R markdown syntax</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>Data Analysis in R</b></span></li>
-<li class="chapter" data-level="5" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>5</b> Intro to Data Analysis</a>
+<li class="chapter" data-level="5" data-path="r-tutorial-exercise.html"><a href="r-tutorial-exercise.html"><i class="fa fa-check"></i><b>5</b> R Tutorial Exercise</a></li>
+<li class="part"><span><b>Section 2: Data Analysis in R</b></span></li>
+<li class="chapter" data-level="6" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Intro to Data Analysis</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#further-reading"><i class="fa fa-check"></i><b>5.1</b> Further Reading</a></li>
+<li class="chapter" data-level="6.1" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#further-reading"><i class="fa fa-check"></i><b>6.1</b> Further Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>6</b> Importing data into R</a>
+<li class="chapter" data-level="7" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>7</b> Importing data into R</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#how-data-is-stored"><i class="fa fa-check"></i><b>6.1</b> How data is stored</a></li>
-<li class="chapter" data-level="6.2" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#read_csv"><i class="fa fa-check"></i><b>6.2</b> read_csv</a>
+<li class="chapter" data-level="7.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#how-data-is-stored"><i class="fa fa-check"></i><b>7.1</b> How data is stored</a></li>
+<li class="chapter" data-level="7.2" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#read_csv"><i class="fa fa-check"></i><b>7.2</b> read_csv</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#tibbles-vs.-data-frames"><i class="fa fa-check"></i><b>6.2.1</b> Tibbles vs. data frames</a></li>
+<li class="chapter" data-level="7.2.1" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#tibbles-vs.-data-frames"><i class="fa fa-check"></i><b>7.2.1</b> Tibbles vs. data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#importing-other-data-types"><i class="fa fa-check"></i><b>6.3</b> Importing other data types</a></li>
-<li class="chapter" data-level="6.4" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#saving-data"><i class="fa fa-check"></i><b>6.4</b> Saving data</a></li>
-<li class="chapter" data-level="6.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#further-reading-1"><i class="fa fa-check"></i><b>6.5</b> Further Reading</a></li>
+<li class="chapter" data-level="7.3" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#importing-other-data-types"><i class="fa fa-check"></i><b>7.3</b> Importing other data types</a></li>
+<li class="chapter" data-level="7.4" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#saving-data"><i class="fa fa-check"></i><b>7.4</b> Saving data</a></li>
+<li class="chapter" data-level="7.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html#further-reading-1"><i class="fa fa-check"></i><b>7.5</b> Further Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="tidying-your-data.html"><a href="tidying-your-data.html"><i class="fa fa-check"></i><b>7</b> Tidying your data</a>
+<li class="chapter" data-level="8" data-path="tidying-your-data.html"><a href="tidying-your-data.html"><i class="fa fa-check"></i><b>8</b> Tidying your data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="tidying-your-data.html"><a href="tidying-your-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>7.1</b> What is tidy data?</a></li>
-<li class="chapter" data-level="7.2" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tools-to-tidy-your-data"><i class="fa fa-check"></i><b>7.2</b> Tools to tidy your data</a>
+<li class="chapter" data-level="8.1" data-path="tidying-your-data.html"><a href="tidying-your-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>8.1</b> What is tidy data?</a></li>
+<li class="chapter" data-level="8.2" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tools-to-tidy-your-data"><i class="fa fa-check"></i><b>8.2</b> Tools to tidy your data</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="tidying-your-data.html"><a href="tidying-your-data.html#making-data-longer"><i class="fa fa-check"></i><b>7.2.1</b> Making data ‘longer’</a></li>
-<li class="chapter" data-level="7.2.2" data-path="tidying-your-data.html"><a href="tidying-your-data.html#making-data-wider"><i class="fa fa-check"></i><b>7.2.2</b> Making data ‘wider’</a></li>
-<li class="chapter" data-level="7.2.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#seperating-columns"><i class="fa fa-check"></i><b>7.2.3</b> Seperating columns</a></li>
-<li class="chapter" data-level="7.2.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#unitingcombining-columns"><i class="fa fa-check"></i><b>7.2.4</b> Uniting/combining columns</a></li>
-<li class="chapter" data-level="7.2.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#renaming-columnsheaders"><i class="fa fa-check"></i><b>7.2.5</b> Renaming columns/headers</a></li>
-<li class="chapter" data-level="7.2.6" data-path="tidying-your-data.html"><a href="tidying-your-data.html#rounding-numbers"><i class="fa fa-check"></i><b>7.2.6</b> Rounding numbers</a></li>
+<li class="chapter" data-level="8.2.1" data-path="tidying-your-data.html"><a href="tidying-your-data.html#making-data-longer"><i class="fa fa-check"></i><b>8.2.1</b> Making data ‘longer’</a></li>
+<li class="chapter" data-level="8.2.2" data-path="tidying-your-data.html"><a href="tidying-your-data.html#making-data-wider"><i class="fa fa-check"></i><b>8.2.2</b> Making data ‘wider’</a></li>
+<li class="chapter" data-level="8.2.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#seperating-columns"><i class="fa fa-check"></i><b>8.2.3</b> Seperating columns</a></li>
+<li class="chapter" data-level="8.2.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#unitingcombining-columns"><i class="fa fa-check"></i><b>8.2.4</b> Uniting/combining columns</a></li>
+<li class="chapter" data-level="8.2.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#renaming-columnsheaders"><i class="fa fa-check"></i><b>8.2.5</b> Renaming columns/headers</a></li>
+<li class="chapter" data-level="8.2.6" data-path="tidying-your-data.html"><a href="tidying-your-data.html#rounding-numbers"><i class="fa fa-check"></i><b>8.2.6</b> Rounding numbers</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tips-for-recording-data"><i class="fa fa-check"></i><b>7.3</b> Tips for recording data</a></li>
-<li class="chapter" data-level="7.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#further-reading-2"><i class="fa fa-check"></i><b>7.4</b> Further reading</a></li>
-<li class="chapter" data-level="7.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#chapter-references"><i class="fa fa-check"></i><b>7.5</b> Chapter References</a></li>
+<li class="chapter" data-level="8.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tips-for-recording-data"><i class="fa fa-check"></i><b>8.3</b> Tips for recording data</a></li>
+<li class="chapter" data-level="8.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#further-reading-2"><i class="fa fa-check"></i><b>8.4</b> Further reading</a></li>
+<li class="chapter" data-level="8.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#chapter-references"><i class="fa fa-check"></i><b>8.5</b> Chapter References</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html"><i class="fa fa-check"></i><b>8</b> Transform: dplyr and data manipulation</a>
+<li class="chapter" data-level="9" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html"><i class="fa fa-check"></i><b>9</b> Transform: dplyr and data manipulation</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#selecting-by-row-or-value"><i class="fa fa-check"></i><b>8.1</b> Selecting by row or value</a>
+<li class="chapter" data-level="9.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#selecting-by-row-or-value"><i class="fa fa-check"></i><b>9.1</b> Selecting by row or value</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#logical-oeprators"><i class="fa fa-check"></i><b>8.1.1</b> Logical oeprators</a></li>
+<li class="chapter" data-level="9.1.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#logical-oeprators"><i class="fa fa-check"></i><b>9.1.1</b> Logical oeprators</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#arranging-rows"><i class="fa fa-check"></i><b>8.2</b> Arranging rows</a></li>
-<li class="chapter" data-level="8.3" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#selecting-by-column-or-variable"><i class="fa fa-check"></i><b>8.3</b> Selecting by column or variable</a></li>
-<li class="chapter" data-level="8.4" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#adding-new-variables"><i class="fa fa-check"></i><b>8.4</b> Adding new variables</a>
+<li class="chapter" data-level="9.2" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#arranging-rows"><i class="fa fa-check"></i><b>9.2</b> Arranging rows</a></li>
+<li class="chapter" data-level="9.3" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#selecting-by-column-or-variable"><i class="fa fa-check"></i><b>9.3</b> Selecting by column or variable</a></li>
+<li class="chapter" data-level="9.4" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#adding-new-variables"><i class="fa fa-check"></i><b>9.4</b> Adding new variables</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#useful-mutate-function"><i class="fa fa-check"></i><b>8.4.1</b> Useful mutate function</a></li>
+<li class="chapter" data-level="9.4.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#useful-mutate-function"><i class="fa fa-check"></i><b>9.4.1</b> Useful mutate function</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#group-and-summarize-data"><i class="fa fa-check"></i><b>8.5</b> Group and summarize data</a>
+<li class="chapter" data-level="9.5" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#group-and-summarize-data"><i class="fa fa-check"></i><b>9.5</b> Group and summarize data</a>
 <ul>
-<li class="chapter" data-level="8.5.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#useful-summarize-functions"><i class="fa fa-check"></i><b>8.5.1</b> Useful summarize functions</a></li>
+<li class="chapter" data-level="9.5.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#useful-summarize-functions"><i class="fa fa-check"></i><b>9.5.1</b> Useful summarize functions</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#the-pipe-chaining-functions-together"><i class="fa fa-check"></i><b>8.6</b> The pipe: chaining functions together</a>
+<li class="chapter" data-level="9.6" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#the-pipe-chaining-functions-together"><i class="fa fa-check"></i><b>9.6</b> The pipe: chaining functions together</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#notes-on-piping"><i class="fa fa-check"></i><b>8.6.1</b> Notes on piping</a></li>
+<li class="chapter" data-level="9.6.1" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#notes-on-piping"><i class="fa fa-check"></i><b>9.6.1</b> Notes on piping</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#further-reading-3"><i class="fa fa-check"></i><b>8.7</b> Further reading</a></li>
+<li class="chapter" data-level="9.7" data-path="transform-dplyr-and-data-manipulation.html"><a href="transform-dplyr-and-data-manipulation.html#further-reading-3"><i class="fa fa-check"></i><b>9.7</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="programming-with-r.html"><a href="programming-with-r.html"><i class="fa fa-check"></i><b>9</b> Programming with R</a>
+<li class="chapter" data-level="10" data-path="programming-with-r.html"><a href="programming-with-r.html"><i class="fa fa-check"></i><b>10</b> Programming with R</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="programming-with-r.html"><a href="programming-with-r.html#functions"><i class="fa fa-check"></i><b>9.1</b> Functions</a></li>
-<li class="chapter" data-level="9.2" data-path="programming-with-r.html"><a href="programming-with-r.html#conditional-arguments"><i class="fa fa-check"></i><b>9.2</b> Conditional arguments</a>
+<li class="chapter" data-level="10.1" data-path="programming-with-r.html"><a href="programming-with-r.html#functions"><i class="fa fa-check"></i><b>10.1</b> Functions</a></li>
+<li class="chapter" data-level="10.2" data-path="programming-with-r.html"><a href="programming-with-r.html#conditional-arguments"><i class="fa fa-check"></i><b>10.2</b> Conditional arguments</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="programming-with-r.html"><a href="programming-with-r.html#piping-conditional-statements"><i class="fa fa-check"></i><b>9.2.1</b> Piping conditional statements</a></li>
+<li class="chapter" data-level="10.2.1" data-path="programming-with-r.html"><a href="programming-with-r.html#piping-conditional-statements"><i class="fa fa-check"></i><b>10.2.1</b> Piping conditional statements</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="programming-with-r.html"><a href="programming-with-r.html#when-to-use-functions"><i class="fa fa-check"></i><b>9.3</b> When to use functions</a></li>
-<li class="chapter" data-level="9.4" data-path="programming-with-r.html"><a href="programming-with-r.html#further-reading-4"><i class="fa fa-check"></i><b>9.4</b> Further Reading</a></li>
+<li class="chapter" data-level="10.3" data-path="programming-with-r.html"><a href="programming-with-r.html#when-to-use-functions"><i class="fa fa-check"></i><b>10.3</b> When to use functions</a></li>
+<li class="chapter" data-level="10.4" data-path="programming-with-r.html"><a href="programming-with-r.html#further-reading-4"><i class="fa fa-check"></i><b>10.4</b> Further Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>10</b> Modelling</a>
+<li class="chapter" data-level="11" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>11</b> Modelling</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="modelling.html"><a href="modelling.html#base-r-linear-model"><i class="fa fa-check"></i><b>10.1</b> Base R Linear Model</a></li>
-<li class="chapter" data-level="10.2" data-path="modelling.html"><a href="modelling.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>10.2</b> Cleaning up model ouputs</a></li>
-<li class="chapter" data-level="10.3" data-path="modelling.html"><a href="modelling.html#further-reading-5"><i class="fa fa-check"></i><b>10.3</b> Further reading</a></li>
+<li class="chapter" data-level="11.1" data-path="modelling.html"><a href="modelling.html#base-r-linear-model"><i class="fa fa-check"></i><b>11.1</b> Base R Linear Model</a></li>
+<li class="chapter" data-level="11.2" data-path="modelling.html"><a href="modelling.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>11.2</b> Cleaning up model ouputs</a></li>
+<li class="chapter" data-level="11.3" data-path="modelling.html"><a href="modelling.html#further-reading-5"><i class="fa fa-check"></i><b>11.3</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>11</b> Visualizations</a>
+<li class="chapter" data-level="12" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>12</b> Visualizations</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="visualizations.html"><a href="visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>11.1</b> Building plots ups</a></li>
-<li class="chapter" data-level="11.2" data-path="visualizations.html"><a href="visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>11.2</b> Basic plotting</a>
+<li class="chapter" data-level="12.1" data-path="visualizations.html"><a href="visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>12.1</b> Building plots ups</a></li>
+<li class="chapter" data-level="12.2" data-path="visualizations.html"><a href="visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>12.2</b> Basic plotting</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="visualizations.html"><a href="visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>11.2.1</b> Changing plot labels</a></li>
+<li class="chapter" data-level="12.2.1" data-path="visualizations.html"><a href="visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>12.2.1</b> Changing plot labels</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="visualizations.html"><a href="visualizations.html#further-reading-6"><i class="fa fa-check"></i><b>11.3</b> Further reading</a></li>
+<li class="chapter" data-level="12.3" data-path="visualizations.html"><a href="visualizations.html#further-reading-6"><i class="fa fa-check"></i><b>12.3</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>12</b> Communication</a></li>
+<li class="chapter" data-level="13" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>13</b> Communication</a></li>
 </ul>
 
       </nav>
@@ -332,8 +334,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="transform-dplyr-and-data-manipulation" class="section level1" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Transform: dplyr and data manipulation</h1>
+<div id="transform-dplyr-and-data-manipulation" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Transform: dplyr and data manipulation</h1>
 <p>Transformation encompasses any steps you take to manipulate, reshape, refine, or transform your data. We’ve already touched upon some useful transformation functions in previous example code snippets, such as the <code>mutate</code> function for adding columns. This section will explore some of the most useful functionailities of the <code>dplyr</code> package, explicitly introduce the pipe operator <code>%&gt;%</code>, and showcase how you can leverage these tools to quickly manipulate your data.</p>
 <p>The benchmark <code>dplyr</code> functions are :</p>
 <ul>
@@ -345,25 +347,25 @@ div.csl-indent {
 </ul>
 <p>We’ll go through each of these functions, but we highly recommend you read <a href="https://r4ds.had.co.nz/transform.html">Chapter 3: Data Transformation</a> from <em>R for Data Science</em> to get a more comprehensive breakdown of these functions. Note that the information here is based on a <code>tidyverse</code> approach, but this is only one way of doing things. Please see the <a href="visualizations.html#further-reading-6">Further reading</a> section for links to other equally suitable approaches to data transformation.</p>
 <p>Let’s explore the functionality of <code>dplyr</code> using some flame absorption/emission spectroscopy (FAES) data from a <em>CHM317</em> lab. This data represents the emission signal of five sodium (Na) standards measured in triplicate:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="transform-dplyr-and-data-manipulation.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
-<span id="cb102-2"><a href="transform-dplyr-and-data-manipulation.html#cb102-2" aria-hidden="true" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># see section on Pipe</span></span>
-<span id="cb102-3"><a href="transform-dplyr-and-data-manipulation.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
-<span id="cb102-4"><a href="transform-dplyr-and-data-manipulation.html#cb102-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
-<span id="cb102-5"><a href="transform-dplyr-and-data-manipulation.html#cb102-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
-<span id="cb102-6"><a href="transform-dplyr-and-data-manipulation.html#cb102-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb102-7"><a href="transform-dplyr-and-data-manipulation.html#cb102-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
-<span id="cb102-8"><a href="transform-dplyr-and-data-manipulation.html#cb102-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
-<span id="cb102-9"><a href="transform-dplyr-and-data-manipulation.html#cb102-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
-<span id="cb102-10"><a href="transform-dplyr-and-data-manipulation.html#cb102-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb102-11"><a href="transform-dplyr-and-data-manipulation.html#cb102-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-12"><a href="transform-dplyr-and-data-manipulation.html#cb102-12" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div id="htmlwidget-144f55b7e8803e622ef4" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-144f55b7e8803e622ef4">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3,0.3,0.3,0.4,0.4,0.4],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="transform-dplyr-and-data-manipulation.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
+<span id="cb123-2"><a href="transform-dplyr-and-data-manipulation.html#cb123-2" aria-hidden="true" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># see section on Pipe</span></span>
+<span id="cb123-3"><a href="transform-dplyr-and-data-manipulation.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
+<span id="cb123-4"><a href="transform-dplyr-and-data-manipulation.html#cb123-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
+<span id="cb123-5"><a href="transform-dplyr-and-data-manipulation.html#cb123-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
+<span id="cb123-6"><a href="transform-dplyr-and-data-manipulation.html#cb123-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb123-7"><a href="transform-dplyr-and-data-manipulation.html#cb123-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
+<span id="cb123-8"><a href="transform-dplyr-and-data-manipulation.html#cb123-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
+<span id="cb123-9"><a href="transform-dplyr-and-data-manipulation.html#cb123-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb123-10"><a href="transform-dplyr-and-data-manipulation.html#cb123-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb123-11"><a href="transform-dplyr-and-data-manipulation.html#cb123-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-12"><a href="transform-dplyr-and-data-manipulation.html#cb123-12" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
+<div id="htmlwidget-7ac477723f4890895241" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7ac477723f4890895241">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3,0.3,0.3,0.4,0.4,0.4],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Note</strong> the use of <code>convert = TRUE</code> in the <code>separate()</code> call. This runs a type convert on new columns. If we didn’t include this, the <code>conc_Na</code> column would be of type character because the numbers originated from a string. <code>convert()</code> ensures they’re converted to numeric. <strong>Always use <code>convert = TRUE</code></strong> when you separate columns.</p>
-<div id="selecting-by-row-or-value" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Selecting by row or value</h2>
+<div id="selecting-by-row-or-value" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Selecting by row or value</h2>
 <p><code>filter()</code> allows up to subset our data based on observation (row) values.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="transform-dplyr-and-data-manipulation.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, conc_Na <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="transform-dplyr-and-data-manipulation.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, conc_Na <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##   type  conc_Na units replicate signal
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -371,8 +373,8 @@ div.csl-indent {
 ## 2 blank       0 mg/L  2          1304.
 ## 3 blank       0 mg/L  3          1396.</code></pre>
 <p>Note how we need to pass logical operations to <code>filter()</code>. In the above code, we used <code>filter()</code> to get all rows where the concentration of sodium is equal to 0 (<code>== 0</code>). Note the presence of two equal signs (<code>==</code>). In R one equal sign (<code>=</code>) is used to pass an argument, two equal signs (<code>==</code>) is the logical operation “is equal” and is used to test equality (i.e. that both sides have the same value). A frequent mistake is to use <code>=</code> instead of <code>==</code> when testing for equality.</p>
-<div id="logical-oeprators" class="section level3" number="8.1.1">
-<h3><span class="header-section-number">8.1.1</span> Logical oeprators</h3>
+<div id="logical-oeprators" class="section level3" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Logical oeprators</h3>
 <p><code>filter()</code> can use other <em>relational</em> and <em>logical</em> operators, or combinations thereof, to improve your sub-setting. Relational operators compare values and logical operators carry out Boolean operations (TRUE or FALSE). Logical operators are used to combine multiple relational operators… let’s just list what they are and how we can use them:</p>
 <table>
 <thead>
@@ -438,7 +440,7 @@ div.csl-indent {
 <ul>
 <li>Selecting all signals below a threshold value</li>
 </ul>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="transform-dplyr-and-data-manipulation.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&lt;</span> <span class="dv">4450</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="transform-dplyr-and-data-manipulation.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&lt;</span> <span class="dv">4450</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 8 x 5
 ##   type     conc_Na units replicate signal
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -453,7 +455,7 @@ div.csl-indent {
 <ul>
 <li>Selecting signals between values</li>
 </ul>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="transform-dplyr-and-data-manipulation.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&gt;=</span> <span class="dv">4450</span> <span class="sc">&amp;</span> signal <span class="sc">&lt;</span> <span class="dv">8150</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="transform-dplyr-and-data-manipulation.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&gt;=</span> <span class="dv">4450</span> <span class="sc">&amp;</span> signal <span class="sc">&lt;</span> <span class="dv">8150</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   type     conc_Na units replicate signal
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -466,7 +468,7 @@ div.csl-indent {
 <ul>
 <li>Selecting all other replicates other than replicate <code>2</code></li>
 </ul>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="transform-dplyr-and-data-manipulation.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, replicate <span class="sc">!=</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="transform-dplyr-and-data-manipulation.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, replicate <span class="sc">!=</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 5
 ##    type     conc_Na units replicate signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -483,7 +485,7 @@ div.csl-indent {
 <ul>
 <li>selecting the first standard replicate OR any of the blanks.</li>
 </ul>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="transform-dplyr-and-data-manipulation.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, (type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span> <span class="sc">&amp;</span> replicate <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|</span> (type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="transform-dplyr-and-data-manipulation.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, (type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span> <span class="sc">&amp;</span> replicate <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|</span> (type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 5
 ##   type     conc_Na units replicate signal
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -497,7 +499,7 @@ div.csl-indent {
 <ul>
 <li>removing any missing values (<code>NA</code>) using <code>is.na()</code>. Note there are no missing values in our data set so nothing will be removed, if we removed the NOT operator (<code>!</code>) we would have selected all rows <em>with</em> missing values.</li>
 </ul>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="transform-dplyr-and-data-manipulation.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, <span class="sc">!</span><span class="fu">is.na</span>(signal))</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="transform-dplyr-and-data-manipulation.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, <span class="sc">!</span><span class="fu">is.na</span>(signal))</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 5
 ##    type     conc_Na units replicate signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -519,10 +521,10 @@ div.csl-indent {
 <p>These are just some examples, but you can combine the logical operators in any way that works for you. Likewise, there are multiple combinations that will yield the same result, it’s up to you do figure out which works best for you.</p>
 </div>
 </div>
-<div id="arranging-rows" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Arranging rows</h2>
+<div id="arranging-rows" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Arranging rows</h2>
 <p><code>arrange()</code> simple reorders the rows based on the value you passed to it. By default it arranges the specified values into ascending order. Let’s arrange our signal in increasing by increasing order:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="transform-dplyr-and-data-manipulation.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>( FAES, signal)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="transform-dplyr-and-data-manipulation.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>( FAES, signal)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 5
 ##    type     conc_Na units replicate signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -542,8 +544,8 @@ div.csl-indent {
 ## 14 standard     0.4 mg/L  2          8141.
 ## 15 standard     0.4 mg/L  1          8173.</code></pre>
 <p>Since our original <code>FAES</code> data is already arranged by increasing <code>cong_Na</code> and <code>replicate</code>, let’s inverse that order by arranging <code>conc_Na</code> into descending order using the <code>desc()</code> function BUT arrange the <code>signal</code> values in:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="transform-dplyr-and-data-manipulation.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the order of precedence</span></span>
-<span id="cb117-2"><a href="transform-dplyr-and-data-manipulation.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(FAES, <span class="fu">desc</span>(conc_Na), signal)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="transform-dplyr-and-data-manipulation.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the order of precedence</span></span>
+<span id="cb138-2"><a href="transform-dplyr-and-data-manipulation.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(FAES, <span class="fu">desc</span>(conc_Na), signal)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 5
 ##    type     conc_Na units replicate signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -564,10 +566,10 @@ div.csl-indent {
 ## 15 blank        0   mg/L  3          1396.</code></pre>
 <p>Just note with <code>arrange()</code> that <code>NA</code> values will always be placed at the bottom, whether you use <code>desc()</code> or not.</p>
 </div>
-<div id="selecting-by-column-or-variable" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Selecting by column or variable</h2>
+<div id="selecting-by-column-or-variable" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Selecting by column or variable</h2>
 <p><code>select()</code> allows you to readily select columns by name. Note however that it will always return a tibble, even if you only select one variable/column.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="transform-dplyr-and-data-manipulation.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, signal)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="transform-dplyr-and-data-manipulation.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, signal)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 1
 ##    signal
 ##     &lt;dbl&gt;
@@ -587,7 +589,7 @@ div.csl-indent {
 ## 14  8141.
 ## 15  8106.</code></pre>
 <p>You can also select multiple columns using the same helper functions describes in <a href="importing-data-into-r.html#importing-data-into-r">Importing data into R</a>.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="transform-dplyr-and-data-manipulation.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, conc_Na<span class="sc">:</span>replicate)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="transform-dplyr-and-data-manipulation.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, conc_Na<span class="sc">:</span>replicate)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 3
 ##    conc_Na units replicate
 ##      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
@@ -606,8 +608,8 @@ div.csl-indent {
 ## 13     0.4 mg/L  1        
 ## 14     0.4 mg/L  2        
 ## 15     0.4 mg/L  3</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="transform-dplyr-and-data-manipulation.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Getting columns containing the character &quot;p&quot;</span></span>
-<span id="cb123-2"><a href="transform-dplyr-and-data-manipulation.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, <span class="fu">contains</span>(<span class="st">&quot;p&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="transform-dplyr-and-data-manipulation.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Getting columns containing the character &quot;p&quot;</span></span>
+<span id="cb144-2"><a href="transform-dplyr-and-data-manipulation.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, <span class="fu">contains</span>(<span class="st">&quot;p&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 2
 ##    type     replicate
 ##    &lt;chr&gt;    &lt;chr&gt;    
@@ -627,10 +629,10 @@ div.csl-indent {
 ## 14 standard 2        
 ## 15 standard 3</code></pre>
 </div>
-<div id="adding-new-variables" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Adding new variables</h2>
+<div id="adding-new-variables" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Adding new variables</h2>
 <p><code>mutate()</code> allows you to add new variable (read columns) to your existing data set. It’ll probably be the workhorse function you’ll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let’s suppose that our standards were diluted by a factor of 10, we can add a new column for this:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="transform-dplyr-and-data-manipulation.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(FAES, <span class="st">&quot;dil_fct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="transform-dplyr-and-data-manipulation.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(FAES, <span class="st">&quot;dil_fct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 6
 ##    type     conc_Na units replicate signal dil_fct
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;
@@ -650,7 +652,7 @@ div.csl-indent {
 ## 14 standard     0.4 mg/L  2          8141.      10
 ## 15 standard     0.4 mg/L  3          8106.      10</code></pre>
 <p>We can also create multiple columns in the same <code>mutate()</code> call:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="transform-dplyr-and-data-manipulation.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(FAES, <span class="st">&quot;dil_fct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">&quot;adj_signal&quot;</span> <span class="ot">=</span> signal <span class="sc">*</span> dil_fct)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="transform-dplyr-and-data-manipulation.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(FAES, <span class="st">&quot;dil_fct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">&quot;adj_signal&quot;</span> <span class="ot">=</span> signal <span class="sc">*</span> dil_fct)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 7
 ##    type     conc_Na units replicate signal dil_fct adj_signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
@@ -675,8 +677,8 @@ div.csl-indent {
 <li>the variables we’re referencing do not need to be in quotation marks; hence <code>signal</code> because this variable already exist.</li>
 <li>Note the order of precedence: <code>dil_fct</code> is created first so we can reference in the second argument, we would get an error if we swapped the order.</li>
 </ol>
-<div id="useful-mutate-function" class="section level3" number="8.4.1">
-<h3><span class="header-section-number">8.4.1</span> Useful mutate function</h3>
+<div id="useful-mutate-function" class="section level3" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Useful mutate function</h3>
 <p>There are a myriad of functions you can make use of with the mutate function. Here are some of the mathematical operators available in R:</p>
 <table>
 <thead>
@@ -714,17 +716,17 @@ div.csl-indent {
 </table>
 </div>
 </div>
-<div id="group-and-summarize-data" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> Group and summarize data</h2>
+<div id="group-and-summarize-data" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Group and summarize data</h2>
 <p><code>summarize</code> effectively summarized your data based on functions you’ve passed to it. Looking at our <code>FAES</code> data we’d probably want the mean of the triplicate signals, alongside the standard deviation. Let’s see what happens when we apply the summarize function straight up:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="transform-dplyr-and-data-manipulation.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(FAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="transform-dplyr-and-data-manipulation.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(FAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##    mean stdDev
 ##   &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 4620.  2475.</code></pre>
 <p>This doesn’t look like what we wanted. What we got was the mean and standard deviation of <em>all</em> of the signals, regardless of the concentration of the standard. Also note how we’ve lost the other columns/variables and are only left with the mean and stdDev. This is all because we need to <strong>group</strong> our observations by a variable. We can do this by using the <code>group_by()</code> function.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="transform-dplyr-and-data-manipulation.html#cb131-1" aria-hidden="true" tabindex="-1"></a>groupedFAES <span class="ot">&lt;-</span> <span class="fu">group_by</span>(FAES, type, conc_Na)</span>
-<span id="cb131-2"><a href="transform-dplyr-and-data-manipulation.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(groupedFAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="transform-dplyr-and-data-manipulation.html#cb152-1" aria-hidden="true" tabindex="-1"></a>groupedFAES <span class="ot">&lt;-</span> <span class="fu">group_by</span>(FAES, type, conc_Na)</span>
+<span id="cb152-2"><a href="transform-dplyr-and-data-manipulation.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(groupedFAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;type&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 5 x 4
 ## # Groups:   type [2]
@@ -736,25 +738,25 @@ div.csl-indent {
 ## 4 standard     0.3 6236.   29.6
 ## 5 standard     0.4 8140.   33.4</code></pre>
 <p>Here we’ve created a new data set, <code>groupedFAES</code>, that we grouped by the variables <code>type</code> and <code>conc_Na</code> so we could get the mean and standard deviation of each group. Note the multiple levels of grouping. For this data set we could have omitted the <code>type</code> variable, but in larger datasets you may have multiple groupings (i.e. from different location), so you can group by multiple variables to get smaller groups.</p>
-<div id="useful-summarize-functions" class="section level3" number="8.5.1">
-<h3><span class="header-section-number">8.5.1</span> Useful summarize functions</h3>
+<div id="useful-summarize-functions" class="section level3" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Useful summarize functions</h3>
 <p>We’ve used the <code>mean()</code> and <code>sd()</code> functions above, but there are a host of other useful functions you can use in conjunction with summarize. See <strong>Useful Functions</strong> in the <code>summarise()</code> documentation (enter <code>?summarise</code>) in the console.</p>
 </div>
 </div>
-<div id="the-pipe-chaining-functions-together" class="section level2" number="8.6">
-<h2><span class="header-section-number">8.6</span> The pipe: chaining functions together</h2>
+<div id="the-pipe-chaining-functions-together" class="section level2" number="9.6">
+<h2><span class="header-section-number">9.6</span> The pipe: chaining functions together</h2>
 <p>With the tools presented here we could do a decent job analyzing our <code>FAES</code> data. Let’s say we wanted to subtract the mean of the <code>blank</code> from each <code>standard</code> signal and then get summarize those results. It would look something like this:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="transform-dplyr-and-data-manipulation.html#cb134-1" aria-hidden="true" tabindex="-1"></a>blank <span class="ot">&lt;-</span> <span class="fu">filter</span>(FAES, type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>)</span>
-<span id="cb134-2"><a href="transform-dplyr-and-data-manipulation.html#cb134-2" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> <span class="fu">summarize</span>(blank, <span class="fu">mean</span>(signal))</span>
-<span id="cb134-3"><a href="transform-dplyr-and-data-manipulation.html#cb134-3" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(meanBlank)</span>
-<span id="cb134-4"><a href="transform-dplyr-and-data-manipulation.html#cb134-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-5"><a href="transform-dplyr-and-data-manipulation.html#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The mean signal from the blank triplicate is:&quot;</span>, meanBlank)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="transform-dplyr-and-data-manipulation.html#cb155-1" aria-hidden="true" tabindex="-1"></a>blank <span class="ot">&lt;-</span> <span class="fu">filter</span>(FAES, type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>)</span>
+<span id="cb155-2"><a href="transform-dplyr-and-data-manipulation.html#cb155-2" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> <span class="fu">summarize</span>(blank, <span class="fu">mean</span>(signal))</span>
+<span id="cb155-3"><a href="transform-dplyr-and-data-manipulation.html#cb155-3" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(meanBlank)</span>
+<span id="cb155-4"><a href="transform-dplyr-and-data-manipulation.html#cb155-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-5"><a href="transform-dplyr-and-data-manipulation.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The mean signal from the blank triplicate is:&quot;</span>, meanBlank)</span></code></pre></div>
 <pre><code>## [1] &quot;The mean signal from the blank triplicate is: 1349.4489&quot;</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="transform-dplyr-and-data-manipulation.html#cb136-1" aria-hidden="true" tabindex="-1"></a>stds_1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(FAES, type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>)</span>
-<span id="cb136-2"><a href="transform-dplyr-and-data-manipulation.html#cb136-2" aria-hidden="true" tabindex="-1"></a>stds_2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(stds_1, <span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank)</span>
-<span id="cb136-3"><a href="transform-dplyr-and-data-manipulation.html#cb136-3" aria-hidden="true" tabindex="-1"></a>stds_3 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(stds_2, conc_Na)</span>
-<span id="cb136-4"><a href="transform-dplyr-and-data-manipulation.html#cb136-4" aria-hidden="true" tabindex="-1"></a>stds_4 <span class="ot">&lt;-</span> <span class="fu">summarize</span>(stds_3, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
-<span id="cb136-5"><a href="transform-dplyr-and-data-manipulation.html#cb136-5" aria-hidden="true" tabindex="-1"></a>stds_4</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="transform-dplyr-and-data-manipulation.html#cb157-1" aria-hidden="true" tabindex="-1"></a>stds_1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(FAES, type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>)</span>
+<span id="cb157-2"><a href="transform-dplyr-and-data-manipulation.html#cb157-2" aria-hidden="true" tabindex="-1"></a>stds_2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(stds_1, <span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank)</span>
+<span id="cb157-3"><a href="transform-dplyr-and-data-manipulation.html#cb157-3" aria-hidden="true" tabindex="-1"></a>stds_3 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(stds_2, conc_Na)</span>
+<span id="cb157-4"><a href="transform-dplyr-and-data-manipulation.html#cb157-4" aria-hidden="true" tabindex="-1"></a>stds_4 <span class="ot">&lt;-</span> <span class="fu">summarize</span>(stds_3, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
+<span id="cb157-5"><a href="transform-dplyr-and-data-manipulation.html#cb157-5" aria-hidden="true" tabindex="-1"></a>stds_4</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   conc_Na  mean stdDev
 ##     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -764,25 +766,25 @@ div.csl-indent {
 ## 4     0.4 6791.   33.4</code></pre>
 <p>While the code above did it’s job, it’s certainly wasn’t easy to type and certainly not easy to read. At every step of the way we’ve saved our updated data outputs to a new variable (<code>stds_1</code>, <code>stds_2</code>, etc.). However, most of these intermediates aren’t important, and moreover the repetitive names clutter our code. As the code above is written, we’ve had to pay special attending to the variable suffix to make sure we’re calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. <code>stds_1 &lt;- mutate(stds_1, ...)</code>), but that doesn’t solve the issue of readability as there’s still redundant assigning.</p>
 <p>A solution for this is the pipe operator <code>%&gt;%</code> ( pronounced “then”), an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you’re working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we’d get something like:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="transform-dplyr-and-data-manipulation.html#cb138-1" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
-<span id="cb138-2"><a href="transform-dplyr-and-data-manipulation.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span><span class="st">&quot;blank&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb138-3"><a href="transform-dplyr-and-data-manipulation.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(signal)) <span class="sc">%&gt;%</span></span>
-<span id="cb138-4"><a href="transform-dplyr-and-data-manipulation.html#cb138-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>()</span>
-<span id="cb138-5"><a href="transform-dplyr-and-data-manipulation.html#cb138-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-6"><a href="transform-dplyr-and-data-manipulation.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The mean signal from the blank triplicate is:&quot;</span>, meanBlank)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="transform-dplyr-and-data-manipulation.html#cb159-1" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb159-2"><a href="transform-dplyr-and-data-manipulation.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span><span class="st">&quot;blank&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb159-3"><a href="transform-dplyr-and-data-manipulation.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(signal)) <span class="sc">%&gt;%</span></span>
+<span id="cb159-4"><a href="transform-dplyr-and-data-manipulation.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>()</span>
+<span id="cb159-5"><a href="transform-dplyr-and-data-manipulation.html#cb159-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-6"><a href="transform-dplyr-and-data-manipulation.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The mean signal from the blank triplicate is:&quot;</span>, meanBlank)</span></code></pre></div>
 <pre><code>## [1] &quot;The mean signal from the blank triplicate is: 1349.4489&quot;</code></pre>
 <p>Things may look a bit different, but our underlying code hasn’t changed much. What’s happening is the pipe operator passes the output to the first argument of the next function. So the output of <code>filter...</code> is passed to the first argument of <code>sumamrise...</code>, and the argument we specified in <code>summarise</code> is actually the <em>second</em> argument it receives. You’re probably wondering how hiding stuff makes your code more legible, but think of <code>%&gt;%</code> as being equivalent to “then.” We can read our code as:</p>
 <blockquote>
 <p>“Take the <code>FAES</code> dataset, <em>then</em> filter for <code>type == "blank"</code> <em>then</em> collapse the dataset to the mean <code>signal</code> value and <em>then</em> convert to numeric value <em>then</em> pass this final output to the new variable <code>meanBlank</code>.”</p>
 </blockquote>
 <p>Not only is the pipe less typing, but the emphasis is on the functions so you can better understand what you’re doing vs. where all the intermediates are going. Extending our piping to the second batch of code we get:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="transform-dplyr-and-data-manipulation.html#cb140-1" aria-hidden="true" tabindex="-1"></a>stds <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
-<span id="cb140-2"><a href="transform-dplyr-and-data-manipulation.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb140-3"><a href="transform-dplyr-and-data-manipulation.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank) <span class="sc">%&gt;%</span> </span>
-<span id="cb140-4"><a href="transform-dplyr-and-data-manipulation.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(conc_Na) <span class="sc">%&gt;%</span></span>
-<span id="cb140-5"><a href="transform-dplyr-and-data-manipulation.html#cb140-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
-<span id="cb140-6"><a href="transform-dplyr-and-data-manipulation.html#cb140-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-7"><a href="transform-dplyr-and-data-manipulation.html#cb140-7" aria-hidden="true" tabindex="-1"></a>stds</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="transform-dplyr-and-data-manipulation.html#cb161-1" aria-hidden="true" tabindex="-1"></a>stds <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb161-2"><a href="transform-dplyr-and-data-manipulation.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb161-3"><a href="transform-dplyr-and-data-manipulation.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-4"><a href="transform-dplyr-and-data-manipulation.html#cb161-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(conc_Na) <span class="sc">%&gt;%</span></span>
+<span id="cb161-5"><a href="transform-dplyr-and-data-manipulation.html#cb161-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
+<span id="cb161-6"><a href="transform-dplyr-and-data-manipulation.html#cb161-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-7"><a href="transform-dplyr-and-data-manipulation.html#cb161-7" aria-hidden="true" tabindex="-1"></a>stds</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   conc_Na  mean stdDev
 ##     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -791,8 +793,8 @@ div.csl-indent {
 ## 3     0.3 4887.   29.6
 ## 4     0.4 6791.   33.4</code></pre>
 <p>Same thing. The underlying code hasn’t changed much, but it’s much more legible and we can clearly see we’re subtracting the <code>meanBlank</code> value from each measured signal then summarizing the corrected signals.</p>
-<div id="notes-on-piping" class="section level3" number="8.6.1">
-<h3><span class="header-section-number">8.6.1</span> Notes on piping</h3>
+<div id="notes-on-piping" class="section level3" number="9.6.1">
+<h3><span class="header-section-number">9.6.1</span> Notes on piping</h3>
 <p>The pipe is great and especially useful with <em>tidyverse</em> packages, but it does have some limitations:</p>
 <ul>
 <li>You can’t easily extract intermediate steps. So you’ll need to break up your pipping chain to output any intermediate steps you can.</li>
@@ -801,8 +803,8 @@ div.csl-indent {
 </ul>
 </div>
 </div>
-<div id="further-reading-3" class="section level2" number="8.7">
-<h2><span class="header-section-number">8.7</span> Further reading</h2>
+<div id="further-reading-3" class="section level2" number="9.7">
+<h2><span class="header-section-number">9.7</span> Further reading</h2>
 <ul>
 <li><a href="https://r4ds.had.co.nz/transform.html">Chapter 5: Data Transformation</a> of <em>R for Data Science</em> for a deeper breakdown of <code>dplyr</code> and it’s functionality.</li>
 <li><a href="https://r4ds.had.co.nz/pipes.html">Chapter 18: Pipes</a> of <em>R for Data Science</em> for more information on pipes.</li>
