@@ -16,6 +16,7 @@ rmd_files:  [
   "running-r-code.Rmd",
   "r-workflows.Rmd",
   "r-markdown.Rmd",
+  "r-tutorial.Rmd",
   
   "intro-data-analysis.Rmd",
   "import.Rmd",

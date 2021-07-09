@@ -1,31 +1,103 @@
-# Introduction
+<!-- This header creates the book section -->
+# (PART\*) Section 1: Getting Setup in R{-}
 
-- What you'll learn (and won't learn)
-  - learn = basic understanding of R
-  - won't learn = *L33T hax0r Skillz*
-- How book is organized
-  - code is covered in chunks or monospaced (`like this`)
-- Prerequisite software
-- getting help
+# Installing R
+
+You've probably heard of coding and the R language, but figure out how to get started can be a hurdle; at least it was for us. This chapter will cover installing the software you'll need for coding in R.  
 
 ## Prerequisite software
 
-In order to use this book you will first need to download and install **R** on your computer. The latest build as of May 2021 is v4.1.0. [Download the appropriate version of R for your Operating System here](https://utstat.toronto.edu/cran/).
+Before we get started, you'll need to download the following open source and free software: 
 
-We recommend using the default settings for installation (i.e. just keep clicking "Next"). *Note that you will not need shortcuts for launching R, as you will always be using Rstudio to run provided code.*
+  - **R**
+  - **RStudio**
+  - **`tidyverse`** suite of packages
 
-Once R is installed on your computer, you will need to download and install RStudio. [Download the appropriate version of RStudio for your Operating System here](https://www.rstudio.com/products/rstudio/download/#download)
+Read on for instructions on downloading all three. 
 
-Again, just use the default installation settings.
+### R
+
+**R** is the programming language we'll code in. R is hosted on the Comprehensive R Archive Network (CRAN) and is one of the most popular programming languages for statisticians and scientist alike. [You can download the latest build for your operating system here](https://cloud.r-project.org/). 
+
+A quick aside, but coding is simply writing instructions for the computer to execute. To do this, we need a language that both we, humans, and the computer can understand. For our needs we'll use R, and like any language R has it's own syntax, rules, and quirks. We'll revisit this in subsequent sections.
+  
+### Downloading RStudio IDE
+
+RStudio is the *integrated development environment* of choice when working with R. It's where you'll actually be typing your code and interacting with R. Again, R is a language, and you need somewhere to write it down to make use of it. Writing in English can be done with a pencil and notepad or a word processor filed with useful tools to help you write. This is what RStudio is for R. [You can download the latest version of RStudio here](https://www.rstudio.com/products/rstudio/download/#download). 
+
+Once you have R and RStudio installed go ahead and open up RStudio. Once you open RStudio, you'll be greeted with an interface divided into numerous panes We've highlighted the major ones in the image below:  
+
+![The RStudio interface with annottated regions](images/Rstudio_startup_regions.png){width=100%}
+
+Each pane serves a specific role: 
+
+  - **The console** allows you to directly type and run your code. It also provides messages, warnings, and errors from any code you run. 
+  - **The environment**  window lists all variables, data, and functions you've created since the start of your coding session.  
+  - **The viewer** shows your outputs, help documents, etc. which each has their own tab. 
+
+### Installing packages
+
+Packages are previously written snippets of code that extend the capabilities of base R. Typically packages are created to address specific issues or workflows in different types of analysis. This book will make frequent use of a family of packages called the `tidyverse`. These packages all share a common thought process and integrate naturally with one another. 
+
+You can download the entire suite of `tidyverse` packages by simply copy and pasting the following code into the console and pressing 'enter'.
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
+
+You'll see a flurry of lines printed to the console indicating the status of the installation. Once installed you won't be able to use these functions until you load it with `library()`. Enter the code below into the console to load the `tidyverse` package.
+
+```{r}
+library(tidyverse)
+```
+
+## Running R Code
+
+As we've already seen, you can run bits of R code directly from the console. Throughout the book, code you can copy and run will look like this: 
+
+```{r}
+2 + 2
+```
+
+Noticed that both the code (the first part) and what the code outputs (the second part) are shown. Throughout this book code outputs will be proceeded by `##`. You can run code directly from the console. It's handy for short and sweet snippets of code, something that can be typed in a single line. Examples of this is the `install.packages()` function, or to use R as a calculator:
+
+```{r}
+2 * 3
+```
+```{r}
+pi * (10/2)
+```
+ 
+However, working like this isn't very useful Imagine printing a book one sentence at a time, you couldn't really go back and edit earlier work because it's already printed. That's why we write out code in *scripts*. *Scripts* are similar to recipes, in that they're a series of instructions that R evaluates from the top of the script to the bottom. More importantly, writing your code out in a script makes it *more readable* to humans (presumably this includes you). Don't undervalue the usefulness of legible code. Your code will evaluate in seconds or minutes whereas it may take you hours to understand what it does.
+
+Let's open up a new script in RStudio by going to *File*->*New File*->*R Script*, or by clicking on the highlighted button in the image below.
+
+![Figure 2.5: Opening a new script in RStudio.](images/Rstudio_newscript.png){width=100%}
+
+This should open up a new window in the RStudio interface, as shown in the following image.
+
+![Figure 2.6: Scripts window in RStudio.](images/Rstudio_scriptwindow.png){width=100%}
+
+You can copy and paste the code above into the script, save it, edit it, etc. and ultimately run specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the "Run" button in the top right corner of the Scripts window. Whenever you copy code blocks from this website (or other online sources). If you're reading this book online, you can easily copy an entire block of code using the `copy` button in the top right corner of the code block. 
+
+We'll dive into the basics of coding in R in the next chapter. 
+
+## Customizing RStudio
+
+As many of us spend an absurd amount of time staring at bright screens, some of you may be interested in setting your RStudio to Dark Mode. 
+
+You can customize the appearance of your RStudio interface by clicking *Tools*->*Global Options*, or *RStudio*->*Preferences* on Mac, then clicking "Appearance" on the left. Select your preferred Editor Theme from the list.
+
+![Figure 2.4: RStudio Appearance customization window.](images/Rstudio_darkthemes.png){width=100%}
 
 
 ## Where to get help
 
-While it's often tempting to contact your TA or Professor at the sign of first trouble, it's often better to try and resolve your issues on your own, especially if they're related to technical issues in R. Given the popularity of R, if you've run into an issue, someone else has too... and they've complained about it and someone else has solved it! An often unappreciated aspect of coding/data science is knowing how to get help, how to search for it, and how to translate someone's solutions to your unique situation. <!-- needs to be fleshed out some, mostly just placeholder text at this point, DH --> 
+While it's often tempting to contact your TA or Professor at the first sign of trouble, it's often better to try and resolve your issues on your own, especially if they're related to technical issues in R. Given the popularity of R, if you've run into an issue, someone else has too and they complained about it and someone else has solved it! An often unappreciated aspect of coding/data science is knowing how to get help, how to search for it, and how to translate someone's solutions to your unique situation. <!-- needs to be fleshed out some, mostly just placeholder text at this point, DH --> 
 
 Places to get help include: 
 
-- Stack overflow
+- Google, Stack Overflow, etc. When in doubt Google it. 
 - Using built-in documentation (`?help`)
 - reference book such as the invaluable [*R for Data Science*](https://r4ds.had.co.nz/index.html), which inspired this entire project. 
 - All else fails, holler at your TA/profs. 
