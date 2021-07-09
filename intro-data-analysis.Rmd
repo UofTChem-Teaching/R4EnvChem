@@ -1,4 +1,4 @@
-# (PART\*) Data Analysis in R {-}
+# (PART\*) Section 2: Data Analysis in R {-}
 
 # Intro to Data Analysis
 

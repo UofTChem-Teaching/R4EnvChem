@@ -1,105 +1,6 @@
 # Working with R
 
-Now that you have some tools in your arsenal, let's discuss how to use them. After all knowing how to hammer a nail doesn't make you a carpenter. A coherent workflow is often overlooked by student's when they learn R, but a little bit of time setting up yout work at the begining will save you plenty of heartaches down the line. And just like there's a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there's a common workflow when working with R. This is by no means the only way to work, but it's tried and true and will serve you well as you tackle your coursework. We'll start from the script and work our way out (you'll see what we mean), but in practice you'll start out and work in. 
-
-## Workspace and what's real
-
-We've already mentioned the *environment* pane that displays objects present in your R session. While they are useful to work with, they're not *real*. That is to say, if you closed your R session, those objects would be lost. And while RStudio allows you to save a working environment (and it's assosciated objects), it's best to embrace that *only your scripts are real*. You can't readily share your working environment, and even so it's bad practice as you may be reference a previous itteration of an object giving you erroneous results. Think back to the chemistry lab where although you may jot notes down on loose leaf, only what's written in your lab book is considered real... we'll that's how it's supposed to work anyways. 
-
-The idea is everything you need can be generated from the original data and the instructiosn in your scipt. Anyone should be able to take your data and your code and get the same results you got. This is paramount for reproducibility of your work and your results. 
-
-### Saving R scripts
-
-You can save an R script to a `.r` file by going to *File*->*Save* or by clicking the 'save' button in the top left of your script. Code saved to a `.r` file is considered *real*. Variables, plots, or data sets that only exist in your workspace (shown in the Environment window) are not. 
-
-Whenever you close RStudio, any objects in R that are not considered *real* will be lost in that R session. For example, let's say you have some vectors in your workspace. Even if you are working within an R project and have saved your script, those vectors will not be remain in the workspace after you close and re-open RStudio. You would need to re-run the code you used to generate those vectors the next time you open RStudio, in order to replicate the workspace you had before you closed the application.
-
-Let's try this out in practice. Assign something of your choice to a variable (i.e., "text must be in quotations", numbers, TRUE or FALSE), as is done below.
-
-```{r}
-real <- "What is real?"
-```
-
-The variable should now show up in your environment in RStudio, much like the image below.
-
-![Figure 3.6: Items in the workspace/R environment.](images/Rstudio_workspace.png)
-
-When a variable exists within your workspace, you can simply type the variable name into the console to have R print out its contents (examples given in Chapter 2). However, when you close RStudio, and the variable is erased from the workspace, R will give you an error when you try to call your assigned variable. The errors will look a little bit like this:
-
-```{r echo = FALSE, error = TRUE}
-hi
-```
-
-Where `'hi'` is the name of your variable. This is common notation for errors that occur when you try to run code that references an object (variable, vector, data set, etc.) that might have once existed in your workspace, but currently does not. If you're getting an `object not found` error, this generally means you need to go back and load your data set, or re-run the code used to generate your desired variable or vector. Once you've loaded the data set, or re-created the object in the workspace, the error will go away and your code should run as expected.
-
-While this might not seem like a major issue at this point in time, it certainly will when you start writing lengthy scripts that create variables in the early lines and then reference those variables in commands in later lines. One day you might find yourself opening up RStudio and immediately trying to run some code from the end of one of your scripts. `Object not found` is a common thing to see in response. Don't fret - run the script from beginning to end, in order, and chances are this error will go away (provided that you have included your assignment statements in your saved script).
-
-### What should I save?
-
-At this point in the chapter, two things should be clear: 
-
-1. R scripts saved to `.R` files are real. 
-2. Objects in your workspace/environment are not real, and will not be available to you after you close and re-open RStudio unless you re-run the code used to generate the workspace. 
-
-So what is important to save in R, and how often should you save these files? 
-
-It is paramount that you save the scripts you code in, and that you save them regularly. Even if you've made small notation changes to the code, it is always a good idea to save your changes to the script before closing RStudio, as there is a good chance you will not remember the minor differences upon returning. 
-
-While it is possible to save your workspace in RStudio, we do not recommend this. It is much easier to recreate your workspace from your R scripts than it is to recreate your scripts from your workspace. That being said, it is integral to get into good script formatting habits. 
-
-You want to make sure that even if you lose an object in your environment, your script still contains the code you used to generate that object. You also want to make sure that you generate the object before you call it in part of another command, so that when you run your scripts from top-to-bottom, the variables are generated in the workspace before they are referenced by later commands. Let's look at some examples. 
-
-```{r}
-# generate vectors
-x <- c(1, 2, 3, 5, 76, 8, 2)
-y <- c(T, T, T, F, F, F, F)
-
-# turn vectors into data frame
-data.frame(x,y)
-```
-
-The code above is ordered correctly. Your scripts should be ordered similar to this (with the exception that you will load R packages before you generate your variables), with your objects generated before you call them using a function.
-
-
-```{r eval = FALSE, error = TRUE}
-# make data frame
-data.frame(x,y)
-
-# generate vectors
-x <- c(1, 2, 3, 5, 76, 8, 2)
-y <- c(T, T, T, F, F, F, F)
-```
-
-The code above is ordered *incorrectly*. You can see that using `data.frame()` before generating vectors `x` and `y` has resulted in an error, similar to what we saw in the previous section. You should follow the format from the first example to avoid errors of this sort in your scripts.
-
-#### Saving objects
-
-In some cases, your code may be used to generate large data structures which require quite a bit of input to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data structure to a *real* file that you can simply import the next time you open the application. Fortunately, this is possible thanks to `save()` and `load()`.
-
-The `save()` function saves the input object or objects (i.e., vector, matrix, or data frame) to your working directory as an `.rda` file. Let's try saving our vectors `x` and `y` from the previous examples to a file called `vec.rda`.
-
-```{r eval = FALSE}
-# save vectors
-save(x, y, file = "vec.rda")
-```
-
-An `.rda` file should now exist in your project directory, as shown in the image below.
-
-![Figure 3.7: Generated `.rda` file after using `save()`.](images/Rstudio_rda.png)
-
-Now, let's try removing our vectors from our workspace and loading them from the `.rda` file we just generated. You can use `rm()` to remove objects from your workspace, as shown below.
-
-```{r eval = FALSE}
-rm(x, y)
-```
-
-Now that our workspace is empty, if you type `x` or `y` into the console, RStudio will not know what to return in response. We have to import the data back into our workspace so that RStudio knows what `x` and `y` contain.You can use `load()` to import the vectors to your current RStudio workspace, using the format below.
-
-```{r eval = FALSE}
-load(file = "vec.rda")
-```
-
-The vectors should now be present in the workspace again, and can be printed to the console if you type in their respective names.
+Now that you have some tools in your arsenal, let's discuss how to use them. After all knowing how to hammer a nail doesn't make you a carpenter. A coherent workflow is often overlooked by student's when they learn R, but a little bit of time setting up your work at the beginning will save you plenty of heartaches down the line. And just like there's a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there's a common workflow when working with R. This is by no means the only way to work, but it's tried and true and will serve you well as you tackle your coursework. Let's take a step back from the scripts and consider *where* we're working on your computer.
 
 ## Paths and directories
 
@@ -107,7 +8,7 @@ Before you get started with running your code, it is good to know where your ana
 
 RStudio displays the current working directory at the top of the console, as shown below, but can also be printed to the console using the command `getwd()`.
 
-![Figure 3.1: Working directory path displayed in the RStudio console](images/Rstudio_wd.png)
+![Working directory path displayed in the RStudio console](images/Rstudio_wd.png)
 
 By default, R usually sets the working directory to the home directory on your computer. The `~` symbol denotes the home directory, and can be used as a shortcut when writing a path that references the home directory. 
 
@@ -119,16 +20,16 @@ In order to overcome the use of absolute paths and `setwd()`, we strongly recomm
 
 Let's go ahead and create a new **R Project**. Go to *File*->*New Project*, or click the button highlighted in the image below. Click *New Directory*, then *New Project*. 
 
-![Figure 3.2: How to open a new project in RStudio.](images/Rstudio_newproject.png)
-You may want your project directory to be a subfolder of an existing directory on your computer which already contains your data sets. If this is the case, click *Existing Directory* instead of *New Directory* at the previous step, and then select the folder of your choice.
+![How to open a new project in RStudio.](images/Rstudio_newproject.png)
+You may want your project directory to be a sub-folder of an existing directory on your computer which already contains your data sets. If this is the case, click *Existing Directory* instead of *New Directory* at the previous step, and then select the folder of your choice.
 
-Next, you'll be asked to choose a subdirectory name and location. Enter your selected name and choose an appropriate location for the folder on your computer. Click *Create Project*, and you should now see your chosen file path displayed in the bottom-right window:
+Next, you'll be asked to choose a sub-directory name and location. Enter your selected name and choose an appropriate location for the folder on your computer. Click *Create Project*, and you should now see your chosen file path displayed in the bottom-right window:
 
-![Figure 3.3: RStudio Project Folder](images/Rstudio_Rproj.png)
+![RStudio Project Folder](images/Rstudio_Rproj.png)
 
 As mentioned previously, you can also view the file path to your project directory using `getwd()`. The output should match the file path shown in the image above.
 
-When working on assignments for coursework, it is good practice to create a new R project for each assignment you work on. You should store the data, images, and any other files required for that assignment within the folder for the designated R project. You can create subfolders for data and images, however, you may want to avoid making too many nested subfolders, as this will make your paths long and tiresome to type. 
+When working on assignments for coursework, it is good practice to create a new R project for each assignment you work on. You should store the data, images, and any other files required for that assignment within the folder for the designated R project. You can create sub-folders for data and images, however, you may want to avoid making too many nested sub-folders, as this will make your paths long and tiresome to type. 
 
 ### The value of R projects
 
@@ -168,17 +69,89 @@ You can try this out for yourself. Open up a new script in your current project 
 
 Save the script by going to *File*->*Save*, or by clicking the button highlighted in the image below. Keep the script open, but close RStudio.
 
-![Figure 3.4: Save button in RStudio.](images/Rstudio_save.png)
+![Save button in RStudio.](images/Rstudio_save.png)
 
 When you re-open RStudio, the script will still be there. 
 
 Leave the script open. Let's close the R project now. You can close the current project by going to *File*->*Close Project*, or by clicking the downwards arrow in the top right corner of RStudio, highlighted in the image below. Choose *Close Project* from the drop down menu. 
 
-![Figure 3.5: How to close an R Project.](images/Rstudio_closeproject.png)
+![How to close an R Project.](images/Rstudio_closeproject.png)
 
 Now close RStudio. When you open RStudio again, no script will be open! The same is true when you work outside of an R project. 
 
-  
+## Workspace and what's real
+
+We've already mentioned the *environment* pane that displays objects present in your R session. While they are useful to work with, they're not *real*. That is to say, if you closed your R session, those objects would be lost. And while RStudio allows you to save a working environment (and it's associated objects), it's best to embrace that *only your scripts are real*. You can't readily share your working environment, and even so it's bad practice as you may be reference a previous iteration of an object giving you erroneous results. Think back to the chemistry lab where although you may jot notes down on loose leaf, only what's written in your lab book is considered real... we'll that's how it's supposed to work anyways. 
+
+The idea is everything you need can be generated from the original data and the instructions in your script Anyone should be able to take your data and your code and get the same results you got. This is paramount for reproducibility of your work and your results. 
+
+## Saving R scripts
+
+You can save an R script to a `.r` file by going to *File*->*Save* or by clicking the 'save' button in the top left of your script. Code saved to a `.r` file is considered *real*. Variables, plots, or data sets that only exist in your work-space (shown in the Environment window) are not. Whenever you close RStudio, any objects in R that are not considered *real* will be lost in that R session. Furthermore when you need to share your code (for school or publication) you'll need to share your data and your script, but never your work-space. This is to increase predictability and helps people (and you) to make sure your work is reproducible, an under appreciate hallmark of science. 
+
+### What should I save?
+
+At this point in the chapter, two things should be clear: 
+
+1. R scripts saved to `.R` files are real. 
+2. Objects in your work-space/environment are not real, and will not be available to you after you close and re-open RStudio unless you re-run the code used to generate the work-space. 
+
+So what is important to save in R, and how often should you save these files? 
+
+It is paramount that you save the scripts you code in, and that you save them regularly. Even if you've made small notation changes to the code, it is always a good idea to save your changes to the script before closing RStudio, as there is a good chance you will not remember the minor differences upon returning. You want to make sure that even if you lose an object in your environment, your script still contains the code you used to generate that object. You also want to make sure that you generate the object before you call it in part of another command, so that when you run your scripts from top-to-bottom, the variables are generated in the work-space before they are referenced by later commands. 
+
+
+### Saving objects
+
+In some cases, your code may be used to generate large data structures which require quite a bit of input to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data structure to a *real* file that you can simply import the next time you open the application. Most often this will be an intermediate step of your data analysis in the form of a data frame. To save a data frame as a `.csv` file you use `write.csv()`. 
+
+
+```{r, eval = FALSE}
+# dummy data frame to save
+df <- data.frame(x = c(1,2,3),
+                 y = c("yes", "no", "maybe"))
+
+write.csv(x = df, 
+          file = "testData.csv")
+```
+
+Breaking it down: 
+
+  - we created a dummy data frame `df`
+  - we called `write.csv()` and
+    - `x = df` specifies we want to save the data.frame `df`
+    - `file = "data/testData.csv"` specifies *where* we want the file to save (in the *data* sub-directory, more later), and *what* our file will be called (*testData.csv*). It's important to specify the file extension so R knows how to save it. 
+
+<!-- I don't think we need to specify saving r objects other than data frames. I can't imagine a scenario where students would readily encounter this problem - DH --> 
+
+<!--
+
+The `save()` function saves the input object or objects (i.e., vector, matrix, or data frame) to your working directory as an `.rda` file. Let's try saving our vectors `x` and `y` from the previous examples to a file called `vec.rda`.
+
+```{r eval = FALSE}
+# save vectors
+save(x, y, file = "vec.rda")
+```
+
+An `.rda` file should now exist in your project directory, as shown in the image below.
+
+![Figure 3.7: Generated `.rda` file after using `save()`.](images/Rstudio_rda.png)
+
+Now, let's try removing our vectors from our work-space and loading them from the `.rda` file we just generated. You can use `rm()` to remove objects from your work-space, as shown below.
+
+```{r eval = FALSE}
+rm(x, y)
+```
+
+Now that our work-space is empty, if you type `x` or `y` into the console, RStudio will not know what to return in response. We have to import the data back into our work-space so that RStudio knows what `x` and `y` contain.You can use `load()` to import the vectors to your current RStudio work-space, using the format below.
+
+```{r eval = FALSE}
+load(file = "vec.rda")
+```
+
+The vectors should now be present in the work-space again, and can be printed to the console if you type in their respective names.
+-->
+
 ## Script formatting
 
 You should now be familiar with how to open the Scripts window, as well as some of the advantages of typing your code into this window rather than into the console directly. Before you write your first script, let's review some basic script formatting. 
@@ -201,124 +174,32 @@ The first few lines of your scripts should look something like the following.
 #Date: January 8, 2072
 
 #import packages
-library(dplyr)
-library(ggplot2)
+library(tidyverse) # for readr & ggplot2
 
 ```
 
 The rest of your script should be dedicated to executable code. It is good practice to include text comments throughout the script, in between different chunks of code, to remind yourself what the different sections of code are for (i.e., `#import packages` in the above example). This also makes it easy for anyone you share your code with to understand what you're trying to do with different sections within the script.
 
-You can also use headers and sub-headers in your scripts using `#` and `##` before your text. Headings are written with a single hash-tag, followed by a space, as shown below. Subheadings are written with two hash-tags, followed by a space, also shown below. 
-
-```{r}
-# Heading Text
-## Subheading Text
+You can also use headers and sub-headers in your scripts using `#`, `##`, and `###` before your text and `---` after as shown below:
+```{r, eval = FALSE}
+# Section ----
+## Subsection ----
+### Sub-subsection ----
 ```
 
 Headings and subheadings are picked up by RStudio and displayed in the Document Outline box. You can open the Document Outline box by clicking the button highlighted in the image below. Use of these headings allows easy navigation of long scripts, as you can navigate between sections using the Document Outline box. 
 
-![Figure 2.8: How to open the Document Outline box.](images/Rstudio_documentoutline.png){width=100%}
+
+![Example script headings, document outlines, and comments. Note the "---" which specifies a comment is a header.](images/Rstudio_documentoutline2.png){width=100%}
 
 ## Viewing data and code simultaneously
 
 Before we get into more about coding and workflows, you may want to know how to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio (may not be compatible with Mac), or by clicking the button highlighted in the image below. 
 
-![Figure 2.9: How to open an R script/plot/data set in a new window.](images/Rstudio_newwindow.png){width=100%}
+![How to open an R script/plot/data set in a new window.](images/Rstudio_newwindow.png){width=100%}
 
 Now that you're familiar with navigating RStudio and some basic coding building blocks, let's move over to Chapter 3, where we'll review a normal workflow in R.
 
-## Saving things in R
-
-As mentioned in the previous section, you can save an R script to a `.R` file by going to *File*->*Save*, or by clicking the button highlighted in Figure 3.4. Code saved to a `.R` file is considered *real*. Variables, plots, or data sets that only exist in your workspace (shown in the Environment window) are not. 
-
-Whenever you close RStudio, any objects in R that are not considered *real* will be lost in that R session. For example, let's say you have some vectors in your workspace. Even if you are working within an R project and have saved your script, those vectors will not be remain in the workspace after you close and re-open RStudio. You would need to re-run the code you used to generate those vectors the next time you open RStudio, in order to replicate the workspace you had before you closed the application.
-
-Let's try this out in practice. Assign something of your choice to a variable (i.e., "text must be in quotations", numbers, TRUE or FALSE), as is done below.
-
-```{r}
-real <- "What is real?"
-```
-
-The variable should now show up in your environment in RStudio, much like the image below.
-
-![Figure 3.6: Items in the workspace/R environment.](images/Rstudio_workspace.png)
-
-When a variable exists within your workspace, you can simply type the variable name into the console to have R print out its contents (examples given in Chapter 2). However, when you close RStudio, and the variable is erased from the workspace, R will give you an error when you try to call your assigned variable. The errors will look a little bit like this:
-
-```{r echo = FALSE, error = TRUE}
-hi
-```
-
-Where `'hi'` is the name of your variable. This is common notation for errors that occur when you try to run code that references an object (variable, vector, data set, etc.) that might have once existed in your workspace, but currently does not. If you're getting an `object not found` error, this generally means you need to go back and load your data set, or re-run the code used to generate your desired variable or vector. Once you've loaded the data set, or re-created the object in the workspace, the error will go away and your code should run as expected.
-
-While this might not seem like a major issue at this point in time, it certainly will when you start writing lengthy scripts that create variables in the early lines and then reference those variables in commands in later lines. One day you might find yourself opening up RStudio and immediately trying to run some code from the end of one of your scripts. `Object not found` is a common thing to see in response. Don't fret - run the script from beginning to end, in order, and chances are this error will go away (provided that you have included your assignment statements in your saved script).
-
-### What should I save?
-
-At this point in the chapter, two things should be clear: 
-
-1. R scripts saved to `.R` files are real. 
-2. Objects in your workspace/environment are not real, and will not be available to you after you close and re-open RStudio unless you re-run the code used to generate the workspace. 
-
-So what is important to save in R, and how often should you save these files? 
-
-It is paramount that you save the scripts you code in, and that you save them regularly. Even if you've made small notation changes to the code, it is always a good idea to save your changes to the script before closing RStudio, as there is a good chance you will not remember the minor differences upon returning. 
-
-While it is possible to save your workspace in RStudio, we do not recommend this. It is much easier to recreate your workspace from your R scripts than it is to recreate your scripts from your workspace. That being said, it is integral to get into good script formatting habits. 
-
-You want to make sure that even if you lose an object in your environment, your script still contains the code you used to generate that object. You also want to make sure that you generate the object before you call it in part of another command, so that when you run your scripts from top-to-bottom, the variables are generated in the workspace before they are referenced by later commands. Let's look at some examples. 
-
-```{r}
-# generate vectors
-x <- c(1, 2, 3, 5, 76, 8, 2)
-y <- c(T, T, T, F, F, F, F)
-
-# turn vectors into data frame
-data.frame(x,y)
-```
-
-The code above is ordered correctly. Your scripts should be ordered similar to this (with the exception that you will load R packages before you generate your variables), with your objects generated before you call them using a function.
-
-
-```{r eval = FALSE, error = TRUE}
-# make data frame
-data.frame(x,y)
-
-# generate vectors
-x <- c(1, 2, 3, 5, 76, 8, 2)
-y <- c(T, T, T, F, F, F, F)
-```
-
-The code above is ordered *incorrectly*. You can see that using `data.frame()` before generating vectors `x` and `y` has resulted in an error, similar to what we saw in the previous section. You should follow the format from the first example to avoid errors of this sort in your scripts.
-
-#### Saving objects
-
-In some cases, your code may be used to generate large data structures which require quite a bit of input to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data structure to a *real* file that you can simply import the next time you open the application. Fortunately, this is possible thanks to `save()` and `load()`.
-
-The `save()` function saves the input object or objects (i.e., vector, matrix, or data frame) to your working directory as an `.rda` file. Let's try saving our vectors `x` and `y` from the previous examples to a file called `vec.rda`.
-
-```{r eval = FALSE}
-# save vectors
-save(x, y, file = "vec.rda")
-```
-
-An `.rda` file should now exist in your project directory, as shown in the image below.
-
-![Figure 3.7: Generated `.rda` file after using `save()`.](images/Rstudio_rda.png)
-
-Now, let's try removing our vectors from our workspace and loading them from the `.rda` file we just generated. You can use `rm()` to remove objects from your workspace, as shown below.
-
-```{r eval = FALSE}
-rm(x, y)
-```
-
-Now that our workspace is empty, if you type `x` or `y` into the console, RStudio will not know what to return in response. We have to import the data back into our workspace so that RStudio knows what `x` and `y` contain.You can use `load()` to import the vectors to your current RStudio workspace, using the format below.
-
-```{r eval = FALSE}
-load(file = "vec.rda")
-```
-
-The vectors should now be present in the workspace again, and can be printed to the console if you type in their respective names.
 
 ## Troubleshooting error messages
 
@@ -348,13 +229,13 @@ library(readr)
 library(ggplot2)
 
 #import ozone data set
-ozone <- read_csv("./data/Ozone_oxidationexp.csv")
+airPol <- read_csv("data/2018-07-01_60430_Toronto_ON.csv")
 ```
 
 
 ```{r eval = FALSE}
 #plot ozone concentration vs. time
-ggplot(data = ozone, aes(x = Time, y = Concentration))
+ggplot(data = airPol, aes(x = Time, y = Concentration))
 ```
 
 (For more detail about importing and using `ggplot2`, please re-visit Chapter 2, section 2.3.4, or see Chapter 11.)
