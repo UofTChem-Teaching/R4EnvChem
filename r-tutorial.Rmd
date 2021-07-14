@@ -1,3 +1,30 @@
 # R Tutorial Exercise
 
-test test test.
+With the information presented in Chapters 1 to 4 you have the skills to start your data analysis. We've create a brief tutorial that covers the major elements introduced. At the end of this tutorial you'll have visualized a small subset of real Environment and Climate Change Canada (ECCC) National Airborne Pollution Surveillance Program (NAPS) data. More importantly, you'll have a properly setup project with working code and rmarkdown documents that you can recycle and re-purpose for your upcoming course work. After all, a beautiful aspect of coding is recycling it in future work to save you hassle. 
+
+In brief, the tutorial tasks are: 
+
+  1. Copy the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading on the repo's `README`. 
+  2. Install the following packages if you haven't already, you can copy the code below and run it in the console: 
+    - `tidyverse`
+    - `rmarkdown`
+    - `tinytex`; needed to generate PDF files, more info [here](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+install.packages("rmarkdown")
+install.packages("tinytex")
+
+tinytex::install_tinytex() # This will take ~5 mins, so grab a coffee
+```
+
+  3. Follow the instructions written in the template PDF to modify the `rmarkdown` file to analyze a dataset of your choice. 
+
+
+## Expected outcome
+
+There's a lot of upfront work with this tutorial, but if you've completed it successfully and generated your own markdown file analyzing your select dataset you'll be well on your way to tackling the upcoming course labs/work as you'll have: 
+
+  - Created a working *RStudio* project, which you can copy and reuse for your future projects. 
+  - Working *rmarkdown* document, similar to the reports you'd hand in during class. 
+  - Working R code showcasing basics of `ggplot`. 
