@@ -1,6 +1,8 @@
 # Using R Markdown
  
-In a nutshell, R Markdown allows you to analyse your data with R and write your report in the same place (this document is written with R Markdown). This has loads of benefits including increased reproducibility, and streamlined thinking. No more flipping back and forth between coding and writing to figure out what's going on. Let's run some simple code as an example: 
+In a nutshell, R Markdown allows you to analyse your data with R and write your report in the same place (this entire book was written with rmarkdown). This has loads of benefits including a [*reproducible workflow*](https://www.youtube.com/watch?v=s3JldKoA0zw), and streamlined thinking. No more flipping back and forth between coding and writing to figure out what's going on.
+
+Let's run some simple code as an example: 
 
 ```{r}
 # Look at me go mom
@@ -16,34 +18,30 @@ Pretty neat, eh? You might not think so, but let's imagine a scenario you'll enc
 
 What we've done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn't anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example: 
 
-```{r ex-rmarkdown-plot, echo=FALSE, eval = FALSE}
-# Quickly converts the CHM135 .csv files into tidyverse compatible format. 
-# Not to be evaluate for the main document
-library(tidyverse)
-airPol <- read_csv("./data/Toronto_60433_2018_Day2to8.csv")
 
-airPol <- airPol %>%
-  pivot_longer(cols = NO2:O3, names_to = "pollutant", values_to = "concentration") %>%
-  mutate(date = as.POSIXct(as.Date(Date, origin = "1899-12-30"))) %>%
-  select(-Date)
 
-write.csv(airPol, "./data/Toronto_60433_2018_Jan2to8.csv", row.names = FALSE)
-#ggplot(airPol, Date, NO2
-
-```
-
-```{r, message = FALSE, fig.cap= "Time series of 2018 ambient atmospheric O~3~ and NO~2~ concentrations (ppb) in downtown Toronto", fig.height=2}
+```{r, message = FALSE, fig.cap= "Time series of 2018 ambient atmospheric O~3~, NO~2~, and SO~2~ concentrations (ppb) in downtown Toronto", fig.height=2}
 library(tidyverse) 
 library(knitr)
-airPol <- read_csv("./data/Toronto_60433_2018_Jan2to8.csv",
-                   na = "-999")
-kable(airPol[1:5, ], 
-      caption = "Example table of airborne pollutant levels used for Figure 1.")
 
+airPol <- read_csv("data/2018-01-01_60430_Toronto_ON.csv")
 
-ggplot(airPol, aes(date, concentration, colour = pollutant)) +
+ggplot(data = airPol, 
+       aes(x = date.time, 
+           y = concentration, 
+           colour = pollutant)) + 
   geom_line() +
   theme_classic()
+
+sumAirPol <- airPol %>%
+  drop_na() %>%
+  group_by(city, naps, pollutant) %>%
+  summarize(mean = mean(concentration), 
+            sd = sd(concentration), 
+            min = min(concentration), 
+            max = max(concentration))
+
+knitr::kable(sumAirPol, digits = 1)
 ```
 
 Pretty neat, eh? You might not think so, but let's imagine a scenario you'll encounter soon enough. You're about to submit your assignment, you've spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to *subtract* value `x` and not value `y` in your analysis. If you did all your work in *Excel* (tsk tsk), you'll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which is never does with looming deadlines). Now if you did all your work in R markdown, you go to your one `.rmd` document, briefly apply the changes and re-compile your document.  
@@ -89,7 +87,7 @@ Reading further down the default R markdown code, you'll see different blocks of
 
 There's two ways to write `R` code in markdown:
 
-- **Setup a code chunk**. Code chunks start with three back-ticks like this: ` ```{r}`, where `r` indicates you're using the R languauge. You end a code chunk using three more backticks like this ` ``` `.
+- **Setup a code chunk**. Code chunks start with three back-ticks like this: ` ```{r}`, where `r` indicates you're using the R language You end a code chunk using three more backticks like this ` ``` `.
 
   - Specify code chunks options in the curly braces. i.e. ` ```{r, fig.height = 2}` sets figure height to 2 inches. See the *Code Chunk Options* section below for more details. 
   
