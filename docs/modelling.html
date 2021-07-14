@@ -236,7 +236,10 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.6" data-path="using-r-markdown.html"><a href="using-r-markdown.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>4.3.6</b> Quick reference on R markdown syntax</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="r-tutorial-exercise.html"><a href="r-tutorial-exercise.html"><i class="fa fa-check"></i><b>5</b> R Tutorial Exercise</a></li>
+<li class="chapter" data-level="5" data-path="r-tutorial-exercise.html"><a href="r-tutorial-exercise.html"><i class="fa fa-check"></i><b>5</b> R Tutorial Exercise</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-tutorial-exercise.html"><a href="r-tutorial-exercise.html#expected-outcome"><i class="fa fa-check"></i><b>5.1</b> Expected outcome</a></li>
+</ul></li>
 <li class="part"><span><b>Section 2: Data Analysis in R</b></span></li>
 <li class="chapter" data-level="6" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Intro to Data Analysis</a>
 <ul>
@@ -339,28 +342,28 @@ div.csl-indent {
 <p>Modelling is basically math used to describe some type of system, and they are a forte of R, a language tailor made for statistical computing… Every model has assumptions, limitations, and all around tricky bits to working. We’ll discuss model fitting and break down popular models you’ll encounter in specific chapters in Section 3. For now, we’ll introduce the <code>lm()</code> function for generalized linear models.</p>
 <p>Linear models are the <em>trend lines</em> you used all the way back in <em>CHM135</em>. However, if you’ve been exposed to these, it’s most likely via <em>Excel</em>’s ‘add trend line’ option. While <code>lm()</code> works much the same <em>mathematically</em>, unlike <em>Excel</em>, R returns <em>allllll</em> of the model outputs. Correspondingly, it’s easy to get lost between juggling R code, the endless model outputs, and keeping yourself grounded in the real science you’re attempting to model.</p>
 <p>So let’s take our <code>lm()</code> function at face value and learn <em>how</em> to model in R. Again we’ll touch up the details later on, but for now let’s import the FAES calibration results we saw in <a href="transform-dplyr-and-data-manipulation.html#transform-dplyr-and-data-manipulation">Transform: dplyr and data manipulation</a>. As we’ve already seen, our data is composed of four standards and a blank analyzed in triplicate. Since we’re focusing on modelling, <em>we’ll treat the blank as a standard in our model fitting</em>:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="modelling.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
-<span id="cb179-2"><a href="modelling.html#cb179-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb179-3"><a href="modelling.html#cb179-3" aria-hidden="true" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb179-4"><a href="modelling.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
-<span id="cb179-5"><a href="modelling.html#cb179-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
-<span id="cb179-6"><a href="modelling.html#cb179-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
-<span id="cb179-7"><a href="modelling.html#cb179-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb179-8"><a href="modelling.html#cb179-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
-<span id="cb179-9"><a href="modelling.html#cb179-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
-<span id="cb179-10"><a href="modelling.html#cb179-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
-<span id="cb179-11"><a href="modelling.html#cb179-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb179-12"><a href="modelling.html#cb179-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">&quot;standard&quot;</span>)</span>
-<span id="cb179-13"><a href="modelling.html#cb179-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb179-14"><a href="modelling.html#cb179-14" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div id="htmlwidget-30d3cb52e96f31c73b43" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-30d3cb52e96f31c73b43">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3,0.3,0.3,0.4,0.4,0.4],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="modelling.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
+<span id="cb180-2"><a href="modelling.html#cb180-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-3"><a href="modelling.html#cb180-3" aria-hidden="true" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb180-4"><a href="modelling.html#cb180-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
+<span id="cb180-5"><a href="modelling.html#cb180-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
+<span id="cb180-6"><a href="modelling.html#cb180-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
+<span id="cb180-7"><a href="modelling.html#cb180-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb180-8"><a href="modelling.html#cb180-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
+<span id="cb180-9"><a href="modelling.html#cb180-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
+<span id="cb180-10"><a href="modelling.html#cb180-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb180-11"><a href="modelling.html#cb180-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb180-12"><a href="modelling.html#cb180-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">&quot;standard&quot;</span>)</span>
+<span id="cb180-13"><a href="modelling.html#cb180-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-14"><a href="modelling.html#cb180-14" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
+<div id="htmlwidget-cea270b5587e041dac20" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cea270b5587e041dac20">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3,0.3,0.3,0.4,0.4,0.4],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>Note model is a general term, in this situation we’ll be calculating a <strong>calibration curve</strong>. All calibration curves are models, but not all models are calibration curves.</p>
 <div id="base-r-linear-model" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Base R Linear Model</h2>
 <p>R’s base <code>lm()</code> function for linear regression is excellent, but it’s outputs have some messy quirks. It’s easier to show that, so let’s calculate the linear relationship between the <code>signal</code> as a function of <code>conc_Na</code>:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="modelling.html#cb180-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> FAES)</span>
-<span id="cb180-2"><a href="modelling.html#cb180-2" aria-hidden="true" tabindex="-1"></a>lm_fit</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="modelling.html#cb181-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> FAES)</span>
+<span id="cb181-2"><a href="modelling.html#cb181-2" aria-hidden="true" tabindex="-1"></a>lm_fit</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = signal ~ conc_Na, data = FAES)
@@ -376,7 +379,7 @@ div.csl-indent {
 <li>All of the model outputs are stored in the <code>lm_fit</code> variable.</li>
 </ol>
 <p>As we can see, the model outputs are pretty brief and not more more than <em>Excel</em>’s outputs. We can use <code>summary()</code> to extract more information to better understand our model:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="modelling.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="modelling.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = signal ~ conc_Na, data = FAES)
@@ -400,16 +403,16 @@ div.csl-indent {
 <div id="cleaning-up-model-ouputs" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Cleaning up model ouputs</h2>
 <p><code>summary()</code> provides a decent overview of our model’s performance, but the outputs are difficult to work with. Let’s turn to the <code>broom()</code> package to clean up our model outputs.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="modelling.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb184-2"><a href="modelling.html#cb184-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-3"><a href="modelling.html#cb184-3" aria-hidden="true" tabindex="-1"></a>calCurve <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
-<span id="cb184-4"><a href="modelling.html#cb184-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
-<span id="cb184-5"><a href="modelling.html#cb184-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb184-6"><a href="modelling.html#cb184-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> .x)),</span>
-<span id="cb184-7"><a href="modelling.html#cb184-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy),</span>
-<span id="cb184-8"><a href="modelling.html#cb184-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">glanced =</span> <span class="fu">map</span>(fit, glance)</span>
-<span id="cb184-9"><a href="modelling.html#cb184-9" aria-hidden="true" tabindex="-1"></a>         )</span>
-<span id="cb184-10"><a href="modelling.html#cb184-10" aria-hidden="true" tabindex="-1"></a>calCurve</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="modelling.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb185-2"><a href="modelling.html#cb185-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-3"><a href="modelling.html#cb185-3" aria-hidden="true" tabindex="-1"></a>calCurve <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb185-4"><a href="modelling.html#cb185-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb185-5"><a href="modelling.html#cb185-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb185-6"><a href="modelling.html#cb185-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> .x)),</span>
+<span id="cb185-7"><a href="modelling.html#cb185-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy),</span>
+<span id="cb185-8"><a href="modelling.html#cb185-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">glanced =</span> <span class="fu">map</span>(fit, glance)</span>
+<span id="cb185-9"><a href="modelling.html#cb185-9" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb185-10"><a href="modelling.html#cb185-10" aria-hidden="true" tabindex="-1"></a>calCurve</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ## # Groups:   type [1]
 ##   type     data              fit    tidied           glanced          
@@ -424,8 +427,8 @@ div.csl-indent {
 </ol>
 <p>And it’s the the <code>fit</code>, <code>tidied</code> and <code>glanced</code> that contains out cleaned up model outputs. <code>fit</code> contains the raw output from the linear regression model for <code>signal</code> as a function of <code>conc_Na</code> using the <code>lm()</code> function. The output is in the form of a list, similar to what <code>summary()</code> gave us above. Again, this is exceptionally messy, hence why we used the <code>tidy()</code>, and <code>glance()</code> function from the <code>broom</code> package . <code>map()</code> just means we’re applying the function <code>tidy()</code> to the individual output list created by <code>lm()</code> and stored in the <code>fit</code> column. Note that the <code>tidy()</code> and <code>glanced()</code> outputs are tibbles. So we now have a tibble containing specific model output values (i.e. <code>(Intercept)</code>), lists (i.e. <code>fit</code>), and tibbles (<code>tidied</code>). This is known as **nested data*. We’re no longer in Kansas anymore…</p>
 <p>Anyways, let’s take a look at our model results. The <code>glanced</code> tibble contains “…a concise one-row summary of the model. This typically contains values such as R^2, adjusted R^2, and residual standard error that are computed once for the entire mode”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Because the data is nested, we’ll need to use <code>unnest()</code> to flatten it back out into regular columns:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="modelling.html#cb186-1" aria-hidden="true" tabindex="-1"></a>calCurve <span class="sc">%&gt;%</span> </span>
-<span id="cb186-2"><a href="modelling.html#cb186-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(glanced)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="modelling.html#cb187-1" aria-hidden="true" tabindex="-1"></a>calCurve <span class="sc">%&gt;%</span> </span>
+<span id="cb187-2"><a href="modelling.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(glanced)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 16
 ## # Groups:   type [1]
 ##   type   data     fit   tidied  r.squared adj.r.squared sigma statistic  p.value
@@ -435,12 +438,12 @@ div.csl-indent {
 ## #   deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>What you see here is a bit more than what you’d get from <em>Excel</em>’s ‘line-of-best fit’ output. See the section on <em>Modelling</em> for a better breakdown of what everything means. But for now, we can see that our <code>r.squared</code> of each calibration curve is pretty good, and the <code>p.value</code> indicates each model is significant. the <code>adj.r.squared</code> is the same as <code>r.squared</code> in this situation. This is because <code>r.squared</code> will always increase if we add more exploratory variables to our model; the <code>adj.r.squared</code> accounts for the number of exploratory variables used in the model. However, in our case we only have one exploratory variable, hence they’re the same.</p>
 <p>But what about the slope and the intercept? After all, that’s what we need to calculate the concentration in our unknowns. Let’s take a look at <code>tidied</code> from the <code>tidy()</code> function “…which constructs a tibble that summarizes the model’s statistical findings. This includes coefficients and p-values for each term in a regression…”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="modelling.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># storing because we&#39;ll use it later on. </span></span>
-<span id="cb188-2"><a href="modelling.html#cb188-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-3"><a href="modelling.html#cb188-3" aria-hidden="true" tabindex="-1"></a>tidied <span class="ot">&lt;-</span> calCurve <span class="sc">%&gt;%</span> </span>
-<span id="cb188-4"><a href="modelling.html#cb188-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span>
-<span id="cb188-5"><a href="modelling.html#cb188-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-6"><a href="modelling.html#cb188-6" aria-hidden="true" tabindex="-1"></a>tidied</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="modelling.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># storing because we&#39;ll use it later on. </span></span>
+<span id="cb189-2"><a href="modelling.html#cb189-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb189-3"><a href="modelling.html#cb189-3" aria-hidden="true" tabindex="-1"></a>tidied <span class="ot">&lt;-</span> calCurve <span class="sc">%&gt;%</span> </span>
+<span id="cb189-4"><a href="modelling.html#cb189-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span>
+<span id="cb189-5"><a href="modelling.html#cb189-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb189-6"><a href="modelling.html#cb189-6" aria-hidden="true" tabindex="-1"></a>tidied</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 9
 ## # Groups:   type [1]
 ##   type   data      fit    term   estimate std.error statistic  p.value glanced  
@@ -458,10 +461,10 @@ div.csl-indent {
 </ul>
 <p>In our situation, we only have one input variable for our model (<code>conc</code>), so the above formula collapses down to <span class="math inline">\(y = \beta _{0} + \beta _{1} x_{1}\)</span>. So looking at our results above, each row corresponds to a model parameter. For each modelling parameter, we’re provided an estimate of it’s numerical value (<code>estimate</code>, the values we’ll use to calculate concentration). The other parameters are useful to understand but not necessary at this point (again, check out the <em>Modelling</em> section).</p>
 <p>And we can extract these values to use in subsequent calculations:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="modelling.html#cb190-1" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">1</span>,<span class="dv">5</span>])</span>
-<span id="cb190-2"><a href="modelling.html#cb190-2" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">2</span>,<span class="dv">5</span>])</span>
-<span id="cb190-3"><a href="modelling.html#cb190-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-4"><a href="modelling.html#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The equation of our calibration curve is: y = &quot;</span>, slope, <span class="st">&quot;x + &quot;</span>, intercept, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="modelling.html#cb191-1" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">1</span>,<span class="dv">5</span>])</span>
+<span id="cb191-2"><a href="modelling.html#cb191-2" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">2</span>,<span class="dv">5</span>])</span>
+<span id="cb191-3"><a href="modelling.html#cb191-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-4"><a href="modelling.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The equation of our calibration curve is: y = &quot;</span>, slope, <span class="st">&quot;x + &quot;</span>, intercept, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;The equation of our calibration curve is: y = 16884.8167x + 1242.56646666666&quot;</code></pre>
 </div>
 <div id="further-reading-5" class="section level2" number="11.3">

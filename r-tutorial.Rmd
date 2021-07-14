@@ -4,18 +4,21 @@ With the information presented in Chapters 1 to 4 you have the skills to start y
 
 In brief, the tutorial tasks are: 
 
-  1. Copy the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading on the repo's `README`. 
-  2. Install the following packages if you haven't already, you can copy the code below and run it in the console: 
-    - `tidyverse`
-    - `rmarkdown`
-    - `tinytex`; needed to generate PDF files, more info [here](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
+1. Copy the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading on the repo's `README`. 
+2. Install the following packages if you haven't already, you can copy the code below and run it in the console: 
+  - `tidyverse`
+  - `rmarkdown`
+  - `tinytex`: needed to generate PDF files, more info [here](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
+
 
 ```{r, eval = FALSE}
+
 install.packages("tidyverse")
 install.packages("rmarkdown")
 install.packages("tinytex")
 
 tinytex::install_tinytex() # This will take ~5 mins, so grab a coffee
+
 ```
 
   3. Follow the instructions written in the template PDF to modify the `rmarkdown` file to analyze a dataset of your choice. 

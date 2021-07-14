@@ -236,7 +236,10 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.6" data-path="using-r-markdown.html"><a href="using-r-markdown.html#quick-reference-on-r-markdown-syntax"><i class="fa fa-check"></i><b>4.3.6</b> Quick reference on R markdown syntax</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="r-tutorial-exercise.html"><a href="r-tutorial-exercise.html"><i class="fa fa-check"></i><b>5</b> R Tutorial Exercise</a></li>
+<li class="chapter" data-level="5" data-path="r-tutorial-exercise.html"><a href="r-tutorial-exercise.html"><i class="fa fa-check"></i><b>5</b> R Tutorial Exercise</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-tutorial-exercise.html"><a href="r-tutorial-exercise.html#expected-outcome"><i class="fa fa-check"></i><b>5.1</b> Expected outcome</a></li>
+</ul></li>
 <li class="part"><span><b>Section 2: Data Analysis in R</b></span></li>
 <li class="chapter" data-level="6" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Intro to Data Analysis</a>
 <ul>
@@ -336,8 +339,35 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="r-tutorial-exercise" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> R Tutorial Exercise</h1>
-<p>test test test.</p>
+<p>With the information presented in Chapters 1 to 4 you have the skills to start your data analysis. We’ve create a brief tutorial that covers the major elements introduced. At the end of this tutorial you’ll have visualized a small subset of real Environment and Climate Change Canada (ECCC) National Airborne Pollution Surveillance Program (NAPS) data. More importantly, you’ll have a properly setup project with working code and rmarkdown documents that you can recycle and re-purpose for your upcoming course work. After all, a beautiful aspect of coding is recycling it in future work to save you hassle.</p>
+<p>In brief, the tutorial tasks are:</p>
+<ol style="list-style-type: decimal">
+<li>Copy the template project from the <a href="https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate">GitHub repository here</a>; there are instructions on downloading on the repo’s <code>README</code>.</li>
+<li>Install the following packages if you haven’t already, you can copy the code below and run it in the console:</li>
+</ol>
+<ul>
+<li><code>tidyverse</code></li>
+<li><code>rmarkdown</code></li>
+<li><code>tinytex</code>: needed to generate PDF files, more info <a href="https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html">here</a></li>
+</ul>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="r-tutorial-exercise.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb88-2"><a href="r-tutorial-exercise.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span>
+<span id="cb88-3"><a href="r-tutorial-exercise.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb88-4"><a href="r-tutorial-exercise.html#cb88-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-5"><a href="r-tutorial-exercise.html#cb88-5" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>() <span class="co"># This will take ~5 mins, so grab a coffee</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Follow the instructions written in the template PDF to modify the <code>rmarkdown</code> file to analyze a dataset of your choice.</li>
+</ol>
+<div id="expected-outcome" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Expected outcome</h2>
+<p>There’s a lot of upfront work with this tutorial, but if you’ve completed it successfully and generated your own markdown file analyzing your select dataset you’ll be well on your way to tackling the upcoming course labs/work as you’ll have:</p>
+<ul>
+<li>Created a working <em>RStudio</em> project, which you can copy and reuse for your future projects.</li>
+<li>Working <em>rmarkdown</em> document, similar to the reports you’d hand in during class.</li>
+<li>Working R code showcasing basics of <code>ggplot</code>.</li>
+</ul>
 
+</div>
 </div>
 
 
