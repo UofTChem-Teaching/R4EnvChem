@@ -1,3 +1,12 @@
+# (PART\*) Section 3: Data Analysis Toolbox {-}
+
 # Introduction
 
-intro stuff here...
+Toolbox for data analysis that will envetually cover stuff like:
+
+- different visualizations used in CHM410/env chem w/ links to more useful websites
+- statistics, but mostly just those needed for undergrad envb. chem. 
+- better elaboration on linear regression modelling with descriptions with all of the fit parameters. 
+- non-linear regression
+- interactive plots (probably in the visualizations chapter above)
+- how to lie w/ statistics and plots. Chapter explaining graphicacy and numeracy. 

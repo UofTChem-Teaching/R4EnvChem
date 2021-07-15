@@ -25,9 +25,12 @@ rmd_files:  [
   "prog-with-r.Rmd",
   "modelling.Rmd",
   "visualizations.Rmd",
-  "communication.Rmd"
+  "communication.Rmd",
   
-  
+  "sec3-intro.rmd",
+  "visualizations-redux.Rmd",
+  "linear-regression.Rmd",
+  "non-linear-models.Rmd"
   
   ]
   

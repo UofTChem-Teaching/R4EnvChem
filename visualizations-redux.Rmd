@@ -1,0 +1,9 @@
+# Choosing Visualizations
+
+-  introduce the principle plots/visualizations used in CHM410/undergad envb chem
+  - scatter/jitter
+  - line
+  - box/violin plot
+  - histogram and density distributions
+  - marginal plots
+- working code of example plots 
