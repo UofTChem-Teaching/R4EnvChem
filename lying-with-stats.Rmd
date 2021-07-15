@@ -1,0 +1,3 @@
+# How to lie with stats and plots
+
+tentative chapter to explain how you can be mislead/mess up/misinterpret plots and stats. 
