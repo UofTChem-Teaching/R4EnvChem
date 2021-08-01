@@ -125,7 +125,7 @@ paste("The equation of our calibration curve is: y = ", slope, "x + ", intercept
 ```
 ### Why we approach modelling this way
 
-You may be wondering why we've seemingly overcomplicated a simple enough procedure. Fair enough, we've showcased an analysis with a simple data set. However, as you progress in your studies you'll be quantifying *many* compounds, often at the same time int he same instrument runs. If you organize your data in a tidy format, you can plot calibration curves for *all* of your compounds with the same block of code. Essentially you use `group_by()` to group your data by compound/element. The same code is expandable from 1 compound to as many as you can ever hope to quantify in one shot. So for upper year labs where you're analyzing tens of compounds (*cough* CHM410 Dust Lab) you can generate calibration curves for all your compounds at once. 
+You may be wondering why we've seemingly overcomplicated a simple enough procedure. Fair enough, we've showcased an analysis with a simple data set. However, as you progress in your studies you'll be quantifying *many* compounds, often at the same time in the same instrument runs. If you organize your data in a tidy format, you can plot calibration curves for *all* of your compounds with the same block of code. Essentially you use `group_by()` to group your data by compound/element. Subsequently, the same code is expandable from 1 compound to as many as you can ever hope to quantify in one shot. So for upper year labs where you're analyzing tens of compounds (*cough* CHM410 Dust Lab) you can generate calibration curves for all your compounds at once. 
 
 ## Visualizing model
 
