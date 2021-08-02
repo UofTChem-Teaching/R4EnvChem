@@ -1,6 +1,6 @@
 # R Studio Projects
 
-In the previous chapter we did our coding in the console, which got messy rather quickly. To combat this, we code in *scripts*. Scripts are essentially a recipe that R reads to execute intead of you typine and running each line of code. And like a recipe, R reads your script from top to bottom. An important aspect of scripts is that *they're reproducible*. In other words you should be able to rerun your script and get the exact same result everytime. 
+In the previous chapter we did our coding in the console, which got messy rather quickly. To combat this, we code in *scripts*. Scripts are essentially a recipe that R reads to execute instead of you typing and running each line of code. And like a recipe, R reads your script from top to bottom. An important aspect of scripts is that *they're reproducible*. In other words you should be able to rerun your script and get the exact same result every time. 
 
 So let's go ahead and open a script.
 
@@ -10,7 +10,7 @@ To create a script:
 
   1. Go to `File` -> `New File` -> `R Script`
   2. Then save your script by going to `File` -> `Save As...`. 
-    a. Make sure to save your file with the `.R` suffixe.
+    a. Make sure to save your file with the `.R` suffix.
     b. **Save your script in your project folder**, otherwise you'll run into issues.
 
 We've also provided an example script in the R4EnvChem project template. Assuming you're currently in the template project you can open the script as follows:
@@ -231,6 +231,11 @@ class(TRUE)
 
 ## Summary
 
+In this chapter we've covered:
 
-
-Now that you're familiar with working in RStudio, saving your projects, scripts, and data, let's move over to Chapter 4, where we'll discuss the advantages and disadvantages of using `.Rmd` documents instead of `.R` scripts.
+  - R workflows in the context of projects and scripts
+  - What's considered *real* when working in RStudio
+  - How to format your script for legibility (Remember you're the one who's going to be stuck rereading it!)
+  - Troubleshooting some common error messages
+  
+Now that you're familiar the above, we'll introduce RMarkdown, a way to combine your R code, it's outputs, and your writing all in one dynamic document (like your lab reports!).  

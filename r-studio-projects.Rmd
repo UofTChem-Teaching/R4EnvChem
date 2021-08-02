@@ -1,6 +1,6 @@
 # R Studio Projects
 
-You're probably eager to start coding, but an equally important aspect is understanding the structure of your work. Knowing how to organize the files needed for your analysis and how to access them is critical. Morever, understanding this early on will save you plenty of time and heartaches down the line. So let's hold off on coding and consider *where* we're working on your computer.
+You're probably eager to start coding, but an equally important aspect is understanding the structure of your work. Knowing how to organize the files needed for your analysis and how to access them is critical. Moreover, understanding this early on will save you plenty of time and heartaches down the line. So let's hold off on coding and consider *where* we're working on your computer.
 
 Because we believe in it so much, we'll say it up top: **Always work inside an RStudio Project, and use a unique project for each lab/experiment.**
 
@@ -48,14 +48,21 @@ R4EnvChem-ProjectTemplate
 
 With the `R4EnvChem-ProjectTemplate.Rproj` file located in the main folder, this is important as we'll be able to readily look for files we stored in project subfolders such as `data` and `images`. 
 
-We'll further expouse the useful of projects later on, but now that we've gotten a working project with some data, let's move onto the next session to  begin to code.
+## Summary
+
+In this chapter we've covered: 
+
+  - Importing the *R4EnvChem Project Template* so we have access to data for the tutorial (amongst other things)
+  - The concept of paths and directories and how projects greatly simplify this
+
+We'll further sermonize about the usefulness of projects later on, but now that we've gotten a working project with some data, let's move onto the next session to  begin to code.
 
 ---------------------------
 
 
 ## Creating an RStudio project
 
-We've provided instructions on creating your own RStudio project from scratch, but you can always copy the template project folder (or any for that matter) to repurpose it as you see fit. 
+We've provided instructions on creating your own RStudio project from scratch, but you can always copy the template project folder above (or any for that matter) to re-purpose it as you see fit. 
 
 To create a new project: go to *File*->*New Project*, or click the button highlighted in the image below. Click *New Directory*, then *New Project*. 
 

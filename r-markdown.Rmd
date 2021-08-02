@@ -79,7 +79,7 @@ This section is known as the *preamble* and it's where you specify most of the d
 
 Reading further down the default R markdown code, you'll see different blocks of text. In R markdown anything you write will be interpreted as body text (i.e. stuff like this that you want folks to read) in the knitted document. **To actually run R code** you'll need to see the next section.
 
-### Runnign code in rmarkdown
+### Running code in rmarkdown
 
 There's two ways to write `R` code in markdown:
 
@@ -202,3 +202,12 @@ Example R markdown syntax used for formatting shown above:
 ## Headers
 ### Headers
 ```
+
+## RStudio tips and tricks
+
+To further the usefulness of rmarkdown, the latest release of RStudio has a *Visual R Markdown* editor which introduces many useful features for authoring documents in rmarkdown. Some of the most pertinent are: 
+
+  - (Visual editor)[https://rstudio.github.io/visual-markdown-editing/] so you can see how your document looks (top left of script pane)
+  - Combining Zotero and RStudio for easy citatiosn of your document (read more (here)[https://rstudio.github.io/visual-markdown-editing/citations.html])
+  - Spell check either via `F7` or `Edit -> Check Spelling`
+  

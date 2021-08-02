@@ -17,7 +17,7 @@ rmd_files:  [
   "running-r-code.Rmd",
   "r-workflows.Rmd",
   "r-markdown.Rmd",
-  "r-tutorial.Rmd",
+  "r-tutorial.Rmd" ,
   
   # Section 2: Data Analysis notes
   "intro-data-analysis.Rmd",
@@ -28,8 +28,8 @@ rmd_files:  [
   "modelling.Rmd",
   "visualizations.Rmd",
   "communication.Rmd",
-  
-  # Section 3: Data Science. 
+
+  # Section 3: Data Science.
   "sec3-intro.rmd",
   "visualizations-redux.Rmd",
   "linear-regression.Rmd",

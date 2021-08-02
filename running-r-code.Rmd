@@ -14,7 +14,7 @@ We've already talked about how R can be used like a calculator:
 (2 * 3) + (5 * 4)
 ```
 
-But managing these inputs and outputs is simplified with **variables**. Variables in R, like those you've encountered in math class, can only have one value, and you can reference or pass that value along by referring the variable name. And, unlike the variables in math classes, you can change that value whenever you want. Another way to think about it that a variable is a box in which you store your value. When you want to move (refecence) your value, you move the box (and whatevers inside of it). Then you can simply open the box somewhere else without having to worry about the hassle of what's inside. 
+But managing these inputs and outputs is simplified with **variables**. Variables in R, like those you've encountered in math class, can only have one value, and you can reference or pass that value along by referring the variable name. And, unlike the variables in math classes, you can change that value whenever you want. Another way to think about it that a variable is a box in which you store your value. When you want to move (reference) your value, you move the box (and whatever is inside of it). Then you can simply open the box somewhere else without having to worry about the hassle of what's inside. 
 
 You can assign the outputs variables using `<-`, as shown below. 
 
@@ -120,9 +120,9 @@ Here we see that the data is stored **tidy**, which is to say each column is a v
 
 ### Accessing data in subfolders
 
-Note that `read_csv()` requires us to specify the file name, but in the above example we prefixed our file name with `"data/2018..."`. This is because the `.csv` file we want to open is stored in the `data` subfolder. By specifying this in the prefix, we tell `read_csv()` to first go to the `data` subfolder in the working directory and *then* search for and open the specified data file. 
+Note that `read_csv()` requires us to specify the file name, but in the above example we prefixed our file name with `"data/2018..."`. This is because the `.csv` file we want to open is stored in the `data` sub-folder. By specifying this in the prefix, we tell `read_csv()` to first go to the `data` sub folder in the working directory and *then* search for and open the specified data file. 
 
-What we've done above is called *relative referecing* and it's a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like `"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"`. If we weren't in a project, this is what you'd need to type to open your file, but since we're working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need `"data/2018..."`. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and Profs (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code & data) and the receiver could open it and run it as is. 
+What we've done above is called *relative referencing* and it's a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like `"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"`. If we weren't in a project, this is what you'd need to type to open your file, but since we're working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need `"data/2018..."`. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and Profs (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code & data) and the receiver could open it and run it as is. 
 
 ## Other data structures
 
@@ -213,6 +213,10 @@ This plot looks more complicated then the previous one, but it's the same data p
 
 This covers the basics of `ggplot()` but there's scores more you can do with this functions, and it's extended even further with packages. All of this is discussed in more detail in the [Visualizations] chapter. 
 
+### Calling specific functions
+
+We've called functions like `ggplot()` and `read_csv` from the `ggplot2` and `readr` packages, respectively, because they were implicitly imported when we called `library(tidyverse)`. What library does is import *all* of the functions within a package into the R workspace, so we can simply refer to them by name later on. Sometimes you'll want to be explicit with which function you call, as you can run into conflicts where different functions from different packages have the same name. Or you might not want to import the entire package when you only need to call one function. Either way, to explicitly call a function from a specific package you type the package name, followed by `::`, and the function name. I.e. We can use `read_csv` without importing the `tidyverse`/`readr` packages by simply typing: `readr::read_csv()`. Note the package still needs to be installed on your computer for this to work. 
+
 ### Function Documentation
 
 An oft unappreciated aspect of packages is that they not only contain functions we can use, but documentation. Documentation provides a description of the function (what it does), what arguments it takes, details, and working examples.Often the easiest way to learn how to use a function is to take a working example and change it bit by bit to see how it works etc. To see documentation check the "help" tab in the "outputs" window or type a question mark in front of a functions name: 
@@ -223,6 +227,13 @@ An oft unappreciated aspect of packages is that they not only contain functions 
 ```
 You can also write you're own functions. Please see [Programming with R] for additional details. 
   
-Now that you're familiar with navigating RStudio and some basic coding building blocks, you may have realized that working the console can get real messy, real quick. We'll read on to the next chapter where we'll discuss R workflows to make everyone's lives easier. 
+## Summary
 
+In this chapter we've covered: 
 
+  - The basics of coding in R including variables, data types, and data structures (notable `data.frames`).
+  - How to install r packages and make use of functions
+  - Importing data from your project folder into R
+  - Preliminary exploration of `ggplot2` to visualize the aforementioned data. 
+
+Now that you're familiar with navigating RStudio and some basic coding building blocks, you may have realized that working the console can get real messy, real quick. Well read on to the next chapter where we'll discuss R workflows to make everyone's lives easier. 
