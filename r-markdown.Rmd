@@ -207,7 +207,7 @@ Example R markdown syntax used for formatting shown above:
 
 To further the usefulness of rmarkdown, the latest release of RStudio has a *Visual R Markdown* editor which introduces many useful features for authoring documents in rmarkdown. Some of the most pertinent are: 
 
-  - (Visual editor)[https://rstudio.github.io/visual-markdown-editing/] so you can see how your document looks (top left of script pane)
-  - Combining Zotero and RStudio for easy citatiosn of your document (read more (here)[https://rstudio.github.io/visual-markdown-editing/citations.html])
+  - [Visual editor](https://rstudio.github.io/visual-markdown-editing/) so you can see how your document looks (top left of script pane)
+  - Combining Zotero and RStudio for easy citatiosn of your document (read more [here](https://rstudio.github.io/visual-markdown-editing/citations.html)
   - Spell check either via `F7` or `Edit -> Check Spelling`
   

@@ -19,6 +19,9 @@ The explicit workflow we'll be teaching was originally described by Wickham and 
 
 The *Transform*, *Visualize*, and *Model* cycle exists because these steps often feed into one another. For example, you'll often transform your data, make a quick model, then visualize it to see how it performs. Other times, you'll visualize your data to see what type of model can explain it, and if any transformations are necessary. This is the beauty of R (and coding in general). Once you've setup everything, these steps are fairly simple to execute allowing you to quickly explore your data from a number of different angles. The next section will explore the theory (the **why**) behind these steps, and introduce some tools you can use to better explore your data. 
 
+## Example Data
+
+Throughout this section and the next we'll be making use of a couple of example datasets. These datasets are all availabe in the `data` subfolder of the *R4EnvChem Project Template*. If you haven't already, you can download them from the repo [here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate)
 
 ## Further Reading
 
