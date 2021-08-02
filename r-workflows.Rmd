@@ -1,84 +1,24 @@
-# Working with R
+# R Studio Projects
 
-Now that you have some tools in your arsenal, let's discuss how to use them. After all knowing how to hammer a nail doesn't make you a carpenter. A coherent workflow is often overlooked by student's when they learn R, but a little bit of time setting up your work at the beginning will save you plenty of heartaches down the line. And just like there's a common workflow in any chemistry lab (pre-lab, collect reagents, conduct experiment, etc.) there's a common workflow when working with R. This is by no means the only way to work, but it's tried and true and will serve you well as you tackle your coursework. Let's take a step back from the scripts and consider *where* we're working on your computer.
+In the previous chapter we did our coding in the console, which got messy rather quickly. To combat this, we code in *scripts*. Scripts are essentially a recipe that R reads to execute intead of you typine and running each line of code. And like a recipe, R reads your script from top to bottom. An important aspect of scripts is that *they're reproducible*. In other words you should be able to rerun your script and get the exact same result everytime. 
 
-## Paths and directories
+So let's go ahead and open a script.
 
-Before you get started with running your code, it is good to know where your analysis is actually occurring, or where your **working directory** is. The working directory is the folder where R looks for files that you have asked it to import, and the folder where R stores files that you have asked it to save. 
+# Creating or opening a script
 
-RStudio displays the current working directory at the top of the console, as shown below, but can also be printed to the console using the command `getwd()`.
+To create a script: 
 
-![Working directory path displayed in the RStudio console](images/Rstudio_wd.png)
+  1. Go to `File` -> `New File` -> `R Script`
+  2. Then save your script by going to `File` -> `Save As...`. 
+    a. Make sure to save your file with the `.R` suffixe.
+    b. **Save your script in your project folder**, otherwise you'll run into issues.
 
-By default, R usually sets the working directory to the home directory on your computer. The `~` symbol denotes the home directory, and can be used as a shortcut when writing a path that references the home directory. 
+We've also provided an example script in the R4EnvChem project template. Assuming you're currently in the template project you can open the script as follows:
 
-You can change the working directory using `setwd()` and an absolute file path. Absolute paths are references to files which point to the same file, regardless of what your working directory is set to. In Windows, absolute paths begin with `"C:"`, while they begin with with a slash in Mac and Linux (i.e., `"/Users/Vinny/Documents"`). It is important to note that absolute paths and `setwd()` should **never** be used in your scripts because they hinder sharing of code -- no one else will have the same file configuration as you do. If you share your script with your TA or Prof, they will not be able to access the files you are referencing in an absolute path. Thus, they will not be able to run the code as-is in your script.
-
-In order to overcome the use of absolute paths and `setwd()`, we strongly recommend that you conduct all work in RStudio within an **R project**. When you create an R project, R sets the working directory to a file folder of your choice. Any files that your code needs to run (i.e., data sets, images, etc.) are placed within this folder. You can then use relative paths to refer to data files in the project folder, which is much more conducive to sharing code with colleagues, TAs, and Profs. 
-
-## Creating an RStudio project
-
-Let's go ahead and create a new **R Project**. Go to *File*->*New Project*, or click the button highlighted in the image below. Click *New Directory*, then *New Project*. 
-
-![How to open a new project in RStudio.](images/Rstudio_newproject.png)
-You may want your project directory to be a sub-folder of an existing directory on your computer which already contains your data sets. If this is the case, click *Existing Directory* instead of *New Directory* at the previous step, and then select the folder of your choice.
-
-Next, you'll be asked to choose a sub-directory name and location. Enter your selected name and choose an appropriate location for the folder on your computer. Click *Create Project*, and you should now see your chosen file path displayed in the bottom-right window:
-
-![RStudio Project Folder](images/Rstudio_Rproj.png)
-
-As mentioned previously, you can also view the file path to your project directory using `getwd()`. The output should match the file path shown in the image above.
-
-When working on assignments for coursework, it is good practice to create a new R project for each assignment you work on. You should store the data, images, and any other files required for that assignment within the folder for the designated R project. You can create sub-folders for data and images, however, you may want to avoid making too many nested sub-folders, as this will make your paths long and tiresome to type. 
-
-### The value of R projects
-
-To demonstrate the benefit of working in a project directory rather than using absolute paths, let's review a quick example. 
-
-Let's say you have a data set called `absorbance.csv`, which is stored on your computer in the lengthy file path `/Users/Your_Name/Documents/School/Undergrad/Second_Year/CHM210/Assignment1/absorbance.csv`. You want to import the contents of this data set into R using `read_csv`.
-
-**Improper referencing:** When working *outside* of an R project, you would need to reference the full, absolute file path in your scripts in order for R to recognize the file you are looking for. If you wanted to import the file, you would need to type something like this:
-
-```{r eval = FALSE}
-abs <- read_csv("/Users/Your_Name/Documents/School/Undergrad/Second_Year/CHM210/Assignment1/absorbance.csv")
-```
-
-While this does the job, it is extremely tedious to type the entire file path without typos, and this also hinders sharing your work with colleagues. Other students/your instructors will not have `absorbance.csv` stored in the same, lengthy file path which you have referenced above. Thus, if they try to run your script, this line of code will throw an error, as there is no file named `absorbance.csv` on their computer at the given file path.
-
-**Proper referencing:** When working *inside* of an R project, you would set your project directory to the folder `/Assignment1`, using the pop-up windows that appear after clicking  *File*->*New Project*->*Existing Directory*. By default, whenever you open the R project, the working directory will automatically be set to `/Assignment1`, the folder containing the data set of interest. If you wanted to import the file now, you would write the following command:
-
-```{r eval = FALSE}
-abs <- read_csv("absorbance.csv")
-```
-
-This is much simpler to type, and is much more compatible with sharing your work. Even if you don't share your entire project directory with your colleagues, they should still be able to run this line of code in the script, as long as they have the `absorbance.csv` data set in their current working directory folder. 
-
-Not only does working within an R project make your scripts much easier to share with colleagues, TAs, and Profs, but it also makes it easier for you to resume working on your code after you have closed the RStudio application. Think of your scripts as tabs in a web browser. Sometimes a project may require you to have several scripts open at once. 
-
-If you are working *outside* of an R project and have multiple scripts open, all of the scripts will close automatically when you quit RStudio. The next time you open RStudio you'll have to manually locate and open up each of the scripts you were working on previously, which can be tedious if they're not stored in convenient locations.
-
-If you are working *inside* of an R project and have multiple scripts open, R will leave the scripts open within the project even after you have quit RStudio. The next time you open RStudio and your project, the script tabs will remain open, allowing you to easily pick up where you left off. 
-
-You can try this out for yourself. Open up a new script in your current project in RStudio using *File*->*New File*->*R Script*.  (If you don't have a project open currently, go to *File*->*New File*, click *New Directory*, then *New Project*.) Type in whatever you want. If you can't think of anything, here's an example:
-
-```{r}
-# R projects are life savers
-# wow
-# blessed
-```
-
-Save the script by going to *File*->*Save*, or by clicking the button highlighted in the image below. Keep the script open, but close RStudio.
-
-![Save button in RStudio.](images/Rstudio_save.png)
-
-When you re-open RStudio, the script will still be there. 
-
-Leave the script open. Let's close the R project now. You can close the current project by going to *File*->*Close Project*, or by clicking the downwards arrow in the top right corner of RStudio, highlighted in the image below. Choose *Close Project* from the drop down menu. 
-
-![How to close an R Project.](images/Rstudio_closeproject.png)
-
-Now close RStudio. When you open RStudio again, no script will be open! The same is true when you work outside of an R project. 
-
+  1. Go to `File` -> `Open File` -> open the `Rscript-example.R` file. 
+  
+You can run the code in the script by clicking the `Run` button at the top of the script. 
+ 
 ## Workspace and what's real
 
 We've already mentioned the *environment* pane that displays objects present in your R session. While they are useful to work with, they're not *real*. That is to say, if you closed your R session, those objects would be lost. And while RStudio allows you to save a working environment (and it's associated objects), it's best to embrace that *only your scripts are real*. You can't readily share your working environment, and even so it's bad practice as you may be reference a previous iteration of an object giving you erroneous results. Think back to the chemistry lab where although you may jot notes down on loose leaf, only what's written in your lab book is considered real... we'll that's how it's supposed to work anyways. 
@@ -169,12 +109,18 @@ Below your script header, you should include any packages that need to be loaded
 The first few lines of your scripts should look something like the following.
 
 ```{r eval = FALSE}
-#Title: Ozone time series script
-#Author: Georgia Green
-#Date: January 8, 2072
+# Title: Example R Script for Visualizing Air Quality Data 
+# Author: John Guy Rubberboots
+# Date: 24 June 2021
 
-#import packages
-library(tidyverse) # for readr & ggplot2
+# 1. Packages ---- 
+
+# Install and open tidyverse if you haven't already 
+
+#install.packages("tidyverse")
+
+library(tidyverse)
+
 
 ```
 
@@ -229,13 +175,16 @@ library(readr)
 library(ggplot2)
 
 #import ozone data set
-airPol <- read_csv("data/2018-07-01_60430_Toronto_ON.csv")
+airPol <- read_csv("data/2018-01-01_60430_Toronto_ON.csv")
 ```
-
 
 ```{r eval = FALSE}
 #plot ozone concentration vs. time
-ggplot(data = airPol, aes(x = Time, y = Concentration))
+ggplot(data = airPol, 
+       aes(x = date.time,
+           y = concentration,
+           colour = pollutant)) +
+  geom_point()
 ```
 
 (For more detail about importing and using `ggplot2`, please re-visit Chapter 2, section 2.3.4, or see Chapter 11.)
@@ -279,6 +228,9 @@ class(1L)
 
 class(TRUE)
 ```
+
+## Summary
+
 
 
 Now that you're familiar with working in RStudio, saving your projects, scripts, and data, let's move over to Chapter 4, where we'll discuss the advantages and disadvantages of using `.Rmd` documents instead of `.R` scripts.
