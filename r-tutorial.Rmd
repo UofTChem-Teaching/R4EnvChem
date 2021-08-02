@@ -1,6 +1,6 @@
 # R Tutorial Exercise
 
-With the information presented in Chapters 1 to 4 you have the skills to start your data analysis. We've create a brief tutorial that covers the major elements introduced. At the end of this tutorial you'll have visualized a small subset of real Environment and Climate Change Canada (ECCC) National Airborne Pollution Surveillance Program (NAPS) data. More importantly, you'll have a properly setup project with working code and rmarkdown documents that you can recycle and re-purpose for your upcoming course work. After all, a beautiful aspect of coding is recycling it in future work to save you hassle. 
+With the information presented in Section 1 you have the skills to start your data analysis. We've created a brief tutorial that covers the major elements introduced. At the end of this tutorial you'll have visualized a small subset of real Environment and Climate Change Canada (ECCC) National Airborne Pollution Surveillance Program (NAPS) data. More importantly, you'll have a properly setup project with working code and rmarkdown documents that you can recycle and re-purpose for your upcoming course work. After all, a beautiful aspect of coding is recycling it in future work to save you hassle. 
 
 In brief, the tutorial tasks are: 
 

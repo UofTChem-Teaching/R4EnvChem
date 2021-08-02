@@ -50,6 +50,7 @@ You'll see a flurry of lines printed to the console indicating the status of the
 ```{r}
 library(tidyverse)
 ```
+The output show's us which packages are included in the `tidyverse()` and their current version numbers, as well as conflicts (where functions from different packages share the same name). Don't worry about these for now. 
 
 ## Running R Code
 
@@ -99,5 +100,16 @@ Places to get help include:
 
 - Google, Stack Overflow, etc. When in doubt Google it. 
 - Using built-in documentation (`?help`)
-- reference book such as the invaluable [*R for Data Science*](https://r4ds.had.co.nz/index.html), which inspired this entire project. 
-- All else fails, holler at your TA/profs. 
+- reference books such as the invaluable [*R for Data Science*](https://r4ds.had.co.nz/index.html), which inspired this entire project. 
+- And yes, when all else fails, holler at your TA/profs. 
+
+## Summary
+
+In this chapter we've covered: 
+
+  - Installing and running R and RStudio
+  - Running R code from the console
+  - Installing the `tidyverse()` package, the basis of the subsequent code in this book
+  - How to customize the appearance of RStudio so you don't burn out your eyes at night
+
+Move on to the next chapter where we'll break down how to setup your work in R for legibility, simplicity, and reproducibility. After all, the person cursing any of your sloppy work will invariably be you, so be kind to yourself, and do it right the first time. 
