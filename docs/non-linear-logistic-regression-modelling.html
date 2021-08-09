@@ -456,7 +456,7 @@ div.csl-indent {
 <span id="cb211-3"><a href="non-linear-logistic-regression-modelling.html#cb211-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
 <span id="cb211-4"><a href="non-linear-logistic-regression-modelling.html#cb211-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
 <span id="cb211-5"><a href="non-linear-logistic-regression-modelling.html#cb211-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>Alright, alright, alright. Things are looking like we’d expect with some well behaved data. By plotting each point individually, we can really see the noise inherent with each reading. For a more robust analysis we’d typically conduct several replicates and average out the spectra for each concentration or apply some kind of model to smooth each peak. But today, we’re just interested in getting the maximal fluorescence emission intensity from each reading.</p>
 <p>Let’s first annotate our plate to find the highest point, then go about extracting our data for analysis.</p>
 <div id="annotating-maximal-values" class="section level3" number="18.1.1">
@@ -480,7 +480,7 @@ div.csl-indent {
 <span id="cb212-16"><a href="non-linear-logistic-regression-modelling.html#cb212-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_x =</span> <span class="dv">60</span>,</span>
 <span id="cb212-17"><a href="non-linear-logistic-regression-modelling.html#cb212-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_y =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
 <span id="cb212-18"><a href="non-linear-logistic-regression-modelling.html#cb212-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(conc))</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <p>By facetting the plot (i.e. arranging many smaller plots vs. one large one), we can easily see the increase in emission peak intensity as the concentration of SDS increases. Likewise, we can avoid the messy overlap of the max intensity annotations.</p>
 <p>This is only one way to plot this data, but this is sufficient because we’re simply inspecting our data at this point. And here we can see that the intensity all occur around a similar wavelength (~ 528 nm)</p>
 </div>
@@ -581,12 +581,12 @@ Figure 18.1: Plot of maximal fluoresence intensity at various concentrations of 
 <span id="cb221-2"><a href="non-linear-logistic-regression-modelling.html#cb221-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb221-3"><a href="non-linear-logistic-regression-modelling.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
 <span id="cb221-4"><a href="non-linear-logistic-regression-modelling.html#cb221-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">&quot;fitted&quot;</span>)) </span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <p>Looks pretty good, although it’s interesting how the baseline at lower concentrations doesn’t plateau like the model values. You’ll note that the line produced by <code>geom_line</code> will only draw a straight line between points. There’s ways to address this, but we don’t need to for our needs right now.</p>
 <p>Looking again at our model results, there doesn’t appear to be any gross outliers, so our model seems to have done a good job. We can verify this by checking the residuals:</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="non-linear-logistic-regression-modelling.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
 <span id="cb222-2"><a href="non-linear-logistic-regression-modelling.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>We can’t see any obvious patterns in the residuals (i.e. all are negative), so we can have further confidence in the fit of out model.</p>
 </div>
 <div id="extracting-model-parameters" class="section level3" number="18.3.2">

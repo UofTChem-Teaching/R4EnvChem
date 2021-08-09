@@ -386,7 +386,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 <ol style="list-style-type: decimal">
 <li>Go to <code>File</code> -&gt; <code>Open File</code> -&gt; open the <code>Rscript-example.R</code> file.</li>
 </ol>
-<p>You can run the code in the script by clicking the <code>Run</code> button at the top of the script.</p>
+<p>To run code, highlight the lines you wish to run and click ’Run` at the top of the script. Selecting all of the script will run every line.</p>
 </div>
 <div id="workspace-and-whats-real" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Workspace and what’s real</h2>
@@ -409,12 +409,12 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 <div id="saving-objects" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Saving objects</h3>
 <p>In some cases, your code may be used to generate large data structures which require quite a bit of input to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data structure to a <em>real</em> file that you can simply import the next time you open the application. Most often this will be an intermediate step of your data analysis in the form of a data frame. To save a data frame as a <code>.csv</code> file you use <code>write.csv()</code>.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="workflows-for-r-coding.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dummy data frame to save</span></span>
-<span id="cb61-2"><a href="workflows-for-r-coding.html#cb61-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb61-3"><a href="workflows-for-r-coding.html#cb61-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;maybe&quot;</span>))</span>
-<span id="cb61-4"><a href="workflows-for-r-coding.html#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-5"><a href="workflows-for-r-coding.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> df, </span>
-<span id="cb61-6"><a href="workflows-for-r-coding.html#cb61-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="st">&quot;testData.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="workflows-for-r-coding.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dummy data frame to save</span></span>
+<span id="cb62-2"><a href="workflows-for-r-coding.html#cb62-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb62-3"><a href="workflows-for-r-coding.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;maybe&quot;</span>))</span>
+<span id="cb62-4"><a href="workflows-for-r-coding.html#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="workflows-for-r-coding.html#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> df, </span>
+<span id="cb62-6"><a href="workflows-for-r-coding.html#cb62-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="st">&quot;testData.csv&quot;</span>)</span></code></pre></div>
 <p>Breaking it down:</p>
 <ul>
 <li>we created a dummy data frame <code>df</code></li>
@@ -461,27 +461,27 @@ The vectors should now be present in the work-space again, and can be printed to
 <h2><span class="header-section-number">4.4</span> Script formatting</h2>
 <p>You should now be familiar with how to open the Scripts window, as well as some of the advantages of typing your code into this window rather than into the console directly. Before you write your first script, let’s review some basic script formatting.</p>
 <p>Before you enter any code into your script, it is good practice to fill the first few lines with text comments which indicate the script’s title, author, and creation or last edit date. You can create a comment in a script by typing <code>#</code> before your text. An example is given below.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="workflows-for-r-coding.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Title: Ozone time series script</span></span>
-<span id="cb62-2"><a href="workflows-for-r-coding.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Author: Georgia Green</span></span>
-<span id="cb62-3"><a href="workflows-for-r-coding.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Date: January 8, 2072</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="workflows-for-r-coding.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Title: Ozone time series script</span></span>
+<span id="cb63-2"><a href="workflows-for-r-coding.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Author: Georgia Green</span></span>
+<span id="cb63-3"><a href="workflows-for-r-coding.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Date: January 8, 2072</span></span></code></pre></div>
 <p>Below your script header, you should include any packages that need to be loaded for the script to run. Including the necessary packages at the top of the script allows you, and anyone you share your code with, to easily see what packages they need to install. This also means that if you decide to run an entire script at once, the necessary packages will always be loaded before any subsequent code that requires those packages to work.</p>
 <p>The first few lines of your scripts should look something like the following.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="workflows-for-r-coding.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Title: Example R Script for Visualizing Air Quality Data </span></span>
-<span id="cb63-2"><a href="workflows-for-r-coding.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: John Guy Rubberboots</span></span>
-<span id="cb63-3"><a href="workflows-for-r-coding.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: 24 June 2021</span></span>
-<span id="cb63-4"><a href="workflows-for-r-coding.html#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-5"><a href="workflows-for-r-coding.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Packages ---- </span></span>
-<span id="cb63-6"><a href="workflows-for-r-coding.html#cb63-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-7"><a href="workflows-for-r-coding.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and open tidyverse if you haven&#39;t already </span></span>
-<span id="cb63-8"><a href="workflows-for-r-coding.html#cb63-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-9"><a href="workflows-for-r-coding.html#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyverse&quot;)</span></span>
-<span id="cb63-10"><a href="workflows-for-r-coding.html#cb63-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-11"><a href="workflows-for-r-coding.html#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="workflows-for-r-coding.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Title: Example R Script for Visualizing Air Quality Data </span></span>
+<span id="cb64-2"><a href="workflows-for-r-coding.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: John Guy Rubberboots</span></span>
+<span id="cb64-3"><a href="workflows-for-r-coding.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: 24 June 2021</span></span>
+<span id="cb64-4"><a href="workflows-for-r-coding.html#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="workflows-for-r-coding.html#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Packages ---- </span></span>
+<span id="cb64-6"><a href="workflows-for-r-coding.html#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="workflows-for-r-coding.html#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and open tidyverse if you haven&#39;t already </span></span>
+<span id="cb64-8"><a href="workflows-for-r-coding.html#cb64-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-9"><a href="workflows-for-r-coding.html#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyverse&quot;)</span></span>
+<span id="cb64-10"><a href="workflows-for-r-coding.html#cb64-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-11"><a href="workflows-for-r-coding.html#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>The rest of your script should be dedicated to executable code. It is good practice to include text comments throughout the script, in between different chunks of code, to remind yourself what the different sections of code are for (i.e., <code>#import packages</code> in the above example). This also makes it easy for anyone you share your code with to understand what you’re trying to do with different sections within the script.</p>
 <p>You can also use headers and sub-headers in your scripts using <code>#</code>, <code>##</code>, and <code>###</code> before your text and <code>---</code> after as shown below:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="workflows-for-r-coding.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section ----</span></span>
-<span id="cb64-2"><a href="workflows-for-r-coding.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Subsection ----</span></span>
-<span id="cb64-3"><a href="workflows-for-r-coding.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Sub-subsection ----</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="workflows-for-r-coding.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section ----</span></span>
+<span id="cb65-2"><a href="workflows-for-r-coding.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Subsection ----</span></span>
+<span id="cb65-3"><a href="workflows-for-r-coding.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Sub-subsection ----</span></span></code></pre></div>
 <p>Headings and subheadings are picked up by RStudio and displayed in the Document Outline box. You can open the Document Outline box by clicking the button highlighted in the image below. Use of these headings allows easy navigation of long scripts, as you can navigate between sections using the Document Outline box.</p>
 <div class="figure">
 <img src="images/Rstudio_documentoutline2.png" style="width:100.0%" alt="" />
@@ -510,15 +510,15 @@ The vectors should now be present in the work-space again, and can be printed to
 <p class="caption">Figure 3.8: RStudio highlights syntax errors in the Scripts window.</p>
 </div>
 <p>In the above message, R is telling you that it is not sure what to do with <code>b</code>. As mentioned previously, variable assignment is done in the format <code>name &lt;- assignment</code>. However, in the above example, the variable assignment statement is written as <code>name name &lt;- assignment</code>. Since variable names cannot contain spaces, R reads <code>a b</code> as two separate input variable names, not as a single string. If you wanted to assign a value of 0 to both <code>a</code> and <code>b</code>, you would need to write the statement once per variable, as shown below.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="workflows-for-r-coding.html#cb65-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb65-2"><a href="workflows-for-r-coding.html#cb65-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="workflows-for-r-coding.html#cb66-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb66-2"><a href="workflows-for-r-coding.html#cb66-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
 <p>Let’s look at another example. Some functions require you to write code with nested parentheses. A good example would be the <code>aes()</code> argument that is called inside of <code>ggplot()</code>, as shown below.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="workflows-for-r-coding.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot ozone concentration vs. time</span></span>
-<span id="cb66-2"><a href="workflows-for-r-coding.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> airPol, </span>
-<span id="cb66-3"><a href="workflows-for-r-coding.html#cb66-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
-<span id="cb66-4"><a href="workflows-for-r-coding.html#cb66-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
-<span id="cb66-5"><a href="workflows-for-r-coding.html#cb66-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
-<span id="cb66-6"><a href="workflows-for-r-coding.html#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="workflows-for-r-coding.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot ozone concentration vs. time</span></span>
+<span id="cb67-2"><a href="workflows-for-r-coding.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> airPol, </span>
+<span id="cb67-3"><a href="workflows-for-r-coding.html#cb67-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
+<span id="cb67-4"><a href="workflows-for-r-coding.html#cb67-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
+<span id="cb67-5"><a href="workflows-for-r-coding.html#cb67-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
+<span id="cb67-6"><a href="workflows-for-r-coding.html#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p>(For more detail about importing and using <code>ggplot2</code>, please re-visit Chapter 2, section 2.3.4, or see Chapter 11.)</p>
 <p>If you were to forget one of the parentheses in the previous line of code, RStudio would highlight it similar to below:</p>
 <div class="figure">
@@ -532,21 +532,21 @@ The vectors should now be present in the work-space again, and can be printed to
 <h3><span class="header-section-number">4.6.2</span> Reading error codes</h3>
 <p>While the script window is very useful for pointing out syntax errors in your code, there are many other errors that can arise in RStudio which the script window is not able to capture. These are generally errors that arise from trying to execute your code, rather than from mistakes in your syntax.</p>
 <p>The following is a prime example of such an error.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="workflows-for-r-coding.html#cb67-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">+</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="workflows-for-r-coding.html#cb68-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">+</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
 <pre><code>## Error in 8 + &quot;hi&quot;: non-numeric argument to binary operator</code></pre>
 <p>Here we are trying to add a numeric value (8) to a character string (“hi”), then set the sum of the two to variable <code>q</code>. R has given us an error in return, because there is no logical way for R to add a numeric value to non-numeric text.</p>
 <p>The error indicates that we have passed a <code>non-numeric argument to binary operator</code>, meaning we have used a non-numeric data type for an expression which is exclusively reserved for numeric data. If you try to add, divide or multiply two character strings using arithmetic operations in the console, you will get the same error.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="workflows-for-r-coding.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;hey&quot;</span> <span class="sc">*</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="workflows-for-r-coding.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;hey&quot;</span> <span class="sc">*</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
 <pre><code>## Error in &quot;hey&quot; * &quot;hi&quot;: non-numeric argument to binary operator</code></pre>
 <p>It is important to be aware of these error codes as many functions require specific data types as their inputs. You can always look at the required data type by looking at the documentation for the function (generally, this can be viewed by typing <code>?function</code> into the console, where <code>function</code> is the name of the function). If the function requires numeric data, inputting character strings or logical values will throw the errors shown above. If the function requires logical values, inputting numeric data or character strings will throw the errors shown above.</p>
 <p>In order to avoid these errors, make sure that you are using the right type of data in your functions. You can always check your data type using <code>class()</code>. Some examples are shown below.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="workflows-for-r-coding.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">&quot;hi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="workflows-for-r-coding.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">&quot;hi&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="workflows-for-r-coding.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="workflows-for-r-coding.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="workflows-for-r-coding.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(1L)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="workflows-for-r-coding.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(1L)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="workflows-for-r-coding.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="workflows-for-r-coding.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 </div>
 </div>

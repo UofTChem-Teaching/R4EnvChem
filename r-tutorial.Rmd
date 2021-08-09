@@ -5,6 +5,7 @@ With the information presented in Section 1 you have the skills to start your da
 In brief, the tutorial tasks are: 
 
 1. Copy the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading on the repo's `README`. 
+  a. This is the same repo mentioned in [R Studio Projects], you may have already downloaded it, if so proceed to the next step.  
 2. Install the following packages if you haven't already, you can copy the code below and run it in the console: 
   - `tidyverse`
   - `rmarkdown`
