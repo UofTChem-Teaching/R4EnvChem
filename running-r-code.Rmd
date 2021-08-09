@@ -109,9 +109,10 @@ The above is air quality data measured in downtown Toronto around January 2018. 
   - `concentration` for the measured concentration in parts-per-million (ppm). 
 
 
-And let's take a look at the data itself: 
+You'll note that we've assigned it to the variable: `airPol`. This is so we can referece it and make use of it later on (see below). If we didn't do this our data would simply be printed to the console which isn't helpful for us. Let's take a look at the data itself: 
 
 ```{r}
+# a variable by itself will return it's contents
 airPol
 ```
 
@@ -183,6 +184,7 @@ Breaking this down:
   - We add a `+` on the second last line of code as this so we can *add* components to `ggplot()`
   - And finally we add `geom_point()` to specify what type of plot we want; in this case it's a scatter plot. 
     - `geoms` are layers that combine data, aesthetic mappings, and other data to create a plot. 
+    - There are other many other geoms. Go ahead and try `geom_line()`. For more examples see [Visualizations] in Section 3. 
     
 `ggplot()` allows us to quickly create numerous plots of our data to aid our analysis. We can pass more than geoms to ggplot to improve our graphics. We can even stack geoms! 
 
