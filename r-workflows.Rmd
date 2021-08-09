@@ -17,7 +17,7 @@ We've also provided an example script in the R4EnvChem project template. Assumin
 
   1. Go to `File` -> `Open File` -> open the `Rscript-example.R` file. 
   
-You can run the code in the script by clicking the `Run` button at the top of the script. 
+To run code, highlight the lines you wish to run and click 'Run` at the top of the script. Selecting all of the script will run every line. 
  
 ## Workspace and what's real
 
