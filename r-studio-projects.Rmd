@@ -22,7 +22,7 @@ In order to overcome the use of absolute paths and `setwd()`, we strongly recomm
 
 While you can create a project from scratch (discussed below), we've created a draft project template. Download it, and you'll have a working RStudio project that you can use as you follow along with the code in the rest of this chapter and the tutorial exercise. 
 
-  1. Downloading the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading on the repo's `README`. 
+  1. Downloading the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading at the bottom of the repositorie's webpage. 
   2. From RStudio click `File` -> `Open Project...` and open the `R4EnvChem-ProjectTemplate.Rproj` file. 
   
 If you've followed the steps above you should have successfully downloaded and opened an RStudio project, and it should look like this: 
