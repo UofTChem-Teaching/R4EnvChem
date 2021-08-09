@@ -122,7 +122,7 @@ There's a plethora of helpful online resources to help hone your R markdown skil
 
 ### R code chunk options
 
-You can specify a number of options for an individual R code chunk. You include these at the top of the code chunk. For example the following code tells markdown you're running code written in `R`, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption "Some Caption". A list of code chunk options is shown below: 
+Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that'll effect how you're code chunk is run and displayed in the final output document. You include options in the chunk delimiters ` ```{r}` and ` ``` `. For example the following code tells markdown you're running code written in `R`, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption "Some Caption". 
 
 ````markdown
 `r ''````{r, eval = FALSE, fig.cap = "Some caption"}
@@ -131,6 +131,8 @@ You can specify a number of options for an individual R code chunk. You include 
 
 ```
 ````
+The most common and useful chunk options are shown below. Note that they all have a default value. For example, `eval` tells R markdown whether the code within the block should be run. It's default option is  `TRUE`, so by default any code in a chunk will be run when you knit your document. If you don't want that code to be run, but still displayed, you would set `eval = FALSE`. Another example would be setting `echo = FALSE` which allows the code to run, but the code *won't* be displayed on the output document (the outputs will still be displayed though); useful for creating clean documents with plots only (i.e. lab reports...). 
+
 
 option | default | effect
 -------|---------|--------
@@ -179,29 +181,18 @@ While writing an R markdown document in R studio, go to the `Edit` tab at the to
 
 ### R markdown syntax
 
-- **Inline formatting**; *which* is ~used~ to ^format^ `your text`.
-1. Numbered lists
-- Normal lists
-  - Lists
-  
-- **Block-level elements**, i.e. you're section headers
+Unlike *Microsoft Word*, RMarkdown utilizes a specific syntax for text formatting. Once you get used to it, it makes typing documents much easier than *Words* approach. The table below is how some of the most common text formatting is typed in your Rmarkdown document (syntax & example column) and how it'll appear in the final output. 
 
+| Text formatting |       syntax |                 Example |        Example output |
+|-----------------|-------------:|------------------------:|----------------------:|
+| italics         |     \*text\* |     this is \*italics\* |     this is *italics* |
+| bold            | \*\*text\*\* |    this is \*\*bold\*\* |      this is **bold** |
+| subscript       |     \~text\~ |   this is \~subscript\~ |   this is ~subscript~ |
+| superscript     |     \^text\^ | this is \^superscript\^ | this is ^superscript^ |
+| monospace       |     \`text\` |  this is \`monospaced\` |   this is `monospace` |
 
-Example R markdown syntax used for formatting shown above:
+For a collection of other RMarkdown syntax, please see the useful (and brief) list compiled online [here](https://rmarkdown.rstudio.com/authoring_basics.html). This includes ordered and unordered lists, headers, code blocks, hyperlinks, and figure captions. 
 
-
-```{r, eval = FALSE}
-- **Inline formatting**; *which* is ~used~ to ^format^ `your text`.
-1. Numbered lists
-- Normal lists
-  - Lists
-  
-- **Block-level elements**, i.e. your section headers
-
-# Headers
-## Headers
-### Headers
-```
 
 ## RStudio tips and tricks
 
