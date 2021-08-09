@@ -10,7 +10,7 @@ Before you get started with running your code, it is good to know where your ana
 
 RStudio displays the current working directory at the top of the console, as shown below, but can also be printed to the console using the command `getwd()`.
 
-![Working directory path displayed in the RStudio console](images/Rstudio_wd.png)
+![](images/Rstudio_wd.png)
 
 By default, R usually sets the working directory to the home directory on your computer. The `~` symbol denotes the home directory, and can be used as a shortcut when writing a path that references the home directory. 
 
@@ -22,7 +22,8 @@ In order to overcome the use of absolute paths and `setwd()`, we strongly recomm
 
 While you can create a project from scratch (discussed below), we've created a draft project template. Download it, and you'll have a working RStudio project that you can use as you follow along with the code in the rest of this chapter and the tutorial exercise. 
 
-  1. Downloading the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading at the bottom of the repositorie's webpage. 
+  1. Downloading the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading at the bottom of the repositories webpage. 
+    a. Unzip the project folder somewhere useful/that makes sense to you (i.e. a folder for schoolwork).
   2. From RStudio click `File` -> `Open Project...` and open the `R4EnvChem-ProjectTemplate.Rproj` file. 
   
 If you've followed the steps above you should have successfully downloaded and opened an RStudio project, and it should look like this: 
@@ -38,24 +39,26 @@ R4EnvChem-ProjectTemplate
 |   Rmarkdown-example.rmd
 │
 └───data
-│   │   2018-01-01_60430_Toronto_ON.csv
-│   │   2018-07-01_60430_Toronto_ON.csv
-|   |   ...
-│   │
+│       2018-01-01_60430_Toronto_ON.csv
+│       2018-07-01_60430_Toronto_ON.csv
+|       ...
+│    
 └───images
     │   DHall_TorontoPano.jpg
 ```
 
 With the `R4EnvChem-ProjectTemplate.Rproj` file located in the main folder, this is important as we'll be able to readily look for files we stored in project subfolders such as `data` and `images`. 
 
+In the future you can create your own projects from scratch, but it behooves you to follow the template layout. Having consistently named folders you'll use in every project will help simplify your life down the road. 
+
 ## Summary
 
 In this chapter we've covered: 
 
   - Importing the *R4EnvChem Project Template* so we have access to data for the tutorial (amongst other things)
-  - The concept of paths and directories and how projects greatly simplify this
+  - The concept of paths and directories and how relative referencing withing a project greatly simplify this
 
-We'll further sermonize about the usefulness of projects later on, but now that we've gotten a working project with some data, let's move onto the next session to  begin to code.
+We'll further sermonize about the usefulness of projects later on, but now that we've gotten a working project with some data, let's move onto the next session to begin to code.
 
 ---------------------------
 
@@ -66,14 +69,39 @@ We've provided instructions on creating your own RStudio project from scratch, b
 
 To create a new project: go to *File*->*New Project*, or click the button highlighted in the image below. Click *New Directory*, then *New Project*. 
 
-![How to open a new project in RStudio.](images/Rstudio_newproject.png)
+![](images/Rstudio_newproject.png)
 You may want your project directory to be a sub-folder of an existing directory on your computer which already contains your data sets. If this is the case, click *Existing Directory* instead of *New Directory* at the previous step, and then select the folder of your choice.
 
 Next, you'll be asked to choose a sub-directory name and location. Enter your selected name and choose an appropriate location for the folder on your computer. Click *Create Project*, and you should now see your chosen file path displayed in the bottom-right window:
 
-![RStudio Project Folder](images/Rstudio_Rproj.png)
+![](images/Rstudio_Rproj.png)
 
 As mentioned previously, you can also view the file path to your project directory using `getwd()`. The output should match the file path shown in the image above.
 
-When working on assignments for coursework, it is good practice to create a new R project for each assignment you work on. You should store the data, images, and any other files required for that assignment within the folder for the designated R project. You can create sub-folders for data and images, however, you may want to avoid making too many nested sub-folders, as this will make your paths long and tiresome to type. 
+When working on assignments for coursework, it is good practice to create a new R project for each assignment you work on. You should store the data, images, and any other files required for that assignment within the folder for the designated R project. You can create sub-folders for data and images, however, you may want to avoid making too many nested sub-folders, as this will make your paths long and tiresome to type. For a hypothetical course with 5 Labs (*cough* CHM410 *cough*), your coursework would look like this:
 
+
+```
+CHM410
+|
+└─── Project 1
+|     |
+|     |   project1.Rproj
+|     |   project1WriteUp.Rmd
+|     └───data
+|     │     ...
+|     └───images
+|           ...
+|
+└─── Project 2
+      |
+      |   project2.Rproj
+      |   project2WriteUp.Rmd
+      └───data
+      │     ...
+      └───images
+            ...
+...
+```
+
+With a seperate folder for each experiment, and within each folder is an RStudio project, data, images, and other files required for *that* specific project. You shouldn't have nested R studio project as their is no benefit to this approach. Keep everything you need in one location, and no more. 
