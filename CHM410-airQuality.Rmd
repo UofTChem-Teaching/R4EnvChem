@@ -1,0 +1,96 @@
+# CHM410: Air Quality Lab
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+airbeam <- read_csv("data/CHM410_lab2/Airbeam2 July 25.csv")
+```
+
+```{r}
+airbeamMeta <- read_csv("data/CHM410_lab2/Airbeam2 July 25.csv", n_max = 8) %>%
+  select(contains("Sensor")) 
+
+airbeamMeta <- as.data.frame(t(airbeamMeta)) %>%
+  rownames_to_column() 
+
+airbeamMeta <- airbeamMeta %>%
+  rename(sensor_name = V3,
+         measurement_type = V5, 
+         measurement_units = V7,
+         measurement = V8) %>%
+  select(-contains("V"), -rowname)
+
+
+```
+
+```{r}
+airbeam <- read_csv("data/CHM410_lab2/Airbeam2 July 25.csv", skip = 8) %>%
+  mutate(Timestamp = lubridate::floor_date(as.POSIXct(Timestamp))) %>%
+  pivot_longer(cols = `1:Measurement_Value`:`5:Measurement_Value`, 
+               names_to = "measurement",
+               values_to = "measurement_value", 
+               values_drop_na = TRUE) 
+
+airbeam <- airbeam %>%
+  inner_join(airbeamMeta, by = "measurement") %>%
+  rename_all(tolower)
+```
+
+```{r}
+ggplot(data = airbeam, 
+       aes(x = timestamp, 
+           y = measurement_value, 
+           colour = sensor_name)) +
+  geom_point() 
+
+```
+
+## plotting data spatially
+
+```{r}
+library(ggmap)
+
+airbeamBBox<- make_bbox(lon = airbeam$longitude, lat = airbeam$latitude, f = 0.1)
+airbeamBBox
+```
+
+
+```{r}
+
+airbeamMap <- get_stamenmap(bbox = airbeamBBox, zoom = 14, maptype = "terrain", crop = FALSE)
+
+transectMap <- ggmap(airbeamMap) +
+  geom_point(data = subset(airbeam, sensor_name == "AirBeam2-PM2.5"),
+             aes(x = longitude, y = latitude, colour = measurement_value)) 
+transectMap
+
+
+```
+
+```{r}
+   
+     # annotations for start of journey
+transectMap <- transectMap +  annotate("segment", x = -79.62161, xend = -79.621614, y = 43.635, yend = 43.65395, size=1) +
+  annotate("label", x = -79.62161, y = 43.64, label = "Started biking west \n at 11:00am", fill = "white") +
+  
+  # annotation for turn around
+  annotate("segment", x = -79.65, xend = -79.66234, y = 43.655, yend = 43.66672, size=1) +
+  annotate("label", x = -79.65, y = 43.655, label = "Turned around \n to head east \n at 11:35am", fill = "white") +
+  
+  # annotation for end of journey
+   annotate("segment", x = -79.56662, xend = -79.56662, y = 43.657, yend = 43.63529, size=1) +
+   annotate("label", x = -79.56662, y = 43.66, label = "Entered house \n at 12:50pm", fill = "white") +
+
+  # labels for plots
+   labs(title = "Airbeam measurements of airport transect",
+     subtitle = "Data recored on July 25th, 2020",
+     x = "longitude", 
+     y = "latitude", 
+     colour = "PM 2.5 \n(ug/m^3)")
+
+transectMap
+
+```
+
