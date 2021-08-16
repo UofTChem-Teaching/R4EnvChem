@@ -50,7 +50,8 @@ airbeamTime <- ggplot(data = airbeam,
        aes(x = timestamp, 
            y = measurement_value, 
            colour = sensor_name)) +
-  geom_line() 
+  geom_line() +
+  facet_grid(rows = vars(measurement_type))
 
 airbeamTime
 
@@ -64,7 +65,53 @@ airbeamTime
 ### Importing CO2 and O3 data
 
 ```{r}
-co2 <- read_csv("data/CHM410_lab2/Airbeam2 July 25.csv")
+co2 <- read_csv("data/CHM410_lab2/CO2 July 25.csv")
+o3 <- read_csv("data/CHM410_lab2/Ozone July 25.csv")
+
+gases <- inner_join(co2, o3, by = "Date Time") %>%
+  select(-contains("ID")) 
+
+gases <- gases %>%
+  rename(timestamp = `Date Time`, 
+         co2 = `CO2(ppm)`, 
+         o3 = `O3(ppm)`
+         ) %>% 
+  mutate(timestamp = lubridate::parse_date_time(timestamp, orders = "%d-%b-%Y-%H-%M")) %>%
+  pivot_longer(cols = co2:o3, 
+               names_to = "sensor_name",
+               values_to = "measurement_value", 
+               values_drop_na = TRUE) 
+
+ggplot(gases, aes(x = timestamp, y = measurement_value, colour = sensor_name)) +
+  geom_line() +
+  facet_grid(rows = vars(sensor_name), scales = "free")
+```
+
+### Merging datasets
+
+merging datasets because CO2 and O3 sensors don't have spatial data
+
+```{r}
+
+gases <- gases %>%
+  mutate(measurement_type = "gases", 
+         measurement_units = case_when(sensor_name == "co2" ~ "ppm", TRUE ~ "ppb"))
+
+```
+
+
+```{r}
+
+test <- full_join(airbeam, gases)
+
+ggplot(data = test, 
+       aes(x = timestamp, 
+           y = measurement_value, 
+           colour = sensor_name)) +
+  geom_line() +
+  facet_grid(rows = vars(measurement_units), scales = "free")
+
+
 ```
 
 
@@ -92,8 +139,9 @@ transectMap
 
 ```{r}
    
-     # annotations for start of journey
-transectMapAnnotated <- transectMap +  annotate("segment", x = -79.62161, xend = -79.621614, y = 43.635, yend = 43.65395, size=1) +
+transectMapAnnotated <- transectMap +  
+  # annotations for start of journey
+  annotate("segment", x = -79.62161, xend = -79.621614, y = 43.635, yend = 43.65395, size=1) +
   annotate("label", x = -79.62161, y = 43.64, label = "Started biking west \n at 11:00am", fill = "white") +
   
   # annotation for turn around
@@ -105,13 +153,65 @@ transectMapAnnotated <- transectMap +  annotate("segment", x = -79.62161, xend =
    annotate("label", x = -79.56662, y = 43.66, label = "Entered house \n at 12:50pm", fill = "white") +
 
   # labels for plots
-   labs(title = "Airbeam measurements of airport transect",
-     subtitle = "Data recored on July 25th, 2020",
-     x = "longitude", 
+   labs(x = "longitude", 
      y = "latitude", 
      colour = "PM 10 \n(ug/m^3)")
 
 transectMapAnnotated
+
+```
+
+### Plotting gases data spatially
+
+difference in aquisiton frequency, going to yoink lat and long data from airbeam data for the gases sensor. 
+
+```{r}
+
+spatDat <- airbeam %>%
+  select(timestamp, latitude, longitude) %>%
+  mutate(timestamp = lubridate::round_date(timestamp, unit = "minute")) %>%
+  distinct(timestamp, .keep_all = TRUE)
+
+gasesSpat <- spatDat %>%
+  left_join(gases)
+gasesSpat
+```
+
+
+
+```{r}
+# airbeam map made earlier, see above
+o3Map <- ggmap(airbeamMap) +
+  geom_point(data = subset(gasesSpat, sensor_name == "o3"),
+             aes(x = longitude, y = latitude, colour = measurement_value)) 
+o3Map
+
+
+```
+```{r}
+o3MapAnnotated <- o3Map +
+  # annotations for 1st plane takeoff
+  annotate("segment", x = -79.6, xend = -79.63254, y = 43.66460, yend = 43.66460, size=1) +
+  annotate("label", x = -79.6, y = 43.66460, label = "Plane takeoff \n 11:17am", fill = "white") +
+  
+  # annotations for 2nd plane takeoff
+  annotate("segment", x = -79.65385, xend = -79.65385, y = 43.66, yend = 43.67089, size=1) +
+  annotate("label", x = -79.65385, y = 43.66, label = "Plane takeoff \n 11:40am", fill = "white") +
+  
+  # labels for plots
+   labs(x = "longitude", 
+        y = "latitude", 
+        colour = "ozone (ppm)",
+        caption = "data record on July 25th, 2020")
+o3MapAnnotated
+```
+
+```{r, fig.height=7}
+# chunk fig.height = 7
+ggpubr::ggarrange(transectMapAnnotated, 
+          o3MapAnnotated,
+          labels = c("A", "B"),
+          nrow = 2, ncol = 1)
 
 ```
 
