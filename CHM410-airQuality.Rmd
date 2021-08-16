@@ -1,0 +1,382 @@
+# (PART\*) Section 4: Notes for Env. Chem. Labs {-}
+
+# CHM410: Air Quality Lab
+
+The following code is a supplement to the *CHM410: Air Quality* lab where students measure hyper-local air quality data using a variety of portable sensors, notably the [AirBeam](https://www.habitatmap.org/airbeam). Putting the experimental design and underlying data aside, there are two principle hurdles when working with this data. Firstly there are idiosyncrasies in how each sensor records data frustrating importing and tidying the data into R. Secondly, how to visualize the spatial dimension of the AirBeam data. 
+
+This section will address both of these issues by providing template code for tidying data from each respective sensor, and some example code illustrating how you can quickly map your spatial data to tell a story from your air quality recordings. **Please note** this section works towards merging multiple datasets together, so pay attention to how data is renamed to simplify this process. 
+
+
+## Importing Data
+
+Either your TA or you will extract the air quality measurements in the form of a `.csv` file. So, assuming you're familiar with project design in R (if not see the [R Tutorial Exercise]) and the concepts of importing and tidying data (see Section 2 if you're not)
+
+### Importing Airbeam 2 data
+
+The *AirBeam 2* sensor records temperature, relative humidity, PM1, PM2.5, and PM10 in the same file with second resolution. Let's go ahead and try to import the file directly: 
+
+
+```{r}
+library(tidyverse)
+```
+
+```{r,  warning = FALSE, message = FALSE}
+airbeamRaw <- read_csv("data/CHM410_lab2/Airbeam2 July 25.csv")
+
+# showing first 30 lines of data
+DT::datatable(airbeamRaw[1:30,])
+```
+
+Notice that this is a complete mess; here's the rub:
+
+  - The first 8 rows of the data consists of *metadata*. This is information pertaining to how each sensor works.
+  - A byproduct of `read_csv()` is by default it'll set the first row of data as headers, and change the column names so each is unique. This is why some columns are `X1` and others are `Sensor_Package_Name` and `Sensor_Package_Name_1`. 
+  - The data recorded by each sensor is stored in it's own column, with accompanying metadata.
+  - the AirBeam take measurements at the same time, so it *cycles* across the five measurements within a second, hence there's only one recorded measurement per row, that's the recorded measurement for that given time. 
+  
+So to make our data tidy we'll need to separate the metadata from the real data, and clean up both the metadata and real data before merging the two together to get one holistic dataset we can explore. 
+
+#### Airbeam metadata
+
+As previously stated, the AirBeam metadata is the first 8 rows of data, so let's re-import our data with *only* the first 8 rows. 
+
+```{r, warning = FALSE, message = FALSE}
+
+airbeamMeta <- read_csv("data/CHM410_lab2/Airbeam2 July 25.csv", n_max = 8) %>%
+  select(contains("Sensor")) 
+
+airbeamMeta <- as.data.frame(t(airbeamMeta)) %>%
+  rownames_to_column() 
+
+airbeamMeta <- airbeamMeta %>%
+  rename(sensor_name = V3,
+         measurement_type = V5, 
+         measurement_units = V7,
+         measurement = V8) %>%
+  select(-contains("V"), -rowname)
+
+airbeamMeta
+```
+
+A Lot of the code above is just work to pretty it up. From top to bottom we've:
+
+  - imported the first 8 rows of data
+  - removed the empty columns using `select()`
+  - *Transposed the data frame* (i.e. rotate 90 degrees) using the transpose function `t()`, transformed it into a data frame and saved it as `airbeamMeta` 
+  - Renamed the columns so they're more descriptive and easier to work with. 
+  
+After all of that we're left with `airbeamMeta`, a data frame containing information on each sensor (`sensor_name`), measurement types and unites. **Note** that we kept a column called `measurement` this is a byproduct of the import procedure but we'll make use of it in the next step. 
+
+#### Airbeam Data
+
+Now let's get the actual AirBeam measurements into R. We noted earlier that the resolution of the AirBeam measurement is in *seconds*, but the time is recorded in *milliseconds* and the accompanying empty columns. To make our data easier to work with we'll round the recorded time of each measurement to the second using `floor_date` from the `lubridate` package before tidying our data.   
+
+```{r}
+airbeam <- read_csv("data/CHM410_lab2/Airbeam2 July 25.csv", skip = 8) %>%
+  mutate(Timestamp = lubridate::floor_date(Timestamp)) %>%
+  pivot_longer(cols = `1:Measurement_Value`:`5:Measurement_Value`, 
+               names_to = "measurement",
+               values_to = "measurement_value", 
+               values_drop_na = TRUE) 
+airbeam
+```
+
+Note that `Timestamp` data is in the `col_datetime` format, which means we can easily round down to the nearest second. After that we made our data tidy using `pivot_longer`. 
+
+One more thing before we move on. Remember the `measurement` column from `airbeamMeta`? We'll that same column with the same values is present in our data (we did create it after all...). What this means is we can *join* `airbeamMeta` to `airbeam`. We can combine information from these two tables using a `join()` function. This will add the columns from `airbeamMeta` to `airbeam`, essentially annotating each row of data. For example, every row in `airbeam`1 where the `measurement` value is `1:Measurement_Value` will now have information on the measurement type, the measurement units, and the sensor name. Ultimately this gives us more dimensions to analyze our data. 
+
+```{r}
+airbeam <- airbeam %>%
+  inner_join(airbeamMeta, by = "measurement") %>%
+  rename_all(tolower)
+```
+
+We've merged both datasets based on the values in the `measurement` column using `inner_join()`. What this does is merge the rows wherever there's a match between the `measurement` columns. There are other forms of join function, which you can read up on [here](https://r4ds.had.co.nz/relational-data.html#inner-join).
+
+#### Visualizing Airbeam Data
+
+And a quick plot to see how our data looks: 
+
+```{r}
+airbeamTime <- ggplot(data = airbeam, 
+       aes(x = timestamp, 
+           y = measurement_value, 
+           colour = sensor_name)) +
+  geom_line() +
+  facet_grid(rows = vars(measurement_units), scales = "free")
+
+airbeamTime
+```
+Rad. Note that the scale of each plot is independent, because each measurement occurs in it's own range. So take care when interpreting this data. And, given the resolution of the data, and the fact we're just exploring it, we can transform our static ggplot into an interactive plotly plot using the `plotly` package:
+
+```{r}
+# You can also make an interactive map with the plotly package
+# beware this might take a while given the large dataset
+# you'll need to install the plotly package before hand. 
+plotly::ggplotly(airbeamTime)
+
+```
+Now you can zoom around and scope out the scene to see what's up. 
+
+
+### Importing CO2 and O3 data
+
+The CO~2~ and O~3~ sensors have data in a much neater format, partly because they're only recording one reading throughout a session. Consequently, importing is a relatively simple job. 
+
+Since they're both the same format, let's import them both and merge them into one dataset:
+
+```{r}
+co2 <- read_csv("data/CHM410_lab2/CO2 July 25.csv")
+o3 <- read_csv("data/CHM410_lab2/Ozone July 25.csv")
+
+gases <- inner_join(co2, o3, by = "Date Time") %>%
+  select(-contains("ID")) 
+
+tibble(gases)
+```
+
+The CO~2~ and O~3~ measurements are pretty self evident, so let's focus on the `Date Time` column. Note that it's stored in a character format. So you and I read it as a date and time, but to R it's simply a string of characters with no meaning. So we'll need to *coerce* it into the datatime format using `parse_date_time()`. 
+
+```{r}
+
+
+gases <- gases %>%
+  rename(timestamp = `Date Time`, 
+         co2 = `CO2(ppm)`, 
+         o3 = `O3(ppm)`
+         ) %>% 
+  mutate(timestamp = lubridate::parse_date_time(timestamp, orders = "%d-%b-%Y-%H-%M")) %>%
+  pivot_longer(cols = co2:o3, 
+               names_to = "sensor_name",
+               values_to = "measurement_value", 
+               values_drop_na = TRUE) 
+```
+
+So what we've done is:
+  - take our gases data and rename the columns to less problematic names
+  - Mutated the `timestampe` data using `parse_date_time()`.
+    - Working with date & time data is a pain, in this case we needed to tell `parse_date_time()` that the string value we're converting to datetime is written as the day, abbreviated month, full year, hour, and minutes. 
+    - You can read up on working with dates and times [here](https://r4ds.had.co.nz/dates-and-times.html).
+  - We then made our data tidy using `pivot_longer()`. 
+
+#### Visualizing Gases Data
+
+And we can look at our data: 
+
+```{r}
+ggplot(gases, aes(x = timestamp, y = measurement_value, colour = sensor_name)) +
+  geom_line() +
+  facet_grid(rows = vars(sensor_name), scales = "free")
+```
+
+### Merging datasets
+
+Accompanying this data set is a word document explaining how both the `airbeam` and `gases` data was measured. Essentially all of the sensors were tossed into a basket and someone rode a bike around Pearson airport. What that means is we can merge all the data together to see what transpired during the entire experiment.
+
+Before we merge the two datasets together, let's quickly annotate our `gases` data by adding `measurement_type` and `measurement__units`. 
+
+```{r}
+
+gases <- gases %>%
+  mutate(measurement_type = "gases", 
+         measurement_units = case_when(sensor_name == "co2" ~ "ppm", TRUE ~ "ppb"))
+
+```
+
+And we can perform a `full_join()` so that all the columns, remember there's more columns in the `airbeam` data (latitude, and longitude) are preserved. Note that by not specifying the columns, `full_join()` will match all columns that are found in both datasets; we took advantage of this property with out consistent naming convention. 
+
+
+```{r}
+
+airport <- full_join(airbeam, gases)
+```
+
+And we can plot them all together to see how the readings of the different measurements varied over time.
+
+
+```{r}
+ggplot(data = airport, 
+       aes(x = timestamp, 
+           y = measurement_value, 
+           colour = sensor_name)) +
+  geom_line() +
+  facet_grid(rows = vars(measurement_units), scales = "free")
+
+
+```
+To understand what's going on you'll need to refer to *Experimental details for airport transect 1* for a specific timeline of events, but we can see that:
+
+  - the O~3~ and CO~2~ sensors were on for a longer time then the AirBeam. 
+  - Something drastic happened at approximately 12:50 (looking at the notes, this is when the sensors were brought indoors)
+  - O~3~ levels change even though the sensors remained outside. 
+  
+In the next section we'll explore the data from a spatial dimension to see how measurement values changed with location. 
+
+## Plotting data spatially
+
+Spatial data in this context means we'll be plotting our data on a map, after all it was recorded while someone biked around the city. So the first thing we'll need to do is get a map. This is now going to touch a bit upon *GIS* (geographic information systems). This is a career in and of itself, so we won't delve too deeply into it as it gets real weird real quick. That being said, the `ggmap` package greatly simplified our task of getting a map upon which we can plot our data. 
+
+What we want is a map with points for each individual measurement value so we can see how it changes as the sensors were moved through time and space. So first thing first is we need a map. Thanks to services like Google Maps and Open Street Maps anyone can get a map of any part of the world for free. The problem for us is making sure it's the right size. Too big and we won't be able to tell where we went, too small and we'll miss some of the picture. This takes a bit of playing around with, but the following code gives you a good framework to start from. 
+
+### Plotting Airbeam data spatially
+
+First step is to install and load the `ggmap` package. Now we'll need to figure out which size maps will cover our data. We do so by creating a *bounding box*, basically a square composed of latitude and longitude data for each vertices of the bounding box. So we pass the latitude and longitude data from our `airbeam` data set to the `make_bbox()` function (alongside a fudge factor `f` for a bit of wiggle room around each side).
+
+```{r}
+#install.packages("ggmap")
+library(ggmap)
+
+airbeamBBox<- make_bbox(lon = airbeam$longitude, lat = airbeam$latitude, f = 0.1)
+airbeamBBox
+```
+
+Now that we have our bounding box, we use `get_stamenmap()` to get the real world map contained in the geographic coordinates of the bounding box. Note that we're using `get_stamentmap()`, which queries [Stamen Maps](http://maps.stamen.com/#terrain/12/37.7706/-122.3782), a spin-off of *Open Street Maps*. We didn't use Google Maps* because it requires registering with their API (meaning our R code can access Google Maps), which is a bit overkill for this lab. If you plan on doing more work like this in the future, it might be worth doing so. 
+
+Anyways, Stamen map provides several different aesthetic of maps. We're going to use the "terrain" style so we can see waterways, elevations, and geographic features which may have impacted measurements. 
+
+
+```{r}
+
+airbeamMap <- get_stamenmap(bbox = airbeamBBox, zoom = 14, maptype = "terrain", crop = FALSE)
+
+transectMap <- ggmap(airbeamMap) 
+
+transectMap
+```
+
+And would you look at that. We have a beautiful map of Pearson Airport and surrounding areas. You can adjust the size of the map by changing the value of the `zoom` argument from `3` (Continental) to `15` (individual houses). 
+
+Now let's overlay our measurement values. The `ggmap()` function transforms the map into a ggplot *layer*, which means we can treat it like any other ggplot, and simply add layers to it. In this instance, we'll superimpose the measurements onto the map allowing us to see how concentrations of PM10 varied with location:
+
+```{r}
+
+
+transectMap <- transectMap +
+  geom_point(data = subset(airbeam, sensor_name == "AirBeam2-PM10"),
+             aes(x = longitude, y = latitude, colour = measurement_value)) 
+
+transectMap
+
+
+```
+
+Note that we've *subset our data on the fly*. Since the five measurements are all taken from the same device, we can't plot them on the same map because they'll overlap. So we *subsetted* our data using `subset()` so we only plot PM10 data. You can swap our the name passed to `sensor_name == ...` to plot the other measurements (i.e. PM1, or PM 2.5).
+
+Because there's a lot going on under the hood (i.e. we don't know where and when measurements were started and the route taken) let's annotate the map. This is done manually because we need to decide what's worth annotating and what we want people to know about our map. Let's add the starting, turnaround and end of the trip so people know the route taken, and the general timeline of recordings. The locations used for the annotations are geographic coordinates, and are used to place the arrows/text on the map. I went used the timeline notes to figure out the start, turnaround, and end of the journey. 
+
+```{r}
+   
+transectMapAnnotated <- transectMap +  
+  # annotations for start of journey
+  annotate("segment", x = -79.62161, xend = -79.621614, y = 43.635, yend = 43.65395, size=1) +
+  annotate("label", x = -79.62161, y = 43.64, label = "Started biking west \n at 11:00am", fill = "white") +
+  
+  # annotation for turn around
+  annotate("segment", x = -79.65, xend = -79.66234, y = 43.655, yend = 43.66672, size=1) +
+  annotate("label", x = -79.65, y = 43.655, label = "Turned around \n to head east \n at 11:35am", fill = "white") +
+  
+  # annotation for end of journey
+   annotate("segment", x = -79.56662, xend = -79.56662, y = 43.657, yend = 43.63529, size=1) +
+   annotate("label", x = -79.56662, y = 43.66, label = "Entered house \n at 12:50pm", fill = "white") +
+
+  # labels for plots
+   labs(x = "longitude", 
+     y = "latitude", 
+     colour = "PM 10 \n(ug/m^3)")
+
+transectMapAnnotated
+
+```
+
+And that's that. We can see a story of where the sensors went, and how PM 10 doesn't really seem to vary much with location. Let's see if it's any different for the gases. 
+
+### Plotting gases data spatially
+
+In the accompanying word document, it's explained that both the `airbeam` and `gases` data was measured at the same time. Essentially all of the sensors were tossed into a basket and someone rode a bike around Pearson airport. That means that although the sensors for the `gases` data didn't record their location, since they were in the same basket as the `airbeam` sensors (which did record spatial data) we take that data from the latter and put it into the former.
+
+#### Getting spatial data for gases
+
+One hiccup is that the `airbeam` data is recorded every *second* whereas the `gases` data is recorded every *minute*. This will cause some headaches when trying to match the data up. So we'll first extract the relevant data from the `airbeam` dataset, and round it down to the nearest minute. 
+```{r}
+
+spatDat <- airbeam %>%
+  select(timestamp, latitude, longitude) %>%
+  mutate(timestamp = lubridate::round_date(timestamp, unit = "minute")) %>%
+  distinct(timestamp, .keep_all = TRUE)
+
+spatDat
+```
+
+Note the last line where we used `distinct()` to streamline our dataset. This was necessary because we rounded down the seconds data to each minute, so we have sixty rows for each minute. `distinct()` allows us to take one row for each minute as our spatial data. the `.keep_all = TRUE` argument preserves the `latitude` and `longitude` rows. 
+
+<!-- could also just join the other way (i.e. right_join or something) to avoid this issue. Unsure which is simpler to explain. - DH. -->
+
+And we simply join `gases` to `spatDat` so each gas measurement now has an accompanying geographic coordinate. 
+
+```{r}
+gasesSpat <- spatDat %>%
+  left_join(gases)
+gasesSpat
+```
+
+#### Visualizing gases data
+
+Since we've already created a map for the bike ride (`airbeamMap`), we can recycle it and overlay our newly created `gasesSpat` data. 
+
+```{r}
+# AirBeam map made earlier, see above
+o3Map <- ggmap(airbeamMap) +
+  geom_point(data = subset(gasesSpat, sensor_name == "o3"),
+             aes(x = longitude, y = latitude, colour = measurement_value)) 
+o3Map
+
+```
+
+We've done the same sub-setting on the fly to only ploy O~3~. Let's annotate our plot again based on the information in the Experimental Details: 
+
+```{r}
+o3MapAnnotated <- o3Map +
+  # annotations for 1st plane takeoff
+  annotate("segment", x = -79.6, xend = -79.63254, y = 43.66460, yend = 43.66460, size=1) +
+  annotate("label", x = -79.6, y = 43.66460, label = "Plane takeoff \n 11:17am", fill = "white") +
+  
+  # annotations for 2nd plane takeoff
+  annotate("segment", x = -79.65385, xend = -79.65385, y = 43.66, yend = 43.67089, size=1) +
+  annotate("label", x = -79.65385, y = 43.66, label = "Plane takeoff \n 11:40am", fill = "white") +
+  
+  # labels for plots
+   labs(x = "longitude", 
+        y = "latitude", 
+        colour = "ozone (ppm)",
+        caption = "data record on July 25th, 2020")
+o3MapAnnotated
+```
+
+### Combining maps
+
+So we now have a map of PM10 and O~3~, let's place them side by side so we can see how different measurements changed along the bike trip: 
+
+```{r, fig.height=7}
+# chunk fig.height = 7
+ggpubr::ggarrange(transectMapAnnotated, 
+          o3MapAnnotated,
+          labels = c("A", "B"),
+          nrow = 2, ncol = 1)
+
+```
+
+Now there's a story being told. Some things to take away from this map is:
+
+  - PM10 higher indoors, largely unaffected outdoors regardless of local (urban, nature-ish, airport).
+  - O~3~ appears to have been affected by planes taking off, and maybe by something going on at the Bloordale park. 
+  
+Taking this to the next level, you could try and cross-reference the days weather (wind direction/speed) to see how that would affect it. Historical weather for Toronto can be found [here](https://toronto.weatherstats.ca/download.html).
+
+## Summary
+
+In these notes we've covered:
+
+  - How to import and tidy data from the AirBeam2 Sensor
+  - How to join data sets to get a more complete picture. 
+  - Mapping spatial data using `ggmap` 
+  
