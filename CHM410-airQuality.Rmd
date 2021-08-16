@@ -235,7 +235,7 @@ Now that we have our bounding box, we use `get_stamenmap()` to get the real worl
 Anyways, Stamen map provides several different aesthetic of maps. We're going to use the "terrain" style so we can see waterways, elevations, and geographic features which may have impacted measurements. 
 
 
-```{r}
+```{r, message = FALSE, warning = FALSE, error = FALSE}
 
 airbeamMap <- get_stamenmap(bbox = airbeamBBox, zoom = 14, maptype = "terrain", crop = FALSE)
 
