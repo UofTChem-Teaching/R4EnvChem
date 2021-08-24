@@ -15,7 +15,7 @@ These are only a smattering of the posibible data visualizations you can perform
   - **[ggplot2 extensions gallery](https://exts.ggplot2.tidyverse.org/gallery/)** which is the best repository to the plethora of `ggplot2()` extensions. If you need a specialized plot, check here. Odds are someone has a solution to your problem. Some great extensions include [`ggrepel`](https://github.com/slowkow/ggrepel) for easy labelling of points, [`ggpmisc`](https://docs.r4photobiology.info/ggpmisc/) for statistical annotations, and [`ggpubr`](https://rpkgs.datanovia.com/ggpubr/) for pulibcation ready plots. 
   - **[The R Graph Gallery](https://www.r-graph-gallery.com/index.html)** contains hundreds of charts made with R. Not as easy to navigate as *Data to viz*, but contains many more examples; definitly worth exploring. 
   
-## Bar plots
+## data to play with 
 
 ```{r}
 library(tidyverse)
@@ -44,7 +44,12 @@ kableExtra::kable(sumNFLD, digits = 1)
 
 <!-- going to include this stuff in Summarize chapter--> 
 
+
+
 As previously mentioned, the *Canadian Ambient Air Quality Standards* stipulate that the annuam mean of 1-hour means for NO~2~ cannot exceed 17.0 ppb in 2020, and 12.0 ppb in 2025. 
+
+
+## bar plots
 
 ```{r}
 ggplot(data = sumNFLD,
@@ -84,16 +89,110 @@ ggplot(data = sumNFLD) +
 So in our aesathetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] then Corner Brook. 
 
 
-### bar plots alternatives
+## histograms
+
+```{r}
+ggplot(data = nfld, 
+       aes(x = conc)) +
+  geom_histogram()
+```
+This is a histogram 
+  - bin size
+  - count, how it works 
+  - 
+  
+```{r}
+ ggplot(data = nfld, 
+       aes(x = conc, fill = city)) +
+  geom_histogram(binwidth = 1,  position = "identity",
+                 )
+```
+
+```{r}
+
+ggplot(data = nfld, 
+       aes(x = conc, fill = city)) + 
+  geom_histogram(binwidth = 5, position = "identity") +
+  facet_wrap(~city)
+```
+
+## Box Plots
+
+Box plots give a summary of the *distribution* of a numeric variable. You've no doubt seen them before, but they're often misinterpreteer. Let's create a boxplot, using our Newgoundland hourly NO~2~ measurements,  then break down how to interpret it. 
+
+
+```{r}
+
+ggplot(data = nfld, 
+       aes( x = city, y = conc)) +
+  geom_boxplot()
+
+```
+
+
+### Box plot alternatives
+
+```{r}
+ggplot(data = nfld, 
+       aes(x = city, y = conc)) + 
+  geom_violin()
+```
+```{r, echo = FALSE}
+
+stJ <- nfld %>%
+  filter(city == "St Johns")
+stjBox <- boxplot.stats(stJ$conc)
+
+ggplot(stJ, aes(x = city, y= conc)) +
+  geom_boxplot() + 
+  theme_classic() +
+  coord_flip() +
+  
+  # max value
+  annotate("text", x = 1.25, y = 40, label = "Maximal Value\n in the data", hjust = 1) +
+  annotate("curve", x = 1.25, xend = 1, y = 40, yend = 49, curvature =-0.5, arrow = arrow(length = unit(4, "mm")))  +
+  
+  # outliers
+  annotate("rect", xmin = 0.95, xmax = 1.05, ymin = 14.5, ymax = 50, alpha = 0.25, colour = "red") +
+  annotate("text", x = 1.10, y = 30, label = "Outliers", colour = "red") +
+  
+  # Maximal
+  annotate("text", x = 0.9, y = 15, label = "Maximal (Q3 + 1.5*IQR", hjust = 0) +
+  annotate("curve", x = 0.9, xend = 0.99, y = 15, yend = 14, curvature = -0.5, arrow = arrow(length = unit(4, "mm"))) +    
+  
+  # q3
+  annotate("text", x =0.8, y = 13, label = "3rd Quartile (Q3)", hjust = 0 ) +
+  annotate("curve", x = 0.8, xend = 0.8, y = 13, yend = 7,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # Median
+  annotate("text", x = 0.7, y = 11, label = "Median", hjust = 0) +
+  annotate("curve", x = 0.7, xend = 0.7, y = 11, yend = 3,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # Q1
+  annotate("text", x = 0.6, y = 9, label = "1st quartile (Q1)", hjust = 0 ) +
+  annotate("curve", x = 0.6, xend = 0.65, y = 9, yend = 2,curvature = -0.3, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # minimum
+  annotate("text", x = 0.5, y = 7, label = "Minimum (Q1 - 1.5*IQR), here it's equal to the min value in the data", hjust = 0 ) +
+  annotate("curve", x = 0.5, xend = 1, y = 7, yend = 0,curvature = -0.6, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # IQR
+  annotate("text", x = 1.5, y = 4, label = "Inter quartile range (IQR)", hjust = 0.25) +
+  annotate("curve", x = 1.4 , xend = 1.4, y = 7, yend = 2, curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("curve", x = 1.4, xend = 1.4, y = 2, yend = 7, curvature = 0, arrow = arrow(length = unit(4, "mm"))) 
+
+
+```
+
 
 ## Scatter plots
 
 ### Displaying linear regression
 
 
-## Box Plots
 
-### Box plot alternatives
+
+
 
 ## Venn diagram
 
