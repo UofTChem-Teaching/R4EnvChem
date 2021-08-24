@@ -1,9 +1,100 @@
-# Choosing Visualizations
+# Visualizations for Env Chem   
 
--  introduce the principle plots/visualizations used in CHM410/undergad envb chem
-  - scatter/jitter
-  - line
-  - box/violin plot
-  - histogram and density distributions
-  - marginal plots
-- working code of example plots 
+We've already encountered and produced several types of plots to vizualize our data. We've also gone over the theory and basic operations of `ggplot()` in the [Visualizations] chapter. In this chapter, we'll expand on these and explicitly walk through the most common data visualization methods you'll encounter in the field of environmental chemistry. Additionanly, we'll learn how to get your plots ready for publication. 
+
+The plots we'll be covering include: 
+
+  - bar plots
+  - scatter plots (with linear regression) 
+  - box plots
+  - Venn diagrams
+  
+These are only a smattering of the posibible data visualizations you can perform in R. We're focusing on them becase of their ubiquity in our field, but they often won't be the ideal visualuzations you need to communicate *your story*. We highly recomment you check out the following ressources. Not only are they a great source of inspiration, they provide example code to get you up and running. We consult them regularly: 
+
+  - **[Data to viz](https://www.data-to-viz.com/)** which features a decision tree to help you decide on what plots you need. 
+  - **[ggplot2 extensions gallery](https://exts.ggplot2.tidyverse.org/gallery/)** which is the best repository to the plethora of `ggplot2()` extensions. If you need a specialized plot, check here. Odds are someone has a solution to your problem. Some great extensions include [`ggrepel`](https://github.com/slowkow/ggrepel) for easy labelling of points, [`ggpmisc`](https://docs.r4photobiology.info/ggpmisc/) for statistical annotations, and [`ggpubr`](https://rpkgs.datanovia.com/ggpubr/) for pulibcation ready plots. 
+  - **[The R Graph Gallery](https://www.r-graph-gallery.com/index.html)** contains hundreds of charts made with R. Not as easy to navigate as *Data to viz*, but contains many more examples; definitly worth exploring. 
+  
+## Bar plots
+
+```{r}
+library(tidyverse)
+## Going to include this in the summarize chapter, so it'll be redundant code... 
+
+nfld <- read_csv("data/2018hourlyNO2_NFLD.csv", skip = 7, na =c("-999")) %>%
+  rename_with(~tolower(gsub("/.*", "", .x))) %>%
+  pivot_longer(cols = starts_with("h"), 
+               names_prefix = "h", 
+               names_to = "hour", 
+               names_transform = list(hour = as.numeric),
+               values_to = "conc", 
+               values_transform = list(conc = as.numeric),
+               values_drop_na = TRUE) 
+
+sumNFLD <- nfld %>%
+  group_by(city) %>%
+  summarize(mean = mean(conc), 
+            sd = sd(conc), 
+            median = median(conc), 
+            min = min(conc), 
+            max = max(conc))
+  
+kableExtra::kable(sumNFLD, digits = 1)
+```
+
+<!-- going to include this stuff in Summarize chapter--> 
+
+As previously mentioned, the *Canadian Ambient Air Quality Standards* stipulate that the annuam mean of 1-hour means for NO~2~ cannot exceed 17.0 ppb in 2020, and 12.0 ppb in 2025. 
+
+```{r}
+ggplot(data = sumNFLD,
+       aes(x = city, 
+           y = mean)) +
+  geom_bar(stat = "identity")
+```
+Pretty boring, but it's gotten the job done. **Note** the `stat = "identity"` call. The default behavior of `geom_bar` is to count the number of observations in a groups, but our data was previously calcualted. `stat = "identity"` simply specifies that our data should remain unchanged. 
+
+### Adding error bars 
+
+Any measurement always has an assosciated uncertainty. In our example, we've used the standard deviation (`sd`) as a measure of uncertainty of our calcualted annual means. 
+
+```{r}
+ggplot(data = sumNFLD) +
+  geom_bar(aes(x = city, 
+               y = mean), 
+           stat = "identity") +
+  geom_errorbar(aes(x = city, 
+                    ymin = mean - sd, 
+                    ymax = mean + sd))
+```
+
+### Ordering bar charts
+
+Often with bar charts (and similar plots), it's useful to *order* the bars to help tell a story or convey information. We can effectuate this using `fct_reorder()` on the fly:
+
+```{r}
+ggplot(data = sumNFLD) +
+  geom_bar(aes(x = fct_reorder(city, mean), 
+               y = mean), 
+           stat = "identity") +
+  geom_errorbar(aes(x = city, 
+                    ymin = mean - sd, 
+                    ymax = mean + sd))
+```
+So in our aesathetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] then Corner Brook. 
+
+
+### bar plots alternatives
+
+## Scatter plots
+
+### Displaying linear regression
+
+
+## Box Plots
+
+### Box plot alternatives
+
+## Venn diagram
+
+### Venn diagram alternatives 
