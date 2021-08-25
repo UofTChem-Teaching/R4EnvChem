@@ -88,6 +88,127 @@ ggplot(data = sumNFLD) +
 ```
 So in our aesathetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] then Corner Brook. 
 
+## Box Plots
+
+Box plots give a summary of the *distribution* of a numeric variable. You've no doubt seen them before, but they're often misinterpreteer. Let's create a boxplot, using our Newgoundland hourly NO~2~ measurements,  then break down how to interpret it. 
+
+
+```{r}
+
+ggplot(data = nfld, 
+       aes( x = city, y = conc)) +
+  geom_boxplot()
+
+```
+
+
+```{r, echo = FALSE}
+
+stJ <- nfld %>%
+  filter(city == "St Johns")
+stjBox <- boxplot.stats(stJ$conc)
+
+a <- ggplot(stJ, aes(x = city, y= conc)) +
+  geom_boxplot() + 
+  theme_classic() +
+  coord_flip() +
+  
+  # max value
+  annotate("text", x = 1.25, y = 40, label = "Maximal Value\n in the data", hjust = 1) +
+  annotate("curve", x = 1.25, xend = 1, y = 40, yend = 49, curvature =-0.5, arrow = arrow(length = unit(4, "mm")))  +
+  
+  # outliers
+  annotate("rect", xmin = 0.95, xmax = 1.05, ymin = 14.5, ymax = 50, alpha = 0.25, colour = "#a63603") +
+  annotate("text", x = 1.10, y = 30, label = "Outliers", colour = "#a63603") +
+  
+  # Maximal
+  annotate("text", x = 0.9, y = 15, label = "Maximal (Q3 + 1.5*IQR", hjust = 0) +
+  annotate("curve", x = 0.9, xend = 0.99, y = 15, yend = 14, curvature = -0.5, arrow = arrow(length = unit(4, "mm"))) +    
+  
+  # q3
+  annotate("text", x =0.8, y = 13, label = "3rd Quartile (Q3)", hjust = 0 ) +
+  annotate("curve", x = 0.8, xend = 0.8, y = 13, yend = 7,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # Median
+  annotate("text", x = 0.7, y = 11, label = "Median", hjust = 0) +
+  annotate("curve", x = 0.7, xend = 0.7, y = 11, yend = 3,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # Q1
+  annotate("text", x = 0.6, y = 9, label = "1st quartile (Q1)", hjust = 0 ) +
+  annotate("curve", x = 0.6, xend = 0.65, y = 9, yend = 2,curvature = -0.3, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # minimum
+  annotate("text", x = 0.5, y = 7, label = "Minimum (Q1 - 1.5*IQR), here it's equal to the min value in the data", hjust = 0 ) +
+  annotate("curve", x = 0.5, xend = 1, y = 7, yend = 0,curvature = -0.6, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # IQR
+  annotate("text", x = 1.5, y = 4, label = "Inter quartile range (IQR)", hjust = 0.25) +
+  annotate("curve", x = 1.4 , xend = 1.4, y = 7, yend = 2, curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("curve", x = 1.4, xend = 1.4, y = 2, yend = 7, curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  labs(x = "",
+       y = "conc")
+
+
+colors <- c("#feedde", "#fdbe85", "#fd8d3c", "#e6550d", "#a63603")
+
+dens  <- density(stJ$conc)
+df <- data.frame(x=dens$x, y=dens$y) %>%
+  filter(x > 0)
+quantiles <- c(0, 2, 3, 7, 14)
+
+df$quant <- factor(findInterval(df$x,quantiles))
+
+# 
+# b <- ggplot(stJ, aes(x = conc)) +
+#   geom_density() +
+#   theme_classic()
+
+
+b <- ggplot(df, aes(x,y)) + 
+  geom_line() + 
+  geom_ribbon(aes(ymin=0, ymax=y, fill=quant)) + 
+  scale_fill_manual(values = colors)  +
+  theme_classic() + 
+  guides(fill = FALSE) +
+  labs(x = "conc",
+       y = "density") +
+
+  geom_vline(xintercept=14, colour="black") +
+  geom_vline(xintercept=7, colour="black") +   
+  geom_vline(xintercept=3, colour="black")  +  
+  geom_vline(xintercept=2, colour="black") +
+  geom_vline(xintercept=0, colour = "black") +
+  
+  
+  annotate("text", x = 26, y = 0.15, label = "75% of data is to the left of Q3", hjust = 0) +
+  annotate("curve", x = 26, xend = 7, y = 0.15, yend = 0.15,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("text", x = 22, y = 0.10, label = "50% of data is to the left of the median", hjust = 0) +
+  annotate("curve", x = 22, xend = 3, y = 0.10, yend = 0.10,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("text", x = 18, y = 0.05, label = "25% of data is to the left of Q1", hjust = 0) +
+  annotate("curve", x = 18, xend = 2, y = 0.05, yend = 0.05,curvature = 0, arrow = arrow(length = unit(4, "mm"))) 
+
+  
+
+ggpubr::ggarrange(a,b, ncol = 1, align = "v")
+```
+
+
+### Box plot alternatives
+
+```{r}
+ggplot(data = nfld, 
+       aes(x = city, y = conc)) + 
+  geom_violin()
+```
+
+```{r}
+
+ggplot(data = nfld, 
+       aes(x = conc, fill = city)) + 
+  geom_density( position = "identity") +
+  facet_wrap(~city, scales = "free")
+```
+
 
 ## histograms
 
@@ -116,73 +237,6 @@ ggplot(data = nfld,
   facet_wrap(~city)
 ```
 
-## Box Plots
-
-Box plots give a summary of the *distribution* of a numeric variable. You've no doubt seen them before, but they're often misinterpreteer. Let's create a boxplot, using our Newgoundland hourly NO~2~ measurements,  then break down how to interpret it. 
-
-
-```{r}
-
-ggplot(data = nfld, 
-       aes( x = city, y = conc)) +
-  geom_boxplot()
-
-```
-
-
-### Box plot alternatives
-
-```{r}
-ggplot(data = nfld, 
-       aes(x = city, y = conc)) + 
-  geom_violin()
-```
-```{r, echo = FALSE}
-
-stJ <- nfld %>%
-  filter(city == "St Johns")
-stjBox <- boxplot.stats(stJ$conc)
-
-ggplot(stJ, aes(x = city, y= conc)) +
-  geom_boxplot() + 
-  theme_classic() +
-  coord_flip() +
-  
-  # max value
-  annotate("text", x = 1.25, y = 40, label = "Maximal Value\n in the data", hjust = 1) +
-  annotate("curve", x = 1.25, xend = 1, y = 40, yend = 49, curvature =-0.5, arrow = arrow(length = unit(4, "mm")))  +
-  
-  # outliers
-  annotate("rect", xmin = 0.95, xmax = 1.05, ymin = 14.5, ymax = 50, alpha = 0.25, colour = "red") +
-  annotate("text", x = 1.10, y = 30, label = "Outliers", colour = "red") +
-  
-  # Maximal
-  annotate("text", x = 0.9, y = 15, label = "Maximal (Q3 + 1.5*IQR", hjust = 0) +
-  annotate("curve", x = 0.9, xend = 0.99, y = 15, yend = 14, curvature = -0.5, arrow = arrow(length = unit(4, "mm"))) +    
-  
-  # q3
-  annotate("text", x =0.8, y = 13, label = "3rd Quartile (Q3)", hjust = 0 ) +
-  annotate("curve", x = 0.8, xend = 0.8, y = 13, yend = 7,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
-  
-  # Median
-  annotate("text", x = 0.7, y = 11, label = "Median", hjust = 0) +
-  annotate("curve", x = 0.7, xend = 0.7, y = 11, yend = 3,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
-  
-  # Q1
-  annotate("text", x = 0.6, y = 9, label = "1st quartile (Q1)", hjust = 0 ) +
-  annotate("curve", x = 0.6, xend = 0.65, y = 9, yend = 2,curvature = -0.3, arrow = arrow(length = unit(4, "mm"))) +
-  
-  # minimum
-  annotate("text", x = 0.5, y = 7, label = "Minimum (Q1 - 1.5*IQR), here it's equal to the min value in the data", hjust = 0 ) +
-  annotate("curve", x = 0.5, xend = 1, y = 7, yend = 0,curvature = -0.6, arrow = arrow(length = unit(4, "mm"))) +
-  
-  # IQR
-  annotate("text", x = 1.5, y = 4, label = "Inter quartile range (IQR)", hjust = 0.25) +
-  annotate("curve", x = 1.4 , xend = 1.4, y = 7, yend = 2, curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
-  annotate("curve", x = 1.4, xend = 1.4, y = 2, yend = 7, curvature = 0, arrow = arrow(length = unit(4, "mm"))) 
-
-
-```
 
 
 ## Scatter plots
