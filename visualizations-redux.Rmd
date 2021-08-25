@@ -148,6 +148,50 @@ a <- ggplot(stJ, aes(x = city, y= conc)) +
   labs(x = "",
        y = "conc")
 
+<<<<<<< HEAD
+
+colors <- c("#feedde", "#fdbe85", "#fd8d3c", "#e6550d", "#a63603")
+
+dens  <- density(stJ$conc)
+df <- data.frame(x=dens$x, y=dens$y) %>%
+  filter(x > 0)
+quantiles <- c(0, 2, 3, 7, 14)
+
+df$quant <- factor(findInterval(df$x,quantiles))
+
+# 
+# b <- ggplot(stJ, aes(x = conc)) +
+#   geom_density() +
+#   theme_classic()
+
+
+b <- ggplot(df, aes(x,y)) + 
+  geom_line() + 
+  geom_ribbon(aes(ymin=0, ymax=y, fill=quant)) + 
+  scale_fill_manual(values = colors)  +
+  theme_classic() + 
+  guides(fill = FALSE) +
+  labs(x = "conc",
+       y = "density") +
+
+  geom_vline(xintercept=14, colour="black") +
+  geom_vline(xintercept=7, colour="black") +   
+  geom_vline(xintercept=3, colour="black")  +  
+  geom_vline(xintercept=2, colour="black") +
+  geom_vline(xintercept=0, colour = "black") +
+  
+  
+  annotate("text", x = 26, y = 0.15, label = "75% of data is to the left of Q3", hjust = 0) +
+  annotate("curve", x = 26, xend = 7, y = 0.15, yend = 0.15,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("text", x = 22, y = 0.10, label = "50% of data is to the left of the median", hjust = 0) +
+  annotate("curve", x = 22, xend = 3, y = 0.10, yend = 0.10,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("text", x = 18, y = 0.05, label = "25% of data is to the left of Q1", hjust = 0) +
+  annotate("curve", x = 18, xend = 2, y = 0.05, yend = 0.05,curvature = 0, arrow = arrow(length = unit(4, "mm"))) 
+
+  
+
+ggpubr::ggarrange(a,b, ncol = 1, align = "v")
+=======
 
 colors <- c("#feedde", "#fdbe85", "#fd8d3c", "#e6550d", "#a63603")
 
@@ -191,6 +235,53 @@ b <- ggplot(df, aes(x,y)) +
 
 ggpubr::ggarrange(a,b, ncol = 1, align = "v")
 ```
+
+
+### Box plot alternatives
+
+```{r}
+ggplot(data = nfld, 
+       aes(x = city, y = conc)) + 
+  geom_violin()
+>>>>>>> d9fbd055820c1b9603865cac22db5fda8901560b
+```
+
+```{r}
+
+ggplot(data = nfld, 
+       aes(x = conc, fill = city)) + 
+  geom_density( position = "identity") +
+  facet_wrap(~city, scales = "free")
+```
+
+
+## histograms
+
+```{r}
+ggplot(data = nfld, 
+       aes(x = conc)) +
+  geom_histogram()
+```
+This is a histogram 
+  - bin size
+  - count, how it works 
+  - 
+  
+```{r}
+ ggplot(data = nfld, 
+       aes(x = conc, fill = city)) +
+  geom_histogram(binwidth = 1,  position = "identity",
+                 )
+```
+
+```{r}
+
+ggplot(data = nfld, 
+       aes(x = conc, fill = city)) + 
+  geom_histogram(binwidth = 5, position = "identity") +
+  facet_wrap(~city)
+```
+
 
 
 ### Box plot alternatives
