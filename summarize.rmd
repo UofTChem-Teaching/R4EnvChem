@@ -1,0 +1,30 @@
+## Summarizing data
+
+## data to play with {-}
+
+```{r}
+library(tidyverse)
+## Going to include this in the summarize chapter, so it'll be redundant code... 
+
+atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
+  rename_with(~tolower(gsub("/.*", "", .x))) %>%
+  pivot_longer(cols = starts_with("h"), 
+               names_prefix = "h", 
+               names_to = "hour", 
+               names_transform = list(hour = as.numeric),
+               values_to = "conc", 
+               values_transform = list(conc = as.numeric),
+               values_drop_na = TRUE) 
+
+sumAtl <- atlNO2 %>%
+  group_by(p, city) %>%
+  summarize(mean = mean(conc), 
+            sd = sd(conc), 
+            median = median(conc), 
+            min = min(conc), 
+            max = max(conc))
+  
+kableExtra::kable(sumAtl, digits = 1)
+```
+
+As previously mentioned, the *Canadian Ambient Air Quality Standards* stipulate that the annual mean of 1-hour means for NO~2~ cannot exceed 17.0 ppb in 2020, and 12.0 ppb in 2025. 
