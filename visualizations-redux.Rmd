@@ -234,7 +234,6 @@ ggpubr::ggarrange(a,b, ncol = 1, align = "v")
 
 ```
 
-
 Note that we've plotted the actual distribution of the data. Prior to the computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren't very intuitive (see the score of text needed to explain them). Consequently, we strongly recommend you explore some of the [Box plot alternatives] unless you are explicitly asked to create box-plots. 
 
 ### Box plot alternatives
@@ -368,7 +367,7 @@ gridExtra::grid.arrange(default, classic, ncol = 2)
 
 ### Legends
 
-You can specify the position of the legend under the `theme()` option like such: 
+You can specify the position of the legend under the `theme()` option as such: 
 
 ```{r}
 bottom <- p + theme(legend.position = "bottom")
@@ -377,7 +376,7 @@ inside <- p + theme(legend.position = c(.95, .95))
 
 gridExtra::grid.arrange(bottom, inside, ncol = 2)
 ```
-Other legend positions include: "none", "left", "right", "bottom", "top", or a two-element numeric vector to specify the location such as `c(0.95, 0.95)` for inside the top-right corner. `c(0.05, 0.05)` would place it inside the bottom right corner. Also note that `legend.position = "none"` will remove the legend entirely. 
+Other legend positions include: "none", "left", "right", "bottom", "top", or a two-element numeric vector to specify the location such as `c(0.95, 0.95)` for inside the top-right corner. `c(0.05, 0.05)` would place it inside the bottom right corner, and so on. Also note that `legend.position = "none"` will remove the legend entirely. 
 
 ### Modifying labels
 
@@ -442,4 +441,85 @@ rotatedHJust <- basePlot +
 
 gridExtra::grid.arrange(default, flip, rotated, rotatedHJust, ncol = 2, nrow = 2)
 ```
+## Arranging plots 
 
+We talked about how facets can be used to generate multiple plots from a dataset (small multiples), but sometimes you want to combine two or more *different* plots together. There are a couple of ways, but we've been using `grid.arrange()` from the `gridExtra` pacakge (as demonstrated above). You can read up on [`gridExtra` here](https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html). There is also the [`ggarrange` function](https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html) from the `ggpubr` package which, amongst other things, can easily create shared legends between plots.  
+
+```{r}
+colchart <- ggplot(data = sumAtl,
+                   aes(x = fct_reorder(city, mean),
+                       y = mean, 
+                       fill = p)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean - sd, 
+                    ymax = mean + sd)) +
+  coord_flip() 
+
+boxplot <- ggplot(data = atlNO2, 
+                  aes( x = city, 
+                       y = conc,
+                       fill = p)) +
+  geom_boxplot() + 
+  coord_flip()
+
+boxplot
+
+ggpubr::ggarrange(colchart, 
+                  boxplot, 
+                  ncol = 2, 
+                  nrow = 1,
+                  labels = c("A", "B"),
+                  common.legend = TRUE, 
+                  legend = "bottom")
+```
+
+### Anotating plots 
+
+Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different then *captions*, which is accomplished in the `rmarkdown` chunk header (see [R code chunk options] for a refresher). 
+
+Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualzie them spatially. Note, the map we're making here is rather basic, to make prettier maps see [CHM410: Air Quality Lab]. 
+
+```{r, message = FALSE, error = FALSE, warning = FALSE}
+
+# need lat and long value for map
+mapNO2 <- atlNO2 %>%
+  group_by(latitude, longitude, p,  city) %>%
+  summarise(mean = mean(conc))
+
+#install.packages("ggmap")
+library(ggmap)
+
+atlMap <- get_stamenmap(bbox = make_bbox(lon = mapNO2$longitude, 
+                                         lat = mapNO2$latitude, 
+                                         f = 0.1), 
+                        zoom = 6, 
+                        maptype = "terrain", 
+                        crop = FALSE)
+
+atlMap <- ggmap(atlMap) 
+
+atlMap
+
+```
+
+Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this in detail in [Plotting Airbeam data spatially], but for this plot we spefically want to annotate each point with it's corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html).  We simply need to specify which column (`naps id`) we'll use for our labels:
+```{r, message = FALSE, warning = FALSE}
+atlMap + geom_point(data = mapNO2, 
+             aes(x=longitude,
+                 y=latitude,
+                 colour = mean,
+                 size = mean),
+             alpha = 0.8) +
+  scale_alpha(guide = "none") + # removing legend for alpha
+  scale_size(guide = "none") + # removing legend for size
+  ggrepel::geom_label_repel(data = mapNO2, 
+                            aes(x=longitude,
+                                y=latitude,
+                                label = city),
+                            box.padding = 0.5,
+                            max.overlaps = Inf)
+
+
+```
+
+Again, not the prettiest map, but that's up to you to fix in post. [`geom_text_repel()`](https://ggrepel.slowkow.com/articles/examples.html) is an incredibly useful package for quickly annotating plots. If you need to label/annotate points check it out. 
