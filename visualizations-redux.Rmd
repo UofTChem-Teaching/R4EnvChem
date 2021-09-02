@@ -27,6 +27,8 @@ This chapter assumes you've read the [Tidying your data] chapter to understand t
 Additionally, for this chapter we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset. 
 
 ```{r, echo = FALSE}
+library(tidyverse)
+
 atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
   rename_with(~tolower(gsub("/.*", "", .x))) %>%
   pivot_longer(cols = starts_with("h"), 
@@ -140,7 +142,7 @@ Rounding it out, `geom_boxplot()` includes *whiskers*, the thin lines emanating 
 
 Putting this all together, let's look at the [NO~2~] for St. Johns city: 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
 stJ <- atlNO2 %>%
   filter(city == "St Johns")
@@ -234,7 +236,7 @@ ggpubr::ggarrange(a,b, ncol = 1, align = "v")
 ```
 
 
-Note that we've plotted the actual distribution of the data. Prior to the computers, this was incredibly difficult to do, hence the use of box plots which can be drown knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren't very intuitive (see the score of text needed to explain them). Consequently, we strongly recommend you explore some of the [Box plot alternatives] unless you are explicitly asked to create box-plots. 
+Note that we've plotted the actual distribution of the data. Prior to the computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren't very intuitive (see the score of text needed to explain them). Consequently, we strongly recommend you explore some of the [Box plot alternatives] unless you are explicitly asked to create box-plots. 
 
 ### Box plot alternatives
 
