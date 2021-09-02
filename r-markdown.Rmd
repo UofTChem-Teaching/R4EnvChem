@@ -187,6 +187,17 @@ Unlike *Microsoft Word*, RMarkdown utilizes a specific syntax for text formattin
 
 For a collection of other RMarkdown syntax, please see the useful (and brief) list compiled online [here](https://rmarkdown.rstudio.com/authoring_basics.html). This includes ordered and unordered lists, headers, code blocks, hyperlinks, and figure captions. 
 
+## Exporting Rmarkdown documents
+
+You'll most likely be exporting your rmarkdown documents as PDFs, but the beauty of rmarkdown is it dosen't stop there. Your rmarkdown documents can be knitted as a HTML document, a book (or both like this book!). You can even make slideshow presentations and yes, if need be, export as a word document that you can open in *Microsoft Word*.
+
+Here are some links to help you in exporting your document to common formats:
+
+  - [`pdf_document`](https://bookdown.org/yihui/rmarkdown/pdf-document.html) creates a PDF document via Latex; probably your defacto output. 
+  - [`word_document`](https://bookdown.org/yihui/rmarkdown/word-document.html) creates a Word document. Note that the formatting options are pretty basic, so while evereything will be where you want it to be, you'll need to pretty it up in Word to comply with your instructors specifications. 
+  - [`tufte_handout`](https://bookdown.org/yihui/rmarkdown/tufte-handouts.html) for a PDF handout in the style of Edward Tufte. Check it out. 
+  - [`ioslides_presentation`](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html), [`revealjs::revealjs_presentation`](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html), and [`powerpoint_presentation`](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html) are all options to create sldieshow presentations. I personally use `revealjs` for my own work. It has the steepest learning curve of the bunch, but once setup, you can make incredibly slick slides with ease. 
+    - Note: like `word_document`, `powerpoint_presentation`'s outputs are stylistically simple. You'll definitly need to pretty them up manually in Powerpoint.  
 
 ## RStudio tips and tricks
 
