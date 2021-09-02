@@ -24,7 +24,8 @@ library(tidyverse)
 airbeamRaw <- read_csv("data/CHM410_lab2/Airbeam2 July 25.csv")
 
 # showing first 30 lines of data
-DT::datatable(airbeamRaw[1:30,])
+DT::datatable(airbeamRaw[1:30,], 
+              options = list(scrollX = TRUE))
 ```
 
 Notice that this is a complete mess; here's the rub:
