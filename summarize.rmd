@@ -1,6 +1,6 @@
 # Summarizing data
 
-In the `tidyverse`, summarizing your data means to reduce it 
+Sumamrizing data is what it sounds like. You're reducing the number of rows in your dataset based on some predermined method. Taking the average of a group of numbers is summarizing the data. Many numbers have been condensed to one: the average. In this chapter we'll go over sumamrizing data, and some aesthetic changes we can make for publication ready tables. 
 
 ## Data to play with
 
@@ -8,8 +8,7 @@ We'll take a look at the 2018 hourly mean NO~2~ concentrations for the Atlantic 
 
 Since ECCC stores their NAPS data in a matrix layout, we need to briefly tidy it up:
 
-```{r}
-library(tidyverse)
+```{r, message = FALSE}
 
 atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
   rename_with(~tolower(gsub("/.*", "", .x))) %>%
@@ -115,13 +114,13 @@ sumAtl
 Note that the functions we pass to summarize adhere to rules of missing values. That is to say, if even one value in a group is an `NA`, the entire group defaults to `NA`. Consequently, if your confident this isn't an issue, you can pass the argument `na.rm = TRUE` to any of the summarize functions, which would look like `mean = mean(conc, na.rm = TRUE)`. This will ignore any `NA` values and return a numeric value like you probably expect. 
 
 
-## Pretty tables with kable
+## Pretty tables with flextable
 
 While the summarize function does an excellent job of summarizing our data, the outputted dataset isn't really fit for publication. This is double so if you used summarize as the last step of your chemuical quantification and you want a nice and pretty table of means sample concentration with standard deviations. 
 
 To this end we'll use the 'flextable' pacakage. Please refer to [flextable R package](https://davidgohel.github.io/flextable/index.html). There are other packages to make tables, but `flextable` is consistent between HTML and PDF outputs. 
 
-```{r, message = FALSE}
+```{r, message = FALSE, warning = FALSE}
 library(flextable)
 
 flextable(sumAtl)
@@ -166,7 +165,7 @@ ft <- set_header_labels(ft,
                         p = "province")
 
 ft <- set_table_properties(ft, layout = "autofit")
-ft <- align(ft, j = "mean ± sd", align = "right")
+ft <- align(ft, j = "mean ± sd", align = "right", part = "all")
 ft
 ```
 

@@ -60,6 +60,7 @@
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
 <script src="libs/plotly-binding-4.9.3/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
@@ -171,7 +172,7 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#providing-feedback"><i class="fa fa-check"></i><b>0.1</b> Providing Feedback</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#providing-feedback"><i class="fa fa-check"></i>Providing Feedback</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
 </ul></li>
 <li class="part"><span><b>Section 1: Getting Setup in R</b></span></li>
@@ -341,37 +342,80 @@ div.csl-indent {
 <li class="chapter" data-level="14" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>14</b> Communication</a></li>
 <li class="part"><span><b>Section 3: Data Analysis Toolbox</b></span></li>
 <li class="chapter" data-level="15" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>15</b> Introduction</a></li>
-<li class="chapter" data-level="16" data-path="choosing-visualizations.html"><a href="choosing-visualizations.html"><i class="fa fa-check"></i><b>16</b> Choosing Visualizations</a></li>
-<li class="chapter" data-level="17" data-path="linear-regression-redux.html"><a href="linear-regression-redux.html"><i class="fa fa-check"></i><b>17</b> Linear Regression Redux</a></li>
-<li class="chapter" data-level="18" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html"><i class="fa fa-check"></i><b>18</b> Non-linear Logistic Regression Modelling</a>
+<li class="chapter" data-level="16" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>16</b> Summarizing data</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#visually-inspecting-our-data"><i class="fa fa-check"></i><b>18.1</b> Visually inspecting our data</a>
+<li class="chapter" data-level="16.1" data-path="summarizing-data.html"><a href="summarizing-data.html#data-to-play-with"><i class="fa fa-check"></i><b>16.1</b> Data to play with</a></li>
+<li class="chapter" data-level="16.2" data-path="summarizing-data.html"><a href="summarizing-data.html#summarizing-data-by-group"><i class="fa fa-check"></i><b>16.2</b> Summarizing data by group</a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#annotating-maximal-values"><i class="fa fa-check"></i><b>18.1.1</b> Annotating maximal values</a></li>
+<li class="chapter" data-level="16.2.1" data-path="summarizing-data.html"><a href="summarizing-data.html#further-sumarize-operations"><i class="fa fa-check"></i><b>16.2.1</b> Further sumarize operations</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#extracting-maximal-values"><i class="fa fa-check"></i><b>18.2</b> Extracting maximal values</a></li>
-<li class="chapter" data-level="18.3" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#modelling-sigmoidal-curve"><i class="fa fa-check"></i><b>18.3</b> Modelling Sigmoidal Curve</a>
+<li class="chapter" data-level="16.3" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables-with-flextable"><i class="fa fa-check"></i><b>16.3</b> Pretty tables with flextable</a>
 <ul>
-<li class="chapter" data-level="18.3.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>18.3.1</b> Calculating Logistic Regression</a></li>
-<li class="chapter" data-level="18.3.2" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#extracting-model-parameters"><i class="fa fa-check"></i><b>18.3.2</b> Extracting model parameters</a></li>
+<li class="chapter" data-level="16.3.1" data-path="summarizing-data.html"><a href="summarizing-data.html#uniting-columns"><i class="fa fa-check"></i><b>16.3.1</b> Uniting columns</a></li>
+<li class="chapter" data-level="16.3.2" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-kables"><i class="fa fa-check"></i><b>16.3.2</b> Pretty kables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html"><i class="fa fa-check"></i><b>17</b> Visualizations for Env Chem</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#discrete-vs.-continuous-variables"><i class="fa fa-check"></i>Discrete vs. continuous variables</a></li>
+<li class="chapter" data-level="" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="17.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#bar-chart"><i class="fa fa-check"></i><b>17.1</b> Bar chart</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#adding-error-bars"><i class="fa fa-check"></i><b>17.1.1</b> Adding error bars</a></li>
+<li class="chapter" data-level="17.1.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#ordering-bar-charts"><i class="fa fa-check"></i><b>17.1.2</b> Ordering bar charts</a></li>
+<li class="chapter" data-level="17.1.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#grouping-bar-charts"><i class="fa fa-check"></i><b>17.1.3</b> Grouping bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#box-plots"><i class="fa fa-check"></i><b>17.2</b> Box Plots</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#box-plot-alternatives"><i class="fa fa-check"></i><b>17.2.1</b> Box plot alternatives</a></li>
+<li class="chapter" data-level="17.2.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#statistical-comparisons-between-groups"><i class="fa fa-check"></i><b>17.2.2</b> Statistical comparisons between groups</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#histograms"><i class="fa fa-check"></i><b>17.3</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#multiple-histograms"><i class="fa fa-check"></i><b>17.3.1</b> Multiple histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#scatter-plots"><i class="fa fa-check"></i><b>17.4</b> Scatter plots</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#marginal-plots"><i class="fa fa-check"></i><b>17.4.1</b> Marginal plots</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#plotting-for-publication"><i class="fa fa-check"></i><b>17.5</b> Plotting for publication</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#plot-themes"><i class="fa fa-check"></i><b>17.5.1</b> Plot Themes</a></li>
+<li class="chapter" data-level="17.5.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#legends"><i class="fa fa-check"></i><b>17.5.2</b> Legends</a></li>
+<li class="chapter" data-level="17.5.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#modifying-labels"><i class="fa fa-check"></i><b>17.5.3</b> Modifying labels</a></li>
+<li class="chapter" data-level="17.5.4" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#modifying-axis"><i class="fa fa-check"></i><b>17.5.4</b> Modifying Axis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="linear-regression-redux.html"><a href="linear-regression-redux.html"><i class="fa fa-check"></i><b>18</b> Linear Regression Redux</a></li>
+<li class="chapter" data-level="19" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html"><i class="fa fa-check"></i><b>19</b> Non-linear Logistic Regression Modelling</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#visually-inspecting-our-data"><i class="fa fa-check"></i><b>19.1</b> Visually inspecting our data</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#annotating-maximal-values"><i class="fa fa-check"></i><b>19.1.1</b> Annotating maximal values</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#extracting-maximal-values"><i class="fa fa-check"></i><b>19.2</b> Extracting maximal values</a></li>
+<li class="chapter" data-level="19.3" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#modelling-sigmoidal-curve"><i class="fa fa-check"></i><b>19.3</b> Modelling Sigmoidal Curve</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>19.3.1</b> Calculating Logistic Regression</a></li>
+<li class="chapter" data-level="19.3.2" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#extracting-model-parameters"><i class="fa fa-check"></i><b>19.3.2</b> Extracting model parameters</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Section 4: Notes for Env. Chem. Labs</b></span></li>
-<li class="chapter" data-level="19" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html"><i class="fa fa-check"></i><b>19</b> CHM410: Air Quality Lab</a>
+<li class="chapter" data-level="20" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html"><i class="fa fa-check"></i><b>20</b> CHM410: Air Quality Lab</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-data"><i class="fa fa-check"></i><b>19.1</b> Importing Data</a>
+<li class="chapter" data-level="20.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-data"><i class="fa fa-check"></i><b>20.1</b> Importing Data</a>
 <ul>
-<li class="chapter" data-level="19.1.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-airbeam-2-data"><i class="fa fa-check"></i><b>19.1.1</b> Importing Airbeam 2 data</a></li>
-<li class="chapter" data-level="19.1.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-co2-and-o3-data"><i class="fa fa-check"></i><b>19.1.2</b> Importing CO2 and O3 data</a></li>
-<li class="chapter" data-level="19.1.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#merging-datasets"><i class="fa fa-check"></i><b>19.1.3</b> Merging datasets</a></li>
+<li class="chapter" data-level="20.1.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-airbeam-2-data"><i class="fa fa-check"></i><b>20.1.1</b> Importing Airbeam 2 data</a></li>
+<li class="chapter" data-level="20.1.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-co2-and-o3-data"><i class="fa fa-check"></i><b>20.1.2</b> Importing CO2 and O3 data</a></li>
+<li class="chapter" data-level="20.1.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#merging-datasets"><i class="fa fa-check"></i><b>20.1.3</b> Merging datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="19.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-data-spatially"><i class="fa fa-check"></i><b>19.2</b> Plotting data spatially</a>
+<li class="chapter" data-level="20.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-data-spatially"><i class="fa fa-check"></i><b>20.2</b> Plotting data spatially</a>
 <ul>
-<li class="chapter" data-level="19.2.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-airbeam-data-spatially"><i class="fa fa-check"></i><b>19.2.1</b> Plotting Airbeam data spatially</a></li>
-<li class="chapter" data-level="19.2.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-gases-data-spatially"><i class="fa fa-check"></i><b>19.2.2</b> Plotting gases data spatially</a></li>
-<li class="chapter" data-level="19.2.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#combining-maps"><i class="fa fa-check"></i><b>19.2.3</b> Combining maps</a></li>
+<li class="chapter" data-level="20.2.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-airbeam-data-spatially"><i class="fa fa-check"></i><b>20.2.1</b> Plotting Airbeam data spatially</a></li>
+<li class="chapter" data-level="20.2.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-gases-data-spatially"><i class="fa fa-check"></i><b>20.2.2</b> Plotting gases data spatially</a></li>
+<li class="chapter" data-level="20.2.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#combining-maps"><i class="fa fa-check"></i><b>20.2.3</b> Combining maps</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-4"><i class="fa fa-check"></i><b>19.3</b> Summary</a></li>
+<li class="chapter" data-level="20.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-4"><i class="fa fa-check"></i><b>20.3</b> Summary</a></li>
 </ul></li>
 </ul>
 

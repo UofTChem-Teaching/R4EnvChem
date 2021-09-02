@@ -1,0 +1,364 @@
+--- 
+knit: "bookdown::render_book"
+title: "R for Environmental Chemists"
+author: "David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D'eon"
+date: "Last built on: `r Sys.Date()`"
+url: 'https://davidrosshall.github.io/R4EnvChem/'
+site: bookdown::bookdown_site
+description: "This is a proof-of-concept for a further full length textbook."
+documentclass: book
+always_allow_html: true
+bibliography: references.bib
+
+---
+
+# Preface {-}
+
+Placeholder
+
+
+## Providing Feedback
+## Authors {-}
+
+<!--chapter:end:index.Rmd-->
+
+
+# (PART\*) Section 4: Notes for Env. Chem. Labs {-}
+# CHM410: Air Quality Lab
+
+Placeholder
+
+
+## Importing Data
+### Importing Airbeam 2 data
+#### Airbeam metadata
+#### Airbeam Data
+#### Visualizing Airbeam Data
+### Importing CO2 and O3 data
+#### Visualizing Gases Data
+### Merging datasets
+## Plotting data spatially
+### Plotting Airbeam data spatially
+### Plotting gases data spatially
+#### Getting spatial data for gases
+#### Visualizing gases data
+### Combining maps
+## Summary
+
+<!--chapter:end:CHM410-airQuality.Rmd-->
+
+
+<!--chapter:end:CHM410-NMR.Rmd-->
+
+# Communication
+
+- R markdown <!-- maybe move r markdown section here? or just expand on it...-->
+- slides
+- exporting
+- tips on automating Rmd generation? 
+
+<!--chapter:end:communication.Rmd-->
+
+---
+title: "CTFP Final Report"
+runningheader: "D. Hall - CTFP Report" # only for pdf output
+subtitle: "An implementation in R Markdown" # only for html output
+author: "David Hall, Dr. J. D'eon, and Dr. H. Peng"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_html: default
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+```
+
+
+<!--chapter:end:DHall_CTFPReport.Rmd-->
+
+
+# Importing data into R
+
+Placeholder
+
+
+## How data is stored
+## read_csv
+### Tibbles vs. data frames
+## Importing other data types
+## Saving data
+## Further Reading
+
+<!--chapter:end:import.Rmd-->
+
+
+# (PART\*) Section 2: Data Analysis in R {-}
+# Intro to Data Analysis
+
+Placeholder
+
+
+## Example Data
+## Further Reading
+
+<!--chapter:end:intro-data-analysis.Rmd-->
+
+
+# (PART\*) Section 1: Getting Setup in R{-}
+
+Placeholder
+
+
+## Prerequisite software
+### R
+### Downloading RStudio IDE
+### Installing packages
+## Running R Code
+## Customizing RStudio
+## Where to get help
+## Summary
+
+<!--chapter:end:intro.Rmd-->
+
+
+# Linear Regression Redux
+
+Placeholder
+
+
+
+<!--chapter:end:linear-regression.Rmd-->
+
+# How to lie with stats and plots
+
+tentative chapter to explain how you can be mislead/mess up/misinterpret plots and stats. 
+
+<!--chapter:end:lying-with-stats.Rmd-->
+
+
+# Modelling
+
+Placeholder
+
+
+## Base R Linear Model 
+## Cleaning up model ouputs
+### Why we approach modelling this way
+## Visualizing model
+## Further reading
+
+<!--chapter:end:modelling.Rmd-->
+
+
+# Non-linear Logistic Regression Modelling
+
+Placeholder
+
+
+## Visually inspecting our data
+### Annotating maximal values
+## Extracting maximal values
+## Modelling Sigmoidal Curve 
+### Calculating Logistic Regression 
+### Extracting model parameters
+
+<!--chapter:end:non-linear-models.rmd-->
+
+
+# Programming with R
+
+Placeholder
+
+
+## Functions  
+## Conditional arguments 
+### Piping conditional statements
+## When to use functions
+## Further Reading
+
+<!--chapter:end:prog-with-r.Rmd-->
+
+
+# Using R Markdown
+
+Placeholder
+
+
+## Deeper look into rmarkdown
+## Getting started with rmarkdown
+### Understanding rmarkdown
+### Running code in rmarkdown
+### Generating final report
+## So now what do I do with R Markdown? 
+### R Markdown resources and further reading
+### R code chunk options
+### Inserting images
+### Generating Tables
+### Spellcheck in R Markdown 
+### R markdown syntax
+## RStudio tips and tricks
+
+<!--chapter:end:r-markdown.Rmd-->
+
+
+# R Studio Projects
+
+Placeholder
+
+
+## Paths and directories
+## Importing a project
+## Summary
+## Creating an RStudio project
+
+<!--chapter:end:r-studio-projects.Rmd-->
+
+
+# R Tutorial Exercise
+
+Placeholder
+
+
+## Expected outcome
+
+<!--chapter:end:r-tutorial.Rmd-->
+
+
+# Workflows for R coding
+
+Placeholder
+
+
+## Creating or opening a script
+## Workspace and what's real
+## Saving R scripts
+### What should I save?
+### Saving objects
+## Script formatting
+## Viewing data and code simultaneously
+## Troubleshooting error messages
+### Script diagnostics
+### Reading error codes
+## Summary
+
+<!--chapter:end:r-workflows.Rmd-->
+
+
+# R coding basics
+
+Placeholder
+
+
+## Variables
+## Data Types
+## Data Structures
+### Accessing data in subfolders
+## Other data structures
+## R packages and functions
+### ggplot2 
+### Calling specific functions
+### Function Documentation
+## Summary
+
+<!--chapter:end:running-r-code.Rmd-->
+
+# (PART\*) Section 3: Data Analysis Toolbox {-}
+
+# Introduction
+
+Toolbox for data analysis that will envetually cover stuff like:
+
+- different visualizations used in CHM410/env chem w/ links to more useful websites
+- statistics, but mostly just those needed for undergrad envb. chem. 
+- better elaboration on linear regression modelling with descriptions with all of the fit parameters. 
+- non-linear regression
+- interactive plots (probably in the visualizations chapter above)
+- how to lie w/ statistics and plots. Chapter explaining graphicacy and numeracy. 
+
+<!--chapter:end:sec3-intro.rmd-->
+
+
+# Tidying your data
+
+Placeholder
+
+
+## What is tidy data?
+## Tools to tidy your data
+### Making data 'longer'
+### Making data 'wider'
+### Seperating columns
+### Uniting/combining columns 
+### Renaming columns/headers
+### Rounding numbers
+## Tips for recording data
+## Further reading
+
+<!--chapter:end:tidy.Rmd-->
+
+
+# Transform: dplyr and data manipulation
+
+Placeholder
+
+
+## Selecting by row or value
+### Logical oeprators
+## Arranging rows
+## Selecting by column or variable
+##  Adding new variables
+### Useful mutate function
+## Group and summarize data
+### Useful summarize functions
+## The pipe: chaining functions together 
+### Notes on piping
+## Further reading
+
+<!--chapter:end:transform-1.Rmd-->
+
+
+# Visualizations for Env Chem   
+
+Placeholder
+
+
+## data to play with 
+## bar plots
+### Adding error bars 
+### Ordering bar charts
+## Box Plots
+### Box plot alternatives
+## histograms
+### Box plot alternatives
+## histograms
+## Scatter plots
+### Displaying linear regression
+## Venn diagram
+### Venn diagram alternatives 
+
+<!--chapter:end:visualizations-redux.Rmd-->
+
+
+# Visualizations
+
+Placeholder
+
+
+## Building plots ups
+## Basic plotting
+### Changing plot labels
+## Further reading 
+
+<!--chapter:end:visualizations.Rmd-->
+

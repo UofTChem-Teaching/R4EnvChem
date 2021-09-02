@@ -26,8 +26,7 @@ This chapter assumes you've read the [Tidying your data] chapter to understand t
 
 Additionally, for this chapter we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset. 
 
-```{r, echo = FALSE}
-library(tidyverse)
+```{r, echo = FALSE, message = FALSE}
 
 atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
   rename_with(~tolower(gsub("/.*", "", .x))) %>%

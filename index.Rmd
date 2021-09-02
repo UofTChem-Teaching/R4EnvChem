@@ -27,7 +27,7 @@ This book will ultimately be broken up into four sections:
 
 We recommend everyone reads over the first two sections in sequential order to understand the general R workflow employed in this, and all other, environmental chemistry courses. 
 
-## Providing Feedback
+## Providing Feedback {-}
 
 If you notice an error/mistake or have suggestiosn for adding features or improving the book, please reach out to any of the [Authors] or flag an issue on this books github repo at [https://github.com/DavidRossHall/R4EnvChem](https://github.com/DavidRossHall/R4EnvChem)
 
