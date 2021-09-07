@@ -13,8 +13,8 @@ atr_long <- read_csv("data/ATR_plastics.csv") %>%
                names_to = "sample",
                values_to = "absorbance") 
 
-# This just outputs a table you can explore within your browser
-DT::datatable(atr_long)
+# First 50 rows of data
+DT::datatable(atr_long[1:50, ])
 ```
 
 ### Building plots ups
@@ -91,11 +91,9 @@ ggplot(data = atr_long,
   
 ```
 
-
-
 ## Visualizations for Env Chem   
 
-We've already encountered and produced several types of plots to visualize our data. We've also gone over the theory and basic operations of `ggplot()` in the [Visualizations] chapter. In this chapter, we'll expand on these and explicitly walk through the most common data visualization methods you'll encounter in the field of environmental chemistry. Additionally, we'll learn how to get your plots ready for publication. 
+We've already encountered and produced several types of plots to visualize our data. We've also gone over the theory and basic operations of `ggplot()` in the [ggplot basics] section. Now, we'll expand on these and explicitly walk through the most common data visualization methods you'll encounter in the field of environmental chemistry. Additionally, we'll learn how to get your plots ready for publication. 
 
 The plots we'll be covering include: 
 
@@ -117,9 +115,7 @@ The type of plots available to you, and how they display, are dependent on the t
 
 ### Prerequisites {-}
 
-This chapter assumes you've read the [Tidying your data] chapter to understand the concept of tidy data, and the [Visualizations] chapter to understand the fundamental logic of the `ggplot2` package. 
-
-Additionally, for this chapter we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset. 
+Additionally, for this section we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset. 
 
 ```{r, echo = FALSE, message = FALSE}
 
