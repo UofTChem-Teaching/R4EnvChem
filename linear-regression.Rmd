@@ -6,14 +6,18 @@ You have probably encountered the linear regression model under the pseudonmy "t
 
 To this end, this chapter is broken into the following parts: 
 
-  - [Modelling theory] where we briefly touch opon *how* the model is calculated.
+  - [Modelling theory] where we briefly touch opon *what* model is being calculated.
   - [Modelling in R] where we provide a boilerplate template for *how* to calculate models in R. 
   - [Understanding and Visualizing Models] where we explore our model results. 
   - [Calculating Concentration] where we use our model to calculate the concentrion.
 
 ## Modelling Theory
 
-The *linear calibration model* realtes the response of an instrument to the value of the *measurand*. The measurand is simply what we're measuring, often the concentration of the analyte.  So we use the measurand, which we can control via preparation of samples as the *independent* variable, with the instrument output being the *dependent* variable (as instrument resposne varies with concentration). Once we collect sufficient data, we use *linear regression* to draw a straight line through out data:
+The *linear calibration model* relates the response of an instrument to the value of the *measurand*. The measurand is simply what we're measuring, often the concentration of an analyte. So we use the measurand, which we can control via preparation of standards from reference material as the *independent* variable, with the instrument output being the *dependent* variable (as instrument response varies with concentration). Altogether we're:
+
+  1. Measuring the instrument response of standards of known concentration and samples of unknown concentration. 
+  2. Calculating the linear calibratin model (i.e. line of best fit) through our standards. 
+  3. Using the measurement model to calculate the concentration in our unknown from their respective instrument response. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
 library(tidyverse)
@@ -30,7 +34,7 @@ df <- df %>%
   unnest(augmented)
 ```
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r reg-plot, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.cap = "Linear calibration model; figure modified from Hibbert and Gooding (2006)."}
 
 
 
@@ -104,12 +108,37 @@ ggplot(df,
 
 ```
 
-There's no reason you instrument response must be linear, although for convention sakes we often arrange our experiment so that we land in the 'linear range'. For details on non-linear modelling see [Non-Linear Regression]
+
+Before we can calculate concentrations, we need a measurement model. In other words, an equation that relates instrument response to sample concentration (or other factors). For simple linear calibration, we use:
+
+$$ y = a + bx$$
+
+Where:
+
+  - $y$ is the instrument response
+  - $x$ is the independant variable (i.e. sample concentration)
+  - $a$ and $b$ are the coefficients of the model; otherwise known as intercept and slope, respectively. 
+  
+  
+We'll gloss over some of the more technical aspects of modelling, and discuss other in more detail below. For now, know that:
+
+  - We're assuming our linear model is correct (i.e. the instruments actually responds linearly to concentration).
+  - All uncertainties resies in the dependant variable $y$ (i.e. no errors in preparation of the standards). 
+  - The values of $a$ and $b$ are determined by minimizing the *sum of the residuals squared*. 
+    - The residuals are the difference between the actual measured response and wehre it would be if it were on the calibration line.  
+
+Once we have our line of best fit, we can calculate the concentration of our unknown sample $i$, from it's measured response $y_i$ by:
+
+$$ x_i = \frac{y_i ~-~b}{a}$$
+
+  
+There is more going on under the hood then what we're describbing here, but this should be enough to get you up and running. If you would like a greater breakdown of linear calibration modelling, we suggest you read Chapter 5 of *Data Analysis for Chemistry* by Hibbert and Gooding. An online version is accessible via the Univerity of Toronto's Library. Also there is no reason the instrument response must be linear. In fact, we spend a great deal of time arranging our experiment to that we land in the 'linear range'. For details on non-linear modelling in R see [Non-Linear Regression]
 
 ## Modelling in R
 
-For our example dataset we'll import a dataset consisting of four analytical standards of sodium plus a calibration blank all run in triplicate. The standards were measured via flame atomic emission spectroscopy (FAES). Let's import the FAES calibration results we saw in [Transform: dplyr and data manipulation]. As we've already seen, our data is composed of four standards and a blank analyzed in triplicate. Since we're focusing on modelling, *we'll treat the blank as a standard in our model fitting*, we'll justify this decision later on.
+Now that we have a rough understanding of what we're trying to do, let's go over *how* to calcualte linear regression models in R. Note model is a general term, in this situation we'll be calculating a **calibration curve**. All calibration curves are models, but not all models are calibration curves.
 
+For our example dataset we'll import a dataset consisting of four analytical standards of sodium plus a calibration blank all run in triplicate. The standards were measured via flame atomic emission spectroscopy (FAES). Let's import the FAES calibration results we saw in [Transform: dplyr and data manipulation]. As we've already seen, our data is composed of four standards and a blank analyzed in triplicate. Since we're focusing on modelling, *we'll treat the blank as a standard in our model fitting*.
 So let's import our dataset:
 
 ```{r, message = FALSE}
@@ -130,7 +159,7 @@ FAES <- read_csv(file = "data/FAESdata.csv") %>%
 DT::datatable(FAES)
 ```
 
-And let's quickly plot our data. You should always visualize your data before modelling, especially for linear calibration modelling. Unlike *statistical* modelling, you've spent a lot of time and effort to make sure your data adheres to a straight line. 
+And let's quickly plot our data. You should always visualize your data before modelling, especially for linear calibration modelling. Unlike *statistical* modelling. Vizualing your data is the easiest way to spot trends and gross errors in your data. 
 
 ```{r}
 
@@ -140,9 +169,7 @@ ggplot(data = FAES,
   geom_point()
 ```
 
-Note model is a general term, in this situation we'll be calculating a **calibration curve**. All calibration curves are models, but not all models are calibration curves.
-
-## Base R Linear Model
+### Base R Linear Model
 
 R's base `lm()` function for linear regression is excellent, but it's outputs have some messy quirks. It's easier to show that, so let's calculate the linear relationship between the `signal` as a function of `conc_Na`:
 
@@ -166,7 +193,7 @@ summary(lm_fit)
 
 Now we have a lot more information from our model (don't worry about what everything means, it's discussed further in Section 3. For now, understand that it's a hot mess.
 
-## Cleaning up model ouputs
+### Cleaning up model ouputs
 
 `summary()` provides a decent overview of our model's performance, but the outputs are difficult to work with. Let's turn to the `broom()` package to clean up our model outputs.
 
@@ -178,7 +205,8 @@ calCurve <- FAES %>%
   nest() %>%
   mutate(fit = map(data, ~lm(signal ~ conc_Na, data = .x)),
          tidied = map(fit, tidy),
-         glanced = map(fit, glance)
+         glanced = map(fit, glance),
+         augmented = map(fit, augment)
          )
 calCurve
 ```
@@ -188,22 +216,30 @@ Things look a bit more complicated than our earlier example, so let's break down
 1.  We're taking the `FAES` dataset that we created earlier.
 2.  `group_by(type)` groups all rows by `type`, in this situation we have only one type: `standard`.
 3.  `nest()` collapses everything other than the `type` column into smaller dataframes. In this situation, all other information is stored as a `tibble` under the `data` column; this is the data used to calculate the linear model.
-4.  Withing the `mutate` function, we've created three columns: `fit`, `tidied` and `glanced`.
+4.  Withing the `mutate` function, we've created four columns: `fit`, `tidied`,  `glanced`, and `augmented`.
 
-And it's the the `fit`, `tidied` and `glanced` that contains out cleaned up model outputs. `fit` contains the raw output from the linear regression model for `signal` as a function of `conc_Na` using the `lm()` function. The output is in the form of a list, similar to what `summary()` gave us above. Again, this is exceptionally messy, hence why we used the `tidy()`, and `glance()` function from the `broom` package . `map()` just means we're applying the function `tidy()` to the individual output list created by `lm()` and stored in the `fit` column. Note that the `tidy()` and `glanced()` outputs are tibbles. So we now have a tibble containing specific model output values (i.e. `(Intercept)`), lists (i.e. `fit`), and tibbles (`tidied`). This is known as \*\*nested data\*. We're no longer in Kansas anymore...
+And it's these columns that contain our cleaned up model outputs. `fit` contains the raw output from the linear regression model for `signal` as a function of `conc_Na` using the `lm()` function. The output is in the form of a list, similar to what `summary()` gave us above. Again, this is exceptionally messy, hence why we used the `tidy()`, `glance()`, and `augment()` functions from the `broom` package . `map()` just means we're applying the function `tidy()` to the individual output list created by `lm()` and stored in the `fit` column. Note that the `tidy()`, `glanced()`, and `augmented` outputs are tibbles. So we now have a tibble containing specific model output values (i.e. `(Intercept)`), lists (i.e. `fit`), and tibbles (`tidied`). This is known as \*\*nested data\*. We're no longer in Kansas anymore...
 
 Anyways, let's take a look at our model results. The `glanced` tibble contains "...a concise one-row summary of the model. This typically contains values such as R\^2, adjusted R\^2, and residual standard error that are computed once for the entire mode"[^linear-regression-1] Because the data is nested, we'll need to use `unnest()` to flatten it back out into regular columns:
 
-[^linear-regression-1]: From the *broom* package vignette.
-
 ```{r FAES-lm-Glanced}
-calCurve %>% 
+glanced <- calCurve %>%
   unnest(glanced)
+
+# DT is to make interactive tables for the book.
+DT::datatable(glanced, 
+              options = list(scrollX = TRUE))
 ```
 
-What you see here is a bit more than what you'd get from *Excel*'s 'line-of-best fit' output. See the section on *Modelling* for a better breakdown of what everything means. But for now, we can see that our `r.squared` of each calibration curve is pretty good, and the `p.value` indicates each model is significant. the `adj.r.squared` is the same as `r.squared` in this situation. This is because `r.squared` will always increase if we add more exploratory variables to our model; the `adj.r.squared` accounts for the number of exploratory variables used in the model. However, in our case we only have one exploratory variable, hence they're the same.
+What you see here is a bit more than what you'd get from *Excel*'s 'line-of-best fit' output. In brief, :
 
-But what about the slope and the intercept? After all, that's what we need to calculate the concentration in our unknowns. Let's take a look at `tidied` from the `tidy()` function "...which constructs a tibble that summarizes the model's statistical findings. This includes coefficients and p-values for each term in a regression..."[^linear-regression-2]
+  - `type`, `data`, `fit`, `tidied`, and `augmented` are columns we've created earlier.
+  - `r.squared` is a statistical mesure of fit that indicates how muich variation of a depdendent bvariable is explained by the independent variable. The closer `r.squared` is to 1, the more variance is captured by the model. 
+  - `adj.r.squared` is the same as `r.squared` in this situation. This is because `r.squared` will always increase if we add more exploratory variables to our model; the `adj.r.squared` accounts for the number of exploratory variables used in the model. 
+    - In our case we only have one exploratory variable, hence they're aproximately the same.
+  - The other columns are different measurements of goodness-of-fit and hypothesis testing of the model. See [Further reading]. 
+    
+But what about the slope and the intercept? After all, that's what we need to calculate the concentration in our unknowns. Let's take a look at `tidied` from the `tidy()` function which constructs a tibble that summarizes the model's statistical findings. This includes coefficients and p-values for each term in a regression:]
 
 [^linear-regression-2]: From the *broom* package vignette.
 
@@ -213,11 +249,13 @@ But what about the slope and the intercept? After all, that's what we need to ca
 tidied <- calCurve %>% 
   unnest(tidied)
 
-tidied
+# DT is to make interactive tables for the book.
+DT::datatable(tidied, 
+              options = list(scrollX = TRUE))
 
 ```
 
-Again, a lot more to unpack compared to *Excel*. That's because the `lm()` function in R calculates a generalized linear model. `lm()` performs a linear regression model, which we normally think of as an equation of the form $y= mx+b$. But, regression models can be expanded to account for multiple variables (hence *multiple linear regression*) of the form
+Again, a lot more to unpack compared to *Excel*. That's because the `lm()` function in R calculates a generalized linear model. `lm()` performs a linear regression model, which we normally think of as an equation of the form $y= a + bx$ as discussed earlier. But, regression models can be expanded to account for multiple variables (hence *multiple linear regression*) of the form:
 
 $$y = \beta _{0} + \beta _{1} x_{1} + \beta _{2} x_{2} ... \beta _{p} x_{p}$$]
 
@@ -225,10 +263,15 @@ where,
 
 -   $y$ = dependent variable
 -   $x$ = exploratory variable; there's no limit how many you can input
--   $\Beta _{0}$ = y-intercept (constant term)
--   $\Beta _{p}$ = slope coefficient for each explanatory variable
+-   $\beta _{0}$ = y-intercept (constant term)
+-   $\beta _{p}$ = slope coefficient for each explanatory variable
 
-In our situation, we only have one input variable for our model (`conc`), so the above formula collapses down to $y = \beta _{0} + \beta _{1} x_{1}$. So looking at our results above, each row corresponds to a model parameter. For each modelling parameter, we're provided an estimate of it's numerical value (`estimate`, the values we'll use to calculate concentration). The other parameters are useful to understand but not necessary at this point (again, check out the *Modelling* section).
+With our linear calibration model, we only have one input variable for our model (`conc`), so the above formula collapses down to $y = \beta _{0} + \beta _{1} x_{1}$. So looking at our tidied model outputs: 
+
+
+  - each row corresponds to a model coefficient (under the `term` column). 
+  - For each modelling parameter, we're provided an estimate of it's numerical value: `estimate`.  These are the values we'll use to calculate concentration. 
+  - The other parameters are useful to understand but not necessary at this point (again, check out the *Modelling* section).
 
 And we can extract these values to use in subsequent calculations:
 
@@ -299,5 +342,11 @@ ggplot(data = FAES,
                         aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
                         parse = TRUE, size = 3) 
 ```
+
+## Going deeper with modelling
+
+### weighing 
+
+
 
 <!-- Check out tidymodel book for tips/details on modelling w/ r -->
