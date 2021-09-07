@@ -239,3 +239,5 @@ In this chapter we've covered:
   - Preliminary exploration of `ggplot2` to visualize the aforementioned data. 
 
 Now that you're familiar with navigating RStudio and some basic coding building blocks, you may have realized that working the console can get real messy, real quick. Well read on to the next chapter where we'll discuss R workflows to make everyone's lives easier. 
+
+![](images/changing-stuff.jpg)
