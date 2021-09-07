@@ -4,6 +4,8 @@
 
 This section will showcase a variety of data analysis tool you can use to better understand your data. Specifically we'll be focusing on the transforming,  visualizing, and modelling steps of our data analysis workflow. It relies heavily on having properly organized data, so if you haven't already, please review *Section 2: Data Wrangling in R*. 
 
+![Data science workflow describes by Wickham and Grolemund; image from *R for Data Science*, Wickham and Grolemund (2021)](images/data-science-workflow.png){width=99%}
+
 The *Transform*, *Visualize*, and *Model* cycle exists because these steps often feed into one another. For example, you'll often transform your data, make a quick model, then visualize it to see how it performs. Other times, you'll visualize your data to see what type of model can explain it, and if any transformations are necessary. This is the beauty of R (and coding in general). Once you've setup everything, these steps are fairly simple to execute allowing you to quickly explore your data from a number of different angles. We'll also touch upon the theory (the **why**) behind these steps, and introduce some tools you can use to better explore your data. 
 
 Note that we won't dedicate a chapter to *Communication*, however readers will be given plenty of advice on producing legible and publication-ready plots in addition to the information on authoring rmardown documents in [Using R Markdown].
