@@ -12,6 +12,14 @@ bibliography: references.bib
 
 ---
 
+
+```{r}
+
+library(tidyverse)
+```
+
+
+
 # Preface {-}
 
 Howdy, 
