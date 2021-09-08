@@ -8,8 +8,8 @@ To this end, this chapter is broken into the following parts:
 
   - [Modelling theory] where we briefly touch upon *what* model is being calculated.
   - [Modelling in R] where we provide a boilerplate template for *how* to calculate models in R. 
-  - [Understanding and Visualizing Models] where we explore our model results. 
-  - [Calculating Concentration] where we use our model to calculate the concentration.
+  - [Visualizing models] where we explore our model results. 
+  - [Calculating Concentrations] where we use our model to calculate the concentration.
 
 ## Modelling Theory
 
@@ -284,10 +284,13 @@ With our linear calibration model, we only have one input variable for our model
 We can extract the value of the model coefficients for subsequent calculations as follows:
 
 ```{r}
-intercept <- as.numeric(tidied[1,5])
-slope <- as.numeric(tidied[2,5])
+# intercept
+a <- as.numeric(tidied[1,5])
 
-paste("The equation of our calibration curve is: y = ", slope, "x + ", intercept, sep="")
+# slope 
+b <- as.numeric(tidied[2,5])
+
+paste("The equation of our calibration curve is: y = ", a, " + ", b,"x", sep="")
 
 ```
 
@@ -318,7 +321,7 @@ As you can see, `augment()` adds columns to the original data that was modelled.
 
 You may be wondering why we've seemingly overcomplicated a simple enough procedure. Fair enough, we've showcased an analysis with a simple data set. However, as you progress in your studies you'll be quantifying *many* compounds, often at the same time in the same instrument runs. If you organize your data in a tidy format, you can plot calibration curves for *all* of your compounds with the same block of code. Essentially you use `group_by()` to group your data by compound/element. Subsequently, the same code is expandable from 1 compound to as many as you can ever hope to quantify in one shot. So for upper year labs where you're analyzing tens of compounds (*cough* CHM410 Dust Lab) you can generate calibration curves for all your compounds at once.
 
-## Visualizing model
+## Visualizing models
 
 At the top of the chapter we plotted out standards to visualize a linear trend. Visualizations is an essential component when calculating calibration curves, and indeed our standards appeared to follow a linear trend, which was corroborated by the model we calculated above. However, for publications/reports you'll need to create a plot with both your standards *and* model with the displayed equation, so below is a bit of stock code you can use as a starting point to create these plots. Note that it requires the `ggpmisc` package to display the equation:
 
@@ -406,6 +409,67 @@ b <- ggplot(data = augmented,
 ggpubr::ggarrange(a, b, ncol = 2, labels = c("A", "B"))
 ```
 
+
+
+## Calculating Concentrations
+
+In [Tidied outputs] we extracted our model coefficients (slope and intercept): 
+
+```{r}
+
+# intercept
+a <- as.numeric(tidied[1,5])
+
+# slope
+b <- as.numeric(tidied[2,5])
+
+paste("The equation of our calibration curve is: y = ", a, " + ", b,"x", sep="")
+
+```
+
+Now that we have our coefficients, we can calculate the sample concentration as described in [Modelling Theory]. Let's import the FAES unknown dataset first:
+
+```{r}
+FAESsamples <- read_csv(file = "data/FAESUnknowns.csv") %>%
+  pivot_longer(cols = -c(sample, `dilution factor`), 
+               names_to = "replicate",
+               names_prefix = "reading_",
+               values_to = "signal")
+FAESsamples
+
+```
+
+Now it's simply a matter of calculating the concentration of the sample analyzed by the instrument, and correcting for the dilution factor to find the concentration in the parent sample:
+
+```{r}
+FAESsamples <- FAESsamples %>%
+  mutate("instConc" = (signal - a)/b,
+         "sampleConc" = instConc * `dilution factor`)
+
+DT::datatable(FAESsamples, options = list(scrollX = TRUE))
+```
+
+And let's summarize our results using code from the [Summarizing data] chapter:
+
+```{r}
+FAESsamples %>%
+  group_by(sample) %>%
+  summarize(mean = mean(sampleConc),
+            sd = sd(sampleConc),
+            n = n())
+```
+And there we go. See the [Summarizing data] and [Visualizations] chapters for assiting an making prettier tables and visualizations, respectively. 
+
+## Summary
+
+In this chapter we've covered: 
+
+  - The essential theory undergirding the linear calibration model.
+  - How to scallably model in R with a consistent workflow for one or thousands of linear calibration models. 
+  - How to extract model parameters using the `tidy()`, `glance()`, and `augment()` functions from the `broom` package. 
+  - A brief overview of model parameters as they pertain to linear calibration. 
+  - Viasualizing models and the importance of visualizing residuals. 
+  - Calculating sample concentration from model outputs. 
 
 ## Further reading
 
