@@ -1,6 +1,99 @@
-# Visualizations for Env Chem   
+# Visualizations 
 
-We've already encountered and produced several types of plots to visualize our data. We've also gone over the theory and basic operations of `ggplot()` in the [Visualizations] chapter. In this chapter, we'll expand on these and explicitly walk through the most common data visualization methods you'll encounter in the field of environmental chemistry. Additionally, we'll learn how to get your plots ready for publication. 
+Visualizations have always been an important part of data science and chemistry. Good graphics illuminate trends and patterns you may have otherwise missed and allow us to quickly inspect thousands of values. R via the `ggplot2` package is one of, if not the premier, data visualization language available. This chapter will formally introduce the `ggplot2` package, explain a bit of the logic undergirding it's operation, and give you some quick examples of how it works. Afterwards we'll delve deeper into specific visualizations you'll use and encounter in your studies culminating in preparing your plots for publication. 
+
+## ggplot basics
+
+`ggplot2` is loaded by default with the `tidyverse` suite of packages. Let's revisit our spectroscopy data we encountered in [Tidying your data]:
+
+```{r}
+library(tidyverse)
+atr_long <- read_csv("data/ATR_plastics.csv") %>%
+    pivot_longer(cols = -wavenumber, 
+               names_to = "sample",
+               values_to = "absorbance") 
+
+# First 50 rows of data
+DT::datatable(atr_long[1:50, ])
+```
+
+### Building plots ups
+
+The `gg` in `ggplot2` stands for the `grammar of graphics` [@wickham2010], and it's a way to break down graphics (plots) into small pieces that can be discussed (hence grammar). We'll take a look at this grammar via `geoms` (what kind of plot), `aes` (aesthetic choices), etc. For now, understand that this means we need to build up graphics/plots piece-by-piece and layer-by-layer. This extends beyond code to how we code. No sense in putting lipstick on a pig. Plot often, and discard the useless ones. Take the time to pretty up your plot *after* you're satisfied with the underlying data. 
+
+### Basic plotting
+
+`ggplot2` uses `geoms` to specify what type of plot to create. Different plots are used to convey different meanings and have different strengths and weakness. We'll explore these more in Section 3, but for now we'll focus on `geom_point()`, which simply plots data as points on an [x,y] coordinate. In other words, a scatter plot. 
+
+Let's plot our tided `atr_long` data: 
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, y = absorbance)) +
+  geom_point()
+```
+Let's ignore the plot for now and look at our code down: 
+
+  1. `ggplot()` initializes a *ggplot object*, basically an empty plot. To this we've specified out data set (`data = atr_long`). 
+  2. We then specified our *aesthetic mappings* via `aes()`. Here we'll pass information for how we want the plot to look. 
+  3.To our aesthetic mappings we've specified which values from `atr_long` are supposed to be our x-axis values (`x = wavenumber`) and y-axis values (`y = absorbance`). 
+  4. We then add the `geom_point()` layer to create a scatter plot of [x,y] points . 
+  
+  Now let's look at our result. What we see is a point for every recorded absorbance measurements from our ATR analysis. We can clearly see the spectra of the different plastics in our data, however they're all colours the same. This is because we've only species the x and y values. As far as `ggplot()` is concerned, these are the only values that matter, but we know different. 
+  
+  Fortunately you can pass multiple variables to different `aes()` options to enhance our plot. For instance, we can pass the `sample` variable, which specifies which sample a spectrum originates from, to the `colour` option: 
+  
+```{r}
+
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)) +
+  geom_point()
+
+```
+Now we have a legend which clearly specifies which points are associated with each sample. But now the points are too large, potentially masking certain peaks. We can adjust the size of each point as follows: 
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)) +
+  geom_point(size = 0.5)
+```
+We specified `size = 0.5` in the `geom_point()` call because it's a constant. We can map `size` to any continuous variable, such as the absorbance: 
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample,
+           size = absorbance)) +
+  geom_point()
+```
+Sometimes this makes sense (i.e. a *bubble chart*) but for our example, having the size of the points increase as the absorbance increases doesn't provide any new information (it actually clutters our plot). 
+
+### Changing plot labels
+
+By default `ggplot` uses the header of the columns you passed for the `x` and `y` `aes()` options.  Because headers are written for code they're often poor label titles for plots. We can specify new labels and plot titles as follows: 
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)) +
+  geom_point() +
+  labs(title = "ATR Spetra",
+       subtitle = "Courtesey of CHM317 student data",
+       x = "Wavenumber, cm^-1",
+       y = "Absorbance (arbitrary units)",
+       caption = "hi mom")
+  
+```
+
+## Visualizations for Env Chem   
+
+We've already encountered and produced several types of plots to visualize our data. We've also gone over the theory and basic operations of `ggplot()` in the [ggplot basics] section. Now, we'll expand on these and explicitly walk through the most common data visualization methods you'll encounter in the field of environmental chemistry. Additionally, we'll learn how to get your plots ready for publication. 
 
 The plots we'll be covering include: 
 
@@ -22,9 +115,7 @@ The type of plots available to you, and how they display, are dependent on the t
 
 ### Prerequisites {-}
 
-This chapter assumes you've read the [Tidying your data] chapter to understand the concept of tidy data, and the [Visualizations] chapter to understand the fundamental logic of the `ggplot2` package. 
-
-Additionally, for this chapter we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset. 
+Additionally, for this section we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset. 
 
 ```{r, echo = FALSE, message = FALSE}
 
@@ -247,7 +338,7 @@ ggplot(data = atlNO2,
   coord_flip()
 ```
 
-Another alternative is to plot the points overtop of the box-plot. You've encountered this example in [R coding basics]. Truth be told, there are countless way to visualize distribution. 
+Another alternative is to plot the points over top of the box-plot. You've encountered this example in [R coding basics]. Truth be told, there are countless way to visualize distribution. 
 
 ### Statistical comparisons between groups
 
@@ -333,6 +424,23 @@ We can now see the distributions of NO~2~ and O~3~ overlaid on the vertical axis
 
 There are plenty of other marginal options scatted about various packages. You can see many of them in action (with beautiful examples) at [Tufte in R](http://motioninsocial.com/tufte/#minimal-line-plot) by Lukasz Piwek. 
 
+## Interactive plots
+
+Ultimately you're visualizations will be printed to a static PDF document, but in the interim having an interactive plot can be helpful for data exploration. The `plotly` package magically makes most `ggplots` interactive with a simply command. Here's an example with our Toronto air quality data:
+
+```{r}
+
+torPlot2 <- ggplot(data = torontoAir,
+       aes(x = date.time,
+           y = concentration,
+           colour = pollutant)) +
+  geom_line()
+
+plotly::ggplotly(torPlot2)
+```
+
+This is also super useful when surveying spectroscopy data, although the large number of points in those datasets can take a while to render into interactive plotly plots. 
+
 ## Plotting for publication
 
 Up until now we haven't payed much attention to the explicit aesthetics of plots beyond what we needed for our exploratory analysis. However, many journals, publications, instructors, etc. will want plots to adhere to certain aesthetic standards. There's scores of options to play with, so we recommend you consult the [ggplot2 Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization.pdf). 
@@ -343,7 +451,7 @@ Overall themes can be applied to ggplot. The simple and minimalist `theme_classi
 
 ```{r}
 # generating example plot to modify 
-p <- torPlot <- ggplot(data = torontoAir, 
+p <- ggplot(data = torontoAir, 
        aes(x = date.time,
            y = concentration,
            colour = pollutant)) +

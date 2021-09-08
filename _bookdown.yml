@@ -19,26 +19,23 @@ rmd_files:  [
   "r-markdown.Rmd",
   "r-tutorial.Rmd" ,
 
-  # Section 2: Data Analysis notes
+  # Section 2: Data Wrangling
   "intro-data-analysis.Rmd",
   "import.Rmd",
   "tidy.Rmd",
   "transform-1.Rmd",
   "prog-with-r.Rmd",
-  "modelling.Rmd",
-  "visualizations.Rmd",
-  "communication.Rmd",
-
-  # Section 3: Data Science.
+ 
+  # Section 3: Data Analysis toolbox.
   "sec3-intro.rmd",
   "summarize.rmd", 
-  "visualizations-redux.Rmd",
+  "visualizations-redux.Rmd", 
   "linear-regression.Rmd",
-  "non-linear-models.Rmd", #,
+  "non-linear-models.Rmd" #,
   
-  # Section 4: CHM410 Labs
-  "CHM410-airQuality.Rmd"
-  # "CHM410-NMR.Rmd"
+  # # Section 4: CHM410 Labs
+  # "CHM410-airQuality.Rmd"
+  # # "CHM410-NMR.Rmd"
   
   ]
   

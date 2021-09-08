@@ -1,12 +1,27 @@
 # (PART\*) Section 3: Data Analysis Toolbox {-}
 
-# Introduction
+# Introduction to Data Analysis 
 
-Toolbox for data analysis that will envetually cover stuff like:
+This section will showcase a variety of data analysis tool you can use to better understand your data. Specifically we'll be focusing on the transforming,  visualizing, and modelling steps of our data analysis workflow. It relies heavily on having properly organized data, so if you haven't already, please review *Section 2: Data Wrangling in R*. 
 
-- different visualizations used in CHM410/env chem w/ links to more useful websites
-- statistics, but mostly just those needed for undergrad envb. chem. 
-- better elaboration on linear regression modelling with descriptions with all of the fit parameters. 
-- non-linear regression
-- interactive plots (probably in the visualizations chapter above)
-- how to lie w/ statistics and plots. Chapter explaining graphicacy and numeracy. 
+![Data science workflow describes by Wickham and Grolemund; image from *R for Data Science*, Wickham and Grolemund (2021)](images/data-science-workflow.png){width=99%}
+
+The *Transform*, *Visualize*, and *Model* cycle exists because these steps often feed into one another. For example, you'll often transform your data, make a quick model, then visualize it to see how it performs. Other times, you'll visualize your data to see what type of model can explain it, and if any transformations are necessary. This is the beauty of R (and coding in general). Once you've setup everything, these steps are fairly simple to execute allowing you to quickly explore your data from a number of different angles. We'll also touch upon the theory (the **why**) behind these steps, and introduce some tools you can use to better explore your data. 
+
+Note that we won't dedicate a chapter to *Communication*, however readers will be given plenty of advice on producing legible and publication-ready plots in addition to the information on authoring rmardown documents in [Using R Markdown].
+
+## Example Data
+
+Throughout this section and the next we'll be making use of a couple of example datasets. These datasets are all available in the `data` subfolder of the *R4EnvChem Project Template*. If you haven't already, you can download them from the repo [here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate)
+
+## Further Reading
+
+In case it hasn't been apparent enough, this entire endeavour was inspired by the *R for Data Science* reference book by Hadley Wickham and Garrett Grolemund. Every step described above is explored in more detail in their book, which can be read freely online at [https://r4ds.had.co.nz/](https://r4ds.had.co.nz/). We strongly encourage you to read through the book to supplement your R data analysis skills. 
+
+
+
+
+
+
+
+

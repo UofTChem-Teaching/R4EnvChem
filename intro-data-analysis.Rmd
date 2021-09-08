@@ -1,14 +1,12 @@
-# (PART\*) Section 2: Data Analysis in R {-}
+# (PART\*) Section 2: Data Wrangling in R {-}
 
-# Intro to Data Analysis
+# Intro to Data Wrangling
 
-This section will teach you **how** to use R to meet your data analysis needs using a common workflow. Whether it takes 10 minutes or 10 hrs, *you'll use this workflow for every data analysis project*. By explicitly understanding the workflow steps, and how to execute them in R, you'll be more than capable of expanding the limited tools learned from this book to any number of data analysis projects you'll soon encounter.
+This section will teach you **how** to use R to import and organize your data as part of a cohesive data analysis workflow. Whether it takes 10 minutes or 10 hrs, *you'll use this workflow for every data analysis project*. By explicitly understanding the workflow steps, and how to execute them in R, you'll be more than capable of expanding the limited tools learned from this book to any number of data analysis projects you'll soon encounter.
 
 The explicit workflow we'll be teaching was originally described by Wickham and Grolemund, and consists of six key steps: 
 
-
 ![Data science workflow describes by Wickham and Grolemund; image from *R for Data Science*, Wickham and Grolemund (2021)](images/data-science-workflow.png){width=99%}
-
 
 - **Import** is the first step and consist of getting your data into R. Seems obvious, but doing it correctly will save you time and headaches down the line. 
 - **Tidy** refers to organizing your data in a *tidy* manner where each variable is a column, and each observation a row. This is often the least intuitive part about working with R, especially if you've only used Excel, but it's critical. If you don't tidy your data, you'll be fighting it every step of the way.
@@ -17,7 +15,9 @@ The explicit workflow we'll be teaching was originally described by Wickham and 
 - **Model** is an extension of mathematical operations to help understand your data. The *linear regressions* needed for a calibration curve are an example of a model. 
 - **Communicate** is the final step and is where you share the *knowledge* you've squeezed out of the information in the original data. 
 
-The *Transform*, *Visualize*, and *Model* cycle exists because these steps often feed into one another. For example, you'll often transform your data, make a quick model, then visualize it to see how it performs. Other times, you'll visualize your data to see what type of model can explain it, and if any transformations are necessary. This is the beauty of R (and coding in general). Once you've setup everything, these steps are fairly simple to execute allowing you to quickly explore your data from a number of different angles. The next section will explore the theory (the **why**) behind these steps, and introduce some tools you can use to better explore your data. 
+*Import*, *Tidy*, and *Transformation* go hand-in-hand in a process called *wrangling*. Wrangling is all of the steps needed to get your data ready for analysis. It's often the most tedious and frustrating, hence wrangling (it's a fight...), but once done make the subsequent cycle of understanding your data via *transformation*, *visualizations*, and *modelling* much easier and more predictable. 
+
+In this section we'll cover data wrangling before moving onto the next section where we'll explore data analysis as it pertains to environmental chemistry. 
 
 ## Example Data
 
