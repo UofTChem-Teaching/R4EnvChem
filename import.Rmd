@@ -1,4 +1,4 @@
-# Importing data into R
+# Importing Your Data Into R
 
 ```{r, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE}
 library(tidyverse)
@@ -7,9 +7,9 @@ library(tidyverse)
 
 Unlike *Excel*, you can't copy and paste your data into R (or RStudio). Instead you need to *import* your data into R so you can work with it. This chapter will discuss how your data is stored, and how to import it into R (with some accompanying nuances). 
 
-## How data is stored
+## .csv files
 
-While there are a myriad of ways data is stored, notably raw instrument often record results in a proprietary vendor format, the data you're likely to encounter in an undergraduate lab will be in the form of a `.csv` or *comma-separated values* file. As the name implies, values are separated by commas (go ahead and open any `.csv` file in any text editor to observe this). Essentially you can think of each line as a row and commas as separating values into columns, which is exactly how R and *Excel* handle `.csv` files. 
+While there are a myriad of ways data is stored, raw instrument often record results in a proprietary vendor format, the data you're likely to encounter in an undergraduate lab will be in the form of a `.csv` or *comma-separated values* file. As the name implies, values are separated by commas (go ahead and open any `.csv` file in any text editor to observe this). Essentially you can think of each line as a row and commas as separating values into columns, which is exactly how R and *Excel* handle `.csv` files. 
 
 
 ## read_csv
@@ -23,7 +23,7 @@ atr_plastics <- read_csv("data/ATR_plastics.csv")
 A benefit of using `read_csv` is that it prints out the column specifications with each column's name (how you'll reference it in code) and the column value type. Columns can have different data types, but a data type must be consistent within any given column. Having the columns specifications is a good way to ensure R is correctly reading your data. The most common data types are:
 
   - **int** for integer values (*-1,1, 2, 10, etc.*)
-  - **dbl** for doubles or real numbers (*-1.20, 0.0, 1.200, 1e7, etc.*)
+  - **dbl** for doubles (decimals) or real numbers (*-1.20, 0.0, 1.200, 1e7, etc.*)
   - **chr** for character vectors or strings (*"A", "chemical", "Howdy ma'am", etc.*)
     - note numbers can be encoded as strings, so while you might read "1" as a number, R treats it as a character, limiting how you can use this value.
   - **lgl** for logical values, either `TRUE` or `FALSE`
@@ -39,11 +39,13 @@ Note how the first line of the `ATR_plastics.csv` has been interpreted as column
 ```{r}
 head(read_csv("data/atr_plastics.csv", col_names = FALSE))
 ```
-Note in the example below that since the headers are now considered data, the entire column is interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our `.csv`), we can use the `skip = n` to skip n rows:
+Note in the example above that since the headers are now considered data, and are composed of a string of chatacters, the entire column is then interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our `.csv`), we can use the `skip = n` to skip n rows:
 
 ```{r}
 head(read_csv("data/atr_plastics.csv", col_names = FALSE, skip = 1))
 ```
+
+Note in the example above that we skipped our headers, so `read_csv()` created placeholder headers (`X1`, `X2`, etc.). 
 
 ### Tibbles vs. data frames
 
@@ -62,7 +64,7 @@ There are other functions to import different types of tabular data which all fu
 
 ## Saving data
 
-As you progress with your analysis you may want to save intermediate or final datasets. This is readily accomplished using the `write.csv` (base R) or `write_csv` (tidyverse) functions. Similar rules apply to how we used `read_csv`, but now the second argument specifies the save location and file name, the first argument is which `tibble`/`data.frame` we're saving. Note that R *will not* create a folder this way, so if you're saving to a sub-folder you'll have to make sure it exists or create it yourself. 
+As you progress with your analysis you may want to save intermediate or final datasets. This is readily accomplished ussing the `write_csv()` from the `readr` package.  Similar rules apply to how we used `read_csv`, but now the second argument specifies the save location and file name, while the first argument is which `tibble`/`data.frame` we're saving. Note that R *will not* create a folder this way, so if you're saving to a sub-folder you'll have to make sure it exists or create it yourself. 
 
 ```{r, eval=FALSE}
 write_csv(atr_plastics, "data/ATRSaveExample.csv")
