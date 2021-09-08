@@ -1,6 +1,6 @@
-# Visualizations 
+# Visualizations
 
-Visualizations have always been an important part of data science and chemistry. Good graphics illuminate trends and patterns you may have otherwise missed and allow us to quickly inspect thousands of values. R via the `ggplot2` package is one of, if not the premier, data visualization language available. This chapter will formally introduce the `ggplot2` package, explain a bit of the logic undergirding it's operation, and give you some quick examples of how it works. Afterwards we'll delve deeper into specific visualizations you'll use and encounter in your studies culminating in preparing your plots for publication. 
+Visualizations have always been an important part of data science and chemistry. Good graphics illuminate trends and patterns you may have otherwise missed and allow us to quickly inspect thousands of values. R via the `ggplot2` package is one of, if not the premier, data visualization language available. This chapter will formally introduce the `ggplot2` package, explain a bit of the logic undergirding it's operation, and give you some quick examples of how it works. Afterwards we'll delve deeper into specific visualizations you'll use and encounter in your studies culminating in preparing your plots for publication.
 
 ## ggplot basics
 
@@ -19,30 +19,33 @@ DT::datatable(atr_long[1:50, ])
 
 ### Building plots ups
 
-The `gg` in `ggplot2` stands for the `grammar of graphics` [@wickham2010], and it's a way to break down graphics (plots) into small pieces that can be discussed (hence grammar). We'll take a look at this grammar via `geoms` (what kind of plot), `aes` (aesthetic choices), etc. For now, understand that this means we need to build up graphics/plots piece-by-piece and layer-by-layer. This extends beyond code to how we code. No sense in putting lipstick on a pig. Plot often, and discard the useless ones. Take the time to pretty up your plot *after* you're satisfied with the underlying data. 
+The `gg` in `ggplot2` stands for the *grammar of graphics*,[@Wickham2009] and it's a way to break down graphics (plots) into small pieces that can be discussed (hence grammar). We'll take a look at this grammar via `geoms` (what kind of plot), `aes` (aesthetic choices), etc. For now, understand that this means we need to build up graphics/plots piece-by-piece and layer-by-layer. This extends beyond code to how we code. No sense in putting lipstick on a pig. Plot often, and discard the useless ones. Take the time to pretty up your plot *after* you're satisfied with the underlying data.
 
 ### Basic plotting
 
-`ggplot2` uses `geoms` to specify what type of plot to create. Different plots are used to convey different meanings and have different strengths and weakness. We'll explore these more in Section 3, but for now we'll focus on `geom_point()`, which simply plots data as points on an [x,y] coordinate. In other words, a scatter plot. 
+`ggplot2` uses `geoms` to specify what type of plot to create. Different plots are used to tell different stories and have different strengths and weakness. We'll explore these more in [Visualizations for Env Chem], but for now we'll focus on `geom_point()`, which simply plots data as points on an [x,y] coordinate. In other words, a scatter plot.
 
-Let's plot our tided `atr_long` data: 
+Let's plot our tided `atr_long` data:
 
 ```{r}
 ggplot(data = atr_long, 
        aes(x = wavenumber, y = absorbance)) +
   geom_point()
 ```
-Let's ignore the plot for now and look at our code down: 
 
-  1. `ggplot()` initializes a *ggplot object*, basically an empty plot. To this we've specified out data set (`data = atr_long`). 
-  2. We then specified our *aesthetic mappings* via `aes()`. Here we'll pass information for how we want the plot to look. 
-  3.To our aesthetic mappings we've specified which values from `atr_long` are supposed to be our x-axis values (`x = wavenumber`) and y-axis values (`y = absorbance`). 
-  4. We then add the `geom_point()` layer to create a scatter plot of [x,y] points . 
-  
-  Now let's look at our result. What we see is a point for every recorded absorbance measurements from our ATR analysis. We can clearly see the spectra of the different plastics in our data, however they're all colours the same. This is because we've only species the x and y values. As far as `ggplot()` is concerned, these are the only values that matter, but we know different. 
-  
-  Fortunately you can pass multiple variables to different `aes()` options to enhance our plot. For instance, we can pass the `sample` variable, which specifies which sample a spectrum originates from, to the `colour` option: 
-  
+
+Let's ignore the plot for now and look at our code down:
+
+  1. `ggplot()` initializes a *ggplot object*, basically an empty plot. 
+  2. We then specified we want to plot data from our `atr_long` dataset (`data = atr_long`).
+  3. We then specified our *aesthetic mappings* via `aes()`. Here we'll pass information for how we want the plot to look. 
+  4. To our aesthetic mappings we've specified which values from `atr_long` are supposed to be our x-axis values (`x = wavenumber`) and y-axis values (`y = absorbance`).
+  4. We then add the `geom_point()` layer to create a scatter plot of [x,y] points .
+
+Now let's look at our result. What we see is a point for every recorded absorbance measurements from our ATR analysis. We can clearly see the spectra of the different plastics in our data, however they're all coloured the same. This is because we've only specified the x and y values. As far as `ggplot()` is concerned, these are the only values that matter, but we know different.
+
+Fortunately you can pass multiple variables to different `aes()` options to enhance our plot. For instance, we can pass the `sample` variable, which specifies which sample a spectrum originates from, to the `colour` option:
+
 ```{r}
 
 ggplot(data = atr_long, 
@@ -52,7 +55,9 @@ ggplot(data = atr_long,
   geom_point()
 
 ```
-Now we have a legend which clearly specifies which points are associated with each sample. But now the points are too large, potentially masking certain peaks. We can adjust the size of each point as follows: 
+
+
+Now we have a legend which clearly specifies which points are associated with each sample. But now the points are too large, potentially masking certain peaks. We can adjust the size of each point as follows:
 
 ```{r}
 ggplot(data = atr_long, 
@@ -61,7 +66,9 @@ ggplot(data = atr_long,
            colour = sample)) +
   geom_point(size = 0.5)
 ```
-We specified `size = 0.5` in the `geom_point()` call because it's a constant. We can map `size` to any continuous variable, such as the absorbance: 
+
+
+We specified `size = 0.5` in the `geom_point()` call because it's a constant. We can map `size` to any continuous variable, such as the absorbance:
 
 ```{r}
 ggplot(data = atr_long, 
@@ -71,11 +78,13 @@ ggplot(data = atr_long,
            size = absorbance)) +
   geom_point()
 ```
-Sometimes this makes sense (i.e. a *bubble chart*) but for our example, having the size of the points increase as the absorbance increases doesn't provide any new information (it actually clutters our plot). 
+
+
+Sometimes this makes sense (i.e. a *bubble chart*) but for our example, having the size of the points increase as the absorbance increases doesn't provide any new information (it actually clutters our plot).
 
 ### Changing plot labels
 
-By default `ggplot` uses the header of the columns you passed for the `x` and `y` `aes()` options.  Because headers are written for code they're often poor label titles for plots. We can specify new labels and plot titles as follows: 
+By default `ggplot` uses the header of the columns you passed for the `x` and `y` `aes()` options. Because headers are written for code they're often poor label titles for plots. We can specify new labels and plot titles as follows:
 
 ```{r}
 ggplot(data = atr_long, 
@@ -84,40 +93,96 @@ ggplot(data = atr_long,
            colour = sample)) +
   geom_point() +
   labs(title = "ATR Spetra",
-       subtitle = "Courtesey of CHM317 student data",
+       subtitle = "Courtesy of CHM317 student data",
        x = "Wavenumber, cm^-1",
        y = "Absorbance (arbitrary units)",
-       caption = "hi mom")
+       caption = "hi mom",
+       colour = "Plastic")
   
 ```
 
-## Visualizations for Env Chem   
 
-We've already encountered and produced several types of plots to visualize our data. We've also gone over the theory and basic operations of `ggplot()` in the [ggplot basics] section. Now, we'll expand on these and explicitly walk through the most common data visualization methods you'll encounter in the field of environmental chemistry. Additionally, we'll learn how to get your plots ready for publication. 
+Note how we changed the title of the legend with `colour = "Plastics"`. This is because the legend is generated from our colour aesthetic (`aes(..., colour = sample)`). If our legend was based off of the size aesthetic, we would use `size = "New Title"` to change the title for the size legend. 
 
-The plots we'll be covering include: 
+### Small Multiples
 
-  - bar plots
-  - box plots
-  - histograms
-  - scatter plots (with linear regression) 
-  - Touch ups for publications
-  
-These are only a smattering of the possible data visualizations you can perform in R. We're focusing on them because of their ubiquity in our field, but they often won't be the ideal visualizations you need to communicate *your story*. We highly recommend you check out the following resources. Not only are they a great source of inspiration, they provide example code to get you up and running. We consult them regularly. 
+Sometimes your plots become overwhelming, a phenomena called overplotting, which prevent your from comparing graphs or charts. A popular solution is [*small multiples*](https://en.wikipedia.org/wiki/Small_multiple), a series of smilar plots using the same scale and axes. This is readily accomplished in R using [`facet_grid()`](https://ggplot2-book.org/facet.html) (which creates a 2-D grid ) or [`facet_wrap()`](https://ggplot2-book.org/facet.html) (a single 1d ribbon wrapped into 2D space). You simply specy which variable you want to differentiate your plots, for us it's `sample`: 
 
-  - **[Data to viz](https://www.data-to-viz.com/)** which features a decision tree to help you decide on what plot would serve you best.
-  - **[ggplot2 extensions gallery](https://exts.ggplot2.tidyverse.org/gallery/)** which is the best repository to the plethora of `ggplot2()` extensions. If you need a specialized plot, check here. Odds are someone has a solution to your problem. Some great extensions include [`ggrepel`](https://github.com/slowkow/ggrepel) for easy labelling of points; [`ggpmisc`](https://docs.r4photobiology.info/ggpmisc/) for statistical annotations; and [`ggpubr`](https://rpkgs.datanovia.com/ggpubr/) for publication ready plots, group wise comparisons, and annotation of statistical significance. 
-  - **[The R Graph Gallery](https://www.r-graph-gallery.com/index.html)** contains hundreds of charts made with R. While it's not as easy to navigate as *Data to viz*, it does contain many more examples; it is definitely worth exploring. 
-  
-### Discrete vs. continuous variables {-}
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance)) +
+  geom_point() +
+  facet_wrap(~sample)
+```
 
-The type of plots available to you, and how they display, are dependent on the type of data. Namely, whether your data is *discrete* (i.e .can only take particular values) or *continuous* (is not restricted to defined separate values, but can occupy any value over a continuous range). So a variable consisting of cities would be discrete, whereas a variable like concentration of a chemical would be continuous. You can treat numeric data as categorical if you so chose. Understanding the difference between discrete and continuous data will shape how you plot your data. 
 
-### Prerequisites {-}
+Note the use of the tilde (`~`) in `facet_wrap(~sample)`; in this situation, it's shorthand telling `facet_wrap()` to make small multiples off of the sample variable. 
 
-Additionally, for this section we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset. 
+### Plotting subsets of data
 
-```{r, echo = FALSE, message = FALSE}
+Often you won't want to plot everything in your dataset. Rather, you'll want to plot a specific chemical, city, location, etc. To that end you want to plot a *subset* of your data. There are a couple of ways to handle this. 
+
+You can subset your data on the fly using `subset()`. This way allows you to specify based off of [Logical operators] as such: 
+
+```{r}
+ggplot(data = subset(atr_long, sample == "EPDM"),
+       aes(x = wavenumber, 
+           y = absorbance)) +
+  geom_point()
+```
+
+or 
+
+```{r}
+ggplot(data = subset(atr_long, wavenumber >=2500),
+       aes(x = wavenumber, 
+           y = absorbance)) +
+  geom_point()
+```
+
+Another approach is to use `filter()` and pipe to `ggplot()`:
+
+```{r}
+
+atr_long %>%
+  filter(sample != "EPDM" & wavenumber <= 2500 |sample == "EPDM" & wavenumber >= 3500 ) %>%
+  ggplot(., aes(x = wavenumber, y = absorbance, colour = sample)) +
+  geom_point()
+
+
+```
+
+There are pros and cons to either approach. `subset()` on the fly is best for simple task, like plotting a single city, whereas the piping approach is best for more complex sorting. 
+
+## Visualizations for Env Chem
+
+We've already encountered and produced several types of plots to visualize our data. We've also gone over the theory and basic operations of `ggplot()` in the [ggplot basics] section. Now, we'll expand on these and explicitly walk through the most common data visualization methods you'll encounter in the field of environmental chemistry. Additionally, we'll learn how to get your plots ready for publication.
+
+The plots we'll be covering include:
+
+-   [Bar Plots]
+-   [Box Plots]
+-   [Histograms]
+-   [Scatter Plots]
+-   [Interactive Plots]
+-   [Plotting for publication]
+
+These are only a smattering of the possible data visualizations you can perform in R. We're focusing on them because of their ubiquity in our field, but they often won't be the ideal visualizations you need to communicate *your story*. We highly recommend you check out the following resources. Not only are they a great source of inspiration, they provide example code to get you up and running. We consult them regularly.
+
+-   [**Data to viz**](https://www.data-to-viz.com/) which features a decision tree to help you decide on what plot would serve you best.
+-   [**ggplot2 extensions gallery**](https://exts.ggplot2.tidyverse.org/gallery/) which is the best repository to the plethora of `ggplot2()` extensions. If you need a specialized plot, check here. Odds are someone has a solution to your problem. Some great extensions include [`ggrepel`](https://github.com/slowkow/ggrepel) for easy labelling of points; [`ggpmisc`](https://docs.r4photobiology.info/ggpmisc/) for statistical annotations; and [`ggpubr`](https://rpkgs.datanovia.com/ggpubr/) for publication ready plots, group wise comparisons, and annotation of statistical significance.
+-   [**The R Graph Gallery**](https://www.r-graph-gallery.com/index.html) contains hundreds of charts made with R. While it's not as easy to navigate as *Data to viz*, it does contain many more examples; it is definitely worth exploring.
+
+### Discrete vs. continuous variables 
+
+The type of plots available to you, and how they display, are dependent on the type of data. Namely, whether your data is *discrete* (i.e .can only take particular values) or *continuous* (is not restricted to defined separate values, but can occupy any value over a continuous range). So a variable consisting of cities would be discrete, whereas a variable like concentration of a chemical would be continuous. You can treat numeric data as categorical if you so chose. Understanding the difference between discrete and continuous data will shape how you plot your data.
+
+### Prerequisites 
+
+Additionally, for this section we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset.
+
+```{r}
 
 atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
   rename_with(~tolower(gsub("/.*", "", .x))) %>%
@@ -138,10 +203,9 @@ sumAtl <- atlNO2 %>%
             max = max(conc))
 ```
 
-
 ## Bar chart
 
-Bar charts, also called *column* charts, represent *categorical* data with rectangular bars whose height/length is proportional to the values they represent. 
+Bar charts, also called *column* charts, represent *categorical* data with rectangular bars whose height/length is proportional to the values they represent.
 
 ```{r}
 ggplot(data = sumAtl,
@@ -151,15 +215,15 @@ ggplot(data = sumAtl,
   coord_flip() # rotates plot 90 degrees
 ```
 
-Pretty boring, but it's gotten the job done. **Note** that we used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the `y-axis`. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot. 
+Pretty boring, but it's gotten the job done. **Note** that we used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the `y-axis`. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot.
 
-Also note that `ggplot()` includes `geom_col()` and `geom_bar()`. While both can be used to make bar charts. `geom_col()` is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas `geom_bar()` makes the height of the bar proportional to the number of cases in each group.  
+Also note that `ggplot()` includes `geom_col()` and `geom_bar()`. While both can be used to make bar charts. `geom_col()` is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas `geom_bar()` makes the height of the bar proportional to the number of cases in each group.
 
-### Adding error bars 
+### Adding error bars
 
-Any measurement always has an associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our `sumAtl` dataset we've calculated the standard deviation as a measure of uncertainty.  In our example, we've used the standard deviation (`sd`) as a measure of uncertainty of our calculated annual means. 
+Any measurement always has an associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our `sumAtl` dataset we've calculated the standard deviation as a measure of uncertainty. In our example, we've used the standard deviation (`sd`) as a measure of uncertainty of our calculated annual means.
 
-To plot error bars we use `geom_errorbar()` and pass the min and max values we want the error bars to be. In our case, the lowest value would be `ymin = mean - sd`, and the highest would be `ymin = mean + sd`. Our plotted error bars now indicated plus or minus one standard deviation from the mean. 
+To plot error bars we use `geom_errorbar()` and pass the min and max values we want the error bars to be. In our case, the lowest value would be `ymin = mean - sd`, and the highest would be `ymin = mean + sd`. Our plotted error bars now indicated plus or minus one standard deviation from the mean.
 
 ```{r}
 ggplot(data = sumAtl, aes(x = city, y = mean)) +
@@ -169,7 +233,7 @@ ggplot(data = sumAtl, aes(x = city, y = mean)) +
   coord_flip()
 ```
 
-Some of the error bars indicate we could get a *negative* concentration of NO~2~. This is physically impossible, but it does suggest we should evaluate the distribution of our data (see below). Note that since we're calculating error bar ranges on the fly, we've had to specify new aesthetic arguments to `geom_errorbar()`. 
+Some of the error bars indicate we could get a *negative* concentration of NO~2~. This is physically impossible, but it does suggest we should evaluate the distribution of our data (see below). Note that since we're calculating error bar ranges on the fly, we've had to specify new aesthetic arguments to `geom_errorbar()`.
 
 ### Ordering bar charts
 
@@ -186,11 +250,11 @@ ggplot(data = sumAtl,
   coord_flip()
 ```
 
-So in our aesthetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] then Corner Brook. 
+So in our aesthetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] then Corner Brook.
 
 ### Grouping bar charts
 
-Sometimes you'll want to group bar charts as in the concentration of several chemicals in different locations. We can easily group bar charts in ggplot. Let's go ahead and group our mean annual [NO~2~] by province by simply (1) reordering based on province, and (2) colour bars based on province: 
+Sometimes you'll want to group bar charts as in the concentration of several chemicals in different locations. We can easily group bar charts in ggplot. Let's go ahead and group our mean annual [NO~2~] by province by simply (1) reordering based on province, and (2) colour bars based on province:
 
 ```{r}
 
@@ -205,11 +269,11 @@ ggplot(data = sumAtl,
   coord_flip()
 ```
 
-There are other ways to group your bar charts depending on the story you want to tell and the data you have. Please consult the [Grouped, stacked and percent stacked barplot in ggplot2](https://www.r-graph-gallery.com/48-grouped-barplot-with-ggplot2.html) page from the *R-graph-gallery*. 
+There are other ways to group your bar charts depending on the story you want to tell and the data you have. Please consult the [Grouped, stacked and percent stacked barplot in ggplot2](https://www.r-graph-gallery.com/48-grouped-barplot-with-ggplot2.html) page from the *R-graph-gallery*.
 
 ## Box Plots
 
-Box plots give a summary of the *distribution* of a numeric variable through their *quartiles*. You've no doubt seen them before, but they're often misinterpreted. Let's create a box-plot using `geom_boxplot()` and our Atlantic hourly NO~2~ measurements, then we'll break down how to interpret it. 
+Box plots give a summary of the *distribution* of a numeric variable through their *quartiles*. You've no doubt seen them before, but they're often misinterpreted. Let's create a box-plot using `geom_boxplot()` and our Atlantic hourly NO~2~ measurements, then we'll break down how to interpret it.
 
 ```{r}
 
@@ -222,15 +286,15 @@ ggplot(data = atlNO2,
 
 Let's break down how to interpret *one* box before tackling the entire set. As previously mentioned, box plots describe data in their *quartiles*. Quartiles basically arrange the data from the lowest to highest value and split the data at *three points*:
 
-  - *The first quartile* (Q1) is halfway between the lowest value and the median (50%) of the data. In other words 25% of the data lies *below* Q1. 
-  - *The second quartile* (Q2) is the median. 50% of the data lies below, and 50% lies above this point. 
-  - *The third quartile* (Q3) is halfway between the median and the *highest* value in the data. In other words, 75% of the data lies *below* Q3. 
-  
-The *box* in box-plots represents the range between Q1 and Q3. This is known as the *inter-quartile range* (IQR) and 50% of the total data falls somewhere inside this box. You can estimate the distribution by the symmetry of the box. if Q1 to the median is smaller than the median to Q3, the data has a  *positive skew* (right sided skew), and vice versa. 
+-   *The first quartile* (Q1) is halfway between the lowest value and the median (50%) of the data. In other words 25% of the data lies *below* Q1.
+-   *The second quartile* (Q2) is the median. 50% of the data lies below, and 50% lies above this point.
+-   *The third quartile* (Q3) is halfway between the median and the *highest* value in the data. In other words, 75% of the data lies *below* Q3.
 
-Rounding it out, `geom_boxplot()` includes *whiskers*, the thin lines emanating out from the box. This is used the predict outliers and is calculated as $outliers = \pm 1.5 \times IQR$. Anything outside the whiskers is considered an "outliers" or an extreme point, and is plotted individually. 
+The *box* in box-plots represents the range between Q1 and Q3. This is known as the *inter-quartile range* (IQR) and 50% of the total data falls somewhere inside this box. You can estimate the distribution by the symmetry of the box. if Q1 to the median is smaller than the median to Q3, the data has a *positive skew* (right sided skew), and vice versa.
 
-Putting this all together, let's look at the [NO~2~] for St. Johns city: 
+Rounding it out, `geom_boxplot()` includes *whiskers*, the thin lines emanating out from the box. This is used the predict outliers and is calculated as $outliers = \pm 1.5 \times IQR$. Anything outside the whiskers is considered an "outliers" or an extreme point, and is plotted individually.
+
+Putting this all together, let's look at the [NO~2~] for St. Johns city:
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
@@ -325,11 +389,11 @@ ggpubr::ggarrange(a,b, ncol = 1, align = "v")
 
 ```
 
-Note that we've plotted the actual distribution of the data. Prior to the computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren't very intuitive (see the score of text needed to explain them). Consequently, we strongly recommend you explore some of the [Box plot alternatives] unless you are explicitly asked to create box-plots. 
+Note that we've plotted the actual distribution of the data. Prior to computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren't very intuitive (see the score of text you just read to understand them). Consequently, we strongly recommend you explore some of the [Box plot alternatives] unless you explicitly need to create box-plots.
 
 ### Box plot alternatives
 
-The first alternative to box-plots is the *violin plot* which is made using `geom_violin()`. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive then box-plots. While the example below isn't the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown principle has days where [NO~2~] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO~2~. This might be because of difference in regional ambient levels of NO~2~. 
+The first alternative to box-plots is the *violin plot* which is made using `geom_violin()`. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive then box-plots. While the example below isn't the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown principle has days where [NO~2~] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO~2~. This might be because of difference in regional ambient levels of NO~2~.
 
 ```{r atl-violin}
 ggplot(data = atlNO2, 
@@ -338,13 +402,13 @@ ggplot(data = atlNO2,
   coord_flip()
 ```
 
-Another alternative is to plot the points over top of the box-plot. You've encountered this example in [R coding basics]. Truth be told, there are countless way to visualize distribution. 
+Another alternative is to plot the points over top of the box-plot. You've encountered this example in [R coding basics]. Truth be told, there are countless way to visualize distribution.
 
 ### Statistical comparisons between groups
 
-Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as `ggpubr` have many built in functionalists to display the results of these outcomes. 
+Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as `ggpubr` have many built in functionalists to display the results of these outcomes.
 
-From our NO~2~ data, St. Johns appears to have the highest levels of NO~2~. Let's apply a pairwise test against other Newfoundland communities to see if our observation is *statistically significant* based upon the results of a *Wilcoxon test*. 
+From our NO~2~ data, St. Johns appears to have the highest levels of NO~2~. Let's apply a pairwise test against other Newfoundland communities to see if our observation is *statistically significant* based upon the results of a *Wilcoxon test*.
 
 ```{r}
 nfld <- atlNO2 %>%
@@ -357,14 +421,13 @@ ggpubr::ggviolin(nfld, x = "city", y = "conc") +
                              label = "p.signif") 
 ```
 
-Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO2 values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We've included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics. 
+Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO2 values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We've included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics.
 
-For more information on `ggpubr`, adding p-values and significance labels, and different pairwise statistical test please visit [ggpubr: Publication Ready Plots](http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/). 
-
+For more information on `ggpubr`, adding p-values and significance labels, and different pairwise statistical test please visit [ggpubr: Publication Ready Plots](http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/).
 
 ## Histograms
 
-Histograms are an approximate representation of the distributions of numerical data. They're an approximation because you arbitrarily "bin" your data into groups and then count the number of values inside that bin. The frequency, or count, in each bin is represented by the height of a rectangle whose width equals that of the bin. `geom_histogram()` is used to create histograms: 
+Histograms are an approximate representation of the distributions of numerical data. They're an approximation because you arbitrarily "bin" your data into groups and then count the number of values inside that bin. The frequency, or count, in each bin is represented by the height of a rectangle whose width equals that of the bin. `geom_histogram()` is used to create histograms:
 
 ```{r}
 ggplot(data = subset(atlNO2, city = "St Johns"), 
@@ -372,6 +435,7 @@ ggplot(data = subset(atlNO2, city = "St Johns"),
   geom_histogram() +
   labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018")
 ```
+
 We can alter the resolution of our histogram by modifying the width of the bins using the `binwidth` argument or by specifying the number of bins with the `bins` argument. The former is useful when you don't know the range of your data, whereas the latter is useful is you do (i.e. numbers between 0 and 100).
 
 ```{r}
@@ -383,8 +447,8 @@ ggplot(data = subset(atlNO2, city = "St Johns"),
 
 ### Multiple histograms
 
-While you can overlap histograms, it get's difficult to read with more than a handful of datasets. If we wanted to plot histograms of all the cities in our dataset we would have to use a small multiple via the `facet_grid()` or `facet_wrap()` arguments. `facet_grid()` allows you to arrange many small plots on a grid defined by variables in your dataset (i.e. columns for provinces, and rows for different pollutants). In the example below we've used `facet_wrap(~city)` which creates a 2D layout of histograms of each cities NO~2~ values. Note the tilde , `~`, preceding in `~city`. 
-  
+While you can overlap histograms, it get's difficult to read with more than a handful of datasets. If we wanted to plot histograms of all the cities in our dataset we would have to use a small multiple via the `facet_grid()` or `facet_wrap()` arguments. `facet_grid()` allows you to arrange many small plots on a grid defined by variables in your dataset (i.e. columns for provinces, and rows for different pollutants). In the example below we've used `facet_wrap(~city)` which creates a 2D layout of histograms of each cities NO~2~ values. Note the tilde , `~`, preceding in `~city`.
+
 ```{r}
 
 ggplot(data = atlNO2, 
@@ -393,14 +457,13 @@ ggplot(data = atlNO2,
   facet_wrap(~city)
 ```
 
-
 ## Scatter plots
 
-Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point ins plotted as an individual point on.You've already made scatter plots in the form of a time series during the Section 1 tutorial exercise. We've already touched upon scatter plots during the [Linear Regression] chapter where we also overlaid our linear model over our concentration points. So now we'll touch upon some things you can do to improve your scatter plots. 
+Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point ins plotted as an individual point on.You've already made scatter plots in the form of a time series during the Section 1 tutorial exercise. We've already touched upon scatter plots during the [Linear Regression] chapter where we also overlaid our linear model over our concentration points. So now we'll touch upon some things you can do to improve your scatter plots.
 
 ### Marginal plots
 
-You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. For example, let's revisit the time series plot we made in [R coding basics]. We might want to know the distribution of concentrations of the individual pollutants. using the `ggExtra` package and the `ggMarginal()` function we can get the following:  
+You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. For example, let's revisit the time series plot we made in [R coding basics]. We might want to know the distribution of concentrations of the individual pollutants. using the `ggExtra` package and the `ggMarginal()` function we can get the following:
 
 ```{r}
 
@@ -420,11 +483,11 @@ ggExtra::ggMarginal(torPlot, margins = "y", groupColour = TRUE, groupFill = TRUE
 
 ```
 
-We can now see the distributions of NO~2~ and O~3~ overlaid on the vertical axis. note that `ggMarginal()` only works with scatter plots. 
+We can now see the distributions of NO~2~ and O~3~ overlaid on the vertical axis. note that `ggMarginal()` only works with scatter plots.
 
-There are plenty of other marginal options scatted about various packages. You can see many of them in action (with beautiful examples) at [Tufte in R](http://motioninsocial.com/tufte/#minimal-line-plot) by Lukasz Piwek. 
+There are plenty of other marginal options scatted about various packages. You can see many of them in action (with beautiful examples) at [Tufte in R](http://motioninsocial.com/tufte/#minimal-line-plot) by Lukasz Piwek.
 
-## Interactive plots
+## Interactive Plots
 
 Ultimately you're visualizations will be printed to a static PDF document, but in the interim having an interactive plot can be helpful for data exploration. The `plotly` package magically makes most `ggplots` interactive with a simply command. Here's an example with our Toronto air quality data:
 
@@ -439,15 +502,15 @@ torPlot2 <- ggplot(data = torontoAir,
 plotly::ggplotly(torPlot2)
 ```
 
-This is also super useful when surveying spectroscopy data, although the large number of points in those datasets can take a while to render into interactive plotly plots. 
+This is also super useful when surveying spectroscopy data, although the large number of points in those datasets can take a while to render into interactive plotly plots.
 
 ## Plotting for publication
 
-Up until now we haven't payed much attention to the explicit aesthetics of plots beyond what we needed for our exploratory analysis. However, many journals, publications, instructors, etc. will want plots to adhere to certain aesthetic standards. There's scores of options to play with, so we recommend you consult the [ggplot2 Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization.pdf). 
+Up until now we haven't payed much attention to the explicit aesthetics of plots beyond what we needed for our exploratory analysis. However, many journals, publications, instructors, etc. will want plots to adhere to certain aesthetic standards. There's scores of options to play with, so we recommend you consult the [ggplot2 Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization.pdf).
 
 ### Plot Themes
 
-Overall themes can be applied to ggplot. The simple and minimalist `theme_classic()` is satisfactory for most submissions, but you can peruse the available these in ggplot [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) or you can explore many more themes in the [`ggthemes` package](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/). 
+Overall themes can be applied to ggplot. The simple and minimalist `theme_classic()` is satisfactory for most submissions, but you can peruse the available these in ggplot [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) or you can explore many more themes in the [`ggthemes` package](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/).
 
 ```{r}
 # generating example plot to modify 
@@ -475,7 +538,7 @@ gridExtra::grid.arrange(default, classic, ncol = 2)
 
 ### Legends
 
-You can specify the position of the legend under the `theme()` option as such: 
+You can specify the position of the legend under the `theme()` option as such:
 
 ```{r}
 bottom <- p + theme(legend.position = "bottom")
@@ -484,11 +547,12 @@ inside <- p + theme(legend.position = c(.95, .95))
 
 gridExtra::grid.arrange(bottom, inside, ncol = 2)
 ```
-Other legend positions include: "none", "left", "right", "bottom", "top", or a two-element numeric vector to specify the location such as `c(0.95, 0.95)` for inside the top-right corner. `c(0.05, 0.05)` would place it inside the bottom right corner, and so on. Also note that `legend.position = "none"` will remove the legend entirely. 
+
+Other legend positions include: "none", "left", "right", "bottom", "top", or a two-element numeric vector to specify the location such as `c(0.95, 0.95)` for inside the top-right corner. `c(0.05, 0.05)` would place it inside the bottom right corner, and so on. Also note that `legend.position = "none"` will remove the legend entirely.
 
 ### Modifying labels
 
-The labels generated for the plots are derived from the variable names passed along to the `ggplot()` function. Consequently, variable names that are easy to code become ugly labels on the plot. You can modify labels using the `labs()` function. Note in the example below that we changed the legend's title by specifying what `aes()` option we used to create the legend; in the example below it's `colour`. 
+The labels generated for the plots are derived from the variable names passed along to the `ggplot()` function. Consequently, variable names that are easy to code become ugly labels on the plot. You can modify labels using the `labs()` function. Note in the example below that we changed the legend's title by specifying what `aes()` option we used to create the legend; in the example below it's `colour`.
 
 ```{r}
 p + labs(title = "Toronto Air quality",
@@ -500,11 +564,11 @@ p + labs(title = "Toronto Air quality",
 
 ### Modifying Axis
 
-We've already talked about labelling axis titles in [Modifying labels], and adding marginal plots in [Scatter plots]. So we'll just briefly touch upon some simple axis modifications. 
+We've already talked about labelling axis titles in [Modifying labels], and adding marginal plots in [Scatter plots]. So we'll just briefly touch upon some simple axis modifications.
 
 #### Transforming axix
 
-Transformations are largely related to *continuous* data, and are done using `scale_y_continuous()` or `scale_x_continuous()` functions. For example to scale the y-axis of our plot we'd do the following: 
+Transformations are largely related to *continuous* data, and are done using `scale_y_continuous()` or `scale_x_continuous()` functions. For example to scale the y-axis of our plot we'd do the following:
 
 ```{r}
 p +
@@ -512,18 +576,20 @@ p +
   labs(y = "Log10(concentration)")
 ```
 
-Other useful transformations include "log2" for base-2 logs, "date" for dates, and "hms" for time. The later two are useful if R hasn't correctly interpreted your dataset. The data type for the `data.time` column of our dataset was correctly interpreted during our initial importation using `read_csv()`. Hooray for doing it right the first time. 
+Other useful transformations include "log2" for base-2 logs, "date" for dates, and "hms" for time. The later two are useful if R hasn't correctly interpreted your dataset. The data type for the `data.time` column of our dataset was correctly interpreted during our initial importation using `read_csv()`. Hooray for doing it right the first time.
 
 #### Limits
 
-The limits of plots created with `ggplot()` are automatically assigned, but you can override these using the `lims()` function. For example we can specify the limits of our example plot to show from 0 to 100 ppb: 
+The limits of plots created with `ggplot()` are automatically assigned, but you can override these using the `lims()` function. For example we can specify the limits of our example plot to show from 0 to 100 ppb:
 
 ```{r}
 p + lims(y = c(0, 100))
 ```
+
+
 #### Axis ticks/labels
 
-Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the name of cities like we've encountered earlier. We addressed this earlier in [Bar charts] by rotating the plot 90$^\circ$ with the `coord_flip()` function. This is often the best solution as it's how we read English. Another solution is to rotate the axis labels themselves: 
+Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the name of cities like we've encountered earlier. We addressed this earlier in [Bar charts] by rotating the plot 90$^\circ$ with the `coord_flip()` function. This is often the best solution as it's how we read English. Another solution is to rotate the axis labels themselves:
 
 ```{r}
 basePlot <- ggplot(data = subset(sumAtl, p == "NL"),
@@ -549,9 +615,11 @@ rotatedHJust <- basePlot +
 
 gridExtra::grid.arrange(default, flip, rotated, rotatedHJust, ncol = 2, nrow = 2)
 ```
-## Arranging plots 
 
-We talked about how facets can be used to generate multiple plots from a dataset (small multiples), but sometimes you want to combine two or more *different* plots together. There are a couple of ways, but we've been using `grid.arrange()` from the `gridExtra` pacakge (as demonstrated above). You can read up on [`gridExtra` here](https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html). There is also the [`ggarrange` function](https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html) from the `ggpubr` package which, amongst other things, can easily create shared legends between plots.  
+
+### Arranging plots
+
+We talked about how facets can be used to generate multiple plots from a dataset (small multiples), but sometimes you want to combine two or more *different* plots together. There are a couple of ways, but we've been using `grid.arrange()` from the `gridExtra` pacakge (as demonstrated above). You can read up on [`gridExtra` here](https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html). There is also the [`ggarrange` function](https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html) from the `ggpubr` package which, amongst other things, can easily create shared legends between plots.
 
 ```{r}
 colchart <- ggplot(data = sumAtl,
@@ -581,11 +649,11 @@ ggpubr::ggarrange(colchart,
                   legend = "bottom")
 ```
 
-### Anotating plots 
+### Anotating plots
 
-Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different then *captions*, which is accomplished in the `rmarkdown` chunk header (see [R code chunk options] for a refresher). 
+Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different then *captions*, which is accomplished in the `rmarkdown` chunk header (see [R code chunk options] for a refresher).
 
-Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualzie them spatially. Note, the map we're making here is rather basic, to make prettier maps see [CHM410: Air Quality Lab]. 
+Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualzie them spatially. Note, the map we're making here is rather basic, to make prettier maps see [CHM410: Air Quality Lab].
 
 ```{r, message = FALSE, error = FALSE, warning = FALSE}
 
@@ -610,7 +678,8 @@ atlMap
 
 ```
 
-Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this in detail in [Plotting Airbeam data spatially], but for this plot we spefically want to annotate each point with it's corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html).  We simply need to specify which column (`naps id`) we'll use for our labels:
+Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this in detail in [Plotting Airbeam data spatially], but for this plot we spefically want to annotate each point with it's corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html). We simply need to specify which column (`naps id`) we'll use for our labels:
+
 ```{r, message = FALSE, warning = FALSE}
 atlMap + geom_point(data = mapNO2, 
              aes(x=longitude,
@@ -630,4 +699,4 @@ atlMap + geom_point(data = mapNO2,
 
 ```
 
-Again, not the prettiest map, but that's up to you to fix in post. [`geom_text_repel()`](https://ggrepel.slowkow.com/articles/examples.html) is an incredibly useful package for quickly annotating plots. If you need to label/annotate points check it out. 
+Again, not the prettiest map, but that's up to you to fix in post. [`geom_text_repel()`](https://ggrepel.slowkow.com/articles/examples.html) is an incredibly useful package for quickly annotating plots. If you need to label/annotate points check it out.

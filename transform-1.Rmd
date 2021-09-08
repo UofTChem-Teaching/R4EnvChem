@@ -41,7 +41,7 @@ filter(FAES, conc_Na == 0)
 
 Note how we need to pass logical operations to `filter()` to specify which rows we want to select. In the above code, we used `filter()` to get all rows where the concentration of sodium is equal to 0 (`== 0`). Note the presence of two equal signs (`==`). In R one equal sign (`=`) is used to pass an argument, two equal signs (`==`) is the logical operation "is equal" and is used to test equality (i.e. that both sides have the same value). A frequent mistake is to use `=` instead of `==` when testing for equality. 
 
-### Logical oeprators
+### Logical operators
 
 `filter()` can use other *relational* and *logical* operators or combinations thereof. Relational operators compare values and logical operators carry out Boolean operations (TRUE or FALSE). Logical operators are used to combine multiple relational operators... let's just list what they are and how we can use them:
 
