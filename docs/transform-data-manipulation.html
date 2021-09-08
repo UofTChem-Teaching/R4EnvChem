@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Transform: Data Manipulation | R for Environmental Chemists</title>
+  <title>Chapter 10 Transform: Data Manipulation | R for Environmental Chemistry</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Transform: Data Manipulation | R for Environmental Chemists" />
+  <meta property="og:title" content="Chapter 10 Transform: Data Manipulation | R for Environmental Chemistry" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://davidrosshall.github.io/R4EnvChem/" />
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Transform: Data Manipulation | R for Environmental Chemists" />
+  <meta name="twitter:title" content="Chapter 10 Transform: Data Manipulation | R for Environmental Chemistry" />
   
   <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
   
@@ -406,16 +406,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="16" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html"><i class="fa fa-check"></i><b>16</b> Modelling: Non-Linear Regression</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#visually-inspecting-our-data"><i class="fa fa-check"></i><b>16.1</b> Visually inspecting our data</a>
+<li class="chapter" data-level="16.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#experimental-background"><i class="fa fa-check"></i><b>16.1</b> Experimental Background</a>
 <ul>
 <li class="chapter" data-level="16.1.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#annotating-maximal-values"><i class="fa fa-check"></i><b>16.1.1</b> Annotating maximal values</a></li>
+<li class="chapter" data-level="16.1.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-maximal-values"><i class="fa fa-check"></i><b>16.1.2</b> Extracting maximal values</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-maximal-values"><i class="fa fa-check"></i><b>16.2</b> Extracting maximal values</a></li>
-<li class="chapter" data-level="16.3" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#modelling-sigmoidal-curve"><i class="fa fa-check"></i><b>16.3</b> Modelling Sigmoidal Curve</a>
+<li class="chapter" data-level="16.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#modelling-sigmoid-curve"><i class="fa fa-check"></i><b>16.2</b> Modelling Sigmoid Curve</a>
 <ul>
-<li class="chapter" data-level="16.3.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>16.3.1</b> Calculating Logistic Regression</a></li>
-<li class="chapter" data-level="16.3.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-model-parameters"><i class="fa fa-check"></i><b>16.3.2</b> Extracting model parameters</a></li>
+<li class="chapter" data-level="16.2.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>16.2.1</b> Calculating Logistic Regression</a></li>
+<li class="chapter" data-level="16.2.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-model-parameters"><i class="fa fa-check"></i><b>16.2.2</b> Extracting model parameters</a></li>
 </ul></li>
+<li class="chapter" data-level="16.3" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#summary-5"><i class="fa fa-check"></i><b>16.3</b> Summary</a></li>
 </ul></li>
 <li class="part"><span><b>Section 4: Notes for Env. Chem. Labs</b></span></li>
 <li class="chapter" data-level="17" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html"><i class="fa fa-check"></i><b>17</b> CHM410: Air Quality Lab</a>
@@ -432,7 +433,7 @@ div.csl-indent {
 <li class="chapter" data-level="17.2.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-gases-data-spatially"><i class="fa fa-check"></i><b>17.2.2</b> Plotting gases data spatially</a></li>
 <li class="chapter" data-level="17.2.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#combining-maps"><i class="fa fa-check"></i><b>17.2.3</b> Combining maps</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-5"><i class="fa fa-check"></i><b>17.3</b> Summary</a></li>
+<li class="chapter" data-level="17.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-6"><i class="fa fa-check"></i><b>17.3</b> Summary</a></li>
 </ul></li>
 </ul>
 
@@ -443,7 +444,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Environmental Chemists</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Environmental Chemistry</a>
           </h1>
         </div>
 
@@ -476,8 +477,8 @@ div.csl-indent {
 <span id="cb119-10"><a href="transform-data-manipulation.html#cb119-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb119-11"><a href="transform-data-manipulation.html#cb119-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb119-12"><a href="transform-data-manipulation.html#cb119-12" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div id="htmlwidget-aaf6f87227e56debab5b" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aaf6f87227e56debab5b">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.6858,9332.0498,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8e019d4623aecca302b7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8e019d4623aecca302b7">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.6858,9332.0498,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Note</strong> the use of <code>convert = TRUE</code> in the <code>separate()</code> call. This runs a type convert on new columns. If we didn’t include this, the <code>conc_Na</code> column would be of type character because the numbers originated from a string. <code>convert()</code> ensures they’re converted to numeric. <strong>Always use <code>convert = TRUE</code></strong> when you separate columns.</p>
 <div id="selecting-by-row-or-value" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Selecting by row or value</h2>

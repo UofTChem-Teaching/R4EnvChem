@@ -1,6 +1,6 @@
 --- 
 knit: "bookdown::render_book"
-title: "R for Environmental Chemists"
+title: "R for Environmental Chemistry"
 author: "David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D'eon"
 date: "Last built on: `r Sys.Date()`"
 url: 'https://davidrosshall.github.io/R4EnvChem/'
@@ -17,8 +17,6 @@ bibliography: references.bib
 
 library(tidyverse)
 ```
-
-
 
 # Preface {-}
 
@@ -37,10 +35,8 @@ We recommend that you read through Sections 1 and 2 in sequential order. These p
 
 ## Providing Feedback {-}
 
-If you notice an error,mistake or if you have suggestions for adding features or improving the book, please reach out to any of the or flag an issue on this books github repository at [https://github.com/DavidRossHall/R4EnvChem](https://github.com/DavidRossHall/R4EnvChem)
+If you notice an error, mistake or if you have suggestions for adding features or improving the book, please reach out to us or flag an issue on [GitHub](https://github.com/DavidRossHall/R4EnvChem/issues).
 
-if you have any questions/comments/suggestions/concerns please email:
-  
   - [Dave](https://sites.chem.utoronto.ca/penglab/content/people) at [davidross.hall@mail.utoronto.ca](davidross.hall@mail.utoronto.ca)
   - [Jessica D'eon](https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon) at [jessica.deon@utoronto.ca](jessica.deon@utoronto.ca)
 
@@ -50,7 +46,7 @@ if you have any questions/comments/suggestions/concerns please email:
   - [David Hall/](https://sites.chem.utoronto.ca/penglab/content/people) 
   - [Steven Kutarna](https://sites.chem.utoronto.ca/penglab/content/people)   
   - [Kristen Yeh](https://www.abbattgroup.ca/members/) 
-  - [Hui Peng](https://sites.chem.utoronto.ca/penglab/content/people).
+  - [Hui Peng](https://sites.chem.utoronto.ca/penglab/content/people)
   - [Jessica D'eon](https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon)
   
 ## Acknowlegements {-}
