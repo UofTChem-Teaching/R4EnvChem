@@ -1,16 +1,16 @@
-# Transform: dplyr and data manipulation
+# Transform: Data Manipulation
 
-Transformation encompasses any steps you take to manipulate, reshape, refine, or transform your data. We've already touched upon some useful transformation functions in previous example code snippets, such as the `mutate` function for adding columns. This section will explore some of the most useful functionailities of the `dplyr` package, explicitly introduce the pipe operator `%>%`, and showcase how you can leverage these tools to quickly manipulate your data.
+Transformation encompasses any steps you take to manipulate, reshape, refine, or transform your data. We've already touched upon some useful transformation functions in previous example code snippets, such as the `mutate` function for adding columns. This section will explore some of the most useful functionalities of the `dplyr` package, explicitly introduce the pipe operator `%>%`, and showcase how you can leverage these tools to quickly manipulate your data.
 
-The benchmark `dplyr` functions are :
+The essential `dplyr` functions are :
 
   - `mutate()` to create new columns/variables from existing data
   - `arrange()` to reorder rows 
   - `filter()` to refine observations by their values (in other words by row)
   - `select()` to pick variables by name (in other words by column)
-  - `summarize` to collapse many values down to a single summary. 
+  - `summarize()` to collapse many values down to a single summary. 
   
-We'll go through each of these functions, but we highly recommend you read [Chapter 3: Data Transformation](https://r4ds.had.co.nz/transform.html) from *R for Data Science* to get a more comprehensive breakdown of these functions. Note that the information here is based on a `tidyverse` approach, but this is only one way of doing things. Please see the [Further reading] section for links to other equally suitable approaches to data transformation. 
+We'll go through each of these functions, but we highly recommend you read [Chapter 3: Data Transformation](https://r4ds.had.co.nz/transform.html) from *R for Data Science* to get a more comprehensive breakdown of these functions. Note that the information here is based on a `tidyverse` approach, but this is only one way of doing things. Please see the [Further reading] section for links to other suitable approaches to data transformation. 
 
 Let's explore the functionality of `dplyr` using some flame absorption/emission spectroscopy (FAES) data from a *CHM317* lab. This data represents the emission signal of five sodium (Na) standards measured in triplicate:
 
@@ -39,11 +39,11 @@ DT::datatable(FAES)
 filter(FAES, conc_Na == 0)
 ```
 
-Note how we need to pass logical operations to `filter()`. In the above code, we used `filter()` to get all rows where the concentration of sodium is equal to 0 (`== 0`). Note the presence of two equal signs (`==`). In R one equal sign (`=`) is used to pass an argument, two equal signs (`==`) is the logical operation "is equal" and is used to test equality (i.e. that both sides have the same value). A frequent mistake is to use `=` instead of `==` when testing for equality. 
+Note how we need to pass logical operations to `filter()` to specify which rows we want to select. In the above code, we used `filter()` to get all rows where the concentration of sodium is equal to 0 (`== 0`). Note the presence of two equal signs (`==`). In R one equal sign (`=`) is used to pass an argument, two equal signs (`==`) is the logical operation "is equal" and is used to test equality (i.e. that both sides have the same value). A frequent mistake is to use `=` instead of `==` when testing for equality. 
 
 ### Logical oeprators
 
-`filter()` can use other *relational* and *logical* operators, or combinations thereof, to improve your sub-setting. Relational operators compare values and logical operators carry out Boolean operations (TRUE or FALSE). Logical operators are used to combine multiple relational operators... let's just list what they are and how we can use them:
+`filter()` can use other *relational* and *logical* operators or combinations thereof. Relational operators compare values and logical operators carry out Boolean operations (TRUE or FALSE). Logical operators are used to combine multiple relational operators... let's just list what they are and how we can use them:
 
 ```{r, echo = FALSE}
 
@@ -78,7 +78,7 @@ filter(FAES, replicate != 2)
 ```{r}
 filter(FAES, (type == "standard" & replicate == 1) | (type == "blank"))
 ```
-- removing any missing values (`NA`) using `is.na()`. Note there are no missing values in our data set so nothing will be removed, if we removed the NOT operator (`!`) we would have selected all rows *with* missing values. 
+- Removing any missing values (`NA`) using `is.na()`. Note there are no missing values in our data set so nothing will be removed, if we removed the NOT operator (`!`) we would have selected all rows *with* missing values. 
 
 ```{r}
 filter(FAES, !is.na(signal))
@@ -90,29 +90,29 @@ These are just some examples, but you can combine the logical operators in any w
 
 ## Arranging rows
 
-`arrange()` simple reorders the rows based on the value you passed to it. By default it arranges the specified values into ascending order. Let's arrange our signal in increasing by increasing order:
+`arrange()` reorders the rows based on the value you passed to it. By default it arranges the specified values into ascending order. Let's arrange our data our data by increasing order of signal value:
 
 ```{r}
 arrange( FAES, signal)
 ```
 
-Since our original `FAES` data is already arranged by increasing `cong_Na` and `replicate`, let's inverse that order by arranging `conc_Na` into descending order using the `desc()` function BUT arrange the `signal` values in:
+Since our original `FAES` data is already arranged by increasing `conc_Na` and `replicate`, let's inverse that order by arranging `conc_Na` into descending order using the `desc()` function WHILE arranging the `signal` values in ascending order:
 
 ```{r}
-# Note the order of precedence
+# Note the order of precedence (left-to-right)
 arrange(FAES, desc(conc_Na), signal)
 ```
 
 Just note with `arrange()` that `NA` values will always be placed at the bottom, whether you use `desc()` or not. 
 
-## Selecting by column or variable
+## Selecting column name
 
 `select()` allows you to readily select columns by name. Note however that it will always return a tibble, even if you only select one variable/column.
 
 ```{r}
 select(FAES, signal)
 ```
-You can also select multiple columns using the same helper functions describes in [Importing data into R]. 
+You can also select multiple columns using the same operators and helper functions described in [Tidying Your Data]:. 
 
 ```{r}
 select(FAES, conc_Na:replicate)
@@ -133,14 +133,16 @@ mutate(FAES, "dil_fct" = 10)
 We can also create multiple columns in the same `mutate()` call: 
 
 ```{r}
-mutate(FAES, "dil_fct" = 10, "adj_signal" = signal * dil_fct)
+mutate(FAES, 
+       dil_fct = 10, 
+       adj_signal = signal * dil_fct)
 ```
 
 
 Couple of things to note: 
 
-  1. The variable we're creating needs to be in quotation marks, hence `"dil_fct"` for our dilution factor variable
-  2. the variables we're referencing do not need to be in quotation marks; hence `signal` because this variable already exist. 
+  1. The variable we're creating needs to be in quotation marks, hence `dil_fct` for our dilution factor variable
+  2. The variables we're referencing do not need to be in quotation marks; hence `signal` because this variable already exist. 
   3. Note the order of precedence: `dil_fct` is created first so we can reference in the second argument, we would get an error if we swapped the order. 
   
 ### Useful mutate function
@@ -149,8 +151,8 @@ There are a myriad of functions you can make use of with the mutate function. He
 
 ```{r, echo = FALSE}
 
-funs <- data.frame("function" = c("+", "-", "*", "/", "^", "log()"),
-                   "definition" = c("additon", "subtraction", "multiplication", "division", "exponent; to the power off...", "returns the specified base-log; see also log10() and log2()"))
+funs <- data.frame("Operator/Function" = c("+", "-", "*", "/", "^", "log()"),
+                   "Definition" = c("additon", "subtraction", "multiplication", "division", "exponent; to the power of...", "returns the specified base-log; see also log10() and log2()"))
 
 knitr::kable(funs)
 
@@ -176,7 +178,7 @@ Here we've created a new data set, `groupedFAES`, that we grouped by the variabl
 
 ### Useful summarize functions
 
-We've used the `mean()` and `sd()` functions above, but there are a host of other useful functions you can use in conjunction with summarize. See **Useful Functions** in the `summarise()` documentation (enter `?summarise`) in the console. 
+We've used the `mean()` and `sd()` functions above, but there are a host of other useful functions you can use in conjunction with summarize. See **Useful Functions** in the `summarise()` documentation (enter `?summarise`) in the console. This is also discussed at in more depth in the [Summarizing Data] chapter. 
 
 ## The pipe: chaining functions together 
 
@@ -198,7 +200,7 @@ stds_4
 
 While the code above did it's job, it's certainly wasn't easy to type and certainly not easy to read. At every step of the way we've saved our updated data outputs to a new variable (`stds_1`, `stds_2`, etc.). However, most of these intermediates aren't important, and moreover the repetitive names clutter our code. As the code above is written, we've had to pay special attending to the variable suffix to make sure we're calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. `stds_1 <- mutate(stds_1, ...)`), but that doesn't solve the issue of readability as there's still redundant assigning. 
 
-A solution for this is the pipe operator `%>%` ( pronounced "then"), an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you're working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we'd get something like: 
+A solution for this is the pipe operator `%>%` ( pronounced as "then"), an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you're working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we'd get something like: 
 
 ```{r}
 meanBlank <- FAES %>%
