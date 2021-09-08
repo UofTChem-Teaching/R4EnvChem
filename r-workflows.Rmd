@@ -1,4 +1,4 @@
-# Workflows for R coding
+# Workflows for R Coding
 
 In the previous chapter we did our coding in the console, which got messy rather quickly. To combat this, we code in *scripts*. Scripts are essentially a recipe that R reads to execute instead of you typing and running each line of code. And like a recipe, R reads your script from top to bottom. An important aspect of scripts is that *they're reproducible*. In other words you should be able to rerun your script and get the exact same result every time. 
 
