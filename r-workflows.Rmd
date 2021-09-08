@@ -161,9 +161,7 @@ The following is a prime example of such an error.
 q <- 8 + "hi"
 ```
 
-Here we are trying to add a numeric value (8) to a character string ("hi"), then set the sum of the two to variable `q`. R has given us an error in return, because there is no logical way for R to add a numeric value to non-numeric text.
-
-The error indicates that we have passed a `non-numeric argument to binary operator`, meaning we have used a non-numeric data type for an expression which is exclusively reserved for numeric data. 
+Here we are trying to add a numeric value (8) to a character string ("hi"), then set the sum of the two to variable `q`. R has given us an error in return, because there is no logical way for R to add a numeric value to non-numeric text. The error indicates that we have passed a `non-numeric argument to binary operator`, meaning we have used a non-numeric data type for an expression which is exclusively reserved for numeric data. 
 
 It is important to be aware of error codes as many functions require specific data types as their inputs. You can alwways consult the function documentation by via the *Help* tab of the *Viewer* pane or by typing a `?` followed by the name of the function in the console (i.e. `?ggplot`). 
 
