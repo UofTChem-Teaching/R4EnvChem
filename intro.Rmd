@@ -1,9 +1,9 @@
 <!-- This header creates the book section -->
-# (PART\*) Section 1: Getting Setup in R{-}
+# (PART\*) Section 1: Getting Started in R{-}
 
 # Installing R
 
-You've probably heard of coding and the R language, but figure out how to get started can be a hurdle; at least it was for us. This chapter will cover installing the software you'll need for coding in R.  
+You may have heard about the coding or the R programming language, but figuring out how to get started can be a hurdle; at least it was for us. This chapter will cover installing the software you'll need for coding in R.  
 
 ## Prerequisite software
 
@@ -19,13 +19,13 @@ Read on for instructions on downloading all three.
 
 **R** is the programming language we'll code in. R is hosted on the Comprehensive R Archive Network (CRAN) and is one of the most popular programming languages for statisticians and scientist alike. [You can download the latest build for your operating system here](https://cloud.r-project.org/). 
 
-A quick aside, but coding is simply writing instructions for the computer to execute. To do this, we need a language that both we, humans, and the computer can understand. For our needs we'll use R, and like any language R has it's own syntax, rules, and quirks. We'll revisit this in subsequent sections.
+A quick aside, but don't be intimidated by the term "coding". Coding is simply writing instructions for the computer to execute. The only catch is has to be in a language that both we, humans, and the computer can understand. For our needs we're using R, and like any language, R has it's own syntax, rules, and quirks which we'll cover in later chapters.
   
 ### Downloading RStudio IDE
 
-RStudio is the *integrated development environment* of choice when working with R. It's where you'll actually be typing your code and interacting with R. Again, R is a language, and you need somewhere to write it down to make use of it. Writing in English can be done with a pencil and notepad or a word processor filed with useful tools to help you write. This is what RStudio is for R. [You can download the latest version of RStudio here](https://www.rstudio.com/products/rstudio/download/#download). 
+RStudio is the *integrated development environment* of choice when working with R. It's where you'll actually be typing your code and interacting with R. Again, R is a language, and you need somewhere to write it down to make use of it. Writing in English can be done with a pencil and notepad or a word processor filed with useful tools to help you write. RStudio is the later for coding in R. [**You can download the latest version of RStudio here**](https://www.rstudio.com/products/rstudio/download/#download). 
 
-Once you have R and RStudio installed go ahead and open up RStudio. Once you open RStudio, you'll be greeted with an interface divided into numerous panes We've highlighted the major ones in the image below:  
+Once you have R and RStudio installed, go ahead and open up RStudio. Once you open RStudio, you'll be greeted with an interface divided into numerous panes. We've highlighted the major ones in the image below:  
 
 ![The RStudio interface with annottated regions](images/Rstudio_startup_regions.png){width=100%}
 
@@ -94,7 +94,7 @@ You can customize the appearance of your RStudio interface by clicking *Tools*->
 
 ## Where to get help
 
-While it's often tempting to contact your TA or Professor at the first sign of trouble, it's often better to try and resolve your issues on your own, especially if they're related to technical issues in R. Given the popularity of R, if you've run into an issue, someone else has too and they complained about it and someone else has solved it! An often unappreciated aspect of coding/data science is knowing how to get help, how to search for it, and how to translate someone's solutions to your unique situation. <!-- needs to be fleshed out some, mostly just placeholder text at this point, DH --> 
+While it's often tempting to contact your TA or Professor at the first sign of trouble, it's  better to try and resolve your issues on your own. Given the popularity of R, if you've run into an issue, someone else has too and they've complained about it and someone else has almost certainly solved it! An often unappreciated aspect of coding/data science is knowing *how* to get help, *how* to search for it, and *how* to translate someone's solutions to your unique situation. 
 
 Places to get help include: 
 
@@ -112,4 +112,6 @@ In this chapter we've covered:
   - Installing the `tidyverse()` package, the basis of the subsequent code in this book
   - How to customize the appearance of RStudio so you don't burn out your eyes at night
 
-Move on to the next chapter where we'll break down how to setup your work in R for legibility, simplicity, and reproducibility. After all, the person cursing any of your sloppy work will invariably be you, so be kind to yourself, and do it right the first time. 
+In the next chapter we'll break down how to setup your work in R for legibility, simplicity, and reproducibility. After all, the person cursing any of your sloppy work will invariably be you, so be kind to yourself, and do it right the first time. 
+
+![](images/changing-stuff.jpg)

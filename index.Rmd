@@ -24,31 +24,35 @@ library(tidyverse)
 
 Howdy, 
   
-This website is more-or-less the living result of a collaborative project between us. We're not trying to be an exhaustive resource for all environmental chemist. Rather, we're focusing on developing broadly applicable data science course content (tutorials and recipes) based in `R` for undergraduate environmental chemistry courses and research. Note that none of this has been reviewed yet and is not implemented in any capacity in any curriculum. 
+This website is more-or-less the living result of a collaborative project between us. We're not trying to be an exhaustive resource for all environmental chemists. Rather, we're focusing on developing broadly applicable data science course content (tutorials and recipes) based in `R` chemistry courses and research. 
 
-This book will ultimately be broken up into four sections: 
+This book will is broken up into four sections: 
 
-  - **Section 1: Getting Setup in R** is a general guide for the complete novice that will help you install, setup, and run R code. It features a useful tutorial exercise to make sure you have a working script before starting courses. 
+  - **Section 1: Getting Started in R** is a general guide for the complete novice that will help you install, setup, and run R code. It features a useful tutorial exercise to make sure you have a working script before starting courses. 
   - **Section 2: Data Wrangling** introduces data analysis workflows and showcases *how* you can use R and the `tidyverse` to import and clean up your data into a consistent format to tackle the vast majority of the data science/analysis problems you'll encounter in undergraduate environmental chemistry courses. 
   - **Section 3: Data Analysis Toolbox** provides code and theory behind the most common data analysis practices in environmental chemistry. These include linear regression analysis, a myriad of visualizations, etc. 
   - **Section 4: Notes for Env. Chem. Labs** consist of chapters specific to individual laboratory experiments. They rely upon knowledge from the previous three sections to introduce concepts unique to individual labs. 
 
-We recommend everyone reads over the first two sections in sequential order to understand the general R workflow employed in this, and all other, environmental chemistry courses. 
+We recommend that you read through Sections 1 and 2 in sequential order. These provide the foundation for the consistent data analysys workflow used throughout Sections 3 and 4. 
 
 ## Providing Feedback {-}
 
-If you notice an error/mistake or have suggestiosn for adding features or improving the book, please reach out to any of the [Authors] or flag an issue on this books github repo at [https://github.com/DavidRossHall/R4EnvChem](https://github.com/DavidRossHall/R4EnvChem)
+If you notice an error,mistake or if you have suggestions for adding features or improving the book, please reach out to any of the or flag an issue on this books github repository at [https://github.com/DavidRossHall/R4EnvChem](https://github.com/DavidRossHall/R4EnvChem)
 
 ## Authors {-}
   
   If you have any questions/comments/suggestions/concerns please email:
   
   - [Dave](https://sites.chem.utoronto.ca/penglab/content/people) at [davidross.hall@mail.utoronto.ca](davidross.hall@mail.utoronto.ca)
-  - [Dr. D'eon](https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon) at [jessica.deon@utoronto.ca](jessica.deon@utoronto.ca)
-  
-## Acknowlegements
+  - [Jessica D'eon](https://www.chemistry.utoronto.ca/people/directories/all-faculty/jessica-deon) at [jessica.deon@utoronto.ca](jessica.deon@utoronto.ca)
 
-This book was co-wrotten with help from [Steven](https://sites.chem.utoronto.ca/penglab/content/people),   [Kristen](https://www.abbattgroup.ca/members/), and [Hui Peng](https://sites.chem.utoronto.ca/penglab/content/people).
+This book was co-written with help from: 
+
+  - [Steven Kutarna](https://sites.chem.utoronto.ca/penglab/content/people)   
+  - [Kristen Yeh](https://www.abbattgroup.ca/members/) 
+  - [Hui Peng](https://sites.chem.utoronto.ca/penglab/content/people).
+
+## Acknowlegements
 
 Additionally, we would like to thank [Jeremy Gauthier](https://sites.chem.utoronto.ca/chemistry/staff/MABURY/jeremy-gauthier.html), [Andrew Folkerson](https://sites.chem.utoronto.ca/chemistry/staff/MABURY/andrew-folkerson.html), [Mark Panas](https://sites.chem.utoronto.ca/murphygroup/content/mark-panas), and [Stephanie Schneider](https://www.abbattgroup.ca/members/) for all of their comments, suggestions, and hard work integrating the concepts of this book into the *CHM410* Laboratory curriculum. 
   
