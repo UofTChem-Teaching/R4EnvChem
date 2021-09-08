@@ -172,7 +172,7 @@ Header 1 | Header 2| Header 3
 Row 1    | Data    | Some other Data
 Row 2    | Data    | Some other Data
 
-## Spellcheck in R Markdown 
+### Spellcheck in R Markdown 
 
 While writing an R markdown document in R studio, go to the `Edit` tab at the top of the window and select `Check Spelling`. You can also use the `F7` key as a shortcut. The spell checker will literally go through every word it thinks you've misspelled in your document. You can add words to it so your spell checker's utility grows as you use it. **Note** that the spell check may also check your R code; be wary of changing words in your code chunks because you may get an error down the line. 
 

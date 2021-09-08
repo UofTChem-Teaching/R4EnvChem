@@ -2,15 +2,11 @@
 
 With the information presented in Section 1 you have the skills to start your data analysis. We've created a brief tutorial that covers the major elements introduced. At the end of this tutorial you'll have visualized a small subset of real Environment and Climate Change Canada (ECCC) National Airborne Pollution Surveillance Program (NAPS) data. More importantly, you'll have a properly setup project with working code and rmarkdown documents that you can recycle and re-purpose for your upcoming course work. After all, a beautiful aspect of coding is recycling it in future work to save you hassle. 
 
-In brief, the tutorial tasks are: 
+You'll need to install the following packages if you haven't already (you can copy the code below and run it in the console): 
 
-1. Copy the template project from the [GitHub repository here](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate); there are instructions on downloading on the repo's `README`. 
-  a. This is the same repo mentioned in [R Studio Projects], you may have already downloaded it, if so proceed to the next step.  
-2. Install the following packages if you haven't already, you can copy the code below and run it in the console: 
   - `tidyverse`
   - `rmarkdown`
   - `tinytex`: needed to generate PDF files, more info [here](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
-
 
 ```{r, eval = FALSE}
 
@@ -22,13 +18,20 @@ tinytex::install_tinytex() # This will take ~5 mins, so grab a coffee
 
 ```
 
-  3. Follow the instructions written in the template PDF to modify the `rmarkdown` file to analyze a dataset of your choice. 
+If you already have the R4EnvChem Project downloaded from [Importing a project] from the [RStudio Projects] chapter, then simply open the file `Rmarkdown-example.Rmd` and follow the steps listed there. If not,  refer to [Importing the R4EnvChem Project] for download instructions.
 
+## Task overview
 
-## Expected outcome
+This tutorial exercise will require you to make modifications to an existing R Markdown file in order to produce a very basic lab report template you can use for your future reports. You will draw on the skills developed over the course of Section 1 to:
 
-There's a lot of upfront work with this tutorial, but if you've completed it successfully and generated your own markdown file analyzing your select dataset you'll be well on your way to tackling the upcoming course labs/work as you'll have: 
+  - Modify file paths to import data and images
+  - Customize ggplot and markdown code to produce 2 different captioned plots based on that data
+  - Compile a PDF version of the report template containing your plots for submission
 
-  - Created a working *RStudio* project, which you can copy and reuse for your future projects. 
-  - Working *rmarkdown* document, similar to the reports you'd hand in during class. 
-  - Working R code showcasing basics of `ggplot`. 
+## Closing thoughts
+
+It's taken a lot of work to get here, but once you finish this exercise and generate your own markdown file analyzing your selected dataset you'll be well on your way to tackling the upcoming course labs/work. You'll also have the following resources to help you on your R journey: 
+
+  - An *RStudio* project which you can copy and reuse for your future projects. 
+  - An *rmarkdown* template, similar to the reports you'd hand in during class. 
+  - Sample R code showcasing the basics of `ggplot`. 
