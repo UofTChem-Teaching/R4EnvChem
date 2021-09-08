@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 17 Visualizations for Env Chem | R for Environmental Chemists</title>
+  <title>Chapter 16 Visualizations for Env Chem | R for Environmental Chemists</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 17 Visualizations for Env Chem | R for Environmental Chemists" />
+  <meta property="og:title" content="Chapter 16 Visualizations for Env Chem | R for Environmental Chemists" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://davidrosshall.github.io/R4EnvChem/" />
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 17 Visualizations for Env Chem | R for Environmental Chemists" />
+  <meta name="twitter:title" content="Chapter 16 Visualizations for Env Chem | R for Environmental Chemists" />
   
   <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
   
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="summarizing-data.html"/>
-<link rel="next" href="linear-regression-redux.html"/>
+<link rel="next" href="modelling-linear-regression.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -61,10 +61,6 @@
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -320,103 +316,98 @@ div.csl-indent {
 <li class="chapter" data-level="11.3" data-path="programming-with-r.html"><a href="programming-with-r.html#when-to-use-functions"><i class="fa fa-check"></i><b>11.3</b> When to use functions</a></li>
 <li class="chapter" data-level="11.4" data-path="programming-with-r.html"><a href="programming-with-r.html#further-reading-4"><i class="fa fa-check"></i><b>11.4</b> Further Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>12</b> Modelling</a>
+<li class="chapter" data-level="12" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>12</b> Visualizations</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="modelling.html"><a href="modelling.html#base-r-linear-model"><i class="fa fa-check"></i><b>12.1</b> Base R Linear Model</a></li>
-<li class="chapter" data-level="12.2" data-path="modelling.html"><a href="modelling.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>12.2</b> Cleaning up model ouputs</a>
+<li class="chapter" data-level="12.1" data-path="visualizations.html"><a href="visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>12.1</b> Building plots ups</a></li>
+<li class="chapter" data-level="12.2" data-path="visualizations.html"><a href="visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>12.2</b> Basic plotting</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="modelling.html"><a href="modelling.html#why-we-approach-modelling-this-way"><i class="fa fa-check"></i><b>12.2.1</b> Why we approach modelling this way</a></li>
+<li class="chapter" data-level="12.2.1" data-path="visualizations.html"><a href="visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>12.2.1</b> Changing plot labels</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="modelling.html"><a href="modelling.html#visualizing-model"><i class="fa fa-check"></i><b>12.3</b> Visualizing model</a></li>
-<li class="chapter" data-level="12.4" data-path="modelling.html"><a href="modelling.html#further-reading-5"><i class="fa fa-check"></i><b>12.4</b> Further reading</a></li>
+<li class="chapter" data-level="12.3" data-path="visualizations.html"><a href="visualizations.html#further-reading-5"><i class="fa fa-check"></i><b>12.3</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>13</b> Visualizations</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="visualizations.html"><a href="visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>13.1</b> Building plots ups</a></li>
-<li class="chapter" data-level="13.2" data-path="visualizations.html"><a href="visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>13.2</b> Basic plotting</a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="visualizations.html"><a href="visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>13.2.1</b> Changing plot labels</a></li>
-</ul></li>
-<li class="chapter" data-level="13.3" data-path="visualizations.html"><a href="visualizations.html#further-reading-6"><i class="fa fa-check"></i><b>13.3</b> Further reading</a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>14</b> Communication</a></li>
+<li class="chapter" data-level="13" data-path="communication.html"><a href="communication.html"><i class="fa fa-check"></i><b>13</b> Communication</a></li>
 <li class="part"><span><b>Section 3: Data Analysis Toolbox</b></span></li>
-<li class="chapter" data-level="15" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>15</b> Introduction</a></li>
-<li class="chapter" data-level="16" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>16</b> Summarizing data</a>
+<li class="chapter" data-level="14" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>14</b> Introduction</a></li>
+<li class="chapter" data-level="15" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>15</b> Summarizing data</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="summarizing-data.html"><a href="summarizing-data.html#data-to-play-with"><i class="fa fa-check"></i><b>16.1</b> Data to play with</a></li>
-<li class="chapter" data-level="16.2" data-path="summarizing-data.html"><a href="summarizing-data.html#summarizing-data-by-group"><i class="fa fa-check"></i><b>16.2</b> Summarizing data by group</a>
+<li class="chapter" data-level="15.1" data-path="summarizing-data.html"><a href="summarizing-data.html#data-to-play-with"><i class="fa fa-check"></i><b>15.1</b> Data to play with</a></li>
+<li class="chapter" data-level="15.2" data-path="summarizing-data.html"><a href="summarizing-data.html#summarizing-data-by-group"><i class="fa fa-check"></i><b>15.2</b> Summarizing data by group</a>
 <ul>
-<li class="chapter" data-level="16.2.1" data-path="summarizing-data.html"><a href="summarizing-data.html#further-sumarize-operations"><i class="fa fa-check"></i><b>16.2.1</b> Further sumarize operations</a></li>
+<li class="chapter" data-level="15.2.1" data-path="summarizing-data.html"><a href="summarizing-data.html#further-sumarize-operations"><i class="fa fa-check"></i><b>15.2.1</b> Further sumarize operations</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables-with-flextable"><i class="fa fa-check"></i><b>16.3</b> Pretty tables with flextable</a>
+<li class="chapter" data-level="15.3" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables-with-flextable"><i class="fa fa-check"></i><b>15.3</b> Pretty tables with flextable</a>
 <ul>
-<li class="chapter" data-level="16.3.1" data-path="summarizing-data.html"><a href="summarizing-data.html#uniting-columns"><i class="fa fa-check"></i><b>16.3.1</b> Uniting columns</a></li>
-<li class="chapter" data-level="16.3.2" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-kables"><i class="fa fa-check"></i><b>16.3.2</b> Pretty kables</a></li>
+<li class="chapter" data-level="15.3.1" data-path="summarizing-data.html"><a href="summarizing-data.html#uniting-columns"><i class="fa fa-check"></i><b>15.3.1</b> Uniting columns</a></li>
+<li class="chapter" data-level="15.3.2" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-kables"><i class="fa fa-check"></i><b>15.3.2</b> Pretty kables</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html"><i class="fa fa-check"></i><b>17</b> Visualizations for Env Chem</a>
+<li class="chapter" data-level="16" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html"><i class="fa fa-check"></i><b>16</b> Visualizations for Env Chem</a>
 <ul>
 <li class="chapter" data-level="" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#discrete-vs.-continuous-variables"><i class="fa fa-check"></i>Discrete vs. continuous variables</a></li>
 <li class="chapter" data-level="" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="17.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#bar-chart"><i class="fa fa-check"></i><b>17.1</b> Bar chart</a>
+<li class="chapter" data-level="16.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#bar-chart"><i class="fa fa-check"></i><b>16.1</b> Bar chart</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#adding-error-bars"><i class="fa fa-check"></i><b>17.1.1</b> Adding error bars</a></li>
-<li class="chapter" data-level="17.1.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#ordering-bar-charts"><i class="fa fa-check"></i><b>17.1.2</b> Ordering bar charts</a></li>
-<li class="chapter" data-level="17.1.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#grouping-bar-charts"><i class="fa fa-check"></i><b>17.1.3</b> Grouping bar charts</a></li>
+<li class="chapter" data-level="16.1.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#adding-error-bars"><i class="fa fa-check"></i><b>16.1.1</b> Adding error bars</a></li>
+<li class="chapter" data-level="16.1.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#ordering-bar-charts"><i class="fa fa-check"></i><b>16.1.2</b> Ordering bar charts</a></li>
+<li class="chapter" data-level="16.1.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#grouping-bar-charts"><i class="fa fa-check"></i><b>16.1.3</b> Grouping bar charts</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#box-plots"><i class="fa fa-check"></i><b>17.2</b> Box Plots</a>
+<li class="chapter" data-level="16.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#box-plots"><i class="fa fa-check"></i><b>16.2</b> Box Plots</a>
 <ul>
-<li class="chapter" data-level="17.2.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#box-plot-alternatives"><i class="fa fa-check"></i><b>17.2.1</b> Box plot alternatives</a></li>
-<li class="chapter" data-level="17.2.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#statistical-comparisons-between-groups"><i class="fa fa-check"></i><b>17.2.2</b> Statistical comparisons between groups</a></li>
+<li class="chapter" data-level="16.2.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#box-plot-alternatives"><i class="fa fa-check"></i><b>16.2.1</b> Box plot alternatives</a></li>
+<li class="chapter" data-level="16.2.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#statistical-comparisons-between-groups"><i class="fa fa-check"></i><b>16.2.2</b> Statistical comparisons between groups</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#histograms"><i class="fa fa-check"></i><b>17.3</b> Histograms</a>
+<li class="chapter" data-level="16.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#histograms"><i class="fa fa-check"></i><b>16.3</b> Histograms</a>
 <ul>
-<li class="chapter" data-level="17.3.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#multiple-histograms"><i class="fa fa-check"></i><b>17.3.1</b> Multiple histograms</a></li>
+<li class="chapter" data-level="16.3.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#multiple-histograms"><i class="fa fa-check"></i><b>16.3.1</b> Multiple histograms</a></li>
 </ul></li>
-<li class="chapter" data-level="17.4" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#scatter-plots"><i class="fa fa-check"></i><b>17.4</b> Scatter plots</a>
+<li class="chapter" data-level="16.4" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#scatter-plots"><i class="fa fa-check"></i><b>16.4</b> Scatter plots</a>
 <ul>
-<li class="chapter" data-level="17.4.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#marginal-plots"><i class="fa fa-check"></i><b>17.4.1</b> Marginal plots</a></li>
+<li class="chapter" data-level="16.4.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#marginal-plots"><i class="fa fa-check"></i><b>16.4.1</b> Marginal plots</a></li>
 </ul></li>
-<li class="chapter" data-level="17.5" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#plotting-for-publication"><i class="fa fa-check"></i><b>17.5</b> Plotting for publication</a>
+<li class="chapter" data-level="16.5" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#plotting-for-publication"><i class="fa fa-check"></i><b>16.5</b> Plotting for publication</a>
 <ul>
-<li class="chapter" data-level="17.5.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#plot-themes"><i class="fa fa-check"></i><b>17.5.1</b> Plot Themes</a></li>
-<li class="chapter" data-level="17.5.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#legends"><i class="fa fa-check"></i><b>17.5.2</b> Legends</a></li>
-<li class="chapter" data-level="17.5.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#modifying-labels"><i class="fa fa-check"></i><b>17.5.3</b> Modifying labels</a></li>
-<li class="chapter" data-level="17.5.4" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#modifying-axis"><i class="fa fa-check"></i><b>17.5.4</b> Modifying Axis</a></li>
-<li class="chapter" data-level="17.5.5" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#anotating-plots"><i class="fa fa-check"></i><b>17.5.5</b> Anotating plots</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="18" data-path="linear-regression-redux.html"><a href="linear-regression-redux.html"><i class="fa fa-check"></i><b>18</b> Linear Regression Redux</a></li>
-<li class="chapter" data-level="19" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html"><i class="fa fa-check"></i><b>19</b> Non-linear Logistic Regression Modelling</a>
-<ul>
-<li class="chapter" data-level="19.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#visually-inspecting-our-data"><i class="fa fa-check"></i><b>19.1</b> Visually inspecting our data</a>
-<ul>
-<li class="chapter" data-level="19.1.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#annotating-maximal-values"><i class="fa fa-check"></i><b>19.1.1</b> Annotating maximal values</a></li>
-</ul></li>
-<li class="chapter" data-level="19.2" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#extracting-maximal-values"><i class="fa fa-check"></i><b>19.2</b> Extracting maximal values</a></li>
-<li class="chapter" data-level="19.3" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#modelling-sigmoidal-curve"><i class="fa fa-check"></i><b>19.3</b> Modelling Sigmoidal Curve</a>
-<ul>
-<li class="chapter" data-level="19.3.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>19.3.1</b> Calculating Logistic Regression</a></li>
-<li class="chapter" data-level="19.3.2" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#extracting-model-parameters"><i class="fa fa-check"></i><b>19.3.2</b> Extracting model parameters</a></li>
+<li class="chapter" data-level="16.5.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#plot-themes"><i class="fa fa-check"></i><b>16.5.1</b> Plot Themes</a></li>
+<li class="chapter" data-level="16.5.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#legends"><i class="fa fa-check"></i><b>16.5.2</b> Legends</a></li>
+<li class="chapter" data-level="16.5.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#modifying-labels"><i class="fa fa-check"></i><b>16.5.3</b> Modifying labels</a></li>
+<li class="chapter" data-level="16.5.4" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#modifying-axis"><i class="fa fa-check"></i><b>16.5.4</b> Modifying Axis</a></li>
+<li class="chapter" data-level="16.5.5" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#anotating-plots"><i class="fa fa-check"></i><b>16.5.5</b> Anotating plots</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>Section 4: Notes for Env. Chem. Labs</b></span></li>
-<li class="chapter" data-level="20" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html"><i class="fa fa-check"></i><b>20</b> CHM410: Air Quality Lab</a>
+<li class="chapter" data-level="17" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html"><i class="fa fa-check"></i><b>17</b> Modelling: Linear Regression</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-data"><i class="fa fa-check"></i><b>20.1</b> Importing Data</a>
+<li class="chapter" data-level="17.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#modelling-theory"><i class="fa fa-check"></i><b>17.1</b> Modelling Theory</a></li>
+<li class="chapter" data-level="17.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#modelling-in-r"><i class="fa fa-check"></i><b>17.2</b> Modelling in R</a>
 <ul>
-<li class="chapter" data-level="20.1.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-airbeam-2-data"><i class="fa fa-check"></i><b>20.1.1</b> Importing Airbeam 2 data</a></li>
-<li class="chapter" data-level="20.1.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-co2-and-o3-data"><i class="fa fa-check"></i><b>20.1.2</b> Importing CO2 and O3 data</a></li>
-<li class="chapter" data-level="20.1.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#merging-datasets"><i class="fa fa-check"></i><b>20.1.3</b> Merging datasets</a></li>
+<li class="chapter" data-level="17.2.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#base-r-linear-model"><i class="fa fa-check"></i><b>17.2.1</b> Base R Linear Model</a></li>
+<li class="chapter" data-level="17.2.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>17.2.2</b> Cleaning up model ouputs</a></li>
+<li class="chapter" data-level="17.2.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#glanced-outputs"><i class="fa fa-check"></i><b>17.2.3</b> Glanced outputs</a></li>
+<li class="chapter" data-level="17.2.4" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#tidied-outputs"><i class="fa fa-check"></i><b>17.2.4</b> Tidied outputs</a></li>
+<li class="chapter" data-level="17.2.5" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#augmented-outputs"><i class="fa fa-check"></i><b>17.2.5</b> Augmented outputs</a></li>
+<li class="chapter" data-level="17.2.6" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#why-we-approach-modelling-this-way"><i class="fa fa-check"></i><b>17.2.6</b> Why we approach modelling this way</a></li>
 </ul></li>
-<li class="chapter" data-level="20.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-data-spatially"><i class="fa fa-check"></i><b>20.2</b> Plotting data spatially</a>
+<li class="chapter" data-level="17.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#visualizing-model"><i class="fa fa-check"></i><b>17.3</b> Visualizing model</a>
 <ul>
-<li class="chapter" data-level="20.2.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-airbeam-data-spatially"><i class="fa fa-check"></i><b>20.2.1</b> Plotting Airbeam data spatially</a></li>
-<li class="chapter" data-level="20.2.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-gases-data-spatially"><i class="fa fa-check"></i><b>20.2.2</b> Plotting gases data spatially</a></li>
-<li class="chapter" data-level="20.2.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#combining-maps"><i class="fa fa-check"></i><b>20.2.3</b> Combining maps</a></li>
+<li class="chapter" data-level="17.3.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#vizualizing-residuals"><i class="fa fa-check"></i><b>17.3.1</b> Vizualizing residuals</a></li>
+<li class="chapter" data-level="17.3.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#plotting-residuals"><i class="fa fa-check"></i><b>17.3.2</b> Plotting residuals</a></li>
 </ul></li>
-<li class="chapter" data-level="20.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-4"><i class="fa fa-check"></i><b>20.3</b> Summary</a></li>
+<li class="chapter" data-level="17.4" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#further-reading-6"><i class="fa fa-check"></i><b>17.4</b> Further reading</a></li>
+<li class="chapter" data-level="17.5" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#going-deeper-with-modelling"><i class="fa fa-check"></i><b>17.5</b> Going deeper with modelling</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#weighing"><i class="fa fa-check"></i><b>17.5.1</b> Weighing</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="non-linear-regression.html"><a href="non-linear-regression.html"><i class="fa fa-check"></i><b>18</b> Non-Linear Regression</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="non-linear-regression.html"><a href="non-linear-regression.html#visually-inspecting-our-data"><i class="fa fa-check"></i><b>18.1</b> Visually inspecting our data</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="non-linear-regression.html"><a href="non-linear-regression.html#annotating-maximal-values"><i class="fa fa-check"></i><b>18.1.1</b> Annotating maximal values</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="non-linear-regression.html"><a href="non-linear-regression.html#extracting-maximal-values"><i class="fa fa-check"></i><b>18.2</b> Extracting maximal values</a></li>
+<li class="chapter" data-level="18.3" data-path="non-linear-regression.html"><a href="non-linear-regression.html#modelling-sigmoidal-curve"><i class="fa fa-check"></i><b>18.3</b> Modelling Sigmoidal Curve</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="non-linear-regression.html"><a href="non-linear-regression.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>18.3.1</b> Calculating Logistic Regression</a></li>
+<li class="chapter" data-level="18.3.2" data-path="non-linear-regression.html"><a href="non-linear-regression.html#extracting-model-parameters"><i class="fa fa-check"></i><b>18.3.2</b> Extracting model parameters</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -435,8 +426,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="visualizations-for-env-chem" class="section level1" number="17">
-<h1><span class="header-section-number">Chapter 17</span> Visualizations for Env Chem</h1>
+<div id="visualizations-for-env-chem" class="section level1" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Visualizations for Env Chem</h1>
 <p>We’ve already encountered and produced several types of plots to visualize our data. We’ve also gone over the theory and basic operations of <code>ggplot()</code> in the <a href="visualizations.html#visualizations">Visualizations</a> chapter. In this chapter, we’ll expand on these and explicitly walk through the most common data visualization methods you’ll encounter in the field of environmental chemistry. Additionally, we’ll learn how to get your plots ready for publication.</p>
 <p>The plots we’ll be covering include:</p>
 <ul>
@@ -461,65 +452,65 @@ div.csl-indent {
 <p>This chapter assumes you’ve read the <a href="tidying-your-data.html#tidying-your-data">Tidying your data</a> chapter to understand the concept of tidy data, and the <a href="visualizations.html#visualizations">Visualizations</a> chapter to understand the fundamental logic of the <code>ggplot2</code> package.</p>
 <p>Additionally, for this chapter we’ll mostly be using the <code>atlNO2</code> and <code>sumAtl</code> datasets we created in the <a href="summarizing-data.html#summarizing-data">Summarizing data</a> chapter. Please revisit that chapter for details on that dataset.</p>
 </div>
-<div id="bar-chart" class="section level2" number="17.1">
-<h2><span class="header-section-number">17.1</span> Bar chart</h2>
+<div id="bar-chart" class="section level2" number="16.1">
+<h2><span class="header-section-number">16.1</span> Bar chart</h2>
 <p>Bar charts, also called <em>column</em> charts, represent <em>categorical</em> data with rectangular bars whose height/length is proportional to the values they represent.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="visualizations-for-env-chem.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl,</span>
-<span id="cb217-2"><a href="visualizations-for-env-chem.html#cb217-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, </span>
-<span id="cb217-3"><a href="visualizations-for-env-chem.html#cb217-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
-<span id="cb217-4"><a href="visualizations-for-env-chem.html#cb217-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb217-5"><a href="visualizations-for-env-chem.html#cb217-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="co"># rotates plot 90 degrees</span></span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="visualizations-for-env-chem.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl,</span>
+<span id="cb202-2"><a href="visualizations-for-env-chem.html#cb202-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, </span>
+<span id="cb202-3"><a href="visualizations-for-env-chem.html#cb202-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb202-4"><a href="visualizations-for-env-chem.html#cb202-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb202-5"><a href="visualizations-for-env-chem.html#cb202-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="co"># rotates plot 90 degrees</span></span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <p>Pretty boring, but it’s gotten the job done. <strong>Note</strong> that we used <code>coord_flip()</code> to rotate our plot 90<span class="math inline">\(^\circ\)</span> therefore the supplied <code>x</code> option of <code>city</code> is now plotted on the <code>y-axis</code>. This makes reading long categorical names (i.e. the names of cities) easier. <code>coord_flip()</code> doesn’t change anything else except the final orientation of the plot.</p>
 <p>Also note that <code>ggplot()</code> includes <code>geom_col()</code> and <code>geom_bar()</code>. While both can be used to make bar charts. <code>geom_col()</code> is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas <code>geom_bar()</code> makes the height of the bar proportional to the number of cases in each group.</p>
-<div id="adding-error-bars" class="section level3" number="17.1.1">
-<h3><span class="header-section-number">17.1.1</span> Adding error bars</h3>
+<div id="adding-error-bars" class="section level3" number="16.1.1">
+<h3><span class="header-section-number">16.1.1</span> Adding error bars</h3>
 <p>Any measurement always has an associated uncertainty/variability. These values are expressed visually via <em>error bars</em> demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our <code>sumAtl</code> dataset we’ve calculated the standard deviation as a measure of uncertainty. In our example, we’ve used the standard deviation (<code>sd</code>) as a measure of uncertainty of our calculated annual means.</p>
 <p>To plot error bars we use <code>geom_errorbar()</code> and pass the min and max values we want the error bars to be. In our case, the lowest value would be <code>ymin = mean - sd</code>, and the highest would be <code>ymin = mean + sd</code>. Our plotted error bars now indicated plus or minus one standard deviation from the mean.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="visualizations-for-env-chem.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
-<span id="cb218-2"><a href="visualizations-for-env-chem.html#cb218-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb218-3"><a href="visualizations-for-env-chem.html#cb218-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
-<span id="cb218-4"><a href="visualizations-for-env-chem.html#cb218-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb218-5"><a href="visualizations-for-env-chem.html#cb218-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="visualizations-for-env-chem.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb203-2"><a href="visualizations-for-env-chem.html#cb203-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb203-3"><a href="visualizations-for-env-chem.html#cb203-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
+<span id="cb203-4"><a href="visualizations-for-env-chem.html#cb203-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
+<span id="cb203-5"><a href="visualizations-for-env-chem.html#cb203-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <p>Some of the error bars indicate we could get a <em>negative</em> concentration of NO<sub>2</sub>. This is physically impossible, but it does suggest we should evaluate the distribution of our data (see below). Note that since we’re calculating error bar ranges on the fly, we’ve had to specify new aesthetic arguments to <code>geom_errorbar()</code>.</p>
 </div>
-<div id="ordering-bar-charts" class="section level3" number="17.1.2">
-<h3><span class="header-section-number">17.1.2</span> Ordering bar charts</h3>
+<div id="ordering-bar-charts" class="section level3" number="16.1.2">
+<h3><span class="header-section-number">16.1.2</span> Ordering bar charts</h3>
 <p>Often with bar charts (and similar plots), it’s useful to <em>order</em> the bars to help tell a story or convey information. We can effectuate this using <code>fct_reorder()</code>:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="visualizations-for-env-chem.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
-<span id="cb219-2"><a href="visualizations-for-env-chem.html#cb219-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, mean),</span>
-<span id="cb219-3"><a href="visualizations-for-env-chem.html#cb219-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
-<span id="cb219-4"><a href="visualizations-for-env-chem.html#cb219-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb219-5"><a href="visualizations-for-env-chem.html#cb219-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
-<span id="cb219-6"><a href="visualizations-for-env-chem.html#cb219-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb219-7"><a href="visualizations-for-env-chem.html#cb219-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="visualizations-for-env-chem.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
+<span id="cb204-2"><a href="visualizations-for-env-chem.html#cb204-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, mean),</span>
+<span id="cb204-3"><a href="visualizations-for-env-chem.html#cb204-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb204-4"><a href="visualizations-for-env-chem.html#cb204-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb204-5"><a href="visualizations-for-env-chem.html#cb204-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
+<span id="cb204-6"><a href="visualizations-for-env-chem.html#cb204-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
+<span id="cb204-7"><a href="visualizations-for-env-chem.html#cb204-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p>So in our aesthetics call for <code>geom_bar</code> we specified the <code>x</code> variable should be <code>city</code>, but ordered based on their corresponding <code>mean</code> value. Doing this has helped shed some light on trends in NO<sub>2</sub> levels. For one, despite Labrador City having lower mean [NO<sub>2</sub>], we can now easily see that it has a larger variation in [NO<sub>2</sub>] then Corner Brook.</p>
 </div>
-<div id="grouping-bar-charts" class="section level3" number="17.1.3">
-<h3><span class="header-section-number">17.1.3</span> Grouping bar charts</h3>
+<div id="grouping-bar-charts" class="section level3" number="16.1.3">
+<h3><span class="header-section-number">16.1.3</span> Grouping bar charts</h3>
 <p>Sometimes you’ll want to group bar charts as in the concentration of several chemicals in different locations. We can easily group bar charts in ggplot. Let’s go ahead and group our mean annual [NO<sub>2</sub>] by province by simply (1) reordering based on province, and (2) colour bars based on province:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="visualizations-for-env-chem.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
-<span id="cb220-2"><a href="visualizations-for-env-chem.html#cb220-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, p),</span>
-<span id="cb220-3"><a href="visualizations-for-env-chem.html#cb220-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean, </span>
-<span id="cb220-4"><a href="visualizations-for-env-chem.html#cb220-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> p)) <span class="sc">+</span></span>
-<span id="cb220-5"><a href="visualizations-for-env-chem.html#cb220-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb220-6"><a href="visualizations-for-env-chem.html#cb220-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
-<span id="cb220-7"><a href="visualizations-for-env-chem.html#cb220-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb220-8"><a href="visualizations-for-env-chem.html#cb220-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="visualizations-for-env-chem.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
+<span id="cb205-2"><a href="visualizations-for-env-chem.html#cb205-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, p),</span>
+<span id="cb205-3"><a href="visualizations-for-env-chem.html#cb205-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean, </span>
+<span id="cb205-4"><a href="visualizations-for-env-chem.html#cb205-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> p)) <span class="sc">+</span></span>
+<span id="cb205-5"><a href="visualizations-for-env-chem.html#cb205-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb205-6"><a href="visualizations-for-env-chem.html#cb205-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
+<span id="cb205-7"><a href="visualizations-for-env-chem.html#cb205-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
+<span id="cb205-8"><a href="visualizations-for-env-chem.html#cb205-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 <p>There are other ways to group your bar charts depending on the story you want to tell and the data you have. Please consult the <a href="https://www.r-graph-gallery.com/48-grouped-barplot-with-ggplot2.html">Grouped, stacked and percent stacked barplot in ggplot2</a> page from the <em>R-graph-gallery</em>.</p>
 </div>
 </div>
-<div id="box-plots" class="section level2" number="17.2">
-<h2><span class="header-section-number">17.2</span> Box Plots</h2>
+<div id="box-plots" class="section level2" number="16.2">
+<h2><span class="header-section-number">16.2</span> Box Plots</h2>
 <p>Box plots give a summary of the <em>distribution</em> of a numeric variable through their <em>quartiles</em>. You’ve no doubt seen them before, but they’re often misinterpreted. Let’s create a box-plot using <code>geom_boxplot()</code> and our Atlantic hourly NO<sub>2</sub> measurements, then we’ll break down how to interpret it.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="visualizations-for-env-chem.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
-<span id="cb221-2"><a href="visualizations-for-env-chem.html#cb221-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>( <span class="at">x =</span> city, <span class="at">y =</span> conc)) <span class="sc">+</span></span>
-<span id="cb221-3"><a href="visualizations-for-env-chem.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb221-4"><a href="visualizations-for-env-chem.html#cb221-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="visualizations-for-env-chem.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
+<span id="cb206-2"><a href="visualizations-for-env-chem.html#cb206-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>( <span class="at">x =</span> city, <span class="at">y =</span> conc)) <span class="sc">+</span></span>
+<span id="cb206-3"><a href="visualizations-for-env-chem.html#cb206-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb206-4"><a href="visualizations-for-env-chem.html#cb206-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <p>Let’s break down how to interpret <em>one</em> box before tackling the entire set. As previously mentioned, box plots describe data in their <em>quartiles</em>. Quartiles basically arrange the data from the lowest to highest value and split the data at <em>three points</em>:</p>
 <ul>
 <li><em>The first quartile</em> (Q1) is halfway between the lowest value and the median (50%) of the data. In other words 25% of the data lies <em>below</em> Q1.</li>
@@ -529,67 +520,67 @@ div.csl-indent {
 <p>The <em>box</em> in box-plots represents the range between Q1 and Q3. This is known as the <em>inter-quartile range</em> (IQR) and 50% of the total data falls somewhere inside this box. You can estimate the distribution by the symmetry of the box. if Q1 to the median is smaller than the median to Q3, the data has a <em>positive skew</em> (right sided skew), and vice versa.</p>
 <p>Rounding it out, <code>geom_boxplot()</code> includes <em>whiskers</em>, the thin lines emanating out from the box. This is used the predict outliers and is calculated as <span class="math inline">\(outliers = \pm 1.5 \times IQR\)</span>. Anything outside the whiskers is considered an “outliers” or an extreme point, and is plotted individually.</p>
 <p>Putting this all together, let’s look at the [NO<sub>2</sub>] for St. Johns city:</p>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>Note that we’ve plotted the actual distribution of the data. Prior to the computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren’t very intuitive (see the score of text needed to explain them). Consequently, we strongly recommend you explore some of the <a href="visualizations-for-env-chem.html#box-plot-alternatives">Box plot alternatives</a> unless you are explicitly asked to create box-plots.</p>
-<div id="box-plot-alternatives" class="section level3" number="17.2.1">
-<h3><span class="header-section-number">17.2.1</span> Box plot alternatives</h3>
+<div id="box-plot-alternatives" class="section level3" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> Box plot alternatives</h3>
 <p>The first alternative to box-plots is the <em>violin plot</em> which is made using <code>geom_violin()</code>. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive then box-plots. While the example below isn’t the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown principle has days where [NO<sub>2</sub>] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO<sub>2</sub>. This might be because of difference in regional ambient levels of NO<sub>2</sub>.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="visualizations-for-env-chem.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
-<span id="cb222-2"><a href="visualizations-for-env-chem.html#cb222-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
-<span id="cb222-3"><a href="visualizations-for-env-chem.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb222-4"><a href="visualizations-for-env-chem.html#cb222-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="visualizations-for-env-chem.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
+<span id="cb207-2"><a href="visualizations-for-env-chem.html#cb207-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
+<span id="cb207-3"><a href="visualizations-for-env-chem.html#cb207-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb207-4"><a href="visualizations-for-env-chem.html#cb207-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/atl-violin-1.png" width="672" /></p>
 <p>Another alternative is to plot the points overtop of the box-plot. You’ve encountered this example in <a href="r-coding-basics.html#r-coding-basics">R coding basics</a>. Truth be told, there are countless way to visualize distribution.</p>
 </div>
-<div id="statistical-comparisons-between-groups" class="section level3" number="17.2.2">
-<h3><span class="header-section-number">17.2.2</span> Statistical comparisons between groups</h3>
+<div id="statistical-comparisons-between-groups" class="section level3" number="16.2.2">
+<h3><span class="header-section-number">16.2.2</span> Statistical comparisons between groups</h3>
 <p>Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as <code>ggpubr</code> have many built in functionalists to display the results of these outcomes.</p>
 <p>From our NO<sub>2</sub> data, St. Johns appears to have the highest levels of NO<sub>2</sub>. Let’s apply a pairwise test against other Newfoundland communities to see if our observation is <em>statistically significant</em> based upon the results of a <em>Wilcoxon test</em>.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="visualizations-for-env-chem.html#cb223-1" aria-hidden="true" tabindex="-1"></a>nfld <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
-<span id="cb223-2"><a href="visualizations-for-env-chem.html#cb223-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p <span class="sc">==</span> <span class="st">&quot;NL&quot;</span>) <span class="co"># only nfld stations</span></span>
-<span id="cb223-3"><a href="visualizations-for-env-chem.html#cb223-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb223-4"><a href="visualizations-for-env-chem.html#cb223-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Code from ggpubr website</span></span>
-<span id="cb223-5"><a href="visualizations-for-env-chem.html#cb223-5" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(nfld, <span class="at">x =</span> <span class="st">&quot;city&quot;</span>, <span class="at">y =</span> <span class="st">&quot;conc&quot;</span>) <span class="sc">+</span></span>
-<span id="cb223-6"><a href="visualizations-for-env-chem.html#cb223-6" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_compare_means</span>(<span class="at">ref.group =</span> <span class="st">&quot;St Johns&quot;</span>,</span>
-<span id="cb223-7"><a href="visualizations-for-env-chem.html#cb223-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>,</span>
-<span id="cb223-8"><a href="visualizations-for-env-chem.html#cb223-8" aria-hidden="true" tabindex="-1"></a>                             <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>) </span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="visualizations-for-env-chem.html#cb208-1" aria-hidden="true" tabindex="-1"></a>nfld <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
+<span id="cb208-2"><a href="visualizations-for-env-chem.html#cb208-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p <span class="sc">==</span> <span class="st">&quot;NL&quot;</span>) <span class="co"># only nfld stations</span></span>
+<span id="cb208-3"><a href="visualizations-for-env-chem.html#cb208-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-4"><a href="visualizations-for-env-chem.html#cb208-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Code from ggpubr website</span></span>
+<span id="cb208-5"><a href="visualizations-for-env-chem.html#cb208-5" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(nfld, <span class="at">x =</span> <span class="st">&quot;city&quot;</span>, <span class="at">y =</span> <span class="st">&quot;conc&quot;</span>) <span class="sc">+</span></span>
+<span id="cb208-6"><a href="visualizations-for-env-chem.html#cb208-6" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_compare_means</span>(<span class="at">ref.group =</span> <span class="st">&quot;St Johns&quot;</span>,</span>
+<span id="cb208-7"><a href="visualizations-for-env-chem.html#cb208-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>,</span>
+<span id="cb208-8"><a href="visualizations-for-env-chem.html#cb208-8" aria-hidden="true" tabindex="-1"></a>                             <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>) </span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO2 values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We’ve included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics.</p>
 <p>For more information on <code>ggpubr</code>, adding p-values and significance labels, and different pairwise statistical test please visit <a href="http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/">ggpubr: Publication Ready Plots</a>.</p>
 </div>
 </div>
-<div id="histograms" class="section level2" number="17.3">
-<h2><span class="header-section-number">17.3</span> Histograms</h2>
+<div id="histograms" class="section level2" number="16.3">
+<h2><span class="header-section-number">16.3</span> Histograms</h2>
 <p>Histograms are an approximate representation of the distributions of numerical data. They’re an approximation because you arbitrarily “bin” your data into groups and then count the number of values inside that bin. The frequency, or count, in each bin is represented by the height of a rectangle whose width equals that of the bin. <code>geom_histogram()</code> is used to create histograms:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="visualizations-for-env-chem.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
-<span id="cb224-2"><a href="visualizations-for-env-chem.html#cb224-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
-<span id="cb224-3"><a href="visualizations-for-env-chem.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb224-4"><a href="visualizations-for-env-chem.html#cb224-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="visualizations-for-env-chem.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
+<span id="cb209-2"><a href="visualizations-for-env-chem.html#cb209-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
+<span id="cb209-3"><a href="visualizations-for-env-chem.html#cb209-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb209-4"><a href="visualizations-for-env-chem.html#cb209-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018&quot;</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-109-1.png" width="672" />
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-105-1.png" width="672" />
 We can alter the resolution of our histogram by modifying the width of the bins using the <code>binwidth</code> argument or by specifying the number of bins with the <code>bins</code> argument. The former is useful when you don’t know the range of your data, whereas the latter is useful is you do (i.e. numbers between 0 and 100).</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="visualizations-for-env-chem.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
-<span id="cb226-2"><a href="visualizations-for-env-chem.html#cb226-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
-<span id="cb226-3"><a href="visualizations-for-env-chem.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb226-4"><a href="visualizations-for-env-chem.html#cb226-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018, binwidth = 1&quot;</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
-<div id="multiple-histograms" class="section level3" number="17.3.1">
-<h3><span class="header-section-number">17.3.1</span> Multiple histograms</h3>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="visualizations-for-env-chem.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
+<span id="cb211-2"><a href="visualizations-for-env-chem.html#cb211-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
+<span id="cb211-3"><a href="visualizations-for-env-chem.html#cb211-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb211-4"><a href="visualizations-for-env-chem.html#cb211-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018, binwidth = 1&quot;</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<div id="multiple-histograms" class="section level3" number="16.3.1">
+<h3><span class="header-section-number">16.3.1</span> Multiple histograms</h3>
 <p>While you can overlap histograms, it get’s difficult to read with more than a handful of datasets. If we wanted to plot histograms of all the cities in our dataset we would have to use a small multiple via the <code>facet_grid()</code> or <code>facet_wrap()</code> arguments. <code>facet_grid()</code> allows you to arrange many small plots on a grid defined by variables in your dataset (i.e. columns for provinces, and rows for different pollutants). In the example below we’ve used <code>facet_wrap(~city)</code> which creates a 2D layout of histograms of each cities NO<sub>2</sub> values. Note the tilde , <code>~</code>, preceding in <code>~city</code>.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="visualizations-for-env-chem.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
-<span id="cb227-2"><a href="visualizations-for-env-chem.html#cb227-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
-<span id="cb227-3"><a href="visualizations-for-env-chem.html#cb227-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb227-4"><a href="visualizations-for-env-chem.html#cb227-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>city)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="visualizations-for-env-chem.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
+<span id="cb212-2"><a href="visualizations-for-env-chem.html#cb212-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
+<span id="cb212-3"><a href="visualizations-for-env-chem.html#cb212-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb212-4"><a href="visualizations-for-env-chem.html#cb212-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>city)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 </div>
 </div>
-<div id="scatter-plots" class="section level2" number="17.4">
-<h2><span class="header-section-number">17.4</span> Scatter plots</h2>
+<div id="scatter-plots" class="section level2" number="16.4">
+<h2><span class="header-section-number">16.4</span> Scatter plots</h2>
 <p>Scatter plots display values of two variables, one of which is a <em>continuous</em> variable. Each data point ins plotted as an individual point on.You’ve already made scatter plots in the form of a time series during the Section 1 tutorial exercise. We’ve already touched upon scatter plots during the [Linear Regression] chapter where we also overlaid our linear model over our concentration points. So now we’ll touch upon some things you can do to improve your scatter plots.</p>
-<div id="marginal-plots" class="section level3" number="17.4.1">
-<h3><span class="header-section-number">17.4.1</span> Marginal plots</h3>
+<div id="marginal-plots" class="section level3" number="16.4.1">
+<h3><span class="header-section-number">16.4.1</span> Marginal plots</h3>
 <p>You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. For example, let’s revisit the time series plot we made in <a href="r-coding-basics.html#r-coding-basics">R coding basics</a>. We might want to know the distribution of concentrations of the individual pollutants. using the <code>ggExtra</code> package and the <code>ggMarginal()</code> function we can get the following:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="visualizations-for-env-chem.html#cb228-1" aria-hidden="true" tabindex="-1"></a>torontoAir <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="visualizations-for-env-chem.html#cb213-1" aria-hidden="true" tabindex="-1"></a>torontoAir <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## -- Column specification --------------------------------------------------------
 ## cols(
@@ -602,181 +593,181 @@ We can alter the resolution of our histogram by modifying the width of the bins 
 ##   pollutant = col_character(),
 ##   concentration = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="visualizations-for-env-chem.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note we&#39;re storing our plot in the variable &#39;torPlot&#39;</span></span>
-<span id="cb230-2"><a href="visualizations-for-env-chem.html#cb230-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and we&#39;re not plotting SO2</span></span>
-<span id="cb230-3"><a href="visualizations-for-env-chem.html#cb230-3" aria-hidden="true" tabindex="-1"></a>torPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(torontoAir, pollutant <span class="sc">!=</span> <span class="st">&quot;SO2&quot;</span>), </span>
-<span id="cb230-4"><a href="visualizations-for-env-chem.html#cb230-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
-<span id="cb230-5"><a href="visualizations-for-env-chem.html#cb230-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
-<span id="cb230-6"><a href="visualizations-for-env-chem.html#cb230-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
-<span id="cb230-7"><a href="visualizations-for-env-chem.html#cb230-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb230-8"><a href="visualizations-for-env-chem.html#cb230-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
-<span id="cb230-9"><a href="visualizations-for-env-chem.html#cb230-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-10"><a href="visualizations-for-env-chem.html#cb230-10" aria-hidden="true" tabindex="-1"></a><span class="co"># We&#39;re passing our torPlot to the ggMarginal Function</span></span>
-<span id="cb230-11"><a href="visualizations-for-env-chem.html#cb230-11" aria-hidden="true" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(torPlot, <span class="at">margins =</span> <span class="st">&quot;y&quot;</span>, <span class="at">groupColour =</span> <span class="cn">TRUE</span>, <span class="at">groupFill =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="visualizations-for-env-chem.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note we&#39;re storing our plot in the variable &#39;torPlot&#39;</span></span>
+<span id="cb215-2"><a href="visualizations-for-env-chem.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and we&#39;re not plotting SO2</span></span>
+<span id="cb215-3"><a href="visualizations-for-env-chem.html#cb215-3" aria-hidden="true" tabindex="-1"></a>torPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(torontoAir, pollutant <span class="sc">!=</span> <span class="st">&quot;SO2&quot;</span>), </span>
+<span id="cb215-4"><a href="visualizations-for-env-chem.html#cb215-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
+<span id="cb215-5"><a href="visualizations-for-env-chem.html#cb215-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
+<span id="cb215-6"><a href="visualizations-for-env-chem.html#cb215-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
+<span id="cb215-7"><a href="visualizations-for-env-chem.html#cb215-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb215-8"><a href="visualizations-for-env-chem.html#cb215-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb215-9"><a href="visualizations-for-env-chem.html#cb215-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-10"><a href="visualizations-for-env-chem.html#cb215-10" aria-hidden="true" tabindex="-1"></a><span class="co"># We&#39;re passing our torPlot to the ggMarginal Function</span></span>
+<span id="cb215-11"><a href="visualizations-for-env-chem.html#cb215-11" aria-hidden="true" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(torPlot, <span class="at">margins =</span> <span class="st">&quot;y&quot;</span>, <span class="at">groupColour =</span> <span class="cn">TRUE</span>, <span class="at">groupFill =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 <p>We can now see the distributions of NO<sub>2</sub> and O<sub>3</sub> overlaid on the vertical axis. note that <code>ggMarginal()</code> only works with scatter plots.</p>
 <p>There are plenty of other marginal options scatted about various packages. You can see many of them in action (with beautiful examples) at <a href="http://motioninsocial.com/tufte/#minimal-line-plot">Tufte in R</a> by Lukasz Piwek.</p>
 </div>
 </div>
-<div id="plotting-for-publication" class="section level2" number="17.5">
-<h2><span class="header-section-number">17.5</span> Plotting for publication</h2>
+<div id="plotting-for-publication" class="section level2" number="16.5">
+<h2><span class="header-section-number">16.5</span> Plotting for publication</h2>
 <p>Up until now we haven’t payed much attention to the explicit aesthetics of plots beyond what we needed for our exploratory analysis. However, many journals, publications, instructors, etc. will want plots to adhere to certain aesthetic standards. There’s scores of options to play with, so we recommend you consult the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization.pdf">ggplot2 Cheat Sheet</a>.</p>
-<div id="plot-themes" class="section level3" number="17.5.1">
-<h3><span class="header-section-number">17.5.1</span> Plot Themes</h3>
+<div id="plot-themes" class="section level3" number="16.5.1">
+<h3><span class="header-section-number">16.5.1</span> Plot Themes</h3>
 <p>Overall themes can be applied to ggplot. The simple and minimalist <code>theme_classic()</code> is satisfactory for most submissions, but you can peruse the available these in ggplot <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">here</a> or you can explore many more themes in the <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/"><code>ggthemes</code> package</a>.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="visualizations-for-env-chem.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generating example plot to modify </span></span>
-<span id="cb231-2"><a href="visualizations-for-env-chem.html#cb231-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> torPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> torontoAir, </span>
-<span id="cb231-3"><a href="visualizations-for-env-chem.html#cb231-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
-<span id="cb231-4"><a href="visualizations-for-env-chem.html#cb231-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
-<span id="cb231-5"><a href="visualizations-for-env-chem.html#cb231-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
-<span id="cb231-6"><a href="visualizations-for-env-chem.html#cb231-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
-<span id="cb231-7"><a href="visualizations-for-env-chem.html#cb231-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-8"><a href="visualizations-for-env-chem.html#cb231-8" aria-hidden="true" tabindex="-1"></a><span class="co"># default theme</span></span>
-<span id="cb231-9"><a href="visualizations-for-env-chem.html#cb231-9" aria-hidden="true" tabindex="-1"></a>default <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Default geom_scatter&quot;</span>)</span>
-<span id="cb231-10"><a href="visualizations-for-env-chem.html#cb231-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-11"><a href="visualizations-for-env-chem.html#cb231-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-12"><a href="visualizations-for-env-chem.html#cb231-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Classic theme</span></span>
-<span id="cb231-13"><a href="visualizations-for-env-chem.html#cb231-13" aria-hidden="true" tabindex="-1"></a>classic <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
-<span id="cb231-14"><a href="visualizations-for-env-chem.html#cb231-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb231-15"><a href="visualizations-for-env-chem.html#cb231-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;theme_classic()&quot;</span>)</span>
-<span id="cb231-16"><a href="visualizations-for-env-chem.html#cb231-16" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb231-17"><a href="visualizations-for-env-chem.html#cb231-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-18"><a href="visualizations-for-env-chem.html#cb231-18" aria-hidden="true" tabindex="-1"></a><span class="co"># arranging into grid</span></span>
-<span id="cb231-19"><a href="visualizations-for-env-chem.html#cb231-19" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(default, classic, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="visualizations-for-env-chem.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generating example plot to modify </span></span>
+<span id="cb216-2"><a href="visualizations-for-env-chem.html#cb216-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> torPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> torontoAir, </span>
+<span id="cb216-3"><a href="visualizations-for-env-chem.html#cb216-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
+<span id="cb216-4"><a href="visualizations-for-env-chem.html#cb216-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
+<span id="cb216-5"><a href="visualizations-for-env-chem.html#cb216-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
+<span id="cb216-6"><a href="visualizations-for-env-chem.html#cb216-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
+<span id="cb216-7"><a href="visualizations-for-env-chem.html#cb216-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb216-8"><a href="visualizations-for-env-chem.html#cb216-8" aria-hidden="true" tabindex="-1"></a><span class="co"># default theme</span></span>
+<span id="cb216-9"><a href="visualizations-for-env-chem.html#cb216-9" aria-hidden="true" tabindex="-1"></a>default <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Default geom_scatter&quot;</span>)</span>
+<span id="cb216-10"><a href="visualizations-for-env-chem.html#cb216-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb216-11"><a href="visualizations-for-env-chem.html#cb216-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb216-12"><a href="visualizations-for-env-chem.html#cb216-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Classic theme</span></span>
+<span id="cb216-13"><a href="visualizations-for-env-chem.html#cb216-13" aria-hidden="true" tabindex="-1"></a>classic <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb216-14"><a href="visualizations-for-env-chem.html#cb216-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb216-15"><a href="visualizations-for-env-chem.html#cb216-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;theme_classic()&quot;</span>)</span>
+<span id="cb216-16"><a href="visualizations-for-env-chem.html#cb216-16" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb216-17"><a href="visualizations-for-env-chem.html#cb216-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb216-18"><a href="visualizations-for-env-chem.html#cb216-18" aria-hidden="true" tabindex="-1"></a><span class="co"># arranging into grid</span></span>
+<span id="cb216-19"><a href="visualizations-for-env-chem.html#cb216-19" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(default, classic, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 </div>
-<div id="legends" class="section level3" number="17.5.2">
-<h3><span class="header-section-number">17.5.2</span> Legends</h3>
+<div id="legends" class="section level3" number="16.5.2">
+<h3><span class="header-section-number">16.5.2</span> Legends</h3>
 <p>You can specify the position of the legend under the <code>theme()</code> option as such:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="visualizations-for-env-chem.html#cb232-1" aria-hidden="true" tabindex="-1"></a>bottom <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
-<span id="cb232-2"><a href="visualizations-for-env-chem.html#cb232-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb232-3"><a href="visualizations-for-env-chem.html#cb232-3" aria-hidden="true" tabindex="-1"></a>inside <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">95</span>, .<span class="dv">95</span>))</span>
-<span id="cb232-4"><a href="visualizations-for-env-chem.html#cb232-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb232-5"><a href="visualizations-for-env-chem.html#cb232-5" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(bottom, inside, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-114-1.png" width="672" />
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="visualizations-for-env-chem.html#cb217-1" aria-hidden="true" tabindex="-1"></a>bottom <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb217-2"><a href="visualizations-for-env-chem.html#cb217-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-3"><a href="visualizations-for-env-chem.html#cb217-3" aria-hidden="true" tabindex="-1"></a>inside <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">95</span>, .<span class="dv">95</span>))</span>
+<span id="cb217-4"><a href="visualizations-for-env-chem.html#cb217-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-5"><a href="visualizations-for-env-chem.html#cb217-5" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(bottom, inside, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-110-1.png" width="672" />
 Other legend positions include: “none,” “left,” “right,” “bottom,” “top,” or a two-element numeric vector to specify the location such as <code>c(0.95, 0.95)</code> for inside the top-right corner. <code>c(0.05, 0.05)</code> would place it inside the bottom right corner, and so on. Also note that <code>legend.position = "none"</code> will remove the legend entirely.</p>
 </div>
-<div id="modifying-labels" class="section level3" number="17.5.3">
-<h3><span class="header-section-number">17.5.3</span> Modifying labels</h3>
+<div id="modifying-labels" class="section level3" number="16.5.3">
+<h3><span class="header-section-number">16.5.3</span> Modifying labels</h3>
 <p>The labels generated for the plots are derived from the variable names passed along to the <code>ggplot()</code> function. Consequently, variable names that are easy to code become ugly labels on the plot. You can modify labels using the <code>labs()</code> function. Note in the example below that we changed the legend’s title by specifying what <code>aes()</code> option we used to create the legend; in the example below it’s <code>colour</code>.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="visualizations-for-env-chem.html#cb233-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Toronto Air quality&quot;</span>,</span>
-<span id="cb233-2"><a href="visualizations-for-env-chem.html#cb233-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">&quot;from Jan 1st to 8th, 2018&quot;</span>, </span>
-<span id="cb233-3"><a href="visualizations-for-env-chem.html#cb233-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>,</span>
-<span id="cb233-4"><a href="visualizations-for-env-chem.html#cb233-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Concentration (ppb)&quot;</span>,</span>
-<span id="cb233-5"><a href="visualizations-for-env-chem.html#cb233-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">colour =</span> <span class="st">&quot;Pollutant&quot;</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="visualizations-for-env-chem.html#cb218-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Toronto Air quality&quot;</span>,</span>
+<span id="cb218-2"><a href="visualizations-for-env-chem.html#cb218-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">&quot;from Jan 1st to 8th, 2018&quot;</span>, </span>
+<span id="cb218-3"><a href="visualizations-for-env-chem.html#cb218-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb218-4"><a href="visualizations-for-env-chem.html#cb218-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Concentration (ppb)&quot;</span>,</span>
+<span id="cb218-5"><a href="visualizations-for-env-chem.html#cb218-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">colour =</span> <span class="st">&quot;Pollutant&quot;</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 </div>
-<div id="modifying-axis" class="section level3" number="17.5.4">
-<h3><span class="header-section-number">17.5.4</span> Modifying Axis</h3>
+<div id="modifying-axis" class="section level3" number="16.5.4">
+<h3><span class="header-section-number">16.5.4</span> Modifying Axis</h3>
 <p>We’ve already talked about labelling axis titles in <a href="visualizations-for-env-chem.html#modifying-labels">Modifying labels</a>, and adding marginal plots in <a href="visualizations-for-env-chem.html#scatter-plots">Scatter plots</a>. So we’ll just briefly touch upon some simple axis modifications.</p>
-<div id="transforming-axix" class="section level4" number="17.5.4.1">
-<h4><span class="header-section-number">17.5.4.1</span> Transforming axix</h4>
+<div id="transforming-axix" class="section level4" number="16.5.4.1">
+<h4><span class="header-section-number">16.5.4.1</span> Transforming axix</h4>
 <p>Transformations are largely related to <em>continuous</em> data, and are done using <code>scale_y_continuous()</code> or <code>scale_x_continuous()</code> functions. For example to scale the y-axis of our plot we’d do the following:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="visualizations-for-env-chem.html#cb234-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
-<span id="cb234-2"><a href="visualizations-for-env-chem.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>) <span class="sc">+</span></span>
-<span id="cb234-3"><a href="visualizations-for-env-chem.html#cb234-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Log10(concentration)&quot;</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="visualizations-for-env-chem.html#cb219-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb219-2"><a href="visualizations-for-env-chem.html#cb219-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>) <span class="sc">+</span></span>
+<span id="cb219-3"><a href="visualizations-for-env-chem.html#cb219-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Log10(concentration)&quot;</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <p>Other useful transformations include “log2” for base-2 logs, “date” for dates, and “hms” for time. The later two are useful if R hasn’t correctly interpreted your dataset. The data type for the <code>data.time</code> column of our dataset was correctly interpreted during our initial importation using <code>read_csv()</code>. Hooray for doing it right the first time.</p>
 </div>
-<div id="limits" class="section level4" number="17.5.4.2">
-<h4><span class="header-section-number">17.5.4.2</span> Limits</h4>
+<div id="limits" class="section level4" number="16.5.4.2">
+<h4><span class="header-section-number">16.5.4.2</span> Limits</h4>
 <p>The limits of plots created with <code>ggplot()</code> are automatically assigned, but you can override these using the <code>lims()</code> function. For example we can specify the limits of our example plot to show from 0 to 100 ppb:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="visualizations-for-env-chem.html#cb235-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-117-1.png" width="672" />
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="visualizations-for-env-chem.html#cb220-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-113-1.png" width="672" />
 #### Axis ticks/labels</p>
 <p>Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the name of cities like we’ve encountered earlier. We addressed this earlier in [Bar charts] by rotating the plot 90<span class="math inline">\(^\circ\)</span> with the <code>coord_flip()</code> function. This is often the best solution as it’s how we read English. Another solution is to rotate the axis labels themselves:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="visualizations-for-env-chem.html#cb236-1" aria-hidden="true" tabindex="-1"></a>basePlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(sumAtl, p <span class="sc">==</span> <span class="st">&quot;NL&quot;</span>),</span>
-<span id="cb236-2"><a href="visualizations-for-env-chem.html#cb236-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, </span>
-<span id="cb236-3"><a href="visualizations-for-env-chem.html#cb236-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
-<span id="cb236-4"><a href="visualizations-for-env-chem.html#cb236-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
-<span id="cb236-5"><a href="visualizations-for-env-chem.html#cb236-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb236-6"><a href="visualizations-for-env-chem.html#cb236-6" aria-hidden="true" tabindex="-1"></a>default <span class="ot">&lt;-</span> basePlot <span class="sc">+</span></span>
-<span id="cb236-7"><a href="visualizations-for-env-chem.html#cb236-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;default plot&quot;</span>)</span>
-<span id="cb236-8"><a href="visualizations-for-env-chem.html#cb236-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb236-9"><a href="visualizations-for-env-chem.html#cb236-9" aria-hidden="true" tabindex="-1"></a>flip <span class="ot">&lt;-</span> basePlot <span class="sc">+</span></span>
-<span id="cb236-10"><a href="visualizations-for-env-chem.html#cb236-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb236-11"><a href="visualizations-for-env-chem.html#cb236-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;coord_flip()&quot;</span>)</span>
-<span id="cb236-12"><a href="visualizations-for-env-chem.html#cb236-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb236-13"><a href="visualizations-for-env-chem.html#cb236-13" aria-hidden="true" tabindex="-1"></a>rotated <span class="ot">&lt;-</span> basePlot <span class="sc">+</span></span>
-<span id="cb236-14"><a href="visualizations-for-env-chem.html#cb236-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)) <span class="sc">+</span></span>
-<span id="cb236-15"><a href="visualizations-for-env-chem.html#cb236-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;element_text(angle = 45)&quot;</span>)</span>
-<span id="cb236-16"><a href="visualizations-for-env-chem.html#cb236-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb236-17"><a href="visualizations-for-env-chem.html#cb236-17" aria-hidden="true" tabindex="-1"></a>rotatedHJust <span class="ot">&lt;-</span> basePlot <span class="sc">+</span></span>
-<span id="cb236-18"><a href="visualizations-for-env-chem.html#cb236-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb236-19"><a href="visualizations-for-env-chem.html#cb236-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;element_text(angle = 45, hjust = 1)&quot;</span>)</span>
-<span id="cb236-20"><a href="visualizations-for-env-chem.html#cb236-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb236-21"><a href="visualizations-for-env-chem.html#cb236-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb236-22"><a href="visualizations-for-env-chem.html#cb236-22" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(default, flip, rotated, rotatedHJust, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-118-1.png" width="672" />
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="visualizations-for-env-chem.html#cb221-1" aria-hidden="true" tabindex="-1"></a>basePlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(sumAtl, p <span class="sc">==</span> <span class="st">&quot;NL&quot;</span>),</span>
+<span id="cb221-2"><a href="visualizations-for-env-chem.html#cb221-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, </span>
+<span id="cb221-3"><a href="visualizations-for-env-chem.html#cb221-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb221-4"><a href="visualizations-for-env-chem.html#cb221-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb221-5"><a href="visualizations-for-env-chem.html#cb221-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-6"><a href="visualizations-for-env-chem.html#cb221-6" aria-hidden="true" tabindex="-1"></a>default <span class="ot">&lt;-</span> basePlot <span class="sc">+</span></span>
+<span id="cb221-7"><a href="visualizations-for-env-chem.html#cb221-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;default plot&quot;</span>)</span>
+<span id="cb221-8"><a href="visualizations-for-env-chem.html#cb221-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-9"><a href="visualizations-for-env-chem.html#cb221-9" aria-hidden="true" tabindex="-1"></a>flip <span class="ot">&lt;-</span> basePlot <span class="sc">+</span></span>
+<span id="cb221-10"><a href="visualizations-for-env-chem.html#cb221-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb221-11"><a href="visualizations-for-env-chem.html#cb221-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;coord_flip()&quot;</span>)</span>
+<span id="cb221-12"><a href="visualizations-for-env-chem.html#cb221-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-13"><a href="visualizations-for-env-chem.html#cb221-13" aria-hidden="true" tabindex="-1"></a>rotated <span class="ot">&lt;-</span> basePlot <span class="sc">+</span></span>
+<span id="cb221-14"><a href="visualizations-for-env-chem.html#cb221-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)) <span class="sc">+</span></span>
+<span id="cb221-15"><a href="visualizations-for-env-chem.html#cb221-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;element_text(angle = 45)&quot;</span>)</span>
+<span id="cb221-16"><a href="visualizations-for-env-chem.html#cb221-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-17"><a href="visualizations-for-env-chem.html#cb221-17" aria-hidden="true" tabindex="-1"></a>rotatedHJust <span class="ot">&lt;-</span> basePlot <span class="sc">+</span></span>
+<span id="cb221-18"><a href="visualizations-for-env-chem.html#cb221-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb221-19"><a href="visualizations-for-env-chem.html#cb221-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;element_text(angle = 45, hjust = 1)&quot;</span>)</span>
+<span id="cb221-20"><a href="visualizations-for-env-chem.html#cb221-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-21"><a href="visualizations-for-env-chem.html#cb221-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-22"><a href="visualizations-for-env-chem.html#cb221-22" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(default, flip, rotated, rotatedHJust, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-114-1.png" width="672" />
 ## Arranging plots</p>
 <p>We talked about how facets can be used to generate multiple plots from a dataset (small multiples), but sometimes you want to combine two or more <em>different</em> plots together. There are a couple of ways, but we’ve been using <code>grid.arrange()</code> from the <code>gridExtra</code> pacakge (as demonstrated above). You can read up on <a href="https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html"><code>gridExtra</code> here</a>. There is also the <a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html"><code>ggarrange</code> function</a> from the <code>ggpubr</code> package which, amongst other things, can easily create shared legends between plots.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="visualizations-for-env-chem.html#cb237-1" aria-hidden="true" tabindex="-1"></a>colchart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl,</span>
-<span id="cb237-2"><a href="visualizations-for-env-chem.html#cb237-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, mean),</span>
-<span id="cb237-3"><a href="visualizations-for-env-chem.html#cb237-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> mean, </span>
-<span id="cb237-4"><a href="visualizations-for-env-chem.html#cb237-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> p)) <span class="sc">+</span></span>
-<span id="cb237-5"><a href="visualizations-for-env-chem.html#cb237-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb237-6"><a href="visualizations-for-env-chem.html#cb237-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
-<span id="cb237-7"><a href="visualizations-for-env-chem.html#cb237-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb237-8"><a href="visualizations-for-env-chem.html#cb237-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span>
-<span id="cb237-9"><a href="visualizations-for-env-chem.html#cb237-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb237-10"><a href="visualizations-for-env-chem.html#cb237-10" aria-hidden="true" tabindex="-1"></a>boxplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
-<span id="cb237-11"><a href="visualizations-for-env-chem.html#cb237-11" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">aes</span>( <span class="at">x =</span> city, </span>
-<span id="cb237-12"><a href="visualizations-for-env-chem.html#cb237-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> conc,</span>
-<span id="cb237-13"><a href="visualizations-for-env-chem.html#cb237-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> p)) <span class="sc">+</span></span>
-<span id="cb237-14"><a href="visualizations-for-env-chem.html#cb237-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb237-15"><a href="visualizations-for-env-chem.html#cb237-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb237-16"><a href="visualizations-for-env-chem.html#cb237-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb237-17"><a href="visualizations-for-env-chem.html#cb237-17" aria-hidden="true" tabindex="-1"></a>boxplot</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="visualizations-for-env-chem.html#cb238-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(colchart, </span>
-<span id="cb238-2"><a href="visualizations-for-env-chem.html#cb238-2" aria-hidden="true" tabindex="-1"></a>                  boxplot, </span>
-<span id="cb238-3"><a href="visualizations-for-env-chem.html#cb238-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ncol =</span> <span class="dv">2</span>, </span>
-<span id="cb238-4"><a href="visualizations-for-env-chem.html#cb238-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrow =</span> <span class="dv">1</span>,</span>
-<span id="cb238-5"><a href="visualizations-for-env-chem.html#cb238-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),</span>
-<span id="cb238-6"><a href="visualizations-for-env-chem.html#cb238-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">common.legend =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb238-7"><a href="visualizations-for-env-chem.html#cb238-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">legend =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-119-2.png" width="672" /></p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="visualizations-for-env-chem.html#cb222-1" aria-hidden="true" tabindex="-1"></a>colchart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl,</span>
+<span id="cb222-2"><a href="visualizations-for-env-chem.html#cb222-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, mean),</span>
+<span id="cb222-3"><a href="visualizations-for-env-chem.html#cb222-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> mean, </span>
+<span id="cb222-4"><a href="visualizations-for-env-chem.html#cb222-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> p)) <span class="sc">+</span></span>
+<span id="cb222-5"><a href="visualizations-for-env-chem.html#cb222-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb222-6"><a href="visualizations-for-env-chem.html#cb222-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
+<span id="cb222-7"><a href="visualizations-for-env-chem.html#cb222-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
+<span id="cb222-8"><a href="visualizations-for-env-chem.html#cb222-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span>
+<span id="cb222-9"><a href="visualizations-for-env-chem.html#cb222-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-10"><a href="visualizations-for-env-chem.html#cb222-10" aria-hidden="true" tabindex="-1"></a>boxplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
+<span id="cb222-11"><a href="visualizations-for-env-chem.html#cb222-11" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">aes</span>( <span class="at">x =</span> city, </span>
+<span id="cb222-12"><a href="visualizations-for-env-chem.html#cb222-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> conc,</span>
+<span id="cb222-13"><a href="visualizations-for-env-chem.html#cb222-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> p)) <span class="sc">+</span></span>
+<span id="cb222-14"><a href="visualizations-for-env-chem.html#cb222-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb222-15"><a href="visualizations-for-env-chem.html#cb222-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb222-16"><a href="visualizations-for-env-chem.html#cb222-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-17"><a href="visualizations-for-env-chem.html#cb222-17" aria-hidden="true" tabindex="-1"></a>boxplot</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="visualizations-for-env-chem.html#cb223-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(colchart, </span>
+<span id="cb223-2"><a href="visualizations-for-env-chem.html#cb223-2" aria-hidden="true" tabindex="-1"></a>                  boxplot, </span>
+<span id="cb223-3"><a href="visualizations-for-env-chem.html#cb223-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ncol =</span> <span class="dv">2</span>, </span>
+<span id="cb223-4"><a href="visualizations-for-env-chem.html#cb223-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrow =</span> <span class="dv">1</span>,</span>
+<span id="cb223-5"><a href="visualizations-for-env-chem.html#cb223-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),</span>
+<span id="cb223-6"><a href="visualizations-for-env-chem.html#cb223-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">common.legend =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb223-7"><a href="visualizations-for-env-chem.html#cb223-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">legend =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-115-2.png" width="672" /></p>
 </div>
 </div>
-<div id="anotating-plots" class="section level3" number="17.5.5">
-<h3><span class="header-section-number">17.5.5</span> Anotating plots</h3>
+<div id="anotating-plots" class="section level3" number="16.5.5">
+<h3><span class="header-section-number">16.5.5</span> Anotating plots</h3>
 <p>Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different then <em>captions</em>, which is accomplished in the <code>rmarkdown</code> chunk header (see <a href="using-r-markdown.html#r-code-chunk-options">R code chunk options</a> for a refresher).</p>
-<p>Let’s quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualzie them spatially. Note, the map we’re making here is rather basic, to make prettier maps see <a href="chm410-air-quality-lab.html#chm410-air-quality-lab">CHM410: Air Quality Lab</a>.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="visualizations-for-env-chem.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># need lat and long value for map</span></span>
-<span id="cb239-2"><a href="visualizations-for-env-chem.html#cb239-2" aria-hidden="true" tabindex="-1"></a>mapNO2 <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
-<span id="cb239-3"><a href="visualizations-for-env-chem.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(latitude, longitude, p,  city) <span class="sc">%&gt;%</span></span>
-<span id="cb239-4"><a href="visualizations-for-env-chem.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(conc))</span>
-<span id="cb239-5"><a href="visualizations-for-env-chem.html#cb239-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb239-6"><a href="visualizations-for-env-chem.html#cb239-6" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;ggmap&quot;)</span></span>
-<span id="cb239-7"><a href="visualizations-for-env-chem.html#cb239-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)</span>
-<span id="cb239-8"><a href="visualizations-for-env-chem.html#cb239-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb239-9"><a href="visualizations-for-env-chem.html#cb239-9" aria-hidden="true" tabindex="-1"></a>atlMap <span class="ot">&lt;-</span> <span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> <span class="fu">make_bbox</span>(<span class="at">lon =</span> mapNO2<span class="sc">$</span>longitude, </span>
-<span id="cb239-10"><a href="visualizations-for-env-chem.html#cb239-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">lat =</span> mapNO2<span class="sc">$</span>latitude, </span>
-<span id="cb239-11"><a href="visualizations-for-env-chem.html#cb239-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">f =</span> <span class="fl">0.1</span>), </span>
-<span id="cb239-12"><a href="visualizations-for-env-chem.html#cb239-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">zoom =</span> <span class="dv">6</span>, </span>
-<span id="cb239-13"><a href="visualizations-for-env-chem.html#cb239-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">maptype =</span> <span class="st">&quot;terrain&quot;</span>, </span>
-<span id="cb239-14"><a href="visualizations-for-env-chem.html#cb239-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">crop =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb239-15"><a href="visualizations-for-env-chem.html#cb239-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb239-16"><a href="visualizations-for-env-chem.html#cb239-16" aria-hidden="true" tabindex="-1"></a>atlMap <span class="ot">&lt;-</span> <span class="fu">ggmap</span>(atlMap) </span>
-<span id="cb239-17"><a href="visualizations-for-env-chem.html#cb239-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb239-18"><a href="visualizations-for-env-chem.html#cb239-18" aria-hidden="true" tabindex="-1"></a>atlMap</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
-<p>Now we want to plot our annual mean 1-hr [NO2] onto the map. We’ve covered this in detail in <a href="chm410-air-quality-lab.html#plotting-airbeam-data-spatially">Plotting Airbeam data spatially</a>, but for this plot we spefically want to annotate each point with it’s corresponding city location. Doing this manually would take ages, so we’re going to use the <a href="https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html"><code>ggrepel</code> package</a>. We simply need to specify which column (<code>naps id</code>) we’ll use for our labels:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="visualizations-for-env-chem.html#cb240-1" aria-hidden="true" tabindex="-1"></a>atlMap <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> mapNO2, </span>
-<span id="cb240-2"><a href="visualizations-for-env-chem.html#cb240-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>longitude,</span>
-<span id="cb240-3"><a href="visualizations-for-env-chem.html#cb240-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y=</span>latitude,</span>
-<span id="cb240-4"><a href="visualizations-for-env-chem.html#cb240-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colour =</span> mean,</span>
-<span id="cb240-5"><a href="visualizations-for-env-chem.html#cb240-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size =</span> mean),</span>
-<span id="cb240-6"><a href="visualizations-for-env-chem.html#cb240-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb240-7"><a href="visualizations-for-env-chem.html#cb240-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha</span>(<span class="at">guide =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> <span class="co"># removing legend for alpha</span></span>
-<span id="cb240-8"><a href="visualizations-for-env-chem.html#cb240-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">guide =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> <span class="co"># removing legend for size</span></span>
-<span id="cb240-9"><a href="visualizations-for-env-chem.html#cb240-9" aria-hidden="true" tabindex="-1"></a>  ggrepel<span class="sc">::</span><span class="fu">geom_label_repel</span>(<span class="at">data =</span> mapNO2, </span>
-<span id="cb240-10"><a href="visualizations-for-env-chem.html#cb240-10" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">aes</span>(<span class="at">x=</span>longitude,</span>
-<span id="cb240-11"><a href="visualizations-for-env-chem.html#cb240-11" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y=</span>latitude,</span>
-<span id="cb240-12"><a href="visualizations-for-env-chem.html#cb240-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">label =</span> city),</span>
-<span id="cb240-13"><a href="visualizations-for-env-chem.html#cb240-13" aria-hidden="true" tabindex="-1"></a>                            <span class="at">box.padding =</span> <span class="fl">0.5</span>,</span>
-<span id="cb240-14"><a href="visualizations-for-env-chem.html#cb240-14" aria-hidden="true" tabindex="-1"></a>                            <span class="at">max.overlaps =</span> <span class="cn">Inf</span>)</span></code></pre></div>
-<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+<p>Let’s quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualzie them spatially. Note, the map we’re making here is rather basic, to make prettier maps see [CHM410: Air Quality Lab].</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="visualizations-for-env-chem.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># need lat and long value for map</span></span>
+<span id="cb224-2"><a href="visualizations-for-env-chem.html#cb224-2" aria-hidden="true" tabindex="-1"></a>mapNO2 <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
+<span id="cb224-3"><a href="visualizations-for-env-chem.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(latitude, longitude, p,  city) <span class="sc">%&gt;%</span></span>
+<span id="cb224-4"><a href="visualizations-for-env-chem.html#cb224-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(conc))</span>
+<span id="cb224-5"><a href="visualizations-for-env-chem.html#cb224-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb224-6"><a href="visualizations-for-env-chem.html#cb224-6" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;ggmap&quot;)</span></span>
+<span id="cb224-7"><a href="visualizations-for-env-chem.html#cb224-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)</span>
+<span id="cb224-8"><a href="visualizations-for-env-chem.html#cb224-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb224-9"><a href="visualizations-for-env-chem.html#cb224-9" aria-hidden="true" tabindex="-1"></a>atlMap <span class="ot">&lt;-</span> <span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> <span class="fu">make_bbox</span>(<span class="at">lon =</span> mapNO2<span class="sc">$</span>longitude, </span>
+<span id="cb224-10"><a href="visualizations-for-env-chem.html#cb224-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">lat =</span> mapNO2<span class="sc">$</span>latitude, </span>
+<span id="cb224-11"><a href="visualizations-for-env-chem.html#cb224-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">f =</span> <span class="fl">0.1</span>), </span>
+<span id="cb224-12"><a href="visualizations-for-env-chem.html#cb224-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">zoom =</span> <span class="dv">6</span>, </span>
+<span id="cb224-13"><a href="visualizations-for-env-chem.html#cb224-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">maptype =</span> <span class="st">&quot;terrain&quot;</span>, </span>
+<span id="cb224-14"><a href="visualizations-for-env-chem.html#cb224-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">crop =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb224-15"><a href="visualizations-for-env-chem.html#cb224-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb224-16"><a href="visualizations-for-env-chem.html#cb224-16" aria-hidden="true" tabindex="-1"></a>atlMap <span class="ot">&lt;-</span> <span class="fu">ggmap</span>(atlMap) </span>
+<span id="cb224-17"><a href="visualizations-for-env-chem.html#cb224-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb224-18"><a href="visualizations-for-env-chem.html#cb224-18" aria-hidden="true" tabindex="-1"></a>atlMap</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p>Now we want to plot our annual mean 1-hr [NO2] onto the map. We’ve covered this in detail in [Plotting Airbeam data spatially], but for this plot we spefically want to annotate each point with it’s corresponding city location. Doing this manually would take ages, so we’re going to use the <a href="https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html"><code>ggrepel</code> package</a>. We simply need to specify which column (<code>naps id</code>) we’ll use for our labels:</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="visualizations-for-env-chem.html#cb225-1" aria-hidden="true" tabindex="-1"></a>atlMap <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> mapNO2, </span>
+<span id="cb225-2"><a href="visualizations-for-env-chem.html#cb225-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>longitude,</span>
+<span id="cb225-3"><a href="visualizations-for-env-chem.html#cb225-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y=</span>latitude,</span>
+<span id="cb225-4"><a href="visualizations-for-env-chem.html#cb225-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colour =</span> mean,</span>
+<span id="cb225-5"><a href="visualizations-for-env-chem.html#cb225-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size =</span> mean),</span>
+<span id="cb225-6"><a href="visualizations-for-env-chem.html#cb225-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb225-7"><a href="visualizations-for-env-chem.html#cb225-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha</span>(<span class="at">guide =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> <span class="co"># removing legend for alpha</span></span>
+<span id="cb225-8"><a href="visualizations-for-env-chem.html#cb225-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">guide =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> <span class="co"># removing legend for size</span></span>
+<span id="cb225-9"><a href="visualizations-for-env-chem.html#cb225-9" aria-hidden="true" tabindex="-1"></a>  ggrepel<span class="sc">::</span><span class="fu">geom_label_repel</span>(<span class="at">data =</span> mapNO2, </span>
+<span id="cb225-10"><a href="visualizations-for-env-chem.html#cb225-10" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">aes</span>(<span class="at">x=</span>longitude,</span>
+<span id="cb225-11"><a href="visualizations-for-env-chem.html#cb225-11" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y=</span>latitude,</span>
+<span id="cb225-12"><a href="visualizations-for-env-chem.html#cb225-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">label =</span> city),</span>
+<span id="cb225-13"><a href="visualizations-for-env-chem.html#cb225-13" aria-hidden="true" tabindex="-1"></a>                            <span class="at">box.padding =</span> <span class="fl">0.5</span>,</span>
+<span id="cb225-14"><a href="visualizations-for-env-chem.html#cb225-14" aria-hidden="true" tabindex="-1"></a>                            <span class="at">max.overlaps =</span> <span class="cn">Inf</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <p>Again, not the prettiest map, but that’s up to you to fix in post. <a href="https://ggrepel.slowkow.com/articles/examples.html"><code>geom_text_repel()</code></a> is an incredibly useful package for quickly annotating plots. If you need to label/annotate points check it out.</p>
 
 </div>
@@ -788,7 +779,7 @@ Other legend positions include: “none,” “left,” “right,” “bottom,�
         </div>
       </div>
 <a href="summarizing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linear-regression-redux.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelling-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

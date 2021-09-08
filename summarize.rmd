@@ -1,4 +1,4 @@
-# Summarizing data
+# Summarizing Data
 
 Sumamrizing data is what it sounds like. You're reducing the number of rows in your dataset based on some predermined method. Taking the average of a group of numbers is summarizing the data. Many numbers have been condensed to one: the average. In this chapter we'll go over sumamrizing data, and some aesthetic changes we can make for publication ready tables. 
 
