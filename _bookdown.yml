@@ -31,10 +31,10 @@ rmd_files:  [
   "summarize.rmd", 
   "visualizations-redux.Rmd", 
   "linear-regression.Rmd",
-  "non-linear-models.Rmd" #,
+  "non-linear-models.Rmd" ,
   
   # # Section 4: CHM410 Labs
-  # "CHM410-airQuality.Rmd"
+  "CHM410-airQuality.Rmd"
   # # "CHM410-NMR.Rmd"
   
   ]
