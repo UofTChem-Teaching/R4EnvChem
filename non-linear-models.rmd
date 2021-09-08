@@ -1,4 +1,4 @@
-# Non-Linear Regression 
+# Modelling: Non-Linear Regression 
 
 **Note this is from the proof-of-concept book and will be shortened/narrowed down to talk about non-l;inear regression in general while using a logistic regreassion as an example. Will be reworked shortly, just posting so people get an idea. - DH**
 
