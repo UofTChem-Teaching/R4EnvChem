@@ -1,10 +1,10 @@
 # Summarizing Data
 
-Sumamrizing data is what it sounds like. You're reducing the number of rows in your dataset based on some predermined method. Taking the average of a group of numbers is summarizing the data. Many numbers have been condensed to one: the average. In this chapter we'll go over sumamrizing data, and some aesthetic changes we can make for publication ready tables. 
+Summarizing data is what it sounds like. You're reducing the number of rows in your dataset based on some predetermined method. Taking the average of a group of numbers is summarizing the data. Many numbers have been condensed to one: the average. In this chapter we'll go over summarizing data, and some aesthetic changes we can make for publication ready tables. 
 
 ## Data to play with
 
-We'll take a look at the 2018 hourly mean NO~2~ concentrations for the Atlantic provinces (New Brunswick, Prince Edward Island, Nova Scotia, and Newfoundlan). The dataset is available in the [*R4EnvChem* Project Template](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate) repository. Also if you're keen you can download any number of atmospheric datasets from *Environment and Climate Change Canada*'s (ECCC) National Airborn Pollution Program's (NAPS) website [here](https://data.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en) 
+We'll take a look at the 2018 hourly mean NO~2~ concentrations for the Atlantic provinces (New Brunswick, Prince Edward Island, Nova Scotia, and Newfoundland). The dataset is available in the [*R4EnvChem* Project Template](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate) repository. Also if you're keen, you can download any number of atmospheric datasets from *Environment and Climate Change Canada*'s (ECCC) National Airborne Pollution Program's (NAPS) website [here](https://data.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en) 
 
 Since ECCC stores their NAPS data in a matrix layout, we need to briefly tidy it up:
 
@@ -24,7 +24,7 @@ atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
 DT::datatable(atlNO2[1:50, ])
 ```
 
-Note in our dataset that both Halifax NS and Saint John NB have three NAPS stations each. It won't matter for our aggregation, but if we were xploring this data in more depth this is something we would want to take into account. 
+Note in our dataset that both Halifax NS and Saint John NB have three NAPS stations each. It won't matter for our aggregation, but if we were exploring this data in more depth this is something we would want to take into account. 
 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
@@ -52,9 +52,9 @@ ggplot(data = naps,
 
 ## Summarizing data by group
 
-We need to combine the`group_by()` and `summarize()` functions. `summarise()` also works... What this does is (1) allows us to specify which groups we want summarize, and (2) how we want it summarized. We'll talk more about point (2) later on, for now, let's look at point (1)
+While we can readily summarize an entire dataset, we often want to summarize *groups* within our dataset. In our case, it's [NO~2~] in each city. To this end, we need to combine the`group_by()` and `summarize()` functions. `summarise()` also works for the Americans. This approach allows us to (1) specify which groups we want summarized, and (2) how we want them summarized. We'll talk more about point (2) later on, for now, let's look at point (1)
 
-Let's look at an example where we calculate the mean hourly NO~2~ concentrations in the `r length(unique(atlNO2$p))` provinces in our dataset:
+Let's calculate the mean hourly NO~2~ concentrations in the `r length(unique(atlNO2$p))` provinces in our dataset:
 
 ```{r, message = FALSE}
 
@@ -68,13 +68,13 @@ sumAtl
 
 That's it. `r length(atlNO2$conc)` unique rows summarized like that. Note that `summarize` produces a *new* data frame, so you'll want to double check on the outputted data types. Let's break down what our code does: 
 
-  - We're creating a new dataframe, so we're going to store it in `sumAtl`.
-  - We then take out `atlNO2` dataset and  we group our datasets by province (`group_by(p)`)
-  - We then summarize our groupped data by summarizing the NO~2~ concentration with `sumaraize(mean = mean(conc)). 
+  - We're creating a new data frame, so we store it in `sumAtl`.
+  - We then take our `atlNO2` dataset and  group our dataset by province using `group_by(p)`.
+  - We then summarize our grouped data by summarizing the NO~2~ concentration with `summarize(mean = mean(conc)`. 
     - Note that since we're creating a new data set, we need to create new columns. This is what `mean = mean(conc)` does. We're creating a column *called mean*, which contains the *numerical mean* 1-hr NO~2~ values which were calculated using the `mean()` function. Simple...
     
     
-Let's dig a little deeper. The [*Canadian Ambient Air Quality Standards*](https://ccme.ca/en/air-quality-report) stipulate that the annual mean of 1-hour means for NO~2~ cannot exceed 17.0 ppb in 2020, and 12.0 ppb in 2025. Let's see if any city in our dataset violated these standards in 2018. 
+Let's dig a little deeper. The [*Canadian Ambient Air Quality Standards*](https://ccme.ca/en/air-quality-report) stipulates that the annual mean of 1-hour means for NO~2~ cannot exceed 17.0 ppb in 2020, and 12.0 ppb in 2025. Let's see if any city in our dataset violated these standards in 2018. 
 
 To do this, we'll group by province (`p`) and city (`city`). This will retain our provinces column that we might want to use later on. 
 
@@ -86,16 +86,17 @@ sumAtl <- atlNO2 %>%
 sumAtl
 ```
 
+Looks like there aren't any offenders. For tips on visualizing these results please see the [Visualizations] chapter.
 
-### Further sumarize operations
+### Further summarize operations
 
-There are other options we can use to sumamrize out data. A handy list is proviced in the [summarize help page](https://dplyr.tidyverse.org/reference/summarise.html). The most common ones you'll need are :
+There are other options we can use to summarize out data. A handy list is provided on the [`summarize()` help page](https://dplyr.tidyverse.org/reference/summarise.html). The most common ones you'll need are:
 
-  - `mean()` which calcualted the arithmetic mean, a.k.a. the average. 
-  - `median()` which calcualted the sample media, the value separating the higher half from the lower half of a data sample.
-  - `sd()` which calcualted the sample standard deviation. 
-  - `min()` and `max()` which returnt he smallest and largest value in the dataset. 
-  - `n()` which provides the number of entires in a group. Note you don't specify a variable for n. 
+  - `mean()` which calculates the arithmetic mean, a.k.a. the average. 
+  - `median()` which calculates the sample median, the value separating the higher 50% of data from the lower 50% of a data sample.
+  - `sd()` which calculates the sample standard deviation. 
+  - `min()` and `max()` which returns the smallest and largest value in the dataset. 
+  - `n()` which provides the number of entries in a group. Note you don't specify a variable for n. 
 
 Let's seem them in action: 
 
@@ -116,9 +117,9 @@ Note that the functions we pass to summarize adhere to rules of missing values. 
 
 ## Pretty tables with flextable
 
-While the summarize function does an excellent job of summarizing our data, the outputted dataset isn't really fit for publication. This is double so if you used summarize as the last step of your chemuical quantification and you want a nice and pretty table of means sample concentration with standard deviations. 
+While the summarize function does an excellent job of summarizing our data, the outputted dataset isn't really fit for publication. This is doubly so if you used summarize as the last step of your chemical quantification and you want a nice and pretty table of mean sample concentration with standard deviations. 
 
-To this end we'll use the 'flextable' pacakage. Please refer to [flextable R package](https://davidgohel.github.io/flextable/index.html). There are other packages to make tables, but `flextable` is consistent between HTML and PDF outputs. 
+To this end we'll use the 'flextable' package. Please refer to [flextable R package](https://davidgohel.github.io/flextable/index.html). There are other packages to make tables, but we're using `flextable` as it's consistent between HTML and PDF outputs. 
 
 ```{r, message = FALSE, warning = FALSE}
 library(flextable)
@@ -126,16 +127,16 @@ library(flextable)
 flextable(sumAtl)
 ```
 
-Perhaps that isn't pretty enough for you. Doubtlessly your instructor will tell you to combine the mean and sd into one value (i.e. $ mean \pm sd$). We'll do this in two steps. 
+Perhaps that isn't pretty enough for you. Doubtlessly your instructor will tell you to combine the mean and standard deviation into one value (i.e. $mean \pm sd$). We'll do this in two steps. 
   
   - Step 1: Use `unite()` to merge the `mean` and `sd` values together rowise; values will be separated by ±. 
     - ± is a legit symbol, try `Alt+241`or copy and paste it from this book. 
-  - Step 2: Pretty up our kable to significant digits, and perform some aesthetic changes. 
+  - Step 2: Pretty up our table to significant digits, and perform some aesthetic changes. 
 
 
 ### Uniting columns 
 
-Firstly, our `mean` and `sd` columns contain way too many decimal places. We'll need to round them down before we use `unite()` to paste together the two columns into one. During our `unite()` call, we'll use `sep = " ± "` to seprate the `mean` from `sd` values (otherwise they'd be pasted as one long number). 
+Firstly, our `mean` and `sd` columns contain way too many decimal places. We'll need to round them down before we use `unite()` to paste together the two columns into one. During our `unite()` call, we'll use `sep = " ± "` to separate the `mean` from `sd` values (otherwise they'd be pasted as one long number). 
 
 ```{r}
 
@@ -148,12 +149,12 @@ prettySumAtl <- sumAtl %>%
 prettySumAtl
 ```
 
-Note to round the numbers we used `sprintf()` to round out numbers. This is because in the final publication it's important to keep trailing zeros (i.e. `1.0` and not `1`), but R's `round()` will drop these. `mean = sprintf("%.1f", mean)` takes the existing values in the `mean` column, rounds thems to one difit, that's what `"%.1f"` means ("%.2f" would be two digits and so on), and paste them back into the `mean` column. Same situation for the `sd` column. 
+Note to round the numbers we used `sprintf()` to round out numbers. This is because in the final publication it's important to keep trailing zeros (i.e. `1.0` and not `1`), but R's `round()` will drop these. `mean = sprintf("%.1f", mean)` takes the existing values in the `mean` column, rounds them to one digit, that's what `"%.1f"` means ("%.2f" would be two digits and so on), and paste them back into the `mean` column. Same situation for the `sd` column. 
 
 
-### Pretty kables 
+### Pretty tables 
 
-Now we'll want to make a pretty table. Despite this being a book on visualziations in R, tables are often underappreciate means to convey information. Often when you're only plotting a handful of numbers, a table would better serve the reader. So don't overlook this point of your report. If you've distilled hours of your work to a handful of numbers, you best serve them up on a silver plater. 
+Now we'll want to make a pretty table. Despite the emphasis on visualizations in this book, tables are an under appreciate means to convey information. Often when you're only plotting a handful of numbers, a table would better serve the reader. So don't overlook this point of your report. If you've distilled hours of your work to a handful of numbers, you best serve them up on a silver platter. 
 
 
 ```{r}
