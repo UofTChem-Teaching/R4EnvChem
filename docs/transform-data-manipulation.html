@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Transform: Data Manipulation | R for Environmental Chemistry</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Transform: Data Manipulation | R for Environmental Chemistry" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="tidying-your-data.html"/>
 <link rel="next" href="programming-with-r.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,19 +50,18 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<script src="libs/datatables-binding-0.19/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
@@ -438,6 +438,16 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-6"><i class="fa fa-check"></i><b>17.3</b> Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="18" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html"><i class="fa fa-check"></i><b>18</b> CHM410: NMR Lab</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#getting-started"><i class="fa fa-check"></i><b>18.1</b> Getting started</a></li>
+<li class="chapter" data-level="18.2" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#setting-up-your-workspace"><i class="fa fa-check"></i><b>18.2</b> Setting up your workspace</a></li>
+<li class="chapter" data-level="18.3" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#import-and-install-the-appropriate-packages"><i class="fa fa-check"></i><b>18.3</b> Import and install the appropriate packages</a></li>
+<li class="chapter" data-level="18.4" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#exporting-your-nmr-for-r-and-chemospec"><i class="fa fa-check"></i><b>18.4</b> Exporting your NMR for R and ChemoSpec</a></li>
+<li class="chapter" data-level="18.5" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#importing-your-data-in-chemospec"><i class="fa fa-check"></i><b>18.5</b> Importing your data in ChemoSpec</a></li>
+<li class="chapter" data-level="18.6" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#preparing-the-data-for-statistical-analysis"><i class="fa fa-check"></i><b>18.6</b> Preparing the Data for Statistical Analysis</a></li>
+<li class="chapter" data-level="18.7" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#lets-do-statistics"><i class="fa fa-check"></i><b>18.7</b> Let’s do statistics!</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -468,25 +478,25 @@ div.csl-indent {
 </ul>
 <p>We’ll go through each of these functions, but we highly recommend you read <a href="https://r4ds.had.co.nz/transform.html">Chapter 3: Data Transformation</a> from <em>R for Data Science</em> to get a more comprehensive breakdown of these functions. Note that the information here is based on a <code>tidyverse</code> approach, but this is only one way of doing things. Please see the <a href="modelling-linear-regression.html#further-reading-6">Further reading</a> section for links to other suitable approaches to data transformation.</p>
 <p>Let’s explore the functionality of <code>dplyr</code> using some flame absorption/emission spectroscopy (FAES) data from a <em>CHM317</em> lab. This data represents the emission signal of five sodium (Na) standards measured in triplicate:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="transform-data-manipulation.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
-<span id="cb119-2"><a href="transform-data-manipulation.html#cb119-2" aria-hidden="true" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># see section on Pipe</span></span>
-<span id="cb119-3"><a href="transform-data-manipulation.html#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
-<span id="cb119-4"><a href="transform-data-manipulation.html#cb119-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
-<span id="cb119-5"><a href="transform-data-manipulation.html#cb119-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
-<span id="cb119-6"><a href="transform-data-manipulation.html#cb119-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb119-7"><a href="transform-data-manipulation.html#cb119-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
-<span id="cb119-8"><a href="transform-data-manipulation.html#cb119-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
-<span id="cb119-9"><a href="transform-data-manipulation.html#cb119-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
-<span id="cb119-10"><a href="transform-data-manipulation.html#cb119-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb119-11"><a href="transform-data-manipulation.html#cb119-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-12"><a href="transform-data-manipulation.html#cb119-12" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div id="htmlwidget-53b8d97a5163555900d7" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-53b8d97a5163555900d7">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.6858,9332.0498,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="transform-data-manipulation.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
+<span id="cb133-2"><a href="transform-data-manipulation.html#cb133-2" aria-hidden="true" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># see section on Pipe</span></span>
+<span id="cb133-3"><a href="transform-data-manipulation.html#cb133-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
+<span id="cb133-4"><a href="transform-data-manipulation.html#cb133-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
+<span id="cb133-5"><a href="transform-data-manipulation.html#cb133-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
+<span id="cb133-6"><a href="transform-data-manipulation.html#cb133-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb133-7"><a href="transform-data-manipulation.html#cb133-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
+<span id="cb133-8"><a href="transform-data-manipulation.html#cb133-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
+<span id="cb133-9"><a href="transform-data-manipulation.html#cb133-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb133-10"><a href="transform-data-manipulation.html#cb133-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb133-11"><a href="transform-data-manipulation.html#cb133-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-12"><a href="transform-data-manipulation.html#cb133-12" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
+<div id="htmlwidget-6c73ba23891b67654bbf" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6c73ba23891b67654bbf">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.6858,9332.0498,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Note</strong> the use of <code>convert = TRUE</code> in the <code>separate()</code> call. This runs a type convert on new columns. If we didn’t include this, the <code>conc_Na</code> column would be of type character because the numbers originated from a string. <code>convert()</code> ensures they’re converted to numeric. <strong>Always use <code>convert = TRUE</code></strong> when you separate columns.</p>
 <div id="selecting-by-row-or-value" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Selecting by row or value</h2>
 <p><code>filter()</code> allows up to subset our data based on observation (row) values.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="transform-data-manipulation.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, conc_Na <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="transform-data-manipulation.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, conc_Na <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##   type  conc_Na units replicate signal
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -561,7 +571,7 @@ div.csl-indent {
 <ul>
 <li>Selecting all signals below a threshold value</li>
 </ul>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="transform-data-manipulation.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&lt;</span> <span class="dv">4450</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="transform-data-manipulation.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&lt;</span> <span class="dv">4450</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##   type  conc_Na units replicate signal
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -571,7 +581,7 @@ div.csl-indent {
 <ul>
 <li>Selecting signals between values</li>
 </ul>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="transform-data-manipulation.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&gt;=</span> <span class="dv">4450</span> <span class="sc">&amp;</span> signal <span class="sc">&lt;</span> <span class="dv">8150</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="transform-data-manipulation.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&gt;=</span> <span class="dv">4450</span> <span class="sc">&amp;</span> signal <span class="sc">&lt;</span> <span class="dv">8150</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##   type     conc_Na units replicate signal
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -581,7 +591,7 @@ div.csl-indent {
 <ul>
 <li>Selecting all other replicates other than replicate <code>2</code></li>
 </ul>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="transform-data-manipulation.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, replicate <span class="sc">!=</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="transform-data-manipulation.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, replicate <span class="sc">!=</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 5
 ##    type     conc_Na units replicate signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -598,7 +608,7 @@ div.csl-indent {
 <ul>
 <li>selecting the first standard replicate OR any of the blanks.</li>
 </ul>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="transform-data-manipulation.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, (type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span> <span class="sc">&amp;</span> replicate <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|</span> (type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="transform-data-manipulation.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, (type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span> <span class="sc">&amp;</span> replicate <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|</span> (type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 5
 ##   type     conc_Na units replicate signal
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -612,7 +622,7 @@ div.csl-indent {
 <ul>
 <li>Removing any missing values (<code>NA</code>) using <code>is.na()</code>. Note there are no missing values in our data set so nothing will be removed, if we removed the NOT operator (<code>!</code>) we would have selected all rows <em>with</em> missing values.</li>
 </ul>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="transform-data-manipulation.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, <span class="sc">!</span><span class="fu">is.na</span>(signal))</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="transform-data-manipulation.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(FAES, <span class="sc">!</span><span class="fu">is.na</span>(signal))</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 5
 ##    type     conc_Na units replicate signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -637,7 +647,7 @@ div.csl-indent {
 <div id="arranging-rows" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> Arranging rows</h2>
 <p><code>arrange()</code> reorders the rows based on the value you passed to it. By default it arranges the specified values into ascending order. Let’s arrange our data our data by increasing order of signal value:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="transform-data-manipulation.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>( FAES, signal)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="transform-data-manipulation.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>( FAES, signal)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 5
 ##    type     conc_Na units replicate signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -657,8 +667,8 @@ div.csl-indent {
 ## 14 standard     1   ppm   1         30798.
 ## 15 standard     1   ppm   2         30837.</code></pre>
 <p>Since our original <code>FAES</code> data is already arranged by increasing <code>conc_Na</code> and <code>replicate</code>, let’s inverse that order by arranging <code>conc_Na</code> into descending order using the <code>desc()</code> function WHILE arranging the <code>signal</code> values in ascending order:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="transform-data-manipulation.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the order of precedence (left-to-right)</span></span>
-<span id="cb134-2"><a href="transform-data-manipulation.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(FAES, <span class="fu">desc</span>(conc_Na), signal)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="transform-data-manipulation.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the order of precedence (left-to-right)</span></span>
+<span id="cb148-2"><a href="transform-data-manipulation.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(FAES, <span class="fu">desc</span>(conc_Na), signal)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 5
 ##    type     conc_Na units replicate signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -682,7 +692,7 @@ div.csl-indent {
 <div id="selecting-column-name" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Selecting column name</h2>
 <p><code>select()</code> allows you to readily select columns by name. Note however that it will always return a tibble, even if you only select one variable/column.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="transform-data-manipulation.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, signal)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="transform-data-manipulation.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, signal)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 1
 ##    signal
 ##     &lt;dbl&gt;
@@ -702,7 +712,7 @@ div.csl-indent {
 ## 14 30837.
 ## 15 30790.</code></pre>
 <p>You can also select multiple columns using the same operators and helper functions described in <a href="tidying-your-data.html#tidying-your-data">Tidying Your Data</a>:.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="transform-data-manipulation.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, conc_Na<span class="sc">:</span>replicate)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="transform-data-manipulation.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, conc_Na<span class="sc">:</span>replicate)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 3
 ##    conc_Na units replicate
 ##      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
@@ -721,8 +731,8 @@ div.csl-indent {
 ## 13     1   ppm   1        
 ## 14     1   ppm   2        
 ## 15     1   ppm   3</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="transform-data-manipulation.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Getting columns containing the character &quot;p&quot;</span></span>
-<span id="cb140-2"><a href="transform-data-manipulation.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, <span class="fu">contains</span>(<span class="st">&quot;p&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="transform-data-manipulation.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Getting columns containing the character &quot;p&quot;</span></span>
+<span id="cb154-2"><a href="transform-data-manipulation.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(FAES, <span class="fu">contains</span>(<span class="st">&quot;p&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 2
 ##    type     replicate
 ##    &lt;chr&gt;    &lt;chr&gt;    
@@ -745,7 +755,7 @@ div.csl-indent {
 <div id="adding-new-variables" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> Adding new variables</h2>
 <p><code>mutate()</code> allows you to add new variable (read columns) to your existing data set. It’ll probably be the workhorse function you’ll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let’s suppose that our standards were diluted by a factor of 10, we can add a new column for this:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="transform-data-manipulation.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(FAES, <span class="st">&quot;dil_fct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="transform-data-manipulation.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(FAES, <span class="st">&quot;dil_fct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 6
 ##    type     conc_Na units replicate signal dil_fct
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;
@@ -765,9 +775,9 @@ div.csl-indent {
 ## 14 standard     1   ppm   2         30837.      10
 ## 15 standard     1   ppm   3         30790.      10</code></pre>
 <p>We can also create multiple columns in the same <code>mutate()</code> call:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="transform-data-manipulation.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(FAES, </span>
-<span id="cb144-2"><a href="transform-data-manipulation.html#cb144-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">dil_fct =</span> <span class="dv">10</span>, </span>
-<span id="cb144-3"><a href="transform-data-manipulation.html#cb144-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">adj_signal =</span> signal <span class="sc">*</span> dil_fct)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="transform-data-manipulation.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(FAES, </span>
+<span id="cb158-2"><a href="transform-data-manipulation.html#cb158-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">dil_fct =</span> <span class="dv">10</span>, </span>
+<span id="cb158-3"><a href="transform-data-manipulation.html#cb158-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">adj_signal =</span> signal <span class="sc">*</span> dil_fct)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 7
 ##    type     conc_Na units replicate signal dil_fct adj_signal
 ##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
@@ -834,14 +844,14 @@ div.csl-indent {
 <div id="group-and-summarize-data" class="section level2" number="10.5">
 <h2><span class="header-section-number">10.5</span> Group and summarize data</h2>
 <p><code>summarize</code> effectively summarized your data based on functions you’ve passed to it. Looking at our <code>FAES</code> data we’d probably want the mean of the triplicate signals, alongside the standard deviation. Let’s see what happens when we apply the summarize function straight up:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="transform-data-manipulation.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(FAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="transform-data-manipulation.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(FAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##     mean stdDev
 ##    &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 13310. 11242.</code></pre>
 <p>This doesn’t look like what we wanted. What we got was the mean and standard deviation of <em>all</em> of the signals, regardless of the concentration of the standard. Also note how we’ve lost the other columns/variables and are only left with the mean and stdDev. This is all because we need to <strong>group</strong> our observations by a variable. We can do this by using the <code>group_by()</code> function.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="transform-data-manipulation.html#cb148-1" aria-hidden="true" tabindex="-1"></a>groupedFAES <span class="ot">&lt;-</span> <span class="fu">group_by</span>(FAES, type, conc_Na)</span>
-<span id="cb148-2"><a href="transform-data-manipulation.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(groupedFAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="transform-data-manipulation.html#cb162-1" aria-hidden="true" tabindex="-1"></a>groupedFAES <span class="ot">&lt;-</span> <span class="fu">group_by</span>(FAES, type, conc_Na)</span>
+<span id="cb162-2"><a href="transform-data-manipulation.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(groupedFAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;type&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 5 x 4
 ## # Groups:   type [2]
@@ -861,17 +871,17 @@ div.csl-indent {
 <div id="the-pipe-chaining-functions-together" class="section level2" number="10.6">
 <h2><span class="header-section-number">10.6</span> The pipe: chaining functions together</h2>
 <p>With the tools presented here we could do a decent job analyzing our <code>FAES</code> data. Let’s say we wanted to subtract the mean of the <code>blank</code> from each <code>standard</code> signal and then get summarize those results. It would look something like this:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="transform-data-manipulation.html#cb151-1" aria-hidden="true" tabindex="-1"></a>blank <span class="ot">&lt;-</span> <span class="fu">filter</span>(FAES, type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>)</span>
-<span id="cb151-2"><a href="transform-data-manipulation.html#cb151-2" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> <span class="fu">summarize</span>(blank, <span class="fu">mean</span>(signal))</span>
-<span id="cb151-3"><a href="transform-data-manipulation.html#cb151-3" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(meanBlank)</span>
-<span id="cb151-4"><a href="transform-data-manipulation.html#cb151-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb151-5"><a href="transform-data-manipulation.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The mean signal from the blank triplicate is:&quot;</span>, meanBlank)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="transform-data-manipulation.html#cb165-1" aria-hidden="true" tabindex="-1"></a>blank <span class="ot">&lt;-</span> <span class="fu">filter</span>(FAES, type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>)</span>
+<span id="cb165-2"><a href="transform-data-manipulation.html#cb165-2" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> <span class="fu">summarize</span>(blank, <span class="fu">mean</span>(signal))</span>
+<span id="cb165-3"><a href="transform-data-manipulation.html#cb165-3" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(meanBlank)</span>
+<span id="cb165-4"><a href="transform-data-manipulation.html#cb165-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-5"><a href="transform-data-manipulation.html#cb165-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The mean signal from the blank triplicate is:&quot;</span>, meanBlank)</span></code></pre></div>
 <pre><code>## [1] &quot;The mean signal from the blank triplicate is: 558.5249&quot;</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="transform-data-manipulation.html#cb153-1" aria-hidden="true" tabindex="-1"></a>stds_1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(FAES, type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>)</span>
-<span id="cb153-2"><a href="transform-data-manipulation.html#cb153-2" aria-hidden="true" tabindex="-1"></a>stds_2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(stds_1, <span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank)</span>
-<span id="cb153-3"><a href="transform-data-manipulation.html#cb153-3" aria-hidden="true" tabindex="-1"></a>stds_3 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(stds_2, conc_Na)</span>
-<span id="cb153-4"><a href="transform-data-manipulation.html#cb153-4" aria-hidden="true" tabindex="-1"></a>stds_4 <span class="ot">&lt;-</span> <span class="fu">summarize</span>(stds_3, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
-<span id="cb153-5"><a href="transform-data-manipulation.html#cb153-5" aria-hidden="true" tabindex="-1"></a>stds_4</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="transform-data-manipulation.html#cb167-1" aria-hidden="true" tabindex="-1"></a>stds_1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(FAES, type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>)</span>
+<span id="cb167-2"><a href="transform-data-manipulation.html#cb167-2" aria-hidden="true" tabindex="-1"></a>stds_2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(stds_1, <span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank)</span>
+<span id="cb167-3"><a href="transform-data-manipulation.html#cb167-3" aria-hidden="true" tabindex="-1"></a>stds_3 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(stds_2, conc_Na)</span>
+<span id="cb167-4"><a href="transform-data-manipulation.html#cb167-4" aria-hidden="true" tabindex="-1"></a>stds_4 <span class="ot">&lt;-</span> <span class="fu">summarize</span>(stds_3, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
+<span id="cb167-5"><a href="transform-data-manipulation.html#cb167-5" aria-hidden="true" tabindex="-1"></a>stds_4</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   conc_Na   mean stdDev
 ##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -881,25 +891,25 @@ div.csl-indent {
 ## 4     1   30249.  25.0</code></pre>
 <p>While the code above did it’s job, it’s certainly wasn’t easy to type and certainly not easy to read. At every step of the way we’ve saved our updated data outputs to a new variable (<code>stds_1</code>, <code>stds_2</code>, etc.). However, most of these intermediates aren’t important, and moreover the repetitive names clutter our code. As the code above is written, we’ve had to pay special attending to the variable suffix to make sure we’re calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. <code>stds_1 &lt;- mutate(stds_1, ...)</code>), but that doesn’t solve the issue of readability as there’s still redundant assigning.</p>
 <p>A solution for this is the pipe operator <code>%&gt;%</code> ( pronounced as “then”), an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you’re working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we’d get something like:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="transform-data-manipulation.html#cb155-1" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
-<span id="cb155-2"><a href="transform-data-manipulation.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span><span class="st">&quot;blank&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb155-3"><a href="transform-data-manipulation.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(signal)) <span class="sc">%&gt;%</span></span>
-<span id="cb155-4"><a href="transform-data-manipulation.html#cb155-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>()</span>
-<span id="cb155-5"><a href="transform-data-manipulation.html#cb155-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-6"><a href="transform-data-manipulation.html#cb155-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The mean signal from the blank triplicate is:&quot;</span>, meanBlank)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="transform-data-manipulation.html#cb169-1" aria-hidden="true" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb169-2"><a href="transform-data-manipulation.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span><span class="st">&quot;blank&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb169-3"><a href="transform-data-manipulation.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(signal)) <span class="sc">%&gt;%</span></span>
+<span id="cb169-4"><a href="transform-data-manipulation.html#cb169-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>()</span>
+<span id="cb169-5"><a href="transform-data-manipulation.html#cb169-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb169-6"><a href="transform-data-manipulation.html#cb169-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The mean signal from the blank triplicate is:&quot;</span>, meanBlank)</span></code></pre></div>
 <pre><code>## [1] &quot;The mean signal from the blank triplicate is: 558.5249&quot;</code></pre>
 <p>Things may look a bit different, but our underlying code hasn’t changed much. What’s happening is the pipe operator passes the output to the first argument of the next function. So the output of <code>filter...</code> is passed to the first argument of <code>sumamrise...</code>, and the argument we specified in <code>summarise</code> is actually the <em>second</em> argument it receives. You’re probably wondering how hiding stuff makes your code more legible, but think of <code>%&gt;%</code> as being equivalent to “then.” We can read our code as:</p>
 <blockquote>
 <p>“Take the <code>FAES</code> dataset, <em>then</em> filter for <code>type == "blank"</code> <em>then</em> collapse the dataset to the mean <code>signal</code> value and <em>then</em> convert to numeric value <em>then</em> pass this final output to the new variable <code>meanBlank</code>.”</p>
 </blockquote>
 <p>Not only is the pipe less typing, but the emphasis is on the functions so you can better understand what you’re doing vs. where all the intermediates are going. Extending our piping to the second batch of code we get:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="transform-data-manipulation.html#cb157-1" aria-hidden="true" tabindex="-1"></a>stds <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
-<span id="cb157-2"><a href="transform-data-manipulation.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb157-3"><a href="transform-data-manipulation.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank) <span class="sc">%&gt;%</span> </span>
-<span id="cb157-4"><a href="transform-data-manipulation.html#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(conc_Na) <span class="sc">%&gt;%</span></span>
-<span id="cb157-5"><a href="transform-data-manipulation.html#cb157-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
-<span id="cb157-6"><a href="transform-data-manipulation.html#cb157-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-7"><a href="transform-data-manipulation.html#cb157-7" aria-hidden="true" tabindex="-1"></a>stds</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="transform-data-manipulation.html#cb171-1" aria-hidden="true" tabindex="-1"></a>stds <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb171-2"><a href="transform-data-manipulation.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb171-3"><a href="transform-data-manipulation.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank) <span class="sc">%&gt;%</span> </span>
+<span id="cb171-4"><a href="transform-data-manipulation.html#cb171-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(conc_Na) <span class="sc">%&gt;%</span></span>
+<span id="cb171-5"><a href="transform-data-manipulation.html#cb171-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
+<span id="cb171-6"><a href="transform-data-manipulation.html#cb171-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb171-7"><a href="transform-data-manipulation.html#cb171-7" aria-hidden="true" tabindex="-1"></a>stds</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   conc_Na   mean stdDev
 ##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -938,7 +948,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -968,6 +977,10 @@ gitbook.start({
 "text": null
 },
 "download": ["R4EnvChem.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

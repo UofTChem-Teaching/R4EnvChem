@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Importing Your Data Into R | R for Environmental Chemistry</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Importing Your Data Into R | R for Environmental Chemistry" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="intro-to-data-wrangling.html"/>
 <link rel="next" href="tidying-your-data.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,19 +50,18 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<script src="libs/datatables-binding-0.19/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
@@ -438,6 +438,16 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-6"><i class="fa fa-check"></i><b>17.3</b> Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="18" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html"><i class="fa fa-check"></i><b>18</b> CHM410: NMR Lab</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#getting-started"><i class="fa fa-check"></i><b>18.1</b> Getting started</a></li>
+<li class="chapter" data-level="18.2" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#setting-up-your-workspace"><i class="fa fa-check"></i><b>18.2</b> Setting up your workspace</a></li>
+<li class="chapter" data-level="18.3" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#import-and-install-the-appropriate-packages"><i class="fa fa-check"></i><b>18.3</b> Import and install the appropriate packages</a></li>
+<li class="chapter" data-level="18.4" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#exporting-your-nmr-for-r-and-chemospec"><i class="fa fa-check"></i><b>18.4</b> Exporting your NMR for R and ChemoSpec</a></li>
+<li class="chapter" data-level="18.5" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#importing-your-data-in-chemospec"><i class="fa fa-check"></i><b>18.5</b> Importing your data in ChemoSpec</a></li>
+<li class="chapter" data-level="18.6" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#preparing-the-data-for-statistical-analysis"><i class="fa fa-check"></i><b>18.6</b> Preparing the Data for Statistical Analysis</a></li>
+<li class="chapter" data-level="18.7" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#lets-do-statistics"><i class="fa fa-check"></i><b>18.7</b> Let’s do statistics!</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -465,16 +475,14 @@ div.csl-indent {
 <div id="read_csv" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> read_csv</h2>
 <p>Importing a <code>.csv</code> file into R simply requires the <code>read.csv</code> or the <code>read_csv</code> function from tidyverse. The first variable is the most important as it’s the file path. Recall that R, unless specified, uses relative referencing. So in the example below we’re importing the <code>ATR_plastics.csv</code> from the <code>data</code> sub-folder in our project by specifying <code>"data/ATR_plastics.csv"</code> and assigning it to the variable <code>atr_plastics</code>. Note the inclusion of the file extension.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="importing-your-data-into-r.html#cb88-1" aria-hidden="true" tabindex="-1"></a>atr_plastics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="importing-your-data-into-r.html#cb96-1" aria-hidden="true" tabindex="-1"></a>atr_plastics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 7157 Columns: 5</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## dbl (5): wavenumber, EPDM, Polystyrene, Polyethylene, Sample: Shopping bag</code></pre>
 <pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   wavenumber = col_double(),
-##   EPDM = col_double(),
-##   Polystyrene = col_double(),
-##   Polyethylene = col_double(),
-##   `Sample: Shopping bag` = col_double()
-## )</code></pre>
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>A benefit of using <code>read_csv</code> is that it prints out the column specifications with each column’s name (how you’ll reference it in code) and the column value type. Columns can have different data types, but a data type must be consistent within any given column. Having the columns specifications is a good way to ensure R is correctly reading your data. The most common data types are:</p>
 <ul>
 <li><strong>int</strong> for integer values (<em>-1,1, 2, 10, etc.</em>)</li>
@@ -486,7 +494,7 @@ div.csl-indent {
 <li><strong>lgl</strong> for logical values, either <code>TRUE</code> or <code>FALSE</code></li>
 </ul>
 <p>We can also quickly inspect either through the <em>Environment</em> pane in <em>RStudio</em> or quickly with the <code>head()</code> function. Note the column specifications under the column name.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="importing-your-data-into-r.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atr_plastics)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="importing-your-data-into-r.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atr_plastics)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   wavenumber  EPDM Polystyrene Polyethylene `Sample: Shopping bag`
 ##        &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;                  &lt;dbl&gt;
@@ -497,16 +505,14 @@ div.csl-indent {
 ## 5       552. 0.214      0.0745     0.000868                 0.0240
 ## 6       553. 0.214      0.0746     0.000949                 0.0240</code></pre>
 <p>Note how the first line of the <code>ATR_plastics.csv</code> has been interpreted as columns names (or <em>headers</em>) by R. This is common practice, and gives you a handle by which you can manipulate your data. If you did not intend for R to interpret the first row as headers you can suppress this with the additional argument <code>col_names = FALSE</code>.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="importing-your-data-into-r.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/atr_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="importing-your-data-into-r.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/atr_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<pre><code>## Rows: 7158 Columns: 5</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## chr (5): X1, X2, X3, X4, X5</code></pre>
 <pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   X1 = col_character(),
-##   X2 = col_character(),
-##   X3 = col_character(),
-##   X4 = col_character(),
-##   X5 = col_character()
-## )</code></pre>
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre><code>## # A tibble: 6 x 5
 ##   X1         X2        X3          X4           X5                  
 ##   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               
@@ -517,16 +523,14 @@ div.csl-indent {
 ## 5 551.5415   0.2133267 0.07449704  0.000825491  0.02391921          
 ## 6 552.0236   0.2137241 0.07452058  0.000868397  0.02396947</code></pre>
 <p>Note in the example above that since the headers are now considered data, and are composed of a string of chatacters, the entire column is then interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our <code>.csv</code>), we can use the <code>skip = n</code> to skip n rows:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="importing-your-data-into-r.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/atr_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="importing-your-data-into-r.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/atr_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## Rows: 7157 Columns: 5</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## dbl (5): X1, X2, X3, X4, X5</code></pre>
 <pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   X1 = col_double(),
-##   X2 = col_double(),
-##   X3 = col_double(),
-##   X4 = col_double(),
-##   X5 = col_double()
-## )</code></pre>
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre><code>## # A tibble: 6 x 5
 ##      X1    X2     X3       X4     X5
 ##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
@@ -540,7 +544,7 @@ div.csl-indent {
 <div id="tibbles-vs.-data-frames" class="section level3" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Tibbles vs. data frames</h3>
 <p>Quick eyes will notice the first line outputted above is <code># A tibble: 6 x 5</code>. <code>tibbles</code> are a variation of <code>data.frames</code> introduced in section one, but built specifically for the <code>tidyverse</code> family of packages. While <code>data.frames</code> and <code>tibbles</code> are often interchangeable, it’s important to be aware of the difference in case you do run into a rare conflict. In these situations you can readily transform a <code>tibble</code> into a <code>data.frame</code> by coercion with the <code>as.data.frame()</code> function, and vice-versa with the <code>as_tibble()</code> function.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="importing-your-data-into-r.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.data.frame</span>(atr_plastics))</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="importing-your-data-into-r.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.data.frame</span>(atr_plastics))</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
 </div>
@@ -551,7 +555,7 @@ div.csl-indent {
 <div id="saving-data" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Saving data</h2>
 <p>As you progress with your analysis you may want to save intermediate or final datasets. This is readily accomplished ussing the <code>write_csv()</code> from the <code>readr</code> package. Similar rules apply to how we used <code>read_csv</code>, but now the second argument specifies the save location and file name, while the first argument is which <code>tibble</code>/<code>data.frame</code> we’re saving. Note that R <em>will not</em> create a folder this way, so if you’re saving to a sub-folder you’ll have to make sure it exists or create it yourself.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="importing-your-data-into-r.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(atr_plastics, <span class="st">&quot;data/ATRSaveExample.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="importing-your-data-into-r.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(atr_plastics, <span class="st">&quot;data/ATRSaveExample.csv&quot;</span>)</span></code></pre></div>
 <p>A benefit of <code>write_csv</code> is that it will always save in <code>UTF-8</code> encoding and ISO8601 time format. This standardization makes it easier to share your <code>.csv</code> files with collaborators/yourself.</p>
 </div>
 <div id="further-reading-1" class="section level2" number="8.5">
@@ -570,7 +574,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -600,6 +603,10 @@ gitbook.start({
 "text": null
 },
 "download": ["R4EnvChem.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

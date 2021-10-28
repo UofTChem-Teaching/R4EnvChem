@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 16 Modelling: Non-Linear Regression | R for Environmental Chemistry</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 16 Modelling: Non-Linear Regression | R for Environmental Chemistry" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="modelling-linear-regression.html"/>
 <link rel="next" href="chm410-air-quality-lab.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,19 +50,18 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<script src="libs/datatables-binding-0.19/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
@@ -438,6 +438,16 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-6"><i class="fa fa-check"></i><b>17.3</b> Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="18" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html"><i class="fa fa-check"></i><b>18</b> CHM410: NMR Lab</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#getting-started"><i class="fa fa-check"></i><b>18.1</b> Getting started</a></li>
+<li class="chapter" data-level="18.2" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#setting-up-your-workspace"><i class="fa fa-check"></i><b>18.2</b> Setting up your workspace</a></li>
+<li class="chapter" data-level="18.3" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#import-and-install-the-appropriate-packages"><i class="fa fa-check"></i><b>18.3</b> Import and install the appropriate packages</a></li>
+<li class="chapter" data-level="18.4" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#exporting-your-nmr-for-r-and-chemospec"><i class="fa fa-check"></i><b>18.4</b> Exporting your NMR for R and ChemoSpec</a></li>
+<li class="chapter" data-level="18.5" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#importing-your-data-in-chemospec"><i class="fa fa-check"></i><b>18.5</b> Importing your data in ChemoSpec</a></li>
+<li class="chapter" data-level="18.6" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#preparing-the-data-for-statistical-analysis"><i class="fa fa-check"></i><b>18.6</b> Preparing the Data for Statistical Analysis</a></li>
+<li class="chapter" data-level="18.7" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#lets-do-statistics"><i class="fa fa-check"></i><b>18.7</b> Let’s do statistics!</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -462,18 +472,18 @@ div.csl-indent {
 <h2><span class="header-section-number">16.1</span> Experimental Background</h2>
 <p>For this chapter we’ll be using data obtained from an experiment in <em>CHM317</em>. In this experiment, students measure the fluorescence of the fluorescent dye acridine orange in the presence of sodium dodecyl sulfate (SDS). In, or near, the critical micellular region of SDS, there is a sharp change in absorbance and fluorescence of the solution. Tracking these changes in fluorescence, students can then estimate the CMC of SDS. Experimentally, students prepared solutions of a constant concentration of acridine orange and varying concentrations of SDS. The emission spectrum of each sample was recorded, and we want to take the maximal of each spectra as a data point to built our model.</p>
 <p>Let’s go ahead and import our data:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="modelling-non-linear-regression.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb257-2"><a href="modelling-non-linear-regression.html#cb257-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb257-3"><a href="modelling-non-linear-regression.html#cb257-3" aria-hidden="true" tabindex="-1"></a>sds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/CHM317/fluoro_SDSCMC.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb257-4"><a href="modelling-non-linear-regression.html#cb257-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span><span class="st">`</span><span class="at">Wavelength (nm)</span><span class="st">`</span>, <span class="co"># select all columns BESIDES `Wavelength (nm)`</span></span>
-<span id="cb257-5"><a href="modelling-non-linear-regression.html#cb257-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&quot;conc&quot;</span>, <span class="st">&quot;conc.units&quot;</span>, <span class="st">&quot;chemical&quot;</span>),</span>
-<span id="cb257-6"><a href="modelling-non-linear-regression.html#cb257-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_pattern =</span> <span class="st">&quot;(.*) (.) (.*)&quot;</span>,</span>
-<span id="cb257-7"><a href="modelling-non-linear-regression.html#cb257-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;intensity&quot;</span>,</span>
-<span id="cb257-8"><a href="modelling-non-linear-regression.html#cb257-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">conc =</span> as.numeric)</span>
-<span id="cb257-9"><a href="modelling-non-linear-regression.html#cb257-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb257-10"><a href="modelling-non-linear-regression.html#cb257-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">wavelength =</span> <span class="st">&#39;Wavelength (nm)&#39;</span>) <span class="co"># renaming column, less typing later on. </span></span>
-<span id="cb257-11"><a href="modelling-non-linear-regression.html#cb257-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb257-12"><a href="modelling-non-linear-regression.html#cb257-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sds)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="modelling-non-linear-regression.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb281-2"><a href="modelling-non-linear-regression.html#cb281-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-3"><a href="modelling-non-linear-regression.html#cb281-3" aria-hidden="true" tabindex="-1"></a>sds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/CHM317/fluoro_SDSCMC.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb281-4"><a href="modelling-non-linear-regression.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span><span class="st">`</span><span class="at">Wavelength (nm)</span><span class="st">`</span>, <span class="co"># select all columns BESIDES `Wavelength (nm)`</span></span>
+<span id="cb281-5"><a href="modelling-non-linear-regression.html#cb281-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&quot;conc&quot;</span>, <span class="st">&quot;conc.units&quot;</span>, <span class="st">&quot;chemical&quot;</span>),</span>
+<span id="cb281-6"><a href="modelling-non-linear-regression.html#cb281-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_pattern =</span> <span class="st">&quot;(.*) (.) (.*)&quot;</span>,</span>
+<span id="cb281-7"><a href="modelling-non-linear-regression.html#cb281-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;intensity&quot;</span>,</span>
+<span id="cb281-8"><a href="modelling-non-linear-regression.html#cb281-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">conc =</span> as.numeric)</span>
+<span id="cb281-9"><a href="modelling-non-linear-regression.html#cb281-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb281-10"><a href="modelling-non-linear-regression.html#cb281-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">wavelength =</span> <span class="st">&#39;Wavelength (nm)&#39;</span>) <span class="co"># renaming column, less typing later on. </span></span>
+<span id="cb281-11"><a href="modelling-non-linear-regression.html#cb281-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-12"><a href="modelling-non-linear-regression.html#cb281-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   wavelength   conc conc.units chemical intensity
 ##        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;
@@ -484,35 +494,35 @@ div.csl-indent {
 ## 5        500 0.0056 M          SDS           5.48
 ## 6        500 0.0064 M          SDS           7.72</code></pre>
 <p>And a quick plot to visualize our data:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="modelling-non-linear-regression.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sds, </span>
-<span id="cb259-2"><a href="modelling-non-linear-regression.html#cb259-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> wavelength,</span>
-<span id="cb259-3"><a href="modelling-non-linear-regression.html#cb259-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
-<span id="cb259-4"><a href="modelling-non-linear-regression.html#cb259-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
-<span id="cb259-5"><a href="modelling-non-linear-regression.html#cb259-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="modelling-non-linear-regression.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sds, </span>
+<span id="cb283-2"><a href="modelling-non-linear-regression.html#cb283-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> wavelength,</span>
+<span id="cb283-3"><a href="modelling-non-linear-regression.html#cb283-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
+<span id="cb283-4"><a href="modelling-non-linear-regression.html#cb283-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
+<span id="cb283-5"><a href="modelling-non-linear-regression.html#cb283-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>Alright, alright, alright. Things are looking like we’d expect with some well behaved data. By plotting each point individually, we can really see the noise inherent with each reading. For a more robust analysis we’d typically conduct several replicates and average out the spectra for each concentration or apply some kind of model to smooth each peak. But today, we’re just interested in getting the maximal fluorescence emission intensity from each reading.</p>
 <p>Let’s first annotate our plate to find the highest point, then go about extracting our data for analysis.</p>
 <div id="annotating-maximal-values" class="section level3" number="16.1.1">
 <h3><span class="header-section-number">16.1.1</span> Annotating maximal values</h3>
 <p>Annotating the maximal point on the plot will take a bit more code then actually obtaining it from the data. For this we’ll need to use the <code>ggpmisc</code> package which contains miscellaneous extensions for <code>ggplot2</code>, and <code>ggrepel</code> so our labels won’t overlap.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="modelling-non-linear-regression.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpmisc)</span>
-<span id="cb260-2"><a href="modelling-non-linear-regression.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb260-3"><a href="modelling-non-linear-regression.html#cb260-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb260-4"><a href="modelling-non-linear-regression.html#cb260-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sds, </span>
-<span id="cb260-5"><a href="modelling-non-linear-regression.html#cb260-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> wavelength,</span>
-<span id="cb260-6"><a href="modelling-non-linear-regression.html#cb260-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
-<span id="cb260-7"><a href="modelling-non-linear-regression.html#cb260-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
-<span id="cb260-8"><a href="modelling-non-linear-regression.html#cb260-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb260-9"><a href="modelling-non-linear-regression.html#cb260-9" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_peaks</span>(<span class="at">span =</span> <span class="cn">NULL</span>,</span>
-<span id="cb260-10"><a href="modelling-non-linear-regression.html#cb260-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">geom =</span> <span class="st">&quot;text_repel&quot;</span>, <span class="co"># From ggrepel</span></span>
-<span id="cb260-11"><a href="modelling-non-linear-regression.html#cb260-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..y.label.., ..x.label..)),</span>
-<span id="cb260-12"><a href="modelling-non-linear-regression.html#cb260-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">x.label.fmt =</span> <span class="st">&quot;at %.0f nm&quot;</span>,</span>
-<span id="cb260-13"><a href="modelling-non-linear-regression.html#cb260-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y.label.fmt =</span> <span class="st">&quot;Max intensity = %.0f&quot;</span>,</span>
-<span id="cb260-14"><a href="modelling-non-linear-regression.html#cb260-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">segment.colour =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb260-15"><a href="modelling-non-linear-regression.html#cb260-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">arrow =</span> grid<span class="sc">::</span><span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;inches&quot;</span>)),</span>
-<span id="cb260-16"><a href="modelling-non-linear-regression.html#cb260-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_x =</span> <span class="dv">60</span>,</span>
-<span id="cb260-17"><a href="modelling-non-linear-regression.html#cb260-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_y =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
-<span id="cb260-18"><a href="modelling-non-linear-regression.html#cb260-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(conc))</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="modelling-non-linear-regression.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpmisc)</span>
+<span id="cb284-2"><a href="modelling-non-linear-regression.html#cb284-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb284-3"><a href="modelling-non-linear-regression.html#cb284-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb284-4"><a href="modelling-non-linear-regression.html#cb284-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sds, </span>
+<span id="cb284-5"><a href="modelling-non-linear-regression.html#cb284-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> wavelength,</span>
+<span id="cb284-6"><a href="modelling-non-linear-regression.html#cb284-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity, </span>
+<span id="cb284-7"><a href="modelling-non-linear-regression.html#cb284-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> conc)) <span class="sc">+</span></span>
+<span id="cb284-8"><a href="modelling-non-linear-regression.html#cb284-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb284-9"><a href="modelling-non-linear-regression.html#cb284-9" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_peaks</span>(<span class="at">span =</span> <span class="cn">NULL</span>,</span>
+<span id="cb284-10"><a href="modelling-non-linear-regression.html#cb284-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">geom =</span> <span class="st">&quot;text_repel&quot;</span>, <span class="co"># From ggrepel</span></span>
+<span id="cb284-11"><a href="modelling-non-linear-regression.html#cb284-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..y.label.., ..x.label..)),</span>
+<span id="cb284-12"><a href="modelling-non-linear-regression.html#cb284-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">x.label.fmt =</span> <span class="st">&quot;at %.0f nm&quot;</span>,</span>
+<span id="cb284-13"><a href="modelling-non-linear-regression.html#cb284-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y.label.fmt =</span> <span class="st">&quot;Max intensity = %.0f&quot;</span>,</span>
+<span id="cb284-14"><a href="modelling-non-linear-regression.html#cb284-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">segment.colour =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb284-15"><a href="modelling-non-linear-regression.html#cb284-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">arrow =</span> grid<span class="sc">::</span><span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;inches&quot;</span>)),</span>
+<span id="cb284-16"><a href="modelling-non-linear-regression.html#cb284-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_x =</span> <span class="dv">60</span>,</span>
+<span id="cb284-17"><a href="modelling-non-linear-regression.html#cb284-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">nudge_y =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
+<span id="cb284-18"><a href="modelling-non-linear-regression.html#cb284-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(conc))</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <p>By faceting the plot (i.e. arranging many smaller plots vs. one large one), we can easily see the increase in emission peak intensity as the concentration of SDS increases. Likewise, we can avoid the messy overlap of the max intensity annotations.</p>
 <p>This is only one way to plot this data, but this is sufficient because we’re simply inspecting our data at this point. And here we can see that the intensity all occur around a similar wavelength (~ 528 nm)</p>
@@ -520,12 +530,12 @@ div.csl-indent {
 <div id="extracting-maximal-values" class="section level3" number="16.1.2">
 <h3><span class="header-section-number">16.1.2</span> Extracting maximal values</h3>
 <p>The plots we made above are great for inspecting our data, but what we really want is the maximal emission intensity value to calculate the CMC of SDS. We can see the maximal values on the plots, but there’s no way we’re typing those in manually. So let’s go ahead and get out maximal values from our dataset:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="modelling-non-linear-regression.html#cb261-1" aria-hidden="true" tabindex="-1"></a>sdsMax <span class="ot">&lt;-</span> sds <span class="sc">%&gt;%</span></span>
-<span id="cb261-2"><a href="modelling-non-linear-regression.html#cb261-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chemical, conc.units, conc) <span class="sc">%&gt;%</span></span>
-<span id="cb261-3"><a href="modelling-non-linear-regression.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(intensity <span class="sc">==</span> <span class="fu">max</span>(intensity)) <span class="sc">%&gt;%</span></span>
-<span id="cb261-4"><a href="modelling-non-linear-regression.html#cb261-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb261-5"><a href="modelling-non-linear-regression.html#cb261-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb261-6"><a href="modelling-non-linear-regression.html#cb261-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sdsMax)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="modelling-non-linear-regression.html#cb285-1" aria-hidden="true" tabindex="-1"></a>sdsMax <span class="ot">&lt;-</span> sds <span class="sc">%&gt;%</span></span>
+<span id="cb285-2"><a href="modelling-non-linear-regression.html#cb285-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chemical, conc.units, conc) <span class="sc">%&gt;%</span></span>
+<span id="cb285-3"><a href="modelling-non-linear-regression.html#cb285-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(intensity <span class="sc">==</span> <span class="fu">max</span>(intensity)) <span class="sc">%&gt;%</span></span>
+<span id="cb285-4"><a href="modelling-non-linear-regression.html#cb285-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb285-5"><a href="modelling-non-linear-regression.html#cb285-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-6"><a href="modelling-non-linear-regression.html#cb285-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sdsMax)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   wavelength   conc conc.units chemical intensity
 ##        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;
@@ -537,11 +547,11 @@ div.csl-indent {
 ## 6       528  0.0048 M          SDS           22.0</code></pre>
 <p>All we did was tell R to take the row with the highest emission intensity value per group. We specified <code>chemical</code>, <code>conc.units</code>, and <code>conc</code>, in case we had more chemicals in our dataset.</p>
 <p>Our maximum values match those we see in our plot above. Let’s see how they stack up against each other:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="modelling-non-linear-regression.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sdsMax, </span>
-<span id="cb263-2"><a href="modelling-non-linear-regression.html#cb263-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc, </span>
-<span id="cb263-3"><a href="modelling-non-linear-regression.html#cb263-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity)) <span class="sc">+</span></span>
-<span id="cb263-4"><a href="modelling-non-linear-regression.html#cb263-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
-<div class="figure"><span id="fig:sdsMaxPlot"></span>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="modelling-non-linear-regression.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sdsMax, </span>
+<span id="cb287-2"><a href="modelling-non-linear-regression.html#cb287-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc, </span>
+<span id="cb287-3"><a href="modelling-non-linear-regression.html#cb287-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> intensity)) <span class="sc">+</span></span>
+<span id="cb287-4"><a href="modelling-non-linear-regression.html#cb287-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:sdsMaxPlot"></span>
 <img src="R4EnvChem_files/figure-html/sdsMaxPlot-1.png" alt="Plot of maximal fluoresence intensity at various concentrations of SDS." width="672" />
 <p class="caption">
 Figure 16.1: Plot of maximal fluoresence intensity at various concentrations of SDS.
@@ -572,30 +582,30 @@ Figure 16.1: Plot of maximal fluoresence intensity at various concentrations of 
 <p>A strength of <code>R</code> is it’s flexibility in running various models, and logistic regression is no different. We can use a number of packages to reach these ends, specifically the <code>drc</code> package contains a plethora of functions for modelling dose response curves (hence <code>drc</code>). However, for this example well use a more generalized approach. Earlier we talked about linear regression, where we plot adjust the slope and intercept of a linear equation to best fit our data (see Calibration Curves). Recall that this optimization is based on minimizing the distance between the model and all of the experimental points (<em>least squares</em>). Well the <code>stats</code> package has a function called <code>nls</code> that expands upon the this to nonlinear models. Per the <code>nls</code> function description: “[nls] determine[s] the nonlinear (weighted) least_squared estimates of the parameters of a nonlinear model.”</p>
 <p>So we can create a formula in <code>R</code> based on the four-parameter logistic regression described above. After that, we’ll need to produce some starting details from which the model can build off of. If we don’t tell <code>nls</code> where to start, it can’t function, as the search space is too large. Looking at @ref{fig:sdsMaxPlot}, the intensity appears to floor around 20; the intensity appears to max out around 820; the midpoint appears to be around 0.0075 M, and let’s say the slope is 1. Remember, these are starting values from which <code>nls</code> starts to optimize from, and not the actual values used to construct the model.</p>
 <p>So, let’s create our model</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="modelling-non-linear-regression.html#cb264-1" aria-hidden="true" tabindex="-1"></a>logisModel <span class="ot">&lt;-</span> <span class="fu">nls</span>(intensity <span class="sc">~</span>  (a<span class="sc">-</span>d)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> (conc <span class="sc">/</span>c)<span class="sc">^</span>b) <span class="sc">+</span> d, </span>
-<span id="cb264-2"><a href="modelling-non-linear-regression.html#cb264-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> sdsMax, </span>
-<span id="cb264-3"><a href="modelling-non-linear-regression.html#cb264-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">20</span>,       <span class="co"># min intensity</span></span>
-<span id="cb264-4"><a href="modelling-non-linear-regression.html#cb264-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">b =</span> <span class="dv">1</span>,        <span class="co"># slope</span></span>
-<span id="cb264-5"><a href="modelling-non-linear-regression.html#cb264-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">c =</span> <span class="fl">0.0075</span>,   <span class="co"># CMC</span></span>
-<span id="cb264-6"><a href="modelling-non-linear-regression.html#cb264-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">d=</span> <span class="dv">820</span>)       <span class="co"># max intensity</span></span>
-<span id="cb264-7"><a href="modelling-non-linear-regression.html#cb264-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="modelling-non-linear-regression.html#cb288-1" aria-hidden="true" tabindex="-1"></a>logisModel <span class="ot">&lt;-</span> <span class="fu">nls</span>(intensity <span class="sc">~</span>  (a<span class="sc">-</span>d)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> (conc <span class="sc">/</span>c)<span class="sc">^</span>b) <span class="sc">+</span> d, </span>
+<span id="cb288-2"><a href="modelling-non-linear-regression.html#cb288-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> sdsMax, </span>
+<span id="cb288-3"><a href="modelling-non-linear-regression.html#cb288-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">20</span>,       <span class="co"># min intensity</span></span>
+<span id="cb288-4"><a href="modelling-non-linear-regression.html#cb288-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">b =</span> <span class="dv">1</span>,        <span class="co"># slope</span></span>
+<span id="cb288-5"><a href="modelling-non-linear-regression.html#cb288-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">c =</span> <span class="fl">0.0075</span>,   <span class="co"># CMC</span></span>
+<span id="cb288-6"><a href="modelling-non-linear-regression.html#cb288-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">d=</span> <span class="dv">820</span>)       <span class="co"># max intensity</span></span>
+<span id="cb288-7"><a href="modelling-non-linear-regression.html#cb288-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
 <pre><code>## Error in numericDeriv(form[[3L]], names(ind), env, central = nDcentral): Missing value or an infinity produced when evaluating the model</code></pre>
 <p>… and we get an error message. Get used to these when modelling! Don’t worry about understanding it completely, error messages are often written with programmers in mind so they can be a bit cryptic. You can often copy and paste these directly into any search engine to get some more information, but this one is simple enough: we either have a missing value or an infinity produced. Well we have six input parameters in our model: <code>a, b, c, d</code>, our independent variable <code>conc</code>, and our dependant variable <code>intensity</code>. We’ve also supplied starting values to all of them via the list we created inside the function. Therefore, one of our starting values must be too far off from a plausible start point and is causing troubles in the <code>nls</code> function. They all look good except for the slope start value <code>b = 1</code>.</p>
 <p>The slope here is an approximation for the slope between the min value <code>a</code> and max value <code>d</code>. Looking at our data in @ref{fig:sdsMaxPlot}, that slope may be a bit shallow consider the large jump in intensity. Let’s increase the value of <code>b</code> and try again:</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="modelling-non-linear-regression.html#cb266-1" aria-hidden="true" tabindex="-1"></a>logisModel <span class="ot">&lt;-</span> <span class="fu">nls</span>(intensity <span class="sc">~</span>  (a<span class="sc">-</span>d)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> (conc <span class="sc">/</span>c)<span class="sc">^</span>b) <span class="sc">+</span> d, </span>
-<span id="cb266-2"><a href="modelling-non-linear-regression.html#cb266-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> sdsMax, </span>
-<span id="cb266-3"><a href="modelling-non-linear-regression.html#cb266-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">20</span>,       <span class="co"># min intensity</span></span>
-<span id="cb266-4"><a href="modelling-non-linear-regression.html#cb266-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">b =</span> <span class="dv">10</span>,       <span class="co"># new slope</span></span>
-<span id="cb266-5"><a href="modelling-non-linear-regression.html#cb266-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">c =</span> <span class="fl">0.0075</span>,   <span class="co"># CMC</span></span>
-<span id="cb266-6"><a href="modelling-non-linear-regression.html#cb266-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">d=</span> <span class="dv">820</span>)       <span class="co"># max intensity</span></span>
-<span id="cb266-7"><a href="modelling-non-linear-regression.html#cb266-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="modelling-non-linear-regression.html#cb290-1" aria-hidden="true" tabindex="-1"></a>logisModel <span class="ot">&lt;-</span> <span class="fu">nls</span>(intensity <span class="sc">~</span>  (a<span class="sc">-</span>d)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> (conc <span class="sc">/</span>c)<span class="sc">^</span>b) <span class="sc">+</span> d, </span>
+<span id="cb290-2"><a href="modelling-non-linear-regression.html#cb290-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> sdsMax, </span>
+<span id="cb290-3"><a href="modelling-non-linear-regression.html#cb290-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">20</span>,       <span class="co"># min intensity</span></span>
+<span id="cb290-4"><a href="modelling-non-linear-regression.html#cb290-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">b =</span> <span class="dv">10</span>,       <span class="co"># new slope</span></span>
+<span id="cb290-5"><a href="modelling-non-linear-regression.html#cb290-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">c =</span> <span class="fl">0.0075</span>,   <span class="co"># CMC</span></span>
+<span id="cb290-6"><a href="modelling-non-linear-regression.html#cb290-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">d=</span> <span class="dv">820</span>)       <span class="co"># max intensity</span></span>
+<span id="cb290-7"><a href="modelling-non-linear-regression.html#cb290-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
 <p>Eh, no errors! Once you progress beyond simple linear regressions, modelling becomes more of a craft. If we were trying to apply this model to multiple datasets, we would probably want to shop around <code>cran</code> to find a package with self-starting models. This way we can circumvent having to supply starting parameters. Anyways, that’s for another day.</p>
 <p>For now, let’s take a look at our model outputs which are all stored in the <code>logisModel</code> variable. To this end, we’ll use the <code>broom</code> package discussed in <a href="modelling-linear-regression.html#modelling-linear-regression">Modelling: Linear Regression</a>. Specifically, we’ll use <code>tidy</code> to get an output of our estimated model parameters (i.e. <code>a,b,c</code>, and <code>d</code>), and <code>augment</code> for a data frame of containing the input values, and the estimated intensity values.</p>
 <p>Let’s look at our fitted values:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="modelling-non-linear-regression.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb267-2"><a href="modelling-non-linear-regression.html#cb267-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb267-3"><a href="modelling-non-linear-regression.html#cb267-3" aria-hidden="true" tabindex="-1"></a>augment <span class="ot">&lt;-</span> <span class="fu">augment</span>(logisModel)</span>
-<span id="cb267-4"><a href="modelling-non-linear-regression.html#cb267-4" aria-hidden="true" tabindex="-1"></a>augment</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="modelling-non-linear-regression.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb291-2"><a href="modelling-non-linear-regression.html#cb291-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-3"><a href="modelling-non-linear-regression.html#cb291-3" aria-hidden="true" tabindex="-1"></a>augment <span class="ot">&lt;-</span> <span class="fu">augment</span>(logisModel)</span>
+<span id="cb291-4"><a href="modelling-non-linear-regression.html#cb291-4" aria-hidden="true" tabindex="-1"></a>augment</span></code></pre></div>
 <pre><code>## # A tibble: 9 x 4
 ##   intensity   conc .fitted   .resid
 ##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
@@ -610,25 +620,25 @@ Figure 16.1: Plot of maximal fluoresence intensity at various concentrations of 
 ## 9      57.0 0.0016    49.4   7.51</code></pre>
 <p>What we can see here from <code>augment</code> are the <code>intensity</code> and <code>conc</code> values we inputted into R. <code>.fitted</code> are the intensity values for a given concentration fitted to out model, and <code>.resid</code> is the residuals, the difference between the actual and estimated values.</p>
 <p>Let’s go ahead and plot our actual and fitted values against each other.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="modelling-non-linear-regression.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> intensity, <span class="at">colour =</span> <span class="st">&quot;actual&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb269-2"><a href="modelling-non-linear-regression.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb269-3"><a href="modelling-non-linear-regression.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
-<span id="cb269-4"><a href="modelling-non-linear-regression.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">&quot;fitted&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="modelling-non-linear-regression.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> intensity, <span class="at">colour =</span> <span class="st">&quot;actual&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb293-2"><a href="modelling-non-linear-regression.html#cb293-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb293-3"><a href="modelling-non-linear-regression.html#cb293-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb293-4"><a href="modelling-non-linear-regression.html#cb293-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">&quot;fitted&quot;</span>)) </span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 <p>Looks pretty good, although it’s interesting how the baseline at lower concentrations doesn’t plateau like the model values. You’ll note that the line produced by <code>geom_line</code> will only draw a straight line between points. There’s ways to address this, but we don’t need to for our needs right now.</p>
 <p>There doesn’t appear to be any gross outliers in our model, so it seems to have done a good job. We can verify this by checking the residuals(see <a href="modelling-linear-regression.html#plotting-residuals">Plotting residuals</a>):</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="modelling-non-linear-regression.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb270-2"><a href="modelling-non-linear-regression.html#cb270-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="modelling-non-linear-regression.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb294-2"><a href="modelling-non-linear-regression.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <p>We can’t see any obvious patterns in the residuals (i.e. all are negative), so we can have further confidence in the fit of out model.</p>
 </div>
 <div id="extracting-model-parameters" class="section level3" number="16.2.2">
 <h3><span class="header-section-number">16.2.2</span> Extracting model parameters</h3>
 <p>To extract the model parameters <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> we can use the <code>tidy</code> function:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="modelling-non-linear-regression.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb271-2"><a href="modelling-non-linear-regression.html#cb271-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb271-3"><a href="modelling-non-linear-regression.html#cb271-3" aria-hidden="true" tabindex="-1"></a>tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(logisModel)</span>
-<span id="cb271-4"><a href="modelling-non-linear-regression.html#cb271-4" aria-hidden="true" tabindex="-1"></a>tidy</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="modelling-non-linear-regression.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb295-2"><a href="modelling-non-linear-regression.html#cb295-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb295-3"><a href="modelling-non-linear-regression.html#cb295-3" aria-hidden="true" tabindex="-1"></a>tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(logisModel)</span>
+<span id="cb295-4"><a href="modelling-non-linear-regression.html#cb295-4" aria-hidden="true" tabindex="-1"></a>tidy</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 5
 ##   term   estimate  std.error statistic       p.value
 ##   &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
@@ -665,7 +675,6 @@ Figure 16.1: Plot of maximal fluoresence intensity at various concentrations of 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -695,6 +704,10 @@ gitbook.start({
 "text": null
 },
 "download": ["R4EnvChem.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

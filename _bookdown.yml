@@ -34,8 +34,8 @@ rmd_files:  [
   "non-linear-models.Rmd" ,
   
   # # Section 4: CHM410 Labs
-  "CHM410-airQuality.Rmd"
-  # # "CHM410-NMR.Rmd"
+  "CHM410-airQuality.Rmd",
+  "CHM410-NMR.Rmd"
   
   ]
   
