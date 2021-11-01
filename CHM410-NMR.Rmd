@@ -18,11 +18,15 @@ While we could perform this analysis manually, it will be significantly easier w
 
 ## Import and install the appropriate packages
 
-Install and load the `ChemoSpec` package as outlined in [Installing packages].
+Install and load the `ChemoSpec` package and its dependencies as outlined in [Installing packages].
 
 ```{r, eval = FALSE}
 install.packages("ChemoSpec")
+install.packages("R.utils")
+install.packages("robustbase")
 library("ChemoSpec")
+library("ggplot2")
+library("R.utils")
 ```
 
 To see complete details about the ChemoSpec package, including step-by-step instructions, run the following code:
@@ -37,11 +41,11 @@ browseVignettes("ChemoSpec")
 
 At this point in the lab, you should have a processed spectra in MestreNova. Your spectra should be referenced to the internal standard peak at 0.0 ppm, it should also be properly phased and baseline corrected.
 
-Next, we need to prepare the spectra for import into R. All the spectra in the **supplied dataset** contain `132,071` points. You will need to make sure your spectra also contains `132,071` data points. This can be done by zero-filling the spectra in MestreNova.
+Next, we need to prepare the spectra for import into R. All the spectra in the **supplied dataset** contain `131,071` points. You will need to make sure your spectra also contains `131,071` data points. This can be done by zero-filling the spectra in MestreNova.
 
 1. Select the **Processing** tab
 2. Select **Zero Filling and LP**
-3. Under the **To Spectrum Siz** dropdown menu, select **132071** and press **OK**
+3. Under the **To Spectrum Size** dropdown menu, select **131071** and press **OK**
 
 
 ![Figure 1: Zero Filling the NMR Spectra](images/NMRProcess.png)
@@ -106,8 +110,11 @@ This line of code will print details about the dataset you will be working with.
 Finally, you can display any of the spectra in this `Spectra Object` using the following code. Double check that your sample spectra looks the same as it did in MestreNova. 
 
 ``` {r results = "hide", eval = FALSE}
+## Set the graphics option in ChemoSpec to use ggplot2 instead of base R graphics
+options(chemoSpecGraphics = 'ggplot2')
+
 ## Plot the spectra in the Spectra object named spec
-plotSpectra(spec,
+spectralPlot <- plotSpectra(spec,
             
             ##Which spectra should be plotted? Your spectra is likely number 1 or 34.
             which = c(1, 2, 3),
@@ -117,18 +124,17 @@ plotSpectra(spec,
             
             ##If the spectra is too small, you can scale the y-axis here
             amplify = 1,
-            
-            ##Set the x-limits of the plot. Notice how the limit is set from 10 to -1, since this is how NMR is commonly displayed.
-            xlim = c(10, -1),
-            
+
             ##Set the position of the sample labels. This is optional and removing the line removes the labels.
             lab.pos = 5, 
-            
-            ##The main plot title
-            main = "Test NMR Spectra")
+ )
+ 
+ ##This line will invert the x-axis to the more familiar NMR axis style
+ spectralPlot <- spectralPlot + xlim(10, -1)
+ 
+ ##This line will set the title of your new NMR plot
+ spectraPlot <- spectraPlot + ggtitle("NMR Spectra of Sample X")
 ```
-
-Note that some of these parameters look different then what you might be used to. This is because ChemoSpec does not use `ggplot()` for creating figures (yet). This is an example of one of the disadvantages of relying on third-party packages.
 
 You can also use the function `loopThruSpectra()` to cycle through plots of each spectra in the `spec` Spectra object.
 
@@ -137,18 +143,30 @@ You can also use the function `loopThruSpectra()` to cycle through plots of each
 
 While ChemoSpec offers tools to do baseline correction and signal referencing, we won't use these since we already completed these data pre-processing steps in MestreNova. Our first step in statistical analysis will be to normalize the data. During sample preparation, the procedure may vary from person-to-person and sample-to-sample. NMR samples could have different pH, different dilutions, different solvent ratios, and different salt content; to name a few. It is important to normalize the data to account for these differences before performing statistical analysis. Thankfully ChemoSpec provides a handy function called `normSpectra()`. 
 
+The first thing we will need to do is remove any unimportant or outlier peaks. If you cleaned your NMR tube with a solvent such as acetone, there will be a residual acetone peak at 2.2 ppm. Since some samples have this peak while others don't, and since nothing else in our sample appears around this chemical shift, we can remove all the data between 2.0  and 2.4 ppm. This will avoid confusing our PCA analysis.
+
+``` {r results = "hide", eval = FALSE}
+## Remove the acetone region of the NMR spectra across all the data
+cleanerSpec <- removeFreq(spec, rem.freq = spec$freq > 2.0 & spec$freq < 2.4)
+
+##Review the spectra set again. Notice how it contains fewer data points than the last time this was run
+sumSpectra(cleanerSpec)
+
+```
+
 Since the internal peak should be the same concentration for each sample, and it should appear at the same chemical shift, we will use this peak to normalize all spectra using the following code:
 
 ``` {r results = "hide", eval = FALSE}
 ## Specify the range over which to normalize the spectra.
 ## Notice spec$freq refers to the frequency dataframe within the spec object
-range <- spec$freq > -0.5 & spec$freq < 0.5
+range <- cleanerSpec$freq > -0.5 & cleanerSpec$freq < 0.5
 
 ##Create a new Spectra object called norm that contains the normalized data
-norm <- normSpectra(spec, method = "PQN", RangeExpress = range)
+norm <- normSpectra(cleanerSpec, method = "PQN", RangeExpress = range)
 
-##Plot one of the original and one of the normalized spectra to compare. You should see a change in intensity.
-plotSpectra(spec)
+##You can use plotSpectra again to compare one of the original and one of the normalized spectra. You should see a change in intensity.
+
+plotSpectra(cleanerSpec)
 plotSpectra(norm)
 ```
 
@@ -171,11 +189,8 @@ Finally, we can plot the PCA results using the following code. I encourage you t
 
 ``` {r results = "hide", eval = FALSE}
 ## Create a plot of PCA scores for all data points
-plotScores(spec, 
+pcaPlot <- plotScores(cleanerSpec, 
            pca, 
-           
-           ## The title of the plot goes here
-           main = "NMR PCA", 
            
            ## Which principal components to include. 99% of the time this will be the first 2 loadings, however if the scree plot indicates the 3rd to be important, it might be worth including.
            pcs = c(1,2), 
@@ -188,6 +203,12 @@ plotScores(spec,
            
            ##  This value sets the tolerance for displaying individual labels on the plot.
            tol = 0.01)
+
+## Add an appropriate title to the PCA plot
+pcaPlot <- ggtitle("NMR PCA Plot")
+
+##Display the completed PCA plot
+pcaPlot
 ```
 
 The last thing we need to do is check the quality of the analysis. Scree plots demonstrate how well each principal component (each loading score) represents the data. For example, a PC1 (that's the first principal component) value of 80% means 80% of the data has been accounted for. This would be a much better analysis than a PC1 value of 20%.
