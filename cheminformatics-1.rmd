@@ -1,0 +1,35 @@
+# Cheminformatics I: Querrying Databases
+
+
+
+<!-- list of PCB congeners (in PDF form) available here: https://www.epa.gov/sites/default/files/2015-09/documents/congenertable.pdf -->
+
+<!-- this list has been compilled to .csv by Diwen Yang, so save a copy to the book and tutorial repo --> 
+
+
+<!-- recycle code from here: https://github.com/DavidRossHall/lipinski-rule -->
+
+Goal of this chapter: 
+
+- Introduce concept of cheminformatics
+- introduce SMILES & encoding chemical information
+- introduce chemicals inventories & databases 
+- introduce ToxCast data set, and how to query both
+
+R code in this chapter will: 
+
+- Import .csv w/ all PCBs. 
+- Get students to access database using `webchem` package
+- Using PCB case number, get pub-chem ID, and scrap information on PCBs 
+- Plot data to get an idea of what PCB properties are (add mass spec adducts and stuff)
+
+- Would be cool to get toxcast data, but downloading dataset is a pain in the ass. Scrapping might be another option, but this might also suck a lot. 
+- Maybe check pub-chem AHR binding results... pubchem has ~ 75 compounds in AHR testing results, which are here: [https://pubchem.ncbi.nlm.nih.gov/bioassay/39064](https://pubchem.ncbi.nlm.nih.gov/bioassay/39064)
+
+
+
+- mention use of retticulate to get rdkit package working, much better then the other cheminformatics package
+
+- reticulate get's it's own chapter, along with brief introduction to python...
+
+- cheminformatics chapter II: usin reticulate and rdkit to generate chemically aware tables. 
