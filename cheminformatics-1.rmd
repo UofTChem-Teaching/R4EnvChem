@@ -33,3 +33,87 @@ R code in this chapter will:
 - reticulate get's it's own chapter, along with brief introduction to python...
 
 - cheminformatics chapter II: usin reticulate and rdkit to generate chemically aware tables. 
+
+```{r}
+library(tidyverse)
+library(webchem)
+```
+
+![Generalized PCB structure. The possible positions of chlorine atoms on the benzene rings are denoted by numbers assigned to the carbon atoms. Image from [Wikimedia Commons](Wikimedia Commons. )](images/cheminformatics/pcb_structure.png)
+
+
+A list of all possible PCB congeners in PCB form can be found on the EPA's website [here](https://www.epa.gov/sites/default/files/2015-09/documents/congenertable.pdf). Fortunately, we've gone through the trouble of transcribing the information into a `.csv` file (using the [`pdftables` package](https://github.com/expersso/pdftables)). To follow along with this tutorial, you can download the data directly from the table below. 
+
+```{r}
+pcbs_raw <- read_csv('data/cheminformatics/pcbs_list.csv')
+
+DT::datatable(pcbs_raw,
+              extensions = c('Buttons', 'Scroller'),
+              rownames = FALSE,
+              options = list(
+                dom = 'Bfrtip',
+                buttons = c('csv')
+                )
+                       )
+
+```
+
+```{r, eval = FALSE}
+# load your local copy of PCB list. 
+pcbs_raw <- <PATH TO YOUR LOCAL COPY OF PCB LIST>
+```
+
+## Scrapping PubChem for compound information
+
+[Pubchem](https://pubchem.ncbi.nlm.nih.gov/) is the largest collection of chemical information, with over 113 million compounds in the repository. Looking at the entry for [PCB 77](https://pubchem.ncbi.nlm.nih.gov/compound/36187), you'll notice a plethora of information collected from a variety of fields. Another useful element of Pubchem is they also provide predicted values for compounds under the *Chemical and Physical Properties* section. LogK~ow~ (aka *LogP*) is a a useful property for modelling the partitiining and environmental fate of compounds. For PCB 77, which has been extensively studied, PubChem provides the computed LogP value (`XLogP3` = 6.6), and reported values (LogP = 6.72 by Hansch (1979)^[Hansch, C., A. Leo. Substituent Constants for Correlation Analysis in Chemistry and Biology. New York, NY: John Wiley and Sons, 1979., p. 266])
+
+Unsurprisungly, most chemicals exists theoretically, or have not been throughougly studied and characterized. So the property predictions from pubchem are extremely useful. 
+
+```{r}
+
+# using CASRN to get pubchem compound ID (CID)
+# Running this will take a while as the pubchem stuff is throttled. 
+
+pcbs_cid <- webchem::get_cid(pcbs_raw$casrn)
+
+```
+
+```{r}
+
+# specifying properties to extract from pubchem 
+
+propertiesToGet <- c("MolecularFormula", 
+                     "MolecularWeight", 
+                     "CanonicalSMILES", 
+                     "IsomericSMILES",
+                     "IUPACName", "XLogP",
+                     "ExactMass", 
+                     "MonoisotopicMass",
+                     "TPSA", 
+                     "HBondDonorCount",
+                     "HBondAcceptorCount", 
+                     "Volume3D")
+
+# using punchem CID to get list of properties. 
+
+pcbs_props <- pc_prop(cid = pcbs_cid$cid,
+                      properties = propertiesToGet)
+```
+
+and here we go
+```{r}
+head(pcbs_props)
+colnames(pcbs_props)
+```
+
+Because querrying takes a while, it's best to save your results so you can quickly load them. We'll combine our pubchem search results with our original table, and save the output for further analysis. 
+
+```{r}
+pcbs_all <- pcbs_raw %>%
+  left_join(., pcbs_cid, by = c("casrn" = "query")) %>%
+  mutate(cid = as.numeric(cid)) %>%
+  left_join(., pcbs_props, by = c("cid" = "CID")) %>%
+  relocate(pcb) %>%
+  janitor::clean_names()
+```
+
