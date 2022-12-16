@@ -69,7 +69,7 @@ pcbs_raw <- <PATH TO YOUR LOCAL COPY OF PCB LIST>
 
 Unsurprisungly, most chemicals exists theoretically, or have not been throughougly studied and characterized. So the property predictions from pubchem are extremely useful. 
 
-```{r}
+```{r, eval = FALSE}
 
 # using CASRN to get pubchem compound ID (CID)
 # Running this will take a while as the pubchem stuff is throttled. 
@@ -78,7 +78,7 @@ pcbs_cid <- webchem::get_cid(pcbs_raw$casrn)
 
 ```
 
-```{r}
+```{r, eval = FALSE}
 
 # specifying properties to extract from pubchem 
 
@@ -100,20 +100,36 @@ pcbs_props <- pc_prop(cid = pcbs_cid$cid,
                       properties = propertiesToGet)
 ```
 
-and here we go
-```{r}
-head(pcbs_props)
-colnames(pcbs_props)
-```
-
 Because querrying takes a while, it's best to save your results so you can quickly load them. We'll combine our pubchem search results with our original table, and save the output for further analysis. 
 
-```{r}
+```{r, eval = FALSE}
 pcbs_all <- pcbs_raw %>%
   left_join(., pcbs_cid, by = c("casrn" = "query")) %>%
   mutate(cid = as.numeric(cid)) %>%
   left_join(., pcbs_props, by = c("cid" = "CID")) %>%
-  relocate(pcb) %>%
+  relocate(name) %>%
   janitor::clean_names()
+
+write_csv("data/cheminformatics/pcbs_all.csv", x = pcbs_all)
 ```
 
+## Looking into our querry data. 
+
+```{r}
+pcbs <- read_csv("data/cheminformatics/pcbs_all.csv")
+
+pcbs_cl <- pcbs %>%
+  mutate(cl_count = str_count(canonical_smiles, "Cl"))
+```
+```{r}
+p <- ggplot(data = pcbs_cl, 
+       aes(x = x_log_p, y = cl_count, label = name)) +
+  geom_point()
+
+plotly::ggplotly(p)
+```
+
+
+## Notes to backfill into earlier sections
+
+- if you're missing a compound, check the original .csv file. This CASRN numbers can be chagned if you've opened your file in Microsoft Excel or another spread sheet software. 
