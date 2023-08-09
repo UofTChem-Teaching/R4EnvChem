@@ -26,7 +26,7 @@ print(my_name)
 
 The `print()` function in R is used to display the values of variables or expressions on the screen. Unlike directly calling the variable, using `print()` provides explicitness and allows you to control the output format when displaying values.
 
-### Test Your Code (Exercise 1)
+#### Test Your Code (Exercise 1)
 
 Do not modify the cell below. Run the cell below to check if you've defined and assigned the variables correctly.
 
@@ -72,7 +72,7 @@ The `xml` package in R provides tools to parse and manipulate XML (eXtensible Ma
 
 `mlr3` is an R package for machine learning in R that provides a unified interface and infrastructure for various machine learning tasks such as data preprocessing, model training, hyperparameter tuning, and evaluation. It's a successor to the popular mlr package and is designed to be more modular and extendable.
 
-### Test Your Code (Exercise 2)
+#### Test Your Code (Exercise 2)
 
 Do not modify the cell below. Run the cell below to check if you've successfully installed the packages.
 
@@ -114,7 +114,7 @@ message(paste("Is C an integer?", C_is_integer))
 
 Note that when we use `print(C)`, we get a value that looks like an integer. However, your `C_is_integer` result should say otherwise. This is resulted from the default behaviour of R that it rounds the number for display. Just remember not to be misled when using `print()` function!
 
-### Test Your Code (Exercise 3)
+#### Test Your Code (Exercise 3)
 
 Do not modify the cell below. Run the cell below to check if your calculation is correct.
 
@@ -160,7 +160,7 @@ my_dataframe <- # Your code here
 
 **Note:** There are numerous approaches to construct these data structures in R. For instance, we can create a data frame by directly inputting values, using other variables, or reading from a file. Additionally, you can explore various optional parameters to enhance your function. Embrace versatility and avoid limiting your solutions to just one method!
 
-### Test Your Code (Exercise 4)
+#### Test Your Code (Exercise 4)
 
 Do not modify the cell below. Run the cell below to check if your calculation is correct.
 
