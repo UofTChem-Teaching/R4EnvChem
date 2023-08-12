@@ -127,10 +127,10 @@ library(testthat)
 
 # Unittest for Exercise 3
 test_that("Exercise 3: Basic Calculation", {
-  expect_equal(A, 31, tolerance=0)
-  expect_equal(B, 151.8584, tolerance=0.0001)
-  expect_equal(C, 80759608318.2073, tolerance=0.0001)
-  expect_false(C_is_integer)
+  expect_equal(a, 31, tolerance=0)
+  expect_equal(b, 151.8584, tolerance=0.0001)
+  expect_equal(c, 80759608318.2073, tolerance=0.0001)
+  expect_false(c_is_integer)
 })
 ```
 
