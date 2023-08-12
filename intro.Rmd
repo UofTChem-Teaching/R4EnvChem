@@ -31,7 +31,7 @@ Working remotely means accessing R and RStudio from a remote server or cloud-bas
 
 To facilitate remote access to RStudio, the University of Toronto provides a JupyterHub R Studio server. This allows you to access RStudio from any web browser, eliminating the need for local installations. With this, you can perform data analysis, collaborate with others, and work on your R projects remotely with ease.
 
-To get started, visit [UofT JupyterHub](https://r.datatools.utoronto.ca/). You will need to log in with your UofT credentials to access the RStudio environment.
+To get started, visit [UofT JupyeterHub](https://cloud.r-project.org/). You will need to log in with your UofT credentials to access the RStudio environment.
 
 -   While working remotely, you may need to upload data to the RStudio server or download analysis results. The RStudio interface allows you to upload files directly from your computer to the server and vice versa.
 -   When working remotely, ensure that you save your R scripts and analysis files on the server. This will allow you to continue your work from any device with internet access.
