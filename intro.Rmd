@@ -1,31 +1,59 @@
 <!-- This header creates the book section -->
-# (PART\*) Section 1: Getting Started in R{-}
+# (PART\*) Part 1: Getting Started in R{-}
 
-# Installing R
+# Intro to R and RStudio
 
-You may have heard about the coding or the R programming language, but figuring out how to get started can be a hurdle; at least it was for us. This chapter will cover installing the software you'll need for coding in R.  
+You may have heard about the coding or the R programming language, but figuring out how to get started can be a hurdle; at least it was for us. In this guide, we will walk you through the process of setting up R and RStudio, both locally on your computer and remotely using the University of Toronto's JupyterHub R Studio server.
 
-## Prerequisite software
+## R Language
 
-Before we get started, you'll need to download the following open source and free software: 
-
-  - **R**
-  - **RStudio**
-  - **`tidyverse`** suite of packages
-
-Read on for instructions on downloading all three. 
-
-### R
-
-**R** is the programming language we'll code in. R is hosted on the Comprehensive R Archive Network (CRAN) and is one of the most popular programming languages for statisticians and scientist alike. [You can download the latest build for your operating system here](https://cloud.r-project.org/). 
+**R** is the programming language we'll code in. R is hosted on the Comprehensive R Archive Network (CRAN) and is one of the most popular programming languages for statisticians and scientist alike due to its vast array of tools and packages.
 
 A quick aside, but don't be intimidated by the term "coding". Coding is simply writing instructions for the computer to execute. The only catch is has to be in a language that both we, humans, and the computer can understand. For our needs we're using R, and like any language, R has it's own syntax, rules, and quirks which we'll cover in later chapters.
-  
-### Downloading RStudio IDE
 
-RStudio is the *integrated development environment* of choice when working with R. It's where you'll actually be typing your code and interacting with R. Again, R is a language, and you need somewhere to write it down to make use of it. Writing in English can be done with a pencil and notepad or a word processor filed with useful tools to help you write. RStudio is the later for coding in R. [**You can download the latest version of RStudio here**](https://www.rstudio.com/products/rstudio/download/#download). 
+## RStudio
 
-Once you have R and RStudio installed, go ahead and open up RStudio. Once you open RStudio, you'll be greeted with an interface divided into numerous panes. We've highlighted the major ones in the image below:  
+**RStudio** is a popular *integrated development environment (IDE)* specifically designed for working with R, providing a user-friendly interface and various productivity features. It's where you'll actually be typing your code and interacting with R. Again, R is a language, and you need somewhere to write it down to make use of it. Writing in English can be done with a pencil and notepad or a word processor filed with useful tools to help you write.
+
+R and RStudio work in tandem to provide an efficient and seamless experience for data analysis, visualization, and model building. RStudio enhances the R workflow with features like code editing, interactive visualization, version control, and package management.
+
+## Setting Up Your Environment
+
+Students learning R have **two options**: working *locally* or *remotely*
+
+*Working locally* involves installing R and RStudio on their computer, providing direct control over data and code without an internet connection. On the other hand, *working remotely* enables access to RStudio through a web browser, avoiding local installations and allowing collaboration. **We recommend working remotely**, leveraging platforms like the University of Toronto's JupyterHub for its convenience and stable R Studio environment, making learning R easier and more efficient. We will go into more details in the below paragraphs.
+
+### Working Remotely (Recommended)
+
+Working remotely means accessing R and RStudio from a remote server or cloud-based platform.
+
+#### UofT JupyterHub RStudio server
+
+To facilitate remote access to RStudio, the University of Toronto provides a JupyterHub R Studio server. This allows you to access RStudio from any web browser, eliminating the need for local installations. With this, you can perform data analysis, collaborate with others, and work on your R projects remotely with ease.
+
+To get started, visit [UofT JupyterHub](https://r.datatools.utoronto.ca/). You will need to log in with your UofT credentials to access the RStudio environment.
+
+-   While working remotely, you may need to upload data to the RStudio server or download analysis results. The RStudio interface allows you to upload files directly from your computer to the server and vice versa.
+-   When working remotely, ensure that you save your R scripts and analysis files on the server. This will allow you to continue your work from any device with internet access.
+-   Most R packages are pre-installed on the University of Toronto's R Studio server. However, if you require additional packages, we will soon learn how to install packages.
+
+Remember that while working remotely, a stable internet connection is essential to ensure a smooth and uninterrupted experience. Additionally, always remember to save your work and log out properly after each session to maintain the security of your data. Happy coding!
+
+### Working Locally
+
+When you work locally, you need to install both R and RStudio on your personal computer or a machine that you physically have access to.
+
+#### Downloading R and RStudio
+
+You can download the latest build of **R** for your operating system [here](https://cloud.r-project.org/). Choose the appropriate version for your operating system (Windows, macOS, or Linux) and follow the installation instructions.
+
+You can download the latest version of **RStudio** [here](https://www.rstudio.com/products/rstudio/download/#download).
+
+Once you have both R and RStudio downloaded, go ahead and open up RStudio.
+
+## Using RStudio
+
+When you open your RStudio (either locally or remotely), you'll be greeted with an interface divided into numerous panes. We've highlighted the major ones in the image below:
 
 ![The RStudio interface with annottated regions](images/Rstudio_startup_regions.png){width=100%}
 
@@ -103,15 +131,32 @@ Places to get help include:
 - reference books such as the invaluable [*R for Data Science*](https://r4ds.had.co.nz/index.html), which inspired this entire project. 
 - And yes, when all else fails, holler at your TA/profs. 
 
+## How to get more R practice
+
+As you progress through each chapter, you'll find Rmd (R Markdown) files available for practice and reinforcement. These Rmd files are designed to provide you with hands-on exercises that align with the concepts covered in the textbook.
+
+-   Download the Rmd file and open it in your preferred RStudio environment.
+-   To enhance readability, you can click on the `Visual` tab at the top of the file view and work on the exercises.
+
+#### Working on Exercises
+
+Within each Rmd file, you'll encounter straightforward exercises that give you the opportunity to apply what you've learned in each chapter. After completing an exercise, you can run the provided unittest cell to check your answers and receive instant feedback.
+
+#### Optional Extra Questions
+
+For those seeking an additional challenge and a chance to delve into topics beyond the textbook, we offer optional extra questions. Resources and explanations will be provided to support you in tackling these optional questions.
+
+By engaging with these interactive Rmd files, you can actively reinforce your learning, gain practical experience, and explore R concepts in depth. We encourage you to make the most of these resources to enhance your R proficiency. Happy learning!
+
 ## Summary
 
-In this chapter we've covered: 
+In this chapter we've covered:
 
-  - Installing and running R and RStudio
-  - Running R code from the console
-  - Installing the `tidyverse()` package, the basis of the subsequent code in this book
-  - How to customize the appearance of RStudio so you don't burn out your eyes at night
+-   How to use RStudio to do R programming, both remotely and locally
+-   Installing the `tidyverse()` package, the basis of the subsequent code in this book
+-   How to customize the appearance of RStudio so you don't burn out your eyes at night
+-   How to use the textbook R exercises to get more practice
 
-In the next chapter we'll break down how to setup your work in R for legibility, simplicity, and reproducibility. After all, the person cursing any of your sloppy work will invariably be you, so be kind to yourself, and do it right the first time. 
+In the next chapter we'll break down how to setup your work in R for legibility, simplicity, and reproducibility. After all, the person cursing any of your sloppy work will invariably be you, so be kind to yourself, and do it right the first time.
 
 ![](images/changing-stuff.jpg)

@@ -1,0 +1,184 @@
+---
+title: 'Chapter 3: R Coding Basics'
+output:
+  html_document:
+    df_print: paged
+---
+
+# Exercise 1: Variables and Assignments
+
+**Your Task:**
+
+1. Define a variable called `my_age` and assign your age to it.  
+2. Define another variable called `my_name` and assign your name to it.  
+
+**Consider:** What are the appropriate data types of `my_age` and `my_name`?  
+
+```{r}
+# Complete the code and run the cell.
+
+my_age <- # Your age here
+my_name <- # Your name here
+
+# Print the values
+print(my_age)
+print(my_name)
+```
+
+The `print()` function in R is used to display the values of variables or expressions on the screen. Unlike directly calling the variable, using `print()` provides explicitness and allows you to control the output format when displaying values.
+
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. Run the cell below to check if you've defined and assigned the variables correctly.
+
+```{r}
+# Load testthat package
+library(testthat)
+
+# Unittest for Exercise 1
+test_that("Exercise 1: Variables and Assignments", {
+  
+  expect_that(my_age, is_a("numeric"))
+  expect_gte(my_age, 0)
+  expect_lte(my_age, 100)
+  
+  expect_that(my_name, is_a("character"))
+  expect_gt(length(my_name), 0)
+  expect_lte(length(my_name), 50)
+  
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 2: Installing Packages
+
+**Your Task:**
+
+1. Install the `xgboost` package.  
+2. Install `xml` and `mlr3` packages in one line of code by passing in two package names as a single variable.  
+
+**Consider:** You might want to run `?install.packages()` to see what data type it allows for the package names.
+
+```{r}
+# Complete the code below and run the cell.
+
+# Install xgboost -- your code here
+# Install xml and mlr3 -- your code here
+```
+
+**What are these packages?**
+
+`xgboost` is an efficient and scalable machine learning library designed for gradient boosting. It's widely used for supervised learning tasks, especially in structured/tabular data, due to its high performance and accuracy.
+
+The `xml` package in R provides tools to parse and manipulate XML (eXtensible Markup Language) files, commonly used for data exchange between different systems and applications.
+
+`mlr3` is an R package for machine learning in R that provides a unified interface and infrastructure for various machine learning tasks such as data preprocessing, model training, hyperparameter tuning, and evaluation. It's a successor to the popular mlr package and is designed to be more modular and extendable.
+
+#### Test Your Code (Exercise 2)
+
+Do not modify the cell below. Run the cell below to check if you've successfully installed the packages.
+
+```{r}
+library(testthat)
+test_that("Installing Packages", {
+  # Task 1: Check if tidyverse is installed
+  expect_true("xgboost" %in% installed.packages()[, "Package"])
+  
+  # Task 2: Check if ggplot2 and dplyr are installed
+  packages_installed <- c("xml", "mlr3")
+  expect_true(all(packages_installed %in% installed.packages()[, "Package"]))
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 3: Basic Calculation
+
+**Your Task:**
+
+1. Add 25 and 37, then divide it by 2. Assign it to a variable `a`.  
+2. Multiply `a` by 5, then subtract it by pi(π). Assign it to a variable `b`.  
+3. Raise `b` to the power of 5. Assign it to a variable "c".  
+4. Test if `c` is an integer. Assign the Boolean result to a variable "c_is_integer".  
+
+**Consider:** Operators in R: <https://www.w3schools.com/r/r_operators.asp>
+
+```{r}
+# Complete the code below and run the cell.
+
+a <- # Your code here
+b <- # Your code here
+c <- # Your code here
+c_is_integer <- # Your code here
+
+print(c)
+message(paste("Is c an integer?", c_is_integer))
+```
+
+Note that when we use `print(c)`, we get a value that looks like an integer. However, your `c_is_integer` result should say otherwise. This is resulted from the default behaviour of R that it rounds the number for display. Just remember not to be misled when using `print()` function!
+
+#### Test Your Code (Exercise 3)
+
+Do not modify the cell below. Run the cell below to check if your calculation is correct.
+
+```{r}
+library(testthat)
+
+# Unittest for Exercise 3
+test_that("Exercise 3: Basic Calculation", {
+  expect_equal(a, 31, tolerance=0)
+  expect_equal(b, 151.8584, tolerance=0.0001)
+  expect_equal(c, 80759608318.2073, tolerance=0.0001)
+  expect_false(c_is_integer)
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 4: Data Structures
+
+**Your Task:**
+
+1. Create a numeric vector called `my_vector` with the numbers 3, 7, 2, and 9.  
+2. Create a character vector called `my_names` with the names "Alice," "Bob," "Charlie," and "David."  
+3. Create a list called `my_list` containing the vector `my_vector` and the vector `my_names`.  
+4. Create a data frame called `my_dataframe` with two columns: "Names" and "Ages." Use the vectors `my_names` and `my_vector` as data for the columns.  
+
+**Consider:** Mastering the skill of searching online is crucial for programming. Now is the perfect opportunity to practice and enhance this skill!
+
+```{r}
+# Complete the code below and run the cell.
+
+# 1. Create a numeric vector
+my_vector <- # Your code here
+
+# 2. Create a character vector
+my_names <- # Your code here
+
+# 3. Create a list
+my_list <- # Your code here
+
+# 4. Create a data frame
+my_dataframe <- # Your code here
+```
+
+**Note:** There are numerous approaches to construct these data structures in R. For instance, we can create a data frame by directly inputting values, using other variables, or reading from a file. Additionally, you can explore various optional parameters to enhance your function. Embrace versatility and avoid limiting your solutions to just one method!  
+
+#### Test Your Code (Exercise 4)
+
+Do not modify the cell below. Run the cell below to check if your calculation is correct.
+
+```{r}
+library(testthat)
+
+# Unittest for Exercise 4
+test_that("Exercise 4: Data Structures", {
+  expect_equal(my_vector, c(3, 7, 2, 9))
+  expect_equal(my_names, c("Alice", "Bob", "Charlie", "David"))
+  expect_true(is.list(my_list))
+  expect_true(is.data.frame(my_dataframe))
+  expect_equal(my_dataframe$Names, my_names)
+  expect_equal(my_dataframe$Ages, my_vector)
+})
+```
