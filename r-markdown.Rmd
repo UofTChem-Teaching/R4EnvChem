@@ -1,11 +1,17 @@
 # Using R Markdown
- 
+
+Before going into more details of R Markdown, let's talk about two common options in the world of R coding: the R script (.R) and the dynamic R Markdown document (.Rmd).
+
+**R Scripts**: Imagine coding as crafting a detailed recipe of R commands—a script—that guides R through specific tasks. Conventional R scripts (.R files) are dedicated to these commands, handling calculations and operations. However, as scripts grow, they become complex and sharing insights alongside code becomes challenging.
+
+**R Markdown**: R Markdown (.Rmd) elevates the coding experience by harmonizing code with explanatory text. Within an R Markdown document, code blocks act like individual scripts—smaller, more focused units. These blocks merge code with explanations seamlessly, creating a coherent narrative. Unlike isolated scripts, R Markdown emphasizes both code functionality and its significance within the context. For these reasons, we'll be sticking to working in `.Rmd` files.
+
+
 In a nutshell, R Markdown allows you to analyse your data with R and write your report in the same place (this entire book was written with rmarkdown). This has loads of benefits including a [*reproducible workflow*](https://www.youtube.com/watch?v=s3JldKoA0zw), and streamlined thinking. No more flipping back and forth between coding and writing to figure out what's going on.
 
 Let's run some simple code as an example: 
 
 ```{r}
-# Look at me go mom
 x <- 2+2
 x
 ```
@@ -75,22 +81,42 @@ Reading further down the default R markdown code, you'll see different blocks of
 
 ### Running code in rmarkdown
 
-There's two ways to write `R` code in markdown:
+#### How to create code chunks
 
-- **Setup a code chunk**. Code chunks start with three back-ticks like this: ` ```{r}`, where `r` indicates you're using the R language You end a code chunk using three more backticks like this ` ``` `.
+To create a code chunk within RStudio, you have several options: 
 
-  - Specify code chunks options in the curly braces. i.e. ` ```{r, fig.height = 2}` sets figure height to 2 inches. See the *Code Chunk Options* section below for more details. 
-  
-- **Inline code expression**, which starts with  `` `r ``  and ends with `` ` `` in the body text.
+1. Use the green "c" button located at the top right corner of your file view and select "R". Make sure your cursor is positioned at the desired location within your .rmd file when you do this.
 
-  - Earlier we calculated `x <- 2 + 2`, we can use inline expressions to recall that value (ex. We found that *x* is `r x`)
+![](images/rmd_codeblock_1.png)
+
+
+2. Type ` ```{r}` -- three back-ticks followed by `{r}` -- to initiate a new code chunk, and type ` ``` ` -- three backticks (\`\`\`) -- to end the code chunk. You can specify code chunks options in the curly braces. i.e. ` ```{r, fig.height = 2}` sets figure height to 2 inches. See the *Code Chunk Options* section below for more details.  
+
+![](images/rmd_codeblock_2.png)
+
+3. Inline code expression, which starts with  `` `r ``  and ends with `` ` `` in the body text. Earlier we calculated `x <- 2 + 2`, we can use inline expressions to recall that value. 
+
+![When we knit the markdown file shown in the figure, the knitted document will say "We found that *x* is 4."](images/inline_code.png)
+
+#### How to run code chunks
  
-**To actually run** your R code you have two options. The first is to run the individual chunks using the *Run current chunk* button (See figure 2). This is a great way to tinker with your code before you compile your document. The second option is to compile your entire document using the *Knit document* button (see Figure 2). Knitting will sequentially run all of your code chunks, generate all the text, knit the two together and output a PDF. You'll basically save this for the end. 
+To run code within an R Markdown document, you again have various options to choose from.
+
+1. You can run a specific code chunk by clicking the green triangle button located within each chunk. This action will execute the entire chunk, including all the code it contains.
+
+![Run a code chunk using its own run button.](images/run_code_1.png)
+
+2. For more control, you can run selected lines or chunks. To do this, use the "Run" button at the top of the file view. This button provides a range of execution options that allow you to run code in a manner that suits your needs.
+
+![Example: Run selected line(s)](images/run_code_2.png)
+
+![Example: Run Current Chunk](images/run_code_3.png)
+
+3. You can compile your entire document using the *Knit document* button. This is a great way to tinker with your code before you compile your document. Knitting will sequentially run all of your code chunks, generate all the text, knit the two together and output a PDF. You'll basically save this for the end.
+
+![Note the "knit" button.](images/exampleRMarkdown.PNG)
 
 **Note all the code chunks in a single markdown document work together like a normal R script.** That is if you assign a value to a variable in the first chunk, you can call this variable in the second chunk; the same applies for libraries. **Also note that every time you compile a markdown document, it's done in a "fresh" R session.** If you're calling a variable that exist in your working environment, but isn't explicitly created in the markdown document you'll get an error.   
-
-  
-![How this document, the one you're reading, appeared in RStudio; to see the final results scroll up to the first figure. Note the "knit" and "run current chunk" buttons. ](images/exampleRMarkdown.PNG)
 
 ## Compiling your final report
 

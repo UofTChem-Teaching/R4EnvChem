@@ -61,24 +61,8 @@ Each pane serves a specific role:
 
   - **The console** allows you to directly type and run your code. It also provides messages, warnings, and errors from any code you run. 
   - **The environment**  window lists all variables, data, and functions you've created since the start of your coding session.  
-  - **The viewer** shows your outputs, help documents, etc. which each has their own tab. 
+  - **The viewer** shows your outputs, help documents, etc. which each has their own tab.  
 
-### Installing packages
-
-Packages are previously written snippets of code that extend the capabilities of base R. Typically packages are created to address specific issues or workflows in different types of analysis. This book will make frequent use of a family of packages called the `tidyverse`. These packages all share a common thought process and integrate naturally with one another. 
-
-You can download the entire suite of `tidyverse` packages by simply copy and pasting the following code into the console and pressing 'enter'.
-
-```{r, eval = FALSE}
-install.packages("tidyverse")
-```
-
-You'll see a flurry of lines printed to the console indicating the status of the installation. Once installed you won't be able to use these functions until you load it with `library()`. Enter the code below into the console to load the `tidyverse` package.
-
-```{r}
-library(tidyverse)
-```
-The output show's us which packages are included in the `tidyverse()` and their current version numbers, as well as conflicts (where functions from different packages share the same name). Don't worry about these for now. 
 
 ## Running R Code
 
@@ -131,22 +115,6 @@ Places to get help include:
 - reference books such as the invaluable [*R for Data Science*](https://r4ds.had.co.nz/index.html), which inspired this entire project. 
 - And yes, when all else fails, holler at your TA/profs. 
 
-## How to get more R practice
-
-As you progress through each chapter, you'll find Rmd (R Markdown) files available for practice and reinforcement. These Rmd files are designed to provide you with hands-on exercises that align with the concepts covered in the textbook.
-
--   Download the Rmd file and open it in your preferred RStudio environment.
--   To enhance readability, you can click on the `Visual` tab at the top of the file view and work on the exercises.
-
-#### Working on Exercises
-
-Within each Rmd file, you'll encounter straightforward exercises that give you the opportunity to apply what you've learned in each chapter. After completing an exercise, you can run the provided unittest cell to check your answers and receive instant feedback.
-
-#### Optional Extra Questions
-
-For those seeking an additional challenge and a chance to delve into topics beyond the textbook, we offer optional extra questions. Resources and explanations will be provided to support you in tackling these optional questions.
-
-By engaging with these interactive Rmd files, you can actively reinforce your learning, gain practical experience, and explore R concepts in depth. We encourage you to make the most of these resources to enhance your R proficiency. Happy learning!
 
 ## Summary
 
@@ -155,7 +123,6 @@ In this chapter we've covered:
 -   How to use RStudio to do R programming, both remotely and locally
 -   Installing the `tidyverse()` package, the basis of the subsequent code in this book
 -   How to customize the appearance of RStudio so you don't burn out your eyes at night
--   How to use the textbook R exercises to get more practice
 
 In the next chapter we'll break down how to setup your work in R for legibility, simplicity, and reproducibility. After all, the person cursing any of your sloppy work will invariably be you, so be kind to yourself, and do it right the first time.
 

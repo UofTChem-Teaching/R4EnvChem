@@ -1,42 +1,50 @@
 # Workflows for R Coding
 
-In the previous chapter we did our coding in the console, which got messy rather quickly. As a result, we code in *scripts*. Scripts are essentially a recipe that R reads and executes from top to bottom to execute instead of you typing and running each line of code. An important aspect of scripts is that *they're reproducible*. In other words you should be able to rerun your script and get the exact same result every time. 
+In the previous chapter, we conducted our coding in the console, which quickly became unwieldy. To address this, we transition to using R Markdown `.Rmd` files, which we briefly talked about before. Instead of running code interactively in the console, we write code blocks within the .rmd files, creating a comprehensive document that others can follow. 
 
-## Creating or opening a script
 
-To create a script: 
+## Creating or opening an R Markdown document
 
-  1. Go to *File* -> *New File* -> *R Script*
-  2. Then save your script by going to *File* -> *Save As...*. 
-    a. Make sure to save your file with the `.R` suffix.
+To start an R Markdown document:
+
+  1. Go to *File* -> *New File* -> *R Markdown*
+  2. Then save your document by going to *File* -> *Save As...*. 
+    a. Make sure to save your file with the `.Rmd` suffix.
     b. **Save your script in your project folder**, otherwise you'll run into issues.
 
 We've also provided an example script in the R4EnvChem project template. Assuming you're currently in the template project you can open the script as follows:
 
-  1. Go to `File` -> `Open File` -> open the `Rscript-example.R` file. This will open a new pane above the console dedicated to writting your script(s).  
-  
-To run code, highlight the lines you wish to run and click *Run* at the top of the script. Selecting all of the script will run every line. You'll see the lines selected lines appear in the console, followed by the outputs and messages if there are any. 
+  1. Go to `File` -> `Open File` -> open the `Rscript-example.Rmd` file. This action will open a new pane above the console, dedicated to writing your R Markdown content.
+
 
 ## Workspace and what's real
 
-We've already mentioned the *environment* pane that displays objects present in your R session. While they are useful to work with, they're not *real*. That is to say, if you closed your R session, those objects would be lost. And while RStudio allows you to save a working environment (and it's associated objects), it's best to embrace that *only your scripts are real*. You can't readily share your working environment, and even so it's bad practice as you may reference a previous iteration of an object giving you erroneous results. Think back to the chemistry labs: you may jot notes down on loose leaf, but only what's written in your lab book is considered real... we'll that's how it's supposed to work anyways. 
+We've already mentioned the *environment* pane that displays objects present in your R session. While they are useful to work with, they're not considered *real*. That is to say, if you close your R session, those objects will be lost. And while RStudio allows you to save a working environment (and it's associated objects), it's crucial to understand that *only your saved scripts/markdown documents are real*. You can't readily share your working environment, and even so it's bad practice as you may reference a previous iteration of an object giving you erroneous results. Think back to the chemistry labs: you may jot notes down on loose leaf, but only what's written in your lab book is considered real... we'll that's how it's supposed to work anyways. 
 
-The idea is everything you need can be generated from the original data and the instructions in your script Anyone should be able to take your data and your code and get the same results you got. This is paramount for the reproducibility of your work and your results. 
+The idea is everything you need can be generated from the original data and the instructions in your R script/markdown document. Anyone should be able to take your data and your code and get the same results you got. This is paramount for the reproducibility of your work and your results. 
 
-## Saving R scripts
+## Saving R Markdown
 
-You can save an R script to a `.r` file by going to *File*->*Save* or by clicking the 'save' button in the top left of your script. Code saved to a `.r` file is considered *real*. Variables, plots, or data sets that only exist in your work-space (shown in the Environment window) are not. Whenever you close RStudio, any objects in R that are not considered *real* will be lost in that R session. Furthermore when you need to share your code (for school or publication) you'll need to share your data and your script, but never your work-space. This is to increase predictability and helps people (and you) to make sure your work is reproducible, an under appreciate hallmark of science. 
+To save an R Markdown document:
+
+-   Navigate to *File -> Save* or use the 'Save' icon in the top left corner of your document.
+
+Content saved to an .Rmd file is considered real and self-contained. Variables, plots, or datasets that appear in your workspace or the `Environment` window aren't self-contained. Whenever you close RStudio, any objects in R that are not considered *real* will be lost in that R session. Furthermore when you need to share your code (for school or publication) you’ll need to share your data and your script, but never your work-space. This is to increase predictability and helps people (and you) to make sure your work is reproducible, an under appreciate hallmark of science.
 
 ### What should I save?
 
 At this point in the chapter, two things should be clear: 
 
-1. R scripts saved to `.R` files are real. 
+1. R Markdown documents saved to `.Rmd` files are the real record of your work.
 2. Objects in your work-space/environment are not real, and will not be available to you after you close and re-open RStudio unless you re-run the code used to generate the work-space. 
 
 So what is important to save in R, and how often should you save these files? 
 
-It is paramount that you save the scripts you code in, and that you save them regularly. Even if you've made small notation changes to the code, it is always a good idea to save your changes to the script before closing RStudio, as there is a good chance you will not remember the minor differences upon returning. You want to make sure that even if you lose an object in your environment, your script still contains the code you used to generate that object. You also want to make sure that you generate the object before you call it in part of another command, so that when you run your scripts from top-to-bottom, the variables are generated in the work-space before they are referenced by later commands. 
+-   Save the R Markdown scripts you write, and do so regularly. Even minor changes are worth saving before closing RStudio, as it's easy to forget those small differences upon return.
+-   Ensuring that even if you lose an object in your workspace, your R Markdown script contains the code needed to recreate that object.
+-   Generate the object before referencing it in subsequent commands. This ensures that variables are generated in the workspace before being referenced by later commands when running scripts from top to bottom.
+
+By adhering to these practices, you ensure your R Markdown documents remain accurate, your code is complete, and your work remains reproducible.
 
 
 ### Saving objects
@@ -169,9 +177,9 @@ It is important to be aware of error codes as many functions require specific da
 
 In this chapter we've covered:
 
-  - R workflows in the context of projects and scripts
+  - R workflows in the context of projects and markdown documents
   - What's considered *real* when working in RStudio
-  - How to format your script for legibility (Remember you're the one who's going to be stuck rereading it!)
+  - How to format your markdown for legibility (Remember you're the one who's going to be stuck rereading it!)
   - Troubleshooting some common error messages
   
 Now that you're familiar the above, we'll introduce [Using R Markdown], a way to combine your R code, it's outputs, and your writing all in one dynamic document (like your lab reports!).  
