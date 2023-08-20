@@ -1,0 +1,82 @@
+---
+title: 'Chapter 5: Workflows for R Coding'
+output:
+  html_document:
+    df_print: paged
+---
+
+# Exercise 1: Saving R Objects
+
+You have a numeric vector `my_vector` with the values 10, 20, 30, 40, and 50.
+
+**Your Task:**
+
+1. Save the `my_vector` to a CSV file named "my_vector.csv" in the working directory.  
+2. Read the "my_vector.csv" (do not assign it to a variable).  
+3. When you run the code, what data type is the output? Is this what you expected?  
+
+**Consider:** What does it mean by "working directory," and how do we specify that in our code?
+
+```{r}
+# Complete the code and run the cell.
+my_vector <- c(10, 20, 30, 40, 50)
+
+# Your code here to save my_vector to "my_vector.csv"
+
+# Your code here to read "my_vector.csv".
+
+```
+
+**Note:** When you use `read.csv()` to read data from a CSV file, the output is a data frame, which is like a table with rows and columns. Even though you might expect a list, a data frame is a way for R to make sure your data stays structured and easy to work with. If you need just the data as a list, you can easily get it by using `read.csv(...)[, 1]`, which takes the first column and turns it into a list. 
+
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. Run the cell below to check if you've defined and assigned the variables correctly.
+
+```{r}
+# Load testthat package
+library(testthat)
+
+# Unittest for Exercise 1
+test_that("Exercise 1: Saving R Objects (CSV file)", {
+  # Check if "my_vector.csv" exists
+  expect_true("my_vector.csv" %in% list.files())
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 2: Code Troubleshooting and Readability
+
+Modify the following R script.  
+
+**Your Task:**
+
+1. There is a line that will result in an error. What is wrong with it, and what error message do you expect to see?  
+2. Fix the incorrect line so that the cell will run without an error.  
+3. Add appropriate comments to enhance readability. Use `#` to write a comment in each line.  
+
+**Consider:** As a hint, visit [this R documentation](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/numeric).
+
+```{r}
+# Modify and run this cell.
+
+a <- 5
+b <- "10"
+result <- a + b
+print(result)
+```
+
+#### Test Your Code (Exercise 2)
+
+Do not modify the cell below. Run the cell below to check if you've defined and assigned the variables correctly.  
+
+```{r}
+# Load testthat package
+library(testthat)
+
+# Unittest for Exercise 2
+test_that("Exercise 2: Code Troubleshooting and Readability", {
+  expect_true(result == 15)
+})
+```

@@ -1,4 +1,4 @@
-# (PART\*) Section 2: Data Wrangling in R {-}
+# (PART\*) Part 3: Data Wrangling in R {-}
 
 # Intro to Data Wrangling
 

@@ -99,7 +99,7 @@ In this textbook, **you will exclusively work with `.Rmd` (R Markdown) files**, 
 Within an `.Rmd` file, you will encounter two distinct components: **code and text**.
 
 -   *Text fields*, easily accessible by inserting regular text, allow you to compose explanations, context, and interpretations using plain language. These text fields can be created directly within the `.Rmd` document.
--   *Code chunks*, on the other hand, house R code that can be executed to generate results and graphics. 
+-   *Code chunks*, on the other hand, house R code that can be executed to generate results and graphics.
 
 We will learn more about working with R markdown in the later chapters.
 
@@ -110,3 +110,37 @@ In this chapter we've covered:
 -   Importing the *R4EnvChem Project Template* so we have access to data for the tutorial (amongst other things)
 -   The concept of paths and directories and how relative referencing withing a project greatly simplify this
 
+## Exercise
+
+For this chapter, you will create your own R project in UofT JupyterHub RStudio.
+
+#### 1. Get Started:
+
+-   Launch RStudio on the UofT JupyterHub server.
+
+#### 2. Confirm Your Working Directory
+
+-   Use the `getwd()` function in RStudio to display the current working directory in the console.
+-   Ensure that the working directory in RStudio is the location where you'd like to set up your project.
+
+#### 3. Creating Your Own Project:
+
+-   Launch a new RStudio project. To do this, go to File -\> New Project.
+-   Choose "New Directory".
+-   Select "New Project".
+-   Name the project "MyFirstRProject" and choose a convenient location to save it.
+-   Click on "Create Project".
+-   Use the `getwd()` function again to check your current working directory and confirm you're in the "MyFirstRProject" directory.
+-   Inside the "MyFirstRProject" directory, create two new folders: "my_data" and "my_notebooks". You can do this using RStudio's 'Files' tab or using the `dir.create()` function in the R console.
+
+#### 4. Create Your Rmd File:
+
+-   Within your "MyFirstRProject" directory, create a new `.Rmd` (R Markdown) file. You can do this by going to File -\> New File -\> R Markdown.
+-   Name the file "MyFirstRMarkdown" and set HTML as the default output format.
+-   In the text section of the `.Rmd` file, write one thing you remember about R and RStudio.
+-   Insert a code chunk below what you wrote. In this code chunk, type `sum(1:10)`, which calculates the sum of numbers from 1 to 10.
+-   Knit the document to see the results. This will produce an HTML or PDF document that shows both your text and the results of your R code.
+
+#### 5. Reflection:
+
+-   Explain the difference between relative and absolute paths. Why are relative paths preferred when working in RStudio projects?

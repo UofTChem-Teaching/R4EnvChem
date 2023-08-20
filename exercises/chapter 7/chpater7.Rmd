@@ -1,0 +1,75 @@
+---
+title: 'Chapter 7: R Packages'
+output:
+  html_document:
+    df_print: paged
+---
+
+# Exercise 1: Installing Packages
+
+**Your Task:**
+
+1. Install the `xgboost` package.  
+2. Install `xml` and `mlr3` packages in one line of code by passing in two package names as a single variable.  
+
+**Consider:** You might want to run `?install.packages()` to see what data type it allows for the package names.
+
+```{r}
+# Complete the code below and run the cell.
+
+# Install xgboost -- your code here
+# Install xml and mlr3 -- your code here
+```
+
+**What are these packages?**
+
+`xgboost` is an efficient and scalable machine learning library designed for gradient boosting. It's widely used for supervised learning tasks, especially in structured/tabular data, due to its high performance and accuracy.
+
+The `xml` package in R provides tools to parse and manipulate XML (eXtensible Markup Language) files, commonly used for data exchange between different systems and applications.
+
+`mlr3` is an R package for machine learning in R that provides a unified interface and infrastructure for various machine learning tasks such as data preprocessing, model training, hyperparameter tuning, and evaluation. It's a successor to the popular mlr package and is designed to be more modular and extendable.
+
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. Run the cell below to check if you've successfully installed the packages.
+
+```{r}
+library(testthat)
+test_that("Installing Packages", {
+  # Task 1: Check if tidyverse is installed
+  expect_true("xgboost" %in% installed.packages()[, "Package"])
+  
+  # Task 2: Check if ggplot2 and dplyr are installed
+  packages_installed <- c("xml", "mlr3")
+  expect_true(all(packages_installed %in% installed.packages()[, "Package"]))
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 2: Using `readr` to read a CSV file
+
+**Your Task:**
+Your objective is to read a CSV file using the `readr` package, without loading the entire package.  
+1. Download "sample_data.csv" from this chapter.  
+2. If you're working on the UofT JupyterHub, upload the CSV file to your JupyterHub RStudio so that the server has access to the file. If you are working on your own RStudio, make sure the CSV file is in the same folder as this Rmd file.  
+3. Use the appropriate function from `readr` to read in the CSV file **without loading the whole package**. Assign the loaded data to a variable named `csv_data`.
+
+```{r}
+# Complete the code below and run the cell.
+
+# Read the CSV file using readr -- your code here
+```
+
+#### Test Your Code (Exercise 2)
+
+Do not modify the cell below. Run the cell below to check if you've successfully loaded the csv file.
+
+```{r}
+library(testthat)
+test_that("Reading a CSV File with readr", {
+  # Check if csv_data is a data frame and has rows
+  expect_true(is.data.frame(csv_data) & nrow(csv_data) > 0)
+})
+```
+

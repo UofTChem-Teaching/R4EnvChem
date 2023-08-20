@@ -1,4 +1,4 @@
-# (PART\*) Section 3: Data Analysis Toolbox {-}
+# (PART\*) Part 4: Data Analysis Toolbox {-}
 
 # Introduction to Data Analysis 
 
