@@ -143,42 +143,7 @@ test_that("Exercise 3: Data Structures", {
 
 ------------------------------------------------------------------------
 
-# Exercise 4: Conditional Statement
-
-**Your Task:**
-
-You will write a function called `grade_checker` that takes a numeric grade (0 to 100) as its input. The function should return "F" if the grade is less than 60, "D" if the grade is between 60 and 69, "C" if the grade is between 70 and 79, "B" if the grade is between 80 and 89, and "A" if the grade is 90 or above.  
-
-**Consider:** When there are multiple criteria, you can use `else if` syntax. Check out https://www.r-bloggers.com/2022/10/if-else-else-if-statement-in-r/ for examples.
-
-```{r}
-# Complete the code below and run the cell.
-
-grade_checker <- function(grade) {
-  # Your code here
-}
-```
-
-#### Test Your Code (Exercise 4)
-
-Do not modify the cell below. Run the cell below to check if your code is correct.
-
-```{r}
-library(testthat)
-
-# Unittest for Exercise 4
-test_that("Exercise 4: Conditional Statement", {
-  expect_equal(grade_checker(55), "F")
-  expect_equal(grade_checker(65), "D")
-  expect_equal(grade_checker(75), "C")
-  expect_equal(grade_checker(85), "B")
-  expect_equal(grade_checker(95), "A")
-})
-```
-
-------------------------------------------------------------------------
-
-# Exercise 5: Calculate Median
+# Exercise 4: Calculate Median
 
 **Your Task:**
 
@@ -197,7 +162,7 @@ nums <- # Your code here
 median_value <- # Your code here
 ```
 
-#### Test Your Code (Exercise 5)
+#### Test Your Code (Exercise 4)
 
 Do not modify the cell below. Run the cell below to check if your code is correct.
 
@@ -215,8 +180,8 @@ med <- function(numbers) {
   }
 }
 
-# Unittest for Exercise 3
-test_that("Exercise 5: Calculate Median", {
+# Unittest for Exercise 4
+test_that("Exercise 4: Calculate Median", {
   expect_true(length(nums) == 10)
   expect_equal(median_value, med(nums))
 })
@@ -225,33 +190,32 @@ test_that("Exercise 5: Calculate Median", {
 
 ------------------------------------------------------------------------
 
-# (Optional) Exercise 6: Sum_multiples
+# Exercise 5: Conditional Statement
 
 **Your Task:**
 
-Write a function called `sum_multiples` that takes a numeric value `n` as its input. The function should return the sum of all numbers from 1 to `n` that are multiples of 3 or 5.
+Given a variable `grade` that represents a numeric grade (0 to 100), write an if-else if-else structure to assign a letter grade based on the following criteria:
 
-**Consider:** If you're comfortable with this chapter's topics, the solution can be straightforward. Also, there could be multiple approaches. However, it's totally fine if this is out of your reach at this point.
+-   "F" if the grade is less than 60
+-   "D" if the grade is between 60 and 69
+-   "C" if the grade is between 70 and 79
+-   "B" if the grade is between 80 and 89
+-   "A" if the grade is 90 or above.
+
+Your solution should store the letter grade in a variable named `letter_grade`.
+
+**Consider:** When there are multiple criteria, you can use `else if` syntax. Check out https://www.r-bloggers.com/2022/10/if-else-else-if-statement-in-r/ for examples.
+
 
 ```{r}
 # Complete the code below and run the cell.
+grade <- 75  # Change this value to test different scenarios
 
-sum_multiples <- function(n) {
-  # Your code here
-}
-```
+# Your code goes here
 
-#### Test Your Code (Exercise 6)
 
-Do not modify the cell below. Run the cell below to check if your code is correct.
 
-```{r}
-library(testthat)
-
-# Unittest for Exercise 6
-test_that("Exercise 6: Sum_multiples", {
-  expect_equal(sum_multiples(10), 23)
-  expect_equal(sum_multiples(0), 0)
-})
+# Is your output what you expect?
+print(letter_grade)
 ```
 

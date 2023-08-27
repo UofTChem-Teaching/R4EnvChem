@@ -1,4 +1,4 @@
-# R Packages and Tidyverse
+# R Packages
 
 Before we do any real data work with R, now is the good time to introduce you to R packages. 
 
@@ -48,15 +48,21 @@ We've called functions like `ggplot()` and `read_csv()` from the `ggplot2` and `
 
 ## Tidyverse: The Golden Toolbox of R
 
-We previously mentioned that `tidyverse` is a family of R packages designed for data science and deep data exploration. You will soon get into the chapters that extensively use tidyverse, but let's take a look at some of its noteworthy packages like `ggplot2`, `dplyr`, `tidyr`, and `readr`.
+We've emphasized before that `tidyverse` is an indispensable collection of R packages tailored specifically for data science and in-depth data analysis. As you proceed, you'll find that our chapters heavily, if not exclusively, rely on its functionalities. Let's dive into some of its pivotal functions.
 
-#### 1. ggplot2
+### Loading the Tidyverse
 
-[`ggplot2`](https://ggplot2.tidyverse.org/) is the go-to package for data visualization in R. Unlike base R graphics, ggplot2 allows you to build plots iteratively, adding layers of detail as you go.
+Before using the functions from the `tidyverse`, make sure to load the entire collection.
 
 ```{r}
-library(ggplot2)
+library(tidyverse)
+```
 
+### Data Visualization
+
+One of the strengths of the `tidyverse` is data visualization. The example below shows how you can iteratively build plots by adding layers of details.
+
+```{r}
 # ggplot2 built-in dataset on fuel economy
 data(mpg)
 
@@ -64,19 +70,18 @@ data(mpg)
 ggplot(mpg, aes(x=displ, y=hwy)) + geom_point()
 ```
 
-#### 2. dpylr
 
-[`dplyr`](https://dplyr.tidyverse.org/) provides verbs, or functions, to help you solve the most common data manipulation challenges. It's fast, intuitive, and the syntax is readable, making your code easier to write and understand.
+### Data Manipulation
+
+The tidyverse provides a set of functions to help solve common data manipulation challenges. The syntax is intuitive and readable, which simplifies both writing and understanding the code.
 
 ```{r}
-library(dplyr)
-
 mpg %>%
   filter(class == "suv") %>%
   summarize(mean_hwy = mean(hwy))
 ```
 
-**Code explanation** (Optional for now):
+**Code explanation** (Optional for now; For your curiosity):
 
 -   The `%>%` symbol (pipe operator) is a key part of tidyverse. The operator is used to pass an object into a function, allowing for sequential operations to be performed without the need for intermediate variables. For the example above, it's using the operator for data manipulation (filter and summarizing). The result of the left-hand side of the `%>%` is used as the first argument to the function on the right-hand side.
 
@@ -84,10 +89,31 @@ mpg %>%
 
 -   The `summarize()` function is used to create summary statistics for different variables. You provide named arguments where the name will be the name of a new column, and the value will be the summary statistic to compute.
 
-#### 3. tidyr
+### Efficient Data Reading
 
-[`tidyr`](https://tidyr.tidyverse.org/) ensures that your data is consistent with the tidy data principles. It offers functions to pivot data from wide to long formats and vice versa, and to deal with missing values.
+The `tidyverse` allows for efficient reading of rectangular data, such as CSV and TSV files. For instance, instead of using the R built-in function `read.csv()`, you can employ a similar function, `read_csv()`, from `tidyverse` to quickly import a CSV file as a data frame. This function provides more flexibility and is optimized for faster performance.
 
-#### 4. readr
 
-[`readr`](https://readr.tidyverse.org/) provides functions to quickly and efficiently read rectangular data, including CSV and TSV files. Do you recall the R built-in function `read.csv()` to import a CSV file as a data frame? The alternative is to use the `read_csv()` (it looks very similar, right?) method that `readr` offers.
+## Smile: Handling Chemical Structures in R
+Let's look at one more package that you might find interesting: `smile`. <More to be added>
+
+### Installation
+
+```{r}
+# to be added
+```
+
+### A simple example
+<To be added>
+
+```{r}
+# to be added
+```
+
+
+## Summary
+
+In this chapter, we delved into the world of R packages, understanding their significance and advantages over built-in R functions. We highlighted the functionalities of `tidyverse`, showcasing practical examples. 
+
+Armed with this foundational knowledge of R packages, we're now poised to harness their capabilities in our R programming journey.
+

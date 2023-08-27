@@ -114,16 +114,16 @@ In this chapter we've covered:
 
 For this chapter, you will create your own R project in UofT JupyterHub RStudio.
 
-#### 1. Get Started:
+### Get Started:
 
 -   Launch RStudio on the UofT JupyterHub server.
 
-#### 2. Confirm Your Working Directory
+### Confirm Your Working Directory
 
 -   Use the `getwd()` function in RStudio to display the current working directory in the console.
 -   Ensure that the working directory in RStudio is the location where you'd like to set up your project.
 
-#### 3. Creating Your Own Project:
+### Creating Your Own Project:
 
 -   Launch a new RStudio project. To do this, go to File -\> New Project.
 -   Choose "New Directory".
@@ -133,7 +133,7 @@ For this chapter, you will create your own R project in UofT JupyterHub RStudio.
 -   Use the `getwd()` function again to check your current working directory and confirm you're in the "MyFirstRProject" directory.
 -   Inside the "MyFirstRProject" directory, create two new folders: "my_data" and "my_notebooks". You can do this using RStudio's 'Files' tab or using the `dir.create()` function in the R console.
 
-#### 4. Create Your Rmd File:
+### Create Your Rmd File:
 
 -   Within your "MyFirstRProject" directory, create a new `.Rmd` (R Markdown) file. You can do this by going to File -\> New File -\> R Markdown.
 -   Name the file "MyFirstRMarkdown" and set HTML as the default output format.
@@ -141,6 +141,6 @@ For this chapter, you will create your own R project in UofT JupyterHub RStudio.
 -   Insert a code chunk below what you wrote. In this code chunk, type `sum(1:10)`, which calculates the sum of numbers from 1 to 10.
 -   Knit the document to see the results. This will produce an HTML or PDF document that shows both your text and the results of your R code.
 
-#### 5. Reflection:
+### Reflection:
 
 -   Explain the difference between relative and absolute paths. Why are relative paths preferred when working in RStudio projects?

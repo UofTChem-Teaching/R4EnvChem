@@ -28,7 +28,7 @@ Students learning R have **two options**: working *locally* or *remotely*
 
 Working remotely means accessing R and RStudio from a remote server or cloud-based platform.
 
-#### UofT JupyterHub RStudio server
+**UofT JupyterHub RStudio server**
 
 To facilitate remote access to RStudio, the University of Toronto provides a JupyterHub R Studio server. This allows you to access RStudio from any web browser, eliminating the need for local installations. With this, you can perform data analysis, collaborate with others, and work on your R projects remotely with ease.
 
@@ -131,12 +131,12 @@ In the next chapter we'll break down how to setup your work in R for legibility,
 
 Now that you've learned the basics of setting up and customizing R and RStudio, let's put some of that knowledge into practice.
 
-#### 1. Setup
+### Setup
 
 -   Access UofT JupyterHub RStudio server [here](https://r.datatools.utoronto.ca/).
 -   (Optional) Change your RStudio appearance as you like.
 
-#### 2. Basic R Commands
+### Basic R Commands
 
 -   In the `Console` tab, write an expression to calculate 10 plus 5 and press `enter`.
 -   Open a new R script and type in the following commands:
@@ -152,11 +152,11 @@ print(z)
 
 -   Run the script. What is the output?
 
-#### 3. USing the Help Function
+### USing the Help Function
 
 -   Let's say you've come across a function in R that you don't know how to use, for example, `sqrt()`. Use the `?` command to access the documentation for this function from your console tab.
 -   What does the `sqrt()` function do?
 
-#### 4. Reflection
+### Reflection
 
 -   What are your first impressions of RStudio as an IDE? Do you have any prior experience with other programming languages or IDEs? If so, how does RStudio compare?

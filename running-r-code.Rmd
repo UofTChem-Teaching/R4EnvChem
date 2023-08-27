@@ -1,6 +1,6 @@
 <!-- This header creates the chapter -->
 
-# (PART\*) Part 2: How to Code in R
+# (PART\*) Part 2: How to Code in R {.unnumbered}
 
 # R Coding Basics
 
@@ -194,39 +194,6 @@ if (x > 5) {
 
 Here, because `x` is 3 (which is not greater than 5), R prints "x is 5 or less!".
 
-## Loops
-
-Repetition is a key component of programming. Loops enable you to execute the same piece of code multiple times, making data processing more efficient. If you have a previous programming experience in any language, these syntax should look familiar.
-
-#### The `for` loop
-
-The `for` loop in R is used to iterate over elements in a vector or list.
-
-```{r}
-for (i in 1:5) {
-  print(i)
-}
-```
-
-This will print numbers from 1 to 5. The loop iterates over each element in the sequence `1:5`, setting the value to `i` and executing the code inside the loop.
-
-#### The `while` loop
-
-The `while` loop continues executing as long as a specified condition remains true.
-
-```{r}
-count <- 1
-
-while (count <= 5) {
-  print(count)
-  count <- count + 1
-}
-```
-
-In this example, the loop will keep printing and incrementing the value of counter until counter is no longer less than or equal to 5.
-
-Remember, be cautious with while loops. If the condition never becomes false, the loop will run indefinitely!
-
 ## R built-in functions
 
 Built-in functions are the essential tools that allow you to perform a wide range of tasks without having to write the underlying code from scratch. These functions are part of the R language itself and are readily available for your use.
@@ -267,38 +234,6 @@ An often unappreciated aspect of packages is that they not only contain function
 
 You can also write you're own functions. Please see [Programming with R] for additional details.
 
-## Writing custom functions in R
-
-Functions form the backbone of most programming languages, and R is no exception. While R provides a rich library of built-in functions, there are times when you'll need to define your own. Custom functions in R allow you to encapsulate a series of commands into a single reusable unit.
-
-**Why write custom functions?**
-
--   **Reusability**: Once you've written and tested a function, you can use it repeatedly without having to retype or copy-paste the same lines of code.
--   **Maintainability**: Changes can be made in one place (inside the function) rather than at multiple locations where the code might be used.
--   **Clarity**: Well-named functions can make your main code more readable, as they abstract away the complexity.
-
-#### Simple example
-
-```{r}
-add_two <- function(a, b) {
-  # Add a and b and return the value
-  added <- a + b
-  return(added)
-}
-```
-
--   `add_two` is the custom name of the function.
--   `a` and `b` are the inputs to the function. You can name them `x` and `y`, or anything else, as long as they are kept consistent throughout the function definition. You can also change the number of inputs for your function.
--   The `return` statement specifies the output of your function. If omitted, the function will return the result of the last expression evaluated.
-
-You can run this function with various choices of `a` and `b`:
-
-```{r}
-add_two(1, 3)
-add_two(20, 35.5)
-```
-
-At this time, we shall keep it simple. You will eventually see more complex usages of custom functions.
 
 ## Summary
 
@@ -307,8 +242,6 @@ In this chapter we've covered:
 -   The basics of coding in R including variables, data types, and data structures (notably `data.frames`).
 -   Importing data from your project folder into R
 -   Using if-else structure to build a conditional logic
--   Using for loop or while loop to iterate over multiple items
 -   Using R built-in functions and opening function documentations
--   Creating your custom functions
 
 Now that you're familiar with navigating RStudio and some basic R coding, you may have realized that working the console can get real messy, real quick. Read on to [Workflows for R Coding] where we'll discuss R workflows to make everyone's lives easier.

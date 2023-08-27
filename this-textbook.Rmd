@@ -6,11 +6,11 @@ Before we move onto the actual coding part, let's talk about how to navigate and
 
 **1. Reading and Active Engagement**
 
-This textbook encourages active learning. Don't merely read through the content---interact with it. Type out the code in your R environment and see the results firsthand. This hands-on approach will solidify your comprehension and enhance your practical skills. Observe how the code behaves, experiment with modifications, and observe how changes impact the outcomes. 
+This textbook encourages active learning. Don't merely read through the content---interact with it. Type out the code in your R environment and see the results firsthand. This hands-on approach will solidify your comprehension and enhance your practical skills. Observe how the code behaves, experiment with modifications, and observe how changes impact the outcomes.
 
 **2. Curiosity and Inquisitiveness**
 
-When you encounter code you don't fully understand or want to know the underlying process, lean into your curiosity. Don't hesitate to ask "Why?" and explore concepts beyond the immediate scope. Seek to understand the "why" and "how" alongside the "what." 
+When you encounter code you don't fully understand or want to know the underlying process, lean into your curiosity. Don't hesitate to ask "Why?" and explore concepts beyond the immediate scope. Seek to understand the "why" and "how" alongside the "what."
 
 **3. Resources and Further Explanation**
 
@@ -20,6 +20,21 @@ This textbook is a stepping stone to your R journey. Beyond the content provided
 
 If you're using this textbook as part of a class or a group, engage in discussions with your peers. Sharing insights, clarifying doubts, and collaborating on exercises can enhance your learning experience. Don't hesitate to ask questions, seek help, and contribute to a supportive learning environment.
 
+## Useful features
+
+### Searching throughout the textbook
+
+By clicking on the magnifying glass icon in the top left corner, you have the ability to search for keywords across the entire textbook without worrying about case sensitivity. For instance, entering "tidyverse" will display all chapters where tidyverse is mentioned. This gives you a glimpse into future chapters, offering a preview of the various ways you'll be engaging with tidyverse later on!
+
+### How to view the original R Markdown of textbook chapters
+
+This textbook is assembled from individual Rmd files, each representing a chapter. As you progress through the chapters, you may wish to examine the associated Rmd files to delve deeper into the code and its execution.
+
+Simply click on the edit icon in the top left corner to be directed to the corresponding Rmd file on GitHub, opened in a new tab. You're encouraged to download these files, experiment with the code, and observe our Rmd formatting techniques!
+
+![](images/view_source.png){width="70%"}
+
+
 ## How to get more R practice
 
 As you progress through each chapter, you'll find `.Rmd` (R Markdown) files available for practice and reinforcement. These Rmd files are designed to provide you with hands-on exercises that align with the concepts covered in the textbook.
@@ -27,11 +42,11 @@ As you progress through each chapter, you'll find `.Rmd` (R Markdown) files avai
 -   Download the `.Rmd` file and open it in your preferred RStudio environment.
 -   To enhance readability, you optionally click on the `Visual` tab at the top of the file view and work on the exercises.
 
-#### Working on Exercises
+### Working on Exercises
 
 Within each Rmd file, you'll encounter straightforward exercises that give you the opportunity to apply what you've learned in each chapter. After completing an exercise, you can run the provided unittest cell to check your answers and receive instant feedback.
 
-#### Optional Extra Questions
+### Optional Extra Questions
 
 For those seeking an additional challenge and a chance to delve into topics beyond the textbook, we offer optional extra questions. Resources and explanations will be provided to support you in tackling these optional questions.
 
