@@ -11,29 +11,32 @@ rmd_files:  [
 
   "index.Rmd",
   
-  # Section 1: R tutorial
+  # Part 1: Getting Started in R
   "intro.Rmd",
   "r-studio-projects.Rmd",
+  "this-textbook.Rmd",
+
+  # Part 2: How to Code in R
   "running-r-code.Rmd",
   "r-workflows.Rmd",
   "r-markdown.Rmd",
-  "r-tutorial.Rmd" ,
+  "r-packages.Rmd",
 
-  # Section 2: Data Wrangling
+  # Part 3: Data Wrangling
   "intro-data-analysis.Rmd",
   "import.Rmd",
   "tidy.Rmd",
   "transform-1.Rmd",
   "prog-with-r.Rmd",
  
-  # Section 3: Data Analysis toolbox.
+  # Part 4: Data Analysis toolbox.
   "sec3-intro.rmd",
   "summarize.rmd", 
   "visualizations-redux.Rmd", 
   "linear-regression.Rmd",
   "non-linear-models.Rmd" ,
   
-  # # Section 4: CHM410 Labs
+  # # Part 5: CHM410 Labs
   "CHM410-airQuality.Rmd",
   "CHM410-NMR.Rmd"
   

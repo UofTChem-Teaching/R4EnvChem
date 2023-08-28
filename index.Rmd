@@ -26,10 +26,11 @@ This website is more-or-less the living result of a collaborative project betwee
 
 This book will is broken up into four sections: 
 
-  - **Section 1: Getting Started in R** is a general guide for the complete novice that will help you install, setup, and run R code. It features a useful tutorial exercise to make sure you have a working script before starting courses. 
-  - **Section 2: Data Wrangling** introduces data analysis workflows and showcases *how* you can use R and the `tidyverse` to import and clean up your data into a consistent format to tackle the vast majority of the data science/analysis problems you'll encounter in undergraduate environmental chemistry courses. 
-  - **Section 3: Data Analysis Toolbox** provides code and theory behind the most common data analysis practices in environmental chemistry. These include linear regression analysis, a myriad of visualizations, etc. 
-  - **Section 4: Notes for Env. Chem. Labs** consist of chapters specific to individual laboratory experiments. They rely upon knowledge from the previous three sections to introduce concepts unique to individual labs. 
+  - **Section 1: Getting Started in R** is a general guide for the complete novice that will help you install, setup, and run R code. 
+  - **Section 2: How to Code in R** introduces the basics of R programming as well as a usual R workflow, and how to use R markdown to communciate your code with others. 
+  - **Section 3: Data Wrangling** introduces data analysis workflows and showcases *how* you can use R and the `tidyverse` to import and clean up your data into a consistent format to tackle the vast majority of the data science/analysis problems you'll encounter in undergraduate environmental chemistry courses. 
+  - **Section 4: Data Analysis Toolbox** provides code and theory behind the most common data analysis practices in environmental chemistry. These include linear regression analysis, a myriad of visualizations, etc. 
+  - **Section 5: Notes for Env. Chem. Labs** consist of chapters specific to individual laboratory experiments. They rely upon knowledge from the previous three sections to introduce concepts unique to individual labs. 
 
 We recommend that you read through Sections 1 and 2 in sequential order. These provide the foundation for the consistent data analysys workflow used throughout Sections 3 and 4. 
 

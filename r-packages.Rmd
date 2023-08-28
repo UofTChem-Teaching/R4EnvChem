@@ -1,0 +1,119 @@
+# R Packages
+
+Before we do any real data work with R, now is the good time to introduce you to R packages. 
+
+R, as a powerful programming language for statistics and data analysis, boasts a rich ecosystem of packages. In this chapter, we'll demystify what these packages are, their importance, and how to utilize them efficiently.
+
+## What are R packages?
+
+In a programming context, a package is akin to a toolbox. It contains sets of functions and data sets crafted to perform specific tasks, similar to how a toolbox contains various tools for different jobs. Instead of building every tool from scratch each time you need it, you can simply open your toolbox and grab the necessary instrument. In R, these tools come in the form of functions and data sets bundled inside packages.
+
+Packages are previously written snippets of code that extend the capabilities of base R. Typically packages are created to address specific issues or workflows in different types of analysis.
+
+#### Benefits of using packages:
+
+-   **Efficiency**: Why reinvent the wheel? Packages save time by offering tried and tested functions for specific tasks.
+-   **Community Support**: R packages often have a strong community of developers and users. This means frequent updates, thorough documentation, and a network of users to answer questions and offer support.
+-   **Versatility**: The vast library of R packages means that you have tools at your disposal for almost every conceivable task or analysis.
+
+## How to use R packages
+
+### How to install packages
+
+Before using a package, you must first install it. This is a one-time process unless you need to update the package to a newer version. To install a package, use the `install.packages()` function.
+
+This book will make frequent use of a family of packages called the `tidyverse` (a popular collection of packages for data manipulation). These packages all share a common thought process and integrate naturally with one another. If you want to install the package named "tidyverse", you would use:
+
+```{r, eval = FALSE}
+# You can run this code in your R console as well. 
+install.packages("tidyverse")
+```
+
+### How to load packages
+
+You'll see a flurry of lines printed to the console indicating the status of the installation. Once installed you won't be able to use these functions until you load it with `library()`. For example, to load the `tidyverse` package:
+
+```{r}
+# You can run this code in your R console as well. 
+library(tidyverse)
+```
+
+The output show's us which packages are included in the `tidyverse()` and their current version numbers, as well as conflicts (where functions from different packages share the same name). Don't worry about these for now.
+
+After this, all the functions and data sets contained in the "tidyverse" package are available for you to use in your session. If you're ever uncertain about how to use a particular function, the R community and the package's documentation are excellent resources. For example, you can take a look at the official tidyverse documentation [here](https://tidyverse.tidyverse.org/).
+
+### Calling specific functions
+
+We've called functions like `ggplot()` and `read_csv()` from the `ggplot2` and `readr` packages, respectively. When we did so, they were implicitly imported when we called `library(tidyverse)`. What library does is import *all* of the functions within a package into the R workspace, so we can simply refer to them by name later on. Sometimes you'll want to be explicit to which function you call, as you can run into conflicts where different functions from different packages have the same name. Or you might not want to import the entire package when you only need to call one function. Either way, to explicitly call a function from a specific package you type the package name, followed by `::`, and the function name. I.e. We can use `read_csv()` without importing the `tidyverse`/`readr` packages by simply typing: `readr::read_csv()`. Note the package still needs to be installed on your computer for this to work.
+
+## Tidyverse: The Golden Toolbox of R
+
+We've emphasized before that `tidyverse` is an indispensable collection of R packages tailored specifically for data science and in-depth data analysis. As you proceed, you'll find that our chapters heavily, if not exclusively, rely on its functionalities. Let's dive into some of its pivotal functions.
+
+### Loading the Tidyverse
+
+Before using the functions from the `tidyverse`, make sure to load the entire collection.
+
+```{r}
+library(tidyverse)
+```
+
+### Data Visualization
+
+One of the strengths of the `tidyverse` is data visualization. The example below shows how you can iteratively build plots by adding layers of details.
+
+```{r}
+# ggplot2 built-in dataset on fuel economy
+data(mpg)
+
+# draw a scatterplot
+ggplot(mpg, aes(x=displ, y=hwy)) + geom_point()
+```
+
+
+### Data Manipulation
+
+The tidyverse provides a set of functions to help solve common data manipulation challenges. The syntax is intuitive and readable, which simplifies both writing and understanding the code.
+
+```{r}
+mpg %>%
+  filter(class == "suv") %>%
+  summarize(mean_hwy = mean(hwy))
+```
+
+**Code explanation** (Optional for now; For your curiosity):
+
+-   The `%>%` symbol (pipe operator) is a key part of tidyverse. The operator is used to pass an object into a function, allowing for sequential operations to be performed without the need for intermediate variables. For the example above, it's using the operator for data manipulation (filter and summarizing). The result of the left-hand side of the `%>%` is used as the first argument to the function on the right-hand side.
+
+-   The `filter()` function is used to extract a subset of rows from a data frame based on logical conditions. It returns all rows where the condition is `TRUE`.
+
+-   The `summarize()` function is used to create summary statistics for different variables. You provide named arguments where the name will be the name of a new column, and the value will be the summary statistic to compute.
+
+### Efficient Data Reading
+
+The `tidyverse` allows for efficient reading of rectangular data, such as CSV and TSV files. For instance, instead of using the R built-in function `read.csv()`, you can employ a similar function, `read_csv()`, from `tidyverse` to quickly import a CSV file as a data frame. This function provides more flexibility and is optimized for faster performance.
+
+
+## Smile: Handling Chemical Structures in R
+Let's look at one more package that you might find interesting: `smile`. <More to be added>
+
+### Installation
+
+```{r}
+# to be added
+```
+
+### A simple example
+<To be added>
+
+```{r}
+# to be added
+```
+
+
+## Summary
+
+In this chapter, we delved into the world of R packages, understanding their significance and advantages over built-in R functions. We highlighted the functionalities of `tidyverse`, showcasing practical examples. 
+
+Armed with this foundational knowledge of R packages, we're now poised to harness their capabilities in our R programming journey.
+

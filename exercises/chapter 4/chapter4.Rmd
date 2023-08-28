@@ -1,33 +1,31 @@
 ---
-title: 'Chapter 4: Workflows for R Coding'
+title: 'Chapter 4: R Coding Basics'
 output:
   html_document:
     df_print: paged
 ---
 
-# Exercise 1: Saving R Objects
-
-You have a numeric vector `my_vector` with the values 10, 20, 30, 40, and 50.
+# Exercise 1: Variables and Assignments
 
 **Your Task:**
 
-1. Save the `my_vector` to a CSV file named "my_vector.csv" in the working directory.  
-2. Read the "my_vector.csv" (do not assign it to a variable).  
-3. When you run the code, what data type is the output? Is this what you expected?  
+1. Define a variable called `my_age` and assign your age to it.  
+2. Define another variable called `my_name` and assign your name to it.  
 
-**Consider:** What does it mean by "working directory," and how do we specify that in our code?
+**Consider:** What are the appropriate data types of `my_age` and `my_name`?  
 
 ```{r}
 # Complete the code and run the cell.
-my_vector <- c(10, 20, 30, 40, 50)
 
-# Your code here to save my_vector to "my_vector.csv"
+my_age <- # Your age here
+my_name <- # Your name here
 
-# Your code here to read "my_vector.csv".
-
+# Print the values
+print(my_age)
+print(my_name)
 ```
 
-**Note:** When you use `read.csv()` to read data from a CSV file, the output is a data frame, which is like a table with rows and columns. Even though you might expect a list, a data frame is a way for R to make sure your data stays structured and easy to work with. If you need just the data as a list, you can easily get it by using `read.csv(...)[, 1]`, which takes the first column and turns it into a list. 
+The `print()` function in R is used to display the values of variables or expressions on the screen. Unlike directly calling the variable, using `print()` provides explicitness and allows you to control the output format when displaying values.
 
 #### Test Your Code (Exercise 1)
 
@@ -38,45 +36,186 @@ Do not modify the cell below. Run the cell below to check if you've defined and 
 library(testthat)
 
 # Unittest for Exercise 1
-test_that("Exercise 1: Saving R Objects (CSV file)", {
-  # Check if "my_vector.csv" exists
-  expect_true("my_vector.csv" %in% list.files())
+test_that("Exercise 1: Variables and Assignments", {
+  
+  expect_that(my_age, is_a("numeric"))
+  expect_gte(my_age, 0)
+  expect_lte(my_age, 100)
+  
+  expect_that(my_name, is_a("character"))
+  expect_gt(length(my_name), 0)
+  expect_lte(length(my_name), 50)
+  
 })
 ```
 
 ------------------------------------------------------------------------
 
-# Exercise 2: Code Troubleshooting and Readability
-
-Modify the following R script.  
+# Exercise 2: Basic Calculation
 
 **Your Task:**
 
-1. There is a line that will result in an error. What is wrong with it, and what error message do you expect to see?  
-2. Fix the incorrect line so that the cell will run without an error.  
-3. Add appropriate comments to enhance readability. Use `#` to write a comment in each line.  
+1. Add 25 and 37, then divide it by 2. Assign it to a variable `a`.  
+2. Multiply `a` by 5, then subtract it by pi(π). Assign it to a variable `b`.  
+3. Raise `b` to the power of 5. Assign it to a variable "c".  
+4. Test if `c` is an integer. Assign the Boolean result to a variable "c_is_integer".  
 
-**Consider:** As a hint, visit [this R documentation](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/numeric).
+**Consider:** Operators in R: <https://www.w3schools.com/r/r_operators.asp>
 
 ```{r}
-# Modify and run this cell.
+# Complete the code below and run the cell.
 
-a <- 5
-b <- "10"
-result <- a + b
-print(result)
+a <- # Your code here
+b <- # Your code here
+c <- # Your code here
+c_is_integer <- # Your code here
+
+print(c)
+message(paste("Is c an integer?", c_is_integer))
 ```
+
+Note that when we use `print(c)`, we get a value that looks like an integer. However, your `c_is_integer` result should say otherwise. This is resulted from the default behaviour of R that it rounds the number for display. Just remember not to be misled when using `print()` function!
 
 #### Test Your Code (Exercise 2)
 
-Do not modify the cell below. Run the cell below to check if you've defined and assigned the variables correctly.  
+Do not modify the cell below. Run the cell below to check if your calculation is correct.
 
 ```{r}
-# Load testthat package
 library(testthat)
 
 # Unittest for Exercise 2
-test_that("Exercise 2: Code Troubleshooting and Readability", {
-  expect_true(result == 15)
+test_that("Exercise 2: Basic Calculation", {
+  expect_equal(a, 31, tolerance=0)
+  expect_equal(b, 151.8584, tolerance=0.0001)
+  expect_equal(c, 80759608318.2073, tolerance=0.0001)
+  expect_false(c_is_integer)
 })
 ```
+
+------------------------------------------------------------------------
+
+# Exercise 3: Data Structures
+
+**Your Task:**
+
+1. Create a numeric vector called `my_vector` with the numbers 3, 7, 2, and 9.  
+2. Create a character vector called `my_names` with the names "Alice," "Bob," "Charlie," and "David."  
+3. Create a list called `my_list` containing the vector `my_vector` and the vector `my_names`.  
+4. Create a data frame called `my_dataframe` with two columns: "Names" and "Ages." Use the vectors `my_names` and `my_vector` as data for the columns.  
+
+**Consider:** Mastering the skill of searching online is crucial for programming. Now is the perfect opportunity to practice and enhance this skill!
+
+```{r}
+# Complete the code below and run the cell.
+
+# 1. Create a numeric vector
+my_vector <- # Your code here
+
+# 2. Create a character vector
+my_names <- # Your code here
+
+# 3. Create a list
+my_list <- # Your code here
+
+# 4. Create a data frame
+my_dataframe <- # Your code here
+```
+
+**Note:** There are numerous approaches to construct these data structures in R. For instance, we can create a data frame by directly inputting values, using other variables, or reading from a file. Additionally, you can explore various optional parameters to enhance your function. Embrace versatility and avoid limiting your solutions to just one method!  
+
+#### Test Your Code (Exercise 3)
+
+Do not modify the cell below. Run the cell below to check if your code is correct.
+
+```{r}
+library(testthat)
+
+# Unittest for Exercise 3
+test_that("Exercise 3: Data Structures", {
+  expect_equal(my_vector, c(3, 7, 2, 9))
+  expect_equal(my_names, c("Alice", "Bob", "Charlie", "David"))
+  expect_true(is.list(my_list))
+  expect_true(is.data.frame(my_dataframe))
+  expect_equal(my_dataframe$Names, my_names)
+  expect_equal(my_dataframe$Ages, my_vector)
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 4: Calculate Median
+
+**Your Task:**
+
+1. Create a numeric vector called `nums` containing any ten numbers of your choice.  
+2. Calculate the median of `nums` and store the result in a variable called `median_value`.
+
+**Consider:** What R built-in function can you use here? You can search online.
+
+```{r}
+# Complete the code below and run the cell.
+
+# 1. Create a numeric vector
+nums <- # Your code here
+
+# 2. Calculate the median
+median_value <- # Your code here
+```
+
+#### Test Your Code (Exercise 4)
+
+Do not modify the cell below. Run the cell below to check if your code is correct.
+
+```{r}
+library(testthat)
+
+# Do not use this function to solve this question!
+med <- function(numbers) { 
+  sorted_numbers <- sort(numbers)
+  n <- length(sorted_numbers)
+  if (n %% 2 == 0) {
+    return((sorted_numbers[n/2] + sorted_numbers[n/2 + 1]) / 2)
+  } else {
+    return(sorted_numbers[(n + 1) / 2])
+  }
+}
+
+# Unittest for Exercise 4
+test_that("Exercise 4: Calculate Median", {
+  expect_true(length(nums) == 10)
+  expect_equal(median_value, med(nums))
+})
+```
+
+
+------------------------------------------------------------------------
+
+# Exercise 5: Conditional Statement
+
+**Your Task:**
+
+Given a variable `grade` that represents a numeric grade (0 to 100), write an if-else if-else structure to assign a letter grade based on the following criteria:
+
+-   "F" if the grade is less than 60
+-   "D" if the grade is between 60 and 69
+-   "C" if the grade is between 70 and 79
+-   "B" if the grade is between 80 and 89
+-   "A" if the grade is 90 or above.
+
+Your solution should store the letter grade in a variable named `letter_grade`.
+
+**Consider:** When there are multiple criteria, you can use `else if` syntax. Check out https://www.r-bloggers.com/2022/10/if-else-else-if-statement-in-r/ for examples.
+
+
+```{r}
+# Complete the code below and run the cell.
+grade <- 75  # Change this value to test different scenarios
+
+# Your code goes here
+
+
+
+# Is your output what you expect?
+print(letter_grade)
+```
+

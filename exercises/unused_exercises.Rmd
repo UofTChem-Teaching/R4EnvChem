@@ -1,0 +1,32 @@
+------------------------------------------------------------------------
+
+# (Optional) Exercise 6: Sum_multiples
+
+**Your Task:**
+
+Write a function called `sum_multiples` that takes a numeric value `n` as its input. The function should return the sum of all numbers from 1 to `n` that are multiples of 3 or 5.
+
+**Consider:** If you're comfortable with this chapter's topics, the solution can be straightforward. Also, there could be multiple approaches. However, it's totally fine if this is out of your reach at this point.
+
+```{r}
+# Complete the code below and run the cell.
+
+sum_multiples <- function(n) {
+  # Your code here
+}
+```
+
+#### Test Your Code (Exercise 6)
+
+Do not modify the cell below. Run the cell below to check if your code is correct.
+
+```{r}
+library(testthat)
+
+# Unittest for Exercise 6
+test_that("Exercise 6: Sum_multiples", {
+  expect_equal(sum_multiples(10), 23)
+  expect_equal(sum_multiples(0), 0)
+})
+```
+
