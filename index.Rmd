@@ -3,7 +3,7 @@ knit: "bookdown::render_book"
 title: "R for Environmental Chemistry"
 author: "David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D'eon"
 date: "Last built on: `r Sys.Date()`"
-url: 'https://davidrosshall.github.io/R4EnvChem/'
+url: 'https://uoftchem-teaching.github.io/R4EnvChem/'
 site: bookdown::bookdown_site
 description: "This is a proof-of-concept for a further full length textbook."
 documentclass: book
