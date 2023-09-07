@@ -34,7 +34,7 @@ The `xml` package in R provides tools to parse and manipulate XML (eXtensible Ma
 Do not modify the cell below. Run the cell below to check if you've successfully installed the packages.
 
 ```{r}
-library(testthat)
+library(testthat, quietly = TRUE)
 test_that("Installing Packages", {
   # Task 1: Check if tidyverse is installed
   expect_true("xgboost" %in% installed.packages()[, "Package"])
@@ -47,18 +47,21 @@ test_that("Installing Packages", {
 
 ------------------------------------------------------------------------
 
-# Exercise 2: Using `readr` to read a CSV file
+# Exercise 2: Read a CSV file -- tidyverse
 
 **Your Task:**
-Your objective is to read a CSV file using the `readr` package, without loading the entire package.  
+Your objective is to read a CSV file using the `tidyverse` package.  
 1. Download "sample_data.csv" from this chapter.  
 2. If you're working on the UofT JupyterHub, upload the CSV file to your JupyterHub RStudio so that the server has access to the file. If you are working on your own RStudio, make sure the CSV file is in the same folder as this Rmd file.  
-3. Use the appropriate function from `readr` to read in the CSV file **without loading the whole package**. Assign the loaded data to a variable named `csv_data`.
+3. Use the appropriate function to read in the CSV file. **Do not use any R built-in function to read the file**. Assign the loaded data to a variable named `csv_data`.
+
+Note: Load the entire `tidyverse` package.
 
 ```{r}
 # Complete the code below and run the cell.
 
-# Read the CSV file using readr -- your code here
+# Read the CSV file using tidyverse function -- your code here
+
 ```
 
 #### Test Your Code (Exercise 2)
@@ -66,10 +69,92 @@ Your objective is to read a CSV file using the `readr` package, without loading 
 Do not modify the cell below. Run the cell below to check if you've successfully loaded the csv file.
 
 ```{r}
-library(testthat)
+library(testthat, quietly = TRUE)
 test_that("Reading a CSV File with readr", {
   # Check if csv_data is a data frame and has rows
   expect_true(is.data.frame(csv_data) & nrow(csv_data) > 0)
 })
 ```
+
+------------------------------------------------------------------------
+
+# Exercise 3: Creating a Scatterplot -- tidyverse
+
+**Your Task:**
+Your objective is to create a scatterplot using functions from ggplot2. Use the data you loaded in Exercise 2 (`csv_data`).
+
+1. Create a scatterplot with `Age` on the x-axis and `Score` on the y-axis.  
+2. Make sure the plot has a title "Age vs. Score".  
+3. Save the plot to a variable named `scatter_plot`.  
+
+**Consider**: Visit this ggplot2 webpage to learn more about customizing the plot: https://ggplot2.tidyverse.org/reference/labs.html
+
+```{r}
+# Complete the code below and run the cell.
+
+# Create a scatterplot using ggplot2 -- your code here
+
+```
+
+#### Test Your Code (Exercise 3)
+
+Do not modify the cell below. Run the cell below to check if you've successfully created the scatterplot.
+
+```{r}
+library(testthat, quietly = TRUE)
+test_that("Scatterplot with ggplot2", {
+  # Check if scatter_plot is of ggplot type and has layers (e.g., geom_point)
+  expect_true(inherits(scatter_plot, "ggplot") & length(scatter_plot$layers) > 0)
+})
+```
+
+
+------------------------------------------------------------------------
+
+# (Optional) Exercise 4: Data Filtering and Summarization -- tidyverse
+
+**Your Task:**
+Using the `csv_data` dataset, your objective is to perform some data filtering and summarization.
+
+1. Filter the `csv_data` dataset to only include individuals with an `Age` greater than the **median age** of the dataset.  
+2. For these older individuals, compute **both** the average and the standard deviation of the `Score`.  
+3. Save the result to a variable named `stats_result`.  
+
+**Consider**: You'll need to use functions you might not have encountered in the chapter. Consult the `dplyr` documentation or help files (e.g., `?summarize` in RStudio) to figure out how to compute the median for filtering and how to calculate the standard deviation within `summarize()`.
+
+```{r}
+# Complete the code below and run the cell.
+
+# Filter and summarize data -- your code here
+
+```
+
+#### Test Your Code (Exercise 4)
+
+Do not modify the cell below. Run the cell below to check if you've successfully filtered the data and calculated the required statistics.
+
+```{r}
+library(testthat)
+test_that("Advanced filtering and summarization", {
+  # Check if stats_result contains the correct summaries
+  expect_true(all(c("mean_score", "sd_score") %in% names(stats_result)))
+  
+  # Ensure there's only one row of summary
+  expect_equal(nrow(stats_result), 1)
+  
+  # Ensure the mean_score is a valid number and within the range 0-100 (assuming scores range from 0 to 100)
+  expect_true(is.numeric(stats_result$mean_score) & stats_result$mean_score >= 0 & stats_result$mean_score <= 100)
+  
+  # Ensure the sd_score is a valid number and within a reasonable range
+  expect_true(is.numeric(stats_result$sd_score) & stats_result$sd_score >= 0 & stats_result$sd_score <= (max(csv_data$Score) - min(csv_data$Score)))
+  
+  # Verify that the filtered data is indeed based on the median age
+  median_age <- median(csv_data$Age)
+  filtered_data <- csv_data[csv_data$Age > median_age, ]
+  expect_equal(mean(filtered_data$Score), stats_result$mean_score)
+  expect_equal(sd(filtered_data$Score), stats_result$sd_score)
+})
+
+```
+
 
