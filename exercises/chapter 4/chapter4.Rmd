@@ -99,11 +99,10 @@ test_that("Exercise 2: Basic Calculation", {
 **Your Task:**
 
 1. Create a numeric vector called `my_vector` with the numbers 3, 7, 2, and 9.  
-2. Create a character vector called `my_names` with the names "Alice," "Bob," "Charlie," and "David."  
+2. Create a character vector called `my_names` with the names "Jessie," "Hyun," "Ali," and "Kevin."  
 3. Create a list called `my_list` containing the vector `my_vector` and the vector `my_names`.  
 4. Create a data frame called `my_dataframe` with two columns: "Names" and "Ages." Use the vectors `my_names` and `my_vector` as data for the columns.  
 
-**Consider:** Mastering the skill of searching online is crucial for programming. Now is the perfect opportunity to practice and enhance this skill!
 
 ```{r}
 # Complete the code below and run the cell.
@@ -133,7 +132,7 @@ library(testthat)
 # Unittest for Exercise 3
 test_that("Exercise 3: Data Structures", {
   expect_equal(my_vector, c(3, 7, 2, 9))
-  expect_equal(my_names, c("Alice", "Bob", "Charlie", "David"))
+  expect_equal(my_names, c("Jessie", "Hyun", "Ali", "Kevin"))
   expect_true(is.list(my_list))
   expect_true(is.data.frame(my_dataframe))
   expect_equal(my_dataframe$Names, my_names)
@@ -196,11 +195,11 @@ test_that("Exercise 4: Calculate Median", {
 
 Given a variable `grade` that represents a numeric grade (0 to 100), write an if-else if-else structure to assign a letter grade based on the following criteria:
 
--   "F" if the grade is less than 60
--   "D" if the grade is between 60 and 69
--   "C" if the grade is between 70 and 79
--   "B" if the grade is between 80 and 89
--   "A" if the grade is 90 or above.
+-   "F" if the grade is less than 50
+-   "D" if the grade is between 50 and 59
+-   "C" if the grade is between 60 and 69
+-   "B" if the grade is between 70 and 79
+-   "A" if the grade is 80 or above.
 
 Your solution should store the letter grade in a variable named `letter_grade`.
 

@@ -101,9 +101,30 @@ x
 
 ## Data structures
 
-Data structures refers to how R stores data. Again, it's easy to get lost in the weeds here so we'll focus on the most common and useful data structure for your work: *data frames*.
+Data structures refers to how R stores data. It's easy to get lost in the weeds here, so we'll start with the focus on the most common and useful data structure for your work: *data frames*.
 
+### Data Frames
 Data frames consist of data stored in rows and columns. If you've ever worked with a spreadsheet (i.e. *Excel*), it's essentially that with the caveat that *all data stored in a column must be of the same type*. Again, different columns can have different data types, but *within* a column all the data needs to be the same type. R will convert your data otherwise to make it all the same. A common error is a single character in a column of numerical values leading to the entire column to be interpreted as character values; similar to what we discussed above. Errors like this most often stem from mistakes in recording and importing your data so be careful!
+
+#### Creating a new dataframe from scratch
+
+Let's see how we can create a dataframe by explicitly listing out the values.
+```{r}
+# data
+names <- c("Alice", "Bob", "Charlie", "David", "Eve")
+ages <- c(20, 21, 22, 23, 19)
+food <- c("Bubble Tea", "Pineapple Pizza", "Diet Pepsi", "Korean BBQ", "Sushi AYCE")
+
+# Creating the dataframe
+students <- data.frame(Name = names, Age = ages, Food = food)
+
+# Displaying the dataframe
+print(students)
+```
+
+
+#### Reading data from a file
+Obviously when we have many more data, it would be unrealistic to manually list them out in our code. So instead, we can create a dataframe by reading a file.
 
 From the `R4EnvChem-ProjectTemplate`, downloaded in [Importing a project], let's import some real data as follows by typing the following into the console:
 
@@ -133,7 +154,7 @@ Note that `read.csv()` requires us to specify the file name, but in the above ex
 
 What we've done above is called *relative referencing* and it's a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like `"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"`. If we weren't in a project, this is what you'd need to type to open your file, but since we're working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need `"data/2018..."`. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and Profs (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code & data) and the receiver could open it and run it as is.
 
-## Other data structures
+###  Other data structures
 
 R has several other data structures. They aren't as frequently used, but it's worth being aware of their existence. Other structures include:
 
@@ -161,13 +182,27 @@ hi$Greetings
 
 There are many freely available resources online which dive more in depth into different data structures in R. If you are interested in learning more about different structures, you can check out the [*Data structure*](http://adv-r.had.co.nz/Data-structures.html) chapter of *Advanced R* by Hadley Wickham.
 
+
 ## Conditional Statements
 
 In programming, it's often necessary to make decisions and execute certain portions of code based on specific conditions. That's where conditional statements come into play.
 
 In R, the primary mechanism to make decisions is the `if-else` construct. With it, you can evaluate a condition and, based on whether it's true or false, choose which code block to execute.
 
-#### The basic `if` statement
+### Understanding R Syntax
+Before diving into conditional statements, let's take a moment to understand the syntax used in R.
+
+R, like many programming languages, uses a combination of parentheses `()`, curly braces `{}`, and other symbols to organize and structure the code.
+
+1.  Parentheses `()`: These are primarily used to enclose arguments of functions and conditions in control statements, like if. For example, in `if (x > 5)`, the condition `x > 5` is enclosed in parentheses.
+
+2.  Curly Braces `{}`: These are used to group multiple lines of code into a block. This is particularly useful in control statements where more than one line of code should be executed based on a condition.
+
+The reason the curly bracket might span multiple lines is for readability. It makes it clear where a block of code begins and ends. While it's possible to write if-else statements without braces if only one statement is being conditioned, it's a good practice to always use them for clarity.
+
+Now, with this understanding, let's move on to how R uses these in conditional statements.
+
+### The basic `if` statement
 
 ```{r}
 x <- 10
@@ -178,7 +213,7 @@ if (x > 5) {
 }
 ```
 
-#### Expanding with `else`
+### Expanding with `else` and `else if`
 
 For situations where you want to specify actions for both true and false conditions, you can add an `else` section.
 
@@ -193,6 +228,27 @@ if (x > 5) {
 ```
 
 Here, because `x` is 3 (which is not greater than 5), R prints "x is 5 or less!".
+
+For situations where multiple conditions need to be evaluated in sequence, you can use the else if construct. This allows you to add more conditions after the initial if.
+
+```{r}
+x <- 6
+
+if (x > 10) {
+  print("x is greater than 10!")
+} else if (x > 5) {
+  print("x is greater than 5 but less than or equal to 10!")
+} else {
+  print("x is 5 or less!")
+}
+```
+
+
+In terms of syntax, it's important to remember:
+
+-   Always enclose the condition you're testing within parentheses `()`.  
+-   Use curly braces `{}` to group the lines of code that should be executed for a particular condition.  
+-   Make sure each else if or else follows an if or another else if. They cannot stand alone.
 
 ## R built-in functions
 

@@ -16,7 +16,7 @@ Webbook found here: <https://uoftchem-teaching.github.io/R4EnvChem/>.
 
 3.  Build the book in HTML format in the upper right `build` window in RStudio .
 
-    ![](images/bookdown_build.png){width="70%"}
+    ![](images/bookdown_build.png)
 
     If you encounter an error with no package installed issue, install the missing packages first. During the building process, a new file `R4EnvChem.Rmd` is automatically created. When you open this file in RStuido, there is a message showing in the top that will let you install all missing packages at once.
 
