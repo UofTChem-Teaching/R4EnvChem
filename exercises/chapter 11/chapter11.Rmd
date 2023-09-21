@@ -1,0 +1,180 @@
+---
+title: 'Chapter 11: Transformation: Data Manipulation'
+output:
+  html_document:
+    df_print: paged
+---
+
+# Getting Started:
+
+Before diving into the exercises, follow the instructions below to download a dataset from the Exploring Air Quality Data website.
+
+-   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
+-   Choose your options, enter your student number, and then download the CSV file.
+-   Upload the file to your RStudio. 
+
+Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your Air Quality dataset, and assign the imported data to a variable named `data`.
+
+```{r}
+# Complete the code below and run the cell.
+
+# Import data from CSV file using read_csv -- your code here
+
+```
+
+
+**Note**:
+For all the exercises in this notebook, remember that while the pipe operator enables seamless chaining of transformations, it's entirely okay to split your code into multiple steps or variables if it helps clarity. It's essential to prioritize intuition and readability in your code.
+
+------------------------------------------------------------------------
+
+# Exercise 1: The Ozone Watch
+
+**Your Task:**
+
+Transform the `data` to only include rows where `O3` values are greater than 30 and then arrange the results by `Time` in descending order. Assign the result to `data_high_ozone`.
+
+```{r}
+# Complete the code below and run the cell.
+
+data_high_ozone <- # Your code here
+```
+
+
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. 
+
+```{r}
+library(testthat, quietly = TRUE)
+is_ordered_desc <- function(vec) {
+  all(diff(vec) <= 0)
+}
+test_that("The Ozone Watch", {
+  expect_true(all(data_high_ozone$O3 > 30))
+  expect_true(is_ordered_desc(data_high_ozone$Time))
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 2: High Alert Days
+
+**Your Task:**
+
+Transform the `data` based on the following instructions:
+
+1. Create a new column called `O3_Level` where `O3` values above 30 are labeled as "High" and others as "Low". You can use `ifelse()` within `mutate()` to achieve this. Check out https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse.
+2. Filter the data to only have rows with "High" `O3_Level` values. 
+3. Assign the result to `high_alert_data`.
+
+
+```{r}
+# Complete the code below and run the cell.
+
+high_alert_data <- # Your code here
+```
+
+
+#### Test Your Code (Exercise 2)
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+test_that("High Alert Days", {
+  expect_equal(length(colnames(high_alert_data)), 5)
+  expect_true(all(high_alert_data$O3_Level == "High"))
+})
+```
+
+
+------------------------------------------------------------------------
+
+# Exercise 3: O3 NO2 Ratio
+
+**Your Task:**
+
+Transform the `data` based on the following instructions:
+
+1. Create a column called `O3_NO2_ratio` by dividing `O3` by `NO2`. 
+2. Calculate the mean, median, and standard deviation of `O3_NO2_ratio`. Store the results in columns named `mean_ratio`, `median_ratio`, and `std_dev_ratio` respectively using `summarise()`.
+3. Assign the result to `ratio_summary`.
+
+
+```{r}
+# Complete the code below and run the cell.
+
+ratio_summary <- # Your code here
+```
+
+#### Test Your Code (Exercise 3)
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+test_that("O3 NO2 Ratio", {
+  
+  # Check if ratio_summary exists
+  expect_true(exists("ratio_summary"))
+  
+  # Check if ratio_summary has the right columns
+  expect_equal(names(ratio_summary), c("mean_ratio", "median_ratio", "std_dev_ratio"))
+  
+  # Check values are numbers (not NaN or NA)
+  expect_true(!is.na(ratio_summary$mean_ratio))
+  expect_true(!is.na(ratio_summary$median_ratio))
+  expect_true(!is.na(ratio_summary$std_dev_ratio))
+  
+  # Add more tests as necessary
+})
+
+```
+
+------------------------------------------------------------------------
+
+# (Optional) Exercise 4: Analyzing Extreme Days
+
+**Your Task:**
+
+Transform the `data` based on the following instructions:
+
+1. Filter the dataset for days where `NO2` is above the 75th percentile.
+2. For this subset, compute a new column `O3_Difference` that represents the difference between each `O3` value and the average `O3` value of the subset.
+3. Identify and filter only the rows where `O3_Difference` is above the 90th percentile of its distribution in this subset. If you don't know how to get the 90th percentile value, check out the `quantile()` function.
+4. Finally, select only the columns `NAPS`, `Time`, and `O3_Difference`.
+5. Assign the result to `extreme_days_data`.
+
+```{r}
+# Complete the code below and run the cell.
+
+# Feel free to use this variable ready for you. 
+percentile_75_NO2 <- quantile(data$NO2, 0.75)
+
+extreme_days_data <- # Your code here
+
+```
+
+#### Test Your Code (Exercise 4)
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+
+test_that("Analysis of extreme days test", {
+  
+  # Thresholds
+  percentile_75_NO2 <- quantile(data$NO2, 0.75)
+  avg_O3_filtered <- mean(data[data$NO2 > percentile_75_NO2,]$O3)
+  percentile_90_difference <- quantile(data[data$NO2 > percentile_75_NO2,]$O3 - avg_O3_filtered, 0.9)
+  
+  # Check 1: Filtering by O3_Difference
+  expect_true(all(extreme_days_data$O3_Difference > percentile_90_difference))
+  
+  # Check 2: Column names
+  expected_cols <- c("NAPS", "Time", "O3_Difference")
+  expect_equal(colnames(extreme_days_data), expected_cols)
+  
+})
+
+```
+
