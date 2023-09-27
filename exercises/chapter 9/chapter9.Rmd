@@ -8,10 +8,10 @@ output:
 
 # Getting Started:
 
-Before diving into the exercises, follow the instructions below to download a dataset from the Exploring Air Quality Data website.
+Before diving into the exercises, follow the instructions below to download a 2020 winter (Toronto) data from the Exploring Air Quality Data website.
 
 -   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
--   Choose your options, enter your student number, and then download the CSV file.
+-   Enter your student number and then download the CSV file.
 -   Upload the file to your RStudio. 
 
 
@@ -71,11 +71,11 @@ test_that("Importing Data from CSV", {
 
 **Your Task:**
 
-1. Convert the `limited_data` (which is a tibble) into a standard R dataframe.  
+1. Convert the `data` (which is a tibble) into a standard R dataframe.  
 2. Assign this dataframe to a variable named `converted_data`.
 
 ```{r}
-# Assume 'limited_data' is the Tibble from the previous exercise
+# Assume 'data' is the Tibble from the previous exercise
 
 # Print to check the conversion
 ```

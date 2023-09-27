@@ -31,6 +31,7 @@ atr_plastics <- read_csv("data/ATR_plastics.csv")
 # This just outputs a table you can explore within your browser
 DT::datatable(atr_plastics)
 
+
 ```
 
 
@@ -60,8 +61,7 @@ While the code above works, it's not particularly handy and undermines much of t
 
 ```{r}
 
-atr_long <- atr_plastics %>%
-  pivot_longer(cols = -wavenumber, 
+atr_long <- pivot_longer(atr_plastics, cols = -wavenumber, 
                names_to = "sample",
                values_to = "absorbance")
 
@@ -109,8 +109,7 @@ head(example)
 
 
 
-example_long <- example %>%
- pivot_longer(
+example_long <- pivot_longer(example,
    cols = starts_with("Chemical"),
    names_prefix = "Chemical_",
    names_to = c("Chemical", "Concentration", "Conc_Units"),
@@ -152,8 +151,7 @@ The example above is something you'll come across in the lab, most often with th
 ```{r}
 # Separating observations
 
-sep_example %>%
-  separate(
+separate(sep_example,
     col = sample, 
     into = c("location", "chemical", "replicateNum"),
     sep = "_",
@@ -190,6 +188,35 @@ colnames(badHeader)
 
 colnames(rename(badHeader, wavelength_nM = UVVis_Wave_Length_nM))
 ```
+
+### Chaining multiple operations
+
+So far we learned some standalone functions that can tidy up your data. But what if you want to do multiple of these operations to a dataset? 
+
+Let's start by talking about the seemingly intuitive but tedious approach. We can transform data by breaking down the process into individual steps:
+
+```{r}
+selected_data <- select(atr_plastics, wavenumber, EPDM, `Sample: Shopping bag`)
+longer_data <- pivot_longer(selected_data, cols = -wavenumber, names_to = "Material_Type", values_to = "Value")
+atr_plastics_transformed <- rename(longer_data, Wave_Num = wavenumber)
+
+atr_plastics_transformed
+
+```
+
+Now, let's see how we can transform the same `atr_plastics` tibble using the `%>%` operator by chaining operations.
+
+```{r}
+atr_plastics_transformed <- atr_plastics %>%
+    select(wavenumber, EPDM, `Sample: Shopping bag`) %>%
+    pivot_longer(cols = -wavenumber, names_to = "Material_Type", values_to = "Value") %>%
+    rename(Wave_Num = wavenumber)
+
+atr_plastics_transformed
+```
+
+We will formally introduce the unfamiliar operator `%>%` (pipe) in the next chapter. For now, just remember that there is a way to chain your functions like the above example!
+
 
 ## Tips for recording data
 

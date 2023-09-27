@@ -145,6 +145,25 @@ Couple of things to note:
   2. The variables we're referencing do not need to be in quotation marks; hence `signal` because this variable already exist. 
   3. Note the order of precedence: `dil_fct` is created first so we can reference in the second argument, we would get an error if we swapped the order. 
   
+### Mutate with a condition
+
+In data analysis, there are often scenarios where we want to categorize or re-label values based on certain conditions. The `case_when()` function, provided by the `dplyr` package, offers a versatile and readable solution for handling these multiple conditions.
+
+The syntax for `case_when()` is straightforward: for each condition, you specify the logical test followed by the tilde (~) operator, and then the value or expression to return if the condition is `TRUE`.
+
+With our FAES data, say you want to label each `conc_Na` as "Low", "Medium", or "High" based on its value. You can use `case_when()` within `mutate()` as follows:
+
+```{r}
+mutate(FAES, 
+       conc_Na_level = case_when(
+         conc_Na < 0.2 ~ "Low",
+         conc_Na < 0.4 ~ "Medium",
+         TRUE ~ "High"))
+```
+  
+For those interested in exploring further, there's a similar function called `ifelse()` which provides conditional transformations in R. You can learn more about it [here](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse).
+  
+  
 ### Useful mutate function
 
 There are a myriad of functions you can make use of with the mutate function. Here are some of the mathematical operators available in R: 
