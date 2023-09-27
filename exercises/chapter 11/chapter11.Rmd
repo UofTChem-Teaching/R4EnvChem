@@ -105,6 +105,11 @@ test_that("High Alert Days", {
 
 # Exercise 3: Ox
 
+In this exercise, we will work with Ox ($O_X$), also known as "odd oxygen".
+Before you begin, you are recommended to watch this introductory video on odd oxygen: https://play.library.utoronto.ca/watch/1f19e6aa27d9c50e551ee8848292fe7c
+
+As mentioned in the video, atmospheric concentrations of NO2 and O3 are related to one another. This relationship is so intimate that reporting the concentration of one without the other is of limited utility. To embrace this relationship, atmospheric chemists have defined the term "odd oxygen" or Ox as the sum of the concentrations of NO2 and O3.
+
 **Your Task:**
 
 Transform the `data` based on the following instructions:
