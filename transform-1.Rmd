@@ -263,3 +263,6 @@ The pipe is great and especially useful with *tidyverse* packages, but it does h
   - [Chapter 5: Data Transformation](https://r4ds.had.co.nz/transform.html) of *R for Data Science* for a deeper breakdown of `dplyr` and it's functionality. 
   - [Chapter 18: Pipes](https://r4ds.had.co.nz/pipes.html) of *R for Data Science* for more information on pipes. 
   - [Syntax equivalents: base R vs Tidyverse](https://tavareshugo.github.io/data_carpentry_extras/base-r_tidyverse_equivalents/base-r_tidyverse_equivalents.html) by Hugo Taveres for a comparison of base-R solutions to tidyverse. This entire book is largely biased towards tidyverse solutions, but there's no denying that certain base-R can be more elegant. Check out this write up to get a better idea. 
+  
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

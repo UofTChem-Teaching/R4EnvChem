@@ -300,3 +300,6 @@ In this chapter we've covered:
 -   Using R built-in functions and opening function documentations
 
 Now that you're familiar with navigating RStudio and some basic R coding, you may have realized that working the console can get real messy, real quick. Read on to [Workflows for R Coding] where we'll discuss R workflows to make everyone's lives easier.
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

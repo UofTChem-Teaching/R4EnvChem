@@ -151,12 +151,14 @@ The example above is something you'll come across in the lab, most often with th
 ```{r}
 # Separating observations
 
-separate(sep_example,
+sep_data <- separate(sep_example,
     col = sample, 
     into = c("location", "chemical", "replicateNum"),
     sep = "_",
     remove = TRUE, 
     convert = TRUE)
+
+sep_data
 
 ```
 Again, let's break down what we did with the `separate` function: 
@@ -171,22 +173,44 @@ Another example why it's paramount to **be consistent when recording data**.
 
 ### Uniting/combining columns 
 
-The opposite of the `separate` function is the `unite` function. You'll use it far less often, but you should be aware of it as it may come in handy. You can use it for combining strings together, or prettying up tables for publication/presentations as shown in [Summarizing Data]. You can read more about the `unite` function [here](https://tidyr.tidyverse.org/reference/unite.html)
+The opposite of the `separate` function is the `unite` function. You'll use it far less often, but you should be aware of it as it may come in handy. You can use it for combining strings together, or prettying up tables for publication/presentations as shown in [Summarizing Data]. 
+
+```{r, warning=FALSE}
+# Uniting observations
+
+united_data <- unite(sep_data,
+                     col=sample_reunited,
+                     location:chemical:replicateNum, 
+                     sep = "_",
+                     remove = TRUE)
+
+united_data
+
+```
+
+You can read more about the `unite` function [here](https://tidyr.tidyverse.org/reference/unite.html).
 
 ### Renaming columns/headers
 
-Sometimes a name is lengthy, or cumbersome to work with in R. While something like `This_is_a_valid_header` is valid and compatible with R and tidyverse functions, you may want to change it to make it easier to work with (i.e. less typing). Simply use the `rename` function:
+Sometimes a name is lengthy, or cumbersome to work with in R. While something like `This_is_a_valid_header` is valid and compatible with R and tidyverse functions, you may want to change it to make it easier to work with (i.e. less typing). Simply use the `rename()` function:
 
 ```{r, echo = FALSE}
-
 badHeader <- data.frame("UVVis_Wave_Length_nM" = c(500, 501),
                         "Absorbance" = c(1, 0.999))
 
 ```
+
+Inspect the original column names:
 ```{r}
 colnames(badHeader)
+```
 
-colnames(rename(badHeader, wavelength_nM = UVVis_Wave_Length_nM))
+Use `rename()` to change the column name and save the result to a new dataframe:
+```{r}
+renamed_data <- rename(badHeader, wavelength_nM = UVVis_Wave_Length_nM)
+
+# Inspect the column names of the renamed dataframe
+colnames(renamed_data)
 ```
 
 ### Chaining multiple operations
@@ -215,7 +239,7 @@ atr_plastics_transformed <- atr_plastics %>%
 atr_plastics_transformed
 ```
 
-We will formally introduce the unfamiliar operator `%>%` (pipe) in the next chapter. For now, just remember that there is a way to chain your functions like the above example!
+We will formally introduce the unfamiliar operator `%>%` (pipe) in the next chapter (check out 12.6 if interested). For now, just remember that there is a way to chain your functions like the above example!
 
 
 ## Tips for recording data
@@ -232,3 +256,6 @@ In case you haven't picked up on it, tidying data in R is much easier if the dat
 As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 9: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
 
 `r if (knitr:::is_html_output()) '## Chapter References'`
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

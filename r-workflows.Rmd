@@ -183,3 +183,6 @@ In this chapter we've covered:
   - Troubleshooting some common error messages
   
 Now that you're familiar the above, we'll introduce [Using R Markdown], a way to combine your R code, it's outputs, and your writing all in one dynamic document (like your lab reports!).  
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

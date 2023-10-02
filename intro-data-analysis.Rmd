@@ -23,6 +23,112 @@ In this section we'll cover data wrangling before moving onto the next section w
 
 Throughout this section and the next we'll be making use of a couple of example datasets. These datasets are all availabe in the `data` subfolder of the *R4EnvChem Project Template*. If you haven't already, read [Importing a project] for instructions on dowloading the repository and data.  
 
+## Sneak Peek at Data Wrangling
+In this trailer section, we'll explore how data analysis can provide insights into real-world phenomena. We'll use the `storm` dataset from the `tidyverse` suite in R to investigate the patterns and relationships of storms over the years.
+
+
+### Setting Up
+
+Let's begin by loading our dataset and essential packages.
+
+```{r}
+library(tidyverse)
+
+# Import the storm dataset
+data(storms)
+```
+
+Let's see how the data looks:
+```{r, warning=FALSE}
+DT::datatable(storms)
+```
+
+
+### Tidying Our Data
+
+Now that you saw how the data looks, before delving into deeper analysis, it's important to have a general sense of our data.
+
+To narrow our focus, let's consider the storm `name`, `year`, `month`, `day`, `lat`, `long`, and `wind` speed.
+```{r, warning=FALSE}
+# 1. Selecting relevant variables
+
+selected_storms <- storms %>%
+  select(name, year, month, day, lat, long, wind)
+
+DT::datatable(selected_storms)
+```
+
+Next, instead of having separate columns for `year`, `month`, and `day`, it might be more useful to have a single date column.
+```{r, warning=FALSE}
+# 2. Creating a unified date column
+
+storms_with_date <- selected_storms %>%
+  unite("date", year, month, day, sep = "-") %>%
+  mutate(date = as.Date(date, format = "%Y-%m-%d"))
+
+DT::datatable(storms_with_date)
+```
+
+Column names should be self-explanatory. Let's rename `wind` to `wind_speed_knots`.
+```{r}
+# 3. Renaming columns for clarity
+
+tidied_storms <- storms_with_date %>%
+  rename(wind_speed_knots = wind)
+```
+
+```{r, echo=FALSE, warning=FALSE}
+DT::datatable(tidied_storms)
+```
+
+Now that our data is tidied up, let's see if we can do more in-depth analysis.
+
+
+### Investigating Storm Patterns
+
+#### Analyzing powerful storms
+
+For safety and preparedness reasons, meteorologists are often interested in particularly powerful storms. Let's identify storms with wind speeds exceeding 100 knots.
+```{r}
+powerful_storms <- tidied_storms %>%
+  filter(wind_speed_knots > 100) %>%
+  arrange(desc(wind_speed_knots))
+
+```
+```{r, echo=FALSE, warning=FALSE}
+DT::datatable(powerful_storms)
+```
+
+#### Yearly trends
+How has the frequency of these powerful storms changed over the years? We can group our data by year to answer this.
+
+```{r}
+yearly_storms <- powerful_storms %>%
+  mutate(year = year(date)) %>%
+  group_by(year) %>%
+  summarise(storm_count = n())
+```
+```{r, echo=FALSE, warning=FALSE}
+DT::datatable(yearly_storms)
+```
+
+
+### Visualization: Geographical Distribution
+
+One of the key aspects of understanding storms is analyzing where they occur. Using our powerful storms data, let's plot a scatterplot of `latitude` versus `wind_speed_knots` to visualize their geographical distribution and intensity.
+
+```{r}
+ggplot(data = powerful_storms, aes(x = lat, y = wind_speed_knots)) +
+  geom_point(aes(color = wind_speed_knots), alpha = 0.6) +
+  ggtitle("Distribution and Intensity of Powerful Storms") +
+  xlab("Latitude") +
+  ylab("Wind Speed (knots)") +
+  scale_color_gradient(low = "blue", high = "red")
+```
+
+
+Through this brief exploration, we've seen how data analysis can provide insights into storm patterns. With more advanced techniques, which we'll explore in the subsequent chapters, we can delve even deeper, helping inform decisions, ensuring preparedness, and advancing our understanding of meteorological phenomena.
+
 ## Further Reading
 
 In case it hasn't been apparent enough, this entire endeavour was inspired by the *R for Data Science* reference book by Hadley Wickham and Garrett Grolemund. Every step described above is explored in more detail in their book, which can be read freely online at [https://r4ds.had.co.nz/](https://r4ds.had.co.nz/). We strongly encourage you to read through the book to supplement your R data analysis skills. 

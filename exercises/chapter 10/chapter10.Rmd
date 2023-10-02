@@ -24,55 +24,9 @@ Use the `read_csv()` function from the `readr`(`tidyverse`) package to import yo
 data <- 
 ```
 
-
-## Visualization Before Data Cleaning
-
-To understand the nature of our data, we'll start by visualizing the `O3` vs. `NO2` values. By plotting these values, you'll get a clearer idea of any outliers or potentially erroneous data points. 
-
-```{r}
-# Your code for the scatterplot of O3 vs. NO2 before cleaning goes here.
-```
-
-Observe the plot. Do you notice any data points that seem unusual or don't fit the overall pattern, especially those with negative values? These could be indicative of measurement errors.
-
-
 ------------------------------------------------------------------------
 
-# Exercise 1: Remove Erroneous Data
-
-Now that you've noticed some erroneous data in your dataset, you need to ensure the reliability of your data by removing potential measurement errors.
-
-**Your Task:** Filter out any rows in data where the `O3` or `NO2` values are less than 0. Update `data` with the filter data.
-
-```{r}
-# Your code to filter out rows with O3 or NO2 values less than 0 goes here.
-data <- 
-```
-
-
-#### Test Your Code (Exercise 1)
-```{r}
-library(testthat, quietly = TRUE)
-test_that("Data Cleaning Test", {
-  
-  # Ensure no O3 or NO2 values are less than 0
-  expect_true(all(data$O3 >= 0))
-  expect_true(all(data$NO2 >= 0))
-})
-```
-
-
-**Your Task:** Now that you cleaned your data, re-visualize the `O3` and `NO2` values to confirm the effect of your data cleaning.
-
-```{r}
-# Your code for the scatterplot of O3 vs. NO2 before cleaning goes here.
-```
-
-Compare this plot with your initial scatterplot. Can you spot the differences? 
-
-------------------------------------------------------------------------
-
-# Exercise 2: Making Data Longer
+# Exercise 1: Making Data Longer
 
 **Your Task:**
 
@@ -85,7 +39,7 @@ Transform the `data` to a longer format where the headers `NO2` and `O3` become 
 longer_data <- 
 ```
 
-#### Test Your Code (Exercise 2)
+#### Test Your Code (Exercise 1)
 
 Do not modify the cell below. 
 
@@ -101,7 +55,7 @@ test_that("Making data longer", {
 
 ------------------------------------------------------------------------
 
-# Exercise 3: Separate Date and Time
+# Exercise 2: Separate Date and Time
 
 **Your Task:**
 Use the `longer_data` to separate the `Time` column into distinct `year`, `month`, `day`, and `time` columns. Assign the result to `date_time_data`. Consider using the pipe operator (`%>%`) to break down into multiple separation steps.
@@ -115,7 +69,7 @@ date_time_data <-
 You might notice that there are NA values in the `Hour` column. Why do you think this is happening? It's okay to leave this for now, but feel free to figure out how to resolve this issue.
 
 
-#### Test Your Code (Exercise 3)
+#### Test Your Code (Exercise 2)
 
 Do not modify the cell below. 
 
@@ -129,7 +83,7 @@ test_that("Separate date and time", {
 
 ------------------------------------------------------------------------
 
-# Exercise 4: Uniting Columns
+# Exercise 3: Uniting Columns
 
 **Your Task:**
 
@@ -143,7 +97,7 @@ united_data <-
 ```
 
 
-#### Test Your Code (Exercise 4)
+#### Test Your Code (Exercise 3)
 
 Do not modify the cell below. 
 ```{r}
@@ -156,7 +110,7 @@ test_that("Uniting Columns", {
 
 ------------------------------------------------------------------------
 
-# Exercise 5: Renaming Columns
+# Exercise 4: Renaming Columns
 
 **Your Task:**
 
@@ -170,7 +124,7 @@ renamed_data <-
 ```
 
 
-#### Test Your Code (Exercise 5)
+#### Test Your Code (Exercise 4)
 
 Do not modify the cell below. 
 ```{r}
@@ -182,3 +136,15 @@ test_that("Renaming columns", {
 
 ```
 
+
+# Exercise 5: Visualization
+
+Before we finish, let's visualize the `Time`(x-axis) vs. `O3`(y-axis) values in the original `data`. By plotting these values, you'll get a clearer idea of any outliers or potentially erroneous data points. 
+
+```{r}
+# Your code for the scatterplot of Time vs Ozone before cleaning goes here.
+```
+
+Observe the plot. Do you notice any data points that seem unusual or don't fit the overall pattern, especially those with negative values? These could be indicative of measurement errors. 
+
+You will get to remove these data in the next chapter's exercise when we learn data transformation, so stay tuned!

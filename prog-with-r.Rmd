@@ -72,3 +72,6 @@ This last part is critical as *functions make your code more legible*. We can cl
 
 A good rule when coding is **Don't Repeat yourself!**. In practice, this means don't copy and paste blocks of code to multiple parts of your script. It's more difficult to read (more lines), and if you identify an issue with one block, you'll need to hunt down all the other blocks to rectify the situation (you'll always miss something!). by using functions you'll reduce the number of lines of code, but you'll also only need to check one spot to rectify the issues. 
 
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

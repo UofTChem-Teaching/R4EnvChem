@@ -34,11 +34,14 @@ We can also quickly inspect either through the *Environment* pane in *RStudio* o
 head(atr_plastics)
 ```
 
-Note how the first line of the `ATR_plastics.csv` has been interpreted as columns names (or *headers*) by R. This is common practice, and gives you a handle by which you can manipulate your data. If you did not intend for R to interpret the first row as headers you can suppress this with the additional argument `col_names = FALSE`. 
+As you can see, the `head()` function, by default, shows the first six rows of the dataframe. If you want to inspect more or fewer rows, you can provide an optional `n` argument like `head(data, n=10)`. Note the column specifications under the column name.
+
+Also note how the first line of the `ATR_plastics.csv` has been interpreted as columns names (or *headers*) by R. This is common practice, and gives you a handle by which you can manipulate your data. If you did not intend for R to interpret the first row as headers you can suppress this with the additional argument `col_names = FALSE`. 
 
 ```{r}
 head(read_csv("data/atr_plastics.csv", col_names = FALSE))
 ```
+
 Note in the example above that since the headers are now considered data, and are composed of a string of chatacters, the entire column is then interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our `.csv`), we can use the `skip = n` to skip n rows:
 
 ```{r}
@@ -46,6 +49,12 @@ head(read_csv("data/atr_plastics.csv", col_names = FALSE, skip = 1))
 ```
 
 Note in the example above that we skipped our headers, so `read_csv()` created placeholder headers (`X1`, `X2`, etc.). 
+
+Another useful function to inspect data is `tail()`, which displays the last six rows of a dataframe. Similarly, it accepts an optional `n` argument to specify the number of rows you want to view.
+
+```{r}
+tail(atr_plastics)
+```
 
 ### Tibbles vs. data frames
 
@@ -75,4 +84,7 @@ A benefit of `write_csv` is that it will always save in `UTF-8` encoding and ISO
 ## Further Reading
 
 See Chapters [10](https://r4ds.had.co.nz/tibbles.html) and [11](https://r4ds.had.co.nz/data-import.html) of *R for Data Science* for some more details on `tibbles` and `read_csv`. 
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```
 

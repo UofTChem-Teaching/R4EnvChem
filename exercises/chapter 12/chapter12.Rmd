@@ -1,0 +1,110 @@
+---
+title: 'Chapter 12: Functions in R'
+output:
+  html_document:
+    df_print: paged
+---
+
+# Getting Started:
+
+## Import Data
+
+Before diving into the exercises, follow the instructions below to download a dataset from the Exploring Air Quality Data website.
+
+-   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
+-   Enter your student number, and then download the CSV file.
+-   Upload the file to your RStudio. 
+
+Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your Air Quality dataset, and assign the imported data to a variable named `data`.
+
+```{r}
+# Complete the code below and run the cell.
+
+# Import data from CSV file using read_csv -- your code here
+data <- 
+
+```
+
+
+
+## Cleaning the Data
+
+Just like what you did in the Chapter 10 and 11 exercise, you will start by removing potential measurement errors.
+**Your Task:** Filter out any rows in data where the `O3` or `NO2` values are less than 0. Update `data` with the filter data.
+
+```{r}
+# Your code to filter out rows with O3 or NO2 values less than 0 goes here.
+data <- 
+```
+
+
+**Note**:
+For all the exercises in this notebook, remember that while the pipe operator enables seamless chaining of transformations, it's entirely okay to split your code into multiple steps or variables if it helps clarity. It's essential to prioritize intuition and readability in your code.
+
+------------------------------------------------------------------------
+
+# Exercise 1: The Ozone Analyzer
+
+**Your Task:**
+
+1. Write a custom function named `ozone_analyzer` that takes in a data frame and returns the rows where `O3` values are greater than a given threshold. 
+2. Use this function to filter the `data` for rows where `O3` is greater than 40.
+3. Assign the result to `ozone_over_40`.
+
+```{r}
+# Complete the code below and run the cell.
+
+ozone_analyzer <- function(df, threshold) {
+  # Your function implementation here
+}
+
+ozone_over_40 <- # return value of the function
+```
+
+
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. 
+
+```{r}
+library(testthat, quietly = TRUE)
+test_that("Ozone Analyzer", {
+  expect_true(all(ozone_over_40$O3 > 40))
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 2: Daytime Filter
+
+**Your Task:**
+
+1. Create a function named `daytime_filter` that filters rows of a data frame where the `Time` column indicates daytime (e.g., "12:00", "15:00"). Your function should be flexible enough to consider any hour range specified by the user with input parameters named `start_hour` and `end_hour`.
+2. Use this function to filter rows of `data` from 9 AM to 5 PM.
+3. Assign the result to `data_daytime`.
+
+
+```{r}
+# Complete the code below and run the cell.
+
+daytime_filter <- function(df, start_hour, end_hour) {
+  # We provided the code to convert the 'Time' column values (strings) to numeric hour values
+  hour_values <- as.numeric(substr(df$Time, 1, 2))
+  
+  # Your remaining function implementation here
+}
+
+data_daytime <- # return value of the function
+```
+
+
+#### Test Your Code (Exercise 2)
+
+Do not modify the cell below. 
+```{r}
+test_that("Daytime Filter", {
+  expect_true(all(as.numeric(substr(data_daytime$Time, 1, 2)) >= 9))
+  expect_true(all(as.numeric(substr(data_daytime$Time, 1, 2)) <= 17))
+})
+```
+
