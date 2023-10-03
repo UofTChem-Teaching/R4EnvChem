@@ -139,11 +139,10 @@ airPol <- read.csv("data/2018-01-01_60430_Toronto_ON.csv")
 -   `pollutant` for the chemical measured
 -   `concentration` for the measured concentration in parts-per-million (ppm).
 
-We've assigned it to the variable: `airPol`. This is so we can reference it and make use of it later on (see below). If we didn't do this our data would simply be printed to the console which isn't helpful. Let's take a look at the data itself:
+We've assigned it to the variable: `airPol`. This is so we can reference it and make use of it later on (see below). If we didn't do this our data would simply be printed to the console which isn't helpful. Let's take a look at the first few rows of the data:
 
 ```{r}
-# a variable by itself will return it's contents
-airPol
+head(airPol)
 ```
 
 Here we see that the data is stored in a **tidy** format, which is to say each column is a variable and each row is an observation. So reading the first row, we know that the Toronto 60430 station on 2018-07-01 at midnight measured ambient O~3~ concentrations of 46 ppm (Note the concentration column isn't printed due to width). The concept of tidy data is important and is integral to working in R. It's discussed further in [Tidying Your Data]. Lastly, R will only output a small chunk of our data for us to see. If you'd like to see it in full, go the the `Environment` pane and double click on the `airPol` data.
@@ -301,3 +300,6 @@ In this chapter we've covered:
 -   Using R built-in functions and opening function documentations
 
 Now that you're familiar with navigating RStudio and some basic R coding, you may have realized that working the console can get real messy, real quick. Read on to [Workflows for R Coding] where we'll discuss R workflows to make everyone's lives easier.
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

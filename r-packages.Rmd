@@ -117,3 +117,5 @@ In this chapter, we delved into the world of R packages, understanding their sig
 
 Armed with this foundational knowledge of R packages, we're now poised to harness their capabilities in our R programming journey.
 
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

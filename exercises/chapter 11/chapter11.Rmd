@@ -1,0 +1,233 @@
+---
+title: 'Chapter 11: Transformation: Data Manipulation'
+output:
+  html_document:
+    df_print: paged
+---
+
+# Getting Started:
+
+## Import Data
+
+Before diving into the exercises, follow the instructions below to download a dataset from the Exploring Air Quality Data website.
+
+-   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
+-   Enter your student number, and then download the CSV file.
+-   Upload the file to your RStudio. 
+
+Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your Air Quality dataset, and assign the imported data to a variable named `data`.
+
+```{r}
+# Complete the code below and run the cell.
+
+# Import data from CSV file using read_csv -- your code here
+data <- 
+```
+
+**Note**:
+For all the exercises in this notebook, remember that while the pipe operator enables seamless chaining of transformations, it's entirely okay to split your code into multiple steps or variables if it helps clarity. It's essential to prioritize intuition and readability in your code.
+
+------------------------------------------------------------------------
+
+# Exercise 1: Remove Erroneous Data
+
+At the end of Chapter 10 exercise, you learned that there are some bad data in our dataset. Just to recap, let's start with visualizing the `Time`(x-axis) vs. `O3`(y-axis) values as a scatterplot.
+
+```{r}
+# Your code for the scatterplot of Time vs O3.
+
+```
+
+Now, let's ensure the reliability of your data by removing potential measurement errors.
+
+**Your Task:** Filter out any rows in data where the `O3` values are less than 0. Update `data` with the filter data.
+
+```{r}
+# Your code to filter out rows with O3 values less than 0 goes here.
+data <- 
+```
+
+
+#### Test Your Code (Exercise 1)
+```{r}
+library(testthat, quietly = TRUE)
+test_that("Data Cleaning Test", {
+  
+  # Ensure no O3 or NO2 values are less than 0
+  expect_true(all(data$O3 >= 0))
+})
+```
+
+
+**Your Task:** Now that you cleaned your data, re-visualize the `Time` and `O3` values to confirm the effect of your data cleaning.
+
+```{r}
+# Your code for the scatterplot of Time vs O3 before cleaning goes here.
+```
+
+Compare this plot with your first scatterplot. Can you spot the differences? 
+
+------------------------------------------------------------------------
+
+# Exercise 1: The Ozone Watch
+
+**Your Task:**
+
+Transform the `data` to only include rows where `O3` values are greater than 30 and then arrange the results by `Time` in descending order. Assign the result to `data_high_ozone`.
+
+```{r}
+# Complete the code below and run the cell.
+
+data_high_ozone <- # Your code here
+```
+
+
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. 
+
+```{r}
+library(testthat, quietly = TRUE)
+is_ordered_desc <- function(vec) {
+  all(diff(vec) <= 0)
+}
+test_that("The Ozone Watch", {
+  expect_true(all(data_high_ozone$O3 > 30))
+  expect_true(is_ordered_desc(data_high_ozone$Time))
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 2: High Alert Days
+
+**Your Task:**
+
+Transform the `data` based on the following instructions:
+
+1. Create a new column called `O3_Level` where `O3` values above 30 are labeled as "High" and others as "Low".  
+2. Filter the data to only have rows with "High" `O3_Level` values.  
+3. Assign the result to `high_alert_data`.  
+
+
+```{r}
+# Complete the code below and run the cell.
+
+high_alert_data <- # Your code here
+```
+
+
+#### Test Your Code (Exercise 2)
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+test_that("High Alert Days", {
+  expect_equal(length(colnames(high_alert_data)), 5)
+  expect_true(all(high_alert_data$O3_Level == "High"))
+})
+```
+
+
+------------------------------------------------------------------------
+
+# Exercise 3: Ox
+
+In this exercise, we will work with Ox ($O_X$), also known as "odd oxygen".
+Before you begin, you are recommended to watch this introductory video on odd oxygen: https://play.library.utoronto.ca/watch/1f19e6aa27d9c50e551ee8848292fe7c
+
+As mentioned in the video, atmospheric concentrations of NO2 and O3 are related to one another. This relationship is so intimate that reporting the concentration of one without the other is of limited utility. To embrace this relationship, atmospheric chemists have defined the term "odd oxygen" or Ox as the sum of the concentrations of NO2 and O3.
+
+**Your Task:**
+
+Transform the `data` based on the following instructions:
+
+1. Create a column called `Ox` by adding `O3` and `NO2`, and update the `data`.  
+2. Visualize the relationship between O3 and Ox using a scatterplot.  
+3. Calculate the mean, median, and standard deviation of `Ox`. Store the results in columns named `mean_Ox`, `median_Ox`, and `std_dev_Ox` respectively using `summarise()`.  
+4. Assign the result to `Ox_summary`.  
+
+
+```{r}
+# Complete the code below and run the cell.
+
+
+data <- # 1. Your code to create the 'Ox' column here.
+
+# 2. Your code to plot the scatterplot using ggplot
+
+
+Ox_summary <- # 3. Your code to summarize 'Ox' here.
+```
+
+#### Test Your Code (Exercise 3)
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+test_that("Ox", {
+  
+  # Check if Ox_summary exists
+  expect_true(exists("Ox_summary"))
+  
+  # Check if Ox_summary has the right columns
+  expect_equal(names(Ox_summary), c("mean_Ox", "median_Ox", "std_dev_Ox"))
+  
+  # Check values are numbers (not NaN or NA)
+  expect_true(!is.na(Ox_summary$mean_Ox))
+  expect_true(!is.na(Ox_summary$median_Ox))
+  expect_true(!is.na(Ox_summary$std_dev_Ox))
+  
+  # Add more tests as necessary
+})
+
+```
+
+------------------------------------------------------------------------
+
+# (Optional) Exercise 4: Analyzing Extreme Days
+
+**Your Task:**
+
+Transform the `data` based on the following instructions:
+
+1. Filter the dataset for days where `NO2` is above the 75th percentile.  
+2. For this subset, compute a new column `O3_Difference` that represents the difference between each `O3` value and the average `O3` value of the subset.  
+3. Identify and filter only the rows where `O3_Difference` is above the 90th percentile of its distribution in this subset. If you don't know how to get the 90th percentile value, check out the `quantile()` function.  
+4. Finally, select only the columns `NAPS`, `Time`, and `O3_Difference`.  
+5. Assign the result to `extreme_days_data`.  
+
+```{r}
+# Complete the code below and run the cell.
+
+# Feel free to use this variable ready for you. 
+percentile_75_NO2 <- quantile(data$NO2, 0.75)
+
+extreme_days_data <- # Your code here
+
+```
+
+#### Test Your Code (Exercise 4)
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+
+test_that("Analysis of extreme days test", {
+  
+  # Thresholds
+  percentile_75_NO2 <- quantile(data$NO2, 0.75)
+  avg_O3_filtered <- mean(data[data$NO2 > percentile_75_NO2,]$O3)
+  percentile_90_difference <- quantile(data[data$NO2 > percentile_75_NO2,]$O3 - avg_O3_filtered, 0.9)
+  
+  # Check 1: Filtering by O3_Difference
+  expect_true(all(extreme_days_data$O3_Difference > percentile_90_difference))
+  
+  # Check 2: Column names
+  expected_cols <- c("NAPS", "Time", "O3_Difference")
+  expect_equal(colnames(extreme_days_data), expected_cols)
+  
+})
+
+```
+

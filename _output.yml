@@ -6,7 +6,7 @@ bookdown::gitbook:
       before: |
         <li><strong><a href="./">R for Environmental Chemistry</a></strong></li>
     edit:
-      link: https://github.com/DavidRossHall/R4EnvChem/%s
+      link: https://github.com/UofTChem-Teaching/R4EnvChem/%s
       text: "Edit"
     sharing: no
 bookdown::pdf_book:
