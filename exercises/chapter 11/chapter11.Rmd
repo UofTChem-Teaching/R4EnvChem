@@ -9,7 +9,6 @@ output:
 
 **IMPORTANT**: Chapter 10 exercise is a prerequisite to this exercise. If you haven't done so yet, please complete chapter 10 exercises first. 
 
-## Import Data
 
 Before diving into the exercises, follow the instructions below to download a dataset from the Exploring Air Quality Data website.
 
@@ -30,6 +29,7 @@ data <-
 For all the exercises in this notebook, remember that while the pipe operator enables seamless chaining of transformations, it's entirely okay to split your code into multiple steps or variables if it helps clarity. It's essential to prioritize intuition and readability in your code.
 
 ------------------------------------------------------------------------
+
 
 # Exercise 1: Ox
 
@@ -114,31 +114,32 @@ longer_data <-
 ```
 
 
-
-#### Test Your Code (Exercise 2)
-```{r}
-library(testthat, quietly = TRUE)
-test_that("Data Cleaning Test", {
-  
-  expect_true("analyte" %in% colnames(longer_data))
-  expect_true("concentration" %in% colnames(longer_data))
-  # Ensure no concentration values are less than 0
-  expect_true(all(longer_data$concentration >= 0))
-})
-```
-
-
 **Your Task:** Now that you cleaned your data, re-visualize the `Time` and `concentration` values to confirm the effect of your data cleaning.
 
 ```{r}
 # Your code for the scatterplot of Time vs concentration before cleaning goes here.
+
 ```
 
 Compare this plot with your first scatterplot. Can you spot the differences? 
 
+#### Test Your Code (Exercise 2)
+
+```{r}
+library(testthat, quietly = TRUE)
+test_that("Data Cleaning Test", {
+  expect_true("analyte" %in% colnames(longer_data))
+  expect_true("concentration" %in% colnames(longer_data))
+  # Ensure no concentration values are less than 0
+  expect_true(all(longer_data$concentration >= 0))
+
+})
+```
+
 ------------------------------------------------------------------------
 
 # Exercise 3: The Ozone Watch
+
 
 **Your Task:**
 
@@ -152,6 +153,7 @@ data_high_ozone <- # Your code here
 
 
 #### Test Your Code (Exercise 3)
+
 
 Do not modify the cell below. 
 
@@ -169,6 +171,7 @@ test_that("The Ozone Watch", {
 ------------------------------------------------------------------------
 
 # Exercise 4: High Alert Days
+
 
 **Your Task:**
 
@@ -188,6 +191,7 @@ high_alert_data <- # Your code here
 
 #### Test Your Code (Exercise 4)
 
+
 Do not modify the cell below. 
 ```{r}
 library(testthat, quietly = TRUE)
@@ -201,6 +205,7 @@ test_that("High Alert Days", {
 ------------------------------------------------------------------------
 
 # (Optional) Exercise 5: Analyzing Extreme Days
+
 
 **Your Task:**
 
