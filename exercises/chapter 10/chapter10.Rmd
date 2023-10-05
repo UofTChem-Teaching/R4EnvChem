@@ -114,7 +114,7 @@ test_that("Uniting Columns", {
 
 **Your Task:**
 
-Rename the `O3` column to "Ozone" and the `NO2` column to "Nitrogen_Dioxide" in the `united_data` dataset. Assign the result to a new variable named `renamed_data`.
+Rename the `analyte` column to "pollutant" in the `united_data` dataset. Assign the result to a new variable named `renamed_data`.
 
 ```{r}
 # Complete the code below and run the cell.
@@ -130,8 +130,7 @@ Do not modify the cell below.
 ```{r}
 library(testthat, quietly = TRUE)
 test_that("Renaming columns", {
-  expect_true("Ozone" %in% colnames(renamed_data))
-  expect_true("Nitrogen_Dioxide" %in% colnames(renamed_data))
+  expect_true("pollutant" %in% colnames(renamed_data))s
 })
 
 ```
@@ -139,12 +138,13 @@ test_that("Renaming columns", {
 
 # Exercise 5: Visualization
 
-Before we finish, let's visualize the `Time`(x-axis) vs. `O3`(y-axis) values in the original `data`. By plotting these values, you'll get a clearer idea of any outliers or potentially erroneous data points. 
+Before we finish, let's visualize the `Time`(x-axis) vs. `concentration`(y-axis) values in `longer_data`. By plotting these values, you'll get a clearer idea of any outliers or potentially erroneous data points. 
 
 ```{r}
 # Your code for the scatterplot of Time vs Ozone before cleaning goes here.
 ```
 
 Observe the plot. Do you notice any data points that seem unusual or don't fit the overall pattern, especially those with negative values? These could be indicative of measurement errors. 
+
 
 You will get to remove these data in the next chapter's exercise when we learn data transformation, so stay tuned!

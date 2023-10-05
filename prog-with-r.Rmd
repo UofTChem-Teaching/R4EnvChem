@@ -8,7 +8,7 @@ We'll point to several sources for further reading on functions at the end of th
 
 ## Functions  
   
-Functions allow you to write general purpose code to automate common tasks. They're a great way to decrease repetition and make your code more legible and reproducible. By using functions you'll not only reduce the number of lines of code you need to review, but you'll the number of spots you need to review rectify a potential issue.
+Functions allow you to write general purpose code to automate common tasks. They're a great way to decrease repetition and make your code more legible and reproducible. By using functions you'll not only reduce the number of lines of code you need to review, but you'll decrease the number of spots you need to review rectify a potential issue.
 
 To create a function in R you only need `function()`:
 
@@ -23,8 +23,8 @@ funSum("yes",3)
 ```
 What we've done is create a function called `funSum` which takes two numeric inputs `x` and `y`, sums the two into `z` and paste an output telling us the sum. A couple of things to note: 
 
-  - We need to *explicitly* state which arguments are function will take; in this example they are `x` and `y`. Whatever we pass to `x` or `y` will be carried into the function. 
-  - Functions are written with an order to the inputed arguments In our case `x` is the first argument, so unless specified otherwise, the first argument passed to `funSum()` will be passed along as the `x` argument. 
+  - We need to *explicitly* state which arguments our function will take; in this example they are `x` and `y`. Whatever we pass to `x` or `y` will be carried into the function. 
+  - Functions have a specific order for their input arguments. In our case `x` is the first argument, so unless specified otherwise, the first argument passed to `funSum()` will be passed along as the `x` argument. 
     - You can explicitly pass values by stating the argument; i.e. `funSum(y = 10, x = 2)`. 
   - We can't sum non-numeric values, so R returns an error in the second instance
   - Functions create their own environment, therefore *any variable* created inside a function only exists inside the function.
