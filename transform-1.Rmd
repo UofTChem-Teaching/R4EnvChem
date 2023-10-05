@@ -122,6 +122,37 @@ select(FAES, conc_Na:replicate)
 select(FAES, contains("p"))
 ```
 
+
+## Deleting Columns or Rows
+While the process of selecting and filtering data is pivotal in data analysis, there are instances when you may need to remove specific columns or rows entirely. This is useful especially when you're dealing with redundant or irrelevant data that might clutter your analysis.
+
+### Deleting columns
+To delete a column, you can use the `select()` function with the `-` sign before the column name you want to remove:
+
+```{r}
+# This will remove the 'signal' column from the FAES dataset
+head(select(FAES, -signal))
+```
+
+Multiple columns can be deleted by providing more column names after the `-` sign:
+
+```{r}
+# Deleting both 'signal' and 'replicate' columns from the FAES dataset
+head(select(FAES, -c(signal, replicate)))
+```
+
+
+### Deleting rows
+
+To delete rows, the `filter()` function can be used in conjunction with relational or logical conditions that define the rows you wish to exclude:
+
+```{r}
+# This will remove rows where 'signal' values are less than 20000
+filter(FAES, !(signal < 20000))
+```
+The key here is the use of the `!` (NOT) operator which excludes rows that meet the specified condition.
+
+
 ##  Adding new variables
 
 `mutate()` allows you to add new variable (read columns) to your existing data set. It'll probably be the workhorse function you'll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let's suppose that our standards were diluted by a factor of 10, we can add a new column for this:
