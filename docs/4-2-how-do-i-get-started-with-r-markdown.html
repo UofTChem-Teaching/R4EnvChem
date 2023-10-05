@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="4.2 How do I get started with R markdown? | R for Environmental Chemists" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://davidrosshall.github.io/R4EnvChem/" />
+
+<meta property="og:description" content="This is a proof-of-concept for a further full length textbook." />
+
+
+<meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
+
+<meta name="date" content="2021-06-08" />
+
+
+<meta name="description" content="This is a proof-of-concept for a further full length textbook.">
+
+<title>4.2 How do I get started with R markdown? | R for Environmental Chemists</title>
+
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#howdy">Howdy</a>
+<ul>
+<li><a href="authors.html#authors">Authors</a></li>
+</ul></li>
+<li><a href="1-introduction.html#introduction"><span class="toc-section-number">1</span> Introduction</a>
+<ul>
+<li><a href="1-1-prerequisite-software.html#prerequisite-software"><span class="toc-section-number">1.1</span> Prerequisite software</a></li>
+<li><a href="1-2-where-to-get-help.html#where-to-get-help"><span class="toc-section-number">1.2</span> Where to get help</a></li>
+</ul></li>
+<li class="part"><span><b>Getting Setup in R</b></span></li>
+<li><a href="2-running-r-code.html#running-r-code"><span class="toc-section-number">2</span> Running R Code</a>
+<ul>
+<li><a href="2-1-navigating-rstudio.html#navigating-rstudio"><span class="toc-section-number">2.1</span> Navigating RStudio</a>
+<ul>
+<li><a href="2-1-navigating-rstudio.html#console"><span class="toc-section-number">2.1.1</span> Console</a></li>
+<li><a href="2-1-navigating-rstudio.html#environment"><span class="toc-section-number">2.1.2</span> Environment</a></li>
+<li><a href="2-1-navigating-rstudio.html#viewer"><span class="toc-section-number">2.1.3</span> Viewer</a></li>
+<li><a href="2-1-navigating-rstudio.html#customizing-rstudio"><span class="toc-section-number">2.1.4</span> Customizing RStudio</a></li>
+</ul></li>
+<li><a href="2-2-where-to-run-code-in-rstudio.html#where-to-run-code-in-rstudio"><span class="toc-section-number">2.2</span> Where to run code in RStudio</a>
+<ul>
+<li><a href="2-2-where-to-run-code-in-rstudio.html#scripts-vs.-console"><span class="toc-section-number">2.2.1</span> Scripts vs. console</a></li>
+</ul></li>
+<li><a href="2-3-coding-building-blocks.html#coding-building-blocks"><span class="toc-section-number">2.3</span> Coding building blocks</a>
+<ul>
+<li><a href="2-3-coding-building-blocks.html#variable-assignment"><span class="toc-section-number">2.3.1</span> Variable assignment</a></li>
+<li><a href="2-3-coding-building-blocks.html#naming-variables"><span class="toc-section-number">2.3.2</span> Naming variables</a></li>
+<li><a href="2-3-coding-building-blocks.html#basic-data-structures"><span class="toc-section-number">2.3.3</span> Basic data structures</a></li>
+<li><a href="2-3-coding-building-blocks.html#r-packages-and-functions"><span class="toc-section-number">2.3.4</span> R packages and functions</a></li>
+</ul></li>
+<li><a href="2-4-script-formatting.html#script-formatting"><span class="toc-section-number">2.4</span> Script formatting</a>
+<ul>
+<li><a href="2-4-script-formatting.html#script-diagnostics"><span class="toc-section-number">2.4.1</span> Script diagnostics</a></li>
+</ul></li>
+<li><a href="2-5-viewing-data-and-code-simultaneously.html#viewing-data-and-code-simultaneously"><span class="toc-section-number">2.5</span> Viewing data and code simultaneously</a></li>
+</ul></li>
+<li><a href="3-r-workflows.html#r-workflows"><span class="toc-section-number">3</span> R Workflows</a>
+<ul>
+<li><a href="3-1-creating-an-rstudio-project.html#creating-an-rstudio-project"><span class="toc-section-number">3.1</span> Creating an RStudio Project</a></li>
+<li><a href="3-2-navigating-rstudio-1.html#navigating-rstudio-1"><span class="toc-section-number">3.2</span> Navigating RStudio</a>
+<ul>
+<li><a href="3-2-navigating-rstudio-1.html#r-environment"><span class="toc-section-number">3.2.1</span> R Environment</a></li>
+<li><a href="3-2-navigating-rstudio-1.html#viewer-1"><span class="toc-section-number">3.2.2</span> Viewer</a></li>
+<li><a href="3-2-navigating-rstudio-1.html#console-1"><span class="toc-section-number">3.2.3</span> Console</a></li>
+<li><a href="3-2-navigating-rstudio-1.html#scripts"><span class="toc-section-number">3.2.4</span> Scripts</a></li>
+</ul></li>
+<li><a href="3-3-dark-mode.html#dark-mode"><span class="toc-section-number">3.3</span> Dark Mode</a></li>
+</ul></li>
+<li><a href="4-using-r-markdown.html#using-r-markdown"><span class="toc-section-number">4</span> Using R Markdown</a>
+<ul>
+<li><a href="4-1-lets-dig-a-little-deeper.html#lets-dig-a-little-deeper"><span class="toc-section-number">4.1</span> Let’s dig a little deeper</a></li>
+<li><a href="4-2-how-do-i-get-started-with-r-markdown.html#how-do-i-get-started-with-r-markdown"><span class="toc-section-number">4.2</span> How do I get started with R markdown?</a>
+<ul>
+<li><a href="4-2-how-do-i-get-started-with-r-markdown.html#great-now-whats-going-on-with-this-r-markdown-document"><span class="toc-section-number">4.2.1</span> Great, now what’s going on with this R markdown document?</a></li>
+<li><a href="4-2-how-do-i-get-started-with-r-markdown.html#how-to-run-r-code-in-r-markdown"><span class="toc-section-number">4.2.2</span> How to run R code in R Markdown</a></li>
+<li><a href="4-2-how-do-i-get-started-with-r-markdown.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><span class="toc-section-number">4.2.3</span> How do I go from R markdown to something I can hand-in</a></li>
+</ul></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#so-now-what-do-i-do-with-r-markdown"><span class="toc-section-number">4.3</span> So now what do I do with R Markdown?</a>
+<ul>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#r-markdown-resources-and-further-reading"><span class="toc-section-number">4.3.1</span> R Markdown resources and further reading</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#r-code-chunk-options"><span class="toc-section-number">4.3.2</span> R code chunk options</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#inserting-images-into-markdown-documents"><span class="toc-section-number">4.3.3</span> Inserting images into markdown documents</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#generating-tables"><span class="toc-section-number">4.3.4</span> Generating Tables</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#spellcheck-in-r-markdown"><span class="toc-section-number">4.3.5</span> Spellcheck in R Markdown</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#quick-reference-on-r-markdown-syntax"><span class="toc-section-number">4.3.6</span> Quick reference on R markdown syntax</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Data Analysis in R</b></span></li>
+<li><a href="5-intro-to-data-analysis.html#intro-to-data-analysis"><span class="toc-section-number">5</span> Intro to Data Analysis</a>
+<ul>
+<li><a href="5-1-further-reading.html#further-reading"><span class="toc-section-number">5.1</span> Further Reading</a></li>
+</ul></li>
+<li><a href="6-importing-data-into-r.html#importing-data-into-r"><span class="toc-section-number">6</span> Importing data into R</a>
+<ul>
+<li><a href="6-1-how-data-is-stored.html#how-data-is-stored"><span class="toc-section-number">6.1</span> How data is stored</a></li>
+<li><a href="6-2-read-csv.html#read_csv"><span class="toc-section-number">6.2</span> read_csv</a>
+<ul>
+<li><a href="6-2-read-csv.html#tibbles-vs.-data-frames"><span class="toc-section-number">6.2.1</span> Tibbles vs. data frames</a></li>
+</ul></li>
+<li><a href="6-3-importing-other-data-types.html#importing-other-data-types"><span class="toc-section-number">6.3</span> Importing other data types</a></li>
+<li><a href="6-4-saving-data.html#saving-data"><span class="toc-section-number">6.4</span> Saving data</a></li>
+<li><a href="6-5-further-reading-1.html#further-reading-1"><span class="toc-section-number">6.5</span> Further Reading</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="how-do-i-get-started-with-r-markdown" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> How do I get started with R markdown?</h2>
+<p>As you’ve already guessed, R markdown documents use R and are most easily written and assembled in the R Studio IDE. If you have not done so, download R from the comprehensive R archive network (CRAN), link here: <code>http://cran.utstat.utoronto.ca/</code>, and R Studio, link here: <code>https://rstudio.com/products/rstudio/download/</code>). Follow the listed instructions and you should be well on your way. You can also see the accompanying <em>Working with RStudio</em> document on Quercus for additional top tips.</p>
+<p>Once setup with R and R Studio, we’ll need to install the <code>rmarkdown</code> and <code>tinytex</code> packages. In the console, simply run the following code:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>) <span class="co"># downloaded from CRAN</span></span>
+<span id="cb38-2"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb38-4"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb38-4" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<p>The <code>rmarkdown</code> package is what we’ll use to generate our documents, and the <code>tinytex</code> package enables compiling documents as PDFs. There’s a lot more going on behind the scenes, but you shouldn’t need to worry about it.</p>
+<p>Now that everything is setup, you can create your first R Markdown document by opening up R Studio, selecting <code>FILE -&gt; NEW FILE -&gt; Rmarkdown</code>. A dialog box will appear asking for some basic input parameters for your R markdown document. Add your title and select PDF as your default output format (you can always change these later if you want). A new file should appear that’s already populated with some basic script illustrating the key components of an R markdown document.</p>
+<div id="great-now-whats-going-on-with-this-r-markdown-document" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Great, now what’s going on with this R markdown document?</h3>
+<p>Your first reaction when you opened your newly created R markdown document is probably that it doesn’t look anything at all like something you’d show your TA. You’re right, what you’re seeing is the plain text code which needs to be compiled (called <em>knit</em> in R Studio) to create the final document. Let’s break down what the R markdown syntax means then let’s knit our document.</p>
+<p>When you create a R markdown document like this in R Studio a bunch of example code is already written. You can compile this document (see below) to see what it looks like, but let’s break down the primary components. At the top of the document you’ll see something that looks like this:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb39-2"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb39-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Untitled&quot;</span></span>
+<span id="cb39-3"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb39-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Jean Guy Rubberboots&quot;</span></span>
+<span id="cb39-4"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb39-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;20/04/2021&quot;</span></span>
+<span id="cb39-5"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb39-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> pdf_document</span>
+<span id="cb39-6"><a href="4-2-how-do-i-get-started-with-r-markdown.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<p>This section is known as the <em>preamble</em> and it’s where you specify most of the document parameters. In the example we can see that the document title is “Untitled”, it’s written by yours truly, on the 24th of August, and the default output is a PDF document. You can modify the preamble to suit your needs. For example, if you wanted to change the title you would write <code>title: "Your Title Here"</code> in the preamble. Note that none of this is <code>R</code> code, rather it’s <code>YAML</code>, the syntax for the document’s metadata. Apart from what’s shown you shouldn’t need to worry about this much, just remember that indentation in YAML matters.</p>
+<p>Reading further down the default R markdown code, you’ll see different blocks of text. In R markdown anything you write will be interpreted as body text (i.e .the stuff you want folks reading like this) in the knitted document. <strong>To actually run R code</strong> you’ll need to see the next section.</p>
+</div>
+<div id="how-to-run-r-code-in-r-markdown" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> How to run R code in R Markdown</h3>
+<p>There’s two ways to write <code>R</code> code in markdown:</p>
+<ul>
+<li><p><strong>Setup a code chunk</strong>. Code chunks start with three back-ticks like this: <code>```{r}</code>, where <code>r</code> indicates you’re using the R languauge. You end a code chunk using three more backticks like this <code>```</code>.</p>
+<ul>
+<li>Specify code chunks options in the curly braces. i.e. <code>```{r, fig.height = 2}</code> sets figure height to 2 inches. See the <em>Code Chunk Options</em> section below for more details.</li>
+</ul></li>
+<li><p><strong>Inline code expression</strong>, which starts with <code>`r</code> and ends with <code>`</code> in the body text.</p>
+<ul>
+<li>Earlier we calculated <code>x &lt;- 2 + 2</code>, we can use inline expressions to recall that value (ex. We found that <em>x</em> is 4)</li>
+</ul></li>
+</ul>
+<p>A screenshot of how this document, the one you’re reading, appeared in R Studio is shown in Figure 2.</p>
+<p><strong>To actually run</strong> your R code you have two options. The first is to run the individual chunks using the <em>Run current chunk</em> button (See figure 2). This is a great way to tinker with your code before you compile your document. The second option is to compile your entire document using the <em>Knit document</em> button (see Figure 2). Knitting will sequentially run all of your code chunks, generate all the text, knit the two together and output a PDF. You’ll basically save this for the end. <strong>Note all the code chunks in a single markdown document work together like a normal R script.</strong> That is if you assign a value to a variable in the first chunk, you can call this variable in the second chunk; the same applies for libraries. <strong>Also note that every time you compile a markdown document, it’s done in a “fresh” R session.</strong> If you’re calling a variable that exist in your working environment, but isn’t explicitly created in the markdown document you’ll get an error.</p>
+<div class="figure">
+<img src="images/exampleRMarkdown.PNG" alt="" />
+<p class="caption">How this document, the one you’re reading, appeared in RStudio; to see the final results scroll up to Figure 1. Note the “knit” and “run current chunk” buttons.</p>
+</div>
+</div>
+<div id="how-do-i-go-from-r-markdown-to-something-i-can-hand-in" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> How do I go from R markdown to something I can hand-in</h3>
+<p>To create a PDF to hand in you’ll need to compile, or knit, your entire markdown document as mentioned above. To knit (or compile) your R markdown script, simply click the <em>knit</em> button in R Studio (yellow box, Figure 2). You can specify what output you would like and R Studio will (hopefully) compile your script.</p>
+<p>If you want to test how your code chunks will run, R Studio shows a little green ‘play button’ on the top right of every code chunk. this is the ‘run current chunk’ button, and clicking it will run your code chunk and output whatever it would in the final R markdown document. This is a great way to tweak figures and codes as it avoids the need to compile the entire document to check if you managed to change the lines from ‘black’ to ‘blue’ in your plot.</p>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="4-1-lets-dig-a-little-deeper.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-3-so-now-what-do-i-do-with-r-markdown.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

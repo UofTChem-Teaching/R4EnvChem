@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Modelling | R for Environmental Chemists</title>
+  <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Modelling | R for Environmental Chemists" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://davidrosshall.github.io/R4EnvChem/" />
+  
+  <meta property="og:description" content="This is a proof-of-concept for a further full length textbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Modelling | R for Environmental Chemists" />
+  
+  <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
+  
+
+<meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro-to-data-analysis.html"/>
+<link rel="next" href="visualizations.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">R for Environmental Chemistry</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#providing-feedback"><i class="fa fa-check"></i>Providing Feedback</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
+</ul></li>
+<li class="part"><span><b>Section 2: Data Analysis in R</b></span></li>
+<li class="chapter" data-level="1" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>1</b> Intro to Data Analysis</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#example-data"><i class="fa fa-check"></i><b>1.1</b> Example Data</a></li>
+<li class="chapter" data-level="1.2" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#further-reading"><i class="fa fa-check"></i><b>1.2</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>2</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="modelling.html"><a href="modelling.html#base-r-linear-model"><i class="fa fa-check"></i><b>2.1</b> Base R Linear Model</a></li>
+<li class="chapter" data-level="2.2" data-path="modelling.html"><a href="modelling.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>2.2</b> Cleaning up model ouputs</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="modelling.html"><a href="modelling.html#why-we-approach-modelling-this-way"><i class="fa fa-check"></i><b>2.2.1</b> Why we approach modelling this way</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="modelling.html"><a href="modelling.html#visualizing-model"><i class="fa fa-check"></i><b>2.3</b> Visualizing model</a></li>
+<li class="chapter" data-level="2.4" data-path="modelling.html"><a href="modelling.html#further-reading-1"><i class="fa fa-check"></i><b>2.4</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>3</b> Visualizations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="visualizations.html"><a href="visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>3.1</b> Building plots ups</a></li>
+<li class="chapter" data-level="3.2" data-path="visualizations.html"><a href="visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>3.2</b> Basic plotting</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="visualizations.html"><a href="visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>3.2.1</b> Changing plot labels</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="visualizations.html"><a href="visualizations.html#further-reading-2"><i class="fa fa-check"></i><b>3.3</b> Further reading</a></li>
+</ul></li>
+<li class="part"><span><b>Section 3: Data Analysis Toolbox</b></span></li>
+<li class="chapter" data-level="4" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>4</b> Introduction</a></li>
+<li class="chapter" data-level="5" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>5</b> Summarizing data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarizing-data.html"><a href="summarizing-data.html#data-to-play-with"><i class="fa fa-check"></i><b>5.1</b> Data to play with</a></li>
+<li class="chapter" data-level="5.2" data-path="summarizing-data.html"><a href="summarizing-data.html#summarizing-data-by-group"><i class="fa fa-check"></i><b>5.2</b> Summarizing data by group</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="summarizing-data.html"><a href="summarizing-data.html#further-sumarize-operations"><i class="fa fa-check"></i><b>5.2.1</b> Further sumarize operations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables-with-flextable"><i class="fa fa-check"></i><b>5.3</b> Pretty tables with flextable</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="summarizing-data.html"><a href="summarizing-data.html#uniting-columns"><i class="fa fa-check"></i><b>5.3.1</b> Uniting columns</a></li>
+<li class="chapter" data-level="5.3.2" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-kables"><i class="fa fa-check"></i><b>5.3.2</b> Pretty kables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html"><i class="fa fa-check"></i><b>6</b> Visualizations for Env Chem</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#discrete-vs.-continuous-variables"><i class="fa fa-check"></i>Discrete vs. continuous variables</a></li>
+<li class="chapter" data-level="" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="6.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#bar-chart"><i class="fa fa-check"></i><b>6.1</b> Bar chart</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#adding-error-bars"><i class="fa fa-check"></i><b>6.1.1</b> Adding error bars</a></li>
+<li class="chapter" data-level="6.1.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#ordering-bar-charts"><i class="fa fa-check"></i><b>6.1.2</b> Ordering bar charts</a></li>
+<li class="chapter" data-level="6.1.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#grouping-bar-charts"><i class="fa fa-check"></i><b>6.1.3</b> Grouping bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#box-plots"><i class="fa fa-check"></i><b>6.2</b> Box Plots</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#box-plot-alternatives"><i class="fa fa-check"></i><b>6.2.1</b> Box plot alternatives</a></li>
+<li class="chapter" data-level="6.2.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#statistical-comparisons-between-groups"><i class="fa fa-check"></i><b>6.2.2</b> Statistical comparisons between groups</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#histograms"><i class="fa fa-check"></i><b>6.3</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#multiple-histograms"><i class="fa fa-check"></i><b>6.3.1</b> Multiple histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#scatter-plots"><i class="fa fa-check"></i><b>6.4</b> Scatter plots</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#marginal-plots"><i class="fa fa-check"></i><b>6.4.1</b> Marginal plots</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#plotting-for-publication"><i class="fa fa-check"></i><b>6.5</b> Plotting for publication</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#plot-themes"><i class="fa fa-check"></i><b>6.5.1</b> Plot Themes</a></li>
+<li class="chapter" data-level="6.5.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#legends"><i class="fa fa-check"></i><b>6.5.2</b> Legends</a></li>
+<li class="chapter" data-level="6.5.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#modifying-labels"><i class="fa fa-check"></i><b>6.5.3</b> Modifying labels</a></li>
+<li class="chapter" data-level="6.5.4" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#modifying-axis"><i class="fa fa-check"></i><b>6.5.4</b> Modifying Axis</a></li>
+<li class="chapter" data-level="6.5.5" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#anotating-plots"><i class="fa fa-check"></i><b>6.5.5</b> Anotating plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="linear-regression-redux.html"><a href="linear-regression-redux.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Redux</a></li>
+<li class="chapter" data-level="8" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html"><i class="fa fa-check"></i><b>8</b> Non-linear Logistic Regression Modelling</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#visually-inspecting-our-data"><i class="fa fa-check"></i><b>8.1</b> Visually inspecting our data</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#annotating-maximal-values"><i class="fa fa-check"></i><b>8.1.1</b> Annotating maximal values</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#extracting-maximal-values"><i class="fa fa-check"></i><b>8.2</b> Extracting maximal values</a></li>
+<li class="chapter" data-level="8.3" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#modelling-sigmoidal-curve"><i class="fa fa-check"></i><b>8.3</b> Modelling Sigmoidal Curve</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>8.3.1</b> Calculating Logistic Regression</a></li>
+<li class="chapter" data-level="8.3.2" data-path="non-linear-logistic-regression-modelling.html"><a href="non-linear-logistic-regression-modelling.html#extracting-model-parameters"><i class="fa fa-check"></i><b>8.3.2</b> Extracting model parameters</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Environmental Chemists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelling" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Modelling</h1>
+<p>Modelling is basically math used to describe some type of system, and they are a forte of R, a language tailor made for statistical computing… Every model has assumptions, limitations, and all around tricky bits to working. We’ll discuss model fitting and break down popular models you’ll encounter in specific chapters in Section 3. For now, we’ll introduce the <code>lm()</code> function for generalized linear models.</p>
+<p>Linear models are the <em>trend lines</em> you used all the way back in <em>CHM135</em>. However, if you’ve been exposed to these, it’s most likely via <em>Excel</em>’s ‘add trend line’ option. While <code>lm()</code> works much the same <em>mathematically</em>, unlike <em>Excel</em>, R returns <em>allllll</em> of the model outputs. Correspondingly, it’s easy to get lost between juggling R code, the seemingly endless model outputs, and keeping yourself grounded in the real systems you’re attempting to model.</p>
+<p>So let’s take our <code>lm()</code> function at face value and learn <em>how</em> to model in R. Again we’ll touch up the details later on, but for now let’s import the FAES calibration results we saw in [Transform: dplyr and data manipulation]. As we’ve already seen, our data is composed of four standards and a blank analyzed in triplicate. Since we’re focusing on modelling, <em>we’ll treat the blank as a standard in our model fitting</em>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="modelling.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
+<span id="cb5-2"><a href="modelling.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="modelling.html#cb5-3" aria-hidden="true" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="modelling.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
+<span id="cb5-5"><a href="modelling.html#cb5-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
+<span id="cb5-6"><a href="modelling.html#cb5-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
+<span id="cb5-7"><a href="modelling.html#cb5-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="modelling.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
+<span id="cb5-9"><a href="modelling.html#cb5-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
+<span id="cb5-10"><a href="modelling.html#cb5-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb5-11"><a href="modelling.html#cb5-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="modelling.html#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">&quot;standard&quot;</span>)</span>
+<span id="cb5-13"><a href="modelling.html#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="modelling.html#cb5-14" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
+<div id="htmlwidget-46920d75fcd634b5655f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-46920d75fcd634b5655f">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3,0.3,0.3,0.4,0.4,0.4],["mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L","mg/L"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[1348.5051,1304.0702,1395.7714,2947.3097,2924.3988,2927.2867,4446.4036,4453.1066,4416.439,6235.1603,6207.3997,6266.6133,8173.0549,8141.1986,8106.2292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="modelling.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FAES,</span>
+<span id="cb6-2"><a href="modelling.html#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, </span>
+<span id="cb6-3"><a href="modelling.html#cb6-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="modelling.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p>Note model is a general term, in this situation we’ll be calculating a <strong>calibration curve</strong>. All calibration curves are models, but not all models are calibration curves.</p>
+<div id="base-r-linear-model" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Base R Linear Model</h2>
+<p>R’s base <code>lm()</code> function for linear regression is excellent, but it’s outputs have some messy quirks. It’s easier to show that, so let’s calculate the linear relationship between the <code>signal</code> as a function of <code>conc_Na</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="modelling.html#cb7-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> FAES)</span>
+<span id="cb7-2"><a href="modelling.html#cb7-2" aria-hidden="true" tabindex="-1"></a>lm_fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = signal ~ conc_Na, data = FAES)
+## 
+## Coefficients:
+## (Intercept)      conc_Na  
+##        1243        16885</code></pre>
+<p>Reading the code above (recall that we’re reading it from <em>right to left</em> because it’s base R):</p>
+<ol style="list-style-type: decimal">
+<li>We’re taking the FAES data we created earlier; <code>data = FAES</code></li>
+<li>We’re comparing <code>signal</code> (the dependent, y, variable) to <code>conc_Na</code> (the independent, x, variable) via the tilde <code>~</code>. The way to read this is: <em>“Signal depends on concentration”</em>.</li>
+<li>We’re comparing these two variables using the <code>lm()</code> function for generalized linear models.</li>
+<li>All of the model outputs are stored in the <code>lm_fit</code> variable.</li>
+</ol>
+<p>As we can see, the model outputs are pretty brief and not much more than <em>Excel</em>’s outputs. We can use <code>summary()</code> to extract more information to better understand our model:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="modelling.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = signal ~ conc_Na, data = FAES)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -203.091  -86.731   -3.761  107.837  176.562 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1242.57      58.05   21.41 1.61e-11 ***
+## conc_Na     16884.82     236.98   71.25  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 129.8 on 13 degrees of freedom
+## Multiple R-squared:  0.9974, Adjusted R-squared:  0.9972 
+## F-statistic:  5077 on 1 and 13 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Now we have a lot more information from our model (don’t worry about what everything means, it’s discussed further in Section 3. For now, understand that it’s a hot mess.</p>
+</div>
+<div id="cleaning-up-model-ouputs" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Cleaning up model ouputs</h2>
+<p><code>summary()</code> provides a decent overview of our model’s performance, but the outputs are difficult to work with. Let’s turn to the <code>broom()</code> package to clean up our model outputs.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="modelling.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb11-2"><a href="modelling.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="modelling.html#cb11-3" aria-hidden="true" tabindex="-1"></a>calCurve <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="modelling.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="modelling.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="modelling.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> .x)),</span>
+<span id="cb11-7"><a href="modelling.html#cb11-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy),</span>
+<span id="cb11-8"><a href="modelling.html#cb11-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">glanced =</span> <span class="fu">map</span>(fit, glance)</span>
+<span id="cb11-9"><a href="modelling.html#cb11-9" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb11-10"><a href="modelling.html#cb11-10" aria-hidden="true" tabindex="-1"></a>calCurve</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+## # Groups:   type [1]
+##   type     data              fit    tidied           glanced          
+##   &lt;chr&gt;    &lt;list&gt;            &lt;list&gt; &lt;list&gt;           &lt;list&gt;           
+## 1 standard &lt;tibble [15 x 4]&gt; &lt;lm&gt;   &lt;tibble [2 x 5]&gt; &lt;tibble [1 x 12]&gt;</code></pre>
+<p>Things look a bit more complicated than our earlier example, so let’s break down our code line by line:</p>
+<ol style="list-style-type: decimal">
+<li>We’re taking the <code>FAES</code> dataset that we created earlier.</li>
+<li><code>group_by(type)</code> groups all rows by <code>type</code>, in this situation we have only one type: <code>standard</code>.</li>
+<li><code>nest()</code> collapses everything other than the <code>type</code> column into smaller dataframes. In this situation, all other information is stored as a <code>tibble</code> under the <code>data</code> column; this is the data used to calculate the linear model.</li>
+<li>Withing the <code>mutate</code> function, we’ve created three columns: <code>fit</code>, <code>tidied</code> and <code>glanced</code>.</li>
+</ol>
+<p>And it’s the the <code>fit</code>, <code>tidied</code> and <code>glanced</code> that contains out cleaned up model outputs. <code>fit</code> contains the raw output from the linear regression model for <code>signal</code> as a function of <code>conc_Na</code> using the <code>lm()</code> function. The output is in the form of a list, similar to what <code>summary()</code> gave us above. Again, this is exceptionally messy, hence why we used the <code>tidy()</code>, and <code>glance()</code> function from the <code>broom</code> package . <code>map()</code> just means we’re applying the function <code>tidy()</code> to the individual output list created by <code>lm()</code> and stored in the <code>fit</code> column. Note that the <code>tidy()</code> and <code>glanced()</code> outputs are tibbles. So we now have a tibble containing specific model output values (i.e. <code>(Intercept)</code>), lists (i.e. <code>fit</code>), and tibbles (<code>tidied</code>). This is known as **nested data*. We’re no longer in Kansas anymore…</p>
+<p>Anyways, let’s take a look at our model results. The <code>glanced</code> tibble contains “…a concise one-row summary of the model. This typically contains values such as R^2, adjusted R^2, and residual standard error that are computed once for the entire mode”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Because the data is nested, we’ll need to use <code>unnest()</code> to flatten it back out into regular columns:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="modelling.html#cb13-1" aria-hidden="true" tabindex="-1"></a>calCurve <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="modelling.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(glanced)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 16
+## # Groups:   type [1]
+##   type   data     fit   tidied  r.squared adj.r.squared sigma statistic  p.value
+##   &lt;chr&gt;  &lt;list&gt;   &lt;lis&gt; &lt;list&gt;      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 stand~ &lt;tibble~ &lt;lm&gt;  &lt;tibbl~     0.997         0.997  130.     5077. 3.05e-18
+## # ... with 7 more variables: df &lt;dbl&gt;, logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;,
+## #   deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>What you see here is a bit more than what you’d get from <em>Excel</em>’s ‘line-of-best fit’ output. See the section on <em>Modelling</em> for a better breakdown of what everything means. But for now, we can see that our <code>r.squared</code> of each calibration curve is pretty good, and the <code>p.value</code> indicates each model is significant. the <code>adj.r.squared</code> is the same as <code>r.squared</code> in this situation. This is because <code>r.squared</code> will always increase if we add more exploratory variables to our model; the <code>adj.r.squared</code> accounts for the number of exploratory variables used in the model. However, in our case we only have one exploratory variable, hence they’re the same.</p>
+<p>But what about the slope and the intercept? After all, that’s what we need to calculate the concentration in our unknowns. Let’s take a look at <code>tidied</code> from the <code>tidy()</code> function “…which constructs a tibble that summarizes the model’s statistical findings. This includes coefficients and p-values for each term in a regression…”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="modelling.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># storing because we&#39;ll use it later on. </span></span>
+<span id="cb15-2"><a href="modelling.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="modelling.html#cb15-3" aria-hidden="true" tabindex="-1"></a>tidied <span class="ot">&lt;-</span> calCurve <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="modelling.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span>
+<span id="cb15-5"><a href="modelling.html#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="modelling.html#cb15-6" aria-hidden="true" tabindex="-1"></a>tidied</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 9
+## # Groups:   type [1]
+##   type   data      fit    term   estimate std.error statistic  p.value glanced  
+##   &lt;chr&gt;  &lt;list&gt;    &lt;list&gt; &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;list&gt;   
+## 1 stand~ &lt;tibble ~ &lt;lm&gt;   (Inte~    1243.      58.0      21.4 1.61e-11 &lt;tibble ~
+## 2 stand~ &lt;tibble ~ &lt;lm&gt;   conc_~   16885.     237.       71.3 3.05e-18 &lt;tibble ~</code></pre>
+<p>Again, a lot more to unpack compared to <em>Excel</em>. That’s because the <code>lm()</code> function in R calculates a generalized linear model. <code>lm()</code> performs a linear regression model, which we normally think of as an equation of the form <span class="math inline">\(y= mx+b\)</span>. But, regression models can be expanded to account for multiple variables (hence <em>multiple linear regression</em>) of the form</p>
+<p><span class="math display">\[y = \beta _{0} + \beta _{1} x_{1} + \beta _{2} x_{2} ... \beta _{p} x_{p}\]</span>]</p>
+<p>where,</p>
+<ul>
+<li><span class="math inline">\(y\)</span> = dependent variable</li>
+<li><span class="math inline">\(x\)</span> = exploratory variable; there’s no limit how many you can input</li>
+<li><span class="math inline">\(\Beta _{0}\)</span> = y-intercept (constant term)</li>
+<li><span class="math inline">\(\Beta _{p}\)</span> = slope coefficient for each explanatory variable</li>
+</ul>
+<p>In our situation, we only have one input variable for our model (<code>conc</code>), so the above formula collapses down to <span class="math inline">\(y = \beta _{0} + \beta _{1} x_{1}\)</span>. So looking at our results above, each row corresponds to a model parameter. For each modelling parameter, we’re provided an estimate of it’s numerical value (<code>estimate</code>, the values we’ll use to calculate concentration). The other parameters are useful to understand but not necessary at this point (again, check out the <em>Modelling</em> section).</p>
+<p>And we can extract these values to use in subsequent calculations:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="modelling.html#cb17-1" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">1</span>,<span class="dv">5</span>])</span>
+<span id="cb17-2"><a href="modelling.html#cb17-2" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">2</span>,<span class="dv">5</span>])</span>
+<span id="cb17-3"><a href="modelling.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="modelling.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The equation of our calibration curve is: y = &quot;</span>, slope, <span class="st">&quot;x + &quot;</span>, intercept, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;The equation of our calibration curve is: y = 16884.8167x + 1242.56646666666&quot;</code></pre>
+<div id="why-we-approach-modelling-this-way" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Why we approach modelling this way</h3>
+<p>You may be wondering why we’ve seemingly overcomplicated a simple enough procedure. Fair enough, we’ve showcased an analysis with a simple data set. However, as you progress in your studies you’ll be quantifying <em>many</em> compounds, often at the same time in the same instrument runs. If you organize your data in a tidy format, you can plot calibration curves for <em>all</em> of your compounds with the same block of code. Essentially you use <code>group_by()</code> to group your data by compound/element. Subsequently, the same code is expandable from 1 compound to as many as you can ever hope to quantify in one shot. So for upper year labs where you’re analyzing tens of compounds (<em>cough</em> CHM410 Dust Lab) you can generate calibration curves for all your compounds at once.</p>
+</div>
+</div>
+<div id="visualizing-model" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Visualizing model</h2>
+<p>At the top of the chapter we plotted out standards to visualize a linear trend. Visualizations is an essential component when calculating calibration curves, and indeed our standards apepared to follow a linear trend, which was corroborated by the model we calculated above. However, for publications/reports you’ll need to create a plot with both your standards <em>and</em> model with the displayed equation, so below is a bit of stock code you can use as a starting point to create these plots. Note that it requires the <code>ggpmisc</code> package to display the equation:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="modelling.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FAES,</span>
+<span id="cb19-2"><a href="modelling.html#cb19-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, </span>
+<span id="cb19-3"><a href="modelling.html#cb19-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="modelling.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-5"><a href="modelling.html#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="modelling.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_poly_eq</span>(<span class="at">formula =</span> y <span class="sc">~</span> x, <span class="co"># formula uses aesthetic names</span></span>
+<span id="cb19-7"><a href="modelling.html#cb19-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">rr.digits =</span> <span class="dv">4</span>, <span class="co"># reported digits of r-squared</span></span>
+<span id="cb19-8"><a href="modelling.html#cb19-8" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label.., ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~&quot;</span>)), </span>
+<span id="cb19-9"><a href="modelling.html#cb19-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">parse =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">3</span>) </span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="further-reading-1" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Further reading</h2>
+<p>The theory and use of these models are explored in greater details in Section 3. Please read up on it for an understanding of the model outputs and how to use them in your analysis. As well, see the <a href="https://r4ds.had.co.nz/model-intro.html">section on modelling</a> in <em>R for Data Science</em>.</p>
+<p><a href="https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death" class="uri">https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death</a></p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>From the <em>broom</em> package vignette.<a href="modelling.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>From the <em>broom</em> package vignette.<a href="modelling.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro-to-data-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DavidRossHall/R4EnvChem/modelling.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R4EnvChem.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

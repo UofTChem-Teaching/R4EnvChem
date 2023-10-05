@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 16 Modelling: Linear Regression | R for Environmental Chemistry</title>
+  <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 16 Modelling: Linear Regression | R for Environmental Chemistry" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a proof-of-concept for a further full length textbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 16 Modelling: Linear Regression | R for Environmental Chemistry" />
+  
+  <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
+  
+
+<meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="visualizations.html"/>
+<link rel="next" href="modelling-non-linear-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
+<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">R for Environmental Chemistry</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#providing-feedback"><i class="fa fa-check"></i>Providing Feedback</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowlegements"><i class="fa fa-check"></i>Acknowlegements</a></li>
+</ul></li>
+<li class="part"><span><b>Part 1: Getting Started in R</b></span></li>
+<li class="chapter" data-level="1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Intro to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#r-language"><i class="fa fa-check"></i><b>1.1</b> R Language</a></li>
+<li class="chapter" data-level="1.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#rstudio"><i class="fa fa-check"></i><b>1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setting-up-your-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up Your Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#working-remotely-recommended"><i class="fa fa-check"></i><b>1.3.1</b> Working Remotely (Recommended)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#working-locally"><i class="fa fa-check"></i><b>1.3.2</b> Working Locally</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-rstudio"><i class="fa fa-check"></i><b>1.4</b> Using RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#running-r-code"><i class="fa fa-check"></i><b>1.5</b> Running R Code</a></li>
+<li class="chapter" data-level="1.6" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#customizing-rstudio"><i class="fa fa-check"></i><b>1.6</b> Customizing RStudio</a></li>
+<li class="chapter" data-level="1.7" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#where-to-get-help"><i class="fa fa-check"></i><b>1.7</b> Where to get help</a></li>
+<li class="chapter" data-level="1.8" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#summary"><i class="fa fa-check"></i><b>1.8</b> Summary</a></li>
+<li class="chapter" data-level="1.9" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#exercise"><i class="fa fa-check"></i><b>1.9</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="1.9.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setup"><i class="fa fa-check"></i><b>1.9.1</b> Setup</a></li>
+<li class="chapter" data-level="1.9.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#basic-r-commands"><i class="fa fa-check"></i><b>1.9.2</b> Basic R Commands</a></li>
+<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> USing the Help Function</a></li>
+<li class="chapter" data-level="1.9.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#reflection"><i class="fa fa-check"></i><b>1.9.4</b> Reflection</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>2</b> RStudio Projects</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#paths-and-directories"><i class="fa fa-check"></i><b>2.1</b> Paths and directories</a></li>
+<li class="chapter" data-level="2.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#importing-a-project"><i class="fa fa-check"></i><b>2.2</b> Importing a project</a></li>
+<li class="chapter" data-level="2.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>2.3</b> Creating an RStudio project</a></li>
+<li class="chapter" data-level="2.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#a-sneak-peek-at-.rmd-files"><i class="fa fa-check"></i><b>2.4</b> A sneak peek at <code>.Rmd</code> files</a></li>
+<li class="chapter" data-level="2.5" data-path="rstudio-projects.html"><a href="rstudio-projects.html#summary-1"><i class="fa fa-check"></i><b>2.5</b> Summary</a></li>
+<li class="chapter" data-level="2.6" data-path="rstudio-projects.html"><a href="rstudio-projects.html#exercise-1"><i class="fa fa-check"></i><b>2.6</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#get-started"><i class="fa fa-check"></i><b>2.6.1</b> Get Started:</a></li>
+<li class="chapter" data-level="2.6.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#confirm-your-working-directory"><i class="fa fa-check"></i><b>2.6.2</b> Confirm Your Working Directory</a></li>
+<li class="chapter" data-level="2.6.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#creating-your-own-project"><i class="fa fa-check"></i><b>2.6.3</b> Creating Your Own Project:</a></li>
+<li class="chapter" data-level="2.6.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-your-rmd-file"><i class="fa fa-check"></i><b>2.6.4</b> Create Your Rmd File:</a></li>
+<li class="chapter" data-level="2.6.5" data-path="rstudio-projects.html"><a href="rstudio-projects.html#reflection-1"><i class="fa fa-check"></i><b>2.6.5</b> Reflection:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html"><i class="fa fa-check"></i><b>3</b> How to Use This Textbook</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#keep-in-mind"><i class="fa fa-check"></i><b>3.1</b> Keep in mind</a></li>
+<li class="chapter" data-level="3.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#useful-features"><i class="fa fa-check"></i><b>3.2</b> Useful features</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#searching-throughout-the-textbook"><i class="fa fa-check"></i><b>3.2.1</b> Searching throughout the textbook</a></li>
+<li class="chapter" data-level="3.2.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#how-to-view-the-original-r-markdown-of-textbook-chapters"><i class="fa fa-check"></i><b>3.2.2</b> How to view the original R Markdown of textbook chapters</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#how-to-get-more-r-practice"><i class="fa fa-check"></i><b>3.3</b> How to get more R practice</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#working-on-exercises"><i class="fa fa-check"></i><b>3.3.1</b> Working on Exercises</a></li>
+<li class="chapter" data-level="3.3.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#optional-extra-questions"><i class="fa fa-check"></i><b>3.3.2</b> Optional Extra Questions</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part 2: How to Code in R</b></span></li>
+<li class="chapter" data-level="4" data-path="r-coding-basics.html"><a href="r-coding-basics.html"><i class="fa fa-check"></i><b>4</b> R Coding Basics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#variables"><i class="fa fa-check"></i><b>4.1</b> Variables</a></li>
+<li class="chapter" data-level="4.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-types"><i class="fa fa-check"></i><b>4.2</b> Data types</a></li>
+<li class="chapter" data-level="4.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-structures"><i class="fa fa-check"></i><b>4.3</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#accessing-data-in-subfolders"><i class="fa fa-check"></i><b>4.3.1</b> Accessing data in subfolders</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-coding-basics.html"><a href="r-coding-basics.html#other-data-structures"><i class="fa fa-check"></i><b>4.4</b> Other data structures</a></li>
+<li class="chapter" data-level="4.5" data-path="r-coding-basics.html"><a href="r-coding-basics.html#conditional-statements"><i class="fa fa-check"></i><b>4.5</b> Conditional Statements</a></li>
+<li class="chapter" data-level="4.6" data-path="r-coding-basics.html"><a href="r-coding-basics.html#r-built-in-functions"><i class="fa fa-check"></i><b>4.6</b> R built-in functions</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#exploring-more-built-in-functions"><i class="fa fa-check"></i><b>4.6.1</b> Exploring More Built-In Functions</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#function-documentation"><i class="fa fa-check"></i><b>4.6.2</b> Function documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r-coding-basics.html"><a href="r-coding-basics.html#summary-2"><i class="fa fa-check"></i><b>4.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html"><i class="fa fa-check"></i><b>5</b> Workflows for R Coding</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#creating-or-opening-an-r-markdown-document"><i class="fa fa-check"></i><b>5.1</b> Creating or opening an R Markdown document</a></li>
+<li class="chapter" data-level="5.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#workspace-and-whats-real"><i class="fa fa-check"></i><b>5.2</b> Workspace and what’s real</a></li>
+<li class="chapter" data-level="5.3" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-r-markdown"><i class="fa fa-check"></i><b>5.3</b> Saving R Markdown</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#what-should-i-save"><i class="fa fa-check"></i><b>5.3.1</b> What should I save?</a></li>
+<li class="chapter" data-level="5.3.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-objects"><i class="fa fa-check"></i><b>5.3.2</b> Saving objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#script-formatting"><i class="fa fa-check"></i><b>5.4</b> Script formatting</a></li>
+<li class="chapter" data-level="5.5" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>5.5</b> Viewing data and code simultaneously</a></li>
+<li class="chapter" data-level="5.6" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#troubleshooting-error-messages"><i class="fa fa-check"></i><b>5.6</b> Troubleshooting error messages</a></li>
+<li class="chapter" data-level="5.7" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#summary-3"><i class="fa fa-check"></i><b>5.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="using-r-markdown.html"><a href="using-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Using R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="using-r-markdown.html"><a href="using-r-markdown.html#getting-started-with-r-markdown"><i class="fa fa-check"></i><b>6.1</b> Getting started with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="using-r-markdown.html"><a href="using-r-markdown.html#understanding-r-markdown"><i class="fa fa-check"></i><b>6.1.1</b> Understanding R Markdown</a></li>
+<li class="chapter" data-level="6.1.2" data-path="using-r-markdown.html"><a href="using-r-markdown.html#running-code-in-r-markdown"><i class="fa fa-check"></i><b>6.1.2</b> Running code in R Markdown</a></li>
+<li class="chapter" data-level="6.1.3" data-path="using-r-markdown.html"><a href="using-r-markdown.html#headings-and-subheadings"><i class="fa fa-check"></i><b>6.1.3</b> Headings and Subheadings</a></li>
+<li class="chapter" data-level="6.1.4" data-path="using-r-markdown.html"><a href="using-r-markdown.html#latex-basics"><i class="fa fa-check"></i><b>6.1.4</b> LaTeX Basics</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="using-r-markdown.html"><a href="using-r-markdown.html#compiling-your-final-report"><i class="fa fa-check"></i><b>6.2</b> Compiling your final report</a></li>
+<li class="chapter" data-level="6.3" data-path="using-r-markdown.html"><a href="using-r-markdown.html#authoring-with-r-markdown"><i class="fa fa-check"></i><b>6.3</b> Authoring with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="using-r-markdown.html"><a href="using-r-markdown.html#r-markdown-syntax"><i class="fa fa-check"></i><b>6.3.1</b> R markdown syntax</a></li>
+<li class="chapter" data-level="6.3.2" data-path="using-r-markdown.html"><a href="using-r-markdown.html#r-code-chunk-options"><i class="fa fa-check"></i><b>6.3.2</b> R code chunk options</a></li>
+<li class="chapter" data-level="6.3.3" data-path="using-r-markdown.html"><a href="using-r-markdown.html#inserting-images"><i class="fa fa-check"></i><b>6.3.3</b> Inserting images</a></li>
+<li class="chapter" data-level="6.3.4" data-path="using-r-markdown.html"><a href="using-r-markdown.html#generating-tables"><i class="fa fa-check"></i><b>6.3.4</b> Generating tables</a></li>
+<li class="chapter" data-level="6.3.5" data-path="using-r-markdown.html"><a href="using-r-markdown.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>6.3.5</b> Spellcheck in R Markdown</a></li>
+<li class="chapter" data-level="6.3.6" data-path="using-r-markdown.html"><a href="using-r-markdown.html#exporting-r-markdown-documents"><i class="fa fa-check"></i><b>6.3.6</b> Exporting R Markdown documents</a></li>
+<li class="chapter" data-level="6.3.7" data-path="using-r-markdown.html"><a href="using-r-markdown.html#rstudio-tips-and-tricks"><i class="fa fa-check"></i><b>6.3.7</b> RStudio tips and tricks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="using-r-markdown.html"><a href="using-r-markdown.html#r-markdown-resources"><i class="fa fa-check"></i><b>6.4</b> R Markdown resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>7</b> R Packages</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-packages.html"><a href="r-packages.html#what-are-r-packages"><i class="fa fa-check"></i><b>7.1</b> What are R packages?</a></li>
+<li class="chapter" data-level="7.2" data-path="r-packages.html"><a href="r-packages.html#how-to-use-r-packages"><i class="fa fa-check"></i><b>7.2</b> How to use R packages</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="r-packages.html"><a href="r-packages.html#how-to-install-packages"><i class="fa fa-check"></i><b>7.2.1</b> How to install packages</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-packages.html"><a href="r-packages.html#how-to-load-packages"><i class="fa fa-check"></i><b>7.2.2</b> How to load packages</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-packages.html"><a href="r-packages.html#calling-specific-functions"><i class="fa fa-check"></i><b>7.2.3</b> Calling specific functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-packages.html"><a href="r-packages.html#tidyverse-the-golden-toolbox-of-r"><i class="fa fa-check"></i><b>7.3</b> Tidyverse: The Golden Toolbox of R</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-packages.html"><a href="r-packages.html#loading-the-tidyverse"><i class="fa fa-check"></i><b>7.3.1</b> Loading the Tidyverse</a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-packages.html"><a href="r-packages.html#data-visualization"><i class="fa fa-check"></i><b>7.3.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-packages.html"><a href="r-packages.html#data-manipulation"><i class="fa fa-check"></i><b>7.3.3</b> Data Manipulation</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-packages.html"><a href="r-packages.html#efficient-data-reading"><i class="fa fa-check"></i><b>7.3.4</b> Efficient Data Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-packages.html"><a href="r-packages.html#smile-handling-chemical-structures-in-r"><i class="fa fa-check"></i><b>7.4</b> Smile: Handling Chemical Structures in R</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="r-packages.html"><a href="r-packages.html#installation"><i class="fa fa-check"></i><b>7.4.1</b> Installation</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-packages.html"><a href="r-packages.html#a-simple-example"><i class="fa fa-check"></i><b>7.4.2</b> A simple example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="r-packages.html"><a href="r-packages.html#summary-4"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Data Wrangling in R</b></span></li>
+<li class="chapter" data-level="8" data-path="intro-to-data-wrangling.html"><a href="intro-to-data-wrangling.html"><i class="fa fa-check"></i><b>8</b> Intro to Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="intro-to-data-wrangling.html"><a href="intro-to-data-wrangling.html#example-data"><i class="fa fa-check"></i><b>8.1</b> Example Data</a></li>
+<li class="chapter" data-level="8.2" data-path="intro-to-data-wrangling.html"><a href="intro-to-data-wrangling.html#further-reading"><i class="fa fa-check"></i><b>8.2</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html"><i class="fa fa-check"></i><b>9</b> Importing Your Data Into R</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#csv-files"><i class="fa fa-check"></i><b>9.1</b> .csv files</a></li>
+<li class="chapter" data-level="9.2" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#read_csv"><i class="fa fa-check"></i><b>9.2</b> read_csv</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#tibbles-vs.-data-frames"><i class="fa fa-check"></i><b>9.2.1</b> Tibbles vs. data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#importing-other-data-types"><i class="fa fa-check"></i><b>9.3</b> Importing other data types</a></li>
+<li class="chapter" data-level="9.4" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#saving-data"><i class="fa fa-check"></i><b>9.4</b> Saving data</a></li>
+<li class="chapter" data-level="9.5" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#further-reading-1"><i class="fa fa-check"></i><b>9.5</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tidying-your-data.html"><a href="tidying-your-data.html"><i class="fa fa-check"></i><b>10</b> Tidying Your Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tidying-your-data.html"><a href="tidying-your-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>10.1</b> What is tidy data?</a></li>
+<li class="chapter" data-level="10.2" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tools-to-tidy-your-data"><i class="fa fa-check"></i><b>10.2</b> Tools to tidy your data</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="tidying-your-data.html"><a href="tidying-your-data.html#making-data-longer"><i class="fa fa-check"></i><b>10.2.1</b> Making data ‘longer’</a></li>
+<li class="chapter" data-level="10.2.2" data-path="tidying-your-data.html"><a href="tidying-your-data.html#making-data-wider"><i class="fa fa-check"></i><b>10.2.2</b> Making data ‘wider’</a></li>
+<li class="chapter" data-level="10.2.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#selection-helpers"><i class="fa fa-check"></i><b>10.2.3</b> Selection helpers</a></li>
+<li class="chapter" data-level="10.2.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#seperating-columns"><i class="fa fa-check"></i><b>10.2.4</b> Seperating columns</a></li>
+<li class="chapter" data-level="10.2.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#unitingcombining-columns"><i class="fa fa-check"></i><b>10.2.5</b> Uniting/combining columns</a></li>
+<li class="chapter" data-level="10.2.6" data-path="tidying-your-data.html"><a href="tidying-your-data.html#renaming-columnsheaders"><i class="fa fa-check"></i><b>10.2.6</b> Renaming columns/headers</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tips-for-recording-data"><i class="fa fa-check"></i><b>10.3</b> Tips for recording data</a></li>
+<li class="chapter" data-level="10.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#further-reading-2"><i class="fa fa-check"></i><b>10.4</b> Further reading</a></li>
+<li class="chapter" data-level="10.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#chapter-references"><i class="fa fa-check"></i><b>10.5</b> Chapter References</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html"><i class="fa fa-check"></i><b>11</b> Transform: Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#selecting-by-row-or-value"><i class="fa fa-check"></i><b>11.1</b> Selecting by row or value</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#logical-operators"><i class="fa fa-check"></i><b>11.1.1</b> Logical operators</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#arranging-rows"><i class="fa fa-check"></i><b>11.2</b> Arranging rows</a></li>
+<li class="chapter" data-level="11.3" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#selecting-column-name"><i class="fa fa-check"></i><b>11.3</b> Selecting column name</a></li>
+<li class="chapter" data-level="11.4" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#adding-new-variables"><i class="fa fa-check"></i><b>11.4</b> Adding new variables</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#useful-mutate-function"><i class="fa fa-check"></i><b>11.4.1</b> Useful mutate function</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#group-and-summarize-data"><i class="fa fa-check"></i><b>11.5</b> Group and summarize data</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#useful-summarize-functions"><i class="fa fa-check"></i><b>11.5.1</b> Useful summarize functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#the-pipe-chaining-functions-together"><i class="fa fa-check"></i><b>11.6</b> The pipe: chaining functions together</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#notes-on-piping"><i class="fa fa-check"></i><b>11.6.1</b> Notes on piping</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#further-reading-3"><i class="fa fa-check"></i><b>11.7</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="programming-with-r.html"><a href="programming-with-r.html"><i class="fa fa-check"></i><b>12</b> Programming with R</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="programming-with-r.html"><a href="programming-with-r.html#functions"><i class="fa fa-check"></i><b>12.1</b> Functions</a></li>
+<li class="chapter" data-level="12.2" data-path="programming-with-r.html"><a href="programming-with-r.html#conditional-arguments"><i class="fa fa-check"></i><b>12.2</b> Conditional arguments</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="programming-with-r.html"><a href="programming-with-r.html#piping-conditional-statements"><i class="fa fa-check"></i><b>12.2.1</b> Piping conditional statements</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="programming-with-r.html"><a href="programming-with-r.html#when-to-use-functions"><i class="fa fa-check"></i><b>12.3</b> When to use functions</a></li>
+<li class="chapter" data-level="12.4" data-path="programming-with-r.html"><a href="programming-with-r.html#further-reading-4"><i class="fa fa-check"></i><b>12.4</b> Further reading</a></li>
+</ul></li>
+<li class="part"><span><b>Part 4: Data Analysis Toolbox</b></span></li>
+<li class="chapter" data-level="13" data-path="introduction-to-data-analysis.html"><a href="introduction-to-data-analysis.html"><i class="fa fa-check"></i><b>13</b> Introduction to Data Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="introduction-to-data-analysis.html"><a href="introduction-to-data-analysis.html#example-data-1"><i class="fa fa-check"></i><b>13.1</b> Example Data</a></li>
+<li class="chapter" data-level="13.2" data-path="introduction-to-data-analysis.html"><a href="introduction-to-data-analysis.html#further-reading-5"><i class="fa fa-check"></i><b>13.2</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>14</b> Summarizing Data</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="summarizing-data.html"><a href="summarizing-data.html#data-to-play-with"><i class="fa fa-check"></i><b>14.1</b> Data to play with</a></li>
+<li class="chapter" data-level="14.2" data-path="summarizing-data.html"><a href="summarizing-data.html#summarizing-data-by-group"><i class="fa fa-check"></i><b>14.2</b> Summarizing data by group</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="summarizing-data.html"><a href="summarizing-data.html#further-summarize-operations"><i class="fa fa-check"></i><b>14.2.1</b> Further summarize operations</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables-with-flextable"><i class="fa fa-check"></i><b>14.3</b> Pretty tables with flextable</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="summarizing-data.html"><a href="summarizing-data.html#uniting-columns"><i class="fa fa-check"></i><b>14.3.1</b> Uniting columns</a></li>
+<li class="chapter" data-level="14.3.2" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables"><i class="fa fa-check"></i><b>14.3.2</b> Pretty tables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>15</b> Visualizations</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="visualizations.html"><a href="visualizations.html#ggplot-basics"><i class="fa fa-check"></i><b>15.1</b> ggplot basics</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="visualizations.html"><a href="visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>15.1.1</b> Building plots ups</a></li>
+<li class="chapter" data-level="15.1.2" data-path="visualizations.html"><a href="visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>15.1.2</b> Basic plotting</a></li>
+<li class="chapter" data-level="15.1.3" data-path="visualizations.html"><a href="visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>15.1.3</b> Changing plot labels</a></li>
+<li class="chapter" data-level="15.1.4" data-path="visualizations.html"><a href="visualizations.html#small-multiples"><i class="fa fa-check"></i><b>15.1.4</b> Small Multiples</a></li>
+<li class="chapter" data-level="15.1.5" data-path="visualizations.html"><a href="visualizations.html#plotting-subsets-of-data"><i class="fa fa-check"></i><b>15.1.5</b> Plotting subsets of data</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="visualizations.html"><a href="visualizations.html#visualizations-for-env-chem"><i class="fa fa-check"></i><b>15.2</b> Visualizations for Env Chem</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="visualizations.html"><a href="visualizations.html#discrete-vs.-continuous-variables"><i class="fa fa-check"></i><b>15.2.1</b> Discrete vs. continuous variables</a></li>
+<li class="chapter" data-level="15.2.2" data-path="visualizations.html"><a href="visualizations.html#prerequisites"><i class="fa fa-check"></i><b>15.2.2</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="visualizations.html"><a href="visualizations.html#bar-chart"><i class="fa fa-check"></i><b>15.3</b> Bar chart</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="visualizations.html"><a href="visualizations.html#adding-error-bars"><i class="fa fa-check"></i><b>15.3.1</b> Adding error bars</a></li>
+<li class="chapter" data-level="15.3.2" data-path="visualizations.html"><a href="visualizations.html#ordering-bar-charts"><i class="fa fa-check"></i><b>15.3.2</b> Ordering bar charts</a></li>
+<li class="chapter" data-level="15.3.3" data-path="visualizations.html"><a href="visualizations.html#grouping-bar-charts"><i class="fa fa-check"></i><b>15.3.3</b> Grouping bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="visualizations.html"><a href="visualizations.html#box-plots"><i class="fa fa-check"></i><b>15.4</b> Box Plots</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="visualizations.html"><a href="visualizations.html#box-plot-alternatives"><i class="fa fa-check"></i><b>15.4.1</b> Box plot alternatives</a></li>
+<li class="chapter" data-level="15.4.2" data-path="visualizations.html"><a href="visualizations.html#statistical-comparisons-between-groups"><i class="fa fa-check"></i><b>15.4.2</b> Statistical comparisons between groups</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="visualizations.html"><a href="visualizations.html#histograms"><i class="fa fa-check"></i><b>15.5</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="visualizations.html"><a href="visualizations.html#multiple-histograms"><i class="fa fa-check"></i><b>15.5.1</b> Multiple histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="visualizations.html"><a href="visualizations.html#scatter-plots"><i class="fa fa-check"></i><b>15.6</b> Scatter plots</a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="visualizations.html"><a href="visualizations.html#marginal-plots"><i class="fa fa-check"></i><b>15.6.1</b> Marginal plots</a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="visualizations.html"><a href="visualizations.html#interactive-plots"><i class="fa fa-check"></i><b>15.7</b> Interactive Plots</a></li>
+<li class="chapter" data-level="15.8" data-path="visualizations.html"><a href="visualizations.html#plotting-for-publication"><i class="fa fa-check"></i><b>15.8</b> Plotting for publication</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="visualizations.html"><a href="visualizations.html#plot-themes"><i class="fa fa-check"></i><b>15.8.1</b> Plot Themes</a></li>
+<li class="chapter" data-level="15.8.2" data-path="visualizations.html"><a href="visualizations.html#legends"><i class="fa fa-check"></i><b>15.8.2</b> Legends</a></li>
+<li class="chapter" data-level="15.8.3" data-path="visualizations.html"><a href="visualizations.html#modifying-labels"><i class="fa fa-check"></i><b>15.8.3</b> Modifying labels</a></li>
+<li class="chapter" data-level="15.8.4" data-path="visualizations.html"><a href="visualizations.html#modifying-axis"><i class="fa fa-check"></i><b>15.8.4</b> Modifying Axis</a></li>
+<li class="chapter" data-level="15.8.5" data-path="visualizations.html"><a href="visualizations.html#arranging-plots"><i class="fa fa-check"></i><b>15.8.5</b> Arranging plots</a></li>
+<li class="chapter" data-level="15.8.6" data-path="visualizations.html"><a href="visualizations.html#anotating-plots"><i class="fa fa-check"></i><b>15.8.6</b> Anotating plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html"><i class="fa fa-check"></i><b>16</b> Modelling: Linear Regression</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#modelling-theory"><i class="fa fa-check"></i><b>16.1</b> Modelling Theory</a></li>
+<li class="chapter" data-level="16.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#modelling-in-r"><i class="fa fa-check"></i><b>16.2</b> Modelling in R</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#base-r-linear-model"><i class="fa fa-check"></i><b>16.2.1</b> Base R Linear Model</a></li>
+<li class="chapter" data-level="16.2.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>16.2.2</b> Cleaning up model ouputs</a></li>
+<li class="chapter" data-level="16.2.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#glanced-outputs"><i class="fa fa-check"></i><b>16.2.3</b> Glanced outputs</a></li>
+<li class="chapter" data-level="16.2.4" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#tidied-outputs"><i class="fa fa-check"></i><b>16.2.4</b> Tidied outputs</a></li>
+<li class="chapter" data-level="16.2.5" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#augmented-outputs"><i class="fa fa-check"></i><b>16.2.5</b> Augmented outputs</a></li>
+<li class="chapter" data-level="16.2.6" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#why-we-approach-modelling-this-way"><i class="fa fa-check"></i><b>16.2.6</b> Why we approach modelling this way</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#visualizing-models"><i class="fa fa-check"></i><b>16.3</b> Visualizing models</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#vizualizing-residuals"><i class="fa fa-check"></i><b>16.3.1</b> Vizualizing residuals</a></li>
+<li class="chapter" data-level="16.3.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#plotting-residuals"><i class="fa fa-check"></i><b>16.3.2</b> Plotting residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#calculating-concentrations"><i class="fa fa-check"></i><b>16.4</b> Calculating Concentrations</a></li>
+<li class="chapter" data-level="16.5" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#summary-5"><i class="fa fa-check"></i><b>16.5</b> Summary</a></li>
+<li class="chapter" data-level="16.6" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#further-reading-6"><i class="fa fa-check"></i><b>16.6</b> Further reading</a></li>
+<li class="chapter" data-level="16.7" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#going-deeper-with-modelling"><i class="fa fa-check"></i><b>16.7</b> Going deeper with modelling</a>
+<ul>
+<li class="chapter" data-level="16.7.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#weighing"><i class="fa fa-check"></i><b>16.7.1</b> Weighing</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html"><i class="fa fa-check"></i><b>17</b> Modelling: Non-Linear Regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#experimental-background"><i class="fa fa-check"></i><b>17.1</b> Experimental Background</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#annotating-maximal-values"><i class="fa fa-check"></i><b>17.1.1</b> Annotating maximal values</a></li>
+<li class="chapter" data-level="17.1.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-maximal-values"><i class="fa fa-check"></i><b>17.1.2</b> Extracting maximal values</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#modelling-sigmoid-curve"><i class="fa fa-check"></i><b>17.2</b> Modelling Sigmoid Curve</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>17.2.1</b> Calculating Logistic Regression</a></li>
+<li class="chapter" data-level="17.2.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-model-parameters"><i class="fa fa-check"></i><b>17.2.2</b> Extracting model parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#summary-6"><i class="fa fa-check"></i><b>17.3</b> Summary</a></li>
+</ul></li>
+<li class="part"><span><b>Section 4: Notes for Env. Chem. Labs</b></span></li>
+<li class="chapter" data-level="18" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html"><i class="fa fa-check"></i><b>18</b> CHM410: Air Quality Lab</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-data"><i class="fa fa-check"></i><b>18.1</b> Importing Data</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-airbeam-2-data"><i class="fa fa-check"></i><b>18.1.1</b> Importing Airbeam 2 data</a></li>
+<li class="chapter" data-level="18.1.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#importing-co2-and-o3-data"><i class="fa fa-check"></i><b>18.1.2</b> Importing CO2 and O3 data</a></li>
+<li class="chapter" data-level="18.1.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#merging-datasets"><i class="fa fa-check"></i><b>18.1.3</b> Merging datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-data-spatially"><i class="fa fa-check"></i><b>18.2</b> Plotting data spatially</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-airbeam-data-spatially"><i class="fa fa-check"></i><b>18.2.1</b> Plotting Airbeam data spatially</a></li>
+<li class="chapter" data-level="18.2.2" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#plotting-gases-data-spatially"><i class="fa fa-check"></i><b>18.2.2</b> Plotting gases data spatially</a></li>
+<li class="chapter" data-level="18.2.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#combining-maps"><i class="fa fa-check"></i><b>18.2.3</b> Combining maps</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="chm410-air-quality-lab.html"><a href="chm410-air-quality-lab.html#summary-7"><i class="fa fa-check"></i><b>18.3</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html"><i class="fa fa-check"></i><b>19</b> CHM410: NMR Lab</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#getting-started"><i class="fa fa-check"></i><b>19.1</b> Getting started</a></li>
+<li class="chapter" data-level="19.2" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#setting-up-your-workspace"><i class="fa fa-check"></i><b>19.2</b> Setting up your workspace</a></li>
+<li class="chapter" data-level="19.3" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#import-and-install-the-appropriate-packages"><i class="fa fa-check"></i><b>19.3</b> Import and install the appropriate packages</a></li>
+<li class="chapter" data-level="19.4" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#exporting-your-nmr-for-r-and-chemospec"><i class="fa fa-check"></i><b>19.4</b> Exporting your NMR for R and ChemoSpec</a></li>
+<li class="chapter" data-level="19.5" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#importing-your-data-in-chemospec"><i class="fa fa-check"></i><b>19.5</b> Importing your data in ChemoSpec</a></li>
+<li class="chapter" data-level="19.6" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#preparing-the-data-for-statistical-analysis"><i class="fa fa-check"></i><b>19.6</b> Preparing the Data for Statistical Analysis</a></li>
+<li class="chapter" data-level="19.7" data-path="chm410-nmr-lab.html"><a href="chm410-nmr-lab.html#lets-do-statistics"><i class="fa fa-check"></i><b>19.7</b> Let’s do statistics!</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Environmental Chemistry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelling-linear-regression" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Modelling: Linear Regression<a href="modelling-linear-regression.html#modelling-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Modelling is basically math used to describe some type of system, and they are a forte of R, a language tailor made for statistical computing… Every model has assumptions, limitations, and all around tricky bits to working. There is no shortage of modelling in a myriad of context, but in this chapter we’ll discuss and break down the most common model you’ll encounter, the <em>linear regression model</em>, in the most common context, the <em>linear calibration model</em>, using the most common function, <code>lm()</code>.</p>
+<p>You have probably encountered the linear regression model under the pseudonym “trend-lines”, most likely generated by <em>Excel</em>’s “add trend-line option” (as in CHM135). While the models we’ll be constructing with <code>lm()</code> work much the same <em>mathematically</em>, unlike <em>Excel</em>, R returns <em>alllll</em> of the model outputs. Correspondingly, it’s easy to get lost between juggling R code, the seemingly endless model outputs, and keeping yourself grounded in the real systems you’re attempting to model.</p>
+<p>To this end, this chapter is broken into the following parts:</p>
+<ul>
+<li><a href="modelling-linear-regression.html#modelling-theory">Modelling theory</a> where we briefly touch upon <em>what</em> model is being calculated.</li>
+<li><a href="modelling-linear-regression.html#modelling-in-r">Modelling in R</a> where we provide a boilerplate template for <em>how</em> to calculate models in R.</li>
+<li><a href="modelling-linear-regression.html#visualizing-models">Visualizing models</a> where we explore our model results.</li>
+<li><a href="modelling-linear-regression.html#calculating-concentrations">Calculating Concentrations</a> where we use our model to calculate the concentration.</li>
+</ul>
+<div id="modelling-theory" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Modelling Theory<a href="modelling-linear-regression.html#modelling-theory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <em>linear calibration model</em> relates the response of an instrument to the value of the <em>measurand</em>. The measurand is simply what we’re measuring, often the concentration of an analyte. So we use the measurand, which we can control via preparation of standards from reference material as the <em>independent</em> variable, with the instrument output being the <em>dependent</em> variable (as instrument response varies with concentration). Altogether we’re:</p>
+<ol style="list-style-type: decimal">
+<li>Measuring the instrument response of standards of known concentration and samples of unknown concentration.</li>
+<li>Calculating the linear calibration model (i.e. line of best fit) through our standards.</li>
+<li>Using the measurement model to calculate the concentration in our unknown from their respective instrument response.</li>
+</ol>
+<div class="figure"><span style="display:block;" id="fig:reg-plot"></span>
+<img src="R4EnvChem_files/figure-html/reg-plot-1.png" alt="Linear calibration model; figure modified from Hibbert and Gooding (2006)." width="672" />
+<p class="caption">
+Figure 16.1: Linear calibration model; figure modified from Hibbert and Gooding (2006).
+</p>
+</div>
+<p>Before we can calculate concentrations, we need a measurement model. In other words, an equation that relates instrument response to sample concentration (or other factors). For simple linear calibration, we use:</p>
+<p><span class="math display">\[ y = a + bx\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(y\)</span> is the instrument response</li>
+<li><span class="math inline">\(x\)</span> is the independent variable (i.e. sample concentration)</li>
+<li><span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are the coefficients of the model; otherwise known as intercept and slope, respectively.</li>
+</ul>
+<p>We’ll gloss over some of the more technical aspects of modelling, and discuss other in more detail below. For now, know that:</p>
+<ul>
+<li>We’re assuming our linear model is correct (i.e. the instruments actually responds linearly to concentration).</li>
+<li>All uncertainties reside in the dependant variable <span class="math inline">\(y\)</span> (i.e. no errors in preparation of the standards).</li>
+<li>The values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are determined by minimizing the <em>sum of the residuals squared</em>.
+<ul>
+<li>The residuals are the difference between the actual measured response and where it would be if it were on the calibration line.</li>
+</ul></li>
+</ul>
+<p>Once we have our line of best fit, we can calculate the concentration of our unknown sample <span class="math inline">\(i\)</span>, from it’s measured response <span class="math inline">\(y_i\)</span> by:</p>
+<p><span class="math display">\[ x_i = \frac{y_i ~-~b}{a}\]</span></p>
+<p>There is more going on under the hood then what we’re describing here, but this should be enough to get you up and running. If you would like a greater breakdown of linear calibration modelling, we suggest you read Chapter 5 of <em>Data Analysis for Chemistry</em> by Hibbert and Gooding. An online version is accessible via the University of Toronto’s Library. Also there is no reason the instrument response must be linear. In fact, we spend a great deal of time arranging our experiment to that we land in the ‘linear range’. For details on non-linear modelling in R see [Non-Linear Regression]</p>
+</div>
+<div id="modelling-in-r" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Modelling in R<a href="modelling-linear-regression.html#modelling-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have a rough understanding of what we’re trying to do, let’s go over <em>how</em> to calculate linear regression models in R. Note model is a general term, in this situation we’ll be calculating a <strong>calibration curve</strong>. All calibration curves are models, but not all models are calibration curves.</p>
+<p>For our example dataset we’ll import a dataset consisting of four analytical standards of sodium plus a calibration blank all run in triplicate. The standards were measured via flame atomic emission spectroscopy (FAES). Let’s import the FAES calibration results we saw in [Transform: dplyr and data manipulation]. As we’ve already seen, our data is composed of four standards and a blank analyzed in triplicate. Since we’re focusing on modelling, <em>we’ll treat the blank as a standard in our model fitting</em>.
+So let’s import our dataset:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="modelling-linear-regression.html#cb241-1" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
+<span id="cb241-2"><a href="modelling-linear-regression.html#cb241-2" tabindex="-1"></a></span>
+<span id="cb241-3"><a href="modelling-linear-regression.html#cb241-3" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESdata.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb241-4"><a href="modelling-linear-regression.html#cb241-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
+<span id="cb241-5"><a href="modelling-linear-regression.html#cb241-5" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
+<span id="cb241-6"><a href="modelling-linear-regression.html#cb241-6" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
+<span id="cb241-7"><a href="modelling-linear-regression.html#cb241-7" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb241-8"><a href="modelling-linear-regression.html#cb241-8" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
+<span id="cb241-9"><a href="modelling-linear-regression.html#cb241-9" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
+<span id="cb241-10"><a href="modelling-linear-regression.html#cb241-10" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb241-11"><a href="modelling-linear-regression.html#cb241-11" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb241-12"><a href="modelling-linear-regression.html#cb241-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">&quot;standard&quot;</span>)</span>
+<span id="cb241-13"><a href="modelling-linear-regression.html#cb241-13" tabindex="-1"></a></span>
+<span id="cb241-14"><a href="modelling-linear-regression.html#cb241-14" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-256feb6b82538292879f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-256feb6b82538292879f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>And let’s quickly plot our data. You should always visualize your data before modelling, especially for linear calibration modelling. Unlike <em>statistical</em> modelling. Visualizing your data is the easiest way to spot trends and gross errors in your data.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="modelling-linear-regression.html#cb242-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FAES,</span>
+<span id="cb242-2"><a href="modelling-linear-regression.html#cb242-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, </span>
+<span id="cb242-3"><a href="modelling-linear-regression.html#cb242-3" tabindex="-1"></a>           <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb242-4"><a href="modelling-linear-regression.html#cb242-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<div id="base-r-linear-model" class="section level3 hasAnchor" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> Base R Linear Model<a href="modelling-linear-regression.html#base-r-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R’s base <code>lm()</code> function for linear regression is excellent, but it’s outputs have some messy quirks. It’s easier to show that, so let’s calculate the linear relationship between the <code>signal</code> as a function of <code>conc_Na</code>:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="modelling-linear-regression.html#cb243-1" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> FAES)</span>
+<span id="cb243-2"><a href="modelling-linear-regression.html#cb243-2" tabindex="-1"></a>lm_fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = signal ~ conc_Na, data = FAES)
+## 
+## Coefficients:
+## (Intercept)      conc_Na  
+##        2615        29707</code></pre>
+<p>Reading the code above (recall that we’re reading it from <em>right to left</em> because it’s base R):</p>
+<ol style="list-style-type: decimal">
+<li>We’re taking the FAES data we created earlier; <code>data = FAES</code></li>
+<li>We’re comparing <code>signal</code> (the dependent, y, variable) to <code>conc_Na</code> (the independent, x, variable) via the tilde <code>~</code>. The way to read this is: <em>“Signal depends on concentration”</em>.</li>
+<li>We’re comparing these two variables using the <code>lm()</code> function for generalized linear models.</li>
+<li>All of the model outputs are stored in the <code>lm_fit</code> variable.</li>
+</ol>
+<p>As we can see, the model outputs are pretty brief and not much more than <em>Excel</em>’s outputs. We can use <code>summary()</code> to extract more information to better understand our model:</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="modelling-linear-regression.html#cb245-1" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = signal ~ conc_Na, data = FAES)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2112.78 -1528.53    70.51   821.50  2718.20 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   2615.1      665.2   3.931  0.00172 ** 
+## conc_Na      29707.2     1304.5  22.772 7.34e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1824 on 13 degrees of freedom
+## Multiple R-squared:  0.9755, Adjusted R-squared:  0.9737 
+## F-statistic: 518.6 on 1 and 13 DF,  p-value: 7.341e-12</code></pre>
+<p>Now we have a lot more information from our model (don’t worry about what everything means, it’s discussed further in Section 3. For now, understand that it’s a hot mess.</p>
+</div>
+<div id="cleaning-up-model-ouputs" class="section level3 hasAnchor" number="16.2.2">
+<h3><span class="header-section-number">16.2.2</span> Cleaning up model ouputs<a href="modelling-linear-regression.html#cleaning-up-model-ouputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>summary()</code> provides a decent overview of our model’s performance, but the outputs are difficult to work with. Let’s turn to the <code>broom()</code> package to clean up our model outputs.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="modelling-linear-regression.html#cb247-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb247-2"><a href="modelling-linear-regression.html#cb247-2" tabindex="-1"></a></span>
+<span id="cb247-3"><a href="modelling-linear-regression.html#cb247-3" tabindex="-1"></a>calCurve <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb247-4"><a href="modelling-linear-regression.html#cb247-4" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb247-5"><a href="modelling-linear-regression.html#cb247-5" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb247-6"><a href="modelling-linear-regression.html#cb247-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> .x)),</span>
+<span id="cb247-7"><a href="modelling-linear-regression.html#cb247-7" tabindex="-1"></a>         <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy),</span>
+<span id="cb247-8"><a href="modelling-linear-regression.html#cb247-8" tabindex="-1"></a>         <span class="at">glanced =</span> <span class="fu">map</span>(fit, glance),</span>
+<span id="cb247-9"><a href="modelling-linear-regression.html#cb247-9" tabindex="-1"></a>         <span class="at">augmented =</span> <span class="fu">map</span>(fit, augment)</span>
+<span id="cb247-10"><a href="modelling-linear-regression.html#cb247-10" tabindex="-1"></a>         )</span>
+<span id="cb247-11"><a href="modelling-linear-regression.html#cb247-11" tabindex="-1"></a>calCurve</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 6
+## # Groups:   type [1]
+##   type     data              fit    tidied           glanced           augmented
+##   &lt;chr&gt;    &lt;list&gt;            &lt;list&gt; &lt;list&gt;           &lt;list&gt;            &lt;list&gt;   
+## 1 standard &lt;tibble [15 × 4]&gt; &lt;lm&gt;   &lt;tibble [2 × 5]&gt; &lt;tibble [1 × 12]&gt; &lt;tibble&gt;</code></pre>
+<p>Things look a bit more complicated than our earlier example, so let’s break down our code line by line:</p>
+<ol style="list-style-type: decimal">
+<li>We’re taking the <code>FAES</code> dataset that we created earlier.</li>
+<li><code>group_by(type)</code> groups all rows by <code>type</code>, in this situation we have only one type: <code>standard</code>.</li>
+<li><code>nest()</code> collapses everything other than the <code>type</code> column into smaller data-frames. In this situation, all other information is stored as a <code>tibble</code> under the <code>data</code> column; this is the data used to calculate the linear model.</li>
+<li>Withing the <code>mutate</code> function, we’ve created four columns: <code>fit</code>, <code>tidied</code>, <code>glanced</code>, and <code>augmented</code>.</li>
+</ol>
+<p>And it’s these columns that contain our cleaned up model outputs. <code>fit</code> contains the raw output from the linear regression model for <code>signal</code> as a function of <code>conc_Na</code> using the <code>lm()</code> function. The output is in the form of a list, similar to what <code>summary()</code> gave us above. Again, this is exceptionally messy, hence why we used the <code>tidy()</code>, <code>glance()</code>, and <code>augment()</code> functions from the <code>broom</code> package . <code>map()</code> just means we’re applying the function <code>tidy()</code> to the individual output list created by <code>lm()</code> and stored in the <code>fit</code> column. Note that the <code>tidy()</code>, <code>glanced()</code>, and <code>augmented</code> outputs are tibbles. So we now have a tibble containing specific model output values (i.e. <code>(Intercept)</code>), lists (i.e. <code>fit</code>), and tibbles (<code>tidied</code>). This is known as **nested data*. We’re no longer in Kansas anymore…</p>
+<p>We’ll break down what each function did below. Keep in mind however that <code>lm()</code> is used for a variety of statistical tests, and consequently has many associated outputs. Some are essential, others are useful, and some are useless for linear calibration. There are also many ways to use these additional model outputs to calculate outliers, etc. but you shouldn’t have any outliers in your calibration model. Don’t rely on statistics to bail you out of poor chemical technique.</p>
+</div>
+<div id="glanced-outputs" class="section level3 hasAnchor" number="16.2.3">
+<h3><span class="header-section-number">16.2.3</span> Glanced outputs<a href="modelling-linear-regression.html#glanced-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Anyways, let’s take a look at our model results. The <code>glanced</code> tibble contains “…a concise one-row summary of the model. This typically contains values such as R^2, adjusted R^2, and residual standard error that are computed once for the entire mode”[^linear-regression-1] Because the data is nested, we’ll need to use <code>unnest()</code> to flatten it back out into regular columns:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="modelling-linear-regression.html#cb249-1" tabindex="-1"></a>glanced <span class="ot">&lt;-</span> calCurve <span class="sc">%&gt;%</span></span>
+<span id="cb249-2"><a href="modelling-linear-regression.html#cb249-2" tabindex="-1"></a>  <span class="fu">unnest</span>(glanced)</span>
+<span id="cb249-3"><a href="modelling-linear-regression.html#cb249-3" tabindex="-1"></a></span>
+<span id="cb249-4"><a href="modelling-linear-regression.html#cb249-4" tabindex="-1"></a><span class="co"># DT is to make interactive tables for the book.</span></span>
+<span id="cb249-5"><a href="modelling-linear-regression.html#cb249-5" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(glanced, </span>
+<span id="cb249-6"><a href="modelling-linear-regression.html#cb249-6" tabindex="-1"></a>              <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9975aca46fe3d430b617" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9975aca46fe3d430b617">{"x":{"filter":"none","vertical":false,"data":[["1"],["standard"],[{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]}],[{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}}],[{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]}],[0.9755440568488398],[0.9736628304525967],[1824.495501646356],[518.5681312983144],[7.341364277346221e-12],[1],[-132.846703525965],[271.69340705193],[273.8175576552366],[43274189.86186125],[13],[15],[{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],".fitted":[2615.119450306746,2615.119450306746,2615.119450306746,5585.836464110427,5585.836464110427,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],".resid":[-2112.780350306746,-2023.342650306746,-2033.660650306746,70.50553588957246,67.72193588957271,81.60223588957251,836.8632220858908,806.1323220858903,775.4963220858917,2718.198780674848,2671.806980674846,2684.281080674846,-1524.596088343558,-1485.765688343559,-1532.462988343559],".hat":[0.1329243353783231,0.1329243353783231,0.1329243353783231,0.1012269938650307,0.1012269938650307,0.1012269938650307,0.07975460122699385,0.07975460122699385,0.07975460122699385,0.07668711656441717,0.07668711656441717,0.07668711656441717,0.2760736196319019,0.2760736196319019,0.2760736196319019],".sigma":[1782.461636681907,1792.406887720478,1791.284269553552,1898.873766080494,1898.883159911906,1898.832557030242,1882.222836424611,1883.437023694713,1884.60151525631,1714.446309338633,1721.015550114476,1719.262746690817,1827.187626774324,1830.866076538775,1826.429906811357],".cooksd":[0.1185451010681179,0.1087210868870079,0.1098327566613701,9.356795665990584e-05,8.632556675094684e-05,0.0001253385963399735,0.00990699202624537,0.009192751458027934,0.008507311478872386,0.09983238686436902,0.09645376583510389,0.09735651263606966,0.1839204904480307,0.1746711435215482,0.1858234430672667],".std.resid":[-1.243606700787078,-1.190962646706002,-1.197035939623958,0.0407619930679284,0.03915268562175016,0.04717742701605595,0.4781452634015679,0.4605870365763491,0.4430830312586602,1.550472146055519,1.524010066013116,1.531125345710323,-0.9821205599872512,-0.9571066336863108,-0.9871882918884651]}]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>data<\/th>\n      <th>fit<\/th>\n      <th>tidied<\/th>\n      <th>r.squared<\/th>\n      <th>adj.r.squared<\/th>\n      <th>sigma<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>df<\/th>\n      <th>logLik<\/th>\n      <th>AIC<\/th>\n      <th>BIC<\/th>\n      <th>deviance<\/th>\n      <th>df.residual<\/th>\n      <th>nobs<\/th>\n      <th>augmented<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,8,9,10,11,12,13,14,15,16]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>What you see here is a bit more than what you’d get from <em>Excel</em>’s ‘line-of-best fit’ output. In brief, :</p>
+<ul>
+<li><code>type</code>, <code>data</code>, <code>fit</code>, <code>tidied</code>, and <code>augmented</code> are columns we’ve created earlier.</li>
+<li><code>r.squared</code> is a statistical measure of fit that indicates how much variation of a dependent variable is explained by the independent variable. The closer <code>r.squared</code> is to 1, the more variance is captured by the model.</li>
+<li><code>adj.r.squared</code> is the same as <code>r.squared</code> in this situation. This is because <code>r.squared</code> will always increase if we add more exploratory variables to our model; the <code>adj.r.squared</code> accounts for the number of exploratory variables used in the model.
+<ul>
+<li>In our case we only have one exploratory variable, hence they’re approximately the same.</li>
+</ul></li>
+<li>The other columns are different measurements of goodness-of-fit and hypothesis testing of the model. See <a href="intro-to-data-wrangling.html#further-reading">Further reading</a>.</li>
+</ul>
+</div>
+<div id="tidied-outputs" class="section level3 hasAnchor" number="16.2.4">
+<h3><span class="header-section-number">16.2.4</span> Tidied outputs<a href="modelling-linear-regression.html#tidied-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>But what about the slope and the intercept? After all, that’s what we need to calculate the concentration in our unknowns. Let’s take a look at <code>tidied</code> from the <code>tidy()</code> function which constructs a tibble that summarizes the model’s statistical findings. This includes coefficients and p-values for each term in a regression:]</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="modelling-linear-regression.html#cb250-1" tabindex="-1"></a><span class="co"># storing because we&#39;ll use it later on. </span></span>
+<span id="cb250-2"><a href="modelling-linear-regression.html#cb250-2" tabindex="-1"></a></span>
+<span id="cb250-3"><a href="modelling-linear-regression.html#cb250-3" tabindex="-1"></a>tidied <span class="ot">&lt;-</span> calCurve <span class="sc">%&gt;%</span> </span>
+<span id="cb250-4"><a href="modelling-linear-regression.html#cb250-4" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span>
+<span id="cb250-5"><a href="modelling-linear-regression.html#cb250-5" tabindex="-1"></a></span>
+<span id="cb250-6"><a href="modelling-linear-regression.html#cb250-6" tabindex="-1"></a><span class="co"># DT is to make interactive tables for the book.</span></span>
+<span id="cb250-7"><a href="modelling-linear-regression.html#cb250-7" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(tidied, </span>
+<span id="cb250-8"><a href="modelling-linear-regression.html#cb250-8" tabindex="-1"></a>              <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a0b8a882efd2cec755c4" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a0b8a882efd2cec755c4">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["standard","standard"],[{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]}],[{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}}],["(Intercept)","conc_Na"],[2615.119450306746,29707.17013803681],[665.1889798813841,1304.542918708483],[3.93139322718947,22.7720910611721],[0.001720952931256518,7.341364277346221e-12],[{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]}],[{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],".fitted":[2615.119450306746,2615.119450306746,2615.119450306746,5585.836464110427,5585.836464110427,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],".resid":[-2112.780350306746,-2023.342650306746,-2033.660650306746,70.50553588957246,67.72193588957271,81.60223588957251,836.8632220858908,806.1323220858903,775.4963220858917,2718.198780674848,2671.806980674846,2684.281080674846,-1524.596088343558,-1485.765688343559,-1532.462988343559],".hat":[0.1329243353783231,0.1329243353783231,0.1329243353783231,0.1012269938650307,0.1012269938650307,0.1012269938650307,0.07975460122699385,0.07975460122699385,0.07975460122699385,0.07668711656441717,0.07668711656441717,0.07668711656441717,0.2760736196319019,0.2760736196319019,0.2760736196319019],".sigma":[1782.461636681907,1792.406887720478,1791.284269553552,1898.873766080494,1898.883159911906,1898.832557030242,1882.222836424611,1883.437023694713,1884.60151525631,1714.446309338633,1721.015550114476,1719.262746690817,1827.187626774324,1830.866076538775,1826.429906811357],".cooksd":[0.1185451010681179,0.1087210868870079,0.1098327566613701,9.356795665990584e-05,8.632556675094684e-05,0.0001253385963399735,0.00990699202624537,0.009192751458027934,0.008507311478872386,0.09983238686436902,0.09645376583510389,0.09735651263606966,0.1839204904480307,0.1746711435215482,0.1858234430672667],".std.resid":[-1.243606700787078,-1.190962646706002,-1.197035939623958,0.0407619930679284,0.03915268562175016,0.04717742701605595,0.4781452634015679,0.4605870365763491,0.4430830312586602,1.550472146055519,1.524010066013116,1.531125345710323,-0.9821205599872512,-0.9571066336863108,-0.9871882918884651]},{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],".fitted":[2615.119450306746,2615.119450306746,2615.119450306746,5585.836464110427,5585.836464110427,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],".resid":[-2112.780350306746,-2023.342650306746,-2033.660650306746,70.50553588957246,67.72193588957271,81.60223588957251,836.8632220858908,806.1323220858903,775.4963220858917,2718.198780674848,2671.806980674846,2684.281080674846,-1524.596088343558,-1485.765688343559,-1532.462988343559],".hat":[0.1329243353783231,0.1329243353783231,0.1329243353783231,0.1012269938650307,0.1012269938650307,0.1012269938650307,0.07975460122699385,0.07975460122699385,0.07975460122699385,0.07668711656441717,0.07668711656441717,0.07668711656441717,0.2760736196319019,0.2760736196319019,0.2760736196319019],".sigma":[1782.461636681907,1792.406887720478,1791.284269553552,1898.873766080494,1898.883159911906,1898.832557030242,1882.222836424611,1883.437023694713,1884.60151525631,1714.446309338633,1721.015550114476,1719.262746690817,1827.187626774324,1830.866076538775,1826.429906811357],".cooksd":[0.1185451010681179,0.1087210868870079,0.1098327566613701,9.356795665990584e-05,8.632556675094684e-05,0.0001253385963399735,0.00990699202624537,0.009192751458027934,0.008507311478872386,0.09983238686436902,0.09645376583510389,0.09735651263606966,0.1839204904480307,0.1746711435215482,0.1858234430672667],".std.resid":[-1.243606700787078,-1.190962646706002,-1.197035939623958,0.0407619930679284,0.03915268562175016,0.04717742701605595,0.4781452634015679,0.4605870365763491,0.4430830312586602,1.550472146055519,1.524010066013116,1.531125345710323,-0.9821205599872512,-0.9571066336863108,-0.9871882918884651]}]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>data<\/th>\n      <th>fit<\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>glanced<\/th>\n      <th>augmented<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Again, a lot more to unpack compared to <em>Excel</em>. That’s because the <code>lm()</code> function in R calculates a generalized linear model. <code>lm()</code> performs a linear regression model, which we normally think of as an equation of the form <span class="math inline">\(y= a + bx\)</span> as discussed earlier. But, regression models can be expanded to account for multiple variables (hence <em>multiple linear regression</em>) of the form:</p>
+<p><span class="math display">\[y = \beta _{0} + \beta _{1} x_{1} + \beta _{2} x_{2} ... \beta _{p} x_{p}\]</span>]</p>
+<p>where,</p>
+<ul>
+<li><span class="math inline">\(y\)</span> = dependent variable</li>
+<li><span class="math inline">\(x\)</span> = exploratory variable; there’s no limit how many you can input</li>
+<li><span class="math inline">\(\beta _{0}\)</span> = y-intercept (constant term)</li>
+<li><span class="math inline">\(\beta _{p}\)</span> = slope coefficient for each explanatory variable</li>
+</ul>
+<p>With our linear calibration model, we only have one input variable for our model (<code>conc</code>), so the above formula collapses down to <span class="math inline">\(y = \beta _{0} + \beta _{1} x_{1}\)</span>. So looking at our tidied model outputs:</p>
+<ul>
+<li>each row corresponds to a model coefficient (under the <code>term</code> column).</li>
+<li>For each modelling parameter, we’re provided an estimate of it’s numerical value: <code>estimate</code>. These are the values we’ll use to calculate concentration.</li>
+<li><code>std.error</code> measures how precisely the model estimates the coefficient’s unknown value; smaller is better.</li>
+<li><code>p.value</code> is a indication of the significance of a model coefficient; the closer to zero the better.
+<ul>
+<li>If we were to use multiple parameters in our model (eg. concentration and temperature) we could use the <code>p.value</code> to determine if a given coefficient was useful for our model.</li>
+</ul></li>
+</ul>
+<p>We can extract the value of the model coefficients for subsequent calculations as follows:</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="modelling-linear-regression.html#cb251-1" tabindex="-1"></a><span class="co"># intercept</span></span>
+<span id="cb251-2"><a href="modelling-linear-regression.html#cb251-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">1</span>,<span class="dv">5</span>])</span>
+<span id="cb251-3"><a href="modelling-linear-regression.html#cb251-3" tabindex="-1"></a></span>
+<span id="cb251-4"><a href="modelling-linear-regression.html#cb251-4" tabindex="-1"></a><span class="co"># slope </span></span>
+<span id="cb251-5"><a href="modelling-linear-regression.html#cb251-5" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">2</span>,<span class="dv">5</span>])</span>
+<span id="cb251-6"><a href="modelling-linear-regression.html#cb251-6" tabindex="-1"></a></span>
+<span id="cb251-7"><a href="modelling-linear-regression.html#cb251-7" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The equation of our calibration curve is: y = &quot;</span>, a, <span class="st">&quot; + &quot;</span>, b,<span class="st">&quot;x&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;The equation of our calibration curve is: y = 2615.11945030675 + 29707.1701380368x&quot;</code></pre>
+</div>
+<div id="augmented-outputs" class="section level3 hasAnchor" number="16.2.5">
+<h3><span class="header-section-number">16.2.5</span> Augmented outputs<a href="modelling-linear-regression.html#augmented-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Finally let’s take a look at the outputs of the <code>augment</code> function:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="modelling-linear-regression.html#cb253-1" tabindex="-1"></a><span class="co"># storing because we&#39;ll use it later on. </span></span>
+<span id="cb253-2"><a href="modelling-linear-regression.html#cb253-2" tabindex="-1"></a></span>
+<span id="cb253-3"><a href="modelling-linear-regression.html#cb253-3" tabindex="-1"></a>augmented <span class="ot">&lt;-</span> calCurve <span class="sc">%&gt;%</span> </span>
+<span id="cb253-4"><a href="modelling-linear-regression.html#cb253-4" tabindex="-1"></a>  <span class="fu">unnest</span>(augmented)</span>
+<span id="cb253-5"><a href="modelling-linear-regression.html#cb253-5" tabindex="-1"></a></span>
+<span id="cb253-6"><a href="modelling-linear-regression.html#cb253-6" tabindex="-1"></a><span class="co"># DT is to make interactive tables for the book.</span></span>
+<span id="cb253-7"><a href="modelling-linear-regression.html#cb253-7" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(augmented, </span>
+<span id="cb253-8"><a href="modelling-linear-regression.html#cb253-8" tabindex="-1"></a>              <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c5963537316ed7e669eb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c5963537316ed7e669eb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]},{"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],"units":["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],"replicate":["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]}],[{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}},{"coefficients":[2615.119450306746,29707.17013803681],"residuals":[-2112.780350306751,-2023.342650306751,-2033.660650306747,70.50553588957197,67.72193588957222,81.60223588957209,836.86322208589,806.1323220858895,775.4963220858909,2718.198780674847,2671.806980674846,2684.281080674845,-1524.596088343558,-1485.765688343559,-1532.462988343558],"effects":[-51548.24915410519,41547.57770418969,-1330.088350942443,679.7121838127082,676.9285838127084,690.8088838127082,1351.704218567859,1320.973318567858,1290.33731856786,2949.942822833314,2903.551022833312,2916.025122833312,-1764.680303390928,-1725.84990339093,-1772.547203390929],"rank":2,"fitted.values":[2615.119450306751,2615.119450306751,2615.119450306747,5585.836464110428,5585.836464110428,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],"assign":[0,1],"qr":{"qr":[[-3.872983346207417,-1.39427400463467],[0.2581988897471611,1.398570698963767],[0.2581988897471611,0.2045826396872415],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.1330810702105663],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,0.06157950073389105],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.1529252076961346],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106],[0.2581988897471611,-0.5104330550795106]],"qraux":[1.258198889747161,1.204582639687241],"pivot":[1,2],"tol":1e-07,"rank":2},"df.residual":13,"xlevels":{},"call":{},"terms":{},"model":{"signal":[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],"conc_Na":[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1]}}],[{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]},{"term":["(Intercept)","conc_Na"],"estimate":[2615.119450306746,29707.17013803681],"std.error":[665.1889798813841,1304.542918708483],"statistic":[3.93139322718947,22.7720910611721],"p.value":[0.001720952931256518,7.341364277346221e-12]}],[{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]},{"r.squared":[0.9755440568488398],"adj.r.squared":[0.9736628304525967],"sigma":[1824.495501646356],"statistic":[518.5681312983144],"p.value":[7.341364277346221e-12],"df":[1],"logLik":[-132.846703525965],"AIC":[271.69340705193],"BIC":[273.8175576552366],"deviance":[43274189.86186125],"df.residual":[13],"nobs":[15]}],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],[2615.119450306746,2615.119450306746,2615.119450306746,5585.836464110427,5585.836464110427,5585.836464110427,8556.553477914109,8556.553477914109,8556.553477914109,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],[-2112.780350306746,-2023.342650306746,-2033.660650306746,70.50553588957246,67.72193588957271,81.60223588957251,836.8632220858908,806.1323220858903,775.4963220858917,2718.198780674848,2671.806980674846,2684.281080674846,-1524.596088343558,-1485.765688343559,-1532.462988343559],[0.1329243353783231,0.1329243353783231,0.1329243353783231,0.1012269938650307,0.1012269938650307,0.1012269938650307,0.07975460122699385,0.07975460122699385,0.07975460122699385,0.07668711656441717,0.07668711656441717,0.07668711656441717,0.2760736196319019,0.2760736196319019,0.2760736196319019],[1782.461636681907,1792.406887720478,1791.284269553552,1898.873766080494,1898.883159911906,1898.832557030242,1882.222836424611,1883.437023694713,1884.60151525631,1714.446309338633,1721.015550114476,1719.262746690817,1827.187626774324,1830.866076538775,1826.429906811357],[0.1185451010681179,0.1087210868870079,0.1098327566613701,9.356795665990584e-05,8.632556675094684e-05,0.0001253385963399735,0.00990699202624537,0.009192751458027934,0.008507311478872386,0.09983238686436902,0.09645376583510389,0.09735651263606966,0.1839204904480307,0.1746711435215482,0.1858234430672667],[-1.243606700787078,-1.190962646706002,-1.197035939623958,0.0407619930679284,0.03915268562175016,0.04717742701605595,0.4781452634015679,0.4605870365763491,0.4430830312586602,1.550472146055519,1.524010066013116,1.531125345710323,-0.9821205599872512,-0.9571066336863108,-0.9871882918884651]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>data<\/th>\n      <th>fit<\/th>\n      <th>tidied<\/th>\n      <th>glanced<\/th>\n      <th>signal<\/th>\n      <th>conc_Na<\/th>\n      <th>.fitted<\/th>\n      <th>.resid<\/th>\n      <th>.hat<\/th>\n      <th>.sigma<\/th>\n      <th>.cooksd<\/th>\n      <th>.std.resid<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[6,7,8,9,10,11,12,13]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>As you can see, <code>augment()</code> adds columns to the original data that was modelled. For our purposes we’re interested:</p>
+<ul>
+<li><code>signal</code> and <code>conc_Na</code>, the original data used in our model.</li>
+<li><code>.fitted</code>, the predicted value of the point according to our calculated model.</li>
+<li><code>.resid</code>, the residuals of that point (different between measured and fitted values.)</li>
+<li>The other parameters are different measurements of the influence of each point on the model fitting. They can be used to detect outliers; see <a href="intro-to-data-wrangling.html#further-reading">Further reading</a></li>
+</ul>
+</div>
+<div id="why-we-approach-modelling-this-way" class="section level3 hasAnchor" number="16.2.6">
+<h3><span class="header-section-number">16.2.6</span> Why we approach modelling this way<a href="modelling-linear-regression.html#why-we-approach-modelling-this-way" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You may be wondering why we’ve seemingly overcomplicated a simple enough procedure. Fair enough, we’ve showcased an analysis with a simple data set. However, as you progress in your studies you’ll be quantifying <em>many</em> compounds, often at the same time in the same instrument runs. If you organize your data in a tidy format, you can plot calibration curves for <em>all</em> of your compounds with the same block of code. Essentially you use <code>group_by()</code> to group your data by compound/element. Subsequently, the same code is expandable from 1 compound to as many as you can ever hope to quantify in one shot. So for upper year labs where you’re analyzing tens of compounds (<em>cough</em> CHM410 Dust Lab) you can generate calibration curves for all your compounds at once.</p>
+</div>
+</div>
+<div id="visualizing-models" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> Visualizing models<a href="modelling-linear-regression.html#visualizing-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At the top of the chapter we plotted out standards to visualize a linear trend. Visualizations is an essential component when calculating calibration curves, and indeed our standards appeared to follow a linear trend, which was corroborated by the model we calculated above. However, for publications/reports you’ll need to create a plot with both your standards <em>and</em> model with the displayed equation, so below is a bit of stock code you can use as a starting point to create these plots. Note that it requires the <code>ggpmisc</code> package to display the equation:</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="modelling-linear-regression.html#cb254-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FAES,</span>
+<span id="cb254-2"><a href="modelling-linear-regression.html#cb254-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, </span>
+<span id="cb254-3"><a href="modelling-linear-regression.html#cb254-3" tabindex="-1"></a>           <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb254-4"><a href="modelling-linear-regression.html#cb254-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb254-5"><a href="modelling-linear-regression.html#cb254-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F) <span class="sc">+</span></span>
+<span id="cb254-6"><a href="modelling-linear-regression.html#cb254-6" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_poly_eq</span>(<span class="at">formula =</span> y <span class="sc">~</span> x, <span class="co"># formula uses aesthetic names</span></span>
+<span id="cb254-7"><a href="modelling-linear-regression.html#cb254-7" tabindex="-1"></a>                        <span class="at">rr.digits =</span> <span class="dv">4</span>, <span class="co"># reported digits of r-squared</span></span>
+<span id="cb254-8"><a href="modelling-linear-regression.html#cb254-8" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label.., ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~&quot;</span>)), </span>
+<span id="cb254-9"><a href="modelling-linear-regression.html#cb254-9" tabindex="-1"></a>                        <span class="at">parse =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">3</span>) </span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;ggpmisc&#39;:
+##   method                  from   
+##   as.character.polynomial polynom</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..eq.label..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(eq.label)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<div id="vizualizing-residuals" class="section level3 hasAnchor" number="16.3.1">
+<h3><span class="header-section-number">16.3.1</span> Vizualizing residuals<a href="modelling-linear-regression.html#vizualizing-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As stated earlier, residuals are the difference between measured and fitted values. They’re often overlooked in linear calibration and folks are hot to plot a straight line through their data. This has the unintended effect of fooling your eyes into thinking your data is linear. Consequently, it is always a good idea to plot the residuals of your model as this will magnify any trends or discrepancies of your calibration model. A good linear model will have the residuals randomly distributed about zero. Other examples of patterns in residuals are shown below:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-132"></span>
+<img src="R4EnvChem_files/figure-html/unnamed-chunk-132-1.png" alt="Example residual patterns; figure adapted from Hibbert and Gooding (2006). " width="672" />
+<p class="caption">
+Figure 16.2: Example residual patterns; figure adapted from Hibbert and Gooding (2006).
+</p>
+</div>
+<ul>
+<li>Normally distributed residuals is satisfactory for linear modelling. Note the relatively small magnitude of the residuals.</li>
+<li>Curvature throughout range results from an instrument become saturated. Consequently, the linear model will ‘cut’ through the curve. This is a good indication that you’ll need to either breakdown your calibration curve into two or more parts or utilize a non-linear model.</li>
+<li>Heteroscedasticity means the variance of the response is proportional to the concentration. This is often the case in instrumental analysis. See <a href="modelling-linear-regression.html#weighing">Weighing</a> below.</li>
+<li>Outliers shouldn’t exist in your calibration plot, nevertheless, a plot of residuals can readily highlight an outlier point.</li>
+</ul>
+</div>
+<div id="plotting-residuals" class="section level3 hasAnchor" number="16.3.2">
+<h3><span class="header-section-number">16.3.2</span> Plotting residuals<a href="modelling-linear-regression.html#plotting-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To plot residuals, we use our <code>augmented</code> dataset from above, and simply create a plot of the independent variable vs. the residuals. Here we plot the FAES calibration model and it’s residuals. Note that the residuals indicate curvature throughout the range. We may have over extended our calibration range <em>outside</em> of the linear range of our instrument.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="modelling-linear-regression.html#cb258-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> FAES,</span>
+<span id="cb258-2"><a href="modelling-linear-regression.html#cb258-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, </span>
+<span id="cb258-3"><a href="modelling-linear-regression.html#cb258-3" tabindex="-1"></a>           <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb258-4"><a href="modelling-linear-regression.html#cb258-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb258-5"><a href="modelling-linear-regression.html#cb258-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F) <span class="sc">+</span></span>
+<span id="cb258-6"><a href="modelling-linear-regression.html#cb258-6" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_poly_eq</span>(<span class="at">formula =</span> y <span class="sc">~</span> x, <span class="co"># formula uses aesthetic names</span></span>
+<span id="cb258-7"><a href="modelling-linear-regression.html#cb258-7" tabindex="-1"></a>                        <span class="at">rr.digits =</span> <span class="dv">4</span>, <span class="co"># reported digits of r-squared</span></span>
+<span id="cb258-8"><a href="modelling-linear-regression.html#cb258-8" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label.., ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~&quot;</span>)), </span>
+<span id="cb258-9"><a href="modelling-linear-regression.html#cb258-9" tabindex="-1"></a>                        <span class="at">parse =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">3</span>) </span>
+<span id="cb258-10"><a href="modelling-linear-regression.html#cb258-10" tabindex="-1"></a></span>
+<span id="cb258-11"><a href="modelling-linear-regression.html#cb258-11" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> augmented, </span>
+<span id="cb258-12"><a href="modelling-linear-regression.html#cb258-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb258-13"><a href="modelling-linear-regression.html#cb258-13" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb258-14"><a href="modelling-linear-regression.html#cb258-14" tabindex="-1"></a></span>
+<span id="cb258-15"><a href="modelling-linear-regression.html#cb258-15" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(a, b, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-133"></span>
+<img src="R4EnvChem_files/figure-html/unnamed-chunk-133-1.png" alt="(A) linear calibration model and (B) plot of model residuals." width="672" />
+<p class="caption">
+Figure 16.3: (A) linear calibration model and (B) plot of model residuals.
+</p>
+</div>
+</div>
+</div>
+<div id="calculating-concentrations" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> Calculating Concentrations<a href="modelling-linear-regression.html#calculating-concentrations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In <a href="modelling-linear-regression.html#tidied-outputs">Tidied outputs</a> we extracted our model coefficients (slope and intercept):</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="modelling-linear-regression.html#cb260-1" tabindex="-1"></a><span class="co"># intercept</span></span>
+<span id="cb260-2"><a href="modelling-linear-regression.html#cb260-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">1</span>,<span class="dv">5</span>])</span>
+<span id="cb260-3"><a href="modelling-linear-regression.html#cb260-3" tabindex="-1"></a></span>
+<span id="cb260-4"><a href="modelling-linear-regression.html#cb260-4" tabindex="-1"></a><span class="co"># slope</span></span>
+<span id="cb260-5"><a href="modelling-linear-regression.html#cb260-5" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tidied[<span class="dv">2</span>,<span class="dv">5</span>])</span>
+<span id="cb260-6"><a href="modelling-linear-regression.html#cb260-6" tabindex="-1"></a></span>
+<span id="cb260-7"><a href="modelling-linear-regression.html#cb260-7" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The equation of our calibration curve is: y = &quot;</span>, a, <span class="st">&quot; + &quot;</span>, b,<span class="st">&quot;x&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;The equation of our calibration curve is: y = 2615.11945030675 + 29707.1701380368x&quot;</code></pre>
+<p>Now that we have our coefficients, we can calculate the sample concentration as described in <a href="modelling-linear-regression.html#modelling-theory">Modelling Theory</a>. Let’s import the FAES unknown dataset first:</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="modelling-linear-regression.html#cb262-1" tabindex="-1"></a>FAESsamples <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESUnknowns.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb262-2"><a href="modelling-linear-regression.html#cb262-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(sample, <span class="st">`</span><span class="at">dilution factor</span><span class="st">`</span>), </span>
+<span id="cb262-3"><a href="modelling-linear-regression.html#cb262-3" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>,</span>
+<span id="cb262-4"><a href="modelling-linear-regression.html#cb262-4" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
+<span id="cb262-5"><a href="modelling-linear-regression.html#cb262-5" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 3 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): sample
+## dbl (4): dilution factor, reading_1, reading_2, reading_3
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="modelling-linear-regression.html#cb264-1" tabindex="-1"></a>FAESsamples</span></code></pre></div>
+<pre><code>## # A tibble: 9 × 4
+##   sample    `dilution factor` replicate signal
+##   &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+## 1 wine                     10 1         12775.
+## 2 wine                     10 2         12651.
+## 3 wine                     10 3         12746.
+## 4 tap-water                10 1          8014.
+## 5 tap-water                10 2          7200.
+## 6 tap-water                10 3          7203.
+## 7 fish-tank               100 1         12085.
+## 8 fish-tank               100 2         12073.
+## 9 fish-tank               100 3         12156.</code></pre>
+<p>Now it’s simply a matter of calculating the concentration of the sample analyzed by the instrument, and correcting for the dilution factor to find the concentration in the parent sample:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="modelling-linear-regression.html#cb266-1" tabindex="-1"></a>FAESsamples <span class="ot">&lt;-</span> FAESsamples <span class="sc">%&gt;%</span></span>
+<span id="cb266-2"><a href="modelling-linear-regression.html#cb266-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;instConc&quot;</span> <span class="ot">=</span> (signal <span class="sc">-</span> a)<span class="sc">/</span>b,</span>
+<span id="cb266-3"><a href="modelling-linear-regression.html#cb266-3" tabindex="-1"></a>         <span class="st">&quot;sampleConc&quot;</span> <span class="ot">=</span> instConc <span class="sc">*</span> <span class="st">`</span><span class="at">dilution factor</span><span class="st">`</span>)</span>
+<span id="cb266-4"><a href="modelling-linear-regression.html#cb266-4" tabindex="-1"></a></span>
+<span id="cb266-5"><a href="modelling-linear-regression.html#cb266-5" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAESsamples, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-0a6618b8e419c4df0052" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0a6618b8e419c4df0052">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["wine","wine","wine","tap-water","tap-water","tap-water","fish-tank","fish-tank","fish-tank"],[10,10,10,10,10,10,100,100,100],["1","2","3","1","2","3","1","2","3"],[12775.1255,12650.6561,12745.6284,8013.9588,7199.6695,7203.2021,12085.29012,12073.45137,12155.61549],[0.3420051793046577,0.337815301930891,0.341012250666119,0.1817352283844978,0.1543246976534879,0.154443611706344,0.3187840048610933,0.3183854899589674,0.3211512909295148],[3.420051793046577,3.37815301930891,3.41012250666119,1.817352283844978,1.543246976534879,1.54443611706344,31.87840048610933,31.83854899589674,32.11512909295148]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sample<\/th>\n      <th>dilution factor<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n      <th>instConc<\/th>\n      <th>sampleConc<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>And let’s summarize our results using code from the <a href="summarizing-data.html#summarizing-data">Summarizing data</a> chapter:</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="modelling-linear-regression.html#cb267-1" tabindex="-1"></a>FAESsamples <span class="sc">%&gt;%</span></span>
+<span id="cb267-2"><a href="modelling-linear-regression.html#cb267-2" tabindex="-1"></a>  <span class="fu">group_by</span>(sample) <span class="sc">%&gt;%</span></span>
+<span id="cb267-3"><a href="modelling-linear-regression.html#cb267-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(sampleConc),</span>
+<span id="cb267-4"><a href="modelling-linear-regression.html#cb267-4" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(sampleConc),</span>
+<span id="cb267-5"><a href="modelling-linear-regression.html#cb267-5" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   sample     mean     sd     n
+##   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
+## 1 fish-tank 31.9  0.150      3
+## 2 tap-water  1.64 0.158      3
+## 3 wine       3.40 0.0219     3</code></pre>
+<p>And there we go. See the <a href="summarizing-data.html#summarizing-data">Summarizing data</a> and <a href="visualizations.html#visualizations">Visualizations</a> chapters for assiting an making prettier tables and visualizations, respectively.</p>
+</div>
+<div id="summary-5" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> Summary<a href="modelling-linear-regression.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter we’ve covered:</p>
+<ul>
+<li>The essential theory undergirding the linear calibration model.</li>
+<li>How to scallably model in R with a consistent workflow for one or thousands of linear calibration models.</li>
+<li>How to extract model parameters using the <code>tidy()</code>, <code>glance()</code>, and <code>augment()</code> functions from the <code>broom</code> package.</li>
+<li>A brief overview of model parameters as they pertain to linear calibration.</li>
+<li>Viasualizing models and the importance of visualizing residuals.</li>
+<li>Calculating sample concentration from model outputs.</li>
+</ul>
+</div>
+<div id="further-reading-6" class="section level2 hasAnchor" number="16.6">
+<h2><span class="header-section-number">16.6</span> Further reading<a href="modelling-linear-regression.html#further-reading-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As previously stated, we highly recommend reading Chapter 5: Calibration from <em>Data Analysis for Chemistry</em> by Hibbert and Gooding for a more in-depth discussion of linear calibration modelling. The book can be accessed online via the University of Toronto’s Library.</p>
+<p>For a greater discussion on modelling in R, see <a href="https://r4ds.had.co.nz/model-intro.html">Modelling</a> in <a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a>.</p>
+</div>
+<div id="going-deeper-with-modelling" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">16.7</span> Going deeper with modelling<a href="modelling-linear-regression.html#going-deeper-with-modelling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="weighing" class="section level3 hasAnchor" number="16.7.1">
+<h3><span class="header-section-number">16.7.1</span> Weighing<a href="modelling-linear-regression.html#weighing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As shown above, you’ll often find that your calibration data is <em>heteroscedastic</em>, meaning the variance increases with the concentration. This leads to <em>leverage</em> of your line-of-best fit, as it is ‘pulled’ by one way or another by the higher concentration standards then the lower. You can assign ‘weights’ (how much a point impacts the model) in R, although you’ll need to justify the validity of your approach. A common approach however, is to weight each standard by <span class="math inline">\(\frac{1}{x^2}\)</span>. This ensures that samples with higher concentration impact the line less, and vice-versa with low-concentration standards.</p>
+<p>To utilize weight in R, we need to calculate the weigh prior to modelling, and subsequently specify the weights column</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="modelling-linear-regression.html#cb269-1" tabindex="-1"></a><span class="co"># note that our blank has a concentration of 0, hence infinite weight. </span></span>
+<span id="cb269-2"><a href="modelling-linear-regression.html#cb269-2" tabindex="-1"></a><span class="co"># we need to remove it to weight our data. </span></span>
+<span id="cb269-3"><a href="modelling-linear-regression.html#cb269-3" tabindex="-1"></a></span>
+<span id="cb269-4"><a href="modelling-linear-regression.html#cb269-4" tabindex="-1"></a>FAESweighed <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span> </span>
+<span id="cb269-5"><a href="modelling-linear-regression.html#cb269-5" tabindex="-1"></a>  <span class="fu">filter</span>(conc_Na <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb269-6"><a href="modelling-linear-regression.html#cb269-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wght =</span> <span class="dv">1</span><span class="sc">/</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb269-7"><a href="modelling-linear-regression.html#cb269-7" tabindex="-1"></a></span>
+<span id="cb269-8"><a href="modelling-linear-regression.html#cb269-8" tabindex="-1"></a>weightedCalCurve <span class="ot">&lt;-</span> FAESweighed <span class="sc">%&gt;%</span></span>
+<span id="cb269-9"><a href="modelling-linear-regression.html#cb269-9" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb269-10"><a href="modelling-linear-regression.html#cb269-10" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb269-11"><a href="modelling-linear-regression.html#cb269-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> .x, <span class="at">weights =</span> wght)),</span>
+<span id="cb269-12"><a href="modelling-linear-regression.html#cb269-12" tabindex="-1"></a>         <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy),</span>
+<span id="cb269-13"><a href="modelling-linear-regression.html#cb269-13" tabindex="-1"></a>         <span class="at">glanced =</span> <span class="fu">map</span>(fit, glance),</span>
+<span id="cb269-14"><a href="modelling-linear-regression.html#cb269-14" tabindex="-1"></a>         <span class="at">augmented =</span> <span class="fu">map</span>(fit, augment)</span>
+<span id="cb269-15"><a href="modelling-linear-regression.html#cb269-15" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span></span>
+<span id="cb269-16"><a href="modelling-linear-regression.html#cb269-16" tabindex="-1"></a>  <span class="fu">unnest</span>(augmented)</span>
+<span id="cb269-17"><a href="modelling-linear-regression.html#cb269-17" tabindex="-1"></a></span>
+<span id="cb269-18"><a href="modelling-linear-regression.html#cb269-18" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> weightedCalCurve, </span>
+<span id="cb269-19"><a href="modelling-linear-regression.html#cb269-19" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb269-20"><a href="modelling-linear-regression.html#cb269-20" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb269-21"><a href="modelling-linear-regression.html#cb269-21" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">label =</span> <span class="st">&quot;unweighed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb269-22"><a href="modelling-linear-regression.html#cb269-22" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb269-23"><a href="modelling-linear-regression.html#cb269-23" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">weight=</span><span class="st">`</span><span class="at">(weights)</span><span class="st">`</span>, <span class="at">label =</span> <span class="st">&quot;weighed&quot;</span>)) </span></code></pre></div>
+<pre><code>## Warning in geom_smooth(method = &quot;lm&quot;, se = F, colour = &quot;red&quot;, label =
+## &quot;unweighed&quot;): Ignoring unknown parameters: `label`</code></pre>
+<pre><code>## Warning in geom_smooth(method = &quot;lm&quot;, se = F, colour = &quot;blue&quot;, aes(weight =
+## `(weights)`, : Ignoring unknown aesthetics: label</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualizations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelling-non-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DavidRossHall/R4EnvChem/linear-regression.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R4EnvChem.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -434,31 +434,28 @@ Simply click on the edit icon in the top left corner to be directed to the corre
 ![](images/view_source.png){width="70%"}
 
 
-## How to get more R practice
+## End-of-chapter Exercises
 
 As you progress through each chapter, you'll find `.Rmd` (R Markdown) files available for practice and reinforcement. These Rmd files are designed to provide you with hands-on exercises that align with the concepts covered in the textbook.
 
--   Download the `.Rmd` file and open it in your preferred RStudio environment.
--   To enhance readability, you optionally click on the `Visual` tab at the top of the file view and work on the exercises.
-
-### Working on Exercises
-
 Within each Rmd file, you'll encounter straightforward exercises that give you the opportunity to apply what you've learned in each chapter. After completing an exercise, you can run the provided unittest cell to check your answers and receive instant feedback.
+
+Here is an instruction to how to start on the exercises:
+
+1.  Access the Repository:
+    - **Recommended for those who have access to UofT JupyterHub**: Click on the following link to automatically clone the "R4EnvChem-Exercises" repository to your UofT JupyterHub:
+  [R4EnvChem-Exercises Repository](https://r.datatools.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FUofTChem-Teaching%2FR4EnvChem-Exercises&urlpath=rstudio%2F). This is a preferred method for anyone completing exercises as part of a UofT course.
+    - Alternatively, you can directly download the files from this [repository](https://github.com/UofTChem-Teaching/R4EnvChem-Exercises).
+
+2.  Work on the Exercise:
+    - Once inside your JupyterHub's RStudio environment, in the "Files" pane you'll see "R4EnvChem-Exercises" folder (figure below). If you click into this folder, you will see a list of chapter folders. Each chapter folder contains the respective exercise Rmd files. Navigate to the desired chapter's folder and click on the exercise Rmd file you wish to work on. This will open the file in the RStudio editor.
+    ![](images/gitpuller.png)
+    - Once the Rmd file is open, you can edit, run code chunks, and add your solutions directly in the file. Remember to save your progress regularly. If you want to generate an output document (like a PDF or HTML) to view your results, click on the "Knit" button usually located at the top of the script editor.
+    - To enhance readability, you optionally click on the `Visual` tab at the top of the file view and work on the exercises.
 
 **Optional Extra Questions**
 
 For those seeking an additional challenge and a chance to delve into topics beyond the textbook, we offer optional extra questions. Resources and explanations will be provided to support you in tackling these optional questions.
-
-1.  Access the Repository:
-    - **Recommended for those who have access to UofT JupyterHub**: Click on the following link to automatically clone the "R4EnvChem-Exercises" repository to your UofT JupyterHub:
-  [R4EnvChem-Exercises Repository](https://r.datatools.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FUofTChem-Teaching%2FR4EnvChem-Exercises&urlpath=rstudio%2F)
-    - **Alternatively**, you can directly download the files from this [repository](https://github.com/UofTChem-Teaching/R4EnvChem-Exercises).
-
-2.  Work on the Exercise:
-    - Once inside your JupyterHub's RStudio environment, in the "Files" pane you'll see a list of chapter folders. Each chapter folder contains the respective exercise Rmd files. Navigate to the desired chapter's folder and click on the exercise Rmd file you wish to work on. This will open the file in the RStudio editor.
-    - Once the Rmd file is open, you can edit, run code chunks, and add your solutions directly in the file. Remember to save your progress regularly. If you want to generate an output document (like a PDF or HTML) to view your results, click on the "Knit" button usually located at the top of the script editor.
-
-
 
 By engaging with these interactive Rmd files, you can actively reinforce your learning, gain practical experience, and explore R concepts in depth. We encourage you to make the most of these resources to enhance your R proficiency. Happy learning!
 
@@ -2060,6 +2057,37 @@ select(FAES, conc_Na:replicate)
 select(FAES, contains("p"))
 ```
 
+
+## Deleting Columns or Rows
+While the process of selecting and filtering data is pivotal in data analysis, there are instances when you may need to remove specific columns or rows entirely. This is useful especially when you're dealing with redundant or irrelevant data that might clutter your analysis.
+
+### Deleting columns
+To delete a column, you can use the `select()` function with the `-` sign before the column name you want to remove:
+
+```{r}
+# This will remove the 'signal' column from the FAES dataset
+head(select(FAES, -signal))
+```
+
+Multiple columns can be deleted by providing more column names after the `-` sign:
+
+```{r}
+# Deleting both 'signal' and 'replicate' columns from the FAES dataset
+head(select(FAES, -c(signal, replicate)))
+```
+
+
+### Deleting rows
+
+To delete rows, the `filter()` function can be used in conjunction with relational or logical conditions that define the rows you wish to exclude:
+
+```{r}
+# This will remove rows where 'signal' values are less than 20000
+filter(FAES, !(signal < 20000))
+```
+The key here is the use of the `!` (NOT) operator which excludes rows that meet the specified condition.
+
+
 ##  Adding new variables
 
 `mutate()` allows you to add new variable (read columns) to your existing data set. It'll probably be the workhorse function you'll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let's suppose that our standards were diluted by a factor of 10, we can add a new column for this:
@@ -2217,7 +2245,7 @@ We'll point to several sources for further reading on functions at the end of th
 
 ## Functions  
   
-Functions allow you to write general purpose code to automate common tasks. They're a great way to decrease repetition and make your code more legible and reproducible. By using functions you'll not only reduce the number of lines of code you need to review, but you'll the number of spots you need to review rectify a potential issue.
+Functions allow you to write general purpose code to automate common tasks. They're a great way to decrease repetition and make your code more legible and reproducible. By using functions you'll not only reduce the number of lines of code you need to review, but you'll decrease the number of spots you need to review rectify a potential issue.
 
 To create a function in R you only need `function()`:
 
@@ -2232,8 +2260,8 @@ funSum("yes",3)
 ```
 What we've done is create a function called `funSum` which takes two numeric inputs `x` and `y`, sums the two into `z` and paste an output telling us the sum. A couple of things to note: 
 
-  - We need to *explicitly* state which arguments are function will take; in this example they are `x` and `y`. Whatever we pass to `x` or `y` will be carried into the function. 
-  - Functions are written with an order to the inputed arguments In our case `x` is the first argument, so unless specified otherwise, the first argument passed to `funSum()` will be passed along as the `x` argument. 
+  - We need to *explicitly* state which arguments our function will take; in this example they are `x` and `y`. Whatever we pass to `x` or `y` will be carried into the function. 
+  - Functions have a specific order for their input arguments. In our case `x` is the first argument, so unless specified otherwise, the first argument passed to `funSum()` will be passed along as the `x` argument. 
     - You can explicitly pass values by stating the argument; i.e. `funSum(y = 10, x = 2)`. 
   - We can't sum non-numeric values, so R returns an error in the second instance
   - Functions create their own environment, therefore *any variable* created inside a function only exists inside the function.
@@ -4184,11 +4212,11 @@ Anyways, Stamen map provides several different aesthetic of maps. We're going to
 
 ```{r, message = FALSE, warning = FALSE, error = FALSE}
 
-airbeamMap <- get_stamenmap(bbox = airbeamBBox, zoom = 14, maptype = "terrain", crop = FALSE)
-
-transectMap <- ggmap(airbeamMap) 
-
-transectMap
+# airbeamMap <- get_stamenmap(bbox = airbeamBBox, zoom = 14, maptype = "terrain", crop = FALSE)
+# 
+# transectMap <- ggmap(airbeamMap) 
+# 
+# transectMap
 ```
 
 And would you look at that. We have a beautiful map of Pearson Airport and surrounding areas. You can adjust the size of the map by changing the value of the `zoom` argument from `3` (Continental) to `15` (individual houses). 
@@ -4198,11 +4226,11 @@ Now let's overlay our measurement values. The `ggmap()` function transforms the 
 ```{r}
 
 
-transectMap <- transectMap +
-  geom_point(data = subset(airbeam, sensor_name == "AirBeam2-PM10"),
-             aes(x = longitude, y = latitude, colour = measurement_value)) 
-
-transectMap
+# transectMap <- transectMap +
+#   geom_point(data = subset(airbeam, sensor_name == "AirBeam2-PM10"),
+#              aes(x = longitude, y = latitude, colour = measurement_value)) 
+# 
+# transectMap
 
 
 ```
@@ -4213,25 +4241,25 @@ Because there's a lot going on under the hood (i.e. we don't know where and when
 
 ```{r}
    
-transectMapAnnotated <- transectMap +  
-  # annotations for start of journey
-  annotate("segment", x = -79.62161, xend = -79.621614, y = 43.635, yend = 43.65395, size=1) +
-  annotate("label", x = -79.62161, y = 43.64, label = "Started biking west \n at 11:00am", fill = "white") +
-  
-  # annotation for turn around
-  annotate("segment", x = -79.65, xend = -79.66234, y = 43.655, yend = 43.66672, size=1) +
-  annotate("label", x = -79.65, y = 43.655, label = "Turned around \n to head east \n at 11:35am", fill = "white") +
-  
-  # annotation for end of journey
-   annotate("segment", x = -79.56662, xend = -79.56662, y = 43.657, yend = 43.63529, size=1) +
-   annotate("label", x = -79.56662, y = 43.66, label = "Entered house \n at 12:50pm", fill = "white") +
-
-  # labels for plots
-   labs(x = "longitude", 
-     y = "latitude", 
-     colour = "PM 10 \n(ug/m^3)")
-
-transectMapAnnotated
+# transectMapAnnotated <- transectMap +  
+#   # annotations for start of journey
+#   annotate("segment", x = -79.62161, xend = -79.621614, y = 43.635, yend = 43.65395, size=1) +
+#   annotate("label", x = -79.62161, y = 43.64, label = "Started biking west \n at 11:00am", fill = "white") +
+#   
+#   # annotation for turn around
+#   annotate("segment", x = -79.65, xend = -79.66234, y = 43.655, yend = 43.66672, size=1) +
+#   annotate("label", x = -79.65, y = 43.655, label = "Turned around \n to head east \n at 11:35am", fill = "white") +
+#   
+#   # annotation for end of journey
+#    annotate("segment", x = -79.56662, xend = -79.56662, y = 43.657, yend = 43.63529, size=1) +
+#    annotate("label", x = -79.56662, y = 43.66, label = "Entered house \n at 12:50pm", fill = "white") +
+# 
+#   # labels for plots
+#    labs(x = "longitude", 
+#      y = "latitude", 
+#      colour = "PM 10 \n(ug/m^3)")
+# 
+# transectMapAnnotated
 
 ```
 
@@ -4272,31 +4300,31 @@ Since we've already created a map for the bike ride (`airbeamMap`), we can recyc
 
 ```{r}
 # AirBeam map made earlier, see above
-o3Map <- ggmap(airbeamMap) +
-  geom_point(data = subset(gasesSpat, sensor_name == "o3"),
-             aes(x = longitude, y = latitude, colour = measurement_value)) 
-o3Map
+# o3Map <- ggmap(airbeamMap) +
+#   geom_point(data = subset(gasesSpat, sensor_name == "o3"),
+#              aes(x = longitude, y = latitude, colour = measurement_value)) 
+# o3Map
 
 ```
 
 We've done the same sub-setting on the fly to only ploy O~3~. Let's annotate our plot again based on the information in the Experimental Details: 
 
 ```{r}
-o3MapAnnotated <- o3Map +
-  # annotations for 1st plane takeoff
-  annotate("segment", x = -79.6, xend = -79.63254, y = 43.66460, yend = 43.66460, size=1) +
-  annotate("label", x = -79.6, y = 43.66460, label = "Plane takeoff \n 11:17am", fill = "white") +
-  
-  # annotations for 2nd plane takeoff
-  annotate("segment", x = -79.65385, xend = -79.65385, y = 43.66, yend = 43.67089, size=1) +
-  annotate("label", x = -79.65385, y = 43.66, label = "Plane takeoff \n 11:40am", fill = "white") +
-  
-  # labels for plots
-   labs(x = "longitude", 
-        y = "latitude", 
-        colour = "ozone (ppm)",
-        caption = "data record on July 25th, 2020")
-o3MapAnnotated
+# o3MapAnnotated <- o3Map +
+#   # annotations for 1st plane takeoff
+#   annotate("segment", x = -79.6, xend = -79.63254, y = 43.66460, yend = 43.66460, size=1) +
+#   annotate("label", x = -79.6, y = 43.66460, label = "Plane takeoff \n 11:17am", fill = "white") +
+#   
+#   # annotations for 2nd plane takeoff
+#   annotate("segment", x = -79.65385, xend = -79.65385, y = 43.66, yend = 43.67089, size=1) +
+#   annotate("label", x = -79.65385, y = 43.66, label = "Plane takeoff \n 11:40am", fill = "white") +
+#   
+#   # labels for plots
+#    labs(x = "longitude", 
+#         y = "latitude", 
+#         colour = "ozone (ppm)",
+#         caption = "data record on July 25th, 2020")
+# o3MapAnnotated
 ```
 
 ### Combining maps
@@ -4305,10 +4333,10 @@ So we now have a map of PM10 and O~3~, let's place them side by side so we can s
 
 ```{r, fig.height=7}
 # chunk fig.height = 7
-ggpubr::ggarrange(transectMapAnnotated, 
-          o3MapAnnotated,
-          labels = c("A", "B"),
-          nrow = 2, ncol = 1)
+# ggpubr::ggarrange(transectMapAnnotated, 
+#           o3MapAnnotated,
+#           labels = c("A", "B"),
+#           nrow = 2, ncol = 1)
 
 ```
 

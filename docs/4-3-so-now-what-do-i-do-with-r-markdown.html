@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="4.3 So now what do I do with R Markdown? | R for Environmental Chemists" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://davidrosshall.github.io/R4EnvChem/" />
+
+<meta property="og:description" content="This is a proof-of-concept for a further full length textbook." />
+
+
+<meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D’eon" />
+
+<meta name="date" content="2021-06-08" />
+
+
+<meta name="description" content="This is a proof-of-concept for a further full length textbook.">
+
+<title>4.3 So now what do I do with R Markdown? | R for Environmental Chemists</title>
+
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#howdy">Howdy</a>
+<ul>
+<li><a href="authors.html#authors">Authors</a></li>
+</ul></li>
+<li><a href="1-introduction.html#introduction"><span class="toc-section-number">1</span> Introduction</a>
+<ul>
+<li><a href="1-1-prerequisite-software.html#prerequisite-software"><span class="toc-section-number">1.1</span> Prerequisite software</a></li>
+<li><a href="1-2-where-to-get-help.html#where-to-get-help"><span class="toc-section-number">1.2</span> Where to get help</a></li>
+</ul></li>
+<li class="part"><span><b>Getting Setup in R</b></span></li>
+<li><a href="2-running-r-code.html#running-r-code"><span class="toc-section-number">2</span> Running R Code</a>
+<ul>
+<li><a href="2-1-navigating-rstudio.html#navigating-rstudio"><span class="toc-section-number">2.1</span> Navigating RStudio</a>
+<ul>
+<li><a href="2-1-navigating-rstudio.html#console"><span class="toc-section-number">2.1.1</span> Console</a></li>
+<li><a href="2-1-navigating-rstudio.html#environment"><span class="toc-section-number">2.1.2</span> Environment</a></li>
+<li><a href="2-1-navigating-rstudio.html#viewer"><span class="toc-section-number">2.1.3</span> Viewer</a></li>
+<li><a href="2-1-navigating-rstudio.html#customizing-rstudio"><span class="toc-section-number">2.1.4</span> Customizing RStudio</a></li>
+</ul></li>
+<li><a href="2-2-where-to-run-code-in-rstudio.html#where-to-run-code-in-rstudio"><span class="toc-section-number">2.2</span> Where to run code in RStudio</a>
+<ul>
+<li><a href="2-2-where-to-run-code-in-rstudio.html#scripts-vs.-console"><span class="toc-section-number">2.2.1</span> Scripts vs. console</a></li>
+</ul></li>
+<li><a href="2-3-coding-building-blocks.html#coding-building-blocks"><span class="toc-section-number">2.3</span> Coding building blocks</a>
+<ul>
+<li><a href="2-3-coding-building-blocks.html#variable-assignment"><span class="toc-section-number">2.3.1</span> Variable assignment</a></li>
+<li><a href="2-3-coding-building-blocks.html#naming-variables"><span class="toc-section-number">2.3.2</span> Naming variables</a></li>
+<li><a href="2-3-coding-building-blocks.html#basic-data-structures"><span class="toc-section-number">2.3.3</span> Basic data structures</a></li>
+<li><a href="2-3-coding-building-blocks.html#r-packages-and-functions"><span class="toc-section-number">2.3.4</span> R packages and functions</a></li>
+</ul></li>
+<li><a href="2-4-script-formatting.html#script-formatting"><span class="toc-section-number">2.4</span> Script formatting</a>
+<ul>
+<li><a href="2-4-script-formatting.html#script-diagnostics"><span class="toc-section-number">2.4.1</span> Script diagnostics</a></li>
+</ul></li>
+<li><a href="2-5-viewing-data-and-code-simultaneously.html#viewing-data-and-code-simultaneously"><span class="toc-section-number">2.5</span> Viewing data and code simultaneously</a></li>
+</ul></li>
+<li><a href="3-r-workflows.html#r-workflows"><span class="toc-section-number">3</span> R Workflows</a>
+<ul>
+<li><a href="3-1-creating-an-rstudio-project.html#creating-an-rstudio-project"><span class="toc-section-number">3.1</span> Creating an RStudio Project</a></li>
+<li><a href="3-2-navigating-rstudio-1.html#navigating-rstudio-1"><span class="toc-section-number">3.2</span> Navigating RStudio</a>
+<ul>
+<li><a href="3-2-navigating-rstudio-1.html#r-environment"><span class="toc-section-number">3.2.1</span> R Environment</a></li>
+<li><a href="3-2-navigating-rstudio-1.html#viewer-1"><span class="toc-section-number">3.2.2</span> Viewer</a></li>
+<li><a href="3-2-navigating-rstudio-1.html#console-1"><span class="toc-section-number">3.2.3</span> Console</a></li>
+<li><a href="3-2-navigating-rstudio-1.html#scripts"><span class="toc-section-number">3.2.4</span> Scripts</a></li>
+</ul></li>
+<li><a href="3-3-dark-mode.html#dark-mode"><span class="toc-section-number">3.3</span> Dark Mode</a></li>
+</ul></li>
+<li><a href="4-using-r-markdown.html#using-r-markdown"><span class="toc-section-number">4</span> Using R Markdown</a>
+<ul>
+<li><a href="4-1-lets-dig-a-little-deeper.html#lets-dig-a-little-deeper"><span class="toc-section-number">4.1</span> Let’s dig a little deeper</a></li>
+<li><a href="4-2-how-do-i-get-started-with-r-markdown.html#how-do-i-get-started-with-r-markdown"><span class="toc-section-number">4.2</span> How do I get started with R markdown?</a>
+<ul>
+<li><a href="4-2-how-do-i-get-started-with-r-markdown.html#great-now-whats-going-on-with-this-r-markdown-document"><span class="toc-section-number">4.2.1</span> Great, now what’s going on with this R markdown document?</a></li>
+<li><a href="4-2-how-do-i-get-started-with-r-markdown.html#how-to-run-r-code-in-r-markdown"><span class="toc-section-number">4.2.2</span> How to run R code in R Markdown</a></li>
+<li><a href="4-2-how-do-i-get-started-with-r-markdown.html#how-do-i-go-from-r-markdown-to-something-i-can-hand-in"><span class="toc-section-number">4.2.3</span> How do I go from R markdown to something I can hand-in</a></li>
+</ul></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#so-now-what-do-i-do-with-r-markdown"><span class="toc-section-number">4.3</span> So now what do I do with R Markdown?</a>
+<ul>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#r-markdown-resources-and-further-reading"><span class="toc-section-number">4.3.1</span> R Markdown resources and further reading</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#r-code-chunk-options"><span class="toc-section-number">4.3.2</span> R code chunk options</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#inserting-images-into-markdown-documents"><span class="toc-section-number">4.3.3</span> Inserting images into markdown documents</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#generating-tables"><span class="toc-section-number">4.3.4</span> Generating Tables</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#spellcheck-in-r-markdown"><span class="toc-section-number">4.3.5</span> Spellcheck in R Markdown</a></li>
+<li><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#quick-reference-on-r-markdown-syntax"><span class="toc-section-number">4.3.6</span> Quick reference on R markdown syntax</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Data Analysis in R</b></span></li>
+<li><a href="5-intro-to-data-analysis.html#intro-to-data-analysis"><span class="toc-section-number">5</span> Intro to Data Analysis</a>
+<ul>
+<li><a href="5-1-further-reading.html#further-reading"><span class="toc-section-number">5.1</span> Further Reading</a></li>
+</ul></li>
+<li><a href="6-importing-data-into-r.html#importing-data-into-r"><span class="toc-section-number">6</span> Importing data into R</a>
+<ul>
+<li><a href="6-1-how-data-is-stored.html#how-data-is-stored"><span class="toc-section-number">6.1</span> How data is stored</a></li>
+<li><a href="6-2-read-csv.html#read_csv"><span class="toc-section-number">6.2</span> read_csv</a>
+<ul>
+<li><a href="6-2-read-csv.html#tibbles-vs.-data-frames"><span class="toc-section-number">6.2.1</span> Tibbles vs. data frames</a></li>
+</ul></li>
+<li><a href="6-3-importing-other-data-types.html#importing-other-data-types"><span class="toc-section-number">6.3</span> Importing other data types</a></li>
+<li><a href="6-4-saving-data.html#saving-data"><span class="toc-section-number">6.4</span> Saving data</a></li>
+<li><a href="6-5-further-reading-1.html#further-reading-1"><span class="toc-section-number">6.5</span> Further Reading</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="so-now-what-do-i-do-with-r-markdown" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> So now what do I do with R Markdown?</h2>
+<p>You do science and you write it down!</p>
+<p>In all seriousness though, this document was only meant to introduce you to R markdown, and to make the case that you should use it for your ENV 316 coursework. A couple of the most useful elements are talked about below, and there is a wealth of helpful resources for formatting your documents. Just remember to keep it simple, there’s no need to reinvent the wheel. The default R markdown outputs are plenty fine with us.</p>
+<div id="r-markdown-resources-and-further-reading" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> R Markdown resources and further reading</h3>
+<p>There’s a plethora of helpful online resources to help hone your R markdown skills. We’ll list a couple below (the titles are links to the corresponding document):</p>
+<ul>
+<li><a href="https://bookdown.org/yihui/rmarkdown/basics.html">Chapter 2</a> of the <em><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></em> by Xie, Allair &amp; Grolemund (2020). This is the simplest, most comprehensive, guide to learning R markdown and it’s available freely online.</li>
+<li><em><a href="https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">The R markdown cheat sheet</a></em>, a great resource with the most common R markdown operations; keep on hand for quick referencing.</li>
+<li><em><a href="https://bookdown.org/yihui/bookdown/">Bookdown: Authoring Books and Technical Documents with R Markdown</a></em> (2020) by Yihui Xie. Explains the <code>bookdown</code> package which greatly expands the capabilities of R markdown. For example, the table of contents of this document is created with <code>bookdown</code>.</li>
+</ul>
+</div>
+<div id="r-code-chunk-options" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> R code chunk options</h3>
+<p>You can specify a number of options for an individual R code chunk. You include these at the top of the code chunk. For example the following code tells markdown you’re running code written in <code>R</code>, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption “Some Caption”. A list of code chunk options is shown below:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb40-1"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE, fig.cap = &quot;Some caption&quot;}</span></span>
+<span id="cb40-2"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="in"># some code to generate a plot worth captioning. </span></span>
+<span id="cb40-4"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>option</th>
+<th>default</th>
+<th>effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>eval</td>
+<td>TRUE</td>
+<td>whether to evaluate the code and include the results</td>
+</tr>
+<tr class="even">
+<td>echo</td>
+<td>TRUE</td>
+<td>whether to display the code along with its results</td>
+</tr>
+<tr class="odd">
+<td>warning</td>
+<td>TRUE</td>
+<td>whether to display warnings</td>
+</tr>
+<tr class="even">
+<td>error</td>
+<td>FALSE</td>
+<td>whether to display errors</td>
+</tr>
+<tr class="odd">
+<td>message</td>
+<td>TRUE</td>
+<td>whether to display messages</td>
+</tr>
+<tr class="even">
+<td>tidy</td>
+<td>FALSE</td>
+<td>whether to reformat code in a tidy way when displaying it</td>
+</tr>
+<tr class="odd">
+<td>fig.width</td>
+<td>7</td>
+<td>width in inches for plots created in chunk</td>
+</tr>
+<tr class="even">
+<td>fig.height</td>
+<td>7</td>
+<td>height in inches for plots created in chunk</td>
+</tr>
+<tr class="odd">
+<td>fig.cap</td>
+<td>NA</td>
+<td>include figure caption, must be in quotation makrs ("")</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="inserting-images-into-markdown-documents" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Inserting images into markdown documents</h3>
+<p>Images not produced by R code can easily be inserted into your document. The markdown code isn’t R code, so between paragraphs of bodytext insert the following code. Note that compiling to PDF, the LaTeX call will place your image in the “optimal” location, so you might find your image isn’t exactly where you though it would be. A quick google search can help you out if this is problem.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb41-1"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption for the picture.](path/to/image.png)</span>{width=50%, height=50%}</span></code></pre></div>
+<p>Note that in the above the use of image atributes, the <code>{width=50%, height=50%}</code> at the end. This is how you’ll adjust the size of your image. Other dimensions you can use include <code>px, cm, mm, in, inch</code>, and <code>%</code>.</p>
+</div>
+<div id="generating-tables" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Generating Tables</h3>
+<p>There’s multiple methods to create tables in R markdown. Assuming you want to display results calculated through R code, you can use the <code>kable()</code> function. Please consult <a href="https://bookdown.org/yihui/rmarkdown-cookbook/kable.html">Chapter 10</a> of the <em>R Markdown Cookbook</em> for additional support.</p>
+<p>Alternatively, if you want to create simple tables manually use the following code in the main body, outside of an <code>R</code> code chunk. You can increase the number of rows/columns and the location of the horizontal lines. To generate more complex tables, see the <code>kable()</code> function and the <code>kableExtra</code> package.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb42-1"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb42-1" aria-hidden="true" tabindex="-1"></a>Header 1 | Header 2| Header 3</span>
+<span id="cb42-2"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb42-2" aria-hidden="true" tabindex="-1"></a>---------|---------|---------|</span>
+<span id="cb42-3"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb42-3" aria-hidden="true" tabindex="-1"></a>Row 1    | Data    | Some other Data</span>
+<span id="cb42-4"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb42-4" aria-hidden="true" tabindex="-1"></a>Row 2    | Data    | Some other Data</span>
+<span id="cb42-5"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb42-5" aria-hidden="true" tabindex="-1"></a>---------|---------|---------|</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>Header 1</th>
+<th>Header 2</th>
+<th>Header 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Row 1</td>
+<td>Data</td>
+<td>Some other Data</td>
+</tr>
+<tr class="even">
+<td>Row 2</td>
+<td>Data</td>
+<td>Some other Data</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="spellcheck-in-r-markdown" class="section level3" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Spellcheck in R Markdown</h3>
+<p>While writing an R markdown document in R studio, go to the <code>Edit</code> tab at the top of the window and select <code>Check Spelling</code>. You can also use the <code>F7</code> key as a shortcut. The spell checker will literally go through every word it thinks you’ve misspelled in your document. You can add words to it so your spell checker’s utility grows as you use it. <strong>Note</strong> that the spell check with also check your R code; be wary of changing words in your code chunks because you may get an error down the line.</p>
+</div>
+<div id="quick-reference-on-r-markdown-syntax" class="section level3" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Quick reference on R markdown syntax</h3>
+<ul>
+<li><strong>Inline formatting</strong>; <em>which</em> is <sub>used</sub> to <sup>format</sup> <code>your text</code>.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Numbered lists</li>
+</ol>
+<ul>
+<li>Normal lists
+<ul>
+<li>Lists</li>
+</ul></li>
+<li><strong>Block-level elements</strong>, i.e. you’re section headers</li>
+</ul>
+<p>Example R markdown syntax used for formatting shown above:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> <span class="er">**</span>Inline formatting<span class="sc">**</span>; <span class="sc">*</span>which<span class="sc">*</span> is <span class="sc">~</span>used<span class="sc">~</span> to <span class="sc">^</span>format<span class="sc">^</span> <span class="st">`</span><span class="at">your text</span><span class="st">`</span>.</span>
+<span id="cb43-2"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Numbered lists</span>
+<span id="cb43-3"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Normal lists</span>
+<span id="cb43-4"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> Lists</span>
+<span id="cb43-5"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb43-6"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> <span class="er">**</span>Block<span class="sc">-</span>level elements<span class="sc">**</span>, i.e. your section headers</span>
+<span id="cb43-7"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Headers</span></span>
+<span id="cb43-9"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Headers</span></span>
+<span id="cb43-10"><a href="4-3-so-now-what-do-i-do-with-r-markdown.html#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Headers</span></span></code></pre></div>
+
+</div>
+</div>
+<!-- </div> -->
+
+
+
+<p style="text-align: center;">
+<a href="4-2-how-do-i-get-started-with-r-markdown.html"><button class="btn btn-default">Previous</button></a>
+<a href="5-intro-to-data-analysis.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>
