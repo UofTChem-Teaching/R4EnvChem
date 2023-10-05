@@ -238,11 +238,11 @@ Anyways, Stamen map provides several different aesthetic of maps. We're going to
 
 ```{r, message = FALSE, warning = FALSE, error = FALSE}
 
-airbeamMap <- get_stamenmap(bbox = airbeamBBox, zoom = 14, maptype = "terrain", crop = FALSE)
-
-transectMap <- ggmap(airbeamMap) 
-
-transectMap
+# airbeamMap <- get_stamenmap(bbox = airbeamBBox, zoom = 14, maptype = "terrain", crop = FALSE)
+# 
+# transectMap <- ggmap(airbeamMap) 
+# 
+# transectMap
 ```
 
 And would you look at that. We have a beautiful map of Pearson Airport and surrounding areas. You can adjust the size of the map by changing the value of the `zoom` argument from `3` (Continental) to `15` (individual houses). 
@@ -252,11 +252,11 @@ Now let's overlay our measurement values. The `ggmap()` function transforms the 
 ```{r}
 
 
-transectMap <- transectMap +
-  geom_point(data = subset(airbeam, sensor_name == "AirBeam2-PM10"),
-             aes(x = longitude, y = latitude, colour = measurement_value)) 
-
-transectMap
+# transectMap <- transectMap +
+#   geom_point(data = subset(airbeam, sensor_name == "AirBeam2-PM10"),
+#              aes(x = longitude, y = latitude, colour = measurement_value)) 
+# 
+# transectMap
 
 
 ```
@@ -267,25 +267,25 @@ Because there's a lot going on under the hood (i.e. we don't know where and when
 
 ```{r}
    
-transectMapAnnotated <- transectMap +  
-  # annotations for start of journey
-  annotate("segment", x = -79.62161, xend = -79.621614, y = 43.635, yend = 43.65395, size=1) +
-  annotate("label", x = -79.62161, y = 43.64, label = "Started biking west \n at 11:00am", fill = "white") +
-  
-  # annotation for turn around
-  annotate("segment", x = -79.65, xend = -79.66234, y = 43.655, yend = 43.66672, size=1) +
-  annotate("label", x = -79.65, y = 43.655, label = "Turned around \n to head east \n at 11:35am", fill = "white") +
-  
-  # annotation for end of journey
-   annotate("segment", x = -79.56662, xend = -79.56662, y = 43.657, yend = 43.63529, size=1) +
-   annotate("label", x = -79.56662, y = 43.66, label = "Entered house \n at 12:50pm", fill = "white") +
-
-  # labels for plots
-   labs(x = "longitude", 
-     y = "latitude", 
-     colour = "PM 10 \n(ug/m^3)")
-
-transectMapAnnotated
+# transectMapAnnotated <- transectMap +  
+#   # annotations for start of journey
+#   annotate("segment", x = -79.62161, xend = -79.621614, y = 43.635, yend = 43.65395, size=1) +
+#   annotate("label", x = -79.62161, y = 43.64, label = "Started biking west \n at 11:00am", fill = "white") +
+#   
+#   # annotation for turn around
+#   annotate("segment", x = -79.65, xend = -79.66234, y = 43.655, yend = 43.66672, size=1) +
+#   annotate("label", x = -79.65, y = 43.655, label = "Turned around \n to head east \n at 11:35am", fill = "white") +
+#   
+#   # annotation for end of journey
+#    annotate("segment", x = -79.56662, xend = -79.56662, y = 43.657, yend = 43.63529, size=1) +
+#    annotate("label", x = -79.56662, y = 43.66, label = "Entered house \n at 12:50pm", fill = "white") +
+# 
+#   # labels for plots
+#    labs(x = "longitude", 
+#      y = "latitude", 
+#      colour = "PM 10 \n(ug/m^3)")
+# 
+# transectMapAnnotated
 
 ```
 
@@ -326,31 +326,31 @@ Since we've already created a map for the bike ride (`airbeamMap`), we can recyc
 
 ```{r}
 # AirBeam map made earlier, see above
-o3Map <- ggmap(airbeamMap) +
-  geom_point(data = subset(gasesSpat, sensor_name == "o3"),
-             aes(x = longitude, y = latitude, colour = measurement_value)) 
-o3Map
+# o3Map <- ggmap(airbeamMap) +
+#   geom_point(data = subset(gasesSpat, sensor_name == "o3"),
+#              aes(x = longitude, y = latitude, colour = measurement_value)) 
+# o3Map
 
 ```
 
 We've done the same sub-setting on the fly to only ploy O~3~. Let's annotate our plot again based on the information in the Experimental Details: 
 
 ```{r}
-o3MapAnnotated <- o3Map +
-  # annotations for 1st plane takeoff
-  annotate("segment", x = -79.6, xend = -79.63254, y = 43.66460, yend = 43.66460, size=1) +
-  annotate("label", x = -79.6, y = 43.66460, label = "Plane takeoff \n 11:17am", fill = "white") +
-  
-  # annotations for 2nd plane takeoff
-  annotate("segment", x = -79.65385, xend = -79.65385, y = 43.66, yend = 43.67089, size=1) +
-  annotate("label", x = -79.65385, y = 43.66, label = "Plane takeoff \n 11:40am", fill = "white") +
-  
-  # labels for plots
-   labs(x = "longitude", 
-        y = "latitude", 
-        colour = "ozone (ppm)",
-        caption = "data record on July 25th, 2020")
-o3MapAnnotated
+# o3MapAnnotated <- o3Map +
+#   # annotations for 1st plane takeoff
+#   annotate("segment", x = -79.6, xend = -79.63254, y = 43.66460, yend = 43.66460, size=1) +
+#   annotate("label", x = -79.6, y = 43.66460, label = "Plane takeoff \n 11:17am", fill = "white") +
+#   
+#   # annotations for 2nd plane takeoff
+#   annotate("segment", x = -79.65385, xend = -79.65385, y = 43.66, yend = 43.67089, size=1) +
+#   annotate("label", x = -79.65385, y = 43.66, label = "Plane takeoff \n 11:40am", fill = "white") +
+#   
+#   # labels for plots
+#    labs(x = "longitude", 
+#         y = "latitude", 
+#         colour = "ozone (ppm)",
+#         caption = "data record on July 25th, 2020")
+# o3MapAnnotated
 ```
 
 ### Combining maps
@@ -359,10 +359,10 @@ So we now have a map of PM10 and O~3~, let's place them side by side so we can s
 
 ```{r, fig.height=7}
 # chunk fig.height = 7
-ggpubr::ggarrange(transectMapAnnotated, 
-          o3MapAnnotated,
-          labels = c("A", "B"),
-          nrow = 2, ncol = 1)
+# ggpubr::ggarrange(transectMapAnnotated, 
+#           o3MapAnnotated,
+#           labels = c("A", "B"),
+#           nrow = 2, ncol = 1)
 
 ```
 

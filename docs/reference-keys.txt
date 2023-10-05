@@ -40,8 +40,7 @@ keep-in-mind
 useful-features
 searching-throughout-the-textbook
 how-to-view-the-original-r-markdown-of-textbook-chapters
-how-to-get-more-r-practice
-working-on-exercises
+end-of-chapter-exercises
 r-coding-basics
 variables
 data-types

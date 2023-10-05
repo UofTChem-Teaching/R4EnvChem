@@ -228,10 +228,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.2.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#searching-throughout-the-textbook"><i class="fa fa-check"></i><b>3.2.1</b> Searching throughout the textbook</a></li>
 <li class="chapter" data-level="3.2.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#how-to-view-the-original-r-markdown-of-textbook-chapters"><i class="fa fa-check"></i><b>3.2.2</b> How to view the original R Markdown of textbook chapters</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#how-to-get-more-r-practice"><i class="fa fa-check"></i><b>3.3</b> How to get more R practice</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#working-on-exercises"><i class="fa fa-check"></i><b>3.3.1</b> Working on Exercises</a></li>
-</ul></li>
+<li class="chapter" data-level="3.3" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#end-of-chapter-exercises"><i class="fa fa-check"></i><b>3.3</b> End-of-chapter Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>Part 2: How to Code in R</b></span></li>
 <li class="chapter" data-level="4" data-path="r-coding-basics.html"><a href="r-coding-basics.html"><i class="fa fa-check"></i><b>4</b> R Coding Basics</a>
@@ -569,8 +566,8 @@ div.csl-indent {
 <span id="cb153-10"><a href="transform-data-manipulation.html#cb153-10" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb153-11"><a href="transform-data-manipulation.html#cb153-11" tabindex="-1"></a></span>
 <span id="cb153-12"><a href="transform-data-manipulation.html#cb153-12" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3d5959f53448968b0e17" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-3d5959f53448968b0e17">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e07e18e0d528084e1586" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e07e18e0d528084e1586">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Note</strong> the use of <code>convert = TRUE</code> in the <code>separate()</code> call. This runs a type convert on new columns. If we didn’t include this, the <code>conc_Na</code> column would be of type character because the numbers originated from a string. <code>convert()</code> ensures they’re converted to numeric. <strong>Always use <code>convert = TRUE</code></strong> when you separate columns.</p>
 <div id="selecting-by-row-or-value" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Selecting by row or value<a href="transform-data-manipulation.html#selecting-by-row-or-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1102,7 +1099,7 @@ div.csl-indent {
 <p>There is a set of exercises available for this chapter!</p>
 <p><strong>Not sure how to access and work on the exercise Rmd files? </strong></p>
 <ul>
-<li><p>Refer to Chapter 3.3.1 for step-by-step instructions on accessing the exercises and working within the UofT JupyterHub’s RStudio environment.</p></li>
+<li><p>Refer to Chapter 3.3 for step-by-step instructions on accessing the exercises and working within the UofT JupyterHub’s RStudio environment.</p></li>
 <li><p>Alternatively, if you’d like to simply access the individual files, you can download them directly from this <a href="https://github.com/UofTChem-Teaching/R4EnvChem-Exercises">repository</a>.</p></li>
 </ul>
 <p>Always remember to save your progress regularly and consult the textbook’s guidelines for submitting your completed exercises.</p>
