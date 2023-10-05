@@ -663,8 +663,8 @@ mapNO2 <- atlNO2 %>%
   summarise(mean = mean(conc))
 
 #install.packages("ggmap")
-library(ggmap)
-
+# library(ggmap)
+# 
 # atlMap <- get_stamenmap(bbox = make_bbox(lon = mapNO2$longitude, 
 #                                          lat = mapNO2$latitude, 
 #                                          f = 0.1), 

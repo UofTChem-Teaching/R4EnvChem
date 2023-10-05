@@ -558,14 +558,14 @@ div.csl-indent {
 <div id="import-and-install-the-appropriate-packages" class="section level2 hasAnchor" number="19.3">
 <h2><span class="header-section-number">19.3</span> Import and install the appropriate packages<a href="chm410-nmr-lab.html#import-and-install-the-appropriate-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Install and load the <code>ChemoSpec</code> package and its dependencies as outlined in [Installing packages].</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="chm410-nmr-lab.html#cb348-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ChemoSpec&quot;</span>)</span>
-<span id="cb348-2"><a href="chm410-nmr-lab.html#cb348-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;R.utils&quot;</span>)</span>
-<span id="cb348-3"><a href="chm410-nmr-lab.html#cb348-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;robustbase&quot;</span>)</span>
-<span id="cb348-4"><a href="chm410-nmr-lab.html#cb348-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ChemoSpec&quot;</span>)</span>
-<span id="cb348-5"><a href="chm410-nmr-lab.html#cb348-5" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb348-6"><a href="chm410-nmr-lab.html#cb348-6" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;R.utils&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="chm410-nmr-lab.html#cb351-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ChemoSpec&quot;</span>)</span>
+<span id="cb351-2"><a href="chm410-nmr-lab.html#cb351-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;R.utils&quot;</span>)</span>
+<span id="cb351-3"><a href="chm410-nmr-lab.html#cb351-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;robustbase&quot;</span>)</span>
+<span id="cb351-4"><a href="chm410-nmr-lab.html#cb351-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ChemoSpec&quot;</span>)</span>
+<span id="cb351-5"><a href="chm410-nmr-lab.html#cb351-5" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb351-6"><a href="chm410-nmr-lab.html#cb351-6" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;R.utils&quot;</span>)</span></code></pre></div>
 <p>To see complete details about the ChemoSpec package, including step-by-step instructions, run the following code:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="chm410-nmr-lab.html#cb349-1" tabindex="-1"></a><span class="fu">browseVignettes</span>(<span class="st">&quot;ChemoSpec&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="chm410-nmr-lab.html#cb352-1" tabindex="-1"></a><span class="fu">browseVignettes</span>(<span class="st">&quot;ChemoSpec&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exporting-your-nmr-for-r-and-chemospec" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> Exporting your NMR for R and ChemoSpec<a href="chm410-nmr-lab.html#exporting-your-nmr-for-r-and-chemospec" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -597,118 +597,118 @@ div.csl-indent {
 <h2><span class="header-section-number">19.5</span> Importing your data in ChemoSpec<a href="chm410-nmr-lab.html#importing-your-data-in-chemospec" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ChemoSpec contains many functions that will simplify our data analysis. The first one we will make use of is <code>files2SpectraObject()</code>. This function assumes your files exist as individual CSV files (1 file per sample) within your working directory. This function uses <code>read.table()</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> to perform the actual importing, but it will also group all your spectra together by name as a <code>Spectra</code> object.</p>
 <p>Take a look at the following:</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="chm410-nmr-lab.html#cb350-1" tabindex="-1"></a><span class="do">##Import all NMR spectra in the working directory as one object named spec</span></span>
-<span id="cb350-2"><a href="chm410-nmr-lab.html#cb350-2" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">files2SpectraObject</span>(  </span>
-<span id="cb350-3"><a href="chm410-nmr-lab.html#cb350-3" tabindex="-1"></a>  </span>
-<span id="cb350-4"><a href="chm410-nmr-lab.html#cb350-4" tabindex="-1"></a>  <span class="do">##Search through the entire working directory for CSV files</span></span>
-<span id="cb350-5"><a href="chm410-nmr-lab.html#cb350-5" tabindex="-1"></a>  <span class="at">recursive =</span> <span class="cn">TRUE</span>,  </span>
-<span id="cb350-6"><a href="chm410-nmr-lab.html#cb350-6" tabindex="-1"></a>  </span>
-<span id="cb350-7"><a href="chm410-nmr-lab.html#cb350-7" tabindex="-1"></a>  <span class="do">##Specify the sample names of interest by inclusive criteria</span></span>
-<span id="cb350-8"><a href="chm410-nmr-lab.html#cb350-8" tabindex="-1"></a>  <span class="at">gr.crit=</span> <span class="fu">c</span>(<span class="st">&quot;Sample&quot;</span>, <span class="st">&quot;Unknown&quot;</span>, <span class="st">&quot;Kirkland&quot;</span>, <span class="st">&quot;Manuka&quot;</span>, <span class="st">&quot;Maple&quot;</span>, <span class="st">&quot;Naturoney&quot;</span>, <span class="st">&quot;NoName&quot;</span>, <span class="st">&quot;PresidentsChoice&quot;</span>, <span class="st">&quot;Starbucks&quot;</span>, <span class="st">&quot;SugarSyrup&quot;</span>), </span>
-<span id="cb350-9"><a href="chm410-nmr-lab.html#cb350-9" tabindex="-1"></a>  </span>
-<span id="cb350-10"><a href="chm410-nmr-lab.html#cb350-10" tabindex="-1"></a>  <span class="do">##Automatically apply colours to the sample groups</span></span>
-<span id="cb350-11"><a href="chm410-nmr-lab.html#cb350-11" tabindex="-1"></a>  <span class="at">gr.cols =</span> <span class="st">&quot;Col12&quot;</span>,  </span>
-<span id="cb350-12"><a href="chm410-nmr-lab.html#cb350-12" tabindex="-1"></a>  </span>
-<span id="cb350-13"><a href="chm410-nmr-lab.html#cb350-13" tabindex="-1"></a>  <span class="do">##Define the units of the x-axis</span></span>
-<span id="cb350-14"><a href="chm410-nmr-lab.html#cb350-14" tabindex="-1"></a>  <span class="at">freq.unit =</span> <span class="st">&quot;ppm&quot;</span>,  </span>
-<span id="cb350-15"><a href="chm410-nmr-lab.html#cb350-15" tabindex="-1"></a>  </span>
-<span id="cb350-16"><a href="chm410-nmr-lab.html#cb350-16" tabindex="-1"></a>  <span class="do">##Define the units of the y-axis</span></span>
-<span id="cb350-17"><a href="chm410-nmr-lab.html#cb350-17" tabindex="-1"></a>  <span class="at">int.unit =</span> <span class="st">&quot;intensity&quot;</span>, </span>
-<span id="cb350-18"><a href="chm410-nmr-lab.html#cb350-18" tabindex="-1"></a>  </span>
-<span id="cb350-19"><a href="chm410-nmr-lab.html#cb350-19" tabindex="-1"></a>  <span class="do">##Description of the dataset</span></span>
-<span id="cb350-20"><a href="chm410-nmr-lab.html#cb350-20" tabindex="-1"></a>  <span class="at">descrip =</span> <span class="st">&quot;NMR PCA Test&quot;</span>,</span>
-<span id="cb350-21"><a href="chm410-nmr-lab.html#cb350-21" tabindex="-1"></a>  </span>
-<span id="cb350-22"><a href="chm410-nmr-lab.html#cb350-22" tabindex="-1"></a>  <span class="do">##Read all files with this extension.</span></span>
-<span id="cb350-23"><a href="chm410-nmr-lab.html#cb350-23" tabindex="-1"></a>  <span class="at">fileExt =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.(csv|CSV)$&quot;</span>,  </span>
-<span id="cb350-24"><a href="chm410-nmr-lab.html#cb350-24" tabindex="-1"></a>  </span>
-<span id="cb350-25"><a href="chm410-nmr-lab.html#cb350-25" tabindex="-1"></a>  <span class="do">##Save this spectra object to an R data file just in case.</span></span>
-<span id="cb350-26"><a href="chm410-nmr-lab.html#cb350-26" tabindex="-1"></a>  <span class="at">out.file =</span> <span class="st">&quot;410NMRdata&quot;</span>  </span>
-<span id="cb350-27"><a href="chm410-nmr-lab.html#cb350-27" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="chm410-nmr-lab.html#cb353-1" tabindex="-1"></a><span class="do">##Import all NMR spectra in the working directory as one object named spec</span></span>
+<span id="cb353-2"><a href="chm410-nmr-lab.html#cb353-2" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">files2SpectraObject</span>(  </span>
+<span id="cb353-3"><a href="chm410-nmr-lab.html#cb353-3" tabindex="-1"></a>  </span>
+<span id="cb353-4"><a href="chm410-nmr-lab.html#cb353-4" tabindex="-1"></a>  <span class="do">##Search through the entire working directory for CSV files</span></span>
+<span id="cb353-5"><a href="chm410-nmr-lab.html#cb353-5" tabindex="-1"></a>  <span class="at">recursive =</span> <span class="cn">TRUE</span>,  </span>
+<span id="cb353-6"><a href="chm410-nmr-lab.html#cb353-6" tabindex="-1"></a>  </span>
+<span id="cb353-7"><a href="chm410-nmr-lab.html#cb353-7" tabindex="-1"></a>  <span class="do">##Specify the sample names of interest by inclusive criteria</span></span>
+<span id="cb353-8"><a href="chm410-nmr-lab.html#cb353-8" tabindex="-1"></a>  <span class="at">gr.crit=</span> <span class="fu">c</span>(<span class="st">&quot;Sample&quot;</span>, <span class="st">&quot;Unknown&quot;</span>, <span class="st">&quot;Kirkland&quot;</span>, <span class="st">&quot;Manuka&quot;</span>, <span class="st">&quot;Maple&quot;</span>, <span class="st">&quot;Naturoney&quot;</span>, <span class="st">&quot;NoName&quot;</span>, <span class="st">&quot;PresidentsChoice&quot;</span>, <span class="st">&quot;Starbucks&quot;</span>, <span class="st">&quot;SugarSyrup&quot;</span>), </span>
+<span id="cb353-9"><a href="chm410-nmr-lab.html#cb353-9" tabindex="-1"></a>  </span>
+<span id="cb353-10"><a href="chm410-nmr-lab.html#cb353-10" tabindex="-1"></a>  <span class="do">##Automatically apply colours to the sample groups</span></span>
+<span id="cb353-11"><a href="chm410-nmr-lab.html#cb353-11" tabindex="-1"></a>  <span class="at">gr.cols =</span> <span class="st">&quot;Col12&quot;</span>,  </span>
+<span id="cb353-12"><a href="chm410-nmr-lab.html#cb353-12" tabindex="-1"></a>  </span>
+<span id="cb353-13"><a href="chm410-nmr-lab.html#cb353-13" tabindex="-1"></a>  <span class="do">##Define the units of the x-axis</span></span>
+<span id="cb353-14"><a href="chm410-nmr-lab.html#cb353-14" tabindex="-1"></a>  <span class="at">freq.unit =</span> <span class="st">&quot;ppm&quot;</span>,  </span>
+<span id="cb353-15"><a href="chm410-nmr-lab.html#cb353-15" tabindex="-1"></a>  </span>
+<span id="cb353-16"><a href="chm410-nmr-lab.html#cb353-16" tabindex="-1"></a>  <span class="do">##Define the units of the y-axis</span></span>
+<span id="cb353-17"><a href="chm410-nmr-lab.html#cb353-17" tabindex="-1"></a>  <span class="at">int.unit =</span> <span class="st">&quot;intensity&quot;</span>, </span>
+<span id="cb353-18"><a href="chm410-nmr-lab.html#cb353-18" tabindex="-1"></a>  </span>
+<span id="cb353-19"><a href="chm410-nmr-lab.html#cb353-19" tabindex="-1"></a>  <span class="do">##Description of the dataset</span></span>
+<span id="cb353-20"><a href="chm410-nmr-lab.html#cb353-20" tabindex="-1"></a>  <span class="at">descrip =</span> <span class="st">&quot;NMR PCA Test&quot;</span>,</span>
+<span id="cb353-21"><a href="chm410-nmr-lab.html#cb353-21" tabindex="-1"></a>  </span>
+<span id="cb353-22"><a href="chm410-nmr-lab.html#cb353-22" tabindex="-1"></a>  <span class="do">##Read all files with this extension.</span></span>
+<span id="cb353-23"><a href="chm410-nmr-lab.html#cb353-23" tabindex="-1"></a>  <span class="at">fileExt =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.(csv|CSV)$&quot;</span>,  </span>
+<span id="cb353-24"><a href="chm410-nmr-lab.html#cb353-24" tabindex="-1"></a>  </span>
+<span id="cb353-25"><a href="chm410-nmr-lab.html#cb353-25" tabindex="-1"></a>  <span class="do">##Save this spectra object to an R data file just in case.</span></span>
+<span id="cb353-26"><a href="chm410-nmr-lab.html#cb353-26" tabindex="-1"></a>  <span class="at">out.file =</span> <span class="st">&quot;410NMRdata&quot;</span>  </span>
+<span id="cb353-27"><a href="chm410-nmr-lab.html#cb353-27" tabindex="-1"></a>)</span></code></pre></div>
 <p>In this function we import all the <code>.csv</code>-type spectra that can be found in the working directory as one <code>Spectra</code> object called <code>spec</code>. If you look in your RStudio Envrionment, you will see a new <code>Large Spectra</code> object that consists of 9 elements. Notice how in the line <code>gr.crit = ...</code> we defined each sample group as a string. If you look through the supplied dataset you will see each <code>.csv</code> file is named according to its sample type <em>BillyBee1, BillyBee2, …</em> <code>files2SpectraObject</code> knows that each string defined is a different sample group. If you are wondering how this works you can always type <code>?files2SpectraObject</code> in your Console for details.</p>
 <p>Next let’s make sure the data is imported correctly:</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="chm410-nmr-lab.html#cb351-1" tabindex="-1"></a><span class="fu">sumSpectra</span>(spec)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="chm410-nmr-lab.html#cb354-1" tabindex="-1"></a><span class="fu">sumSpectra</span>(spec)</span></code></pre></div>
 <p>This line of code will print details about the dataset you will be working with.</p>
 <p>Finally, you can display any of the spectra in this <code>Spectra Object</code> using the following code. Double check that your sample spectra looks the same as it did in MestreNova.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="chm410-nmr-lab.html#cb352-1" tabindex="-1"></a><span class="do">## Set the graphics option in ChemoSpec to use ggplot2 instead of base R graphics</span></span>
-<span id="cb352-2"><a href="chm410-nmr-lab.html#cb352-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">chemoSpecGraphics =</span> <span class="st">&#39;ggplot2&#39;</span>)</span>
-<span id="cb352-3"><a href="chm410-nmr-lab.html#cb352-3" tabindex="-1"></a></span>
-<span id="cb352-4"><a href="chm410-nmr-lab.html#cb352-4" tabindex="-1"></a><span class="do">## Plot the spectra in the Spectra object named spec</span></span>
-<span id="cb352-5"><a href="chm410-nmr-lab.html#cb352-5" tabindex="-1"></a>spectralPlot <span class="ot">&lt;-</span> <span class="fu">plotSpectra</span>(spec,</span>
-<span id="cb352-6"><a href="chm410-nmr-lab.html#cb352-6" tabindex="-1"></a>            </span>
-<span id="cb352-7"><a href="chm410-nmr-lab.html#cb352-7" tabindex="-1"></a>            <span class="do">##Which spectra should be plotted? Your spectra is likely number 1 or 34.</span></span>
-<span id="cb352-8"><a href="chm410-nmr-lab.html#cb352-8" tabindex="-1"></a>            <span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb352-9"><a href="chm410-nmr-lab.html#cb352-9" tabindex="-1"></a>            </span>
-<span id="cb352-10"><a href="chm410-nmr-lab.html#cb352-10" tabindex="-1"></a>            <span class="do">##If plotting multiple spectra, offset the vertical axis</span></span>
-<span id="cb352-11"><a href="chm410-nmr-lab.html#cb352-11" tabindex="-1"></a>            <span class="at">offset =</span> <span class="dv">50</span>,</span>
-<span id="cb352-12"><a href="chm410-nmr-lab.html#cb352-12" tabindex="-1"></a>            </span>
-<span id="cb352-13"><a href="chm410-nmr-lab.html#cb352-13" tabindex="-1"></a>            <span class="do">##If the spectra is too small, you can scale the y-axis here</span></span>
-<span id="cb352-14"><a href="chm410-nmr-lab.html#cb352-14" tabindex="-1"></a>            <span class="at">amplify =</span> <span class="dv">1</span>,</span>
-<span id="cb352-15"><a href="chm410-nmr-lab.html#cb352-15" tabindex="-1"></a></span>
-<span id="cb352-16"><a href="chm410-nmr-lab.html#cb352-16" tabindex="-1"></a>            <span class="do">##Set the position of the sample labels. This is optional and removing the line removes the labels.</span></span>
-<span id="cb352-17"><a href="chm410-nmr-lab.html#cb352-17" tabindex="-1"></a>            <span class="at">lab.pos =</span> <span class="dv">5</span>, </span>
-<span id="cb352-18"><a href="chm410-nmr-lab.html#cb352-18" tabindex="-1"></a> )</span>
-<span id="cb352-19"><a href="chm410-nmr-lab.html#cb352-19" tabindex="-1"></a> </span>
-<span id="cb352-20"><a href="chm410-nmr-lab.html#cb352-20" tabindex="-1"></a> <span class="do">##This line will invert the x-axis to the more familiar NMR axis style</span></span>
-<span id="cb352-21"><a href="chm410-nmr-lab.html#cb352-21" tabindex="-1"></a> spectralPlot <span class="ot">&lt;-</span> spectralPlot <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb352-22"><a href="chm410-nmr-lab.html#cb352-22" tabindex="-1"></a> </span>
-<span id="cb352-23"><a href="chm410-nmr-lab.html#cb352-23" tabindex="-1"></a> <span class="do">##This line will set the title of your new NMR plot</span></span>
-<span id="cb352-24"><a href="chm410-nmr-lab.html#cb352-24" tabindex="-1"></a> spectraPlot <span class="ot">&lt;-</span> spectraPlot <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;NMR Spectra of Sample X&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="chm410-nmr-lab.html#cb355-1" tabindex="-1"></a><span class="do">## Set the graphics option in ChemoSpec to use ggplot2 instead of base R graphics</span></span>
+<span id="cb355-2"><a href="chm410-nmr-lab.html#cb355-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">chemoSpecGraphics =</span> <span class="st">&#39;ggplot2&#39;</span>)</span>
+<span id="cb355-3"><a href="chm410-nmr-lab.html#cb355-3" tabindex="-1"></a></span>
+<span id="cb355-4"><a href="chm410-nmr-lab.html#cb355-4" tabindex="-1"></a><span class="do">## Plot the spectra in the Spectra object named spec</span></span>
+<span id="cb355-5"><a href="chm410-nmr-lab.html#cb355-5" tabindex="-1"></a>spectralPlot <span class="ot">&lt;-</span> <span class="fu">plotSpectra</span>(spec,</span>
+<span id="cb355-6"><a href="chm410-nmr-lab.html#cb355-6" tabindex="-1"></a>            </span>
+<span id="cb355-7"><a href="chm410-nmr-lab.html#cb355-7" tabindex="-1"></a>            <span class="do">##Which spectra should be plotted? Your spectra is likely number 1 or 34.</span></span>
+<span id="cb355-8"><a href="chm410-nmr-lab.html#cb355-8" tabindex="-1"></a>            <span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb355-9"><a href="chm410-nmr-lab.html#cb355-9" tabindex="-1"></a>            </span>
+<span id="cb355-10"><a href="chm410-nmr-lab.html#cb355-10" tabindex="-1"></a>            <span class="do">##If plotting multiple spectra, offset the vertical axis</span></span>
+<span id="cb355-11"><a href="chm410-nmr-lab.html#cb355-11" tabindex="-1"></a>            <span class="at">offset =</span> <span class="dv">50</span>,</span>
+<span id="cb355-12"><a href="chm410-nmr-lab.html#cb355-12" tabindex="-1"></a>            </span>
+<span id="cb355-13"><a href="chm410-nmr-lab.html#cb355-13" tabindex="-1"></a>            <span class="do">##If the spectra is too small, you can scale the y-axis here</span></span>
+<span id="cb355-14"><a href="chm410-nmr-lab.html#cb355-14" tabindex="-1"></a>            <span class="at">amplify =</span> <span class="dv">1</span>,</span>
+<span id="cb355-15"><a href="chm410-nmr-lab.html#cb355-15" tabindex="-1"></a></span>
+<span id="cb355-16"><a href="chm410-nmr-lab.html#cb355-16" tabindex="-1"></a>            <span class="do">##Set the position of the sample labels. This is optional and removing the line removes the labels.</span></span>
+<span id="cb355-17"><a href="chm410-nmr-lab.html#cb355-17" tabindex="-1"></a>            <span class="at">lab.pos =</span> <span class="dv">5</span>, </span>
+<span id="cb355-18"><a href="chm410-nmr-lab.html#cb355-18" tabindex="-1"></a> )</span>
+<span id="cb355-19"><a href="chm410-nmr-lab.html#cb355-19" tabindex="-1"></a> </span>
+<span id="cb355-20"><a href="chm410-nmr-lab.html#cb355-20" tabindex="-1"></a> <span class="do">##This line will invert the x-axis to the more familiar NMR axis style</span></span>
+<span id="cb355-21"><a href="chm410-nmr-lab.html#cb355-21" tabindex="-1"></a> spectralPlot <span class="ot">&lt;-</span> spectralPlot <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb355-22"><a href="chm410-nmr-lab.html#cb355-22" tabindex="-1"></a> </span>
+<span id="cb355-23"><a href="chm410-nmr-lab.html#cb355-23" tabindex="-1"></a> <span class="do">##This line will set the title of your new NMR plot</span></span>
+<span id="cb355-24"><a href="chm410-nmr-lab.html#cb355-24" tabindex="-1"></a> spectraPlot <span class="ot">&lt;-</span> spectraPlot <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;NMR Spectra of Sample X&quot;</span>)</span></code></pre></div>
 <p>You can also use the function <code>loopThruSpectra()</code> to cycle through plots of each spectra in the <code>spec</code> Spectra object.</p>
 </div>
 <div id="preparing-the-data-for-statistical-analysis" class="section level2 hasAnchor" number="19.6">
 <h2><span class="header-section-number">19.6</span> Preparing the Data for Statistical Analysis<a href="chm410-nmr-lab.html#preparing-the-data-for-statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>While ChemoSpec offers tools to do baseline correction and signal referencing, we won’t use these since we already completed these data pre-processing steps in MestreNova. Our first step in statistical analysis will be to normalize the data. During sample preparation, the procedure may vary from person-to-person and sample-to-sample. NMR samples could have different pH, different dilutions, different solvent ratios, and different salt content; to name a few. It is important to normalize the data to account for these differences before performing statistical analysis. Thankfully ChemoSpec provides a handy function called <code>normSpectra()</code>.</p>
 <p>The first thing we will need to do is remove any unimportant or outlier peaks. If you cleaned your NMR tube with a solvent such as acetone, there will be a residual acetone peak at 2.2 ppm. Since some samples have this peak while others don’t, and since nothing else in our sample appears around this chemical shift, we can remove all the data between 2.0 and 2.4 ppm. This will avoid confusing our PCA analysis.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="chm410-nmr-lab.html#cb353-1" tabindex="-1"></a><span class="do">## Remove the acetone region of the NMR spectra across all the data</span></span>
-<span id="cb353-2"><a href="chm410-nmr-lab.html#cb353-2" tabindex="-1"></a>cleanerSpec <span class="ot">&lt;-</span> <span class="fu">removeFreq</span>(spec, <span class="at">rem.freq =</span> spec<span class="sc">$</span>freq <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> spec<span class="sc">$</span>freq <span class="sc">&lt;</span> <span class="fl">2.4</span>)</span>
-<span id="cb353-3"><a href="chm410-nmr-lab.html#cb353-3" tabindex="-1"></a></span>
-<span id="cb353-4"><a href="chm410-nmr-lab.html#cb353-4" tabindex="-1"></a><span class="do">##Review the spectra set again. Notice how it contains fewer data points than the last time this was run</span></span>
-<span id="cb353-5"><a href="chm410-nmr-lab.html#cb353-5" tabindex="-1"></a><span class="fu">sumSpectra</span>(cleanerSpec)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="chm410-nmr-lab.html#cb356-1" tabindex="-1"></a><span class="do">## Remove the acetone region of the NMR spectra across all the data</span></span>
+<span id="cb356-2"><a href="chm410-nmr-lab.html#cb356-2" tabindex="-1"></a>cleanerSpec <span class="ot">&lt;-</span> <span class="fu">removeFreq</span>(spec, <span class="at">rem.freq =</span> spec<span class="sc">$</span>freq <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> spec<span class="sc">$</span>freq <span class="sc">&lt;</span> <span class="fl">2.4</span>)</span>
+<span id="cb356-3"><a href="chm410-nmr-lab.html#cb356-3" tabindex="-1"></a></span>
+<span id="cb356-4"><a href="chm410-nmr-lab.html#cb356-4" tabindex="-1"></a><span class="do">##Review the spectra set again. Notice how it contains fewer data points than the last time this was run</span></span>
+<span id="cb356-5"><a href="chm410-nmr-lab.html#cb356-5" tabindex="-1"></a><span class="fu">sumSpectra</span>(cleanerSpec)</span></code></pre></div>
 <p>Since the internal peak should be the same concentration for each sample, and it should appear at the same chemical shift, we will use this peak to normalize all spectra using the following code:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="chm410-nmr-lab.html#cb354-1" tabindex="-1"></a><span class="do">## Specify the range over which to normalize the spectra.</span></span>
-<span id="cb354-2"><a href="chm410-nmr-lab.html#cb354-2" tabindex="-1"></a><span class="do">## Notice spec$freq refers to the frequency dataframe within the spec object</span></span>
-<span id="cb354-3"><a href="chm410-nmr-lab.html#cb354-3" tabindex="-1"></a>range <span class="ot">&lt;-</span> cleanerSpec<span class="sc">$</span>freq <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.5</span> <span class="sc">&amp;</span> cleanerSpec<span class="sc">$</span>freq <span class="sc">&lt;</span> <span class="fl">0.5</span></span>
-<span id="cb354-4"><a href="chm410-nmr-lab.html#cb354-4" tabindex="-1"></a></span>
-<span id="cb354-5"><a href="chm410-nmr-lab.html#cb354-5" tabindex="-1"></a><span class="do">##Create a new Spectra object called norm that contains the normalized data</span></span>
-<span id="cb354-6"><a href="chm410-nmr-lab.html#cb354-6" tabindex="-1"></a>norm <span class="ot">&lt;-</span> <span class="fu">normSpectra</span>(cleanerSpec, <span class="at">method =</span> <span class="st">&quot;PQN&quot;</span>, <span class="at">RangeExpress =</span> range)</span>
-<span id="cb354-7"><a href="chm410-nmr-lab.html#cb354-7" tabindex="-1"></a></span>
-<span id="cb354-8"><a href="chm410-nmr-lab.html#cb354-8" tabindex="-1"></a><span class="do">##You can use plotSpectra again to compare one of the original and one of the normalized spectra. You should see a change in intensity.</span></span>
-<span id="cb354-9"><a href="chm410-nmr-lab.html#cb354-9" tabindex="-1"></a></span>
-<span id="cb354-10"><a href="chm410-nmr-lab.html#cb354-10" tabindex="-1"></a><span class="fu">plotSpectra</span>(cleanerSpec)</span>
-<span id="cb354-11"><a href="chm410-nmr-lab.html#cb354-11" tabindex="-1"></a><span class="fu">plotSpectra</span>(norm)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="chm410-nmr-lab.html#cb357-1" tabindex="-1"></a><span class="do">## Specify the range over which to normalize the spectra.</span></span>
+<span id="cb357-2"><a href="chm410-nmr-lab.html#cb357-2" tabindex="-1"></a><span class="do">## Notice spec$freq refers to the frequency dataframe within the spec object</span></span>
+<span id="cb357-3"><a href="chm410-nmr-lab.html#cb357-3" tabindex="-1"></a>range <span class="ot">&lt;-</span> cleanerSpec<span class="sc">$</span>freq <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.5</span> <span class="sc">&amp;</span> cleanerSpec<span class="sc">$</span>freq <span class="sc">&lt;</span> <span class="fl">0.5</span></span>
+<span id="cb357-4"><a href="chm410-nmr-lab.html#cb357-4" tabindex="-1"></a></span>
+<span id="cb357-5"><a href="chm410-nmr-lab.html#cb357-5" tabindex="-1"></a><span class="do">##Create a new Spectra object called norm that contains the normalized data</span></span>
+<span id="cb357-6"><a href="chm410-nmr-lab.html#cb357-6" tabindex="-1"></a>norm <span class="ot">&lt;-</span> <span class="fu">normSpectra</span>(cleanerSpec, <span class="at">method =</span> <span class="st">&quot;PQN&quot;</span>, <span class="at">RangeExpress =</span> range)</span>
+<span id="cb357-7"><a href="chm410-nmr-lab.html#cb357-7" tabindex="-1"></a></span>
+<span id="cb357-8"><a href="chm410-nmr-lab.html#cb357-8" tabindex="-1"></a><span class="do">##You can use plotSpectra again to compare one of the original and one of the normalized spectra. You should see a change in intensity.</span></span>
+<span id="cb357-9"><a href="chm410-nmr-lab.html#cb357-9" tabindex="-1"></a></span>
+<span id="cb357-10"><a href="chm410-nmr-lab.html#cb357-10" tabindex="-1"></a><span class="fu">plotSpectra</span>(cleanerSpec)</span>
+<span id="cb357-11"><a href="chm410-nmr-lab.html#cb357-11" tabindex="-1"></a><span class="fu">plotSpectra</span>(norm)</span></code></pre></div>
 <p>ChemoSpec is a powerful package, it is capable of carefully dealing with large datasets. You can read the vignette for details on how to remove specific peaks, samples, or baseline frequencies. Since all our samples are similar, we will not need these tools during this lab.</p>
 </div>
 <div id="lets-do-statistics" class="section level2 hasAnchor" number="19.7">
 <h2><span class="header-section-number">19.7</span> Let’s do statistics!<a href="chm410-nmr-lab.html#lets-do-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Principal component analysis (PCA from here on) makes no assumptions about your data. PCA looks only for clustering of sample scores. Samples which have similar scores are similar, and appear as clustered together, while samples which are different (such as a fradulent or questionable sugar sample) will normally appear as outliers in the data. In essence, PCA can look past all the noise in the data and draw (hopefully) meaningful conclusions.</p>
 <p>While ChemoSpec has a plethora of options for performing PCA, we will stick with a basic approach using classical PCA with no data scaling. The following code will accomplish the analysis and store the results as a <code>prcomp</code> object.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="chm410-nmr-lab.html#cb355-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">c_pcaSpectra</span>(norm, <span class="at">choice =</span> <span class="st">&quot;noscale&quot;</span>, <span class="at">cent =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="chm410-nmr-lab.html#cb358-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">c_pcaSpectra</span>(norm, <span class="at">choice =</span> <span class="st">&quot;noscale&quot;</span>, <span class="at">cent =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Here, the function <code>c_pcaSpectra()</code> performs a classical principal component analysis on the spectra object, which contains all the supplied dataset samples as well as the sample you supplied.</p>
 <p>Finally, we can plot the PCA results using the following code. I encourage you to review the ChemoSpec documentation and customize this plot as you see appropriate.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="chm410-nmr-lab.html#cb356-1" tabindex="-1"></a><span class="do">## Create a plot of PCA scores for all data points</span></span>
-<span id="cb356-2"><a href="chm410-nmr-lab.html#cb356-2" tabindex="-1"></a>pcaPlot <span class="ot">&lt;-</span> <span class="fu">plotScores</span>(cleanerSpec, </span>
-<span id="cb356-3"><a href="chm410-nmr-lab.html#cb356-3" tabindex="-1"></a>           pca, </span>
-<span id="cb356-4"><a href="chm410-nmr-lab.html#cb356-4" tabindex="-1"></a>           </span>
-<span id="cb356-5"><a href="chm410-nmr-lab.html#cb356-5" tabindex="-1"></a>           <span class="do">## Which principal components to include. 99% of the time this will be the first 2 loadings, however if the scree plot indicates the 3rd to be important, it might be worth including.</span></span>
-<span id="cb356-6"><a href="chm410-nmr-lab.html#cb356-6" tabindex="-1"></a>           <span class="at">pcs =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </span>
-<span id="cb356-7"><a href="chm410-nmr-lab.html#cb356-7" tabindex="-1"></a>           </span>
-<span id="cb356-8"><a href="chm410-nmr-lab.html#cb356-8" tabindex="-1"></a>           <span class="do">##  Which type of ellipse should the analysis draw on this plot</span></span>
-<span id="cb356-9"><a href="chm410-nmr-lab.html#cb356-9" tabindex="-1"></a>           <span class="at">ellipse =</span> <span class="st">&quot;rob&quot;</span>, </span>
-<span id="cb356-10"><a href="chm410-nmr-lab.html#cb356-10" tabindex="-1"></a>           </span>
-<span id="cb356-11"><a href="chm410-nmr-lab.html#cb356-11" tabindex="-1"></a>           <span class="do">##  If symbols are easier to see for you than colours, set this to TRUE</span></span>
-<span id="cb356-12"><a href="chm410-nmr-lab.html#cb356-12" tabindex="-1"></a>           <span class="at">use.sym =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb356-13"><a href="chm410-nmr-lab.html#cb356-13" tabindex="-1"></a>           </span>
-<span id="cb356-14"><a href="chm410-nmr-lab.html#cb356-14" tabindex="-1"></a>           <span class="do">##  This value sets the tolerance for displaying individual labels on the plot.</span></span>
-<span id="cb356-15"><a href="chm410-nmr-lab.html#cb356-15" tabindex="-1"></a>           <span class="at">tol =</span> <span class="fl">0.01</span>)</span>
-<span id="cb356-16"><a href="chm410-nmr-lab.html#cb356-16" tabindex="-1"></a></span>
-<span id="cb356-17"><a href="chm410-nmr-lab.html#cb356-17" tabindex="-1"></a><span class="do">## Add an appropriate title to the PCA plot</span></span>
-<span id="cb356-18"><a href="chm410-nmr-lab.html#cb356-18" tabindex="-1"></a>pcaPlot <span class="ot">&lt;-</span> <span class="fu">ggtitle</span>(<span class="st">&quot;NMR PCA Plot&quot;</span>)</span>
-<span id="cb356-19"><a href="chm410-nmr-lab.html#cb356-19" tabindex="-1"></a></span>
-<span id="cb356-20"><a href="chm410-nmr-lab.html#cb356-20" tabindex="-1"></a><span class="do">##Display the completed PCA plot</span></span>
-<span id="cb356-21"><a href="chm410-nmr-lab.html#cb356-21" tabindex="-1"></a>pcaPlot</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="chm410-nmr-lab.html#cb359-1" tabindex="-1"></a><span class="do">## Create a plot of PCA scores for all data points</span></span>
+<span id="cb359-2"><a href="chm410-nmr-lab.html#cb359-2" tabindex="-1"></a>pcaPlot <span class="ot">&lt;-</span> <span class="fu">plotScores</span>(cleanerSpec, </span>
+<span id="cb359-3"><a href="chm410-nmr-lab.html#cb359-3" tabindex="-1"></a>           pca, </span>
+<span id="cb359-4"><a href="chm410-nmr-lab.html#cb359-4" tabindex="-1"></a>           </span>
+<span id="cb359-5"><a href="chm410-nmr-lab.html#cb359-5" tabindex="-1"></a>           <span class="do">## Which principal components to include. 99% of the time this will be the first 2 loadings, however if the scree plot indicates the 3rd to be important, it might be worth including.</span></span>
+<span id="cb359-6"><a href="chm410-nmr-lab.html#cb359-6" tabindex="-1"></a>           <span class="at">pcs =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </span>
+<span id="cb359-7"><a href="chm410-nmr-lab.html#cb359-7" tabindex="-1"></a>           </span>
+<span id="cb359-8"><a href="chm410-nmr-lab.html#cb359-8" tabindex="-1"></a>           <span class="do">##  Which type of ellipse should the analysis draw on this plot</span></span>
+<span id="cb359-9"><a href="chm410-nmr-lab.html#cb359-9" tabindex="-1"></a>           <span class="at">ellipse =</span> <span class="st">&quot;rob&quot;</span>, </span>
+<span id="cb359-10"><a href="chm410-nmr-lab.html#cb359-10" tabindex="-1"></a>           </span>
+<span id="cb359-11"><a href="chm410-nmr-lab.html#cb359-11" tabindex="-1"></a>           <span class="do">##  If symbols are easier to see for you than colours, set this to TRUE</span></span>
+<span id="cb359-12"><a href="chm410-nmr-lab.html#cb359-12" tabindex="-1"></a>           <span class="at">use.sym =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb359-13"><a href="chm410-nmr-lab.html#cb359-13" tabindex="-1"></a>           </span>
+<span id="cb359-14"><a href="chm410-nmr-lab.html#cb359-14" tabindex="-1"></a>           <span class="do">##  This value sets the tolerance for displaying individual labels on the plot.</span></span>
+<span id="cb359-15"><a href="chm410-nmr-lab.html#cb359-15" tabindex="-1"></a>           <span class="at">tol =</span> <span class="fl">0.01</span>)</span>
+<span id="cb359-16"><a href="chm410-nmr-lab.html#cb359-16" tabindex="-1"></a></span>
+<span id="cb359-17"><a href="chm410-nmr-lab.html#cb359-17" tabindex="-1"></a><span class="do">## Add an appropriate title to the PCA plot</span></span>
+<span id="cb359-18"><a href="chm410-nmr-lab.html#cb359-18" tabindex="-1"></a>pcaPlot <span class="ot">&lt;-</span> <span class="fu">ggtitle</span>(<span class="st">&quot;NMR PCA Plot&quot;</span>)</span>
+<span id="cb359-19"><a href="chm410-nmr-lab.html#cb359-19" tabindex="-1"></a></span>
+<span id="cb359-20"><a href="chm410-nmr-lab.html#cb359-20" tabindex="-1"></a><span class="do">##Display the completed PCA plot</span></span>
+<span id="cb359-21"><a href="chm410-nmr-lab.html#cb359-21" tabindex="-1"></a>pcaPlot</span></code></pre></div>
 <p>The last thing we need to do is check the quality of the analysis. Scree plots demonstrate how well each principal component (each loading score) represents the data. For example, a PC1 (that’s the first principal component) value of 80% means 80% of the data has been accounted for. This would be a much better analysis than a PC1 value of 20%.</p>
 <p>To create the scree plot, we can use the following code:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="chm410-nmr-lab.html#cb357-1" tabindex="-1"></a><span class="fu">plotScree</span>(pca, <span class="at">style =</span> <span class="st">&quot;trad&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="chm410-nmr-lab.html#cb360-1" tabindex="-1"></a><span class="fu">plotScree</span>(pca, <span class="at">style =</span> <span class="st">&quot;trad&quot;</span>)</span></code></pre></div>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
