@@ -665,37 +665,37 @@ mapNO2 <- atlNO2 %>%
 #install.packages("ggmap")
 library(ggmap)
 
-atlMap <- get_stamenmap(bbox = make_bbox(lon = mapNO2$longitude, 
-                                         lat = mapNO2$latitude, 
-                                         f = 0.1), 
-                        zoom = 6, 
-                        maptype = "terrain", 
-                        crop = FALSE)
-
-atlMap <- ggmap(atlMap) 
-
-atlMap
+# atlMap <- get_stamenmap(bbox = make_bbox(lon = mapNO2$longitude, 
+#                                          lat = mapNO2$latitude, 
+#                                          f = 0.1), 
+#                         zoom = 6, 
+#                         maptype = "terrain", 
+#                         crop = FALSE)
+# 
+# atlMap <- ggmap(atlMap) 
+# 
+# atlMap
 
 ```
 
 Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this in detail in [Plotting Airbeam data spatially], but for this plot we spefically want to annotate each point with it's corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html). We simply need to specify which column (`naps id`) we'll use for our labels:
 
 ```{r, message = FALSE, warning = FALSE}
-atlMap + geom_point(data = mapNO2, 
-             aes(x=longitude,
-                 y=latitude,
-                 colour = mean,
-                 size = mean),
-             alpha = 0.8) +
-  scale_alpha(guide = "none") + # removing legend for alpha
-  scale_size(guide = "none") + # removing legend for size
-  ggrepel::geom_label_repel(data = mapNO2, 
-                            aes(x=longitude,
-                                y=latitude,
-                                label = city),
-                            box.padding = 0.5,
-                            max.overlaps = Inf)
-
+# atlMap + geom_point(data = mapNO2, 
+#              aes(x=longitude,
+#                  y=latitude,
+#                  colour = mean,
+#                  size = mean),
+#              alpha = 0.8) +
+#   scale_alpha(guide = "none") + # removing legend for alpha
+#   scale_size(guide = "none") + # removing legend for size
+#   ggrepel::geom_label_repel(data = mapNO2, 
+#                             aes(x=longitude,
+#                                 y=latitude,
+#                                 label = city),
+#                             box.padding = 0.5,
+#                             max.overlaps = Inf)
+# 
 
 ```
 
