@@ -1,0 +1,110 @@
+---
+title: 'Chapter 15: Common Types of Graphs'
+output:
+  html_document:
+    df_print: paged
+---
+
+# Getting Started:
+
+For the purpose of this exercise, you will be using the Iris dataset, which is a famous and commonly used dataset in the field of data science. This dataset contains measurements of different species of iris flowers. 
+
+The iris dataset is readily available in R and can be loaded for exploration and analysis. Here's how you can get started with the iris dataset in R:
+
+## Import Data
+
+```{r}
+library(tidyverse)
+iris
+```
+
+Take your time to look at the data!
+
+The iris dataset consists of the following variables:
+
+-   Sepal Length: The length of the iris flower's sepal (in cm).
+-   Sepal Width: The width of the iris flower's sepal.
+-   Petal Length: The length of the iris flower's petal.
+-   Petal Width: The width of the iris flower's petal.
+-   Species: The species of the iris flower, which can be one of three types: Setosa, Versicolor, or Virginica.
+
+
+------------------------------------------------------------------------
+
+# Exercise 1: Bar Chart of Species Counts
+
+**Your Task:**
+
+You have a dataset named iris that contains information about different species of iris flowers. Create a bar chart to visualize the count of each `Species`. 
+
+-   Give your visualization an appropriate title.
+-   Try to make each bar have different color.
+-   Make sure to give axes correct labels.
+
+```{r}
+# Create a bar chart of species counts
+
+```
+
+
+Your graph should look something like this:
+![](count_of_iris_species.png)
+
+------------------------------------------------------------------------
+
+# Exercise 2: Box Plot of Sepal Length by Species
+
+**Your Task:**
+
+This time, create a box plot to compare the distribution of sepal length (`Sepal.Length`) for each species.
+
+-   Give your visualization an appropriate title.
+-   Try to make each box have different color.
+-   Make sure to give axes correct labels.
+
+```{r}
+# Create a box plot of sepal length by species
+
+```
+
+
+Your graph should look something like this:
+![](distribution_of_sepal_length_by_species.png)
+
+------------------------------------------------------------------------
+
+# Exercise 3: Scatterplot of Sepal Length vs Sepal Width
+
+Let's create a scatterplot to visualize the relationship between sepal length (`Sepal.Length`) and sepal width (`Sepal.Width`). 
+
+-   Give your visualization an appropriate title.
+-   Color the points by species to distinguish them.
+-   Make sure to give axes correct labels.
+
+```{r}
+# Create a scatterplot of sepal length vs. sepal width
+
+```
+
+Your graph should look something like this:
+![](sepal_length_vs_sepal_width.png)
+
+------------------------------------------------------------------------
+
+# Exercise 4: Petal Length Distribution Across Different Species
+
+Create a histogram to visualize the distribution of petal lengths for each species in the iris dataset. 
+Try to do this with one code snippet instead of 3 separate snippets for each species.
+
+-   Give your visualization an appropriate title.
+-   Color by species to distinguish them.
+-   Make sure to give axes correct labels.
+-   Adjust the `binwidth` parameter to make your graph both informative and neat.
+
+```{r}
+# Create a histogram of petal lengths for each species
+
+```
+
+Your graph should look something like this:
+![](petal_length_dist.png)

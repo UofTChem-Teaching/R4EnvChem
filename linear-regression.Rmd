@@ -1,3 +1,5 @@
+# (PART\*) Part 5: Modelling in R {-}
+
 # Modelling: Linear Regression
 
 Modelling is basically math used to describe some type of system, and they are a forte of R, a language tailor made for statistical computing... Every model has assumptions, limitations, and all around tricky bits to working. There is no shortage of modelling in a myriad of context, but in this chapter we'll discuss and break down the most common model you'll encounter, the *linear regression model*, in the most common context, the *linear calibration model*, using the most common function, `lm()`. 

@@ -21,24 +21,29 @@ rmd_files:  [
   "r-workflows.Rmd",
   "r-markdown.Rmd",
   "r-packages.Rmd",
+  "ggplot_basics.Rmd",
 
-  # Part 3: Data Wrangling
+  # Part 3: Data Analysis in R
   "intro-data-analysis.Rmd",
   "import.Rmd",
   "tidy.Rmd",
   "transform-1.Rmd",
-  "prog-with-r.Rmd",
- 
-  # Part 4: Data Analysis toolbox.
-  "sec3-intro.rmd",
   "summarize.rmd", 
-  "visualizations-redux.Rmd", 
+  # "prog-with-r.Rmd",
+ 
+  # Part 4: Visualization in R
+  "visualizations-redux.Rmd",
+  "common_graphs.Rmd",
+  "customize_plots.Rmd",
+
+
+  # Part 5: Modelling in R
   "linear-regression.Rmd",
-  "non-linear-models.Rmd" ,
+  "non-linear-models.Rmd"
   
-  # # Part 5: CHM410 Labs
-  "CHM410-airQuality.Rmd",
-  "CHM410-NMR.Rmd"
+  # Part 6: CHM410 Labs
+  # "CHM410-airQuality.Rmd",
+  # "CHM410-NMR.Rmd"
   
   ]
   

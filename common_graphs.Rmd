@@ -1,0 +1,291 @@
+# Common types of graphs
+
+In this chapter, you will learn how to create some of the most commonly used graphs, including bar plots, box plots, histograms, and scatterplots. These powerful visualization tools will enable you to explore and communicate your data effectively, gaining valuable insights along the way. 
+
+
+## Bar chart
+
+Bar charts, also called *column* charts, represent *categorical* data with rectangular bars whose height/length is proportional to the values they represent.
+
+```{r}
+ggplot(data = sumAtl,
+       aes(x = city, 
+           y = mean)) +
+  geom_col() +
+  coord_flip() # rotates plot 90 degrees
+```
+
+Pretty boring, but it's gotten the job done. **Note** that we used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the `y-axis`. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot.
+
+Also note that `ggplot()` includes `geom_col()` and `geom_bar()`. While both can be used to make bar charts. `geom_col()` is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas `geom_bar()` makes the height of the bar proportional to the number of cases in each group.
+
+### Adding error bars
+
+Any measurement always has an associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our `sumAtl` dataset we've calculated the standard deviation as a measure of uncertainty. In our example, we've used the standard deviation (`sd`) as a measure of uncertainty of our calculated annual means.
+
+To plot error bars we use `geom_errorbar()` and pass the min and max values we want the error bars to be. In our case, the lowest value would be `ymin = mean - sd`, and the highest would be `ymin = mean + sd`. Our plotted error bars now indicated plus or minus one standard deviation from the mean.
+
+```{r}
+ggplot(data = sumAtl, aes(x = city, y = mean)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean - sd, 
+                    ymax = mean + sd)) +
+  coord_flip()
+```
+
+Some of the error bars indicate we could get a *negative* concentration of NO~2~. This is physically impossible, but it does suggest we should evaluate the distribution of our data (see below). Note that since we're calculating error bar ranges on the fly, we've had to specify new aesthetic arguments to `geom_errorbar()`.
+
+### Ordering bar charts
+
+Often with bar charts (and similar plots), it's useful to *order* the bars to help tell a story or convey information. We can effectuate this using `fct_reorder()`:
+
+```{r}
+
+ggplot(data = sumAtl, 
+       aes(x = fct_reorder(city, mean),
+           y = mean)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean - sd, 
+                    ymax = mean + sd)) +
+  coord_flip()
+```
+
+So in our aesthetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] then Corner Brook.
+
+### Grouping bar charts
+
+Sometimes you'll want to group bar charts as in the concentration of several chemicals in different locations. We can easily group bar charts in ggplot. Let's go ahead and group our mean annual [NO~2~] by province by simply (1) reordering based on province, and (2) colour bars based on province:
+
+```{r}
+
+
+ggplot(data = sumAtl, 
+       aes(x = fct_reorder(city, p),
+           y = mean, 
+           fill = p)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean - sd, 
+                    ymax = mean + sd)) +
+  coord_flip()
+```
+
+There are other ways to group your bar charts depending on the story you want to tell and the data you have. Please consult the [Grouped, stacked and percent stacked barplot in ggplot2](https://www.r-graph-gallery.com/48-grouped-barplot-with-ggplot2.html) page from the *R-graph-gallery*.
+
+
+## Box Plots
+
+Box plots give a summary of the *distribution* of a numeric variable through their *quartiles*. You've no doubt seen them before, but they're often misinterpreted. Let's create a box-plot using `geom_boxplot()` and our Atlantic hourly NO~2~ measurements, then we'll break down how to interpret it.
+
+```{r}
+
+ggplot(data = atlNO2, 
+       aes( x = city, y = conc)) +
+  geom_boxplot() + 
+  coord_flip()
+
+```
+
+Let's break down how to interpret *one* box before tackling the entire set. As previously mentioned, box plots describe data in their *quartiles*. Quartiles basically arrange the data from the lowest to highest value and split the data at *three points*:
+
+-   *The first quartile* (Q1) is halfway between the lowest value and the median (50%) of the data. In other words 25% of the data lies *below* Q1.
+-   *The second quartile* (Q2) is the median. 50% of the data lies below, and 50% lies above this point.
+-   *The third quartile* (Q3) is halfway between the median and the *highest* value in the data. In other words, 75% of the data lies *below* Q3.
+
+The *box* in box-plots represents the range between Q1 and Q3. This is known as the *inter-quartile range* (IQR) and 50% of the total data falls somewhere inside this box. You can estimate the distribution by the symmetry of the box. if Q1 to the median is smaller than the median to Q3, the data has a *positive skew* (right sided skew), and vice versa.
+
+Rounding it out, `geom_boxplot()` includes *whiskers*, the thin lines emanating out from the box. This is used the predict outliers and is calculated as $outliers = \pm 1.5 \times IQR$. Anything outside the whiskers is considered an "outliers" or an extreme point, and is plotted individually.
+
+Putting this all together, let's look at the [NO~2~] for St. Johns city:
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+
+stJ <- atlNO2 %>%
+  filter(city == "St Johns")
+
+stjBox <- boxplot.stats(stJ$conc)
+
+a <- ggplot(stJ, aes(x = city, y= conc)) +
+  geom_boxplot() + 
+  theme_classic() +
+  coord_flip() +
+  
+  # max value
+  annotate("text", x = 1.25, y = 40, label = "Maximal Value\n in the data", hjust = 1) +
+  annotate("curve", x = 1.25, xend = 1, y = 40, yend = 49, curvature =-0.5, arrow = arrow(length = unit(4, "mm")))  +
+  
+  # outliers
+  annotate("rect", xmin = 0.95, xmax = 1.05, ymin = 14.5, ymax = 50, alpha = 0.25, colour = "#a63603") +
+  annotate("text", x = 1.10, y = 30, label = "Outliers", colour = "#a63603") +
+  
+  # Maximal
+  annotate("text", x = 0.9, y = 15, label = "Maximal (Q3 + 1.5*IQR", hjust = 0) +
+  annotate("curve", x = 0.9, xend = 0.99, y = 15, yend = 14, curvature = -0.5, arrow = arrow(length = unit(4, "mm"))) +    
+  
+  # q3
+  annotate("text", x =0.8, y = 13, label = "3rd Quartile (Q3)", hjust = 0 ) +
+  annotate("curve", x = 0.8, xend = 0.8, y = 13, yend = 7,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # Median
+  annotate("text", x = 0.7, y = 11, label = "Median", hjust = 0) +
+  annotate("curve", x = 0.7, xend = 0.7, y = 11, yend = 3,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # Q1
+  annotate("text", x = 0.6, y = 9, label = "1st quartile (Q1)", hjust = 0 ) +
+  annotate("curve", x = 0.6, xend = 0.65, y = 9, yend = 2,curvature = -0.3, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # minimum
+  annotate("text", x = 0.5, y = 7, label = "Minimum (Q1 - 1.5*IQR), here it's equal to the min value in the data", hjust = 0 ) +
+  annotate("curve", x = 0.5, xend = 1, y = 7, yend = 0,curvature = -0.6, arrow = arrow(length = unit(4, "mm"))) +
+  
+  # IQR
+  annotate("text", x = 1.5, y = 4, label = "Inter quartile range (IQR)", hjust = 0.25) +
+  annotate("curve", x = 1.4 , xend = 1.4, y = 7, yend = 2, curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("curve", x = 1.4, xend = 1.4, y = 2, yend = 7, curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  labs(x = "",
+       y = "conc")
+
+
+colors <- c("#feedde", "#fdbe85", "#fd8d3c", "#e6550d", "#a63603")
+
+dens  <- density(stJ$conc)
+df <- data.frame(x=dens$x, y=dens$y) %>%
+  filter(x > 0)
+quantiles <- c(0, 2, 3, 7, 14)
+
+df$quant <- factor(findInterval(df$x,quantiles))
+
+# 
+# b <- ggplot(stJ, aes(x = conc)) +
+#   geom_density() +
+#   theme_classic()
+
+
+b <- ggplot(df, aes(x,y)) + 
+  geom_line() + 
+  geom_ribbon(aes(ymin=0, ymax=y, fill=quant)) + 
+  scale_fill_manual(values = colors)  +
+  theme_classic() + 
+  guides(fill = FALSE) +
+  labs(x = "conc",
+       y = "density") +
+
+  geom_vline(xintercept=14, colour="black") +
+  geom_vline(xintercept=7, colour="black") +   
+  geom_vline(xintercept=3, colour="black")  +  
+  geom_vline(xintercept=2, colour="black") +
+  geom_vline(xintercept=0, colour = "black") +
+  
+  annotate("text", x = 30, y = 0.20, label = "Maximal values ( Q3 + 1.5 * IQR)", hjust = 0) +
+  annotate("curve", x = 30, xend = 14, y = 0.20, yend = 0.20,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("text", x = 26, y = 0.15, label = "75% of data is to the left of Q3", hjust = 0) +
+  annotate("curve", x = 26, xend = 7, y = 0.15, yend = 0.15,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("text", x = 22, y = 0.10, label = "50% of data is to the left of the median", hjust = 0) +
+  annotate("curve", x = 22, xend = 3, y = 0.10, yend = 0.10,curvature = 0, arrow = arrow(length = unit(4, "mm"))) +
+  annotate("text", x = 18, y = 0.05, label = "25% of data is to the left of Q1", hjust = 0) +
+  annotate("curve", x = 18, xend = 2, y = 0.05, yend = 0.05,curvature = 0, arrow = arrow(length = unit(4, "mm"))) 
+
+  
+
+ggpubr::ggarrange(a,b, ncol = 1, align = "v")
+
+```
+
+Note that we've plotted the actual distribution of the data. Prior to computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren't very intuitive (see the score of text you just read to understand them). Consequently, we strongly recommend you explore some of the [Box plot alternatives] unless you explicitly need to create box-plots.
+
+### Box plot alternatives
+
+The first alternative to box-plots is the *violin plot* which is made using `geom_violin()`. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive then box-plots. While the example below isn't the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown principle has days where [NO~2~] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO~2~. This might be because of difference in regional ambient levels of NO~2~.
+
+```{r atl-violin}
+ggplot(data = atlNO2, 
+       aes(x = city, y = conc, fill = p)) + 
+  geom_violin() +
+  coord_flip()
+```
+
+Another alternative is to plot the points over top of the box-plot. You've encountered this example in [R coding basics]. Truth be told, there are countless way to visualize distribution.
+
+### Statistical comparisons between groups
+
+Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as `ggpubr` have many built in functionalists to display the results of these outcomes.
+
+From our NO~2~ data, St. Johns appears to have the highest levels of NO~2~. Let's apply a pairwise test against other Newfoundland communities to see if our observation is *statistically significant* based upon the results of a *Wilcoxon test*.
+
+```{r}
+nfld <- atlNO2 %>%
+  filter(p == "NL") # only nfld stations
+
+# Code from ggpubr website
+ggpubr::ggviolin(nfld, x = "city", y = "conc") +
+  ggpubr::stat_compare_means(ref.group = "St Johns",
+                             method = "wilcox.test",
+                             label = "p.signif") 
+```
+
+Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO2 values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We've included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics.
+
+For more information on `ggpubr`, adding p-values and significance labels, and different pairwise statistical test please visit [ggpubr: Publication Ready Plots](http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/).
+
+
+## Histograms
+
+Histograms are an approximate representation of the distributions of numerical data. They're an approximation because you arbitrarily "bin" your data into groups and then count the number of values inside that bin. The frequency, or count, in each bin is represented by the height of a rectangle whose width equals that of the bin. `geom_histogram()` is used to create histograms:
+
+```{r}
+ggplot(data = subset(atlNO2, city = "St Johns"), 
+       aes(x = conc)) +
+  geom_histogram() +
+  labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018")
+```
+
+We can alter the resolution of our histogram by modifying the width of the bins using the `binwidth` argument or by specifying the number of bins with the `bins` argument. The former is useful when you don't know the range of your data, whereas the latter is useful is you do (i.e. numbers between 0 and 100).
+
+```{r}
+ggplot(data = subset(atlNO2, city = "St Johns"), 
+       aes(x = conc)) +
+  geom_histogram(binwidth = 1) +
+  labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018, binwidth = 1")
+```
+
+### Multiple histograms
+
+While you can overlap histograms, it get's difficult to read with more than a handful of datasets. If we wanted to plot histograms of all the cities in our dataset we would have to use a small multiple via the `facet_grid()` or `facet_wrap()` arguments. `facet_grid()` allows you to arrange many small plots on a grid defined by variables in your dataset (i.e. columns for provinces, and rows for different pollutants). In the example below we've used `facet_wrap(~city)` which creates a 2D layout of histograms of each cities NO~2~ values. Note the tilde , `~`, preceding in `~city`.
+
+```{r}
+
+ggplot(data = atlNO2, 
+       aes(x = conc, fill = p)) + 
+  geom_histogram(binwidth = 1, position = "identity") +
+  facet_wrap(~city)
+```
+
+
+## Scatter plots
+
+Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point ins plotted as an individual point on.You've already made scatter plots in the form of a time series during the Section 1 tutorial exercise. We've already touched upon scatter plots during the [Linear Regression] chapter where we also overlaid our linear model over our concentration points. So now we'll touch upon some things you can do to improve your scatter plots.
+
+### Marginal plots
+
+You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. For example, let's revisit the time series plot we made in [R coding basics]. We might want to know the distribution of concentrations of the individual pollutants. using the `ggExtra` package and the `ggMarginal()` function we can get the following:
+
+```{r}
+
+torontoAir <- read_csv("data/2018-01-01_60430_Toronto_ON.csv")
+
+# note we're storing our plot in the variable 'torPlot'
+# and we're not plotting SO2
+torPlot <- ggplot(data = subset(torontoAir, pollutant != "SO2"), 
+       aes(x = date.time,
+           y = concentration,
+           colour = pollutant)) +
+  geom_point() +
+  theme(legend.position = "bottom")
+
+# We're passing our torPlot to the ggMarginal Function
+ggExtra::ggMarginal(torPlot, margins = "y", groupColour = TRUE, groupFill = TRUE)
+
+```
+
+We can now see the distributions of NO~2~ and O~3~ overlaid on the vertical axis. note that `ggMarginal()` only works with scatter plots.
+
+There are plenty of other marginal options scatted about various packages. You can see many of them in action (with beautiful examples) at [Tufte in R](http://motioninsocial.com/tufte/#minimal-line-plot) by Lukasz Piwek.

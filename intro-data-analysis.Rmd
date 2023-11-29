@@ -1,8 +1,8 @@
-# (PART\*) Part 3: Data Wrangling in R {-}
+# (PART\*) Part 3: Data Analysis in R {-}
 
-# Intro to Data Wrangling
+# Intro to Data Analysis
 
-This section will teach you **how** to use R to import and organize your data as part of a cohesive data analysis workflow. Whether it takes 10 minutes or 10 hrs, *you'll use this workflow for every data analysis project*. By explicitly understanding the workflow steps, and how to execute them in R, you'll be more than capable of expanding the limited tools learned from this book to any number of data analysis projects you'll soon encounter.
+Now, we will embark on a comprehensive journey through the data analysis process, focusing on the essential steps of data wrangling and advanced analytical techniques. The chapter is designed to equip you with the necessary skills to use R effectively for organizing and transforming your data, a crucial foundation for any data analysis project. We will delve into the core workflow that is applicable to every data analysis task, regardless of its complexity or duration. This workflow is not just a one-time learning curve but a set of skills you will repeatedly use across various projects.
 
 The explicit workflow we'll be teaching was originally described by Wickham and Grolemund, and consists of six key steps: 
 
@@ -17,13 +17,12 @@ The explicit workflow we'll be teaching was originally described by Wickham and 
 
 *Import*, *Tidy*, and *Transformation* go hand-in-hand in a process called *wrangling*. Wrangling is all of the steps needed to get your data ready for analysis. It's often the most tedious and frustrating, hence wrangling (it's a fight...), but once done make the subsequent cycle of understanding your data via *transformation*, *visualizations*, and *modelling* much easier and more predictable. 
 
-In this section we'll cover data wrangling before moving onto the next section where we'll explore data analysis as it pertains to environmental chemistry. 
 
 ## Example Data
 
-Throughout this section and the next we'll be making use of a couple of example datasets. These datasets are all availabe in the `data` subfolder of the *R4EnvChem Project Template*. If you haven't already, read [Importing a project] for instructions on dowloading the repository and data.  
+Throughout this section and the next we'll be making use of a couple of example datasets. These datasets are all available in the `data` subfolder of the *R4EnvChem Project Template*. If you haven't already, read [Importing a project] for instructions on dowloading the repository and data.  
 
-## Sneak Peek at Data Wrangling
+## Sneak Peek at Data Analysis
 In this trailer section, we'll explore how data analysis can provide insights into real-world phenomena. We'll use the `storm` dataset from the `tidyverse` suite in R to investigate the patterns and relationships of storms over the years.
 
 
