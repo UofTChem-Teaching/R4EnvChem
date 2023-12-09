@@ -49,6 +49,7 @@ You have a dataset named iris that contains information about different species 
 
 Your graph should look something like this:
 ![](count_of_iris_species.png)
+If the picture is not rendered, visit https://github.com/UofTChem-Teaching/R4EnvChem-Exercises/blob/main/chapter%2015/count_of_iris_species.png instead.
 
 ------------------------------------------------------------------------
 
@@ -70,6 +71,8 @@ This time, create a box plot to compare the distribution of sepal length (`Sepal
 
 Your graph should look something like this:
 ![](distribution_of_sepal_length_by_species.png)
+If the picture is not rendered, visit https://github.com/UofTChem-Teaching/R4EnvChem-Exercises/blob/main/chapter%2015/distribution_of_sepal_length_by_species.png instead.
+
 
 ------------------------------------------------------------------------
 
@@ -88,6 +91,7 @@ Let's create a scatterplot to visualize the relationship between sepal length (`
 
 Your graph should look something like this:
 ![](sepal_length_vs_sepal_width.png)
+If the picture is not rendered, visit https://github.com/UofTChem-Teaching/R4EnvChem-Exercises/blob/main/chapter%2015/sepal_length_vs_sepal_width.png instead.
 
 ------------------------------------------------------------------------
 
@@ -108,3 +112,6 @@ Try to do this with one code snippet instead of 3 separate snippets for each spe
 
 Your graph should look something like this:
 ![](petal_length_dist.png)
+
+If the picture is not rendered, visit https://github.com/UofTChem-Teaching/R4EnvChem-Exercises/blob/main/chapter%2015/petal_length_dist.png instead.
+

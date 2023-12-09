@@ -21,13 +21,14 @@ rmd_files:  [
   "r-workflows.Rmd",
   "r-markdown.Rmd",
   "r-packages.Rmd",
-  "ggplot_basics.Rmd",
+  "loops_functions.Rmd",
 
   # Part 3: Data Analysis in R
   "intro-data-analysis.Rmd",
   "import.Rmd",
   "tidy.Rmd",
   "transform-1.Rmd",
+  "ggplot_basics.Rmd",
   "summarize.rmd", 
   # "prog-with-r.Rmd",
  
