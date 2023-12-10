@@ -1,0 +1,115 @@
+---
+title: 'Chapter 13: Data Summarization in R'
+output:
+  html_document:
+    df_print: paged
+---
+
+# Getting Started:
+
+For the purpose of this exercise, you will be using the Iris dataset, which is a famous and commonly used dataset in the field of data science. This dataset contains measurements of different species of iris flowers.
+
+1. Navigate to the R4EnvChem-Exercises repository at https://github.com/UofTChem-Teaching/R4EnvChem-Exercises.
+2. Inside the repository, go to the "Chapter 13" folder.
+3. Look for the "ATR_plastics.csv" file in this folder and click on it to open the file.
+4. On the top-right corner of the file view, click the three-dotted icon, where you'll find a "Download" button. Click on it to download the CSV file to your local machine.
+
+## Import Data
+
+Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your ATR Plastic dataset, and assign the imported data to a variable named `data`.
+
+```{r}
+library(tidyverse)
+library(flextable)
+# Complete the code below and run the cell.
+
+# Import data from CSV file using read_csv -- your code here
+data <- 
+data
+```
+
+
+------------------------------------------------------------------------
+
+# Exercise 1: Summarizing EPDM Data
+
+In this exercise, we will work with the EPDM values.
+
+**Your Task:**
+
+Create a summary table named `summary_EPDM` by calculating the mean, median, minimum, maximum, and standard deviation of the `EPDM` values. Then, make it into a flextable "summary_EPDM_ft". 
+
+```{r}
+summary_EPDM <- # Your code here
+  
+summary_EPDM_ft <- flextable(summary_EPDM) # Modify this to make the table as pretty as you want
+
+summary_EPDM_ft
+```
+
+
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. 
+
+```{r}
+library(testthat, quietly = TRUE)
+
+test_that("Exercise 1: Summarizing EPDM Data", {
+  expect_is(summary_EPDM_ft, "flextable")
+  expect_true("Mean_EPDM" %in% colnames(summary_EPDM))
+  expect_true("Median_EPDM" %in% colnames(summary_EPDM))
+  expect_true("Min_EPDM" %in% colnames(summary_EPDM))
+  expect_true("Max_EPDM" %in% colnames(summary_EPDM))
+  expect_true("Std_Dev_EPDM" %in% colnames(summary_EPDM))
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 2: Grouping and Summarizing by Rounded Wavenumber
+
+In this exercise, you will group the data by rounded `wavenumber` values (rounded to the nearest 10s) and calculate various summary statistics for other columns. Finally, you will create a summary table using the `flextable()` function.
+
+**Your Task:**
+
+1. Round the `wavenumber` values to the nearest 10s (e.g., 1008.1060 and 1005.9078 will be rounded together).  
+2. Group the data by the rounded `wavenumber` values.  
+3. Calculate the mean and median of the `EPDM`, `Polystyrene`, and `Polyethylene` values within each group.  
+4. Create a summary table using the `flextable()` function with appropriate headers and labels for the summary statistics.
+
+
+```{r}
+# Complete the code below and run the cell.
+
+# Round the 'wavenumber' values to the nearest 10s
+data_rounded <- 
+
+# Group the data by the rounded 'wavenumber' values
+data_grouped <- 
+
+# Calculate summary statistics and create a flextable
+summary_table <- 
+
+  
+flextable(summary_table) # Feel free to modify the flextable.
+```
+
+
+#### Test Your Code (Exercise 2)
+
+Do not modify the cell below. 
+
+```{r}
+library(testthat, quietly = TRUE)
+
+test_that("Grouping and Summarizing by Rounded Wavenumber", {
+  expect_true("Mean_EPDM" %in% colnames(summary_table))
+  expect_true("Median_EPDM" %in% colnames(summary_table))
+  expect_true("Mean_Polystyrene" %in% colnames(summary_table))
+  expect_true("Median_Polystyrene" %in% colnames(summary_table))
+  expect_true("Mean_Polyethylene" %in% colnames(summary_table))
+  expect_true("Median_Polyethylene" %in% colnames(summary_table))
+})
+```
+
