@@ -16,8 +16,7 @@ While there are a myriad of ways data is stored, raw instrument often record res
 
 Importing a `.csv` file into R simply requires the `read.csv` or the `read_csv` function from tidyverse. The first variable is the most important as it's the file path. Recall that R, unless specified, uses relative referencing. So in the example below we're importing the `ATR_plastics.csv` from the `data` sub-folder in our project by specifying `"data/ATR_plastics.csv"` and assigning it to the variable `atr_plastics`. Note the inclusion of the file extension.
 
-```{r atr-ex-import, echo=TRUE, message=TRUE}
-
+```{r, echo=TRUE, message=TRUE}
 atr_plastics <- read_csv("data/ATR_plastics.csv")
 ```
 A benefit of using `read_csv` is that it prints out the column specifications with each column's name (how you'll reference it in code) and the column value type. Columns can have different data types, but a data type must be consistent within any given column. Having the columns specifications is a good way to ensure R is correctly reading your data. The most common data types are:
@@ -39,13 +38,13 @@ As you can see, the `head()` function, by default, shows the first six rows of t
 Also note how the first line of the `ATR_plastics.csv` has been interpreted as columns names (or *headers*) by R. This is common practice, and gives you a handle by which you can manipulate your data. If you did not intend for R to interpret the first row as headers you can suppress this with the additional argument `col_names = FALSE`. 
 
 ```{r}
-head(read_csv("data/atr_plastics.csv", col_names = FALSE))
+head(read_csv("data/ATR_plastics.csv", col_names = FALSE))
 ```
 
 Note in the example above that since the headers are now considered data, and are composed of a string of chatacters, the entire column is then interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our `.csv`), we can use the `skip = n` to skip n rows:
 
 ```{r}
-head(read_csv("data/atr_plastics.csv", col_names = FALSE, skip = 1))
+head(read_csv("data/ATR_plastics.csv", col_names = FALSE, skip = 1))
 ```
 
 Note in the example above that we skipped our headers, so `read_csv()` created placeholder headers (`X1`, `X2`, etc.). 

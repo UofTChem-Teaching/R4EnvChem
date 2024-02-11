@@ -11,13 +11,11 @@ Understanding and mastering these functions will equip you with the skills to se
 Let's revisit our spectroscopy data from the previous chapter:
 
 
-```{r atr-ex-import2, echo=TRUE, message=FALSE}
+```{r, echo=TRUE, message=FALSE}
 atr_plastics <- read_csv("data/ATR_plastics.csv")
 
 # This just outputs a table you can explore within your browser
 DT::datatable(atr_plastics)
-
-
 ```
 
 
