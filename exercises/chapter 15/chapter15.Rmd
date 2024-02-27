@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 15: Common Types of Graphs'
+title: 'Chapter 15: Summarizing Data'
 output:
   html_document:
     df_print: paged
@@ -7,111 +7,109 @@ output:
 
 # Getting Started:
 
-For the purpose of this exercise, you will be using the Iris dataset, which is a famous and commonly used dataset in the field of data science. This dataset contains measurements of different species of iris flowers. 
+For the purpose of this exercise, you will be using the Iris dataset, which is a famous and commonly used dataset in the field of data science. This dataset contains measurements of different species of iris flowers.
 
-The iris dataset is readily available in R and can be loaded for exploration and analysis. Here's how you can get started with the iris dataset in R:
+1. Navigate to the R4EnvChem-Exercises repository at https://github.com/UofTChem-Teaching/R4EnvChem-Exercises.
+2. Inside the repository, go to the "Chapter 13" folder.
+3. Look for the "ATR_plastics.csv" file in this folder and click on it to open the file.
+4. On the top-right corner of the file view, click the three-dotted icon, where you'll find a "Download" button. Click on it to download the CSV file to your local machine.
 
 ## Import Data
 
+Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your ATR Plastic dataset, and assign the imported data to a variable named `data`.
+
 ```{r}
 library(tidyverse)
-iris
+library(flextable)
+# Complete the code below and run the cell.
+
+# Import data from CSV file using read_csv -- your code here
+data <- 
+data
 ```
-
-Take your time to look at the data!
-
-The iris dataset consists of the following variables:
-
--   Sepal Length: The length of the iris flower's sepal (in cm).
--   Sepal Width: The width of the iris flower's sepal.
--   Petal Length: The length of the iris flower's petal.
--   Petal Width: The width of the iris flower's petal.
--   Species: The species of the iris flower, which can be one of three types: Setosa, Versicolor, or Virginica.
 
 
 ------------------------------------------------------------------------
 
-# Exercise 1: Bar Chart of Species Counts
+# Exercise 1: Summarizing EPDM Data
+
+In this exercise, we will work with the EPDM values.
 
 **Your Task:**
 
-You have a dataset named iris that contains information about different species of iris flowers. Create a bar chart to visualize the count of each `Species`. 
-
--   Give your visualization an appropriate title.
--   Try to make each bar have different color.
--   Make sure to give axes correct labels.
+Create a summary table named `summary_EPDM` by calculating the mean, median, minimum, maximum, and standard deviation of the `EPDM` values. Then, make it into a flextable "summary_EPDM_ft". 
 
 ```{r}
-# Create a bar chart of species counts
+summary_EPDM <- # Your code here
+  
+summary_EPDM_ft <- flextable(summary_EPDM) # Modify this to make the table as pretty as you want
 
+summary_EPDM_ft
 ```
 
 
-Your graph should look something like this:
-![](count_of_iris_species.png)
-If the picture is not rendered, visit https://github.com/UofTChem-Teaching/R4EnvChem-Exercises/blob/main/chapter%2015/count_of_iris_species.png instead.
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. 
+
+```{r}
+library(testthat, quietly = TRUE)
+
+test_that("Exercise 1: Summarizing EPDM Data", {
+  expect_is(summary_EPDM_ft, "flextable")
+  expect_true("Mean_EPDM" %in% colnames(summary_EPDM))
+  expect_true("Median_EPDM" %in% colnames(summary_EPDM))
+  expect_true("Min_EPDM" %in% colnames(summary_EPDM))
+  expect_true("Max_EPDM" %in% colnames(summary_EPDM))
+  expect_true("Std_Dev_EPDM" %in% colnames(summary_EPDM))
+})
+```
 
 ------------------------------------------------------------------------
 
-# Exercise 2: Box Plot of Sepal Length by Species
+# Exercise 2: Grouping and Summarizing by Rounded Wavenumber
+
+In this exercise, you will group the data by rounded `wavenumber` values (rounded to the nearest 10s) and calculate various summary statistics for other columns. Finally, you will create a summary table using the `flextable()` function.
 
 **Your Task:**
 
-This time, create a box plot to compare the distribution of sepal length (`Sepal.Length`) for each species.
+1. Round the `wavenumber` values to the nearest 10s (e.g., 1008.1060 and 1005.9078 will be rounded together).  
+2. Group the data by the rounded `wavenumber` values.  
+3. Calculate the mean and median of the `EPDM`, `Polystyrene`, and `Polyethylene` values within each group.  
+4. Create a summary table using the `flextable()` function with appropriate headers and labels for the summary statistics.
 
--   Give your visualization an appropriate title.
--   Try to make each box have different color.
--   Make sure to give axes correct labels.
 
 ```{r}
-# Create a box plot of sepal length by species
+# Complete the code below and run the cell.
 
+# Round the 'wavenumber' values to the nearest 10s
+data_rounded <- 
+
+# Group the data by the rounded 'wavenumber' values
+data_grouped <- 
+
+# Calculate summary statistics and create a flextable
+summary_table <- 
+
+  
+flextable(summary_table) # Feel free to modify the flextable.
 ```
 
 
-Your graph should look something like this:
-![](distribution_of_sepal_length_by_species.png)
-If the picture is not rendered, visit https://github.com/UofTChem-Teaching/R4EnvChem-Exercises/blob/main/chapter%2015/distribution_of_sepal_length_by_species.png instead.
+#### Test Your Code (Exercise 2)
 
-
-------------------------------------------------------------------------
-
-# Exercise 3: Scatterplot of Sepal Length vs Sepal Width
-
-Let's create a scatterplot to visualize the relationship between sepal length (`Sepal.Length`) and sepal width (`Sepal.Width`). 
-
--   Give your visualization an appropriate title.
--   Color the points by species to distinguish them.
--   Make sure to give axes correct labels.
+Do not modify the cell below. 
 
 ```{r}
-# Create a scatterplot of sepal length vs. sepal width
+library(testthat, quietly = TRUE)
 
+test_that("Grouping and Summarizing by Rounded Wavenumber", {
+  expect_true("Mean_EPDM" %in% colnames(summary_table))
+  expect_true("Median_EPDM" %in% colnames(summary_table))
+  expect_true("Mean_Polystyrene" %in% colnames(summary_table))
+  expect_true("Median_Polystyrene" %in% colnames(summary_table))
+  expect_true("Mean_Polyethylene" %in% colnames(summary_table))
+  expect_true("Median_Polyethylene" %in% colnames(summary_table))
+})
 ```
-
-Your graph should look something like this:
-![](sepal_length_vs_sepal_width.png)
-If the picture is not rendered, visit https://github.com/UofTChem-Teaching/R4EnvChem-Exercises/blob/main/chapter%2015/sepal_length_vs_sepal_width.png instead.
-
-------------------------------------------------------------------------
-
-# Exercise 4: Petal Length Distribution Across Different Species
-
-Create a histogram to visualize the distribution of petal lengths for each species in the iris dataset. 
-Try to do this with one code snippet instead of 3 separate snippets for each species.
-
--   Give your visualization an appropriate title.
--   Color by species to distinguish them.
--   Make sure to give axes correct labels.
--   Adjust the `binwidth` parameter to make your graph both informative and neat.
-
-```{r}
-# Create a histogram of petal lengths for each species
-
-```
-
-Your graph should look something like this:
-![](petal_length_dist.png)
-
-If the picture is not rendered, visit https://github.com/UofTChem-Teaching/R4EnvChem-Exercises/blob/main/chapter%2015/petal_length_dist.png instead.
 

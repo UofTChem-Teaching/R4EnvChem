@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 13: Data Summarization in R'
+title: 'Chapter 13: Transformation: Data Manipulation'
 output:
   html_document:
     df_print: paged
@@ -7,109 +7,247 @@ output:
 
 # Getting Started:
 
-For the purpose of this exercise, you will be using the Iris dataset, which is a famous and commonly used dataset in the field of data science. This dataset contains measurements of different species of iris flowers.
+**IMPORTANT**: Chapter 10 exercise is a prerequisite to this exercise. If you haven't done so yet, please complete chapter 10 exercises first. 
 
-1. Navigate to the R4EnvChem-Exercises repository at https://github.com/UofTChem-Teaching/R4EnvChem-Exercises.
-2. Inside the repository, go to the "Chapter 13" folder.
-3. Look for the "ATR_plastics.csv" file in this folder and click on it to open the file.
-4. On the top-right corner of the file view, click the three-dotted icon, where you'll find a "Download" button. Click on it to download the CSV file to your local machine.
 
-## Import Data
+Before diving into the exercises, follow the instructions below to download a dataset from the Exploring Air Quality Data website.
 
-Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your ATR Plastic dataset, and assign the imported data to a variable named `data`.
+-   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
+-   Enter your student number, and then download the CSV file.
+-   Upload the file to your RStudio. 
+
+Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your Air Quality dataset, and assign the imported data to a variable named `data`.
 
 ```{r}
-library(tidyverse)
-library(flextable)
 # Complete the code below and run the cell.
 
 # Import data from CSV file using read_csv -- your code here
 data <- 
-data
 ```
 
+**Note**:
+For all the exercises in this notebook, remember that while the pipe operator enables seamless chaining of transformations, it's entirely okay to split your code into multiple steps or variables if it helps clarity. It's essential to prioritize intuition and readability in your code.
 
 ------------------------------------------------------------------------
 
-# Exercise 1: Summarizing EPDM Data
 
-In this exercise, we will work with the EPDM values.
+# Exercise 1: Ox
 
-**Your Task:**
+In this exercise, we will work with Ox ($O_X$), also known as "odd oxygen".
+Before you begin, you are recommended to watch this introductory video on odd oxygen: https://play.library.utoronto.ca/watch/1f19e6aa27d9c50e551ee8848292fe7c
 
-Create a summary table named `summary_EPDM` by calculating the mean, median, minimum, maximum, and standard deviation of the `EPDM` values. Then, make it into a flextable "summary_EPDM_ft". 
-
-```{r}
-summary_EPDM <- # Your code here
-  
-summary_EPDM_ft <- flextable(summary_EPDM) # Modify this to make the table as pretty as you want
-
-summary_EPDM_ft
-```
-
-
-#### Test Your Code (Exercise 1)
-
-Do not modify the cell below. 
-
-```{r}
-library(testthat, quietly = TRUE)
-
-test_that("Exercise 1: Summarizing EPDM Data", {
-  expect_is(summary_EPDM_ft, "flextable")
-  expect_true("Mean_EPDM" %in% colnames(summary_EPDM))
-  expect_true("Median_EPDM" %in% colnames(summary_EPDM))
-  expect_true("Min_EPDM" %in% colnames(summary_EPDM))
-  expect_true("Max_EPDM" %in% colnames(summary_EPDM))
-  expect_true("Std_Dev_EPDM" %in% colnames(summary_EPDM))
-})
-```
-
-------------------------------------------------------------------------
-
-# Exercise 2: Grouping and Summarizing by Rounded Wavenumber
-
-In this exercise, you will group the data by rounded `wavenumber` values (rounded to the nearest 10s) and calculate various summary statistics for other columns. Finally, you will create a summary table using the `flextable()` function.
+As mentioned in the video, atmospheric concentrations of NO2 and O3 are related to one another. This relationship is so intimate that reporting the concentration of one without the other is of limited utility. To embrace this relationship, atmospheric chemists have defined the term "odd oxygen" or Ox as the sum of the concentrations of NO2 and O3.
 
 **Your Task:**
 
-1. Round the `wavenumber` values to the nearest 10s (e.g., 1008.1060 and 1005.9078 will be rounded together).  
-2. Group the data by the rounded `wavenumber` values.  
-3. Calculate the mean and median of the `EPDM`, `Polystyrene`, and `Polyethylene` values within each group.  
-4. Create a summary table using the `flextable()` function with appropriate headers and labels for the summary statistics.
+Transform the `data` based on the following instructions:
+
+1. Create a new column called `Ox` by adding `O3` and `NO2`, and update the `data`.  
+2. Calculate the mean, median, and standard deviation of `Ox`. Store the results in columns named `mean_Ox`, `median_Ox`, and `std_dev_Ox` respectively using `summarise()`.  
+3. Assign the result to `Ox_summary`.  
 
 
 ```{r}
 # Complete the code below and run the cell.
 
-# Round the 'wavenumber' values to the nearest 10s
-data_rounded <- 
 
-# Group the data by the rounded 'wavenumber' values
-data_grouped <- 
+data <- # Your code to create the 'Ox' column here.
 
-# Calculate summary statistics and create a flextable
-summary_table <- 
 
+
+Ox_summary <- # Your code to summarize 'Ox' here.
+```
+
+#### Test Your Code (Exercise 1)
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+test_that("Ox", {
   
-flextable(summary_table) # Feel free to modify the flextable.
+  # Check if Ox_summary exists
+  expect_true(exists("Ox_summary"))
+  
+  # Check if Ox_summary has the right columns
+  expect_equal(names(Ox_summary), c("mean_Ox", "median_Ox", "std_dev_Ox"))
+  
+  # Check values are numbers (not NaN or NA)
+  expect_true(!is.na(Ox_summary$mean_Ox))
+  expect_true(!is.na(Ox_summary$median_Ox))
+  expect_true(!is.na(Ox_summary$std_dev_Ox))
+  
+  # Add more tests as necessary
+})
+
+```
+
+------------------------------------------------------------------------
+
+# Exercise 2: Make Data Long and Remove Erroneous Data
+
+At the end of Chapter 10 exercise, you learned that there are some bad data in our dataset. 
+
+1. Before revisiting that, let's once again transform the `data` to a longer format where the headers `NO2` and `O3` become values in a new column called `analyte`, and their respective values fill a new column called `concentration`. Assign the result to `longer_data`.
+
+2. Visualize the `Time`(x-axis) vs. `concentration`(y-axis) values as a scatterplot with `longer_data`.
+
+```{r}
+# Your code to make the data longer
+longer_data <- 
+
+# Your code for the scatterplot of Time vs concentration.
+
+```
+
+3. Now, let's ensure the reliability of your data by removing potential measurement errors. Filter out any rows in data where the `concentration` values are less than 0. Update `longer_data` with the filter data.
+
+```{r}
+# Your code to filter out rows with concentration values less than 0 goes here.
+longer_data <- 
+```
+
+4. Let's visualize the updated `longer_data` to confirm that erroneous data are indeed removed.
+
+```{r}
+# Your code for the scatterplot of Time vs concentration.
+
 ```
 
 
+**Your Task:** Now that you cleaned your data, re-visualize the `Time` and `concentration` values to confirm the effect of your data cleaning.
+
+```{r}
+# Your code for the scatterplot of Time vs concentration before cleaning goes here.
+
+```
+
+Compare this plot with your first scatterplot. Can you spot the differences? 
+
 #### Test Your Code (Exercise 2)
+
+```{r}
+library(testthat, quietly = TRUE)
+test_that("Data Cleaning Test", {
+  expect_true("analyte" %in% colnames(longer_data))
+  expect_true("concentration" %in% colnames(longer_data))
+  # Ensure no concentration values are less than 0
+  expect_true(all(longer_data$concentration >= 0))
+
+})
+```
+
+------------------------------------------------------------------------
+
+# Exercise 3: The Ozone Watch
+
+
+**Your Task:**
+
+Transform the `data` to only include rows where `O3` values are greater than 30 and then arrange the results by `Time` in descending order. Assign the result to `data_high_ozone`.
+
+```{r}
+# Complete the code below and run the cell.
+
+data_high_ozone <- # Your code here
+```
+
+
+#### Test Your Code (Exercise 3)
+
 
 Do not modify the cell below. 
 
 ```{r}
 library(testthat, quietly = TRUE)
-
-test_that("Grouping and Summarizing by Rounded Wavenumber", {
-  expect_true("Mean_EPDM" %in% colnames(summary_table))
-  expect_true("Median_EPDM" %in% colnames(summary_table))
-  expect_true("Mean_Polystyrene" %in% colnames(summary_table))
-  expect_true("Median_Polystyrene" %in% colnames(summary_table))
-  expect_true("Mean_Polyethylene" %in% colnames(summary_table))
-  expect_true("Median_Polyethylene" %in% colnames(summary_table))
+is_ordered_desc <- function(vec) {
+  all(diff(vec) <= 0)
+}
+test_that("The Ozone Watch", {
+  expect_true(all(data_high_ozone$O3 > 30))
+  expect_true(is_ordered_desc(data_high_ozone$Time))
 })
+```
+
+------------------------------------------------------------------------
+
+# Exercise 4: High Alert Days
+
+
+**Your Task:**
+
+Transform the `data` based on the following instructions:
+
+1. Create a new column called `O3_Level` where `O3` values above 30 are labeled as "High" and others as "Low".  
+2. Filter the data to only have rows with "High" `O3_Level` values.  
+3. Assign the result to `high_alert_data`.  
+
+
+```{r}
+# Complete the code below and run the cell.
+
+high_alert_data <- # Your code here
+```
+
+
+#### Test Your Code (Exercise 4)
+
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+test_that("High Alert Days", {
+  expect_equal(length(colnames(high_alert_data)), 5)
+  expect_true(all(high_alert_data$O3_Level == "High"))
+})
+```
+
+
+------------------------------------------------------------------------
+
+# (Optional) Exercise 5: Analyzing Extreme Days
+
+
+**Your Task:**
+
+Transform the `data` based on the following instructions:
+
+1. Filter the dataset for days where `NO2` is above the 75th percentile.  
+2. For this subset, compute a new column `O3_Difference` that represents the difference between each `O3` value and the average `O3` value of the subset.  
+3. Identify and filter only the rows where `O3_Difference` is above the 90th percentile of its distribution in this subset. If you don't know how to get the 90th percentile value, check out the `quantile()` function.  
+4. Finally, select only the columns `NAPS`, `Time`, and `O3_Difference`.  
+5. Assign the result to `extreme_days_data`.  
+
+```{r}
+# Complete the code below and run the cell.
+
+# Feel free to use this variable ready for you. 
+percentile_75_NO2 <- quantile(data$NO2, 0.75)
+
+extreme_days_data <- # Your code here
+
+```
+
+#### Test Your Code (Exercise 5)
+
+Do not modify the cell below. 
+```{r}
+library(testthat, quietly = TRUE)
+
+test_that("Analysis of extreme days test", {
+  
+  # Thresholds
+  percentile_75_NO2 <- quantile(data$NO2, 0.75)
+  avg_O3_filtered <- mean(data[data$NO2 > percentile_75_NO2,]$O3)
+  percentile_90_difference <- quantile(data[data$NO2 > percentile_75_NO2,]$O3 - avg_O3_filtered, 0.9)
+  
+  # Check 1: Filtering by O3_Difference
+  expect_true(all(extreme_days_data$O3_Difference > percentile_90_difference))
+  
+  # Check 2: Column names
+  expected_cols <- c("NAPS", "Time", "O3_Difference")
+  expect_equal(colnames(extreme_days_data), expected_cols)
+  
+})
+
 ```
 

@@ -289,3 +289,6 @@ ggExtra::ggMarginal(torPlot, margins = "y", groupColour = TRUE, groupFill = TRUE
 We can now see the distributions of NO~2~ and O~3~ overlaid on the vertical axis. note that `ggMarginal()` only works with scatter plots.
 
 There are plenty of other marginal options scatted about various packages. You can see many of them in action (with beautiful examples) at [Tufte in R](http://motioninsocial.com/tufte/#minimal-line-plot) by Lukasz Piwek.
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

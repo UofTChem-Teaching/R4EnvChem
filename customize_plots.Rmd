@@ -211,3 +211,6 @@ Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this 
 ```
 
 Again, not the prettiest map, but that's up to you to fix in post. [`geom_text_repel()`](https://ggrepel.slowkow.com/articles/examples.html) is an incredibly useful package for quickly annotating plots. If you need to label/annotate points check it out.
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

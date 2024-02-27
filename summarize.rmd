@@ -171,4 +171,5 @@ ft
 ```
 
 
-
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```
