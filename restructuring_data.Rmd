@@ -1,0 +1,145 @@
+# Resturcturing Your Data
+
+
+In the realm of data analysis, the structure of your data can be just as crucial as the data itself. When dealing with complex datasets in R, or any other analytical environment, the way you organize and reshape your data can significantly impact the efficiency and clarity of your analyses. This chapter delves into the art of restructuring data in R, focusing on two powerful functions: `pivot_longer` and `pivot_wider`. These tools, part of the `tidyr` package, are essential for transforming data into a format that aligns perfectly with your analytical objectives.
+
+Understanding and mastering these functions will equip you with the skills to seamlessly toggle between different data layouts. Whether you need to condense wide datasets into longer, more detailed formats using `pivot_longer`, or expand long datasets into a wider, more summarized form with `pivot_wider`, this chapter will guide you through each step with practical examples and insights. By the end of this chapter, you'll not only be adept at manipulating your data's structure in R but also appreciate how such transformations can unveil new perspectives and insights in your data analysis journey.
+
+
+## Making data longer
+
+Let's revisit our spectroscopy data from the previous chapter:
+
+
+```{r, echo=TRUE, message=FALSE}
+atr_plastics <- read_csv("data/ATR_plastics.csv")
+
+# This just outputs a table you can explore within your browser
+DT::datatable(atr_plastics)
+```
+
+
+As we can see this our ATR spectroscopy results of several plastics, as recorded for a *CHM 317* lab, is structured similarly to the example in Figure \@ref(fig:tidy-example)A. The ATR absorbance spectra of the four plastics are recorded in separate columns. Again, this format makes intuitive sense when recording in the lab, and for working in Excel, but isn't the friendliest with R. When making plots with `ggplot`, we can only specify one `y` variable. In the example plot below it's the absorbance spectrum of `Polystyrene`. However, if wanted to plot the other spectra for comparison, we'd need to repeat our `geom_point` call.
+
+```{r}
+# Plotting Polystyrene absorbance spectra
+ggplot(data = atr_plastics, 
+       aes( x = wavenumber,
+            y = Polystyrene)) +
+  geom_point()
+
+# Plotting Polystyrene and Polyethylene absorbance spectra
+ggplot(data = atr_plastics, 
+       aes( x = wavenumber,
+            y = Polystyrene)) +
+  geom_point() +
+  geom_point(data = atr_plastics, 
+             aes(x = wavenumber, 
+                 y = Polyethylene))
+```
+
+
+While the code above works, it's not particularly handy and undermines much of the utility of `ggplot` because the data *isn't* tidy. Fortunately the `pivot_longer` function can easily restructure our data into the *long* format to work with `ggplot`. Let's demonstrate that: 
+
+```{r}
+
+atr_long <- pivot_longer(atr_plastics, cols = -wavenumber, 
+               names_to = "sample",
+               values_to = "absorbance")
+
+# head() only prints the first couple of lines
+head(atr_long)
+```
+
+Let's break down the code we've executed via the `pivot_longer` function:
+
+1. `cols = -wavenumber` specifies that we're selecting every other column *but* wave number. 
+    - we could have just as easily specified each column individually using `cols = c("EPDM",...)` but it's easier to use `-` to specify what we *don't* want to select. 
+2. `names_to = "sample"` specifies that the column header (i.e. names) be converted into an observation under the `sample` column.
+3. `values_to = "absorbance"` specifies that the absorbance values under each of the selected headers be placed into the `aborsbance` column. 
+
+Now that we've reclassified out data into the 'longer', we can exploit the explicitly introduced *sample* variable to easily plot all of our spectra:
+
+```{r}
+ggplot(data = atr_long, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)
+       ) +
+  geom_point()
+```
+
+
+We'll talk more about `ggplot` in the [Visualizations] chapter, but for now you can see how our code could scale to accommodate any number of different samples, whereas the previous attempt to plot the "wide" data would require an explicit call to each column. 
+
+`pivot_longer` has many other features that you can take advantage of. We highly recommend reading the examples listed on the [pivot_longer page](https://tidyr.tidyverse.org/reference/pivot_longer.html) to get a better sense of the possibilities. For example it's common to record multiple observations in a single column header, i.e. `Chemical_A_0_mM`. We can exploit common naming conventions like this to easily split up these observations as shown below. 
+
+```{r, echo = FALSE}
+
+example <- data.frame("wavelength_nm" = c(488, 572) ,
+                      "Chemical_A_0_mM" = c(0,0),
+                      "Chemical_A_1_mM" = c(1,5),
+                      "Chemical_B_0_mM" = c(2,7),
+                      "Chemical_B_1_mM" = c(NA,20)
+                      )
+
+```
+
+
+```{r}
+head(example)
+
+
+
+example_long <- pivot_longer(example,
+   cols = starts_with("Chemical"),
+   names_prefix = "Chemical_",
+   names_to = c("Chemical", "Concentration", "Conc_Units"),
+   names_sep = "_",
+   values_to = "Absorbance",
+   values_drop_na = TRUE
+ )
+
+head(example_long)
+  
+```
+
+
+## Making Data Wider
+
+In data analysis, specific requirements or packages, such as `matrixStats` and `matrixTests`, often necessitate reshaping your data into a matrix or 'wide' format. The `pivot_wider` function from the `tidyr` package is a robust tool for this transformation, operating as the inverse of the `pivot_longer` function we discussed earlier. Essentially, `pivot_wider` is used to spread key-value pairs across a dataset, transforming it from a long to a wide format. This is especially useful when you need your data structured in a wide matrix for certain analytical procedures or visual presentations. To learn more about the `pivot_wider` function, I recommend reading the documentation [here](https://tidyr.tidyverse.org/reference/pivot_wider.html).
+
+For example, consider a dataset where we need to compare absorbance data across different samples. With `pivot_wider`, we can transform this data so that each sample is represented in its own column. This transformation is executed as follows:
+
+```{r}
+atr_wide <- pivot_wider(atr_long, 
+                        names_from = sample, 
+                        values_from = absorbance)
+
+# Viewing the first few lines of the transformed dataset
+head(atr_wide)
+```
+
+Here's a breakdown of this code:
+
+1. `names_from = sample`: This argument specifies which column in our long data will be used to create new column headers in the wide format. Each unique value in the `sample` column becomes a separate column in the resulting wide dataset.
+2. `values_from = absorbance`: This tells R that the values filling these new sample columns should be taken from the `absorbance` column.
+
+The result is a more traditional, wide-format dataset where each column represents a different sample's absorbance values, facilitating side-by-side comparisons.
+
+### Practical Uses of `pivot_wider`
+
+The `pivot_wider` function is not only useful for converting long data to wide but also for data summarization and creating formats suitable for reports or specific analyses. If you're dealing with summarized data, such as averages or counts, spreading this data into a wide format can make it more interpretable and easier to analyze.
+
+Furthermore, `pivot_wider` can be an essential part of a more complex data transformation process. In many cases, data manipulation might require alternating between widening and lengthening to achieve the desired structure for your analysis.
+
+Understanding both `pivot_longer` and `pivot_wider` equips you with a versatile toolkit for shaping your data. Whether you're preparing data for specific package requirements, like `matrixStats` or `matrixTests`, or simply need to restructure your dataset for clarity and analysis, these functions are invaluable in the R programming environment.
+
+## Further reading
+
+As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 9: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
+
+`r if (knitr:::is_html_output()) '## Chapter References'`
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

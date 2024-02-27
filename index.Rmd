@@ -1,7 +1,7 @@
 --- 
 knit: "bookdown::render_book"
 title: "R for Environmental Chemistry"
-author: "David Hall, Steven Kutarna, Kristen Yeh, Hui Peng and Jessica D'eon"
+author: "David Hall, Steven Kutarna, Kristen Yeh, Hui Peng, Chaerin Song, and Jessica D'eon"
 date: "Last built on: `r Sys.Date()`"
 url: 'https://uoftchem-teaching.github.io/R4EnvChem/'
 site: bookdown::bookdown_site
@@ -43,6 +43,5 @@ If you notice an error, mistake or if you have suggestions for adding features o
 ## Acknowlegements {-}
 
 Additionally, we would like to thank Jeremy Gauthier, Andrew Folkerson, Mark Panas, and Stephanie Schneider for all of their comments, suggestions, and hard work integrating the concepts of this book into the *CHM410* Laboratory curriculum. 
-  
 
   

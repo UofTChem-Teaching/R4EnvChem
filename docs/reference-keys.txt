@@ -1,8 +1,8 @@
 fig:unnamed-chunk-37
 fig:tidy-example
 fig:reg-plot
-fig:unnamed-chunk-161
-fig:unnamed-chunk-162
+fig:unnamed-chunk-166
+fig:unnamed-chunk-167
 fig:sdsMaxPlot
 intro-to-r-and-rstudio
 r-language
@@ -140,8 +140,6 @@ exercise-5
 tidying-your-data
 what-is-tidy-data
 tools-to-tidy-your-data
-making-data-longer
-making-data-wider
 selection-helpers
 seperating-columns
 unitingcombining-columns
@@ -151,6 +149,13 @@ tips-for-recording-data
 further-reading-3
 chapter-references
 exercise-6
+resturcturing-your-data
+making-data-longer
+making-data-wider
+practical-uses-of-pivot_wider
+further-reading-4
+chapter-references-1
+exercise-7
 transform-data-manipulation
 selecting-by-row-or-value
 logical-operators
@@ -166,8 +171,8 @@ group-and-summarize-data
 useful-summarize-functions
 the-pipe-chaining-functions-together
 notes-on-piping
-further-reading-4
-exercise-7
+further-reading-5
+exercise-8
 ggplot-basic-visualizations
 building-plots-ups
 basic-plotting
@@ -221,7 +226,7 @@ vizualizing-residuals
 plotting-residuals
 calculating-concentrations
 summary-5
-further-reading-5
+further-reading-6
 going-deeper-with-modelling
 weighing
 modelling-non-linear-regression
