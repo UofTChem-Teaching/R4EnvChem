@@ -112,11 +112,10 @@ test_that("Linear Model Test", {
 })
 ```
 
-This exercise will give students practical experience in fitting linear models and interpreting their results, which is a fundamental skill in data analysis.
 
 ------------------------------------------------------------------------
 
-# Exercise 5: Advanced Data Manipulation
+# Exercise 4: Advanced Data Manipulation
 
 **Your Task:** 
 
@@ -133,7 +132,7 @@ Create a new column `pollution_level` in `data` that categorizes the `concentrat
 
 
 
-#### Test Your Code (Exercise 5)
+#### Test Your Code (Exercise 4)
 
 ```{r}
 library(testthat, quietly = TRUE)
