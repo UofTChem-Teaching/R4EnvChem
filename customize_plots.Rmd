@@ -77,7 +77,7 @@ p + labs(title = "Toronto Air quality",
 
 We've already talked about labelling axis titles in [Modifying labels], and adding marginal plots in [Scatter plots]. So we'll just briefly touch upon some simple axis modifications.
 
-### Transforming axix
+### Transforming axis
 
 Transformations are largely related to *continuous* data, and are done using `scale_y_continuous()` or `scale_x_continuous()` functions. For example to scale the y-axis of our plot we'd do the following:
 

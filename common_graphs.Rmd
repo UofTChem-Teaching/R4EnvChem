@@ -262,7 +262,7 @@ ggplot(data = atlNO2,
 
 ## Scatter plots
 
-Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point ins plotted as an individual point on.You've already made scatter plots in the form of a time series during the Section 1 tutorial exercise. We've already touched upon scatter plots during the [Linear Regression] chapter where we also overlaid our linear model over our concentration points. So now we'll touch upon some things you can do to improve your scatter plots.
+Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point ins plotted as an individual point on. You've already learned the basics of scatter plots in Chapter 14. Now, we'll touch upon some things you can do to improve your scatter plots.
 
 ### Marginal plots
 

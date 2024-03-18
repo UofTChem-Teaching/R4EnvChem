@@ -1,4 +1,4 @@
-# ggplot basic visualizations 
+# Ggplot Basic Visualizations 
 
 `ggplot2` is loaded by default with the `tidyverse` suite of packages. Let's revisit our spectroscopy data we encountered in [Tidying your data]:
 
