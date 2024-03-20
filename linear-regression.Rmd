@@ -462,6 +462,8 @@ FAESsamples %>%
 ```
 And there we go. See the [Summarizing data] and [Visualizations] chapters for assiting an making prettier tables and visualizations, respectively. 
 
+
+
 ## Summary
 
 In this chapter we've covered: 
@@ -472,6 +474,8 @@ In this chapter we've covered:
   - A brief overview of model parameters as they pertain to linear calibration. 
   - Viasualizing models and the importance of visualizing residuals. 
   - Calculating sample concentration from model outputs. 
+  - Running multiple linear regressions.
+  - Storing regression
 
 ## Further reading
 

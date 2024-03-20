@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 13 Transform: Data Manipulation | R for Environmental Chemistry</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 Transform: Data Manipulation | R for Environmental Chemistry" />
   <meta property="og:type" content="book" />
@@ -53,7 +53,7 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.31/datatables.js"></script>
+<script src="libs/datatables-binding-0.32/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
@@ -132,6 +132,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -334,6 +338,7 @@ div.csl-indent {
 <li class="chapter" data-level="9.2.4" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#visualization-geographical-distribution"><i class="fa fa-check"></i><b>9.2.4</b> Visualization: Geographical Distribution</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#further-reading-1"><i class="fa fa-check"></i><b>9.3</b> Further Reading</a></li>
+<li class="chapter" data-level="9.4" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#exercise-5"><i class="fa fa-check"></i><b>9.4</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html"><i class="fa fa-check"></i><b>10</b> Importing Your Data Into R</a>
 <ul>
@@ -345,7 +350,7 @@ div.csl-indent {
 <li class="chapter" data-level="10.3" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#importing-other-data-types"><i class="fa fa-check"></i><b>10.3</b> Importing other data types</a></li>
 <li class="chapter" data-level="10.4" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#saving-data"><i class="fa fa-check"></i><b>10.4</b> Saving data</a></li>
 <li class="chapter" data-level="10.5" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#further-reading-2"><i class="fa fa-check"></i><b>10.5</b> Further Reading</a></li>
-<li class="chapter" data-level="10.6" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#exercise-5"><i class="fa fa-check"></i><b>10.6</b> Exercise</a></li>
+<li class="chapter" data-level="10.6" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#exercise-6"><i class="fa fa-check"></i><b>10.6</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="tidying-your-data.html"><a href="tidying-your-data.html"><i class="fa fa-check"></i><b>11</b> Tidying Your Data</a>
 <ul>
@@ -361,7 +366,7 @@ div.csl-indent {
 <li class="chapter" data-level="11.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tips-for-recording-data"><i class="fa fa-check"></i><b>11.3</b> Tips for recording data</a></li>
 <li class="chapter" data-level="11.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#further-reading-3"><i class="fa fa-check"></i><b>11.4</b> Further reading</a></li>
 <li class="chapter" data-level="11.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#chapter-references"><i class="fa fa-check"></i><b>11.5</b> Chapter References</a></li>
-<li class="chapter" data-level="11.6" data-path="tidying-your-data.html"><a href="tidying-your-data.html#exercise-6"><i class="fa fa-check"></i><b>11.6</b> Exercise</a></li>
+<li class="chapter" data-level="11.6" data-path="tidying-your-data.html"><a href="tidying-your-data.html#exercise-7"><i class="fa fa-check"></i><b>11.6</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="resturcturing-your-data.html"><a href="resturcturing-your-data.html"><i class="fa fa-check"></i><b>12</b> Resturcturing Your Data</a>
 <ul>
@@ -372,7 +377,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="resturcturing-your-data.html"><a href="resturcturing-your-data.html#further-reading-4"><i class="fa fa-check"></i><b>12.3</b> Further reading</a></li>
 <li class="chapter" data-level="12.4" data-path="resturcturing-your-data.html"><a href="resturcturing-your-data.html#chapter-references-1"><i class="fa fa-check"></i><b>12.4</b> Chapter References</a></li>
-<li class="chapter" data-level="12.5" data-path="resturcturing-your-data.html"><a href="resturcturing-your-data.html#exercise-7"><i class="fa fa-check"></i><b>12.5</b> Exercise</a></li>
+<li class="chapter" data-level="12.5" data-path="resturcturing-your-data.html"><a href="resturcturing-your-data.html#exercise-8"><i class="fa fa-check"></i><b>12.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html"><i class="fa fa-check"></i><b>13</b> Transform: Data Manipulation</a>
 <ul>
@@ -401,9 +406,9 @@ div.csl-indent {
 <li class="chapter" data-level="13.7.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#notes-on-piping"><i class="fa fa-check"></i><b>13.7.1</b> Notes on piping</a></li>
 </ul></li>
 <li class="chapter" data-level="13.8" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#further-reading-5"><i class="fa fa-check"></i><b>13.8</b> Further reading</a></li>
-<li class="chapter" data-level="13.9" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#exercise-8"><i class="fa fa-check"></i><b>13.9</b> Exercise</a></li>
+<li class="chapter" data-level="13.9" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#exercise-9"><i class="fa fa-check"></i><b>13.9</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html"><i class="fa fa-check"></i><b>14</b> ggplot basic visualizations</a>
+<li class="chapter" data-level="14" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html"><i class="fa fa-check"></i><b>14</b> Ggplot Basic Visualizations</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>14.1</b> Building plots ups</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>14.2</b> Basic plotting</a></li>
@@ -423,12 +428,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.3.1" data-path="summarizing-data.html"><a href="summarizing-data.html#uniting-columns"><i class="fa fa-check"></i><b>15.3.1</b> Uniting columns</a></li>
 <li class="chapter" data-level="15.3.2" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables"><i class="fa fa-check"></i><b>15.3.2</b> Pretty tables</a></li>
 </ul></li>
+<li class="chapter" data-level="15.4" data-path="summarizing-data.html"><a href="summarizing-data.html#exercise-10"><i class="fa fa-check"></i><b>15.4</b> Exercise</a></li>
 </ul></li>
 <li class="part"><span><b>Part 4: Visualization in R</b></span></li>
 <li class="chapter" data-level="16" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html"><i class="fa fa-check"></i><b>16</b> Visualizations for Env Chem</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#discrete-vs.-continuous-variables"><i class="fa fa-check"></i><b>16.1</b> Discrete vs. continuous variables</a></li>
 <li class="chapter" data-level="16.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#prerequisites"><i class="fa fa-check"></i><b>16.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="16.3" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#exercise-11"><i class="fa fa-check"></i><b>16.3</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html"><i class="fa fa-check"></i><b>17</b> Common types of graphs</a>
 <ul>
@@ -451,6 +458,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="17.4.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#marginal-plots"><i class="fa fa-check"></i><b>17.4.1</b> Marginal plots</a></li>
 </ul></li>
+<li class="chapter" data-level="17.5" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#exercise-12"><i class="fa fa-check"></i><b>17.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html"><i class="fa fa-check"></i><b>18</b> Customizing your plots</a>
 <ul>
@@ -460,12 +468,13 @@ div.csl-indent {
 <li class="chapter" data-level="18.4" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#modifying-labels"><i class="fa fa-check"></i><b>18.4</b> Modifying labels</a></li>
 <li class="chapter" data-level="18.5" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#modifying-axis"><i class="fa fa-check"></i><b>18.5</b> Modifying Axis</a>
 <ul>
-<li class="chapter" data-level="18.5.1" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#transforming-axix"><i class="fa fa-check"></i><b>18.5.1</b> Transforming axix</a></li>
+<li class="chapter" data-level="18.5.1" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#transforming-axis"><i class="fa fa-check"></i><b>18.5.1</b> Transforming axis</a></li>
 <li class="chapter" data-level="18.5.2" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#limits"><i class="fa fa-check"></i><b>18.5.2</b> Limits</a></li>
 <li class="chapter" data-level="18.5.3" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#axis-tickslabels"><i class="fa fa-check"></i><b>18.5.3</b> Axis ticks/labels</a></li>
 </ul></li>
 <li class="chapter" data-level="18.6" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#arranging-plots"><i class="fa fa-check"></i><b>18.6</b> Arranging plots</a></li>
 <li class="chapter" data-level="18.7" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#anotating-plots"><i class="fa fa-check"></i><b>18.7</b> Anotating plots</a></li>
+<li class="chapter" data-level="18.8" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#exercise-13"><i class="fa fa-check"></i><b>18.8</b> Exercise</a></li>
 </ul></li>
 <li class="part"><span><b>Part 5: Modelling in R</b></span></li>
 <li class="chapter" data-level="19" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html"><i class="fa fa-check"></i><b>19</b> Modelling: Linear Regression</a>
@@ -549,8 +558,8 @@ div.csl-indent {
 <span id="cb175-10"><a href="transform-data-manipulation.html#cb175-10" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb175-11"><a href="transform-data-manipulation.html#cb175-11" tabindex="-1"></a></span>
 <span id="cb175-12"><a href="transform-data-manipulation.html#cb175-12" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-f9c1e0d268a9cab6f3d9" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f9c1e0d268a9cab6f3d9">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"type","targets":1},{"name":"conc_Na","targets":2},{"name":"units","targets":3},{"name":"replicate","targets":4},{"name":"signal","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-fb2efacd185aaf544de3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-fb2efacd185aaf544de3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"type","targets":1},{"name":"conc_Na","targets":2},{"name":"units","targets":3},{"name":"replicate","targets":4},{"name":"signal","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Note</strong> the use of <code>convert = TRUE</code> in the <code>separate()</code> call. This runs a type convert on new columns. If we didn’t include this, the <code>conc_Na</code> column would be of type character because the numbers originated from a string. <code>convert()</code> ensures they’re converted to numeric. <strong>Always use <code>convert = TRUE</code></strong> when you separate columns.</p>
 <div id="selecting-by-row-or-value" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Selecting by row or value<a href="transform-data-manipulation.html#selecting-by-row-or-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1077,8 +1086,8 @@ div.csl-indent {
 <li><a href="https://tavareshugo.github.io/data_carpentry_extras/base-r_tidyverse_equivalents/base-r_tidyverse_equivalents.html">Syntax equivalents: base R vs Tidyverse</a> by Hugo Taveres for a comparison of base-R solutions to tidyverse. This entire book is largely biased towards tidyverse solutions, but there’s no denying that certain base-R can be more elegant. Check out this write up to get a better idea.</li>
 </ul>
 </div>
-<div id="exercise-8" class="section level2 hasAnchor" number="13.9">
-<h2><span class="header-section-number">13.9</span> Exercise<a href="transform-data-manipulation.html#exercise-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-9" class="section level2 hasAnchor" number="13.9">
+<h2><span class="header-section-number">13.9</span> Exercise<a href="transform-data-manipulation.html#exercise-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There is a set of exercises available for this chapter!</p>
 <p><strong>Not sure how to access and work on the exercise Rmd files? </strong></p>
 <ul>

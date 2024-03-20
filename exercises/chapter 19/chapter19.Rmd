@@ -21,7 +21,7 @@ Use the `read_csv()` function from the `readr`(`tidyverse`) package to import yo
 install.packages("tidyverse")
 library(tidyverse)
 # Import data from CSV file using read_csv -- your code here
-data <- read_csv("2018-01-01_60430_Toronto_ON.csv")
+data <- 
 ```
 
 ------------------------------------------------------------------------
