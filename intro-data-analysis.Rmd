@@ -134,7 +134,8 @@ In case it hasn't been apparent enough, this entire endeavour was inspired by th
 
 
 
-
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```
 
 
 

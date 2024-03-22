@@ -39,7 +39,7 @@ ggplot(data = atr_plastics,
 ```
 
 
-While the code above works, it's not particularly handy and undermines much of the utility of `ggplot` because the data *isn't* tidy. Fortunately the `pivot_longer` function can easily restructure our data into the *long* format to work with `ggplot`. Let's demonstrate that: 
+While the code above works, it's not particularly handy and undermines much of the utility of `ggplot`. Fortunately the `pivot_longer` function can easily restructure our data into the *long* format to better work with `ggplot`. Let's demonstrate that: 
 
 ```{r}
 

@@ -88,6 +88,8 @@ sumAtl
 
 Looks like there aren't any offenders. For tips on visualizing these results please see the [Visualizations] chapter.
 
+
+
 ### Further summarize operations
 
 There are other options we can use to summarize out data. A handy list is provided on the [`summarize()` help page](https://dplyr.tidyverse.org/reference/summarise.html). The most common ones you'll need are:
@@ -171,4 +173,6 @@ ft
 ```
 
 
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```
 

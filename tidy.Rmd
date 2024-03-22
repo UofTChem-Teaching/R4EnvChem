@@ -8,14 +8,12 @@ You might not have explicitly thought about how you store your data, whether wor
 Tidy data has "...each variable in a column, and each observation in a row..." [@wickham2014] This may seem obvious to you, but let's consider how data is often recorded in lab, as exemplified in Figure \@ref(fig:tidy-example)A. Here the instrument response of two chemicals (*A* and *B*) for two samples (*blank* and *unknown*) are recorded. Note how the samples are on each row and the chemical are columns. However, someone else may record the same data differently as shown in Figure \@ref(fig:tidy-example)B, with the samples occupying distinct columns, and the chemical rows. Either layout may work well, but analyzing both would require re-tooling your approach. This is where the concept of *tidy* data comes into play. By reclassifying our data into *observations* and *variables* we can restructure out data into a common format: the *tidy* format (Figure \@ref(fig:tidy-example)C).
 
 
-```{r tidy-example, echo = FALSE, fig.cap="(A and B) The same data can be recorded in multiple formats. (C) The same data in the tidy format. Note how the tidy data typically has more rows, hence why it's sometimes refered to as 'long' data."}
+```{r tidy-example, echo = FALSE, fig.cap="(A and B) The same data in different formats. (C) The data organized with clear variables and observations."}
 
 knitr::include_graphics("images/tidy-example.png")
 ```
 
-In the *tidy* or *long* format, we reclassified out data into three variables (*Sample*, *Chemical*, and *Reading*). This makes the observations clearer as now we know we measured two chemicals (*A* and *B*) in two samples (*blank* and *unknown*) and we've explicitly declared the *Reading* variable for our measured instrument response, which was only implied in the original layouts. Moreover, we can read across a row to get the gist of one data point (i.e. "Our blank has a reading of 0 for Chemical A"). Again we haven't changed any information, we've simply reorganized our data to be clearer, consistent, and compatible with the `tidyverse` suit of tools. 
-
-This might seem pedantic now, but as you progress you'll want to reuse code you've previously written. This is greatly facilitated by making every data set as consistently structured as possible, and the *tidy* format is an ideal starting place. 
+Organizing data into distinct variables (like *Sample*, *Chemical*, and *Reading*) enhances clarity. This reorganization doesn’t change the data but rearranges it for better compatibility with analytical tools.
 
 ## Tools to tidy your data
 
@@ -61,7 +59,7 @@ As you've already seen, there are multiple ways to select columns and variables 
 
 ### Seperating columns
 
-Sometimes your data has already been recorded in a tidy-ish fashion, but there may be multiple observations recorded under one apparent variable, something like `1 mM` for concentration. As it stands we cannot easily access the numerical value in the concentration recording because R will encode this as a string due to the `mM`. We can **separate** data like this using the `seperate` function, which operates similarly to how `pivot_longer` breaks up headers. 
+Sometimes your data has already been recorded in a tidy-ish fashion, but there may be multiple observations recorded under one apparent variable, something like `1 mM` for concentration. As it stands we cannot easily access the numerical value in the concentration recording because R will encode this as a string due to the `mM`. We can **separate** data like this using the `seperate` function. 
 
 ```{r, echo = FALSE}
 
@@ -150,8 +148,7 @@ Let's start by talking about the seemingly intuitive but tedious approach. We ca
 
 ```{r}
 selected_data <- select(atr_plastics, wavenumber, EPDM, `Sample: Shopping bag`)
-longer_data <- pivot_longer(selected_data, cols = -wavenumber, names_to = "Material_Type", values_to = "Value")
-atr_plastics_transformed <- rename(longer_data, Wave_Num = wavenumber)
+atr_plastics_transformed <- rename(selected_data, Wave_Num = wavenumber)
 
 atr_plastics_transformed
 
@@ -162,7 +159,6 @@ Now, let's see how we can transform the same `atr_plastics` tibble using the `%>
 ```{r}
 atr_plastics_transformed <- atr_plastics %>%
     select(wavenumber, EPDM, `Sample: Shopping bag`) %>%
-    pivot_longer(cols = -wavenumber, names_to = "Material_Type", values_to = "Value") %>%
     rename(Wave_Num = wavenumber)
 
 atr_plastics_transformed
@@ -176,7 +172,7 @@ We will formally introduce the unfamiliar operator `%>%` (pipe) in the next chap
 In case you haven't picked up on it, tidying data in R is much easier if the data is recorded consistently. You can't always control how your data will look, but in the event that you can (i.e. your inputting the instrument readings into *Excel* on the bench top) here are some tips to make your life easier: 
 
 - *Be consistent*. If you're naming your samples make sure they all contain the same elements in the same order. The sample names `Toronto_O3_1` and `Toronto_O3_2` can easily be broken up as demonstrated in [Separating columns]; `O3_Toronto_1`, `TorontoO32`, and `Toronto_1` can't be. 
-- *Use as simple as possible headers*. Often you'll be pasting instrument readings into one `.csv` using *Excel* on whatever computer records the instrument readings. In these situations it's often much easier to paste things in columns. Recall the capabilities of `pivot_longer` and how you can break up names as described in [Making data 'longer']. `Chemical_A_1` and `Chemical_B_2` are headers that are descriptive for your sample and can be easily pivoted into their own columns. `Chemical A 1 ( I think?!)` is a header that isn't.
+- *Use as simple as possible headers*. Often you'll be pasting instrument readings into one `.csv` using *Excel* on whatever computer records the instrument readings. In these situations it's often much easier to paste things in columns. We will learn more about how to do this in the next chapter.
 - *Make sure data types are consistent within a column*. This harks back to the [Importing data into R] chapter, but a single non-numeric character can cause R to misinterpret an entire column leading to headaches down the line. 
 - *Save your data in UTF-8 format*. Excel and other programs often allow you to export your data in a variety of `.csv` encodings, but this can affect how R reads when importing your data. Make sure you select `UTF-8` encoding when exporting your data. 
 

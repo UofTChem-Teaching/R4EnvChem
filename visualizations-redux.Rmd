@@ -53,3 +53,5 @@ sumAtl <- atlNO2 %>%
 ```
 
 
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```
