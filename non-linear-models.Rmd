@@ -215,7 +215,8 @@ In this chapter we reviewed non-linear modelling using a case study with four-pa
 
 
 Lastly, we've also touched upon labelling maximal values in a plot using the `ggpmisc` package. Notably useful for determining local peaks in spectroscopy data. 
-
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```
 
 
 

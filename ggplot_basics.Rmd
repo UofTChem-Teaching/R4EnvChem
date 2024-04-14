@@ -2,15 +2,13 @@
 
 `ggplot2` is loaded by default with the `tidyverse` suite of packages. Let's revisit our spectroscopy data we encountered in [Tidying your data]:
 
-```{r}
+
+```{r, warning=FALSE}
 library(tidyverse)
-atr_long <- read_csv("data/ATR_plastics.csv") %>%
-    pivot_longer(cols = -wavenumber, 
-               names_to = "sample",
-               values_to = "absorbance") 
+atr_data <- read_csv("data/ATR_plastics.csv")
 
 # First 50 rows of data
-DT::datatable(atr_long[1:50, ])
+DT::datatable(atr_data[1:50, ])
 ```
 
 ## Building plots ups
@@ -21,10 +19,10 @@ The `gg` in `ggplot2` stands for the *grammar of graphics*,[@Wickham2009] and it
 
 `ggplot2` uses `geoms` to specify what type of plot to create. Different plots are used to tell different stories and have different strengths and weakness. We'll explore these more in [Visualizations for Env Chem], but for now we'll focus on `geom_point()`, which simply plots data as points on an [x,y] coordinate. In other words, a scatter plot.
 
-Let's plot our tided `atr_long` data:
+Let's plot our tided `atr_data` data:
 
 ```{r}
-ggplot(data = atr_long, 
+ggplot(data = atr_data, 
        aes(x = wavenumber, y = absorbance)) +
   geom_point()
 ```
@@ -33,9 +31,9 @@ ggplot(data = atr_long,
 Let's ignore the plot for now and look at our code down:
 
   1. `ggplot()` initializes a *ggplot object*, basically an empty plot. 
-  2. We then specified we want to plot data from our `atr_long` dataset (`data = atr_long`).
+  2. We then specified we want to plot data from our `atr_data` dataset (`data = atr_data`).
   3. We then specified our *aesthetic mappings* via `aes()`. Here we'll pass information for how we want the plot to look. 
-  4. To our aesthetic mappings we've specified which values from `atr_long` are supposed to be our x-axis values (`x = wavenumber`) and y-axis values (`y = absorbance`).
+  4. To our aesthetic mappings we've specified which values from `atr_data` are supposed to be our x-axis values (`x = wavenumber`) and y-axis values (`y = absorbance`).
   4. We then add the `geom_point()` layer to create a scatter plot of [x,y] points .
 
 Now let's look at our result. What we see is a point for every recorded absorbance measurements from our ATR analysis. We can clearly see the spectra of the different plastics in our data, however they're all coloured the same. This is because we've only specified the x and y values. As far as `ggplot()` is concerned, these are the only values that matter, but we know different.
@@ -44,7 +42,7 @@ Fortunately you can pass multiple variables to different `aes()` options to enha
 
 ```{r}
 
-ggplot(data = atr_long, 
+ggplot(data = atr_data, 
        aes(x = wavenumber, 
            y = absorbance, 
            colour = sample)) +
@@ -56,7 +54,7 @@ ggplot(data = atr_long,
 Now we have a legend which clearly specifies which points are associated with each sample. But now the points are too large, potentially masking certain peaks. We can adjust the size of each point as follows:
 
 ```{r}
-ggplot(data = atr_long, 
+ggplot(data = atr_data, 
        aes(x = wavenumber, 
            y = absorbance, 
            colour = sample)) +
@@ -67,7 +65,7 @@ ggplot(data = atr_long,
 We specified `size = 0.5` in the `geom_point()` call because it's a constant. We can map `size` to any continuous variable, such as the absorbance:
 
 ```{r}
-ggplot(data = atr_long, 
+ggplot(data = atr_data, 
        aes(x = wavenumber, 
            y = absorbance, 
            colour = sample,
@@ -83,7 +81,7 @@ Sometimes this makes sense (i.e. a *bubble chart*) but for our example, having t
 By default `ggplot` uses the header of the columns you passed for the `x` and `y` `aes()` options. Because headers are written for code they're often poor label titles for plots. We can specify new labels and plot titles as follows:
 
 ```{r}
-ggplot(data = atr_long, 
+ggplot(data = atr_data, 
        aes(x = wavenumber, 
            y = absorbance, 
            colour = sample)) +
@@ -105,7 +103,7 @@ Note how we changed the title of the legend with `colour = "Plastics"`. This is 
 Sometimes your plots become overwhelming, a phenomena called overplotting, which prevent your from comparing graphs or charts. A popular solution is [*small multiples*](https://en.wikipedia.org/wiki/Small_multiple), a series of smilar plots using the same scale and axes. This is readily accomplished in R using [`facet_grid()`](https://ggplot2-book.org/facet.html) (which creates a 2-D grid ) or [`facet_wrap()`](https://ggplot2-book.org/facet.html) (a single 1d ribbon wrapped into 2D space). You simply specy which variable you want to differentiate your plots, for us it's `sample`: 
 
 ```{r}
-ggplot(data = atr_long, 
+ggplot(data = atr_data, 
        aes(x = wavenumber, 
            y = absorbance)) +
   geom_point() +
@@ -122,7 +120,7 @@ Often you won't want to plot everything in your dataset. Rather, you'll want to 
 You can subset your data on the fly using `subset()`. This way allows you to specify based off of [Logical operators] as such: 
 
 ```{r}
-ggplot(data = subset(atr_long, sample == "EPDM"),
+ggplot(data = subset(atr_data, sample == "EPDM"),
        aes(x = wavenumber, 
            y = absorbance)) +
   geom_point()
@@ -131,7 +129,7 @@ ggplot(data = subset(atr_long, sample == "EPDM"),
 or 
 
 ```{r}
-ggplot(data = subset(atr_long, wavenumber >=2500),
+ggplot(data = subset(atr_data, wavenumber >=2500),
        aes(x = wavenumber, 
            y = absorbance)) +
   geom_point()
@@ -141,7 +139,7 @@ Another approach is to use `filter()` and pipe to `ggplot()`:
 
 ```{r}
 
-atr_long %>%
+atr_data %>%
   filter(sample != "EPDM" & wavenumber <= 2500 |sample == "EPDM" & wavenumber >= 3500 ) %>%
   ggplot(., aes(x = wavenumber, y = absorbance, colour = sample)) +
   geom_point()
@@ -150,3 +148,6 @@ atr_long %>%
 ```
 
 There are pros and cons to either approach. `subset()` on the fly is best for simple task, like plotting a single city, whereas the piping approach is best for more complex sorting. 
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```

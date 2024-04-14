@@ -6,11 +6,12 @@ Summarizing data is what it sounds like. You're reducing the number of rows in y
 
 We'll take a look at the 2018 hourly mean NO~2~ concentrations for the Atlantic provinces (New Brunswick, Prince Edward Island, Nova Scotia, and Newfoundland). The dataset is available in the [*R4EnvChem* Project Template](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate) repository. Also if you're keen, you can download any number of atmospheric datasets from *Environment and Climate Change Canada*'s (ECCC) National Airborne Pollution Program's (NAPS) website [here](https://data.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en) 
 
-Since ECCC stores their NAPS data in a matrix layout, we need to briefly tidy it up:
+We will learn `pivot_longer` function in the next chapter, but you can take the following tidying code for granted in this chapter.
+
 
 ```{r, message = FALSE}
 
-atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
+atlNO2 <- read_csv("data/2018hourlyNO2_Atl_wide.csv", skip = 7, na =c("-999")) %>%
   rename_with(~tolower(gsub("/.*", "", .x))) %>%
   pivot_longer(cols = starts_with("h"), 
                names_prefix = "h", 

@@ -29,11 +29,10 @@ The type of plots available to you, and how they display, are dependent on the t
 
 ## Prerequisites 
 
-Additionally, for this section we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Please revisit that chapter for details on that dataset.
+Additionally, for this section we'll mostly be using the `atlNO2` and `sumAtl` datasets we created in the [Summarizing data] chapter. Now that we've seen how to turn data into a longer format, we'll show you how `atlNO2` was tidied from the raw (wide format) data. This `atlNO2` is identical to the previous `atlNO2` we saw.
 
 ```{r}
-
-atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
+atlNO2 <- read_csv("data/2018hourlyNO2_Atl_wide.csv", skip = 7, na =c("-999")) %>%
   rename_with(~tolower(gsub("/.*", "", .x))) %>%
   pivot_longer(cols = starts_with("h"), 
                names_prefix = "h", 
@@ -45,10 +44,10 @@ atlNO2 <- read_csv("data/2018hourlyNO2_Atl.csv", skip = 7, na =c("-999")) %>%
 
 sumAtl <- atlNO2 %>%
   group_by(p, city) %>%
-  summarize(mean = mean(conc), 
-            sd = sd(conc), 
-            median = median(conc), 
-            min = min(conc), 
+  summarize(mean = mean(conc),
+            sd = sd(conc),
+            median = median(conc),
+            min = min(conc),
             max = max(conc))
 ```
 

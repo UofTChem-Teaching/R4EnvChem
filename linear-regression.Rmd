@@ -147,7 +147,7 @@ So let's import our dataset:
 
 # Importing using tips from Import chapter
 
-FAES <- read_csv(file = "data/FAESdata.csv") %>%
+FAES <- read_csv(file = "data/FAES_original_wide.csv") %>%
   pivot_longer(cols = -std_Na_conc,
                names_to = "replicate", 
                names_prefix = "reading_",
@@ -520,3 +520,7 @@ ggplot(data = weightedCalCurve,
               aes(weight=`(weights)`, label = "weighed")) 
   
 ```
+
+```{r child='end-of-chapter-exercise-temp.Rmd'}
+```
+
