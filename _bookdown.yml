@@ -27,10 +27,10 @@ rmd_files:  [
   "intro-data-analysis.Rmd",
   "import.Rmd",
   "tidy.Rmd",
-  "restructuring_data.Rmd",
   "transform-1.Rmd",
   "ggplot_basics.Rmd",
   "summarize.rmd", 
+  "restructuring_data.Rmd",
   # "prog-with-r.Rmd",
  
   # Part 4: Visualization in R
@@ -41,6 +41,7 @@ rmd_files:  [
 
   # Part 5: Modelling in R
   "linear-regression.Rmd",
+  "multiple-linear-models.Rmd",
   "non-linear-models.Rmd"
   
   # Part 6: CHM410 Labs

@@ -266,7 +266,7 @@ Scatter plots display values of two variables, one of which is a *continuous* va
 
 ### Marginal plots
 
-You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. For example, let's revisit the time series plot we made in [R coding basics]. We might want to know the distribution of concentrations of the individual pollutants. using the `ggExtra` package and the `ggMarginal()` function we can get the following:
+You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. With the Toronto air quality data that we've already familiarized with, we might want to know the distribution of concentrations of the individual pollutants. Using the `ggExtra` package and the `ggMarginal()` function we can get the following:
 
 ```{r}
 

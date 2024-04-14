@@ -19,12 +19,14 @@ Organizing data into distinct variables (like *Sample*, *Chemical*, and *Reading
 
 Now one of the more laborious parts of data science is tidying your data. If you can follow the tips in the [Tips for recording data] section, but the truth is you often won't have control. To this end, the `tidyverse` offers several tools, notable `dplyr` (pronounces 'd-pliers'), to help you get there. 
 
-Let's revisit our spectroscopy data from the previous chapter:
+Let's revisit our spectroscopy data from the previous chapter, but in a slightly different format. 
+
+(We will learn how to format data differently in the future chapter, but for now, feel free to observe what is different from Chapter 10's ATR plastics data.)
 
 
 ```{r atr-ex-import2, echo=TRUE, message=FALSE}
 
-atr_plastics <- read_csv("data/ATR_plastics.csv")
+atr_plastics <- read_csv("data/ATR_plastics_original_wide.csv")
 
 # This just outputs a table you can explore within your browser
 DT::datatable(atr_plastics)

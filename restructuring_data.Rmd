@@ -6,49 +6,91 @@ In the realm of data analysis, the structure of your data can be just as crucial
 Understanding and mastering these functions will equip you with the skills to seamlessly toggle between different data layouts. Whether you need to condense wide datasets into longer, more detailed formats using `pivot_longer`, or expand long datasets into a wider, more summarized form with `pivot_wider`, this chapter will guide you through each step with practical examples and insights. By the end of this chapter, you'll not only be adept at manipulating your data's structure in R but also appreciate how such transformations can unveil new perspectives and insights in your data analysis journey.
 
 
-## Making data longer
+## Long vs Wide Data
 
-Let's revisit our spectroscopy data from the previous chapter:
+Let's revisit our ATR plastics data from previous chapters:
 
 
 ```{r, echo=TRUE, message=FALSE}
-atr_plastics <- read_csv("data/ATR_plastics.csv")
+atr_plastics <- read.csv("data/ATR_plastics.csv")
 
 # This just outputs a table you can explore within your browser
 DT::datatable(atr_plastics)
 ```
 
 
-As we can see this our ATR spectroscopy results of several plastics, as recorded for a *CHM 317* lab, is structured similarly to the example in Figure \@ref(fig:tidy-example)A. The ATR absorbance spectra of the four plastics are recorded in separate columns. Again, this format makes intuitive sense when recording in the lab, and for working in Excel, but isn't the friendliest with R. When making plots with `ggplot`, we can only specify one `y` variable. In the example plot below it's the absorbance spectrum of `Polystyrene`. However, if wanted to plot the other spectra for comparison, we'd need to repeat our `geom_point` call.
+**And here is the surprise**: The data you see above was actually already transformed to be longer for your convenience in the earlier chapters! 
+
+The original (wide) data looks like this:
+
+```{r, echo=TRUE, message=FALSE}
+atr_plastics_wide <- read.csv("data/ATR_plastics_original_wide.csv")
+
+
+# This just outputs a table you can explore within your browser
+DT::datatable(atr_plastics_wide)
+```
+
+
+### Long Data
+In the **long format**, the data is structured with each observation occupying a single row, and different variables are stacked or melted into a single column. 
+
+Take a look at the data `atr_plastics`. It contains absorbance measurements for different materials (EPDM, Polystyrene, Polyethylene, and a sample labeled "Sample: Shopping bag") at various wavenumbers. Each row represents a combination of wavenumber, material, and absorbance value. This format is more conducive to data analysis and visualization, particularly when working with multiple variables or when conducting statistical analyses. It allows for easier manipulation and transformation of the data, as well as the application of statistical models that require data in long format, such as certain regression analyses. This is exactly why we have been providing you with this version of data in the previous chapters!
+
+### Wide Data
+On the other hand, in the **wide format**, the data (`atr_plastics_wide`) is organized with each variable occupying its own column. Here, we have a dataset containing the same absorbance measurements, but now each row represents a unique wavenumber, and the absorbance values for each material are presented in separate columns. This format is intuitive for viewing all measurements at a particular wavenumber simultaneously, allowing for quick comparisons between materials.
+
+However, as the number of materials or variables increases, the wide format may become unwieldy, especially if additional variables are introduced.
+
+This format makes intuitive sense when recording in the lab, and for working in Excel, but isn't the friendliest with R. For example, when making plots with `ggplot`, we can only specify one `y` variable. In the example plot below it's the absorbance spectrum of `Polystyrene`. However, if wanted to plot the other spectra for comparison, we'd need to repeat our `geom_point` call for each variable, which is not ideal to keep our code clean.
 
 ```{r}
 # Plotting Polystyrene absorbance spectra
-ggplot(data = atr_plastics, 
+ggplot(data = atr_plastics_wide, 
        aes( x = wavenumber,
             y = Polystyrene)) +
   geom_point()
 
 # Plotting Polystyrene and Polyethylene absorbance spectra
-ggplot(data = atr_plastics, 
+ggplot(data = atr_plastics_wide, 
        aes( x = wavenumber,
             y = Polystyrene)) +
   geom_point() +
-  geom_point(data = atr_plastics, 
+  geom_point(data = atr_plastics_wide, 
              aes(x = wavenumber, 
                  y = Polyethylene))
 ```
 
+While the code above works, it's not particularly handy and undermines much of the utility of `ggplot`. 
 
-While the code above works, it's not particularly handy and undermines much of the utility of `ggplot`. Fortunately the `pivot_longer` function can easily restructure our data into the *long* format to better work with `ggplot`. Let's demonstrate that: 
+
+On the other hand, the *long* format will better work to show all 4 materials' absorbance and wavenumber scatterplot in one graph without having to repeat the ggplot call.
 
 ```{r}
+ggplot(data = atr_plastics, 
+       aes(x = wavenumber, 
+           y = absorbance, 
+           colour = sample)
+       ) +
+  geom_point()
+```
 
-atr_long <- pivot_longer(atr_plastics, cols = -wavenumber, 
+
+## Making Data Longer
+
+Now that we learned the difference between long and wide formats, how did we actually transform the original wide format ATR plastic data into the longer format? 
+
+We transformed the original wide format data into a longer format using `pivot_longer()` function. This function reshapes the data by stacking or melting multiple columns into a single column, making it easier to work with and analyze. By specifying the appropriate arguments such as `cols`, `names_to`, and `values_to`, we can control how the data is reshaped. 
+
+Let's look at the following code.
+
+```{r}
+# Transform the original (wide) data into long format
+atr_long <- pivot_longer(atr_plastics_wide, cols = -wavenumber, 
                names_to = "sample",
                values_to = "absorbance")
 
-# head() only prints the first couple of lines
-head(atr_long)
+DT::datatable(atr_long)
 ```
 
 Let's break down the code we've executed via the `pivot_longer` function:
@@ -58,65 +100,24 @@ Let's break down the code we've executed via the `pivot_longer` function:
 2. `names_to = "sample"` specifies that the column header (i.e. names) be converted into an observation under the `sample` column.
 3. `values_to = "absorbance"` specifies that the absorbance values under each of the selected headers be placed into the `aborsbance` column. 
 
-Now that we've reclassified out data into the 'longer', we can exploit the explicitly introduced *sample* variable to easily plot all of our spectra:
 
-```{r}
-ggplot(data = atr_long, 
-       aes(x = wavenumber, 
-           y = absorbance, 
-           colour = sample)
-       ) +
-  geom_point()
-```
-
-
-We'll talk more about `ggplot` in the [Visualizations] chapter, but for now you can see how our code could scale to accommodate any number of different samples, whereas the previous attempt to plot the "wide" data would require an explicit call to each column. 
-
-`pivot_longer` has many other features that you can take advantage of. We highly recommend reading the examples listed on the [pivot_longer page](https://tidyr.tidyverse.org/reference/pivot_longer.html) to get a better sense of the possibilities. For example it's common to record multiple observations in a single column header, i.e. `Chemical_A_0_mM`. We can exploit common naming conventions like this to easily split up these observations as shown below. 
-
-```{r, echo = FALSE}
-
-example <- data.frame("wavelength_nm" = c(488, 572) ,
-                      "Chemical_A_0_mM" = c(0,0),
-                      "Chemical_A_1_mM" = c(1,5),
-                      "Chemical_B_0_mM" = c(2,7),
-                      "Chemical_B_1_mM" = c(NA,20)
-                      )
-
-```
-
-
-```{r}
-head(example)
-
-
-
-example_long <- pivot_longer(example,
-   cols = starts_with("Chemical"),
-   names_prefix = "Chemical_",
-   names_to = c("Chemical", "Concentration", "Conc_Units"),
-   names_sep = "_",
-   values_to = "Absorbance",
-   values_drop_na = TRUE
- )
-
-head(example_long)
-  
-```
+Beyond what we showed here, `pivot_longer` has many other features that you can take advantage of. We highly recommend reading the examples listed on the [pivot_longer page](https://tidyr.tidyverse.org/reference/pivot_longer.html) to get a better sense of the possibilities. 
 
 
 ## Making Data Wider
 
-In data analysis, specific requirements or packages, such as `matrixStats` and `matrixTests`, often necessitate reshaping your data into a matrix or 'wide' format. The `pivot_wider` function from the `tidyr` package is a robust tool for this transformation, operating as the inverse of the `pivot_longer` function we discussed earlier. Essentially, `pivot_wider` is used to spread key-value pairs across a dataset, transforming it from a long to a wide format. This is especially useful when you need your data structured in a wide matrix for certain analytical procedures or visual presentations. To learn more about the `pivot_wider` function, I recommend reading the documentation [here](https://tidyr.tidyverse.org/reference/pivot_wider.html).
+How about making a data wider? We can utilize `pivot_wider` function.
 
-For example, consider a dataset where we need to compare absorbance data across different samples. With `pivot_wider`, we can transform this data so that each sample is represented in its own column. This transformation is executed as follows:
+Essentially, `pivot_wider` is used to spread key-value pairs across a dataset, transforming it from a long to a wide format. This is especially useful when you need your data structured in a wide matrix for certain analytical procedures or visual presentations. 
+
+The subsequent code utilizes the `pivot_wider` function to convert the long format data (`atr_long`) back into the original wider format. Here, `names_from` specifies the column containing the variable names, and `values_from` specifies the column containing the variable values. Running `head(atr_wide)` allows us to inspect the first few rows of the resulting wider format data, confirming that the transformation successfully reverted the data to its original structure.
 
 ```{r}
+# Transform the long format data back into the wider format (= original data)
 atr_wide <- pivot_wider(atr_long, 
                         names_from = sample, 
                         values_from = absorbance)
 
-# Viewing the first few lines of the transformed dataset
 head(atr_wide)
 ```
 
@@ -127,19 +128,38 @@ Here's a breakdown of this code:
 
 The result is a more traditional, wide-format dataset where each column represents a different sample's absorbance values, facilitating side-by-side comparisons.
 
-### Practical Uses of `pivot_wider`
 
 The `pivot_wider` function is not only useful for converting long data to wide but also for data summarization and creating formats suitable for reports or specific analyses. If you're dealing with summarized data, such as averages or counts, spreading this data into a wide format can make it more interpretable and easier to analyze.
 
 Furthermore, `pivot_wider` can be an essential part of a more complex data transformation process. In many cases, data manipulation might require alternating between widening and lengthening to achieve the desired structure for your analysis.
 
+To learn more about the `pivot_wider` function, we recommend reading the documentation [here](https://tidyr.tidyverse.org/reference/pivot_wider.html).
+
+
+## Summary 
+In summary, the relationship between wide and long data formats in R is inverse, meaning that transforming data from one format to the other and back again using functions like `pivot_longer()` and `pivot_wider()` is straightforward and reversible. This flexibility allows researchers to choose the most suitable format for their analysis needs. In general, the decision to use wide or long format depends on the specific characteristics of the data and the analytical tasks at hand. Here's a recap of when to use each format:
+
+- Use wide format when:
+  - Each variable has its own column.
+  - Observations are in rows, and variables are in columns.
+  - The data is more compact and intuitive for viewing multiple variables simultaneously.
+  
+- Use long format when:
+  - Multiple variables are stored in the same column.
+  - Each row represents a unique observation or measurement.
+  - The data is conducive to statistical analysis and visualization, especially when dealing with repeated measures or categorical variables.
+
+
 Understanding both `pivot_longer` and `pivot_wider` equips you with a versatile toolkit for shaping your data. Whether you're preparing data for specific package requirements, like `matrixStats` or `matrixTests`, or simply need to restructure your dataset for clarity and analysis, these functions are invaluable in the R programming environment.
+
+By understanding the inverse relationship between wide and long data formats and knowing when to use each format, we can also effectively manage and analyze our data to derive meaningful insights and conclusions.
+
+
 
 ## Further reading
 
 As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 9: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
 
-`r if (knitr:::is_html_output()) '## Chapter References'`
 
 ```{r child='end-of-chapter-exercise-temp.Rmd'}
 ```

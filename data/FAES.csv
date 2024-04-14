@@ -1,0 +1,16 @@
+"","std_Na_conc","replicate","signal"
+"1","blank 0 ppm","1",502.3391
+"2","blank 0 ppm","2",591.7768
+"3","blank 0 ppm","3",581.4588
+"4","standard 0.1 ppm","1",5656.342
+"5","standard 0.1 ppm","2",5653.5584
+"6","standard 0.1 ppm","3",5667.4387
+"7","standard 0.2 ppm","1",9393.4167
+"8","standard 0.2 ppm","2",9362.6858
+"9","standard 0.2 ppm","3",9332.0498
+"10","standard 0.5 ppm","1",20186.9033
+"11","standard 0.5 ppm","2",20140.5115
+"12","standard 0.5 ppm","3",20152.9856
+"13","standard 1 ppm","1",30797.6935
+"14","standard 1 ppm","2",30836.5239
+"15","standard 1 ppm","3",30789.8266
