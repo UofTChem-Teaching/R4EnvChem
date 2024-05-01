@@ -659,8 +659,7 @@ div.csl-indent {
 <span id="cb255-4"><a href="common-types-of-graphs.html#cb255-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: In subset.data.frame(atlNO2, city = &quot;St Johns&quot;) :
 ##  extra argument &#39;city&#39; will be disregarded</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
 <p>We can alter the resolution of our histogram by modifying the width of the bins using the <code>binwidth</code> argument or by specifying the number of bins with the <code>bins</code> argument. The former is useful when you don’t know the range of your data, whereas the latter is useful is you do (i.e. numbers between 0 and 100).</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="common-types-of-graphs.html#cb258-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
@@ -688,7 +687,7 @@ div.csl-indent {
 <p>You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. With the Toronto air quality data that we’ve already familiarized with, we might want to know the distribution of concentrations of the individual pollutants. Using the <code>ggExtra</code> package and the <code>ggMarginal()</code> function we can get the following:</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="common-types-of-graphs.html#cb261-1" tabindex="-1"></a>torontoAir <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 507 Columns: 8
-## ── Column specification ─────────────────────────────────────────
+## ── Column specification ─────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (3): city, p, pollutant
 ## dbl  (4): naps, latitude, longitude, concentration

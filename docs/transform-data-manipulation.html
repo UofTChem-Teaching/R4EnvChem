@@ -1014,8 +1014,8 @@ div.csl-indent {
 <p>This doesn’t look like what we wanted. What we got was the mean and standard deviation of <em>all</em> of the signals, regardless of the concentration of the standard. Also note how we’ve lost the other columns/variables and are only left with the mean and stdDev. This is all because we need to <strong>group</strong> our observations by a variable. We can do this by using the <code>group_by()</code> function.</p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="transform-data-manipulation.html#cb200-1" tabindex="-1"></a>groupedFAES <span class="ot">&lt;-</span> <span class="fu">group_by</span>(FAES, type, conc_Na)</span>
 <span id="cb200-2"><a href="transform-data-manipulation.html#cb200-2" tabindex="-1"></a><span class="fu">summarise</span>(groupedFAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;type&#39;. You can override
-## using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;type&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 5 × 4
 ## # Groups:   type [2]
 ##   type     conc_Na   mean stdDev
