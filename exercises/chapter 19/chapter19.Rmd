@@ -4,24 +4,26 @@ output:
   html_document:
     df_print: paged
 ---
+  
+# Getting Started
+  
+Before diving into the exercises, ensure you have the OPFR dataset. Download the OPFR dataset provided in the same folder as this exercise. Try to save the file in the same folder where you saved this Rmd file.
 
-# Getting Started:
+In these exercises, you will be analyzing data collected from a study performed by CHM410 students on dust samples from their homes. The study focused on detecting organophosphate flame retardants (OPFRs), which are chemicals used to make materials fire-resistant. The dataset you will work with includes several important columns: 
 
+- **chemical**: This column identifies the type of OPFR being analyzed. 
+- **concentration**: This indicates the concentration of the OPFR in the calibration standards, which is crucial for developing a relationship between the amount of chemical present and the instrument's signal.
+- **analyte_peak_area_counts**: This measures the signal intensity from the OPFR of interest, reflecting the quantity detected by the analytical instrument.
+- **IS_peak_area_counts**: This measures the signal intensity from an internal standard added to each sample and standard. The internal standard is structurally similar to the target OPFR and helps correct for variations in sample analysis, such as differences in injection volume or signal suppression by other substances in the dust.
 
-Before diving into the exercises, follow the instructions below to download a dataset from the Exploring Air Quality Data website.
-
--   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
--   Enter your student number, and then download the CSV file.
--   Upload the file to your RStudio. 
-
-Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your Air Quality dataset, and assign the imported data to a variable named `data`.
+For this chapter, we will limit our focus to a single chemical (TCEP) to understand the basics of linear regression in chemical analysis. 
 
 ```{r}
-# Complete the code below and run the cell.
-install.packages("tidyverse")
+# Run the cell.
 library(tidyverse)
-# Import data from CSV file using read_csv -- your code here
-data <- 
+data <- read_csv("OPFR_concentration.csv", show_col_types = FALSE) %>% 
+  filter(chemical == "TCEP") 
+DT::datatable(data)
 ```
 
 ------------------------------------------------------------------------
@@ -30,15 +32,22 @@ data <-
 
 **Your Task:** 
 
-Explore the `data`. Generate a summary of the dataset and create a histogram of the `concentration` values. Don't forget to give a proper title and axis names to the histogram.
+Explore the `data`. Run the following code snippet to generate a summary of the dataset.
 
 ```{r}
-# Your code to generate a summary of the dataset
-summary_data <- 
-
-# Your code to create a histogram of the concentration values
+# Generate a summary of the dataset
 
 ```
+
+Now, let's create a histogram of the `analyte_peak_area_counts` values to understand their distribution. Ensure your histogram is properly titled and the axes are appropriately labeled.
+
+```{r}
+# Create a histogram of the Analyte Peak Area (counts)
+
+```
+
+Your graph should look something like this:
+![](exercise1_hist.png)
 
 ------------------------------------------------------------------------
 
@@ -46,57 +55,54 @@ summary_data <-
 
 **Your Task:** 
 
-Group the `data` by `pollutant`, and then calculate the average concentration for each group. Name the average concentration column "avg_concentration".
+Group the `data` by `concentration`, then calculate the average of the `analyte_peak_area_counts` for each concentration level. Name the average column "avg_peak_area".
 
 ```{r}
-# Your code to group data and calculate average concentration
-grouped_data <- 
+# Your code to group data and calculate average peak area
+grouped_data <- data %>%
 
+# Display the grouped data
 grouped_data
-
 ```
-
 
 #### Test Your Code (Exercise 2)
 
 ```{r}
 library(testthat, quietly = TRUE)
 test_that("Grouping and Summarizing Test", {
-  expect_true("pollutant" %in% colnames(grouped_data))
-  expect_true("avg_concentration" %in% colnames(grouped_data))
-  expect_true(nrow(grouped_data) == 3)
+  expect_true("concentration" %in% colnames(grouped_data))
+  expect_true("avg_peak_area" %in% colnames(grouped_data))
+  expect_true(nrow(grouped_data) > 1)
 })
 ```
 
 ------------------------------------------------------------------------
 
-# Exercise 3: Linear Modeling of Pollutant Relationships
+# Exercise 3: Linear Modeling of Peak Area Relationships
 
 **Your Task:**
-Here, you will fit a linear model to investigate the relationship between NO2 and O3. Use NO2 concentration as the predictor (independent variable) and O3 concentration as the response (dependent variable).
-1. Reformat the data to have a desired format.
-1. Summarize the model and interpret the coefficients.
-2. Plot the original data along with the regression line.
+You will fit a linear model to investigate the relationship between `Standard Concentration` and `Analyte Peak Area (counts)`. Use `Standard Concentration` as the predictor (independent variable) and `Analyte Peak Area (counts)` as the response (dependent variable).
+
+1. Ensure the data format is suitable for modeling.
+2. Fit a linear model and summarize it.
+3. Plot the original data along with the regression line.
 
 ```{r}
-# Filter data for the relevant pollutants
-pol_data <- 
+# 1. Ensure no missing values for the modeling
 
-# Convert data to wide format
-pol_data_wide <- 
+# 2A. Fit a linear model
 
-# Remove NA values for complete cases
-pol_data_complete <- 
-
-# Fit a linear model
-model <- 
-
-# Summarize the model
-
-
-# Create a scatterplot with the regression line
+# 2B. Summarize the model and print it out
 
 ```
+
+```{r}
+# 3. Create a scatterplot with the regression line
+
+```
+
+Your graph should look something like this:
+![](exercise3_scatter.png)
 
 
 
@@ -105,13 +111,12 @@ model <-
 ```{r}
 library(testthat, quietly = TRUE)
 test_that("Linear Model Test", {
-  expect_true("NO2" %in% names(coef(model)))
-  expect_true("O3" %in% names(model$model))
+  expect_true("concentration" %in% names(coef(model)))
+  expect_true("analyte_peak_area_counts" %in% names(model$model))
   # Test for a significant relationship
-  expect_true(summary(model)$coefficients[2, 4] < 0.05)
+  expect_true(summary(model)$coefficients[2, 4] < 0.05) # P-value for the slope
 })
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -119,25 +124,34 @@ test_that("Linear Model Test", {
 
 **Your Task:** 
 
-Create a new column `pollution_level` in `data` that categorizes the `concentration` into 'Low', 'Medium', or 'High', based on thresholds you define. Then, count how many occurrences fall into each category.
+Create a new column `peak_area_level` in `data` that categorizes the `analyte_peak_area_counts` into 'Low', 'Medium', or 'High', based on thresholds you define. Then, count how many occurrences fall into each category.
 
 ```{r}
-# Create the pollution_level column
+# Define thresholds and create the peak_area_level column
+data <- data %>%
+  
 
+# Count occurrences in each peak area level category
+peak_area_counts <- table(data$peak_area_level)
 
-# Count occurrences in each category for Toronto
-
-
+# Display the counts
+peak_area_counts
 ```
 
 
-
 #### Test Your Code (Exercise 4)
-
 ```{r}
 library(testthat, quietly = TRUE)
 test_that("Advanced Data Manipulation Test", {
-  expect_true("pollution_level" %in% colnames(data))
-  expect_true(any(table(data$pollution_level) >= 0))
+  # Check if 'peak_area_level' column exists
+  expect_true("peak_area_level" %in% colnames(data))
+  
+  # Check if all values in 'peak_area_level' are within the specified categories
+  expect_true(all(data$peak_area_level %in% c("Low", "Medium", "High")))
+  
+  # Optionally, check for non-zero counts in each category (if data set is expected to cover all categories)
+  expect_true(table(data$peak_area_level)[['Low']] == 4)
+  expect_true(table(data$peak_area_level)[['Medium']] == 2)
+  expect_true(table(data$peak_area_level)[['High']]== 2)
 })
 ```
