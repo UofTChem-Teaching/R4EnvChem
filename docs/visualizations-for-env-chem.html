@@ -69,7 +69,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -141,6 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -586,7 +587,7 @@ div.csl-indent {
 <span id="cb244-8"><a href="visualizations-for-env-chem.html#cb244-8" tabindex="-1"></a>               <span class="at">values_transform =</span> <span class="fu">list</span>(<span class="at">conc =</span> as.numeric),</span>
 <span id="cb244-9"><a href="visualizations-for-env-chem.html#cb244-9" tabindex="-1"></a>               <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
 <pre><code>## Rows: 8395 Columns: 31
-## ── Column specification ─────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (3): Pollutant//Polluant, City//Ville, P/T//P/T
 ## dbl (28): NAPS ID//Identifiant SNPA, Latitude//Latitude, Longitude//Longitud...
@@ -600,8 +601,8 @@ div.csl-indent {
 <span id="cb246-5"><a href="visualizations-for-env-chem.html#cb246-5" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(conc),</span>
 <span id="cb246-6"><a href="visualizations-for-env-chem.html#cb246-6" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(conc),</span>
 <span id="cb246-7"><a href="visualizations-for-env-chem.html#cb246-7" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(conc))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;p&#39;. You can override using
-## the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;p&#39;. You can override
+## using the `.groups` argument.</code></pre>
 </div>
 <div id="exercise-12" class="section level2 hasAnchor" number="16.3">
 <h2><span class="header-section-number">16.3</span> Exercise<a href="visualizations-for-env-chem.html#exercise-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>

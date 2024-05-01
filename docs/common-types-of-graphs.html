@@ -69,7 +69,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -141,6 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -688,7 +689,7 @@ div.csl-indent {
 <p>You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. With the Toronto air quality data that we’ve already familiarized with, we might want to know the distribution of concentrations of the individual pollutants. Using the <code>ggExtra</code> package and the <code>ggMarginal()</code> function we can get the following:</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="common-types-of-graphs.html#cb261-1" tabindex="-1"></a>torontoAir <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 507 Columns: 8
-## ── Column specification ─────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (3): city, p, pollutant
 ## dbl  (4): naps, latitude, longitude, concentration
