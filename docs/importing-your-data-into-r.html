@@ -69,7 +69,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -141,6 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -562,7 +563,7 @@ div.csl-indent {
 <p>Importing a <code>.csv</code> file into R simply requires the <code>read.csv</code> or the <code>read_csv</code> function from tidyverse. The first variable is the most important as it’s the file path. Recall that R, unless specified, uses relative referencing. So in the example below we’re importing the <code>ATR_plastics.csv</code> from the <code>data</code> sub-folder in our project by specifying <code>"data/ATR_plastics.csv"</code> and assigning it to the variable <code>atr_plastics</code>. Note the inclusion of the file extension.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="importing-your-data-into-r.html#cb131-1" tabindex="-1"></a>atr_plastics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 28628 Columns: 3
-## ── Column specification ─────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): sample
 ## dbl (2): wavenumber, absorbance
@@ -594,7 +595,7 @@ div.csl-indent {
 <p>Also note how the first line of the <code>ATR_plastics.csv</code> has been interpreted as columns names (or <em>headers</em>) by R. This is common practice, and gives you a handle by which you can manipulate your data. If you did not intend for R to interpret the first row as headers you can suppress this with the additional argument <code>col_names = FALSE</code>.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="importing-your-data-into-r.html#cb135-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 <pre><code>## Rows: 28629 Columns: 3
-## ── Column specification ─────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (3): X1, X2, X3
 ## 
@@ -612,7 +613,7 @@ div.csl-indent {
 <p>Note in the example above that since the headers are now considered data, and are composed of a string of chatacters, the entire column is then interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our <code>.csv</code>), we can use the <code>skip = n</code> to skip n rows:</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="importing-your-data-into-r.html#cb138-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## Rows: 28628 Columns: 3
-## ── Column specification ─────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): X2
 ## dbl (2): X1, X3

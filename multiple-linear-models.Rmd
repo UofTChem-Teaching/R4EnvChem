@@ -37,27 +37,50 @@ for (metal in colnames(metal_conc)[-1]) {
   # Extract slope and intercept
   slope <- coef(model)[2]
   intercept <- coef(model)[1]
+  r_squared <- summary(model)$r.squared
+
   
   # Print slope and intercept
   cat("For", metal, ":\n")
   cat("Slope:", slope, "\n")
   cat("Intercept:", intercept, "\n\n")
   
+  
   # Store slope and intercept in metal_results list
-  metal_results[[metal]] <- list(slope = slope, intercept = intercept)
+  metal_results[[metal]] <- list(slope = slope, intercept = intercept, r2=r_squared)
 }
 ```
 
+
+After constructing linear regression models for each metal, visualizing these results can provide valuable insights into the relationships between metal concentrations and signal values. Below, we will create a single scatterplot for four selected metals along with their regression lines. This visualization will help in assessing the fit of the models and understanding the variance in signal values as a function of concentration.
+
+```{r}
+# Use pivot_longer to reshape the data frame for ggplot
+metal_conc_long <- pivot_longer(metal_conc, cols = c("Al", "Mg", "Ca", "K"), names_to = "Metal", values_to = "Signal")
+
+# Create a scatterplot for each metal with its regression line
+ggplot(metal_conc_long, aes(x = Concentration, y = Signal, color = Metal)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = Metal)) +
+  labs(title = "Regression Lines for Selected Metals", x = "Concentration", y = "Signal") +
+  theme_minimal() +
+  scale_color_manual(values = c("red", "blue", "green", "purple"))
+
+```
+
+
+
 ### Slopes and Intercepts 
 
-We have successfully built linear regression models for each metal, and the slope and intercept values have been stored in the `metal_results` list. This variable is a list containing key-value pairs for each metal, where the metal name serves as the key and the corresponding slope and intercept values are stored as sublists. To visualize the `metal_results` variable, we can display it in a tabular format:
+We have successfully built linear regression models for each metal, and the slope, intercept, and \( R^2 \) values have been stored in the `metal_results` list. This variable is a list containing key-value pairs for each metal, where the metal name serves as the key, and the corresponding regression statistics—slope, intercept, and \( R^2 \)—are stored as sublists. To effectively visualize the comprehensive results stored in `metal_results`, we can display this information in a tabular format that includes each metal alongside its slope, intercept, and \( R^2 \), offering a clear overview of the regression outcomes.
 
 ```{r, echo=FALSE}
 # Display metal_results variable
 metal_results_df <- data.frame(Metal = names(metal_results),
                                 Slope = sapply(metal_results, function(x) x$slope),
-                                Intercept = sapply(metal_results, function(x) x$intercept))
-DT::datatable(metal_results_df)
+                                Intercept = sapply(metal_results, function(x) x$intercept),
+                                R2 = sapply(metal_results, function(x) x$r2))
+metal_results_df
 ```
 
 
@@ -109,6 +132,8 @@ metal_signals$K_concentration <- calculate_concentration(metal_signals$K, "K")
 DT::datatable(metal_signals)
 
 ```
+
+*Note*: In the provided code snippet, the use of `[[]]` (double brackets) allows for dynamic access to list elements using a variable name. This is particularly useful when the exact name of the element is stored as a string in another variable, such as `metal_name`. The double brackets evaluate the variable to get its value, thereby accessing the corresponding list element. This method is distinct from the use of `$`, which requires a direct, literal name of the element and cannot interpret a variable's value as an element name. 
 
 Let's take a closer look at one of the analytes' calculated concentrations:
 
