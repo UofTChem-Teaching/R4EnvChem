@@ -1,0 +1,77 @@
+# Functions in R
+
+<!-- Aim of this is to show people how they can include programming features to enhance their coding. Mostly tips and shit to get them started no encompassing guide --> 
+
+With programming, like most things, learning a little goes a long way. And like most things, it's easy to lose the forest for the trees. That's why we won't focus too much on programming (after all you're chemist not computer scientist) but we will introduce a few simple yet incredibly powerful elements of programming to help you along with your data science quest.
+
+We'll point to several sources for further reading on functions at the end of this chapter. 
+
+## Functions  
+  
+Functions allow you to write general purpose code to automate common tasks. They're a great way to decrease repetition and make your code more legible and reproducible. By using functions you'll not only reduce the number of lines of code you need to review, but you'll decrease the number of spots you need to review rectify a potential issue.
+
+To create a function in R you only need `function()`:
+
+```{r, error=TRUE}
+funSum <- function(x,y){
+  z <- x + y
+  paste("The sum of", x, "+", y, "is", z, sep =" ")
+}
+
+funSum(1, 3)
+funSum("yes",3)
+```
+What we've done is create a function called `funSum` which takes two numeric inputs `x` and `y`, sums the two into `z` and paste an output telling us the sum. A couple of things to note: 
+
+  - We need to *explicitly* state which arguments our function will take; in this example they are `x` and `y`. Whatever we pass to `x` or `y` will be carried into the function. 
+  - Functions have a specific order for their input arguments. In our case `x` is the first argument, so unless specified otherwise, the first argument passed to `funSum()` will be passed along as the `x` argument. 
+    - You can explicitly pass values by stating the argument; i.e. `funSum(y = 10, x = 2)`. 
+  - We can't sum non-numeric values, so R returns an error in the second instance
+  - Functions create their own environment, therefore *any variable* created inside a function only exists inside the function.
+    - In the above example, `x`, `y`, and `z` only exist inside the function.
+  - R automatically returns whichever variable is on the last line of the body of the function as it's output, but you can explicitly ask for an output using `return()`
+
+Let's take a look at a more practical function, something that you might actually use. In mass spectrometry, a common gauge of accuracy is the *mass error*, a measure of the difference between the observed and theoretical masses, and is reported in parts-per-million (ppm). The formula for calculating mass error is:
+
+$$ Mass~error~(ppm) = \frac{|mass_{theoretical} - mass_{experimental}|}{mass_{theorical}} \times 10^6 $$
+
+The formula is simple enough, but you may need to calculate any number of mass errors, so it behooves us to compose a quick formula to simplify our workload:
+
+
+```{r}
+ppmMS <- function(theoMZ, expMZ){
+
+  ppm <- abs(theoMZ - expMZ)/theoMZ * 1e6
+  ppm
+}
+
+# Theoretical mass = 1479.63 m/z
+# experimental mass = 1480.10 m/z
+ppmMS(theoMZ = 1479.63, expMZ = 1480.10)
+```
+
+Pretty useful if you're manually checking something, but we can also use our functions with the pipe to help our data transformation:
+
+
+```{r}
+
+# Example data
+masses <- data.frame("theo" = c(1479.63, 1479.63, 1479.63),
+                     "exp" = c(1478.63, 1479.63, 1480.10))
+
+masses %>% 
+  mutate(massError = ppmMS(theo, exp))
+
+```
+
+This last part is critical as *functions make your code more legible*. We can clearly read that the code above is calculating the mass error between the theoretical and experimentally observed masses. This might not be as apparent if we put in a complex mathematical formula in the middle of our pipe. 
+
+
+
+## When to use functions
+
+A good rule when coding is **Don't Repeat yourself!**. In practice, this means don't copy and paste blocks of code to multiple parts of your script. It's more difficult to read (more lines), and if you identify an issue with one block, you'll need to hunt down all the other blocks to rectify the situation (you'll always miss something!). by using functions you'll reduce the number of lines of code, but you'll also only need to check one spot to rectify the issues. 
+
+
+```{r child='src/common/end-of-chapter-exercise.Rmd'}
+```

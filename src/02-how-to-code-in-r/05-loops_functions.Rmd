@@ -1,0 +1,132 @@
+# Loops and Functions in R
+
+In this chapter, we will delve into two fundamental concepts in R programming: loops and writing functions. Loops are a powerful tool for iterating over a sequence, making them essential for tasks that require repetitive operations. Writing functions, on the other hand, allows you to create reusable blocks of code, enhancing the efficiency and organization of your programming projects. By the end of this chapter, you will gain a solid understanding of how to effectively use for loops to automate repetitive tasks and how to write your own functions in R, thereby elevating your coding skills to a new level. 
+
+## Loops
+
+Repetition is a key component of programming. Loops enable you to execute the same piece of code multiple times, making data processing more efficient. If you have a previous programming experience in any language, these syntax should look familiar.
+
+#### The `for` loop
+
+The `for` loop in R is used to iterate over elements in a vector or list.
+
+```{r}
+for (i in 1:5) {
+  print(i)
+}
+```
+
+This will print numbers from 1 to 5. The loop iterates over each element in the sequence `1:5`, setting the value to `i` and executing the code inside the loop.
+
+#### The `while` loop
+
+The `while` loop continues executing as long as a specified condition remains true.
+
+```{r}
+count <- 1
+
+while (count <= 5) {
+  print(count)
+  count <- count + 1
+}
+```
+
+In this example, the loop will keep printing and incrementing the value of counter until counter is no longer less than or equal to 5.
+
+Remember, be cautious with while loops. If the condition never becomes false, the loop will run indefinitely!
+
+
+
+## Writing custom functions in R
+
+Functions form the backbone of most programming languages, and R is no exception. While R provides a rich library of built-in functions, there are times when you'll need to define your own. Custom functions in R allow you to encapsulate a series of commands into a single reusable unit.
+
+**Why write custom functions?**
+
+-   **Reusability**: Once you've written and tested a function, you can use it repeatedly without having to retype or copy-paste the same lines of code.
+-   **Maintainability**: Changes can be made in one place (inside the function) rather than at multiple locations where the code might be used.
+-   **Clarity**: Well-named functions can make your main code more readable, as they abstract away the complexity.
+
+#### Simple example
+
+```{r}
+add_two <- function(a, b) {
+  # Add a and b and return the value
+  added <- a + b
+  return(added)
+}
+```
+
+-   `add_two` is the custom name of the function.
+-   `a` and `b` are the inputs to the function. You can name them `x` and `y`, or anything else, as long as they are kept consistent throughout the function definition. You can also change the number of inputs for your function.
+-   The `return` statement specifies the output of your function. If omitted, the function will return the result of the last expression evaluated.
+
+You can run this function with various choices of `a` and `b`:
+
+```{r}
+add_two(1, 3)
+add_two(20, 35.5)
+```
+
+At this time, we shall keep it simple. You will eventually see more complex usages of custom functions.
+
+
+## Conditional arguments 
+
+Condaitional arguments used to specify a path in a function depending on whether a statement is `TRUE` or `FALSE`. These are explored in greater detail via the links in the [Further reading] section, but here's a quick example of a function that uses the conditional `if` statement to print out which number is largest: 
+
+```{r}
+
+isGreater <- function(x, y){
+  if(x > y){
+    return(paste(x, "is greater than", y, sep = " "))
+  } else if (x < y){ 
+    return(paste(x, "is less than", y, sep = " "))
+  }
+  return(paste(x, "is equal to", y, sep = " "))
+}
+
+isGreater (2, 1)
+isGreater (1, 2)
+isGreater (1, 1)
+
+```
+
+Our simple function compares two numbers, `x` and `y` and if `x > y` evaluate to `TRUE` it returns the pasted string `x is greater than y`. If `x < y` evaluates to `FALSE`, as in `y > x`, our function returns the pasted string `x is less than y`, and finally if neither `x > y` and `x < y` evaluate to TRUE, they must be equal! Therefore the final output is `x is equal to y`. This is an example of an `else if` statement. If you're simply evaluating two conditions (`TRUE` or `FALSE`) you only need the `if()` conditional, see [Further reading] for more details. 
+
+### Piping conditional statements
+
+You can already see the potential for simple conditional statements in the pipe. However, to keep piping operations legible, `dplyr` offers the `case_when` function, which works similarly to the `else if` statements showcased above. Let's see how it works using a real world example.
+
+In mass spectrometry undetected compounds are recorded by the instrument as having an intensity of 0; but it's a common practice to replace 0 with $\frac{limit~of~detection}{2}$ for subsequent analysis However, we don't want to replace every value with $\frac{LOD}{2}$, only 0s. Let's use the `case_when()` function to create a new values with the recorded intensities
+
+```{r}
+
+lod <- 4000 # previously calculated LOD 
+results <- data.frame("mz" = c(308.97, 380.81, 410.11, 445.34 ), # dummy data
+                      "intensities" = c(0, 1000, 5000, 10000)) 
+
+results %>%
+  mutate(reportedIntensities = case_when(intensities < lod ~ lod/2,
+                                 TRUE ~ intensities))
+
+
+```
+
+Firstly we're creating a new column called `reportedIntesities` using `mutate()` and using `case_when()` to conditionally fill that column. The inputs we've passed to `case_when()` are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (`~`) evaluate to `TRUE`, `case_when` will execute the right-hand side. Thee first two-sided formula is `intensities < lod ~ lod/2` and checks if the intensities value is less than the previously calculated limit of detection. If `intensitis < lod` evaluates to `TRUE` we insert half of the LOD value for that row. If `intentisites < lod` evaluates to `FALSE`, we move onto the next two-side formula and reevaluate again. The second two-sided formula `TRUE ~ intensities` basically means for everything that's remaining (greater than LOD in our instance) just use the value from the `intensities` column.
+
+Some ideas to consider when working with `case-when()`:
+
+  - There's no limits to the conditions you can pass to `case_when()`.
+  - *However* `case_when()` evaluates in order so put the more specific conditions before the more general. 
+  - Remember that the point of `case_when()` and piping is legibility. If you're passing multiple conditions, consider writing a function using `else if` statements to keep the pipe legible.  
+
+
+
+## Further reading
+
+These chapter has been intentional succinct. We've omitted several other aspects of programming in R such as `for` loops, and other iterative programming. To get a better sense of programming in R and to learn more, please see the following links:
+
+  - [case_when()](https://dplyr.tidyverse.org/reference/case_when.html): the documentation for the `case_when()` function and several useful examples. 
+  - [Chapter 19: Functions](https://r4ds.had.co.nz/functions.html), [Chapter 20: Vectors](https://r4ds.had.co.nz/vectors.html), and [Chapter 21: Iteration](https://r4ds.had.co.nz/iteration.html) of [*R for Data Science*](https://r4ds.had.co.nz/index.html) by H. Wickham and G. Grolemund.  
+  - [Hands-on Programming in R](https://rstudio-education.github.io/hopr/) by G. Grolemund for a more in-depth (but still approachable) take on programming in R. 

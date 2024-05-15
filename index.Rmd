@@ -8,7 +8,7 @@ site: bookdown::bookdown_site
 description: "This is a proof-of-concept for a further full length textbook."
 documentclass: book
 always_allow_html: true
-bibliography: references.bib
+bibliography: src/common/references.bib
 
 ---
 

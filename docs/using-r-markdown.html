@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Using R Markdown | R for Environmental Chemistry</title>
   <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Using R Markdown | R for Environmental Chemistry" />
   <meta property="og:type" content="book" />
@@ -59,8 +59,6 @@
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
-<script src="libs/tabwid-1.1.3/tabwid.js"></script>
 <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
@@ -69,7 +67,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -141,7 +139,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -673,7 +670,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 <ul>
 <li><p><strong>Modifying the YAML Header</strong>: You can change the output format directly in the YAML header of your Rmd file. In the last example, replacing <code>output: pdf_document</code> with <code>output: html_document</code> or <code>output: word_document</code> would knit the document into HTML or Word, respectively.</p></li>
 <li><p><strong>Using RStudio’s Knit Button</strong>: In the RStudio IDE, at the top of the script editor pane, there’s a Knit button. Clicking the small dropdown arrow next to this button allows you to choose the output format you desire. Selecting one of the options will knit the document into that format and update the YAML header accordingly.</p>
-<p><img src="images/knit_options.png" style="width:70.0%" /></p></li>
+<p><img src="images/knit_options.PNG" style="width:70.0%" /></p></li>
 </ul>
 </div>
 </div>
@@ -735,7 +732,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 </ul></li>
 </ul>
 <p>R Markdown will automatically format these appropriately when the document is knit. For example, a main heading will typically appear larger and bolder than its subheadings, like this:</p>
-<p><img src="images/heading_example.png" style="width:40.0%" /></p>
+<p><img src="images/heading_example.PNG" style="width:40.0%" /></p>
 <p>By effectively utilizing headings and subheadings, you can provide clear structure and flow to your document, making it more readable and navigable for your audience.</p>
 </div>
 <div id="latex-basics" class="section level3 hasAnchor" number="6.1.4">
@@ -1051,7 +1048,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/UofTChem-Teaching/R4EnvChem/r-markdown.Rmd",
+"link": "https://github.com/UofTChem-Teaching/R4EnvChem/src/02-how-to-code-in-r/03-r-markdown.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -1059,7 +1056,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": null,
+"link": "https://github.com/UofTChem-Teaching/R4EnvChem/blob/main/src/02-how-to-code-in-r/03-r-markdown.Rmd",
 "text": null
 },
 "download": null,

@@ -1,0 +1,216 @@
+# Customizing your plots
+
+Up until now we haven't payed much attention to the explicit aesthetics of plots beyond what we needed for our exploratory analysis. However, many journals, publications, instructors, etc. will want plots to adhere to certain aesthetic standards. There's scores of options to play with, so we recommend you consult the [ggplot2 Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization.pdf).
+
+## Interactive Plots
+
+Ultimately you're visualizations will be printed to a static PDF document, but in the interim having an interactive plot can be helpful for data exploration. The `plotly` package magically makes most `ggplots` interactive with a simply command. Here's an example with our Toronto air quality data:
+
+```{r}
+
+torPlot2 <- ggplot(data = torontoAir,
+       aes(x = date.time,
+           y = concentration,
+           colour = pollutant)) +
+  geom_line()
+
+plotly::ggplotly(torPlot2)
+```
+
+This is also super useful when surveying spectroscopy data, although the large number of points in those datasets can take a while to render into interactive plotly plots.
+
+## Plot Themes
+
+Overall themes can be applied to ggplot. The simple and minimalist `theme_classic()` is satisfactory for most submissions, but you can peruse the available these in ggplot [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) or you can explore many more themes in the [`ggthemes` package](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/).
+
+```{r}
+# generating example plot to modify 
+p <- ggplot(data = torontoAir, 
+       aes(x = date.time,
+           y = concentration,
+           colour = pollutant)) +
+  geom_point() 
+
+# default theme
+default <- p + labs(subtitle = "Default geom_scatter")
+
+
+# Classic theme
+classic <- p + 
+  theme_classic() +
+  labs(title = "theme_classic()")
+ 
+
+# arranging into grid
+gridExtra::grid.arrange(default, classic, ncol = 2)
+
+
+```
+
+## Legends
+
+You can specify the position of the legend under the `theme()` option as such:
+
+```{r}
+bottom <- p + theme(legend.position = "bottom")
+
+inside <- p + theme(legend.position = c(.95, .95))
+
+gridExtra::grid.arrange(bottom, inside, ncol = 2)
+```
+
+Other legend positions include: "none", "left", "right", "bottom", "top", or a two-element numeric vector to specify the location such as `c(0.95, 0.95)` for inside the top-right corner. `c(0.05, 0.05)` would place it inside the bottom right corner, and so on. Also note that `legend.position = "none"` will remove the legend entirely.
+
+## Modifying labels
+
+The labels generated for the plots are derived from the variable names passed along to the `ggplot()` function. Consequently, variable names that are easy to code become ugly labels on the plot. You can modify labels using the `labs()` function. Note in the example below that we changed the legend's title by specifying what `aes()` option we used to create the legend; in the example below it's `colour`.
+
+```{r}
+p + labs(title = "Toronto Air quality",
+         subtitle = "from Jan 1st to 8th, 2018", 
+         xlab = "Date",
+         ylab = "Concentration (ppb)",
+         colour = "Pollutant")
+```
+
+## Modifying Axis
+
+We've already talked about labelling axis titles in [Modifying labels], and adding marginal plots in [Scatter plots]. So we'll just briefly touch upon some simple axis modifications.
+
+### Transforming axis
+
+Transformations are largely related to *continuous* data, and are done using `scale_y_continuous()` or `scale_x_continuous()` functions. For example to scale the y-axis of our plot we'd do the following:
+
+```{r}
+p +
+  scale_y_continuous(trans = "log10") +
+  labs(y = "Log10(concentration)")
+```
+
+Other useful transformations include "log2" for base-2 logs, "date" for dates, and "hms" for time. The later two are useful if R hasn't correctly interpreted your dataset. The data type for the `data.time` column of our dataset was correctly interpreted during our initial importation using `read_csv()`. Hooray for doing it right the first time.
+
+### Limits
+
+The limits of plots created with `ggplot()` are automatically assigned, but you can override these using the `lims()` function. For example we can specify the limits of our example plot to show from 0 to 100 ppb:
+
+```{r}
+p + lims(y = c(0, 100))
+```
+
+
+### Axis ticks/labels
+
+Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the name of cities like we've encountered earlier. We addressed this earlier in [Bar charts] by rotating the plot 90$^\circ$ with the `coord_flip()` function. This is often the best solution as it's how we read English. Another solution is to rotate the axis labels themselves:
+
+```{r}
+basePlot <- ggplot(data = subset(sumAtl, p == "NL"),
+       aes(x = city, 
+           y = mean)) +
+  geom_col()
+
+default <- basePlot +
+  labs(title = "default plot")
+
+flip <- basePlot +
+  coord_flip() +
+  labs(title = "coord_flip()")
+
+rotated <- basePlot +
+  theme(axis.text.x = element_text(angle = 45)) +
+  labs(title = "element_text(angle = 45)")
+
+rotatedHJust <- basePlot +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "element_text(angle = 45, hjust = 1)")
+
+
+gridExtra::grid.arrange(default, flip, rotated, rotatedHJust, ncol = 2, nrow = 2)
+```
+
+
+## Arranging plots
+
+We talked about how facets can be used to generate multiple plots from a dataset (small multiples), but sometimes you want to combine two or more *different* plots together. There are a couple of ways, but we've been using `grid.arrange()` from the `gridExtra` pacakge (as demonstrated above). You can read up on [`gridExtra` here](https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html). There is also the [`ggarrange` function](https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html) from the `ggpubr` package which, amongst other things, can easily create shared legends between plots.
+
+```{r}
+colchart <- ggplot(data = sumAtl,
+                   aes(x = fct_reorder(city, mean),
+                       y = mean, 
+                       fill = p)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean - sd, 
+                    ymax = mean + sd)) +
+  coord_flip() 
+
+boxplot <- ggplot(data = atlNO2, 
+                  aes( x = city, 
+                       y = conc,
+                       fill = p)) +
+  geom_boxplot() + 
+  coord_flip()
+
+boxplot
+
+ggpubr::ggarrange(colchart, 
+                  boxplot, 
+                  ncol = 2, 
+                  nrow = 1,
+                  labels = c("A", "B"),
+                  common.legend = TRUE, 
+                  legend = "bottom")
+```
+
+## Anotating plots
+
+Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different then *captions*, which is accomplished in the `rmarkdown` chunk header (see [R code chunk options] for a refresher).
+
+Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualzie them spatially. Note, the map we're making here is rather basic, to make prettier maps see [CHM410: Air Quality Lab].
+
+```{r, message = FALSE, error = FALSE, warning = FALSE}
+
+# need lat and long value for map
+mapNO2 <- atlNO2 %>%
+  group_by(latitude, longitude, p,  city) %>%
+  summarise(mean = mean(conc))
+
+#install.packages("ggmap")
+# library(ggmap)
+# 
+# atlMap <- get_stamenmap(bbox = make_bbox(lon = mapNO2$longitude, 
+#                                          lat = mapNO2$latitude, 
+#                                          f = 0.1), 
+#                         zoom = 6, 
+#                         maptype = "terrain", 
+#                         crop = FALSE)
+# 
+# atlMap <- ggmap(atlMap) 
+# 
+# atlMap
+
+```
+
+Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this in detail in [Plotting Airbeam data spatially], but for this plot we spefically want to annotate each point with it's corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html). We simply need to specify which column (`naps id`) we'll use for our labels:
+
+```{r, message = FALSE, warning = FALSE}
+# atlMap + geom_point(data = mapNO2, 
+#              aes(x=longitude,
+#                  y=latitude,
+#                  colour = mean,
+#                  size = mean),
+#              alpha = 0.8) +
+#   scale_alpha(guide = "none") + # removing legend for alpha
+#   scale_size(guide = "none") + # removing legend for size
+#   ggrepel::geom_label_repel(data = mapNO2, 
+#                             aes(x=longitude,
+#                                 y=latitude,
+#                                 label = city),
+#                             box.padding = 0.5,
+#                             max.overlaps = Inf)
+# 
+
+```
+
+Again, not the prettiest map, but that's up to you to fix in post. [`geom_text_repel()`](https://ggrepel.slowkow.com/articles/examples.html) is an incredibly useful package for quickly annotating plots. If you need to label/annotate points check it out.
+
+```{r child='src/common/end-of-chapter-exercise.Rmd'}
+```
