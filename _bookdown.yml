@@ -5,48 +5,46 @@ language:
 delete_merged_file: true
 output_dir: "docs"
 
+edit: https://github.com/UofTChem-Teaching/R4EnvChem/edit/main/%s
+view: https://github.com/UofTChem-Teaching/R4EnvChem/blob/main/%s
+
 # used to specify chapter order in book_filename
-
-rmd_files:  [
-
+rmd_files: [
   "index.Rmd",
-  
+
   # Part 1: Getting Started in R
-  "intro.Rmd",
-  "r-studio-projects.Rmd",
-  "this-textbook.Rmd",
+  "src/01-getting-started-in-r/01-intro.Rmd",
+  "src/01-getting-started-in-r/02-r-studio-projects.Rmd",
+  "src/01-getting-started-in-r/03-this-textbook.Rmd",
 
   # Part 2: How to Code in R
-  "running-r-code.Rmd",
-  "r-workflows.Rmd",
-  "r-markdown.Rmd",
-  "r-packages.Rmd",
-  "loops_functions.Rmd",
+  "src/02-how-to-code-in-r/01-running-r-code.Rmd",
+  "src/02-how-to-code-in-r/02-r-workflows.Rmd",
+  "src/02-how-to-code-in-r/03-r-markdown.Rmd",
+  "src/02-how-to-code-in-r/04-r-packages.Rmd",
+  "src/02-how-to-code-in-r/05-loops_functions.Rmd",
 
   # Part 3: Data Analysis in R
-  "intro-data-analysis.Rmd",
-  "import.Rmd",
-  "tidy.Rmd",
-  "transform-1.Rmd",
-  "ggplot_basics.Rmd",
-  "summarize.rmd", 
-  "restructuring_data.Rmd",
-  # "prog-with-r.Rmd",
+  "src/03-data-analysis-in-r/01-intro-data-analysis.Rmd",
+  "src/03-data-analysis-in-r/02-import.Rmd",
+  "src/03-data-analysis-in-r/03-tidy.Rmd",
+  "src/03-data-analysis-in-r/04-transform-1.Rmd",
+  "src/03-data-analysis-in-r/05-ggplot_basics.Rmd",
+  "src/03-data-analysis-in-r/06-summarize.rmd", 
+  "src/03-data-analysis-in-r/07-restructuring_data.Rmd",
+  # "src/03-data-analysis-in-r/UNUSED-prog-with-r.Rmd",
  
   # Part 4: Visualization in R
-  "visualizations-redux.Rmd",
-  "common_graphs.Rmd",
-  "customize_plots.Rmd",
-
+  "src/04-visualization-in-r/01-visualizations-redux.Rmd",
+  "src/04-visualization-in-r/02-common_graphs.Rmd",
+  "src/04-visualization-in-r/03-customize_plots.Rmd",
 
   # Part 5: Modelling in R
-  "linear-regression.Rmd",
-  "multiple-linear-models.Rmd",
-  "non-linear-models.Rmd"
+  "src/05-modelling-in-r/01-linear-regression.Rmd",
+  "src/05-modelling-in-r/02-multiple-linear-models.Rmd",
+  "src/05-modelling-in-r/03-non-linear-models.Rmd"
   
   # Part 6: CHM410 Labs
-  # "CHM410-airQuality.Rmd",
-  # "CHM410-NMR.Rmd"
-  
-  ]
-  
+  # "src/06-chm410-labs/UNUSED-CHM410-airQuality.Rmd",
+  # "src/06-chm410-labs/UNUSED-CHM410-NMR.Rmd"
+]

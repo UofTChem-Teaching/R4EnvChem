@@ -2,19 +2,19 @@
 
 Developing course material and workflows based in R for undergraduate UofT Environmental Chemistry courses.
 
-Webbook found here: <https://uoftchem-teaching.github.io/R4EnvChem/>.
+Online book found here: <https://uoftchem-teaching.github.io/R4EnvChem/>.
 
-## How to build the webbook with bookdown library
+## How to build the book with bookdown library
 
 1.  Open R4EnvChem project from RStudio.
 
 2.  If `bookdown` library is not installed yet, run the following command in the console:
 
-    ```         
+    ```r
     install.packages("bookdown")
     ```
 
-3.  Build the book in HTML format in the upper right `build` window in RStudio .
+3.  Build the book in HTML format in the upper right `build` window in RStudio.
 
     ![](images/bookdown_build.png)
 
