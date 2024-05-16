@@ -5,9 +5,6 @@ bookdown::gitbook:
       collapse: section
       before: |
         <li><strong><a href="./">R for Environmental Chemistry</a></strong></li>
-    edit:
-      link: https://github.com/UofTChem-Teaching/R4EnvChem/%s
-      text: "Edit"
     sharing: no
 bookdown::pdf_book:
   latex_engine: "xelatex"
