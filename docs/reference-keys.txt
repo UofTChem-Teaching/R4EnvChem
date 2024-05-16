@@ -1,8 +1,8 @@
-fig:unnamed-chunk-37
+fig:unnamed-chunk-36
 fig:tidy-example
 fig:reg-plot
+fig:unnamed-chunk-170
 fig:unnamed-chunk-171
-fig:unnamed-chunk-172
 fig:sdsMaxPlot
 intro-to-r-and-rstudio
 r-language

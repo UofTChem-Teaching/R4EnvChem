@@ -608,12 +608,12 @@ div.csl-indent {
 <div id="running-r-code" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Running R Code<a href="intro-to-r-and-rstudio.html#running-r-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As we’ve already seen, you can run bits of R code directly from the console. Throughout the book, code you can copy and run will look like this:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro-to-r-and-rstudio.html#cb3-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro-to-r-and-rstudio.html#cb1-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Noticed that both the code (the first part) and what the code outputs (the second part) are shown. Throughout this book code outputs will be proceeded by <code>##</code>. You can run code directly from the console. It’s handy for short and sweet snippets of code, something that can be typed in a single line. Examples of this is the <code>install.packages()</code> function, or to use R as a calculator:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro-to-r-and-rstudio.html#cb5-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro-to-r-and-rstudio.html#cb3-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro-to-r-and-rstudio.html#cb7-1" tabindex="-1"></a>pi <span class="sc">*</span> (<span class="dv">10</span><span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro-to-r-and-rstudio.html#cb5-1" tabindex="-1"></a>pi <span class="sc">*</span> (<span class="dv">10</span><span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 15.70796</code></pre>
 <p>However, working like this isn’t very useful Imagine printing a book one sentence at a time, you couldn’t really go back and edit earlier work because it’s already printed. That’s why we write out code in <em>scripts</em>. <em>Scripts</em> are similar to recipes, in that they’re a series of instructions that R evaluates from the top of the script to the bottom. More importantly, writing your code out in a script makes it <em>more readable</em> to humans (presumably this includes you). Don’t undervalue the usefulness of legible code. Your code will evaluate in seconds or minutes whereas it may take you hours to understand what it does.</p>
 <p>Let’s open up a new script in RStudio by going to <em>File</em>-&gt;<em>New File</em>-&gt;<em>R Script</em>, or by clicking on the highlighted button in the image below.</p>
@@ -676,10 +676,10 @@ div.csl-indent {
 <li>In the <code>Console</code> tab, write an expression to calculate 10 plus 5 and press <code>enter</code>.</li>
 <li>Open a new R script and type in the following commands:</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro-to-r-and-rstudio.html#cb9-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb9-2"><a href="intro-to-r-and-rstudio.html#cb9-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb9-3"><a href="intro-to-r-and-rstudio.html#cb9-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
-<span id="cb9-4"><a href="intro-to-r-and-rstudio.html#cb9-4" tabindex="-1"></a><span class="fu">print</span>(z)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro-to-r-and-rstudio.html#cb7-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb7-2"><a href="intro-to-r-and-rstudio.html#cb7-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb7-3"><a href="intro-to-r-and-rstudio.html#cb7-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
+<span id="cb7-4"><a href="intro-to-r-and-rstudio.html#cb7-4" tabindex="-1"></a><span class="fu">print</span>(z)</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 <p>(In the future, we will work with an R markdown instead of an R script, which we will explain more in the following chapters.)</p>
 <ul>
@@ -729,7 +729,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/UofTChem-Teaching/R4EnvChem/src/01-getting-started-in-r/01-intro.Rmd",
+"link": "https://github.com/UofTChem-Teaching/R4EnvChem/edit/main/src/01-getting-started-in-r/01-intro.Rmd",
 "text": "Edit"
 },
 "history": {
