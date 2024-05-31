@@ -1,11 +1,8 @@
 #Unit tests for chapter 7 exercises
 
-# Load testthat package
+# Load  packages
 library(testthat)
-
-
-# Get the original working directory
-original_wd <- getwd()
+library(here)
 
 # Define the function to run all chunks from Rmd file
 runAllChunks <- function(rmd, envir = globalenv()) {
@@ -13,21 +10,19 @@ runAllChunks <- function(rmd, envir = globalenv()) {
   tempR <- file.path(temp_dir, "temp.R")  # Create temporary file in the same directory
   on.exit(unlink(tempR))
   
-  # Set the working directory to the directory containing the Rmd file
-  setwd(temp_dir)
   
   knitr::purl(input = rmd, output = tempR)
   
-  # Source the temporary R script, which should now be able to find the CSV file
-  sys.source(tempR, envir = envir)
+  # Source the temporary R script with chdir = TRUE so that the working directory is set to the Rmd file's directory
+  
+  source(tempR, chdir = TRUE)
 }
 
-# Specify the path to your Rmd file
-rmd_file_path <- here::here("exercises", "chapter 7", "chpater7.Rmd")
+# Specify the path to your Rmd file using here::here()
+rmd_file_path <- here("exercises", "chapter 7", "chpater7.Rmd")
 
 # Run all chunks in the Rmd file to execute the exercises
 runAllChunks(rmd_file_path)
-
 
 # Exercise 1: Installing Packages
 test_that("Installing Packages", {
@@ -45,13 +40,11 @@ test_that("Reading a CSV File with readr", {
   expect_true(is.data.frame(csv_data) && nrow(csv_data) > 0)
 })
 
-
 # Exercise 3: Creating a Scatterplot -- tidyverse
 test_that("Scatterplot with ggplot2", {
   # This test expects scatter_plot to be a ggplot object with at least one layer
   expect_true(inherits(scatter_plot, "ggplot") && length(scatter_plot$layers) > 0)
 })
-
 
 # Exercise 4: Advanced filtering and summarization
 test_that("Advanced filtering and summarization", {
@@ -61,8 +54,4 @@ test_that("Advanced filtering and summarization", {
   expect_true(is.numeric(stats_result$mean_score) && stats_result$mean_score >= 0 && stats_result$mean_score <= 100)
   expect_true(is.numeric(stats_result$sd_score) && stats_result$sd_score >= 0)
 })
-
-# Change the working directory back to the original location
-setwd(original_wd)
-
 

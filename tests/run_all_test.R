@@ -1,10 +1,12 @@
+library(testthat)
+
 # Function to run tests in a directory
 run_tests_in_directory <- function(directory) {
   # List all test files in the directory
   path <- paste("tests/", directory, sep = "")
   test_files <- list.files(path=path, pattern = "_tests\\.R$", full.names = TRUE)
+  
   # Execute each test file
-  print(test_files)
   for (file in test_files) {
     test_file(file)
     
