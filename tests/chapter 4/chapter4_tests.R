@@ -4,27 +4,16 @@
 library(testthat)
 library(here)
 
-# Define the function to run all chunks from Rmd file
-runAllChunks <- function(rmd, envir = globalenv()) {
-  temp_dir <- dirname(rmd)  # Get the directory of the Rmd file
-  tempR <- file.path(temp_dir, "temp.R")  # Create temporary file in the same directory
-  on.exit(unlink(tempR))
-  
-  
-  knitr::purl(input = rmd, output = tempR)
-  
-  # Source the temporary R script with chdir = TRUE so that the working directory is set to the Rmd file's directory
-  
-  source(tempR, chdir = TRUE)
+if (file.exists("tests/common/common_functions.R")) {
+  source("tests/common/common_functions.R")
 }
-
 
 
 # Specify the path to your Rmd file
 rmd_file_path <- here("exercises", "chapter 4", "chapter4.Rmd")
 
 # Run all chunks in the Rmd file to execute the exercises
-runAllChunks(rmd_file_path)
+all_files <- run_all_chunks(rmd_file_path)
 
 # Test Exercise 1: Variables and Assignments
 test_that("Exercise 1: Variables and Assignments", {
@@ -87,4 +76,6 @@ test_that("Exercise 5: Conditional Statement", {
     expect_equal(letter_grade, "A")
   }
 })
+
+remove_temp_files(rmd_file_path, all_files)
 
