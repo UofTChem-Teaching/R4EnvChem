@@ -8,7 +8,6 @@ if (file.exists("tests/common/common_functions.R")) {
   source("tests/common/common_functions.R")
 }
 
-
 # Specify the path to your Rmd file
 rmd_file_path <- here("exercises", "chapter 4", "chapter4.Rmd")
 
