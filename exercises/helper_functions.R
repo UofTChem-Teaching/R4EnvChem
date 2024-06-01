@@ -18,7 +18,6 @@ run_all_chunks <- function(rmd, envir = globalenv()) {
 # remove the files created during the test
 remove_temp_files <- function(rmd_file_path , all_files) {
 
-  
   #get the current files in the directory
   current_files <- list.files(dirname(rmd_file_path))
   

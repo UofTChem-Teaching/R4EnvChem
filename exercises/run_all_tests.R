@@ -1,11 +1,12 @@
 library(testthat)
 
-source("tests/common/common_functions.R")
+# loading helper functions
+source("exercises/helper_functions.R")
 
 # Function to run tests in a directory
 run_tests_in_directory <- function(directory) {
   # List all test files in the directory
-  path <- paste("tests/", directory, sep = "")
+  path <- paste("exercises/", directory, sep = "")
   test_files <- list.files(path=path, pattern = "_tests\\.R$", full.names = TRUE)
   
   # Execute each test file
@@ -17,7 +18,8 @@ run_tests_in_directory <- function(directory) {
 
 # Get all the folders inside tests folder
 
-test_directories <- list.dirs("tests", full.names = FALSE, recursive = FALSE)
+test_directories <- list.dirs("exercises", full.names = FALSE, recursive = FALSE)
+print(test_directories)
 
 
 # Run tests in each directory

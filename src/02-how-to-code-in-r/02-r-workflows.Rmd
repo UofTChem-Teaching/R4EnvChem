@@ -19,7 +19,7 @@ We've also provided an example script in the R4EnvChem project template. Assumin
 
 ## Workspace and what's real
 
-We've already mentioned the *environment* pane that displays objects present in your R session. While they are useful to work with, they're not considered *real*. That is to say, if you close your R session, those objects will be lost. And while RStudio allows you to save a working environment (and it's associated objects), it's crucial to understand that *only your saved scripts/markdown documents are real*. You can't readily share your working environment, and even so it's bad practice as you may reference a previous iteration of an object giving you erroneous results. Think back to the chemistry labs: you may jot notes down on loose leaf, but only what's written in your lab book is considered real... we'll that's how it's supposed to work anyways. 
+We've already mentioned the *environment* pane that displays objects present in your R session. While they are useful to work with, they're not considered *real*. That is to say, if you close your R session, those objects will be lost. And while RStudio allows you to save a working environment (and its associated objects), it's crucial to understand that *only your saved scripts/markdown documents are real*. You can't readily share your working environment, and even so it's bad practice as you may reference a previous iteration of an object giving you erroneous results. Think back to the chemistry labs: you may jot notes down on loose leaf, but only what's written in your lab book is considered real... well that's how it's supposed to work anyways. 
 
 The idea is everything you need can be generated from the original data and the instructions in your R script/markdown document. Anyone should be able to take your data and your code and get the same results you got. This is paramount for the reproducibility of your work and your results. 
 
@@ -29,7 +29,7 @@ To save an R Markdown document:
 
 -   Navigate to *File -> Save* or use the 'Save' icon in the top left corner of your document.
 
-Content saved to an .Rmd file is considered real and self-contained. Variables, plots, or datasets that appear in your workspace or the `Environment` window aren't self-contained. Whenever you close RStudio, any objects in R that are not considered *real* will be lost in that R session. Furthermore when you need to share your code (for school or publication) you’ll need to share your data and your script, but never your work-space. This is to increase predictability and helps people (and you) to make sure your work is reproducible, an under appreciate hallmark of science.
+Content saved to an .Rmd file is considered real and self-contained. Variables, plots, or datasets that appear in your workspace or the `Environment` window aren't self-contained. Whenever you close RStudio, any objects in R that are not considered *real* will be lost in that R session. Furthermore when you need to share your code (for school or publication) you’ll need to share your data and your script, but never your work-space. This is to increase predictability and helps people (and you) to make sure your work is reproducible, an underappreciated hallmark of science.
 
 ### What should I save?
 
@@ -49,7 +49,7 @@ By adhering to these practices, you ensure your R Markdown documents remain accu
 
 ### Saving objects
 
-In some cases, your code may be used to generate large datasets which require quite a bit of time to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data to a *real* file that you can simply import the next time you open the application. Also, you may be finished with your analysis and want to save the final data. You can save your the data contained in your data frame as a `.csv` file using `write.csv()`. 
+In some cases, your code may be used to generate large datasets which require quite a bit of time to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data to a *real* file that you can simply import the next time you open the application. Also, you may be finished with your analysis and want to save the final data. You can save the data contained in your data frame as a `.csv` file using `write.csv()`. 
 
 
 ```{r, eval = FALSE}
@@ -115,7 +115,7 @@ Headings and subheadings are picked up by RStudio and displayed in the Document 
 
 ## Viewing data and code simultaneously
 
-Before we get into more about coding and workflows, you may find yourself wanting to be able to to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio or by clicking the button highlighted in the image below. 
+Before we get into more about coding and workflows, you may find yourself wanting to be able to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio or by clicking the button highlighted in the image below. 
 
 ![How to open an R script/plot/data set in a new window.](images/Rstudio_newwindow.png){width=100%}
 
@@ -171,7 +171,7 @@ q <- 8 + "hi"
 
 Here we are trying to add a numeric value (8) to a character string ("hi"), then set the sum of the two to variable `q`. R has given us an error in return, because there is no logical way for R to add a numeric value to non-numeric text. The error indicates that we have passed a `non-numeric argument to binary operator`, meaning we have used a non-numeric data type for an expression which is exclusively reserved for numeric data. 
 
-It is important to be aware of error codes as many functions require specific data types as their inputs. You can alwways consult the function documentation by via the *Help* tab of the *Viewer* pane or by typing a `?` followed by the name of the function in the console (i.e. `?ggplot`). 
+It is important to be aware of error codes as many functions require specific data types as their inputs. You can always consult the function documentation via the *Help* tab of the *Viewer* pane or by typing a `?` followed by the name of the function in the console (i.e. `?ggplot`). 
 
 ## Summary
 
@@ -182,7 +182,7 @@ In this chapter we've covered:
   - How to format your markdown for legibility (Remember you're the one who's going to be stuck rereading it!)
   - Troubleshooting some common error messages
   
-Now that you're familiar the above, we'll introduce [Using R Markdown], a way to combine your R code, it's outputs, and your writing all in one dynamic document (like your lab reports!).  
+Now that you're familiar with the above, we'll introduce [Using R Markdown], a way to combine your R code, it's outputs, and your writing all in one dynamic document (like your lab reports!).  
 
 ```{r child='src/common/end-of-chapter-exercise.Rmd'}
 ```

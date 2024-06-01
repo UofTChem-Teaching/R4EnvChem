@@ -4,8 +4,8 @@
 library(testthat)
 library(here)
 
-if (file.exists("tests/common/common_functions.R")) {
-  source("tests/common/common_functions.R")
+if (file.exists("exercises/helper_functions.R")) {
+  source("exercises/helper_functions.R")
 }
 
 # Specify the path to your Rmd file
@@ -44,19 +44,20 @@ test_that("Exercise 3: Data Structures", {
 })
 
 
-# function to calculate the median of a numeric vector
-med <- function(numbers) { 
-  sorted_numbers <- sort(numbers)
-  n <- length(sorted_numbers)
-  if (n %% 2 == 0) {
-    return((sorted_numbers[n/2] + sorted_numbers[n/2 + 1]) / 2)
-  } else {
-    return(sorted_numbers[(n + 1) / 2])
-  }
-}
+
 
 # Test Exercise 4: Calculate Median
 test_that("Exercise 4: Calculate Median", {
+  # function to calculate the median of a numeric vector
+  med <- function(numbers) { 
+    sorted_numbers <- sort(numbers)
+    n <- length(sorted_numbers)
+    if (n %% 2 == 0) {
+      return((sorted_numbers[n/2] + sorted_numbers[n/2 + 1]) / 2)
+    } else {
+      return(sorted_numbers[(n + 1) / 2])
+    }
+  }
   expect_true(length(nums) == 10)
   expect_equal(median_value, med(nums))
 })

@@ -18,7 +18,7 @@ We've already talked about how R can be used like a calculator:
 
 But managing these inputs and outputs is simplified with **variables**. Variables in R, like those you've encountered in math class, can only have one value, and you can reference or pass that value along by referring the variable name. And, unlike the variables in math classes, you can change that value whenever you want. Another way to think about it is that a variable is a box in which you store your value. When you want to move (reference) your value, you move the box (and whatever is inside of it). Then you can simply open the box somewhere else without having to worry about the hassle of what's inside.
 
-You can assign the a value to a variables using `<-`, as shown below.
+You can assign a value to a variables using `<-`, as shown below.
 
 ```{r}
 x <- 12
@@ -52,7 +52,7 @@ y + 1
 y <- 12
 ```
 
-The code above returns the `object 'y' not found` error because we're adding `+ 1` to `y` which hasn't been created yet, it's created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn't reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space suing the 'broom' button in the *environment* pane. This will help you to ensure the code you're writing will is organized in the correct order; see [Saving R scripts] for why this is important.
+The code above returns the `object 'y' not found` error because we're adding `+ 1` to `y` which hasn't been created yet, it's created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn't reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space using the 'broom' button in the *environment* pane. This will help you to ensure the code you're writing is organized in the correct order; see [Saving R Markdown] for why this is important.
 
 ## Data types
 
@@ -287,7 +287,7 @@ An often unappreciated aspect of packages is that they not only contain function
 ?read.csv
 ```
 
-You can also write you're own functions. Please see [Programming with R] for additional details.
+You can also write you're own functions. Please see [Writing custom functions in R] for additional details.
 
 
 ## Summary

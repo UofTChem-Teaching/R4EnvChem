@@ -4,8 +4,8 @@
 library(testthat)
 library(here)
 
-if (file.exists("tests/common/common_functions.R")) {
-  source("tests/common/common_functions.R")
+if (file.exists("exercises/helper_functions.R")) {
+  source("exercises/helper_functions.R")
 }
 
 # Specify the path to your Rmd file using here::here()
