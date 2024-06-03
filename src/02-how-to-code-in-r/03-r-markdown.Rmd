@@ -41,7 +41,7 @@ sumAirPol <- airPol %>%
 knitr::kable(sumAirPol, digits = 1)
 ```
 
-Pretty neat, eh? You might not think so, but let's imagine a scenario you'll encounter soon enough. You're about to submit your assignment, you've spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to *subtract* value `x` and not value `y` in your analysis. If you did all your work in *Excel* (tsk tsk), you'll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which is never does with looming deadlines). Now if you did all your work in R markdown, you go to your one `.rmd` document, briefly apply the changes and re-compile your document.
+Pretty neat, eh? You might not think so, but let's imagine a scenario you'll encounter soon enough. You're about to submit your assignment, you've spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to *subtract* value `x` and not value `y` in your analysis. If you did all your work in *Excel* (tsk tsk), you'll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which it never does with looming deadlines). Now if you did all your work in R markdown, you go to your one `.rmd` document, briefly apply the changes and re-compile your document.
 
 A lot of scientists work with R Markdown for writing their reports for numerous reasons:
 
@@ -104,7 +104,7 @@ R Markdown offers flexibility in terms of output formats, allowing users to knit
 
 -   **Using RStudio's Knit Button**: In the RStudio IDE, at the top of the script editor pane, there's a Knit button. Clicking the small dropdown arrow next to this button allows you to choose the output format you desire. Selecting one of the options will knit the document into that format and update the YAML header accordingly.
 
-    ![](images/knit_options.PNG){width="70%"}
+    ![](images/knit_options.png){width="70%"}
 
 ### Running code in R Markdown
 
@@ -152,7 +152,7 @@ In R Markdown, structuring your document with clear headings and subheadings is 
 
 R Markdown will automatically format these appropriately when the document is knit. For example, a main heading will typically appear larger and bolder than its subheadings, like this:
 
-![](images/heading_example.PNG){width="40%"}
+![](images/heading_example.png){width="40%"}
 
 By effectively utilizing headings and subheadings, you can provide clear structure and flow to your document, making it more readable and navigable for your audience.
 
@@ -160,7 +160,7 @@ By effectively utilizing headings and subheadings, you can provide clear structu
 
 **LaTeX** (pronounced "Lay-tech") is a typesetting system that's popular in academia due to its high-quality output format and the ability to handle complex formatting tasks. It's especially favored for documents that contain mathematical symbols, equations, and other specialized notation.
 
-In R Markdown, LaTeX code can be integrated directly into your document to allow for advanced formatting, especially formathematical expressions and equations. When you knit your R Markdown document, the LaTeX code is rendered into beautifully formatted text.
+In R Markdown, LaTeX code can be integrated directly into your document to allow for advanced formatting, especially for mathematical expressions and equations. When you knit your R Markdown document, the LaTeX code is rendered into beautifully formatted text.
 
 There are two common ways to turn your expressions in a math mode.
 
@@ -228,7 +228,7 @@ To create a PDF to hand in, you'll need to compile, or knit, your entire markdow
 
 ## Authoring with R Markdown
 
-Below is a brief summary of the major elements required to author an R Markdown document. They shoudl address the majority of your needs, but please see the [R Markdown resources] for more information.
+Below is a brief summary of the major elements required to author an R Markdown document. They should address the majority of your needs, but please see the [R Markdown resources] for more information.
 
 ### R markdown syntax
 
@@ -246,7 +246,7 @@ For a collection of other R Markdown syntax, please see the useful (and brief) l
 
 ### R code chunk options
 
-Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that'll effect how you're code chunk is run and displayed in the final output document. You include options in the chunk delimiters ```` ```{r} ```` and ```` ``` ````. For example the following code tells markdown you're running code written in `R`, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption "Some Caption".
+Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that'll affect how your code chunk is run and displayed in the final output document. You include options in the chunk delimiters ```` ```{r} ```` and ```` ``` ````. For example the following code tells markdown you're running code written in `R`, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption "Some Caption".
 
 ```` markdown
 `r ''````{r, eval = FALSE, fig.cap = "Some caption"}
@@ -278,9 +278,9 @@ Images not produced by R code can easily be inserted into your document. The mar
 ![Caption for the picture.](path/to/image.png){width=50%, height=50%}
 ```
 
-Note that in the above the use of image atributes, the `{width=50%, height=50%}` at the end. This is how you'll adjust the size of your image. Other dimensions you can use include `px, cm, mm, in, inch`, and `%`.
+Note that in the above the use of image attributes, the `{width=50%, height=50%}` at the end. This is how you'll adjust the size of your image. Other dimensions you can use include `px, cm, mm, in, inch`, and `%`.
 
-A final note on images: when compiling to PDF, the LaTeX call will place your image in the "optimal" location (as determined by LaTeX), so you might find your image isn't exactly where you though it would be. A more in-depth guide to image placement can be found [here](https://rpubs.com/RatherBit/90926)
+A final note on images: when compiling to PDF, the LaTeX call will place your image in the "optimal" location (as determined by LaTeX), so you might find your image isn't exactly where you thought it would be. A more in-depth guide to image placement can be found [here](https://rpubs.com/RatherBit/90926)
 
 ### Generating tables
 
@@ -309,7 +309,7 @@ While writing an R markdown document in R studio, go to the `Edit` tab at the to
 
 ### Exporting R Markdown documents
 
-You'll most likely be exporting your R Markdown documents as PDFs, but the beauty of R Markdown is it dosen't stop there. Your R Markdown documents can be knitted as a HTML document, a book (or both like this book!). You can even make slideshow presentations and yes, if need be, export as a word document that you can open in *Microsoft Word*.
+You'll most likely be exporting your R Markdown documents as PDFs, but the beauty of R Markdown is it doesn't stop there. Your R Markdown documents can be knitted as a HTML document, a book (or both like this book!). You can even make slideshow presentations and yes, if need be, export as a word document that you can open in *Microsoft Word*.
 
 You specify the output format in the document header. To specify you want your document to be outputted as a PDF your YAML header would look like this:
 
@@ -323,22 +323,22 @@ output: pdf_document
 Here are some links to different output formation available in R Markdown and how to use them:
 
 -   [`pdf_document`](https://bookdown.org/yihui/R%20Markdown/pdf-document.html) creates a PDF document via Latex; probably your defacto output.
--   [`word_document`](https://bookdown.org/yihui/R%20Markdown/word-document.html) creates a Word document. Note that the formatting options are pretty basic, so while evereything will be where you want it to be, you'll need to pretty it up in Word to comply with your instructors specifications.
+-   [`word_document`](https://bookdown.org/yihui/R%20Markdown/word-document.html) creates a Word document. Note that the formatting options are pretty basic, so while everything will be where you want it to be, you'll need to pretty it up in Word to comply with your instructor's specifications.
 -   [`tufte_handout`](https://bookdown.org/yihui/R%20Markdown/tufte-handouts.html) for a PDF handout in the style of Edward Tufte. Check it out.
--   [`ioslides_presentation`](https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html), [`revealjs::revealjs_presentation`](https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html), and [`powerpoint_presentation`](https://bookdown.org/yihui/R%20Markdown/powerpoint-presentation.html) are all options to create sldieshow presentations. I personally use `revealjs` for my own work. It has the steepest learning curve of the bunch, but once setup, you can make incredibly slick slides with ease.
-    -   Note: like `word_document`, `powerpoint_presentation`'s outputs are stylistically simple. You'll definitly need to pretty them up manually in Powerpoint.
+-   [`ioslides_presentation`](https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html), [`revealjs::revealjs_presentation`](https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html), and [`powerpoint_presentation`](https://bookdown.org/yihui/R%20Markdown/powerpoint-presentation.html) are all options to create slideshow presentations. I personally use `revealjs` for my own work. It has the steepest learning curve of the bunch, but once setup, you can make incredibly slick slides with ease.
+    -   Note: like `word_document`, `powerpoint_presentation`'s outputs are stylistically simple. You'll definitely need to pretty them up manually in Powerpoint.
 
 ### RStudio tips and tricks
 
 To further the usefulness of R Markdown, the latest release of RStudio has a *Visual R Markdown* editor which introduces many useful features for authoring documents in R Markdown. Some of the most pertinent are:
 
 -   [Visual editor](https://rstudio.github.io/visual-markdown-editing/) so you can see how your document looks (top left of script pane)
--   Combining Zotero and RStudio for easy citatiosn of your document (read more [here](https://rstudio.github.io/visual-markdown-editing/citations.html)
+-   Combining Zotero and RStudio for easy citations, of your document (read more [here](https://rstudio.github.io/visual-markdown-editing/citations.html))
 
 ## R Markdown resources
 
 There's a plethora of helpful online resources to help hone your R markdown skills. We'll list a couple below (the titles are links to the corresponding document):
 
--   [Chapter 2](https://bookdown.org/yihui/R%20Markdown/basics.html) of the [*R Markdown: The Definitive Guide*](https://bookdown.org/yihui/R%20Markdown/) by Xie, Allair & Grolemund (2020). This is the simplest, most comprehensive, guide to learning R markdown and it's available freely online.
+-   [Chapter 2](https://bookdown.org/yihui/R%20Markdown/basics.html) of the [*R Markdown: The Definitive Guide*](https://bookdown.org/yihui/R%20Markdown/) by Xie, Allaire & Grolemund (2020). This is the simplest, most comprehensive, guide to learning R markdown and it's available freely online.
 -   [*The R markdown cheat sheet*](https://rstudio.com/wp-content/uploads/2015/02/R%20Markdown-cheatsheet.pdf), a great resource with the most common R markdown operations; keep on hand for quick referencing.
 -   [*Bookdown: Authoring Books and Technical Documents with R Markdown*](https://bookdown.org/yihui/bookdown/) (2020) by Yihui Xie. Explains the `bookdown` package which greatly expands the capabilities of R markdown. For example, the table of contents of this document is created with `bookdown`.

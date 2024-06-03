@@ -33,7 +33,7 @@ The `XML` package in R provides tools to parse and manipulate XML (eXtensible Ma
 
 Do not modify the cell below. Run the cell below to check if you've successfully installed the packages.
 
-```{r}
+```{r, purl=FALSE}}
 library(testthat, quietly = TRUE)
 test_that("Installing Packages", {
   # Task 1: Check if tidyverse is installed
@@ -68,7 +68,7 @@ Note: Load the entire `tidyverse` package.
 
 Do not modify the cell below. Run the cell below to check if you've successfully loaded the csv file.
 
-```{r}
+```{r, purl=FALSE}}
 library(testthat, quietly = TRUE)
 test_that("Reading a CSV File with readr", {
   # Check if csv_data is a data frame and has rows
@@ -100,7 +100,7 @@ Your objective is to create a scatterplot using functions from ggplot2. Use the 
 
 Do not modify the cell below. Run the cell below to check if you've successfully created the scatterplot.
 
-```{r}
+```{r, purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Scatterplot with ggplot2", {
   # Check if scatter_plot is of ggplot type and has layers (e.g., geom_point)
@@ -133,7 +133,7 @@ Using the `csv_data` dataset, your objective is to perform some data filtering a
 
 Do not modify the cell below. Run the cell below to check if you've successfully filtered the data and calculated the required statistics.
 
-```{r}
+```{r, purl=FALSE}
 library(testthat)
 test_that("Advanced filtering and summarization", {
   # Check if stats_result contains the correct summaries
@@ -156,5 +156,4 @@ test_that("Advanced filtering and summarization", {
 })
 
 ```
-
 

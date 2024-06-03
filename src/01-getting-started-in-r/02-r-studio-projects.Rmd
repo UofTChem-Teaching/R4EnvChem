@@ -114,7 +114,7 @@ CHM410
 ...
 ```
 
-With a separate folder for each experiment, and within each folder is an RStudio project, data, images, and other files required for *that* specific project. You shouldn't have nested R studio project as their is no benefit to this approach. Keep everything you need in one location, and no more.
+With a separate folder for each experiment, and within each folder is an RStudio project, data, images, and other files required for *that* specific project. You shouldn't have nested R studio project as there is no benefit to this approach. Keep everything you need in one location, and no more.
 
 ## A sneak peek at `.Rmd` files
 
