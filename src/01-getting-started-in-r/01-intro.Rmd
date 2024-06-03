@@ -120,8 +120,8 @@ Places to get help include:
 In this chapter we've covered:
 
 -   How to use RStudio to do R programming, both remotely and locally
--   The benefits of working remotely using platforms like the University of Toronto’s        JupyterHub R Studio server.
--   Resources for help when you get stuck, including Google, Stack Overflow, and             reference books.
+-   The benefits of working remotely using platforms like the University of Toronto’s JupyterHub RStudio server.
+-   Resources for help when you get stuck, including Google, Stack Overflow, and reference books.
 
 
 In the next chapter we'll break down how to setup your work in R for legibility, simplicity, and reproducibility. After all, the person cursing any of your sloppy work will invariably be you, so be kind to yourself, and do it right the first time.
