@@ -197,7 +197,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.9.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setup"><i class="fa fa-check"></i><b>1.9.1</b> Setup</a></li>
 <li class="chapter" data-level="1.9.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#basic-r-commands"><i class="fa fa-check"></i><b>1.9.2</b> Basic R Commands</a></li>
-<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> USing the Help Function</a></li>
+<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Function</a></li>
 <li class="chapter" data-level="1.9.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#reflection"><i class="fa fa-check"></i><b>1.9.4</b> Reflection</a></li>
 </ul></li>
 </ul></li>
@@ -628,7 +628,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 </tr>
 </tbody>
 </table>
-<p>Pretty neat, eh? You might not think so, but let’s imagine a scenario you’ll encounter soon enough. You’re about to submit your assignment, you’ve spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to <em>subtract</em> value <code>x</code> and not value <code>y</code> in your analysis. If you did all your work in <em>Excel</em> (tsk tsk), you’ll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which is never does with looming deadlines). Now if you did all your work in R markdown, you go to your one <code>.rmd</code> document, briefly apply the changes and re-compile your document.</p>
+<p>Pretty neat, eh? You might not think so, but let’s imagine a scenario you’ll encounter soon enough. You’re about to submit your assignment, you’ve spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to <em>subtract</em> value <code>x</code> and not value <code>y</code> in your analysis. If you did all your work in <em>Excel</em> (tsk tsk), you’ll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which it never does with looming deadlines). Now if you did all your work in R markdown, you go to your one <code>.rmd</code> document, briefly apply the changes and re-compile your document.</p>
 <p>A lot of scientists work with R Markdown for writing their reports for numerous reasons:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Integrated Workflow</strong>: Combines narrative, data analyses, and visualizations in one document, promoting reproducibility and transparency.</li>
@@ -671,7 +671,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 <ul>
 <li><p><strong>Modifying the YAML Header</strong>: You can change the output format directly in the YAML header of your Rmd file. In the last example, replacing <code>output: pdf_document</code> with <code>output: html_document</code> or <code>output: word_document</code> would knit the document into HTML or Word, respectively.</p></li>
 <li><p><strong>Using RStudio’s Knit Button</strong>: In the RStudio IDE, at the top of the script editor pane, there’s a Knit button. Clicking the small dropdown arrow next to this button allows you to choose the output format you desire. Selecting one of the options will knit the document into that format and update the YAML header accordingly.</p>
-<p><img src="images/knit_options.PNG" style="width:70.0%" /></p></li>
+<p><img src="images/knit_options.png" style="width:70.0%" /></p></li>
 </ul>
 </div>
 </div>
@@ -733,13 +733,13 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 </ul></li>
 </ul>
 <p>R Markdown will automatically format these appropriately when the document is knit. For example, a main heading will typically appear larger and bolder than its subheadings, like this:</p>
-<p><img src="images/heading_example.PNG" style="width:40.0%" /></p>
+<p><img src="images/heading_example.png" style="width:40.0%" /></p>
 <p>By effectively utilizing headings and subheadings, you can provide clear structure and flow to your document, making it more readable and navigable for your audience.</p>
 </div>
 <div id="latex-basics" class="section level3 hasAnchor" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> LaTeX Basics<a href="using-r-markdown.html#latex-basics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>LaTeX</strong> (pronounced “Lay-tech”) is a typesetting system that’s popular in academia due to its high-quality output format and the ability to handle complex formatting tasks. It’s especially favored for documents that contain mathematical symbols, equations, and other specialized notation.</p>
-<p>In R Markdown, LaTeX code can be integrated directly into your document to allow for advanced formatting, especially formathematical expressions and equations. When you knit your R Markdown document, the LaTeX code is rendered into beautifully formatted text.</p>
+<p>In R Markdown, LaTeX code can be integrated directly into your document to allow for advanced formatting, especially for mathematical expressions and equations. When you knit your R Markdown document, the LaTeX code is rendered into beautifully formatted text.</p>
 <p>There are two common ways to turn your expressions in a math mode.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Display mathematical expressions</strong>: centers the mathematical expression on its own line<br />
@@ -815,7 +815,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 </div>
 <div id="authoring-with-r-markdown" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Authoring with R Markdown<a href="using-r-markdown.html#authoring-with-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Below is a brief summary of the major elements required to author an R Markdown document. They shoudl address the majority of your needs, but please see the <a href="using-r-markdown.html#r-markdown-resources">R Markdown resources</a> for more information.</p>
+<p>Below is a brief summary of the major elements required to author an R Markdown document. They should address the majority of your needs, but please see the <a href="using-r-markdown.html#r-markdown-resources">R Markdown resources</a> for more information.</p>
 <div id="r-markdown-syntax" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> R markdown syntax<a href="using-r-markdown.html#r-markdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Unlike <em>Microsoft Word</em>, R Markdown utilizes a specific syntax for text formatting. Once you get used to it, it makes typing documents much easier than <em>Word</em>’s approach. The table below is how some of the most common text formatting is typed in your R Markdown document (syntax &amp; example column) and how it’ll appear in the final output.</p>
@@ -871,7 +871,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 </div>
 <div id="r-code-chunk-options" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> R code chunk options<a href="using-r-markdown.html#r-code-chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that’ll effect how you’re code chunk is run and displayed in the final output document. You include options in the chunk delimiters <code>```{r}</code> and <code>```</code>. For example the following code tells markdown you’re running code written in <code>R</code>, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption “Some Caption”.</p>
+<p>Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that’ll affect how your code chunk is run and displayed in the final output document. You include options in the chunk delimiters <code>```{r}</code> and <code>```</code>. For example the following code tells markdown you’re running code written in <code>R</code>, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption “Some Caption”.</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb92-1"><a href="using-r-markdown.html#cb92-1" tabindex="-1"></a><span class="in">```{r, eval = FALSE, fig.cap = &quot;Some caption&quot;}</span></span>
 <span id="cb92-2"><a href="using-r-markdown.html#cb92-2" tabindex="-1"></a></span>
 <span id="cb92-3"><a href="using-r-markdown.html#cb92-3" tabindex="-1"></a><span class="in"># some code to generate a plot worth captioning. </span></span>
@@ -944,8 +944,8 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 <h3><span class="header-section-number">6.3.3</span> Inserting images<a href="using-r-markdown.html#inserting-images" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Images not produced by R code can easily be inserted into your document. The markdown code isn’t R code, so between paragraphs of bodytext insert the following code.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb93-1"><a href="using-r-markdown.html#cb93-1" tabindex="-1"></a><span class="al">![Caption for the picture.](path/to/image.png)</span>{width=50%, height=50%}</span></code></pre></div>
-<p>Note that in the above the use of image atributes, the <code>{width=50%, height=50%}</code> at the end. This is how you’ll adjust the size of your image. Other dimensions you can use include <code>px, cm, mm, in, inch</code>, and <code>%</code>.</p>
-<p>A final note on images: when compiling to PDF, the LaTeX call will place your image in the “optimal” location (as determined by LaTeX), so you might find your image isn’t exactly where you though it would be. A more in-depth guide to image placement can be found <a href="https://rpubs.com/RatherBit/90926">here</a></p>
+<p>Note that in the above the use of image attributes, the <code>{width=50%, height=50%}</code> at the end. This is how you’ll adjust the size of your image. Other dimensions you can use include <code>px, cm, mm, in, inch</code>, and <code>%</code>.</p>
+<p>A final note on images: when compiling to PDF, the LaTeX call will place your image in the “optimal” location (as determined by LaTeX), so you might find your image isn’t exactly where you thought it would be. A more in-depth guide to image placement can be found <a href="https://rpubs.com/RatherBit/90926">here</a></p>
 </div>
 <div id="generating-tables" class="section level3 hasAnchor" number="6.3.4">
 <h3><span class="header-section-number">6.3.4</span> Generating tables<a href="using-r-markdown.html#generating-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -985,7 +985,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 </div>
 <div id="exporting-r-markdown-documents" class="section level3 hasAnchor" number="6.3.6">
 <h3><span class="header-section-number">6.3.6</span> Exporting R Markdown documents<a href="using-r-markdown.html#exporting-r-markdown-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>You’ll most likely be exporting your R Markdown documents as PDFs, but the beauty of R Markdown is it dosen’t stop there. Your R Markdown documents can be knitted as a HTML document, a book (or both like this book!). You can even make slideshow presentations and yes, if need be, export as a word document that you can open in <em>Microsoft Word</em>.</p>
+<p>You’ll most likely be exporting your R Markdown documents as PDFs, but the beauty of R Markdown is it doesn’t stop there. Your R Markdown documents can be knitted as a HTML document, a book (or both like this book!). You can even make slideshow presentations and yes, if need be, export as a word document that you can open in <em>Microsoft Word</em>.</p>
 <p>You specify the output format in the document header. To specify you want your document to be outputted as a PDF your YAML header would look like this:</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb95-1"><a href="using-r-markdown.html#cb95-1" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb95-2"><a href="using-r-markdown.html#cb95-2" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Your title here&quot;</span></span>
@@ -994,11 +994,11 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 <p>Here are some links to different output formation available in R Markdown and how to use them:</p>
 <ul>
 <li><a href="https://bookdown.org/yihui/R%20Markdown/pdf-document.html"><code>pdf_document</code></a> creates a PDF document via Latex; probably your defacto output.</li>
-<li><a href="https://bookdown.org/yihui/R%20Markdown/word-document.html"><code>word_document</code></a> creates a Word document. Note that the formatting options are pretty basic, so while evereything will be where you want it to be, you’ll need to pretty it up in Word to comply with your instructors specifications.</li>
+<li><a href="https://bookdown.org/yihui/R%20Markdown/word-document.html"><code>word_document</code></a> creates a Word document. Note that the formatting options are pretty basic, so while everything will be where you want it to be, you’ll need to pretty it up in Word to comply with your instructor’s specifications.</li>
 <li><a href="https://bookdown.org/yihui/R%20Markdown/tufte-handouts.html"><code>tufte_handout</code></a> for a PDF handout in the style of Edward Tufte. Check it out.</li>
-<li><a href="https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html"><code>ioslides_presentation</code></a>, <a href="https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html"><code>revealjs::revealjs_presentation</code></a>, and <a href="https://bookdown.org/yihui/R%20Markdown/powerpoint-presentation.html"><code>powerpoint_presentation</code></a> are all options to create sldieshow presentations. I personally use <code>revealjs</code> for my own work. It has the steepest learning curve of the bunch, but once setup, you can make incredibly slick slides with ease.
+<li><a href="https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html"><code>ioslides_presentation</code></a>, <a href="https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html"><code>revealjs::revealjs_presentation</code></a>, and <a href="https://bookdown.org/yihui/R%20Markdown/powerpoint-presentation.html"><code>powerpoint_presentation</code></a> are all options to create slideshow presentations. I personally use <code>revealjs</code> for my own work. It has the steepest learning curve of the bunch, but once setup, you can make incredibly slick slides with ease.
 <ul>
-<li>Note: like <code>word_document</code>, <code>powerpoint_presentation</code>’s outputs are stylistically simple. You’ll definitly need to pretty them up manually in Powerpoint.</li>
+<li>Note: like <code>word_document</code>, <code>powerpoint_presentation</code>’s outputs are stylistically simple. You’ll definitely need to pretty them up manually in Powerpoint.</li>
 </ul></li>
 </ul>
 </div>
@@ -1007,7 +1007,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 <p>To further the usefulness of R Markdown, the latest release of RStudio has a <em>Visual R Markdown</em> editor which introduces many useful features for authoring documents in R Markdown. Some of the most pertinent are:</p>
 <ul>
 <li><a href="https://rstudio.github.io/visual-markdown-editing/">Visual editor</a> so you can see how your document looks (top left of script pane)</li>
-<li>Combining Zotero and RStudio for easy citatiosn of your document (read more <a href="https://rstudio.github.io/visual-markdown-editing/citations.html">here</a></li>
+<li>Combining Zotero and RStudio for easy citations, of your document (read more <a href="https://rstudio.github.io/visual-markdown-editing/citations.html">here</a>)</li>
 </ul>
 </div>
 </div>
@@ -1015,7 +1015,7 @@ Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub
 <h2><span class="header-section-number">6.4</span> R Markdown resources<a href="using-r-markdown.html#r-markdown-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There’s a plethora of helpful online resources to help hone your R markdown skills. We’ll list a couple below (the titles are links to the corresponding document):</p>
 <ul>
-<li><a href="https://bookdown.org/yihui/R%20Markdown/basics.html">Chapter 2</a> of the <a href="https://bookdown.org/yihui/R%20Markdown/"><em>R Markdown: The Definitive Guide</em></a> by Xie, Allair &amp; Grolemund (2020). This is the simplest, most comprehensive, guide to learning R markdown and it’s available freely online.</li>
+<li><a href="https://bookdown.org/yihui/R%20Markdown/basics.html">Chapter 2</a> of the <a href="https://bookdown.org/yihui/R%20Markdown/"><em>R Markdown: The Definitive Guide</em></a> by Xie, Allaire &amp; Grolemund (2020). This is the simplest, most comprehensive, guide to learning R markdown and it’s available freely online.</li>
 <li><a href="https://rstudio.com/wp-content/uploads/2015/02/R%20Markdown-cheatsheet.pdf"><em>The R markdown cheat sheet</em></a>, a great resource with the most common R markdown operations; keep on hand for quick referencing.</li>
 <li><a href="https://bookdown.org/yihui/bookdown/"><em>Bookdown: Authoring Books and Technical Documents with R Markdown</em></a> (2020) by Yihui Xie. Explains the <code>bookdown</code> package which greatly expands the capabilities of R markdown. For example, the table of contents of this document is created with <code>bookdown</code>.</li>
 </ul>

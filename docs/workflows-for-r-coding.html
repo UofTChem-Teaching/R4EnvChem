@@ -197,7 +197,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.9.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setup"><i class="fa fa-check"></i><b>1.9.1</b> Setup</a></li>
 <li class="chapter" data-level="1.9.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#basic-r-commands"><i class="fa fa-check"></i><b>1.9.2</b> Basic R Commands</a></li>
-<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> USing the Help Function</a></li>
+<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Function</a></li>
 <li class="chapter" data-level="1.9.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#reflection"><i class="fa fa-check"></i><b>1.9.4</b> Reflection</a></li>
 </ul></li>
 </ul></li>
@@ -568,7 +568,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 </div>
 <div id="workspace-and-whats-real" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Workspace and what’s real<a href="workflows-for-r-coding.html#workspace-and-whats-real" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We’ve already mentioned the <em>environment</em> pane that displays objects present in your R session. While they are useful to work with, they’re not considered <em>real</em>. That is to say, if you close your R session, those objects will be lost. And while RStudio allows you to save a working environment (and it’s associated objects), it’s crucial to understand that <em>only your saved scripts/markdown documents are real</em>. You can’t readily share your working environment, and even so it’s bad practice as you may reference a previous iteration of an object giving you erroneous results. Think back to the chemistry labs: you may jot notes down on loose leaf, but only what’s written in your lab book is considered real… we’ll that’s how it’s supposed to work anyways.</p>
+<p>We’ve already mentioned the <em>environment</em> pane that displays objects present in your R session. While they are useful to work with, they’re not considered <em>real</em>. That is to say, if you close your R session, those objects will be lost. And while RStudio allows you to save a working environment (and its associated objects), it’s crucial to understand that <em>only your saved scripts/markdown documents are real</em>. You can’t readily share your working environment, and even so it’s bad practice as you may reference a previous iteration of an object giving you erroneous results. Think back to the chemistry labs: you may jot notes down on loose leaf, but only what’s written in your lab book is considered real… well that’s how it’s supposed to work anyways.</p>
 <p>The idea is everything you need can be generated from the original data and the instructions in your R script/markdown document. Anyone should be able to take your data and your code and get the same results you got. This is paramount for the reproducibility of your work and your results.</p>
 </div>
 <div id="saving-r-markdown" class="section level2 hasAnchor" number="5.3">
@@ -577,7 +577,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 <ul>
 <li>Navigate to <em>File -&gt; Save</em> or use the ‘Save’ icon in the top left corner of your document.</li>
 </ul>
-<p>Content saved to an .Rmd file is considered real and self-contained. Variables, plots, or datasets that appear in your workspace or the <code>Environment</code> window aren’t self-contained. Whenever you close RStudio, any objects in R that are not considered <em>real</em> will be lost in that R session. Furthermore when you need to share your code (for school or publication) you’ll need to share your data and your script, but never your work-space. This is to increase predictability and helps people (and you) to make sure your work is reproducible, an under appreciate hallmark of science.</p>
+<p>Content saved to an .Rmd file is considered real and self-contained. Variables, plots, or datasets that appear in your workspace or the <code>Environment</code> window aren’t self-contained. Whenever you close RStudio, any objects in R that are not considered <em>real</em> will be lost in that R session. Furthermore when you need to share your code (for school or publication) you’ll need to share your data and your script, but never your work-space. This is to increase predictability and helps people (and you) to make sure your work is reproducible, an underappreciated hallmark of science.</p>
 <div id="what-should-i-save" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> What should I save?<a href="workflows-for-r-coding.html#what-should-i-save" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>At this point in the chapter, two things should be clear:</p>
@@ -595,7 +595,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 </div>
 <div id="saving-objects" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Saving objects<a href="workflows-for-r-coding.html#saving-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In some cases, your code may be used to generate large datasets which require quite a bit of time to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data to a <em>real</em> file that you can simply import the next time you open the application. Also, you may be finished with your analysis and want to save the final data. You can save your the data contained in your data frame as a <code>.csv</code> file using <code>write.csv()</code>.</p>
+<p>In some cases, your code may be used to generate large datasets which require quite a bit of time to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data to a <em>real</em> file that you can simply import the next time you open the application. Also, you may be finished with your analysis and want to save the final data. You can save the data contained in your data frame as a <code>.csv</code> file using <code>write.csv()</code>.</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="workflows-for-r-coding.html#cb78-1" tabindex="-1"></a><span class="co"># dummy data frame to save</span></span>
 <span id="cb78-2"><a href="workflows-for-r-coding.html#cb78-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
 <span id="cb78-3"><a href="workflows-for-r-coding.html#cb78-3" tabindex="-1"></a>                 <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;maybe&quot;</span>))</span>
@@ -645,7 +645,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 </div>
 <div id="viewing-data-and-code-simultaneously" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Viewing data and code simultaneously<a href="workflows-for-r-coding.html#viewing-data-and-code-simultaneously" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before we get into more about coding and workflows, you may find yourself wanting to be able to to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio or by clicking the button highlighted in the image below.</p>
+<p>Before we get into more about coding and workflows, you may find yourself wanting to be able to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio or by clicking the button highlighted in the image below.</p>
 <div class="float">
 <img src="images/Rstudio_newwindow.png" style="width:100.0%" alt="How to open an R script/plot/data set in a new window." />
 <div class="figcaption">How to open an R script/plot/data set in a new window.</div>
@@ -681,7 +681,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="workflows-for-r-coding.html#cb84-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">+</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
 <pre><code>## Error in 8 + &quot;hi&quot;: non-numeric argument to binary operator</code></pre>
 <p>Here we are trying to add a numeric value (8) to a character string (“hi”), then set the sum of the two to variable <code>q</code>. R has given us an error in return, because there is no logical way for R to add a numeric value to non-numeric text. The error indicates that we have passed a <code>non-numeric argument to binary operator</code>, meaning we have used a non-numeric data type for an expression which is exclusively reserved for numeric data.</p>
-<p>It is important to be aware of error codes as many functions require specific data types as their inputs. You can alwways consult the function documentation by via the <em>Help</em> tab of the <em>Viewer</em> pane or by typing a <code>?</code> followed by the name of the function in the console (i.e. <code>?ggplot</code>).</p>
+<p>It is important to be aware of error codes as many functions require specific data types as their inputs. You can always consult the function documentation via the <em>Help</em> tab of the <em>Viewer</em> pane or by typing a <code>?</code> followed by the name of the function in the console (i.e. <code>?ggplot</code>).</p>
 </div>
 <div id="summary-3" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> Summary<a href="workflows-for-r-coding.html#summary-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -692,7 +692,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 <li>How to format your markdown for legibility (Remember you’re the one who’s going to be stuck rereading it!)</li>
 <li>Troubleshooting some common error messages</li>
 </ul>
-<p>Now that you’re familiar the above, we’ll introduce <a href="using-r-markdown.html#using-r-markdown">Using R Markdown</a>, a way to combine your R code, it’s outputs, and your writing all in one dynamic document (like your lab reports!).</p>
+<p>Now that you’re familiar with the above, we’ll introduce <a href="using-r-markdown.html#using-r-markdown">Using R Markdown</a>, a way to combine your R code, it’s outputs, and your writing all in one dynamic document (like your lab reports!).</p>
 </div>
 <div id="exercise-3" class="section level2 hasAnchor" number="5.8">
 <h2><span class="header-section-number">5.8</span> Exercise<a href="workflows-for-r-coding.html#exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>

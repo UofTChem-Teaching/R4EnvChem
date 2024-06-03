@@ -197,7 +197,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.9.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setup"><i class="fa fa-check"></i><b>1.9.1</b> Setup</a></li>
 <li class="chapter" data-level="1.9.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#basic-r-commands"><i class="fa fa-check"></i><b>1.9.2</b> Basic R Commands</a></li>
-<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> USing the Help Function</a></li>
+<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Function</a></li>
 <li class="chapter" data-level="1.9.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#reflection"><i class="fa fa-check"></i><b>1.9.4</b> Reflection</a></li>
 </ul></li>
 </ul></li>
@@ -560,7 +560,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-coding-basics.html#cb13-1" tabindex="-1"></a>(<span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>) <span class="sc">+</span> (<span class="dv">5</span> <span class="sc">*</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 26</code></pre>
 <p>But managing these inputs and outputs is simplified with <strong>variables</strong>. Variables in R, like those you’ve encountered in math class, can only have one value, and you can reference or pass that value along by referring the variable name. And, unlike the variables in math classes, you can change that value whenever you want. Another way to think about it is that a variable is a box in which you store your value. When you want to move (reference) your value, you move the box (and whatever is inside of it). Then you can simply open the box somewhere else without having to worry about the hassle of what’s inside.</p>
-<p>You can assign the a value to a variables using <code>&lt;-</code>, as shown below.</p>
+<p>You can assign a value to a variable using <code>&lt;-</code>, as shown below.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-coding-basics.html#cb15-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">12</span></span>
 <span id="cb15-2"><a href="r-coding-basics.html#cb15-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
@@ -586,7 +586,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r-coding-basics.html#cb21-1" tabindex="-1"></a>y <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r-coding-basics.html#cb23-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">12</span></span></code></pre></div>
-<p>The code above returns the <code>object 'y' not found</code> error because we’re adding <code>+ 1</code> to <code>y</code> which hasn’t been created yet, it’s created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn’t reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space suing the ‘broom’ button in the <em>environment</em> pane. This will help you to ensure the code you’re writing will is organized in the correct order; see [Saving R scripts] for why this is important.</p>
+<p>The code above returns the <code>object 'y' not found</code> error because we’re adding <code>+ 1</code> to <code>y</code> which hasn’t been created yet, it’s created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn’t reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space using the ‘broom’ button in the <em>environment</em> pane. This will help you to ensure the code you’re writing is organized in the correct order; see <a href="workflows-for-r-coding.html#saving-r-markdown">Saving R Markdown</a> for why this is important.</p>
 </div>
 <div id="data-types" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Data types<a href="r-coding-basics.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -811,7 +811,7 @@ div.csl-indent {
 <p>An often unappreciated aspect of packages is that they not only contain functions we can use, but documentation. Documentation provides a description of the function (what it does), what arguments it takes, details, and working examples. Often the easiest way to learn how to use a function is to take a working example and change it bit by bit to see how it works etc. To see documentation check the “help” tab in the “outputs” window or type a question mark in front of a functions name:</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="r-coding-basics.html#cb77-1" tabindex="-1"></a><span class="co"># Takes you to the help document for the read.csv function</span></span>
 <span id="cb77-2"><a href="r-coding-basics.html#cb77-2" tabindex="-1"></a>?read.csv</span></code></pre></div>
-<p>You can also write you’re own functions. Please see [Programming with R] for additional details.</p>
+<p>You can also write you’re own functions. Please see <a href="loops-and-functions-in-r.html#writing-custom-functions-in-r">Writing custom functions in R</a> for additional details.</p>
 </div>
 </div>
 <div id="summary-2" class="section level2 hasAnchor" number="4.6">

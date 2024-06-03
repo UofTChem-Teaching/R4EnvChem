@@ -197,7 +197,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.9.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setup"><i class="fa fa-check"></i><b>1.9.1</b> Setup</a></li>
 <li class="chapter" data-level="1.9.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#basic-r-commands"><i class="fa fa-check"></i><b>1.9.2</b> Basic R Commands</a></li>
-<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> USing the Help Function</a></li>
+<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Function</a></li>
 <li class="chapter" data-level="1.9.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#reflection"><i class="fa fa-check"></i><b>1.9.4</b> Reflection</a></li>
 </ul></li>
 </ul></li>
@@ -617,7 +617,7 @@ div.csl-indent {
 </div>
 <div id="conditional-arguments" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Conditional arguments<a href="loops-and-functions-in-r.html#conditional-arguments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Condaitional arguments used to specify a path in a function depending on whether a statement is <code>TRUE</code> or <code>FALSE</code>. These are explored in greater detail via the links in the <a href="loops-and-functions-in-r.html#further-reading">Further reading</a> section, but here’s a quick example of a function that uses the conditional <code>if</code> statement to print out which number is largest:</p>
+<p>Conditional arguments used to specify a path in a function depending on whether a statement is <code>TRUE</code> or <code>FALSE</code>. These are explored in greater detail via the links in the <a href="loops-and-functions-in-r.html#further-reading">Further reading</a> section, but here’s a quick example of a function that uses the conditional <code>if</code> statement to print out which number is largest:</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="loops-and-functions-in-r.html#cb113-1" tabindex="-1"></a>isGreater <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
 <span id="cb113-2"><a href="loops-and-functions-in-r.html#cb113-2" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> y){</span>
 <span id="cb113-3"><a href="loops-and-functions-in-r.html#cb113-3" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">paste</span>(x, <span class="st">&quot;is greater than&quot;</span>, y, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
@@ -650,7 +650,7 @@ div.csl-indent {
 ## 2 380.81        1000                2000
 ## 3 410.11        5000                5000
 ## 4 445.34       10000               10000</code></pre>
-<p>Firstly we’re creating a new column called <code>reportedIntesities</code> using <code>mutate()</code> and using <code>case_when()</code> to conditionally fill that column. The inputs we’ve passed to <code>case_when()</code> are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (<code>~</code>) evaluate to <code>TRUE</code>, <code>case_when</code> will execute the right-hand side. Thee first two-sided formula is <code>intensities &lt; lod ~ lod/2</code> and checks if the intensities value is less than the previously calculated limit of detection. If <code>intensitis &lt; lod</code> evaluates to <code>TRUE</code> we insert half of the LOD value for that row. If <code>intentisites &lt; lod</code> evaluates to <code>FALSE</code>, we move onto the next two-side formula and reevaluate again. The second two-sided formula <code>TRUE ~ intensities</code> basically means for everything that’s remaining (greater than LOD in our instance) just use the value from the <code>intensities</code> column.</p>
+<p>Firstly we’re creating a new column called <code>reportedIntensities</code> using <code>mutate()</code> and using <code>case_when()</code> to conditionally fill that column. The inputs we’ve passed to <code>case_when()</code> are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (<code>~</code>) evaluate to <code>TRUE</code>, <code>case_when</code> will execute the right-hand side. The first two-sided formula is <code>intensities &lt; lod ~ lod/2</code> and checks if the intensities value is less than the previously calculated limit of detection. If <code>intensities &lt; lod</code> evaluates to <code>TRUE</code> we insert half of the LOD value for that row. If <code>intensities &lt; lod</code> evaluates to <code>FALSE</code>, we move onto the next two-side formula and reevaluate again. The second two-sided formula <code>TRUE ~ intensities</code> basically means for everything that’s remaining (greater than LOD in our instance) just use the value from the <code>intensities</code> column.</p>
 <p>Some ideas to consider when working with <code>case-when()</code>:</p>
 <ul>
 <li>There’s no limits to the conditions you can pass to <code>case_when()</code>.</li>
