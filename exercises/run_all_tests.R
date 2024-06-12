@@ -19,7 +19,6 @@ run_tests_in_directory <- function(directory) {
 # Get all the folders inside tests folder
 
 test_directories <- list.dirs("exercises", full.names = FALSE, recursive = FALSE)
-print(test_directories)
 
 
 # Run tests in each directory
