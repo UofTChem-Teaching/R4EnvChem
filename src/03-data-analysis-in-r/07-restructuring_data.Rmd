@@ -1,4 +1,4 @@
-# Resturcturing Your Data
+# Restructuring Your Data
 
 
 In the realm of data analysis, the structure of your data can be just as crucial as the data itself. When dealing with complex datasets in R, or any other analytical environment, the way you organize and reshape your data can significantly impact the efficiency and clarity of your analyses. This chapter delves into the art of restructuring data in R, focusing on two powerful functions: `pivot_longer` and `pivot_wider`. These tools, part of the `tidyr` package, are essential for transforming data into a format that aligns perfectly with your analytical objectives.
@@ -98,7 +98,7 @@ Let's break down the code we've executed via the `pivot_longer` function:
 1. `cols = -wavenumber` specifies that we're selecting every other column *but* wave number. 
     - we could have just as easily specified each column individually using `cols = c("EPDM",...)` but it's easier to use `-` to specify what we *don't* want to select. 
 2. `names_to = "sample"` specifies that the column header (i.e. names) be converted into an observation under the `sample` column.
-3. `values_to = "absorbance"` specifies that the absorbance values under each of the selected headers be placed into the `aborsbance` column. 
+3. `values_to = "absorbance"` specifies that the absorbance values under each of the selected headers be placed into the `absorbance` column. 
 
 
 Beyond what we showed here, `pivot_longer` has many other features that you can take advantage of. We highly recommend reading the examples listed on the [pivot_longer page](https://tidyr.tidyverse.org/reference/pivot_longer.html) to get a better sense of the possibilities. 

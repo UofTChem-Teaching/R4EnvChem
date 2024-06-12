@@ -152,7 +152,7 @@ The key here is the use of the `!` (NOT) operator which excludes rows that meet 
 
 ##  Adding new variables
 
-`mutate()` allows you to add new variable (read columns) to your existing data set. It'll probably be the workhorse function you'll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let's suppose that our standards were diluted by a factor of 10, we can add a new column for this:
+`mutate()` allows you to add new variables (read columns) to your existing data set. It'll probably be the workhorse function you'll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let's suppose that our standards were diluted by a factor of 10, we can add a new column for this:
 
 ```{r}
 mutate(FAES, "dil_fct" = 10)
@@ -167,10 +167,10 @@ mutate(FAES,
 ```
 
 
-Couple of things to note: 
+A Couple of things to note: 
 
   1. The variable we're creating needs to be in quotation marks, hence `dil_fct` for our dilution factor variable
-  2. The variables we're referencing do not need to be in quotation marks; hence `signal` because this variable already exist. 
+  2. The variables we're referencing do not need to be in quotation marks; hence `signal` because this variable already exists. 
   3. Note the order of precedence: `dil_fct` is created first so we can reference in the second argument, we would get an error if we swapped the order. 
   
 ### Mutate with a condition
@@ -208,7 +208,7 @@ knitr::kable(funs)
 
 ## Group and summarize data
 
-`summarize` effectively summarized your data based on functions you've passed to it. Looking at our `FAES` data we'd probably want the mean of the triplicate signals, alongside the standard deviation. Let's see what happens when we apply the summarize function straight up: 
+`summarize` effectively summarizes your data based on functions you've passed to it. Looking at our `FAES` data we'd probably want the mean of the triplicate signals, alongside the standard deviation. Let's see what happens when we apply the summarize function straight up: 
 
 ```{r}
 summarise(FAES, "mean" = mean(signal), "stdDev" = sd(signal))
@@ -225,7 +225,7 @@ Here we've created a new data set, `groupedFAES`, that we grouped by the variabl
 
 ### Useful summarize functions
 
-We've used the `mean()` and `sd()` functions above, but there are a host of other useful functions you can use in conjunction with summarize. See **Useful Functions** in the `summarise()` documentation (enter `?summarise`) in the console. This is also discussed at in more depth in the [Summarizing Data] chapter. 
+We've used the `mean()` and `sd()` functions above, but there are a host of other useful functions you can use in conjunction with summarize. See **Useful Functions** in the `summarise()` documentation (enter `?summarise`) in the console. This is also discussed in more depth in the [Summarizing Data] chapter. 
 
 ## The pipe: chaining functions together 
 
@@ -245,7 +245,7 @@ stds_4 <- summarize(stds_3, "mean" = mean(cor_sig), "stdDev" = sd(cor_sig))
 stds_4
 ```
 
-While the code above did it's job, it's certainly wasn't easy to type and certainly not easy to read. At every step of the way we've saved our updated data outputs to a new variable (`stds_1`, `stds_2`, etc.). However, most of these intermediates aren't important, and moreover the repetitive names clutter our code. As the code above is written, we've had to pay special attending to the variable suffix to make sure we're calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. `stds_1 <- mutate(stds_1, ...)`), but that doesn't solve the issue of readability as there's still redundant assigning. 
+While the code above did its job, it's certainly wasn't easy to type and certainly not easy to read. At every step of the way we've saved our updated data outputs to a new variable (`stds_1`, `stds_2`, etc.). However, most of these intermediates aren't important, and moreover the repetitive names clutter our code. As the code above is written, we've had to pay special attention to the variable suffix to make sure we're calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. `stds_1 <- mutate(stds_1, ...)`), but that doesn't solve the issue of readability as there's still redundant assigning. 
 
 A solution for this is the pipe operator `%>%` ( pronounced as "then"), an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you're working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we'd get something like: 
 

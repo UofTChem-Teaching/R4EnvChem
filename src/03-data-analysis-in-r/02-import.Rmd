@@ -41,7 +41,7 @@ Also note how the first line of the `ATR_plastics.csv` has been interpreted as c
 head(read_csv("data/ATR_plastics.csv", col_names = FALSE))
 ```
 
-Note in the example above that since the headers are now considered data, and are composed of a string of chatacters, the entire column is then interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our `.csv`), we can use the `skip = n` to skip n rows:
+Note in the example above that since the headers are now considered data, and are composed of a string of characters, the entire column is then interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our `.csv`), we can use the `skip = n` to skip n rows:
 
 ```{r}
 head(read_csv("data/ATR_plastics.csv", col_names = FALSE, skip = 1))
@@ -72,7 +72,7 @@ There are other functions to import different types of tabular data which all fu
 
 ## Saving data
 
-As you progress with your analysis you may want to save intermediate or final datasets. This is readily accomplished ussing the `write_csv()` from the `readr` package.  Similar rules apply to how we used `read_csv`, but now the second argument specifies the save location and file name, while the first argument is which `tibble`/`data.frame` we're saving. Note that R *will not* create a folder this way, so if you're saving to a sub-folder you'll have to make sure it exists or create it yourself. 
+As you progress with your analysis you may want to save intermediate or final datasets. This is readily accomplished using the `write_csv()` from the `readr` package.  Similar rules apply to how we used `read_csv`, but now the second argument specifies the save location and file name, while the first argument is which `tibble`/`data.frame` we're saving. Note that R *will not* create a folder this way, so if you're saving to a sub-folder you'll have to make sure it exists or create it yourself. 
 
 ```{r, eval=FALSE}
 write_csv(atr_plastics, "data/ATRSaveExample.csv")

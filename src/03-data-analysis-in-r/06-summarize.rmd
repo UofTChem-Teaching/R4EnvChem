@@ -4,7 +4,7 @@ Summarizing data is what it sounds like. You're reducing the number of rows in y
 
 ## Data to play with
 
-We'll take a look at the 2018 hourly mean NO~2~ concentrations for the Atlantic provinces (New Brunswick, Prince Edward Island, Nova Scotia, and Newfoundland). The dataset is available in the [*R4EnvChem* Project Template](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate) repository. Also if you're keen, you can download any number of atmospheric datasets from *Environment and Climate Change Canada*'s (ECCC) National Airborne Pollution Program's (NAPS) website [here](https://data.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en) 
+We'll take a look at the 2018 hourly mean NO~2~ concentrations for the Atlantic provinces (New Brunswick, Prince Edward Island, Nova Scotia, and Newfoundland). The dataset is available in the [*R4EnvChem* Project Template](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate) repository. Also if you're keen, you can download any number of atmospheric datasets from *Environment and Climate Change Canada*'s (ECCC) National Airborne Pollution Program's (NAPS) website. [here](https://data.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en)
 
 We will learn `pivot_longer` function in the next chapter, but you can take the following tidying code for granted in this chapter.
 
@@ -71,8 +71,8 @@ That's it. `r length(atlNO2$conc)` unique rows summarized like that. Note that `
 
   - We're creating a new data frame, so we store it in `sumAtl`.
   - We then take our `atlNO2` dataset and  group our dataset by province using `group_by(p)`.
-  - We then summarize our grouped data by summarizing the NO~2~ concentration with `summarize(mean = mean(conc)`. 
-    - Note that since we're creating a new data set, we need to create new columns. This is what `mean = mean(conc)` does. We're creating a column *called mean*, which contains the *numerical mean* 1-hr NO~2~ values which were calculated using the `mean()` function. Simple...
+  - We then summarize our grouped data by summarizing the NO~2~ concentration with `summarize(mean = mean(conc))`. 
+    - Note that since we're creating a new dataset, we need to create new columns. This is what `mean = mean(conc)` does. We're creating a column *called mean*, which contains the *numerical mean* 1-hr NO~2~ values which were calculated using the `mean()` function. Simple...
     
     
 Let's dig a little deeper. The [*Canadian Ambient Air Quality Standards*](https://ccme.ca/en/air-quality-report) stipulates that the annual mean of 1-hour means for NO~2~ cannot exceed 17.0 ppb in 2020, and 12.0 ppb in 2025. Let's see if any city in our dataset violated these standards in 2018. 
@@ -87,7 +87,7 @@ sumAtl <- atlNO2 %>%
 sumAtl
 ```
 
-Looks like there aren't any offenders. For tips on visualizing these results please see the [Visualizations] chapter.
+Looks like there aren't any offenders. For tips on visualizing these results please see the [Visualizations for Env Chem] chapter.
 
 
 
@@ -101,7 +101,7 @@ There are other options we can use to summarize out data. A handy list is provid
   - `min()` and `max()` which returns the smallest and largest value in the dataset. 
   - `n()` which provides the number of entries in a group. Note you don't specify a variable for n. 
 
-Let's seem them in action: 
+Let's see them in action: 
 
 ```{r, message = FALSE}
 sumAtl <- atlNO2 %>%
@@ -115,7 +115,7 @@ sumAtl <- atlNO2 %>%
 sumAtl
 ```
 
-Note that the functions we pass to summarize adhere to rules of missing values. That is to say, if even one value in a group is an `NA`, the entire group defaults to `NA`. Consequently, if your confident this isn't an issue, you can pass the argument `na.rm = TRUE` to any of the summarize functions, which would look like `mean = mean(conc, na.rm = TRUE)`. This will ignore any `NA` values and return a numeric value like you probably expect. 
+Note that the functions we pass to summarize adhere to rules of missing values. That is to say, if even one value in a group is an `NA`, the entire group defaults to `NA`. Consequently, if you're confident this isn't an issue, you can pass the argument `na.rm = TRUE` to any of the summarize functions, which would look like `mean = mean(conc, na.rm = TRUE)`. This will ignore any `NA` values and return a numeric value like you probably expect. 
 
 
 ## Pretty tables with flextable
@@ -132,7 +132,7 @@ To this end we'll use the 'flextable' package. Please refer to [flextable R pack
 
 Perhaps that isn't pretty enough for you. Doubtlessly your instructor will tell you to combine the mean and standard deviation into one value (i.e. $mean \pm sd$). We'll do this in two steps. 
   
-  - Step 1: Use `unite()` to merge the `mean` and `sd` values together rowise; values will be separated by ±. 
+  - Step 1: Use `unite()` to merge the `mean` and `sd` values together row-wise; values will be separated by ±. 
     - ± is a legit symbol, try `Alt+241`or copy and paste it from this book. 
   - Step 2: Pretty up our table to significant digits, and perform some aesthetic changes. 
 
@@ -152,12 +152,12 @@ prettySumAtl <- sumAtl %>%
 prettySumAtl
 ```
 
-Note to round the numbers we used `sprintf()` to round out numbers. This is because in the final publication it's important to keep trailing zeros (i.e. `1.0` and not `1`), but R's `round()` will drop these. `mean = sprintf("%.1f", mean)` takes the existing values in the `mean` column, rounds them to one digit, that's what `"%.1f"` means ("%.2f" would be two digits and so on), and paste them back into the `mean` column. Same situation for the `sd` column. 
+Note to round the numbers we used `sprintf()` to round out numbers. This is because in the final publication it's important to keep trailing zeros (i.e. `1.0` and not `1`), but R's `round()` will drop these. `mean = sprintf("%.1f", mean)` takes the existing values in the `mean` column, rounds them to one digit, that's what `"%.1f"` means ("%.2f" would be two digits and so on), and pastes them back into the `mean` column. Same situation for the `sd` column. 
 
 
 ### Pretty tables 
 
-Now we'll want to make a pretty table. Despite the emphasis on visualizations in this book, tables are an under appreciate means to convey information. Often when you're only plotting a handful of numbers, a table would better serve the reader. So don't overlook this point of your report. If you've distilled hours of your work to a handful of numbers, you best serve them up on a silver platter. 
+Now we'll want to make a pretty table. Despite the emphasis on visualizations in this book, tables are an underappreciated means to convey information. Often when you're only plotting a handful of numbers, a table would better serve the reader. So don't overlook this point of your report. If you've distilled hours of your work to a handful of numbers, you best serve them up on a silver platter. 
 
 
 ```{r}
