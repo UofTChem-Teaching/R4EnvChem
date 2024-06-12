@@ -33,7 +33,7 @@ The `XML` package in R provides tools to parse and manipulate XML (eXtensible Ma
 
 Do not modify the cell below. Run the cell below to check if you've successfully installed the packages.
 
-```{r, purl=FALSE}}
+```{r, purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Installing Packages", {
   # Task 1: Check if tidyverse is installed
@@ -68,7 +68,7 @@ Note: Load the entire `tidyverse` package.
 
 Do not modify the cell below. Run the cell below to check if you've successfully loaded the csv file.
 
-```{r, purl=FALSE}}
+```{r, purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Reading a CSV File with readr", {
   # Check if csv_data is a data frame and has rows
