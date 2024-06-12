@@ -27,7 +27,7 @@ test_that("Converting Tibble to Dataframe", {
 # Exercise 4: Saving Data
 test_that("Saving Data to Different Formats", {
   # Check if the CSV file exists
-  expect_true("saved_data.csv" %in% list.files(dirname(rmd_file_path)))
+  expect_true(file.exists(file.path(dirname(rmd_file_path), "saved_data.csv")))
 })
 
 
