@@ -43,7 +43,7 @@ longer_data <-
 
 Do not modify the cell below. 
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Making data longer", {
   expect_true("analyte" %in% colnames(longer_data))
@@ -73,7 +73,7 @@ You might notice that there are NA values in the `Hour` column. Why do you think
 
 Do not modify the cell below. 
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Separate date and time", {
   expect_true(all(c("year", "month", "day", "time") %in% colnames(date_time_data)))
@@ -100,7 +100,7 @@ united_data <-
 #### Test Your Code (Exercise 3)
 
 Do not modify the cell below. 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Uniting Columns", {
   expect_true("date" %in% colnames(united_data))
@@ -128,7 +128,7 @@ renamed_data <-
 #### Test Your Code (Exercise 4)
 
 Do not modify the cell below. 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Renaming columns", {
   expect_true("pollutant" %in% colnames(renamed_data))s

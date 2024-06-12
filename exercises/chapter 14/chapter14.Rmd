@@ -52,7 +52,7 @@ summary_EPDM_ft
 
 Do not modify the cell below. 
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 
 test_that("Exercise 1: Summarizing EPDM Data", {
@@ -100,7 +100,7 @@ flextable(summary_table) # Feel free to modify the flextable.
 
 Do not modify the cell below. 
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 
 test_that("Grouping and Summarizing by Rounded Wavenumber", {

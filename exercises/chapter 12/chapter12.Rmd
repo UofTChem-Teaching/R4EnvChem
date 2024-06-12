@@ -61,7 +61,7 @@ Ox_summary <- # Your code to summarize 'Ox' here.
 #### Test Your Code (Exercise 1)
 
 Do not modify the cell below. 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Ox", {
   
@@ -125,7 +125,7 @@ Compare this plot with your first scatterplot. Can you spot the differences?
 
 #### Test Your Code (Exercise 2)
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Data Cleaning Test", {
   expect_true("analyte" %in% colnames(longer_data))
@@ -157,7 +157,7 @@ data_high_ozone <- # Your code here
 
 Do not modify the cell below. 
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 is_ordered_desc <- function(vec) {
   all(diff(vec) <= 0)
@@ -193,7 +193,7 @@ high_alert_data <- # Your code here
 
 
 Do not modify the cell below. 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("High Alert Days", {
   expect_equal(length(colnames(high_alert_data)), 5)
@@ -230,7 +230,7 @@ extreme_days_data <- # Your code here
 #### Test Your Code (Exercise 5)
 
 Do not modify the cell below. 
-```{r}
+```{r,purl=FALS}
 library(testthat, quietly = TRUE)
 
 test_that("Analysis of extreme days test", {
