@@ -230,7 +230,7 @@ extreme_days_data <- # Your code here
 #### Test Your Code (Exercise 5)
 
 Do not modify the cell below. 
-```{r,purl=FALS}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 
 test_that("Analysis of extreme days test", {
