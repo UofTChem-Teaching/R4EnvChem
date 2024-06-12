@@ -26,9 +26,6 @@ Before diving into the exercises, follow the instructions below to download a 20
 # Complete the code below and run the cell.
 
 # Import data from CSV file using read_csv -- your code here
-library(readr)
-data <- read_csv("data.csv")
-
 
 ```
 
@@ -60,15 +57,6 @@ test_that("Importing Data from CSV", {
 
 # View data -- your code here
 
-# **Your Task:**
-# 
-# 1. Display the first 5 rows of the `data` using an R built-in function we learned.  
-# 2. Display the last 3 rows of the `data` using an R built-in function similar to the previous question.  
-
-head(data, n = 5)
-tail(data, n = 3)
-
-
 ```
 
 **Questions:**
@@ -90,14 +78,12 @@ tail(data, n = 3)
 # Assume 'data' is the Tibble from the previous exercise
 
 # Print to check the conversion
-
-converted_data <- as.data.frame(data)
 ```
 
 #### Test Your Code (Exercise 3)
 
 Do not modify the cell below. 
-```{r , purl = FALSE}
+```{r, purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Converting Tibble to Dataframe", {
   expect_true(is.data.frame(converted_data))
@@ -121,14 +107,12 @@ Note: Save it to the current working directory.
 
 # Save data as a CSV file -- your code here
 
-write_csv(converted_data, "saved_data.csv")
-
 ```
 
 #### Test Your Code (Exercise 4)
 
 Do not modify the cell below. 
-```{r, purl=FALSE}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Saving Data to Different Formats", {
   # Check if the CSV file exists
@@ -158,16 +142,13 @@ You are going to learn more about what you can do with `read_csv()`.
 
 # Import limited rows with specific parameters from CSV file -- your code here
 
-limited_data <- read_csv("data.csv", skip = 2, n_max = 10)
-
-
 ```
 
 #### Test Your Code (Exercise 5)
 
 Do not modify the cell below. 
 
-```{r , purl = FALSE}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Exploring Input Parameters of read_csv", {
   
@@ -175,5 +156,3 @@ test_that("Exploring Input Parameters of read_csv", {
   expect_equal(nrow(limited_data), 10)
 })
 ```
-
-
