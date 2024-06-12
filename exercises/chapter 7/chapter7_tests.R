@@ -9,7 +9,7 @@ if (file.exists("exercises/helper_functions.R")) {
 }
 
 # Specify the path to your Rmd file using here::here()
-rmd_file_path <- here("exercises", "chapter 7", "chpater7.Rmd")
+rmd_file_path <- here("exercises", "chapter 7", "chapter7.Rmd")
 
 # Run all chunks in the Rmd file to execute the exercises
 all_files <- run_all_chunks(rmd_file_path)
