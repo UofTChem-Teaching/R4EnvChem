@@ -3,6 +3,7 @@
 # Load testthat and here packages
 library(testthat)
 library(here)
+library(fs)
 
 if (file.exists("exercises/helper_functions.R")) {
   source("exercises/helper_functions.R")
@@ -11,8 +12,7 @@ if (file.exists("exercises/helper_functions.R")) {
 # Specify the path to your Rmd file
 rmd_file_path <- here("exercises", "chapter 5", "chapter5.Rmd")
 
-# Run all chunks in the Rmd file to execute the exercises
-all_files <- run_all_chunks(rmd_file_path)
+
 
 # Exercise 1: Saving R Objects
 
@@ -20,7 +20,18 @@ all_files <- run_all_chunks(rmd_file_path)
 
 test_that("Exercise 1: Saving R Objects (CSV file)", {
   # see if the file exists in rmd_file_path
-  expect_true("my_vector.csv" %in% list.files(dirname(rmd_file_path)))
+  tmp_dir <- tempdir()
+  # copy contents of current directory to temp directory
+  dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
+  
+  withr::with_dir(tempdir(), {
+    # Run all chunks in the Rmd file to execute the exercises
+    suppressWarnings(run_all_chunks(rmd_file_path))
+    expect_true(file.exists("my_vector.csv"))
+  })
+  
+  # remove the temp directory
+  unlink(tmp_dir, recursive = TRUE)
 })
 
 # ------------------------------------------------------------------------
@@ -29,11 +40,16 @@ test_that("Exercise 1: Saving R Objects (CSV file)", {
 
 # Test Your Code (Exercise 2)
 test_that("Exercise 2: Code Troubleshooting and Readability", {
-  expect_true(result == 15)
+  tmp_dir <- tempdir()
+  # copy contents of current directory to temp directory
+  dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
+  
+  withr::with_dir(tempdir(), {
+    # Run all chunks in the Rmd file to execute the exercises
+    suppressWarnings(run_all_chunks(rmd_file_path))
+    expect_true(result == 15)
+  })
+  
+  # remove the temp directory
+  unlink(tmp_dir, recursive = TRUE)
 })
-
-
-# Remove temporary files
-remove_temp_files(rmd_file_path, all_files)
-
-
