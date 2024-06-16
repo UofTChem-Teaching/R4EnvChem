@@ -10,7 +10,7 @@ The essential `dplyr` functions are :
   - `select()` to pick variables by name (in other words by column)
   - `summarize()` to collapse many values down to a single summary. 
   
-We'll go through each of these functions, but we highly recommend you read [Chapter 3: Data Transformation](https://r4ds.had.co.nz/transform.html) from *R for Data Science* to get a more comprehensive breakdown of these functions. Note that the information here is based on a `tidyverse` approach, but this is only one way of doing things. Please see the [Further reading] section for links to other suitable approaches to data transformation. 
+We'll go through each of these functions, but we highly recommend you read [Chapter 3: Data Transformation](https://r4ds.had.co.nz/transform.html) from *R for Data Science* to get a more comprehensive breakdown of these functions. Note that the information here is based on a `tidyverse` approach, but this is only one way of doing things. Please see the [Further reading](#further_reading_chapter12) section for links to other suitable approaches to data transformation. 
 
 Let's explore the functionality of `dplyr` using some flame absorption/emission spectroscopy (FAES) data from a *CHM317* lab. This data represents the emission signal of five sodium (Na) standards measured in triplicate:
 
@@ -286,7 +286,7 @@ The pipe is great and especially useful with *tidyverse* packages, but it does h
   - Pipes are linear, if you have multiple inputs or outputs you should consider an alternative approach. 
 
 
-## Further reading
+## Further reading {#further_reading_chapter12}
 
   - [Chapter 5: Data Transformation](https://r4ds.had.co.nz/transform.html) of *R for Data Science* for a deeper breakdown of `dplyr` and it's functionality. 
   - [Chapter 18: Pipes](https://r4ds.had.co.nz/pipes.html) of *R for Data Science* for more information on pipes. 

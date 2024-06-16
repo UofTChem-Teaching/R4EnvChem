@@ -9,6 +9,16 @@ output:
 
 # Getting Started:
 
+## Load Necessary Libraries
+
+Before starting the exercises, ensure you have the necessary libraries loaded:
+
+```{r}
+# Load necessary libraries
+library(tidyverse)
+
+```
+
 ## Load Data
 
 For these exercises, we'll be using the `CO2` dataset from R's built-in datasets. This dataset contains information about carbon dioxide uptake in grass plants under different CO2 concentration levels and treatments.

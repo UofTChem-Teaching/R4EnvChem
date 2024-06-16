@@ -125,9 +125,9 @@ While the summarize function does an excellent job of summarizing our data, the 
 To this end we'll use the 'flextable' package. Please refer to [flextable R package](https://davidgohel.github.io/flextable/index.html). There are other packages to make tables, but we're using `flextable` as it's consistent between HTML and PDF outputs. 
 
 ```{r, message = FALSE, warning = FALSE}
-# library(flextable)
-# 
-# flextable(sumAtl)
+library(flextable)
+
+flextable(sumAtl)
 ```
 
 Perhaps that isn't pretty enough for you. Doubtlessly your instructor will tell you to combine the mean and standard deviation into one value (i.e. $mean \pm sd$). We'll do this in two steps. 
@@ -161,14 +161,14 @@ Now we'll want to make a pretty table. Despite the emphasis on visualizations in
 
 
 ```{r}
-# ft <- flextable(prettySumAtl) 
-#   
-# ft <- set_header_labels(ft, 
-#                         p = "province")
-# 
-# ft <- set_table_properties(ft, layout = "autofit")
-# ft <- align(ft, j = "mean ± sd", align = "right", part = "all")
-# ft
+ft <- flextable(prettySumAtl)
+
+ft <- set_header_labels(ft,
+                        p = "province")
+
+ft <- set_table_properties(ft, layout = "autofit")
+ft <- align(ft, j = "mean ± sd", align = "right", part = "all")
+ft
 ```
 
 

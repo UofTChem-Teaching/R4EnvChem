@@ -73,7 +73,7 @@ At this time, we shall keep it simple. You will eventually see more complex usag
 
 ## Conditional arguments 
 
-Conditional arguments used to specify a path in a function depending on whether a statement is `TRUE` or `FALSE`. These are explored in greater detail via the links in the [Further reading] section, but here's a quick example of a function that uses the conditional `if` statement to print out which number is largest: 
+Conditional arguments used to specify a path in a function depending on whether a statement is `TRUE` or `FALSE`. These are explored in greater detail via the links in the [Further reading](#further_reading_chapter8) section, but here's a quick example of a function that uses the conditional `if` statement to print out which number is largest: 
 
 ```{r}
 
@@ -92,7 +92,7 @@ isGreater (1, 1)
 
 ```
 
-Our simple function compares two numbers, `x` and `y` and if `x > y` evaluate to `TRUE` it returns the pasted string `x is greater than y`. If `x < y` evaluates to `FALSE`, as in `y > x`, our function returns the pasted string `x is less than y`, and finally if neither `x > y` and `x < y` evaluate to TRUE, they must be equal! Therefore the final output is `x is equal to y`. This is an example of an `else if` statement. If you're simply evaluating two conditions (`TRUE` or `FALSE`) you only need the `if()` conditional, see [Further reading] for more details. 
+Our simple function compares two numbers, `x` and `y` and if `x > y` evaluate to `TRUE` it returns the pasted string `x is greater than y`. If `x < y` evaluates to `FALSE`, as in `y > x`, our function returns the pasted string `x is less than y`, and finally if neither `x > y` and `x < y` evaluate to TRUE, they must be equal! Therefore the final output is `x is equal to y`. This is an example of an `else if` statement. If you're simply evaluating two conditions (`TRUE` or `FALSE`) you only need the `if()` conditional, see [Further reading](#further_reading_chapter8) for more details. 
 
 ### Piping conditional statements
 
@@ -123,7 +123,7 @@ Some ideas to consider when working with `case-when()`:
 
 
 
-## Further reading
+## Further reading {#further_reading_chapter8}
 
 These chapter has been intentional succinct. We've omitted several other aspects of programming in R such as `for` loops, and other iterative programming. To get a better sense of programming in R and to learn more, please see the following links:
 

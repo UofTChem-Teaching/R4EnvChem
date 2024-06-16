@@ -178,9 +178,9 @@ In case you haven't picked up on it, tidying data in R is much easier if the dat
 - *Make sure data types are consistent within a column*. This harks back to the [Importing your data into R] chapter, but a single non-numeric character can cause R to misinterpret an entire column leading to headaches down the line. 
 - *Save your data in UTF-8 format*. Excel and other programs often allow you to export your data in a variety of `.csv` encodings, but this can affect how R reads when importing your data. Make sure you select `UTF-8` encoding when exporting your data. 
 
-## Further reading
+## Further reading {#further_reading_chapter11}
 
-As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 9: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
+As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
 
 `r if (knitr:::is_html_output()) '## Chapter References'`
 

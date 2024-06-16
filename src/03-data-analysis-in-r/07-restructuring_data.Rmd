@@ -156,9 +156,9 @@ By understanding the inverse relationship between wide and long data formats and
 
 
 
-## Further reading
+## Further reading {#further_reading_chapter15}
 
-As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 9: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
+As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
 
 
 ```{r child='src/common/end-of-chapter-exercise.Rmd'}

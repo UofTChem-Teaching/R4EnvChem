@@ -80,7 +80,7 @@ write_csv(atr_plastics, "data/ATRSaveExample.csv")
 
 A benefit of `write_csv` is that it will always save in `UTF-8` encoding and ISO8601 time format. This standardization makes it easier to share your `.csv` files with collaborators/yourself.
 
-## Further Reading
+## Further Reading {#further_reading_chapter10}
 
 See Chapters [10](https://r4ds.had.co.nz/tibbles.html) and [11](https://r4ds.had.co.nz/data-import.html) of *R for Data Science* for some more details on `tibbles` and `read_csv`. 
 

@@ -15,6 +15,16 @@ Before diving into the exercises, follow the instructions below to download a da
 -   Enter your student number, and then download the CSV file.
 -   Upload the file to your RStudio. 
 
+## Load Necessary Libraries
+
+Before starting the exercises, ensure you have the necessary libraries loaded:
+
+```{r}
+# Load necessary libraries
+library(tidyverse)
+
+```
+
 Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your Air Quality dataset, and assign the imported data to a variable named `data`.
 
 ```{r}

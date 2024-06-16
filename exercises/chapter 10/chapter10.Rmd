@@ -15,6 +15,16 @@ Before diving into the exercises, follow the instructions below to download a 20
 -   Upload the file to your RStudio. 
 
 
+## Load Necessary Libraries
+
+Before starting the exercises, ensure you have the necessary libraries loaded:
+
+```{r}
+# Load necessary libraries
+library(tidyverse)
+
+```
+
 # Exercise 1: Importing data from CSV files
 
 **Your Task:**

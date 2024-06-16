@@ -243,7 +243,7 @@ What you see here is a bit more than what you'd get from *Excel*'s 'line-of-best
   - `r.squared` is a statistical measure of fit that indicates how much variation of a dependent variable is explained by the independent variable. The closer `r.squared` is to 1, the more variance is captured by the model. 
   - `adj.r.squared` is the same as `r.squared` in this situation. This is because `r.squared` will always increase if we add more exploratory variables to our model; the `adj.r.squared` accounts for the number of exploratory variables used in the model. 
     - In our case we only have one exploratory variable, hence they're approximately the same.
-  - The other columns are different measurements of goodness-of-fit and hypothesis testing of the model. See [Further reading]. 
+  - The other columns are different measurements of goodness-of-fit and hypothesis testing of the model. See [Further reading](#further_reading_chapter19). 
 
 ### Tidied outputs
     
@@ -317,7 +317,7 @@ As you can see, `augment()` adds columns to the original data that was modelled.
   - `signal` and `conc_Na`, the original data used in our model.
   - `.fitted`, the predicted value of the point according to our calculated model. 
   - `.resid`, the residuals of that point (different between measured and fitted values.)
-  - The other parameters are different measurements of the influence of each point on the model fitting. They can be used to detect outliers; see [Further reading] 
+  - The other parameters are different measurements of the influence of each point on the model fitting. They can be used to detect outliers; see [Further reading](#further_reading_chapter19)
 
 ### Why we approach modelling this way
 
@@ -477,7 +477,7 @@ In this chapter we've covered:
   - Running multiple linear regressions.
   - Storing regression
 
-## Further reading
+## Further reading {#further_reading_chapter19}
 
 As previously stated, we highly recommend reading Chapter 5: Calibration from *Data Analysis for Chemistry* by Hibbert and Gooding for a more in-depth discussion of linear calibration modelling. The book can be accessed online via the University of Toronto's Library. 
 
