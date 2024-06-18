@@ -92,7 +92,7 @@ This should open up a new window in the RStudio interface, as shown in the follo
 
 ![Figure 2.6: Scripts window in RStudio.](images/Rstudio_scriptwindow.png){width="100%"}
 
-You can copy and paste the code above into the script, save it, edit it, etc. and ultimately run specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the "Run" button in the top right corner of the Scripts window. Whenever you copy code blocks from this website (or other online sources). If you're reading this book online, you can easily copy an entire block of code using the `copy` button in the top right corner of the code block.
+You can copy and paste the code above into the script, save it, edit it, etc. and ultimately run specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the "Run" button in the top right corner of the Scripts window. If you're reading this book online, you can easily copy an entire block of code using the `copy` button in the top right corner of the code block.
 
 We'll dive into the basics of coding in R in the next chapter.
 
@@ -120,8 +120,9 @@ Places to get help include:
 In this chapter we've covered:
 
 -   How to use RStudio to do R programming, both remotely and locally
--   Installing the `tidyverse()` package, the basis of the subsequent code in this book
--   How to customize the appearance of RStudio so you don't burn out your eyes at night
+-   The benefits of working remotely using platforms like the University of Toronto’s JupyterHub RStudio server.
+-   Resources for help when you get stuck, including Google, Stack Overflow, and reference books.
+
 
 In the next chapter we'll break down how to setup your work in R for legibility, simplicity, and reproducibility. After all, the person cursing any of your sloppy work will invariably be you, so be kind to yourself, and do it right the first time.
 
@@ -152,7 +153,7 @@ print(z)
 
 -   Run the script. What is the output?
 
-### USing the Help Function
+### Using the Help Function
 
 -   Let's say you've come across a function in R that you don't know how to use, for example, `sqrt()`. Use the `?` command to access the documentation for this function from your console tab.
 -   What does the `sqrt()` function do?

@@ -33,7 +33,7 @@ my_vector <- c(10, 20, 30, 40, 50)
 
 Do not modify the cell below. Run the cell below to check if you've defined and assigned the variables correctly.
 
-```{r}
+```{r, purl=FALSE}
 # Load testthat package
 library(testthat)
 
@@ -71,7 +71,7 @@ print(result)
 
 Do not modify the cell below. Run the cell below to check if you've defined and assigned the variables correctly.  
 
-```{r}
+```{r , purl=FALSE}
 # Load testthat package
 library(testthat)
 

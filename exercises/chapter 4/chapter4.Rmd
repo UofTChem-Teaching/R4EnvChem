@@ -31,7 +31,7 @@ The `print()` function in R is used to display the values of variables or expres
 
 Do not modify the cell below. Run the cell below to check if you've defined and assigned the variables correctly.
 
-```{r}
+```{r ,purl=FALSE}
 # Load testthat package
 library(testthat)
 
@@ -80,7 +80,7 @@ Note that when we use `print(c)`, we get a value that looks like an integer. How
 
 Do not modify the cell below. Run the cell below to check if your calculation is correct.
 
-```{r}
+```{r, purl=FALSE}
 library(testthat)
 
 # Unittest for Exercise 2
@@ -126,7 +126,7 @@ my_dataframe <- # Your code here
 
 Do not modify the cell below. Run the cell below to check if your code is correct.
 
-```{r}
+```{r, purl=FALSE}
 library(testthat)
 
 # Unittest for Exercise 3
@@ -165,7 +165,7 @@ median_value <- # Your code here
 
 Do not modify the cell below. Run the cell below to check if your code is correct.
 
-```{r}
+```{r, purl=FALSE}
 library(testthat)
 
 # Do not use this function to solve this question!
@@ -217,4 +217,3 @@ grade <- 75  # Change this value to test different scenarios
 # Is your output what you expect?
 print(letter_grade)
 ```
-

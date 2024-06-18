@@ -38,7 +38,7 @@ You'll see a flurry of lines printed to the console indicating the status of the
 library(tidyverse)
 ```
 
-The output show's us which packages are included in the `tidyverse()` and their current version numbers, as well as conflicts (where functions from different packages share the same name). Don't worry about these for now.
+The output shows us which packages are included in the `tidyverse()` and their current version numbers, as well as conflicts (where functions from different packages share the same name). Don't worry about these for now.
 
 After this, all the functions and data sets contained in the "tidyverse" package are available for you to use in your session. If you're ever uncertain about how to use a particular function, the R community and the package's documentation are excellent resources. For example, you can take a look at the official tidyverse documentation [here](https://tidyverse.tidyverse.org/).
 

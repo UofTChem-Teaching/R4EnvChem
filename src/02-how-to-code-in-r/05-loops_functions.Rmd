@@ -73,7 +73,7 @@ At this time, we shall keep it simple. You will eventually see more complex usag
 
 ## Conditional arguments 
 
-Condaitional arguments used to specify a path in a function depending on whether a statement is `TRUE` or `FALSE`. These are explored in greater detail via the links in the [Further reading] section, but here's a quick example of a function that uses the conditional `if` statement to print out which number is largest: 
+Conditional arguments used to specify a path in a function depending on whether a statement is `TRUE` or `FALSE`. These are explored in greater detail via the links in the [Further reading] section, but here's a quick example of a function that uses the conditional `if` statement to print out which number is largest: 
 
 ```{r}
 
@@ -113,7 +113,7 @@ results %>%
 
 ```
 
-Firstly we're creating a new column called `reportedIntesities` using `mutate()` and using `case_when()` to conditionally fill that column. The inputs we've passed to `case_when()` are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (`~`) evaluate to `TRUE`, `case_when` will execute the right-hand side. Thee first two-sided formula is `intensities < lod ~ lod/2` and checks if the intensities value is less than the previously calculated limit of detection. If `intensitis < lod` evaluates to `TRUE` we insert half of the LOD value for that row. If `intentisites < lod` evaluates to `FALSE`, we move onto the next two-side formula and reevaluate again. The second two-sided formula `TRUE ~ intensities` basically means for everything that's remaining (greater than LOD in our instance) just use the value from the `intensities` column.
+Firstly we're creating a new column called `reportedIntensities` using `mutate()` and using `case_when()` to conditionally fill that column. The inputs we've passed to `case_when()` are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (`~`) evaluate to `TRUE`, `case_when` will execute the right-hand side. The first two-sided formula is `intensities < lod ~ lod/2` and checks if the intensities value is less than the previously calculated limit of detection. If `intensities < lod` evaluates to `TRUE` we insert half of the LOD value for that row. If `intensities < lod` evaluates to `FALSE`, we move onto the next two-side formula and reevaluate again. The second two-sided formula `TRUE ~ intensities` basically means for everything that's remaining (greater than LOD in our instance) just use the value from the `intensities` column.
 
 Some ideas to consider when working with `case-when()`:
 
