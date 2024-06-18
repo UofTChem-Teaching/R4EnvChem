@@ -75,6 +75,7 @@ At this time, we shall keep it simple. You will eventually see more complex usag
 
 Conditional arguments used to specify a path in a function depending on whether a statement is `TRUE` or `FALSE`. These are explored in greater detail via the links in the [Further reading](#further_reading_chapter8) section, but here's a quick example of a function that uses the conditional `if` statement to print out which number is largest: 
 
+
 ```{r}
 
 isGreater <- function(x, y){

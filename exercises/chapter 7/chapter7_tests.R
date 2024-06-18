@@ -5,6 +5,7 @@ library(testthat)
 library(here)
 library(fs)
 
+
 if (file.exists("exercises/helper_functions.R")) {
   source("exercises/helper_functions.R")
 }
@@ -31,6 +32,7 @@ test_that("Installing Packages", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
+
 })
 
 # Exercise 2: Reading a CSV file -- tidyverse
@@ -71,7 +73,6 @@ test_that("Scatterplot with ggplot2", {
 # Exercise 4: Advanced filtering and summarization
 test_that("Advanced filtering and summarization", {
   # This test checks the result of filtering and summarizing csv_data
-  
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
   dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
@@ -93,4 +94,5 @@ test_that("Advanced filtering and summarization", {
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
 })
+
 

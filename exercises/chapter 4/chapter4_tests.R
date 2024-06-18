@@ -36,6 +36,7 @@ test_that("Exercise 1: Variables and Assignments", {
 
 # Test Exercise 2: Basic Calculation
 test_that("Exercise 2: Basic Calculation", {
+
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
   dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
@@ -73,6 +74,7 @@ test_that("Exercise 3: Data Structures", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
+
 })
 
 
@@ -90,6 +92,7 @@ test_that("Exercise 4: Calculate Median", {
       return(sorted_numbers[(n + 1) / 2])
     }
   }
+
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
   dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
@@ -108,6 +111,7 @@ test_that("Exercise 4: Calculate Median", {
 
 # Test Exercise 5: Conditional Statement
 test_that("Exercise 5: Conditional Statement", {
+  
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
   dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
@@ -131,3 +135,4 @@ test_that("Exercise 5: Conditional Statement", {
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
 })
+
