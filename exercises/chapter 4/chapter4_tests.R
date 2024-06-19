@@ -36,7 +36,6 @@ test_that("Exercise 1: Variables and Assignments", {
 
 # Test Exercise 2: Basic Calculation
 test_that("Exercise 2: Basic Calculation", {
-
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
   dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
@@ -44,15 +43,15 @@ test_that("Exercise 2: Basic Calculation", {
   withr::with_dir(tempdir(), {
     # Run all chunks in the Rmd file to execute the exercises
     suppressWarnings(run_all_chunks(rmd_file_path))
-    expect_equal(a, 31, tolerance=0)
-    expect_equal(b, 151.8584, tolerance=0.0001)
-    expect_equal(c, 80759608318.2073, tolerance=0.0001)
+    expect_equal(a, 31, tolerance = 0)
+    expect_equal(b, 151.8584, tolerance = 0.0001)
+    expect_equal(c, 80759608318.2073, tolerance = 0.0001)
     expect_false(c_is_integer)
   })
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
-
+  
 })
 
 # Test Exercise 3: Data Structures
@@ -74,7 +73,7 @@ test_that("Exercise 3: Data Structures", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
-
+  
 })
 
 
@@ -83,16 +82,16 @@ test_that("Exercise 3: Data Structures", {
 # Test Exercise 4: Calculate Median
 test_that("Exercise 4: Calculate Median", {
   # function to calculate the median of a numeric vector
-  med <- function(numbers) { 
+  med <- function(numbers) {
     sorted_numbers <- sort(numbers)
     n <- length(sorted_numbers)
     if (n %% 2 == 0) {
-      return((sorted_numbers[n/2] + sorted_numbers[n/2 + 1]) / 2)
+      return((sorted_numbers[n / 2] + sorted_numbers[n / 2 + 1]) / 2)
     } else {
       return(sorted_numbers[(n + 1) / 2])
     }
   }
-
+  
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
   dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
@@ -106,12 +105,11 @@ test_that("Exercise 4: Calculate Median", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
-
+  
 })
 
 # Test Exercise 5: Conditional Statement
 test_that("Exercise 5: Conditional Statement", {
-  
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
   dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
@@ -135,4 +133,3 @@ test_that("Exercise 5: Conditional Statement", {
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
 })
-

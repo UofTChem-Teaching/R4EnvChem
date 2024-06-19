@@ -22,7 +22,6 @@ Before starting the exercises, ensure you have the necessary libraries loaded:
 ```{r}
 # Load necessary libraries
 library(tidyverse)
-
 ```
 
 # Exercise 1: Importing data from CSV files

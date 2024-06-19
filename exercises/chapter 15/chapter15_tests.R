@@ -68,9 +68,5 @@ test_that("Combined Use of pivot_longer and pivot_wider", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
-
+  
 })
-
-
-
-

@@ -22,7 +22,6 @@ Before starting the exercises, ensure you have the necessary libraries loaded:
 # Load necessary libraries
 library(tidyverse)
 library(flextable)
-
 ```
 
 ## Import Data
@@ -121,4 +120,3 @@ test_that("Grouping and Summarizing by Rounded Wavenumber", {
   expect_true("Median_Polyethylene" %in% colnames(summary_table))
 })
 ```
-

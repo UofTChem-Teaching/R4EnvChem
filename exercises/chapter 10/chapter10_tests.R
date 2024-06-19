@@ -14,7 +14,6 @@ rmd_file_path <- here("exercises", "chapter 10", "chapter10.Rmd")
 
 # Exercise 1: Importing data from CSV files
 test_that("Importing Data from CSV", {
-  
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
   dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
@@ -27,7 +26,7 @@ test_that("Importing Data from CSV", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
-
+  
 })
 
 
@@ -62,7 +61,7 @@ test_that("Saving Data to Different Formats", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
-
+  
 })
 
 
@@ -81,11 +80,5 @@ test_that("Exploring Input Parameters of read_csv", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
-
+  
 })
-
-
-
-
-
-

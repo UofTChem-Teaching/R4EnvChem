@@ -20,7 +20,6 @@ Before starting the exercises, ensure you have the necessary libraries loaded:
 ```{r}
 # Load necessary libraries
 library(tidyverse)
-
 ```
 
 Use the `read_csv()` function from the `readr`(`tidyverse`) package to import your Air Quality dataset, and assign the imported data to a variable named `data`.

@@ -82,8 +82,3 @@ test_that("Renaming columns", {
   
   
 })
-
-
-
-
-

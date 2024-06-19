@@ -129,8 +129,3 @@ test_that("Analysis of extreme days test", {
   
   
 })
-
-
-
-
-

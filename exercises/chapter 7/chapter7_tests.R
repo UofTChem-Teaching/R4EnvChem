@@ -32,7 +32,7 @@ test_that("Installing Packages", {
   
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
-
+  
 })
 
 # Exercise 2: Reading a CSV file -- tidyverse
@@ -94,5 +94,3 @@ test_that("Advanced filtering and summarization", {
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
 })
-
-

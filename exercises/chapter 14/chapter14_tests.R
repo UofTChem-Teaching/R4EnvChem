@@ -53,5 +53,3 @@ test_that("Grouping and Summarizing by Rounded Wavenumber", {
   unlink(tmp_dir, recursive = TRUE)
   
 })
-
-

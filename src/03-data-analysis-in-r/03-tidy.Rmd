@@ -96,7 +96,7 @@ Again, let's break down what we did with the `separate` function:
 2. `into = c(...)` specifies what columns we're separating our name into. 
 3. `sep = "_"1` specifies that each element is separated by an underscore (`_`); you can use `sep = " "` if they were separated by spaces. 
 4. `remove = TRUE` removes the original sample column, no need for duplication; setting this to `FALSE` would keep the original column. 
-5. `convert = TRUE` converts the new columns to the appropriate data format. In the original column , the replicate number is a character value because it's part of a string, `convert` ensures that it'll be converted to a numerical value. 
+5. `convert = TRUE` converts the new columns to the appropriate data format. In the original column ,the replicate number is a character value because it's part of a string, `convert` ensures that it'll be converted to a numerical value. 
 
 Another example why it's paramount to **be consistent when recording data**. 
 
