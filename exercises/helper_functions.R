@@ -1,6 +1,5 @@
 # Define the function to run all chunks from Rmd file
 run_all_chunks <- function(rmd, envir = globalenv()) {
-
   # Get a list of all files in the directory
   all_files <- list.files(dirname(rmd))
   
@@ -11,5 +10,5 @@ run_all_chunks <- function(rmd, envir = globalenv()) {
   
   # Source the temporary R script with chdir = TRUE so that the working directory is set to the Rmd file's directory
   source(tempR, chdir = TRUE, local = envir)
-
+  
 }
