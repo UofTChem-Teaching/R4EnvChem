@@ -1,6 +1,4 @@
-
 ---
-
 title: 'Chapter 15: Restructuring Your Data'
 output:
   html_document:
@@ -8,6 +6,15 @@ output:
 ---
 
 # Getting Started:
+
+## Load Necessary Libraries
+
+Before starting the exercises, ensure you have the necessary libraries loaded:
+
+```{r}
+# Load necessary libraries
+library(tidyverse)
+```
 
 ## Load Data
 
@@ -35,10 +42,9 @@ Transform the `CO2` dataset to a longer format where the columns `uptake` and `c
 long_data <- 
 ```
 
-
 #### Test Your Code (Exercise 1)
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Using pivot_longer", {
   expect_true("measurement_type" %in% colnames(long_data))
@@ -61,10 +67,9 @@ Transform the `long_data` you created in Exercise 1 back to a wider format. Ensu
 wide_data <- 
 ```
 
-
 #### Test Your Code (Exercise 2)
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Using pivot_wider", {
   expect_true(all(c("uptake", "conc") %in% colnames(wide_data)))
@@ -79,7 +84,6 @@ test_that("Using pivot_wider", {
 
 First, modify the `CO2` dataset by converting all columns except `Plant` into characters. Then, use `pivot_longer` to create a long format with columns for `Plant`, `variable`, and `value`. Following this, use `pivot_wider` to reshape this long data into a wide format where each `variable` becomes a column again, but keep `Plant` as the row identifiers. Assign the final output to `transformed_data`.
 
-
 ```{r}
 # Complete the code below and run the cell.
 
@@ -87,11 +91,9 @@ First, modify the `CO2` dataset by converting all columns except `Plant` into ch
 transformed_data <- 
 ```
 
-
-
 #### Test Your Code (Exercise 3)
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 
 # Original column names from CO2 dataset, except 'Plant'
@@ -108,5 +110,3 @@ test_that("Combined Use of pivot_longer and pivot_wider", {
 })
 
 ```
-
----

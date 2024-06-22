@@ -5,7 +5,7 @@ You might not have explicitly thought about how you store your data, whether wor
 
 ## What is tidy data?
 
-Tidy data has "...each variable in a column, and each observation in a row..." [@wickham2014] This may seem obvious to you, but let's consider how data is often recorded in lab, as exemplified in Figure \@ref(fig:tidy-example)A. Here the instrument response of two chemicals (*A* and *B*) for two samples (*blank* and *unknown*) are recorded. Note how the samples are on each row and the chemical are columns. However, someone else may record the same data differently as shown in Figure \@ref(fig:tidy-example)B, with the samples occupying distinct columns, and the chemical rows. Either layout may work well, but analyzing both would require re-tooling your approach. This is where the concept of *tidy* data comes into play. By reclassifying our data into *observations* and *variables* we can restructure out data into a common format: the *tidy* format (Figure \@ref(fig:tidy-example)C).
+Tidy data has "...each variable in a column, and each observation in a row..." [@wickham2014] This may seem obvious to you, but let's consider how data is often recorded in lab, as exemplified in Figure \@ref(fig:tidy-example)A. Here the instrument response of two chemicals (*A* and *B*) for two samples (*blank* and *unknown*) are recorded. Note how the samples are on each row and the chemical are columns. However, someone else may record the same data differently as shown in Figure \@ref(fig:tidy-example)B, with the samples occupying distinct columns, and the chemical rows. Either layout may work well, but analyzing both would require re-tooling your approach. This is where the concept of *tidy* data comes into play. By reclassifying our data into *observations* and *variables* we can restructure our data into a common format: the *tidy* format (Figure \@ref(fig:tidy-example)C).
 
 
 ```{r tidy-example, echo = FALSE, fig.cap="(A and B) The same data in different formats. (C) The data organized with clear variables and observations."}
@@ -17,7 +17,7 @@ Organizing data into distinct variables (like *Sample*, *Chemical*, and *Reading
 
 ## Tools to tidy your data
 
-Now one of the more laborious parts of data science is tidying your data. If you can follow the tips in the [Tips for recording data] section, but the truth is you often won't have control. To this end, the `tidyverse` offers several tools, notable `dplyr` (pronounces 'd-pliers'), to help you get there. 
+Now one of the more laborious parts of data science is tidying your data. If you can, follow the tips in the [Tips for recording data] section, but the truth is you often won't have control. To this end, the `tidyverse` offers several tools, notable `dplyr` (pronounces 'd-pliers'), to help you get there. 
 
 Let's revisit our spectroscopy data from the previous chapter, but in a slightly different format. 
 
@@ -35,7 +35,7 @@ DT::datatable(atr_plastics)
 ```
 
 
-As we can see this our ATR spectroscopy results of several plastics, as recorded for a *CHM 317* lab, is structured similarly to the example in Figure \@ref(fig:tidy-example)A. The ATR absorbance spectra of the four plastics are recorded in separate columns. Again, this format makes intuitive sense when recording in the lab, and for working in Excel, but isn't the friendliest with R. When making plots with `ggplot`, we can only specify one `y` variable. In the example plot below it's the absorbance spectrum of `Polystyrene`. However, if wanted to plot the other spectra for comparison, we'd need to repeat our `geom_point` call.
+As we can see this our ATR spectroscopy results of several plastics, as recorded for a *CHM 317* lab, is structured similarly to the example in Figure \@ref(fig:tidy-example)A. The ATR absorbance spectra of the four plastics are recorded in separate columns. Again, this format makes intuitive sense when recording in the lab, and for working in Excel, but isn't the friendliest with R. When making plots with `ggplot`, we can only specify one `y` variable. In the example plot below it's the absorbance spectrum of `Polystyrene`. However, if we wanted to plot the other spectra for comparison, we'd need to repeat our `geom_point` call.
 
 ```{r}
 # Plotting Polystyrene absorbance spectra
@@ -59,9 +59,9 @@ ggplot(data = atr_plastics,
 
 As you've already seen, there are multiple ways to select columns and variables with the `dplyr` package. For a complete rundown of other useful helper functions please see [Subset columns using their names and types](https://dplyr.tidyverse.org/reference/select.html). `starts_with()` for selecting columns from a prefix, and `contains()` for selecting columns that contain a string are two of the most useful. 
 
-### Seperating columns
+### Separating columns
 
-Sometimes your data has already been recorded in a tidy-ish fashion, but there may be multiple observations recorded under one apparent variable, something like `1 mM` for concentration. As it stands we cannot easily access the numerical value in the concentration recording because R will encode this as a string due to the `mM`. We can **separate** data like this using the `seperate` function. 
+Sometimes your data has already been recorded in a tidy-ish fashion, but there may be multiple observations recorded under one apparent variable, something like `1 mM` for concentration. As it stands we cannot easily access the numerical value in the concentration recording because R will encode this as a string due to the `mM`. We can **separate** data like this using the `separate` function. 
 
 ```{r, echo = FALSE}
 
@@ -75,7 +75,7 @@ sep_example <- data.frame("sample" = c("Toronto_O3_1","Toronto_O3_2", "Toronto_N
 sep_example
 ```
 
-The example above is something you'll come across in the lab, most often with the sample names you'll pass along to your TA where you crammed as much information as possible into that name so you and your TAs know exactly what's being analyzed. In this example, the sample name contains the location (`Toronto`), the chemical measured (`O3` or `NO2`) and the replicate number (i.e. `1`). Using the `seperate` function we can split up these three observations so we can properly group our data later on in our analysis.
+The example above is something you'll come across in the lab, most often with the sample names you'll pass along to your TA where you crammed as much information as possible into that name so you and your TAs know exactly what's being analyzed. In this example, the sample name contains the location (`Toronto`), the chemical measured (`O3` or `NO2`) and the replicate number (i.e. `1`). Using the `separate` function we can split up these three observations so we can properly group our data later on in our analysis.
 
 ```{r}
 # Separating observations
@@ -175,12 +175,12 @@ In case you haven't picked up on it, tidying data in R is much easier if the dat
 
 - *Be consistent*. If you're naming your samples make sure they all contain the same elements in the same order. The sample names `Toronto_O3_1` and `Toronto_O3_2` can easily be broken up as demonstrated in [Separating columns]; `O3_Toronto_1`, `TorontoO32`, and `Toronto_1` can't be. 
 - *Use as simple as possible headers*. Often you'll be pasting instrument readings into one `.csv` using *Excel* on whatever computer records the instrument readings. In these situations it's often much easier to paste things in columns. We will learn more about how to do this in the next chapter.
-- *Make sure data types are consistent within a column*. This harks back to the [Importing data into R] chapter, but a single non-numeric character can cause R to misinterpret an entire column leading to headaches down the line. 
+- *Make sure data types are consistent within a column*. This harks back to the [Importing your data into R] chapter, but a single non-numeric character can cause R to misinterpret an entire column leading to headaches down the line. 
 - *Save your data in UTF-8 format*. Excel and other programs often allow you to export your data in a variety of `.csv` encodings, but this can affect how R reads when importing your data. Make sure you select `UTF-8` encoding when exporting your data. 
 
-## Further reading
+## Further reading {#further_reading_chapter11}
 
-As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 9: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
+As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
 
 `r if (knitr:::is_html_output()) '## Chapter References'`
 
