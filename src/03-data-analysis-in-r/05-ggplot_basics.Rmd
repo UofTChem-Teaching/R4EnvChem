@@ -1,6 +1,6 @@
 # Ggplot Basic Visualizations 
 
-`ggplot2` is loaded by default with the `tidyverse` suite of packages. Let's revisit our spectroscopy data we encountered in [Tidying your data]:
+`ggplot2` is loaded by default with the `tidyverse` suite of packages. Let's revisit our spectroscopy data we encountered in [Tidying Your Data]:
 
 
 ```{r, warning=FALSE}
@@ -28,7 +28,7 @@ ggplot(data = atr_data,
 ```
 
 
-Let's ignore the plot for now and look at our code down:
+Let's ignore the plot for now and look at our code below:
 
   1. `ggplot()` initializes a *ggplot object*, basically an empty plot. 
   2. We then specified we want to plot data from our `atr_data` dataset (`data = atr_data`).
@@ -100,7 +100,7 @@ Note how we changed the title of the legend with `colour = "Plastics"`. This is 
 
 ## Small Multiples
 
-Sometimes your plots become overwhelming, a phenomena called overplotting, which prevent your from comparing graphs or charts. A popular solution is [*small multiples*](https://en.wikipedia.org/wiki/Small_multiple), a series of smilar plots using the same scale and axes. This is readily accomplished in R using [`facet_grid()`](https://ggplot2-book.org/facet.html) (which creates a 2-D grid ) or [`facet_wrap()`](https://ggplot2-book.org/facet.html) (a single 1d ribbon wrapped into 2D space). You simply specy which variable you want to differentiate your plots, for us it's `sample`: 
+Sometimes your plots become overwhelming, a phenomena called overplotting, which prevent your from comparing graphs or charts. A popular solution is [*small multiples*](https://en.wikipedia.org/wiki/Small_multiple), a series of similar plots using the same scale and axes. This is readily accomplished in R using [`facet_grid()`](https://ggplot2-book.org/facet.html) (which creates a 2-D grid ) or [`facet_wrap()`](https://ggplot2-book.org/facet.html) (a single 1d ribbon wrapped into 2D space). You simply specify which variable you want to differentiate your plots, for us it's `sample`: 
 
 ```{r}
 ggplot(data = atr_data, 

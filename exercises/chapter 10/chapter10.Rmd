@@ -15,6 +15,15 @@ Before diving into the exercises, follow the instructions below to download a 20
 -   Upload the file to your RStudio. 
 
 
+## Load Necessary Libraries
+
+Before starting the exercises, ensure you have the necessary libraries loaded:
+
+```{r}
+# Load necessary libraries
+library(tidyverse)
+```
+
 # Exercise 1: Importing data from CSV files
 
 **Your Task:**
@@ -34,7 +43,7 @@ Before diving into the exercises, follow the instructions below to download a 20
 
 Do not modify the cell below. 
 
-```{r}
+```{r, purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Importing Data from CSV", {
   expect_true(is.data.frame(data) & nrow(data) > 0)
@@ -83,7 +92,7 @@ test_that("Importing Data from CSV", {
 #### Test Your Code (Exercise 3)
 
 Do not modify the cell below. 
-```{r}
+```{r, purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Converting Tibble to Dataframe", {
   expect_true(is.data.frame(converted_data))
@@ -112,7 +121,7 @@ Note: Save it to the current working directory.
 #### Test Your Code (Exercise 4)
 
 Do not modify the cell below. 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Saving Data to Different Formats", {
   # Check if the CSV file exists
@@ -148,7 +157,7 @@ You are going to learn more about what you can do with `read_csv()`.
 
 Do not modify the cell below. 
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Exploring Input Parameters of read_csv", {
   
@@ -156,5 +165,3 @@ test_that("Exploring Input Parameters of read_csv", {
   expect_equal(nrow(limited_data), 10)
 })
 ```
-
-
