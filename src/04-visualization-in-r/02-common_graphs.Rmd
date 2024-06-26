@@ -23,7 +23,7 @@ Also note that `ggplot()` includes `geom_col()` and `geom_bar()`. While both can
 
 Any measurement always has an associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our `sumAtl` dataset we've calculated the standard deviation as a measure of uncertainty. In our example, we've used the standard deviation (`sd`) as a measure of uncertainty of our calculated annual means.
 
-To plot error bars we use `geom_errorbar()` and pass the min and max values we want the error bars to be. In our case, the lowest value would be `ymin = mean - sd`, and the highest would be `ymin = mean + sd`. Our plotted error bars now indicated plus or minus one standard deviation from the mean.
+To plot error bars we use `geom_errorbar()` and pass the min and max values we want the error bars to be. In our case, the lowest value would be `ymin = mean - sd`, and the highest would be `ymin = mean + sd`. Our plotted error bars now indicate plus or minus one standard deviation from the mean.
 
 ```{r}
 ggplot(data = sumAtl, aes(x = city, y = mean)) +
@@ -50,7 +50,7 @@ ggplot(data = sumAtl,
   coord_flip()
 ```
 
-So in our aesthetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] then Corner Brook.
+So in our aesthetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] than Corner Brook.
 
 ### Grouping bar charts
 
@@ -93,7 +93,7 @@ Let's break down how to interpret *one* box before tackling the entire set. As p
 
 The *box* in box-plots represents the range between Q1 and Q3. This is known as the *inter-quartile range* (IQR) and 50% of the total data falls somewhere inside this box. You can estimate the distribution by the symmetry of the box. if Q1 to the median is smaller than the median to Q3, the data has a *positive skew* (right sided skew), and vice versa.
 
-Rounding it out, `geom_boxplot()` includes *whiskers*, the thin lines emanating out from the box. This is used the predict outliers and is calculated as $outliers = \pm 1.5 \times IQR$. Anything outside the whiskers is considered an "outliers" or an extreme point, and is plotted individually.
+Rounding it out, `geom_boxplot()` includes *whiskers*, the thin lines emanating out from the box. This is used to predict outliers and is calculated as $outliers = \pm 1.5 \times IQR$. Anything outside the whiskers is considered an "outlier" or an extreme point, and is plotted individually.
 
 Putting this all together, let's look at the [NO~2~] for St. Johns city:
 
@@ -194,7 +194,7 @@ Note that we've plotted the actual distribution of the data. Prior to computers,
 
 ### Box plot alternatives
 
-The first alternative to box-plots is the *violin plot* which is made using `geom_violin()`. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive then box-plots. While the example below isn't the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown principle has days where [NO~2~] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO~2~. This might be because of difference in regional ambient levels of NO~2~.
+The first alternative to box-plots is the *violin plot* which is made using `geom_violin()`. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive than box-plots. While the example below isn't the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown has days where [NO~2~] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO~2~. This might be because of differences in regional ambient levels of NO~2~.
 
 ```{r atl-violin}
 ggplot(data = atlNO2, 
@@ -203,11 +203,11 @@ ggplot(data = atlNO2,
   coord_flip()
 ```
 
-Another alternative is to plot the points over top of the box-plot. You've encountered this example in [R coding basics]. Truth be told, there are countless way to visualize distribution.
+Another alternative is to plot the points over top of the box-plot. You've encountered this example in [R coding basics]. Truth be told, there are countless ways to visualize distribution.
 
 ### Statistical comparisons between groups
 
-Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as `ggpubr` have many built in functionalists to display the results of these outcomes.
+Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as `ggpubr` have many built-in functionalities to display the results of these outcomes.
 
 From our NO~2~ data, St. Johns appears to have the highest levels of NO~2~. Let's apply a pairwise test against other Newfoundland communities to see if our observation is *statistically significant* based upon the results of a *Wilcoxon test*.
 
@@ -249,7 +249,7 @@ ggplot(data = subset(atlNO2, city = "St Johns"),
 
 ### Multiple histograms
 
-While you can overlap histograms, it get's difficult to read with more than a handful of datasets. If we wanted to plot histograms of all the cities in our dataset we would have to use a small multiple via the `facet_grid()` or `facet_wrap()` arguments. `facet_grid()` allows you to arrange many small plots on a grid defined by variables in your dataset (i.e. columns for provinces, and rows for different pollutants). In the example below we've used `facet_wrap(~city)` which creates a 2D layout of histograms of each cities NO~2~ values. Note the tilde , `~`, preceding in `~city`.
+While you can overlap histograms, it gets difficult to read with more than a handful of datasets. If we wanted to plot histograms of all the cities in our dataset we would have to use a small multiple via the `facet_grid()` or `facet_wrap()` arguments. `facet_grid()` allows you to arrange many small plots on a grid defined by variables in your dataset (i.e. columns for provinces, and rows for different pollutants). In the example below we've used `facet_wrap(~city)` which creates a 2D layout of histograms of each cities NO~2~ values. Note the tilde , `~`, preceding in `~city`.
 
 ```{r}
 
@@ -262,7 +262,7 @@ ggplot(data = atlNO2,
 
 ## Scatter plots
 
-Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point ins plotted as an individual point on. You've already learned the basics of scatter plots in Chapter 14. Now, we'll touch upon some things you can do to improve your scatter plots.
+Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point is plotted as an individual point. You've already learned the basics of scatter plots in Chapter 14. Now, we'll touch upon some things you can do to improve your scatter plots.
 
 ### Marginal plots
 
@@ -286,9 +286,9 @@ ggExtra::ggMarginal(torPlot, margins = "y", groupColour = TRUE, groupFill = TRUE
 
 ```
 
-We can now see the distributions of NO~2~ and O~3~ overlaid on the vertical axis. note that `ggMarginal()` only works with scatter plots.
+We can now see the distributions of NO~2~ and O~3~ overlaid on the vertical axis. Note that `ggMarginal()` only works with scatter plots.
 
-There are plenty of other marginal options scatted about various packages. You can see many of them in action (with beautiful examples) at [Tufte in R](http://motioninsocial.com/tufte/#minimal-line-plot) by Lukasz Piwek.
+There are plenty of other marginal options scattered about various packages. You can see many of them in action (with beautiful examples) at [Tufte in R](http://motioninsocial.com/tufte/#minimal-line-plot) by Lukasz Piwek.
 
 ```{r child='src/common/end-of-chapter-exercise.Rmd'}
 ```

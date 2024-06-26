@@ -1,10 +1,10 @@
 # Customizing your plots
 
-Up until now we haven't payed much attention to the explicit aesthetics of plots beyond what we needed for our exploratory analysis. However, many journals, publications, instructors, etc. will want plots to adhere to certain aesthetic standards. There's scores of options to play with, so we recommend you consult the [ggplot2 Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization.pdf).
+Up until now we haven't paid much attention to the explicit aesthetics of plots beyond what we needed for our exploratory analysis. However, many journals, publications, instructors, etc. will want plots to adhere to certain aesthetic standards. There are scores of options to play with, so we recommend you consult the [ggplot2 Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization.pdf).
 
 ## Interactive Plots
 
-Ultimately you're visualizations will be printed to a static PDF document, but in the interim having an interactive plot can be helpful for data exploration. The `plotly` package magically makes most `ggplots` interactive with a simply command. Here's an example with our Toronto air quality data:
+Ultimately your visualizations will be printed to a static PDF document, but in the interim having an interactive plot can be helpful for data exploration. The `plotly` package magically makes most `ggplots` interactive with a simple command. Here's an example with our Toronto air quality data:
 
 ```{r}
 
@@ -21,7 +21,7 @@ This is also super useful when surveying spectroscopy data, although the large n
 
 ## Plot Themes
 
-Overall themes can be applied to ggplot. The simple and minimalist `theme_classic()` is satisfactory for most submissions, but you can peruse the available these in ggplot [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) or you can explore many more themes in the [`ggthemes` package](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/).
+Overall themes can be applied to ggplot. The simple and minimalist `theme_classic()` is satisfactory for most submissions, but you can peruse the available themes in ggplot [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) or you can explore many more themes in the [`ggthemes` package](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/).
 
 ```{r}
 # generating example plot to modify 
@@ -87,7 +87,7 @@ p +
   labs(y = "Log10(concentration)")
 ```
 
-Other useful transformations include "log2" for base-2 logs, "date" for dates, and "hms" for time. The later two are useful if R hasn't correctly interpreted your dataset. The data type for the `data.time` column of our dataset was correctly interpreted during our initial importation using `read_csv()`. Hooray for doing it right the first time.
+Other useful transformations include "log2" for base-2 logs, "date" for dates, and "hms" for time. The latter two are useful if R hasn't correctly interpreted your dataset. The data type for the `data.time` column of our dataset was correctly interpreted during our initial importation using `read_csv()`. Hooray for doing it right the first time.
 
 ### Limits
 
@@ -100,7 +100,7 @@ p + lims(y = c(0, 100))
 
 ### Axis ticks/labels
 
-Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the name of cities like we've encountered earlier. We addressed this earlier in [Bar charts] by rotating the plot 90$^\circ$ with the `coord_flip()` function. This is often the best solution as it's how we read English. Another solution is to rotate the axis labels themselves:
+Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the names of cities like we've encountered earlier. We addressed this earlier in [Bar chart] by rotating the plot 90$^\circ$ with the `coord_flip()` function. This is often the best solution as it's how we read English. Another solution is to rotate the axis labels themselves:
 
 ```{r}
 basePlot <- ggplot(data = subset(sumAtl, p == "NL"),
@@ -130,7 +130,7 @@ gridExtra::grid.arrange(default, flip, rotated, rotatedHJust, ncol = 2, nrow = 2
 
 ## Arranging plots
 
-We talked about how facets can be used to generate multiple plots from a dataset (small multiples), but sometimes you want to combine two or more *different* plots together. There are a couple of ways, but we've been using `grid.arrange()` from the `gridExtra` pacakge (as demonstrated above). You can read up on [`gridExtra` here](https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html). There is also the [`ggarrange` function](https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html) from the `ggpubr` package which, amongst other things, can easily create shared legends between plots.
+We talked about how facets can be used to generate multiple plots from a dataset (small multiples), but sometimes you want to combine two or more *different* plots together. There are a couple of ways, but we've been using `grid.arrange()` from the `gridExtra` package (as demonstrated above). You can read up on [`gridExtra` here](https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html). There is also the [`ggarrange` function](https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html) from the `ggpubr` package which, amongst other things, can easily create shared legends between plots.
 
 ```{r}
 colchart <- ggplot(data = sumAtl,
@@ -162,34 +162,34 @@ ggpubr::ggarrange(colchart,
 
 ## Anotating plots
 
-Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different then *captions*, which is accomplished in the `rmarkdown` chunk header (see [R code chunk options] for a refresher).
+Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different than *captions*, which is accomplished in the `rmarkdown` chunk header (see [R code chunk options] for a refresher).
 
-Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualzie them spatially. Note, the map we're making here is rather basic, to make prettier maps see [CHM410: Air Quality Lab].
+Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualize them spatially. Note the map we're making here is rather basic, to make prettier maps see [CHM410: Air Quality Lab].
 
 ```{r, message = FALSE, error = FALSE, warning = FALSE}
 
 # need lat and long value for map
-mapNO2 <- atlNO2 %>%
-  group_by(latitude, longitude, p,  city) %>%
-  summarise(mean = mean(conc))
-
-#install.packages("ggmap")
+# mapNO2 <- atlNO2 %>%
+#   group_by(latitude, longitude, p,  city) %>%
+#   summarise(mean = mean(conc))
+# 
+# install.packages("ggmap")
 # library(ggmap)
 # 
-# atlMap <- get_stamenmap(bbox = make_bbox(lon = mapNO2$longitude, 
-#                                          lat = mapNO2$latitude, 
-#                                          f = 0.1), 
-#                         zoom = 6, 
-#                         maptype = "terrain", 
+# atlMap <- get_stadiamap(bbox = make_bbox(lon = mapNO2$longitude,
+#                                          lat = mapNO2$latitude,
+#                                          f = 0.1),
+#                         zoom = 6,
+#                         maptype = "stamen_terrain",
 #                         crop = FALSE)
 # 
-# atlMap <- ggmap(atlMap) 
+# atlMap <- ggmap(atlMap)
 # 
 # atlMap
 
 ```
 
-Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this in detail in [Plotting Airbeam data spatially], but for this plot we spefically want to annotate each point with it's corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html). We simply need to specify which column (`naps id`) we'll use for our labels:
+Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this in detail in [Plotting Airbeam data spatially], but for this plot we specifically want to annotate each point with its corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html). We simply need to specify which column (`naps id`) we'll use for our labels:
 
 ```{r, message = FALSE, warning = FALSE}
 # atlMap + geom_point(data = mapNO2, 
