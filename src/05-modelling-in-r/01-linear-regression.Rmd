@@ -318,8 +318,6 @@ As you can see, `augment()` adds columns to the original data that was modelled.
   - `.fitted`, the predicted value of the point according to our calculated model. 
   - `.resid`, the residuals of that point (different between measured and fitted values.)
   - The other parameters are different measurements of the influence of each point on the model fitting. They can be used to detect outliers; see [Further reading](#further_reading_chapter19)
-<<<<<<< HEAD
-  
 
 ### Incorporating weights into your model 
 
@@ -355,9 +353,6 @@ ggplot(data = weightedCalCurve,
               aes(weight=`(weights)`, label = "weighed")) 
   
 ```
-
-=======
->>>>>>> main
 
 ### Why we approach modelling this way
 
