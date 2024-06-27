@@ -60,7 +60,7 @@ Create a dataframe named `models` that at least has the columns `chemical`, `mod
 
 #### Test Your Code (Exercise 2)
 
-```{r}
+```{r ,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Linear Model Test", {
   expect_true("TBEP" %in% models$chemical)
@@ -92,7 +92,7 @@ Do you see that we don't have any values in the `concentration` column? In the f
 
 #### Test Your Code (Exercise 3)
 
-```{r}
+```{r, purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Prediction Test", {
   expect_true(nrow(sample_data) == 33)

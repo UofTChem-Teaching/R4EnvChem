@@ -2,6 +2,8 @@
 # Load  packages
 library(testthat)
 library(here)
+library(fs)
+
 
 if (file.exists("exercises/helper_functions.R")) {
   source("exercises/helper_functions.R")

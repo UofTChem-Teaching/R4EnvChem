@@ -4,7 +4,7 @@ We've touched upon the basics of modelling in R but it doesn't have to stop ther
 
 ## Experimental Background
 
-For this chapter we'll be using data obtained from an experiment in *CHM317*. In this experiment, students measure the fluorescence of the fluorescent dye acridine orange in the presence of sodium dodecyl sulfate (SDS). In, or near, the critical micellular region of SDS, there is a sharp change in absorbance and fluorescence of the solution. Tracking these changes in fluorescence, students can then estimate the CMC of SDS. Experimentally, students prepared solutions of a constant concentration of acridine orange and varying concentrations of SDS. The emission spectrum of each sample was recorded, and we want to take the maximal of each spectra as a data point to built our model. 
+For this chapter we'll be using data obtained from an experiment in *CHM317*. In this experiment, students measure the fluorescence of the fluorescent dye acridine orange in the presence of sodium dodecyl sulfate (SDS). In, or near, the critical micelle concentration of SDS, there is a sharp change in absorbance and fluorescence of the solution. Tracking these changes in fluorescence, students can then estimate the CMC of SDS. Experimentally, students prepared solutions of a constant concentration of acridine orange and varying concentrations of SDS. The emission spectrum of each sample was recorded, and we want to take the maximal of each spectra as a data point to build our model. 
 
 Let's go ahead and import our data:
 
@@ -40,7 +40,7 @@ Let's first annotate our plate to find the highest point, then go about extracti
 
 ### Annotating maximal values
 
-Annotating the maximal point on the plot will take a bit more code then actually obtaining it from the data. For this we'll need to use the `ggpmisc` package which contains miscellaneous extensions for `ggplot2`, and `ggrepel` so our labels won't overlap. 
+Annotating the maximal point on the plot will take a bit more code than actually obtaining it from the data. For this we'll need to use the `ggpmisc` package which contains miscellaneous extensions for `ggplot2`, and `ggrepel` so our labels won't overlap. 
 
 ```{r, message = FALSE, warning = FALSE}
 library(ggpmisc)
@@ -99,7 +99,7 @@ ggplot(data = sdsMax,
 
 ## Modelling Sigmoid Curve 
 
-So we want to find the critical micellular concentration of SDS using the maximum fluorescence emission. The CMC is at the 'midpoint of the sinusoid curve'. Which means we'll need to a) plot a sinusoid curve and b) extract the midpoint. 
+So we want to find the critical micelle concentration of SDS using the maximum fluorescence emission. The CMC is at the 'midpoint of the sinusoid curve'. Which means we'll need to a) plot a sinusoid curve and b) extract the midpoint. 
 
 The 'sinusoid' or 'S-shaped' curve mentioned in the lab manual is known as a *logistic regression*. Logistic regressions are often used to model systems with a largely binary outcome. In other words, the system starts at point A, and remains there for awhile, before 'quickly' jumping up (or down) to level B and remain there for the remainder. Examples include saturation and dose response curves.  
 
@@ -121,9 +121,9 @@ Why do we need such a complicated formula for our model? Well, looking again at 
 
 ### Calculating Logistic Regression 
 
-A strength of `R` is it's flexibility in running various models, and logistic regression is no different. We can use a number of packages to reach these ends, specifically the `drc` package contains a plethora of functions for modelling dose response curves (hence `drc`). However, for this example well use a more generalized approach. Earlier we talked about linear regression, where we plot adjust the slope and intercept of a linear equation to best fit our data (see Calibration Curves). Recall that this optimization is based on minimizing the distance between the model and all of the experimental points (*least squares*). Well the `stats` package has a function called `nls` that expands upon the this to nonlinear models. Per the `nls` function description: "[nls] determine[s] the nonlinear (weighted) least_squared estimates of the parameters of a nonlinear model." 
+A strength of `R` is its flexibility in running various models, and logistic regression is no different. We can use a number of packages to reach these ends, specifically the `drc` package contains a plethora of functions for modelling dose response curves (hence `drc`). However, for this example we'll use a more generalized approach. Earlier we talked about linear regression, where we adjust the slope and intercept of a linear equation to best fit our data (see Calibration Curves). Recall that this optimization is based on minimizing the distance between the model and all of the experimental points (*least squares*). Well the `stats` package has a function called `nls` that expands upon this to nonlinear models. Per the `nls` function description: "[nls] determine[s] the nonlinear (weighted) least_squared estimates of the parameters of a nonlinear model." 
 
-So we can create a formula in `R` based on the four-parameter logistic regression described above. After that, we'll need to produce some starting details from which the model can build off of. If we don't tell `nls` where to start, it can't function, as the search space is too large. Looking at \@ref{fig:sdsMaxPlot}, the intensity appears to floor around 20; the intensity appears to max out around 820; the midpoint appears to be around 0.0075 M, and let's say the slope is 1.  Remember, these are starting values from which `nls` starts to optimize from, and not the actual values used to construct the model. 
+So we can create a formula in `R` based on the four-parameter logistic regression described above. After that, we'll need to produce some starting details from which the model can build off of. If we don't tell `nls` where to start, it can't function, as the search space is too large. Looking at \@ref(fig:sdsMaxPlot), the intensity appears to floor around 20; the intensity appears to max out around 820; the midpoint appears to be around 0.0075 M, and let's say the slope is 1.  Remember, these are starting values from which `nls` starts to optimize from, and not the actual values used to construct the model. 
 
 So, let's create our model
 
@@ -138,9 +138,9 @@ logisModel <- nls(intensity ~  (a-d)/(1 + (conc /c)^b) + d,
                   )
 ```
 
-... and we get an error message. Get used to these when modelling! Don't worry about understanding it completely, error messages are often written with programmers in mind so they can be a bit cryptic. You can often copy and paste these directly into any search engine to get some more information, but this one is simple enough: we either have a missing value or an infinity produced. Well we have six input parameters in our model: `a, b, c, d`,  our independent variable `conc`, and our dependant variable `intensity`. We've also supplied starting values to all of them via the list we created inside the function. Therefore, one of our starting values must be too far off from a plausible start point and is causing troubles in the `nls` function. They all look good except for the slope start value `b = 1`. 
+... and we get an error message. Get used to these when modelling! Don't worry about understanding it completely, error messages are often written with programmers in mind so they can be a bit cryptic. You can often copy and paste these directly into any search engine to get some more information, but this one is simple enough: we either have a missing value or an infinity produced. Well we have six input parameters in our model: `a, b, c, d`,  our independent variable `conc`, and our dependent variable `intensity`. We've also supplied starting values to all of them via the list we created inside the function. Therefore, one of our starting values must be too far off from a plausible start point and is causing troubles in the `nls` function. They all look good except for the slope start value `b = 1`. 
 
-The slope here is an approximation for the slope between the min value `a` and max value `d`. Looking at our data in \@ref{fig:sdsMaxPlot}, that slope may be a bit shallow consider the large jump in intensity. Let's increase the value of `b` and try again: 
+The slope here is an approximation for the slope between the min value `a` and max value `d`. Looking at our data in \@ref(fig:sdsMaxPlot), that slope may be a bit shallow considering the large jump in intensity. Let's increase the value of `b` and try again: 
 
 ```{r}
 
@@ -178,7 +178,7 @@ ggplot(augment, aes(x = conc, y = intensity, colour = "actual")) +
 
 ```
 
-Looks pretty good, although it's interesting how the baseline at lower concentrations doesn't plateau like the model values. You'll note that the line produced by `geom_line` will only draw a straight line between points. There's ways to address this, but we don't need to for our needs right now. 
+Looks pretty good, although it's interesting how the baseline at lower concentrations doesn't plateau like the model values. You'll note that the line produced by `geom_line` will only draw a straight line between points. There are ways to address this, but we don't need to for our needs right now. 
 
 There doesn't appear to be any gross outliers in our model, so it seems to have done a good job. We can verify this by checking the residuals(see [Plotting residuals]): 
 
@@ -188,7 +188,7 @@ ggplot(augment, aes(x = conc, y = .resid)) +
   geom_point() 
 ```
 
-We can't see any obvious patterns in the residuals (i.e. all are negative), so we can have further confidence in the fit of out model. 
+We can't see any obvious patterns in the residuals (i.e. all are negative), so we can have further confidence in the fit of our model. 
 
 ### Extracting model parameters
 
@@ -201,7 +201,7 @@ tidy <- tidy(logisModel)
 tidy
 ```
 
-Looking past the scientific notation, our model values are pretty similar to what we estimated. Specifically, `c`, our midpoint value is 0.0076 M. Not too bad from our original estimate.  And recall that the midpoint of our curve corresponds to the critical micellular concentration of SDS, which we've estimated to be 0.0076M. Not too far from the literature value of 0.0081 M. 
+Looking past the scientific notation, our model values are pretty similar to what we estimated. Specifically, `c`, our midpoint value is 0.0076 M. Not too bad from our original estimate.  And recall that the midpoint of our curve corresponds to the critical micelle concentration of SDS, which we've estimated to be 0.0076M. Not too far from the literature value of 0.0081 M. 
 
 ## Summary
 
@@ -215,10 +215,6 @@ In this chapter we reviewed non-linear modelling using a case study with four-pa
 
 
 Lastly, we've also touched upon labelling maximal values in a plot using the `ggpmisc` package. Notably useful for determining local peaks in spectroscopy data. 
+
 ```{r child='src/common/end-of-chapter-exercise.Rmd'}
 ```
-
-
-
-
-

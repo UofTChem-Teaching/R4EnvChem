@@ -67,7 +67,7 @@ grouped_data
 
 #### Test Your Code (Exercise 2)
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Grouping and Summarizing Test", {
   expect_true("concentration" %in% colnames(grouped_data))
@@ -108,7 +108,7 @@ Your graph should look something like this:
 
 #### Test Your Code (Exercise 3)
 
-```{r}
+```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Linear Model Test", {
   expect_true("concentration" %in% names(coef(model)))
@@ -124,7 +124,7 @@ test_that("Linear Model Test", {
 
 **Your Task:** 
 
-Create a new column `peak_area_level` in `data` that categorizes the `analyte_peak_area_counts` into 'Low', 'Medium', or 'High', based on thresholds you define. Then, count how many occurrences fall into each category.
+Create a new column `peak_area_level` in `data` that categorizes the `analyte_peak_area_counts` into 'Low', 'Medium', or 'High', based on thresholds you define. Then, count how many occurrences fall into each category. Make sure you define the thresholds such that for each category, there is at least one occurrence.
 
 ```{r}
 # Define thresholds and create the peak_area_level column
@@ -140,18 +140,19 @@ peak_area_counts
 
 
 #### Test Your Code (Exercise 4)
-```{r}
+```{r, purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Advanced Data Manipulation Test", {
   # Check if 'peak_area_level' column exists
   expect_true("peak_area_level" %in% colnames(data))
+  data$peak_area_level
   
   # Check if all values in 'peak_area_level' are within the specified categories
   expect_true(all(data$peak_area_level %in% c("Low", "Medium", "High")))
   
-  # Optionally, check for non-zero counts in each category (if data set is expected to cover all categories)
-  expect_true(table(data$peak_area_level)[['Low']] == 4)
-  expect_true(table(data$peak_area_level)[['Medium']] == 2)
-  expect_true(table(data$peak_area_level)[['High']]== 2)
+  # Check for non-zero counts in each category
+  expect_true("Low" %in% names(peak_area_counts))
+  expect_true("Medium" %in% names(peak_area_counts))
+  expect_true("High" %in% names(peak_area_counts))
 })
 ```
