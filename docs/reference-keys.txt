@@ -1,8 +1,8 @@
 fig:unnamed-chunk-36
 fig:tidy-example
 fig:reg-plot
-fig:unnamed-chunk-170
 fig:unnamed-chunk-171
+fig:unnamed-chunk-172
 fig:sdsMaxPlot
 intro-to-r-and-rstudio
 r-language
@@ -196,7 +196,7 @@ discrete-vs.-continuous-variables
 prerequisites
 exercise-12
 common-types-of-graphs
-bar-chart
+bar-charts
 adding-error-bars
 ordering-bar-charts
 grouping-bar-charts
@@ -228,15 +228,14 @@ cleaning-up-model-ouputs
 glanced-outputs
 tidied-outputs
 augmented-outputs
+incorporating-weights-into-your-model
 why-we-approach-modelling-this-way
 visualizing-models
-vizualizing-residuals
+visualizing-residuals
 plotting-residuals
 calculating-concentrations
 summary-6
 further_reading_chapter19
-going-deeper-with-modelling
-weighing
 exercise-15
 modelling-multiple-linear-regressions
 building-multiple-linear-regressions
