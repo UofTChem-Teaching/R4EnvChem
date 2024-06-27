@@ -100,7 +100,7 @@ p + lims(y = c(0, 100))
 
 ### Axis ticks/labels
 
-Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the names of cities like we've encountered earlier. We addressed this earlier in [Bar chart] by rotating the plot 90$^\circ$ with the `coord_flip()` function. This is often the best solution as it's how we read English. Another solution is to rotate the axis labels themselves:
+Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the names of cities like we've encountered earlier. We addressed this earlier in [Bar charts] by rotating the plot 90$^\circ$ with the `coord_flip()` function. This is often the best solution as it's how we read English. Another solution is to rotate the axis labels themselves:
 
 ```{r}
 basePlot <- ggplot(data = subset(sumAtl, p == "NL"),

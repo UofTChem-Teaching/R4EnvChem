@@ -10,7 +10,7 @@ We've already encountered and produced several types of plots to visualize our d
 
 The plots we'll be covering include:
 
--   [Bar Chart]
+-   [Bar Charts]
 -   [Box Plots]
 -   [Histograms]
 -   [Scatter Plots]

@@ -495,7 +495,7 @@ FAESsamples %>%
             sd = sd(sampleConc),
             n = n())
 ```
-And there we go. See the [Summarizing data] and [Visualizations for Env Chem] chapters for assiting in making prettier tables and visualizations, respectively. 
+And there we go. See the [Summarizing data] and [Visualizations for Env Chem] chapters for assisting in making prettier tables and visualizations, respectively. 
 
 
 

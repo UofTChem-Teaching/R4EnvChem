@@ -3,7 +3,7 @@
 In this chapter, you will learn how to create some of the most commonly used graphs, including bar plots, box plots, histograms, and scatterplots. These powerful visualization tools will enable you to explore and communicate your data effectively, gaining valuable insights along the way. 
 
 
-## Bar chart
+## Bar charts
 
 Bar charts, also called *column* charts, represent *categorical* data with rectangular bars whose height/length is proportional to the values they represent.
 
