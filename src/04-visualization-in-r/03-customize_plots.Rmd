@@ -164,35 +164,34 @@ ggpubr::ggarrange(colchart,
 
 Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different than *captions*, which is accomplished in the `rmarkdown` chunk header (see [R code chunk options] for a refresher).
 
-Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualize them spatially. Note the map we're making here is rather basic, to make prettier maps see [CHM410: Air Quality Lab].
+Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualize them spatially.
 
 ```{r, message = FALSE, error = FALSE, warning = FALSE}
-
 # need lat and long value for map
 # mapNO2 <- atlNO2 %>%
 #   group_by(latitude, longitude, p,  city) %>%
 #   summarise(mean = mean(conc))
-# 
+
 # install.packages("ggmap")
 # library(ggmap)
-# 
-# atlMap <- get_stadiamap(bbox = make_bbox(lon = mapNO2$longitude,
-#                                          lat = mapNO2$latitude,
-#                                          f = 0.1),
-#                         zoom = 6,
-#                         maptype = "stamen_terrain",
+#
+# atlMap <- get_stamenmap(bbox = make_bbox(lon = mapNO2$longitude, 
+#                                          lat = mapNO2$latitude, 
+#                                          f = 0.1), 
+#                         zoom = 6, 
+#                         maptype = "terrain", 
 #                         crop = FALSE)
 # 
+#
 # atlMap <- ggmap(atlMap)
 # 
 # atlMap
-
 ```
 
-Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this in detail in [Plotting Airbeam data spatially], but for this plot we specifically want to annotate each point with its corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html). We simply need to specify which column (`naps id`) we'll use for our labels:
+Now we want to plot our annual mean 1-hr [NO2] onto the map. For this plot we specifically want to annotate each point with its corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html). We simply need to specify which column (`naps id`) we'll use for our labels:
 
 ```{r, message = FALSE, warning = FALSE}
-# atlMap + geom_point(data = mapNO2, 
+# atlMap + geom_point(data = mapNO2,
 #              aes(x=longitude,
 #                  y=latitude,
 #                  colour = mean,
@@ -200,14 +199,12 @@ Now we want to plot our annual mean 1-hr [NO2] onto the map. We've covered this 
 #              alpha = 0.8) +
 #   scale_alpha(guide = "none") + # removing legend for alpha
 #   scale_size(guide = "none") + # removing legend for size
-#   ggrepel::geom_label_repel(data = mapNO2, 
+#   ggrepel::geom_label_repel(data = mapNO2,
 #                             aes(x=longitude,
 #                                 y=latitude,
 #                                 label = city),
 #                             box.padding = 0.5,
 #                             max.overlaps = Inf)
-# 
-
 ```
 
 Again, not the prettiest map, but that's up to you to fix in post. [`geom_text_repel()`](https://ggrepel.slowkow.com/articles/examples.html) is an incredibly useful package for quickly annotating plots. If you need to label/annotate points check it out.

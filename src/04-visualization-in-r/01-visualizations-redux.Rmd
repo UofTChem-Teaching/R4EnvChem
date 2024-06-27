@@ -15,7 +15,6 @@ The plots we'll be covering include:
 -   [Histograms]
 -   [Scatter Plots]
 -   [Interactive Plots]
--   [Plotting for publication]
 
 These are only a smattering of the possible data visualizations you can perform in R. We're focusing on them because of their ubiquity in our field, but they often won't be the ideal visualizations you need to communicate *your story*. We highly recommend you check out the following resources. Not only are they a great source of inspiration, they provide example code to get you up and running. We consult them regularly.
 

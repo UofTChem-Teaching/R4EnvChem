@@ -161,7 +161,7 @@ FAES <- read_csv(file = "data/FAES_original_wide.csv") %>%
 DT::datatable(FAES)
 ```
 
-And let's quickly plot our data. You should always visualize your data before modelling, especially for linear calibration modelling. Unlike *statistical* modelling. Visualizing your data is the easiest way to spot trends and gross errors in your data. 
+And let's quickly plot our data. You should always visualize your data before modelling, especially for linear calibration modelling. Visualizing your data is an easy way to spot trends and gross errors in your data. 
 
 ```{r}
 
@@ -318,6 +318,43 @@ As you can see, `augment()` adds columns to the original data that was modelled.
   - `.fitted`, the predicted value of the point according to our calculated model. 
   - `.resid`, the residuals of that point (different between measured and fitted values.)
   - The other parameters are different measurements of the influence of each point on the model fitting. They can be used to detect outliers; see [Further reading](#further_reading_chapter19)
+  
+
+### Incorporating weights into your model 
+
+
+You'll often find that your calibration data is *heteroscedastic*, meaning the variance increases with the concentration. This leads to *leverage* of your line-of-best fit, as it is 'pulled' by one way or another by the higher concentration standards than the lower. You can assign 'weights' (how much a point impacts the model) in R, although you'll need to justify the validity of your approach. A common approach, however, is to weight each standard by $\frac{1}{x^2}$. This ensures that samples with higher concentration impact the line less, and vice-versa with low-concentration standards. 
+
+To utilize weight in R, we need to calculate the weight prior to modelling, and subsequently specify the weights column 
+
+```{r}
+
+# note that our blank has a concentration of 0, hence infinite weight. 
+# we need to remove it to weight our data. 
+
+FAESweighed <- FAES %>% 
+  filter(conc_Na > 0) %>%
+  mutate(wght = 1/(conc_Na^2))
+
+weightedCalCurve <- FAESweighed %>%
+  group_by(type) %>%
+  nest() %>%
+  mutate(fit = map(data, ~lm(signal ~ conc_Na, data = .x, weights = wght)),
+         tidied = map(fit, tidy),
+         glanced = map(fit, glance),
+         augmented = map(fit, augment)
+         ) %>%
+  unnest(augmented)
+
+ggplot(data = weightedCalCurve, 
+       aes(x = conc_Na, y = signal)) +
+  geom_point() +
+  geom_smooth(method = 'lm', se=F, colour = "red", label = "unweighed") +
+  geom_smooth(method = 'lm', se=F, colour = "blue", 
+              aes(weight=`(weights)`, label = "weighed")) 
+  
+```
+
 
 ### Why we approach modelling this way
 
@@ -386,7 +423,7 @@ gridExtra::grid.arrange(normal, invertedU, hetero, outlier, ncol = 2, nrow = 2)
 
 - Normally distributed residuals are satisfactory for linear modelling. Note the relatively small magnitude of the residuals. 
 - Curvature throughout range results from an instrument becoming saturated. Consequently, the linear model will 'cut' through the curve. This is a good indication that you'll need to either breakdown your calibration curve into two or more parts or utilize a non-linear model. 
-- Heteroscedasticity means the variance of the response is proportional to the concentration. This is often the case in instrumental analysis. See [Weighing] below. 
+- Heteroscedasticity means the variance of the response is proportional to the concentration. This is often the case in instrumental analysis. See [Weighing] above. 
 - Outliers shouldn't exist in your calibration plot, nevertheless, a plot of residuals can readily highlight an outlier point. 
 
 ### Plotting residuals
@@ -483,43 +520,6 @@ As previously stated, we highly recommend reading Chapter 5: Calibration from *D
 
 For a greater discussion on modelling in R, see [Modelling](https://r4ds.had.co.nz/model-intro.html) in [*R for Data Science*](https://r4ds.had.co.nz/index.html).
 
-
-## Going deeper with modelling
-
-### Weighing 
-
-
-As shown above, you'll often find that your calibration data is *heteroscedastic*, meaning the variance increases with the concentration. This leads to *leverage* of your line-of-best fit, as it is 'pulled' by one way or another by the higher concentration standards than the lower. You can assign 'weights' (how much a point impacts the model) in R, although you'll need to justify the validity of your approach. A common approach, however, is to weight each standard by $\frac{1}{x^2}$. This ensures that samples with higher concentration impact the line less, and vice-versa with low-concentration standards. 
-
-To utilize weight in R, we need to calculate the weight prior to modelling, and subsequently specify the weights column 
-
-```{r}
-
-# note that our blank has a concentration of 0, hence infinite weight. 
-# we need to remove it to weight our data. 
-
-FAESweighed <- FAES %>% 
-  filter(conc_Na > 0) %>%
-  mutate(wght = 1/(conc_Na^2))
-
-weightedCalCurve <- FAESweighed %>%
-  group_by(type) %>%
-  nest() %>%
-  mutate(fit = map(data, ~lm(signal ~ conc_Na, data = .x, weights = wght)),
-         tidied = map(fit, tidy),
-         glanced = map(fit, glance),
-         augmented = map(fit, augment)
-         ) %>%
-  unnest(augmented)
-
-ggplot(data = weightedCalCurve, 
-       aes(x = conc_Na, y = signal)) +
-  geom_point() +
-  geom_smooth(method = 'lm', se=F, colour = "red", label = "unweighed") +
-  geom_smooth(method = 'lm', se=F, colour = "blue", 
-              aes(weight=`(weights)`, label = "weighed")) 
-  
-```
 
 ```{r child='src/common/end-of-chapter-exercise.Rmd'}
 ```

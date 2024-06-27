@@ -99,7 +99,7 @@ ggplot(data = sdsMax,
 
 ## Modelling Sigmoid Curve 
 
-So we want to find the critical micellular concentration of SDS using the maximum fluorescence emission. The CMC is at the 'midpoint of the sinusoid curve'. Which means we'll need to a) plot a sinusoid curve and b) extract the midpoint. 
+So we want to find the critical micelle concentration of SDS using the maximum fluorescence emission. The CMC is at the 'midpoint of the sinusoid curve'. Which means we'll need to a) plot a sinusoid curve and b) extract the midpoint. 
 
 The 'sinusoid' or 'S-shaped' curve mentioned in the lab manual is known as a *logistic regression*. Logistic regressions are often used to model systems with a largely binary outcome. In other words, the system starts at point A, and remains there for awhile, before 'quickly' jumping up (or down) to level B and remain there for the remainder. Examples include saturation and dose response curves.  
 
@@ -123,7 +123,7 @@ Why do we need such a complicated formula for our model? Well, looking again at 
 
 A strength of `R` is its flexibility in running various models, and logistic regression is no different. We can use a number of packages to reach these ends, specifically the `drc` package contains a plethora of functions for modelling dose response curves (hence `drc`). However, for this example we'll use a more generalized approach. Earlier we talked about linear regression, where we adjust the slope and intercept of a linear equation to best fit our data (see Calibration Curves). Recall that this optimization is based on minimizing the distance between the model and all of the experimental points (*least squares*). Well the `stats` package has a function called `nls` that expands upon this to nonlinear models. Per the `nls` function description: "[nls] determine[s] the nonlinear (weighted) least_squared estimates of the parameters of a nonlinear model." 
 
-So we can create a formula in `R` based on the four-parameter logistic regression described above. After that, we'll need to produce some starting details from which the model can build off of. If we don't tell `nls` where to start, it can't function, as the search space is too large. Looking at \@ref{fig:sdsMaxPlot}, the intensity appears to floor around 20; the intensity appears to max out around 820; the midpoint appears to be around 0.0075 M, and let's say the slope is 1.  Remember, these are starting values from which `nls` starts to optimize from, and not the actual values used to construct the model. 
+So we can create a formula in `R` based on the four-parameter logistic regression described above. After that, we'll need to produce some starting details from which the model can build off of. If we don't tell `nls` where to start, it can't function, as the search space is too large. Looking at \@ref(fig:sdsMaxPlot), the intensity appears to floor around 20; the intensity appears to max out around 820; the midpoint appears to be around 0.0075 M, and let's say the slope is 1.  Remember, these are starting values from which `nls` starts to optimize from, and not the actual values used to construct the model. 
 
 So, let's create our model
 
@@ -140,7 +140,7 @@ logisModel <- nls(intensity ~  (a-d)/(1 + (conc /c)^b) + d,
 
 ... and we get an error message. Get used to these when modelling! Don't worry about understanding it completely, error messages are often written with programmers in mind so they can be a bit cryptic. You can often copy and paste these directly into any search engine to get some more information, but this one is simple enough: we either have a missing value or an infinity produced. Well we have six input parameters in our model: `a, b, c, d`,  our independent variable `conc`, and our dependent variable `intensity`. We've also supplied starting values to all of them via the list we created inside the function. Therefore, one of our starting values must be too far off from a plausible start point and is causing troubles in the `nls` function. They all look good except for the slope start value `b = 1`. 
 
-The slope here is an approximation for the slope between the min value `a` and max value `d`. Looking at our data in \@ref{fig:sdsMaxPlot}, that slope may be a bit shallow considering the large jump in intensity. Let's increase the value of `b` and try again: 
+The slope here is an approximation for the slope between the min value `a` and max value `d`. Looking at our data in \@ref(fig:sdsMaxPlot), that slope may be a bit shallow considering the large jump in intensity. Let's increase the value of `b` and try again: 
 
 ```{r}
 
