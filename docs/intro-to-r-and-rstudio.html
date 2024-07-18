@@ -606,46 +606,37 @@ div.csl-indent {
 </div>
 <div id="running-r-code" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Running R Code<a href="intro-to-r-and-rstudio.html#running-r-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As we’ve already seen, you can run bits of R code directly from the console. Throughout the book, code you can copy and run will look like this:</p>
+<p>Y2 + 2ou can run bits of R code directly from the console. Throughout the book, code you can copy and run will look like this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro-to-r-and-rstudio.html#cb1-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<p>Noticed that both the code (the first part) and what the code outputs (the second part) are shown. Throughout this book code outputs will be proceeded by <code>##</code>. You can run code directly from the console. It’s handy for short and sweet snippets of code, something that can be typed in a single line. Examples of this is the <code>install.packages()</code> function, or to use R as a calculator:</p>
+<p>Notice that both the code (the first part) and what the code outputs (the second part) are shown. Throughout this book code outputs will be preceded by <code>##</code>. You can run code directly from the console. It’s handy for short and sweet snippets of code, something that can be typed in a single line. Examples of this is the <code>install.packages()</code> function, or to use R as a calculator:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro-to-r-and-rstudio.html#cb3-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro-to-r-and-rstudio.html#cb5-1" tabindex="-1"></a>pi <span class="sc">*</span> (<span class="dv">10</span><span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 15.70796</code></pre>
-<p>However, working like this isn’t very useful Imagine printing a book one sentence at a time, you couldn’t really go back and edit earlier work because it’s already printed. That’s why we write out code in <em>scripts</em>. <em>Scripts</em> are similar to recipes, in that they’re a series of instructions that R evaluates from the top of the script to the bottom. More importantly, writing your code out in a script makes it <em>more readable</em> to humans (presumably this includes you). Don’t undervalue the usefulness of legible code. Your code will evaluate in seconds or minutes whereas it may take you hours to understand what it does.</p>
+<p>However, working like this isn’t very useful. Imagine printing a book one sentence at a time, you couldn’t really go back and edit earlier work because it’s already printed. That’s why we write out code in <em>scripts</em>. <em>Scripts</em> are similar to recipes, in that they’re a series of instructions that R evaluates from the top of the script to the bottom. More importantly, writing your code out in a script makes it <em>more readable</em> to humans (presumably this includes you). Don’t undervalue the usefulness of legible code. Your code will execute in seconds or minutes but it might take you hours to understand what it does.</p>
 <p>Let’s open up a new script in RStudio by going to <em>File</em>-&gt;<em>New File</em>-&gt;<em>R Script</em>, or by clicking on the highlighted button in the image below.</p>
-<div class="float">
-<img src="images/Rstudio_newscript.png" style="width:100.0%" alt="Figure 2.5: Opening a new script in RStudio." />
-<div class="figcaption">Figure 2.5: Opening a new script in RStudio.</div>
-</div>
+<p><img src="images/Rstudio_newscript.png" style="width:100.0%" /></p>
 <p>This should open up a new window in the RStudio interface, as shown in the following image.</p>
-<div class="float">
-<img src="images/Rstudio_scriptwindow.png" style="width:100.0%" alt="Figure 2.6: Scripts window in RStudio." />
-<div class="figcaption">Figure 2.6: Scripts window in RStudio.</div>
-</div>
-<p>You can copy and paste the code above into the script, save it, edit it, etc. and ultimately run specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the “Run” button in the top right corner of the Scripts window. If you’re reading this book online, you can easily copy an entire block of code using the <code>copy</code> button in the top right corner of the code block.</p>
+<p><img src="images/Rstudio_scriptwindow.png" style="width:100.0%" /></p>
+<p>You can copy and paste the code above into the script, save it, edit it, etc. and ultimately run specific lines of code by highlighting them and pressing Ctrl+Enter (Cmd+Enter on Mac), or by clicking the “Run” button in the top right corner of the Scripts window. You can copy an entire block of code using the <code>copy</code> button in the top right corner of the code block. In this way, this research is a tool to learn R coding and also a repository for code that you can copy and use.</p>
 <p>We’ll dive into the basics of coding in R in the next chapter.</p>
 </div>
 <div id="customizing-rstudio" class="section level2 hasAnchor" number="1.6">
 <h2><span class="header-section-number">1.6</span> Customizing RStudio<a href="intro-to-r-and-rstudio.html#customizing-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As many of us spend an absurd amount of time staring at bright screens, some of you may be interested in setting your RStudio to Dark Mode.</p>
 <p>You can customize the appearance of your RStudio interface by clicking <em>Tools</em>-&gt;<em>Global Options</em>, or <em>RStudio</em>-&gt;<em>Preferences</em> on Mac, then clicking “Appearance” on the left. Select your preferred Editor Theme from the list.</p>
-<div class="float">
-<img src="images/Rstudio_darkthemes.png" style="width:100.0%" alt="Figure 2.4: RStudio Appearance customization window." />
-<div class="figcaption">Figure 2.4: RStudio Appearance customization window.</div>
-</div>
+<p><img src="images/Rstudio_darkthemes.png" style="width:100.0%" /></p>
 </div>
 <div id="where-to-get-help" class="section level2 hasAnchor" number="1.7">
 <h2><span class="header-section-number">1.7</span> Where to get help<a href="intro-to-r-and-rstudio.html#where-to-get-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>While it’s often tempting to contact your TA or Professor at the first sign of trouble, it’s better to try and resolve your issues on your own. Given the popularity of R, if you’ve run into an issue, someone else has too and they’ve complained about it and someone else has almost certainly solved it! An often unappreciated aspect of coding/data science is knowing <em>how</em> to get help, <em>how</em> to search for it, and <em>how</em> to translate someone’s solutions to your unique situation.</p>
+<p>Given the popularity of R if you’ve run into an issue it’s very likely that someone else has too and they’ve complained about it and someone else has almost certainly solved it! An often unappreciated aspect of coding/data science is knowing <em>how</em> to get help, <em>how</em> to search for it, and <em>how</em> to translate someone’s solutions to your unique situation.</p>
 <p>Places to get help include:</p>
 <ul>
 <li>Google, Stack Overflow, etc. When in doubt Google it.</li>
 <li>Using built-in documentation (<code>?help</code>)</li>
-<li>reference books such as the invaluable <a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a>, which inspired this entire project.</li>
-<li>And yes, when all else fails, holler at your TA/profs.</li>
+<li>Reference books such as the invaluable <a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a>, which inspired this entire project.</li>
+<li>Ask for help, from TAs or Profs if using this webbook as a resource for a class, or from colleagues or peers .</li>
 </ul>
 </div>
 <div id="summary" class="section level2 hasAnchor" number="1.8">
