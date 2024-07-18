@@ -8,7 +8,7 @@ intro-to-r-and-rstudio
 r-language
 rstudio
 setting-up-your-environment
-working-remotely-recommended
+working-remotely-recommended-for-coursework
 working-locally
 downloading-r-and-rstudio
 using-rstudio
