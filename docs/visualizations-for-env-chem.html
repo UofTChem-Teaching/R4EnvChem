@@ -187,7 +187,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#rstudio"><i class="fa fa-check"></i><b>1.2</b> RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setting-up-your-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up Your Environment</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#working-remotely-recommended-for-coursework"><i class="fa fa-check"></i><b>1.3.1</b> Working Remotely (Recommended for coursework)</a></li>
+<li class="chapter" data-level="1.3.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#working-remotely-recommended-for-coursework"><i class="fa fa-check"></i><b>1.3.1</b> Working Remotely (Recommended for Coursework)</a></li>
 <li class="chapter" data-level="1.3.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#working-locally"><i class="fa fa-check"></i><b>1.3.2</b> Working Locally</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-rstudio"><i class="fa fa-check"></i><b>1.4</b> Using RStudio</a></li>
@@ -206,10 +206,10 @@ div.csl-indent {
 <li class="chapter" data-level="2" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>2</b> RStudio Projects</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#uploading-files-to-rstudio-server-on-jupyterhub"><i class="fa fa-check"></i><b>2.1</b> Uploading Files to RStudio server on JupyterHub</a></li>
-<li class="chapter" data-level="2.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#paths-and-directories"><i class="fa fa-check"></i><b>2.2</b> Paths and directories</a></li>
-<li class="chapter" data-level="2.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#importing-a-project"><i class="fa fa-check"></i><b>2.3</b> Importing a project</a></li>
-<li class="chapter" data-level="2.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>2.4</b> Creating an RStudio project</a></li>
-<li class="chapter" data-level="2.5" data-path="rstudio-projects.html"><a href="rstudio-projects.html#a-sneak-peek-at-.rmd-files"><i class="fa fa-check"></i><b>2.5</b> A sneak peek at <code>.Rmd</code> files</a></li>
+<li class="chapter" data-level="2.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#paths-and-directories"><i class="fa fa-check"></i><b>2.2</b> Paths and Directories</a></li>
+<li class="chapter" data-level="2.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#importing-a-project"><i class="fa fa-check"></i><b>2.3</b> Importing a Project</a></li>
+<li class="chapter" data-level="2.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>2.4</b> Creating an RStudio Project</a></li>
+<li class="chapter" data-level="2.5" data-path="rstudio-projects.html"><a href="rstudio-projects.html#a-sneak-peek-at-.rmd-files"><i class="fa fa-check"></i><b>2.5</b> A Sneak Peek at <code>.Rmd</code> Files</a></li>
 <li class="chapter" data-level="2.6" data-path="rstudio-projects.html"><a href="rstudio-projects.html#summary-1"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
 <li class="chapter" data-level="2.7" data-path="rstudio-projects.html"><a href="rstudio-projects.html#exercise-1"><i class="fa fa-check"></i><b>2.7</b> Exercise</a>
 <ul>
@@ -573,15 +573,15 @@ div.csl-indent {
 <div id="prerequisites" class="section level2 hasAnchor" number="16.2">
 <h2><span class="header-section-number">16.2</span> Prerequisites<a href="visualizations-for-env-chem.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Additionally, for this section we’ll mostly be using the <code>atlNO2</code> and <code>sumAtl</code> datasets we created in the <a href="summarizing-data.html#summarizing-data">Summarizing data</a> chapter. Now that we’ve seen how to turn data into a longer format, we’ll show you how <code>atlNO2</code> was tidied from the raw (wide format) data. This <code>atlNO2</code> is identical to the previous <code>atlNO2</code> we saw.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="visualizations-for-env-chem.html#cb242-1" tabindex="-1"></a>atlNO2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018hourlyNO2_Atl_wide.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">7</span>, <span class="at">na =</span><span class="fu">c</span>(<span class="st">&quot;-999&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb242-2"><a href="visualizations-for-env-chem.html#cb242-2" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">tolower</span>(<span class="fu">gsub</span>(<span class="st">&quot;/.*&quot;</span>, <span class="st">&quot;&quot;</span>, .x))) <span class="sc">%&gt;%</span></span>
-<span id="cb242-3"><a href="visualizations-for-env-chem.html#cb242-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;h&quot;</span>), </span>
-<span id="cb242-4"><a href="visualizations-for-env-chem.html#cb242-4" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;h&quot;</span>, </span>
-<span id="cb242-5"><a href="visualizations-for-env-chem.html#cb242-5" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;hour&quot;</span>, </span>
-<span id="cb242-6"><a href="visualizations-for-env-chem.html#cb242-6" tabindex="-1"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">hour =</span> as.numeric),</span>
-<span id="cb242-7"><a href="visualizations-for-env-chem.html#cb242-7" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;conc&quot;</span>, </span>
-<span id="cb242-8"><a href="visualizations-for-env-chem.html#cb242-8" tabindex="-1"></a>               <span class="at">values_transform =</span> <span class="fu">list</span>(<span class="at">conc =</span> as.numeric),</span>
-<span id="cb242-9"><a href="visualizations-for-env-chem.html#cb242-9" tabindex="-1"></a>               <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="visualizations-for-env-chem.html#cb241-1" tabindex="-1"></a>atlNO2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018hourlyNO2_Atl_wide.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">7</span>, <span class="at">na =</span><span class="fu">c</span>(<span class="st">&quot;-999&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb241-2"><a href="visualizations-for-env-chem.html#cb241-2" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">tolower</span>(<span class="fu">gsub</span>(<span class="st">&quot;/.*&quot;</span>, <span class="st">&quot;&quot;</span>, .x))) <span class="sc">%&gt;%</span></span>
+<span id="cb241-3"><a href="visualizations-for-env-chem.html#cb241-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;h&quot;</span>), </span>
+<span id="cb241-4"><a href="visualizations-for-env-chem.html#cb241-4" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;h&quot;</span>, </span>
+<span id="cb241-5"><a href="visualizations-for-env-chem.html#cb241-5" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;hour&quot;</span>, </span>
+<span id="cb241-6"><a href="visualizations-for-env-chem.html#cb241-6" tabindex="-1"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">hour =</span> as.numeric),</span>
+<span id="cb241-7"><a href="visualizations-for-env-chem.html#cb241-7" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;conc&quot;</span>, </span>
+<span id="cb241-8"><a href="visualizations-for-env-chem.html#cb241-8" tabindex="-1"></a>               <span class="at">values_transform =</span> <span class="fu">list</span>(<span class="at">conc =</span> as.numeric),</span>
+<span id="cb241-9"><a href="visualizations-for-env-chem.html#cb241-9" tabindex="-1"></a>               <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
 <pre><code>## Rows: 8395 Columns: 31
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -590,13 +590,13 @@ div.csl-indent {
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="visualizations-for-env-chem.html#cb244-1" tabindex="-1"></a>sumAtl <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
-<span id="cb244-2"><a href="visualizations-for-env-chem.html#cb244-2" tabindex="-1"></a>  <span class="fu">group_by</span>(p, city) <span class="sc">%&gt;%</span></span>
-<span id="cb244-3"><a href="visualizations-for-env-chem.html#cb244-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(conc),</span>
-<span id="cb244-4"><a href="visualizations-for-env-chem.html#cb244-4" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(conc),</span>
-<span id="cb244-5"><a href="visualizations-for-env-chem.html#cb244-5" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(conc),</span>
-<span id="cb244-6"><a href="visualizations-for-env-chem.html#cb244-6" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(conc),</span>
-<span id="cb244-7"><a href="visualizations-for-env-chem.html#cb244-7" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(conc))</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="visualizations-for-env-chem.html#cb243-1" tabindex="-1"></a>sumAtl <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
+<span id="cb243-2"><a href="visualizations-for-env-chem.html#cb243-2" tabindex="-1"></a>  <span class="fu">group_by</span>(p, city) <span class="sc">%&gt;%</span></span>
+<span id="cb243-3"><a href="visualizations-for-env-chem.html#cb243-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(conc),</span>
+<span id="cb243-4"><a href="visualizations-for-env-chem.html#cb243-4" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(conc),</span>
+<span id="cb243-5"><a href="visualizations-for-env-chem.html#cb243-5" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(conc),</span>
+<span id="cb243-6"><a href="visualizations-for-env-chem.html#cb243-6" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(conc),</span>
+<span id="cb243-7"><a href="visualizations-for-env-chem.html#cb243-7" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(conc))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;p&#39;. You can override using the `.groups`
 ## argument.</code></pre>
 </div>
