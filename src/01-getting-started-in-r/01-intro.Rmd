@@ -4,7 +4,7 @@
 
 # Intro to R and RStudio
 
-You may have heard about the coding or the R programming language, but figuring out how to get started can be a hurdle; at least it was for us. In this guide, we will walk you through the process of setting up R and RStudio, both locally on your computer and remotely using the University of Toronto's JupyterHub R Studio server.
+You may have heard about coding or the R programming language, but figuring out how to get started can be a hurdle; at least it was for us. In this guide, we will walk you through the process of setting up R and RStudio, both locally on your computer and remotely using the University of Toronto's JupyterHub R Studio server.
 
 ## R Language
 
@@ -22,9 +22,9 @@ R and RStudio work in tandem to provide an efficient and seamless experience for
 
 Students learning R have **two options**: working *locally* or *remotely*
 
-*Working locally* involves installing R and RStudio on their computer, providing direct control over data and code without an internet connection. On the other hand, *working remotely* enables access to RStudio through a web browser, avoiding local installations and allowing collaboration. **We recommend working remotely**, leveraging platforms like the University of Toronto's JupyterHub for its convenience and stable R Studio environment, making learning R easier and more efficient. We will go into more details in the below paragraphs.
+*Working locally* involves installing R and RStudio on their computer, providing direct control over data and code without an internet connection. On the other hand, *working remotely* enables access to RStudio through a web browser, avoiding local installations and allowing collaboration. For R programming in chemistry courses at the University of Toronto **we recommend working remotely** using the University of Toronto's JupyterHub so we can ensure a stable R Studio environment where all relevant packages are installed and ready to go. *Working locally* might make sense for independent work as it doesn't require an internet connection. More details on each option are provided below.
 
-### Working Remotely (Recommended)
+### Working Remotely (Recommended for coursework)
 
 Working remotely means accessing R and RStudio from a remote server or cloud-based platform.
 
