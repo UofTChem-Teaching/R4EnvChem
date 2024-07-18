@@ -24,7 +24,7 @@ Students learning R have **two options**: working *locally* or *remotely*
 
 *Working locally* involves installing R and RStudio on their computer, providing direct control over data and code without an internet connection. On the other hand, *working remotely* enables access to RStudio through a web browser, avoiding local installations and allowing collaboration. For R programming in chemistry courses at the University of Toronto **we recommend working remotely** using the University of Toronto's JupyterHub so we can ensure a stable R Studio environment where all relevant packages are installed and ready to go. *Working locally* might make sense for independent work as it doesn't require an internet connection. More details on each option are provided below.
 
-### Working Remotely (Recommended for coursework)
+### Working Remotely (Recommended for Coursework)
 
 Working remotely means accessing R and RStudio from a remote server or cloud-based platform.
 
