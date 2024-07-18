@@ -36,10 +36,9 @@ create-your-rmd-file
 upload-a-file-from-your-computer
 reflection-1
 how-to-use-this-textbook
-keep-in-mind
 useful-features
-searching-throughout-the-textbook
-how-to-view-the-original-r-markdown-of-textbook-chapters
+searching-the-textbook
+original-r-markdown-of-the-textbook-chapters
 end-of-chapter-exercises
 r-coding-basics
 variables
