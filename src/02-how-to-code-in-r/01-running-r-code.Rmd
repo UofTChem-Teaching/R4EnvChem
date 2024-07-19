@@ -228,7 +228,7 @@ if (x > 5) {
 
 Here, because `x` is 3 (which is not greater than 5), R prints "x is 5 or less!".
 
-For situations where multiple conditions need to be evaluated in sequence, you can use the 'else if' construct. This allows you to add more conditions after the initial 'if'.
+For situations where multiple conditions need to be evaluated in sequence, you can use the `else if` construct. This allows you to add more conditions after the initial `if`.
 
 ```{r}
 x <- 6
@@ -247,7 +247,7 @@ In terms of syntax, it's important to remember:
 
 -   Always enclose the condition you're testing within parentheses `()`.  
 -   Use curly brackets `{}` to group the lines of code that should be executed for a particular condition.  
--   Make sure each 'else if' or 'else' follows an 'if' or another 'else if'. They cannot stand alone.
+-   Make sure each `else if` or `else` follows an `if` or another `else if`. They cannot stand alone.
 
 ## R built-in Functions
 
