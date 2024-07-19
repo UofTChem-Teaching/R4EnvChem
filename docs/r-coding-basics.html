@@ -247,10 +247,10 @@ div.csl-indent {
 <li class="chapter" data-level="4.4.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#the-basic-if-statement"><i class="fa fa-check"></i><b>4.4.2</b> The Basic <code>if</code> Statement</a></li>
 <li class="chapter" data-level="4.4.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#expanding-with-else-and-else-if"><i class="fa fa-check"></i><b>4.4.3</b> Expanding with <code>else</code> and <code>else if</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="r-coding-basics.html"><a href="r-coding-basics.html#r-built-in-functions"><i class="fa fa-check"></i><b>4.5</b> R built-in functions</a>
+<li class="chapter" data-level="4.5" data-path="r-coding-basics.html"><a href="r-coding-basics.html#r-built-in-functions"><i class="fa fa-check"></i><b>4.5</b> R built-in Functions</a>
 <ul>
 <li class="chapter" data-level="4.5.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#exploring-more-built-in-functions"><i class="fa fa-check"></i><b>4.5.1</b> Exploring More Built-In Functions</a></li>
-<li class="chapter" data-level="4.5.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#function-documentation"><i class="fa fa-check"></i><b>4.5.2</b> Function documentation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#function-documentation"><i class="fa fa-check"></i><b>4.5.2</b> Function Documentation</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="r-coding-basics.html"><a href="r-coding-basics.html#summary-2"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
 <li class="chapter" data-level="4.7" data-path="r-coding-basics.html"><a href="r-coding-basics.html#exercise-2"><i class="fa fa-check"></i><b>4.7</b> Exercise</a></li>
@@ -736,10 +736,10 @@ div.csl-indent {
 <p>Before diving into conditional statements, let’s take a moment to understand the syntax used in R.</p>
 <p>R, like many programming languages, uses a combination of parentheses <code>()</code>, curly braces <code>{}</code>, and other symbols to organize and structure the code.</p>
 <ol style="list-style-type: decimal">
-<li><p>Parentheses <code>()</code>: These are primarily used to enclose arguments of functions and conditions in control statements, like if. For example, in <code>if (x &gt; 5)</code>, the condition <code>x &gt; 5</code> is enclosed in parentheses.</p></li>
-<li><p>Curly Braces <code>{}</code>: These are used to group multiple lines of code into a block. This is particularly useful in control statements where more than one line of code should be executed based on a condition.</p></li>
+<li><p>Parentheses <code>()</code>: These are primarily used to enclose arguments of functions and conditions in control statements, like ‘if’. For example, in <code>if (x &gt; 5)</code>, the condition <code>x &gt; 5</code> is enclosed in parentheses.</p></li>
+<li><p>Curly Brackets <code>{}</code>: These are used to group multiple lines of code into a block. This is particularly useful in control statements where more than one line of code should be executed based on a condition.</p></li>
 </ol>
-<p>The reason the curly bracket might span multiple lines is for readability. It makes it clear where a block of code begins and ends. While it’s possible to write if-else statements without braces if only one statement is being conditioned, it’s a good practice to always use them for clarity.</p>
+<p>The reason the curly bracket might span multiple lines is for readability. It makes it clear where a block of code begins and ends. While it’s possible to write if-else statements without curly brackets if only one statement is being conditioned, it’s good practice to always use them for clarity.</p>
 <p>Now, with this understanding, let’s move on to how R uses these in conditional statements.</p>
 </div>
 <div id="the-basic-if-statement" class="section level3 hasAnchor" number="4.4.2">
@@ -764,7 +764,7 @@ div.csl-indent {
 <span id="cb64-7"><a href="r-coding-basics.html#cb64-7" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is 5 or less!&quot;</code></pre>
 <p>Here, because <code>x</code> is 3 (which is not greater than 5), R prints “x is 5 or less!”.</p>
-<p>For situations where multiple conditions need to be evaluated in sequence, you can use the else if construct. This allows you to add more conditions after the initial if.</p>
+<p>For situations where multiple conditions need to be evaluated in sequence, you can use the ‘else if’ construct. This allows you to add more conditions after the initial ‘if’.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="r-coding-basics.html#cb66-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
 <span id="cb66-2"><a href="r-coding-basics.html#cb66-2" tabindex="-1"></a></span>
 <span id="cb66-3"><a href="r-coding-basics.html#cb66-3" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
@@ -779,14 +779,14 @@ div.csl-indent {
 <ul>
 <li>Always enclose the condition you’re testing within parentheses <code>()</code>.<br />
 </li>
-<li>Use curly braces <code>{}</code> to group the lines of code that should be executed for a particular condition.<br />
+<li>Use curly brackets <code>{}</code> to group the lines of code that should be executed for a particular condition.<br />
 </li>
-<li>Make sure each else if or else follows an if or another else if. They cannot stand alone.</li>
+<li>Make sure each ‘else if’ or ‘else’ follows an ‘if’ or another ‘else if’. They cannot stand alone.</li>
 </ul>
 </div>
 </div>
 <div id="r-built-in-functions" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> R built-in functions<a href="r-coding-basics.html#r-built-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">4.5</span> R built-in Functions<a href="r-coding-basics.html#r-built-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Built-in functions are the essential tools that allow you to perform a wide range of tasks without having to write the underlying code from scratch. These functions are part of the R language itself and are readily available for your use.</p>
 <p>In this chapter, you’ve already come across a few built-in functions that are incredibly useful. For instance, you’ve used the <code>read.csv()</code> function to import data from CSV files into your R environment. Additionally, the <code>as.numeric()</code> function has been employed to convert data to numeric format, and the <code>list()</code> function has aided in creating lists to organize and store data elements.</p>
 <div id="exploring-more-built-in-functions" class="section level3 hasAnchor" number="4.5.1">
@@ -805,7 +805,7 @@ div.csl-indent {
 <pre><code>## [1] 5</code></pre>
 </div>
 <div id="function-documentation" class="section level3 hasAnchor" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> Function documentation<a href="r-coding-basics.html#function-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">4.5.2</span> Function Documentation<a href="r-coding-basics.html#function-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An often unappreciated aspect of packages is that they not only contain functions we can use, but documentation. Documentation provides a description of the function (what it does), what arguments it takes, details, and working examples. Often the easiest way to learn how to use a function is to take a working example and change it bit by bit to see how it works etc. To see documentation check the “help” tab in the “outputs” window or type a question mark in front of a functions name:</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="r-coding-basics.html#cb76-1" tabindex="-1"></a><span class="co"># Takes you to the help document for the read.csv function</span></span>
 <span id="cb76-2"><a href="r-coding-basics.html#cb76-2" tabindex="-1"></a>?read.csv</span></code></pre></div>
