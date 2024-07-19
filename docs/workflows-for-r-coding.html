@@ -258,15 +258,15 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html"><i class="fa fa-check"></i><b>5</b> Workflows for R Coding</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#creating-or-opening-an-r-markdown-document"><i class="fa fa-check"></i><b>5.1</b> Creating or opening an R Markdown document</a></li>
-<li class="chapter" data-level="5.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#workspace-and-whats-real"><i class="fa fa-check"></i><b>5.2</b> Workspace and what’s real</a></li>
+<li class="chapter" data-level="5.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#workspace-and-whats-real"><i class="fa fa-check"></i><b>5.2</b> Workspace and What’s Real</a></li>
 <li class="chapter" data-level="5.3" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-r-markdown"><i class="fa fa-check"></i><b>5.3</b> Saving R Markdown</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#what-should-i-save"><i class="fa fa-check"></i><b>5.3.1</b> What should I save?</a></li>
-<li class="chapter" data-level="5.3.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-objects"><i class="fa fa-check"></i><b>5.3.2</b> Saving objects</a></li>
+<li class="chapter" data-level="5.3.1" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#what-should-i-save"><i class="fa fa-check"></i><b>5.3.1</b> What Should I Save?</a></li>
+<li class="chapter" data-level="5.3.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-objects"><i class="fa fa-check"></i><b>5.3.2</b> Saving Objects</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#script-formatting"><i class="fa fa-check"></i><b>5.4</b> Script formatting</a></li>
-<li class="chapter" data-level="5.5" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>5.5</b> Viewing data and code simultaneously</a></li>
-<li class="chapter" data-level="5.6" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#troubleshooting-error-messages"><i class="fa fa-check"></i><b>5.6</b> Troubleshooting error messages</a></li>
+<li class="chapter" data-level="5.5" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>5.5</b> Viewing Data and Code Simultaneously</a></li>
+<li class="chapter" data-level="5.6" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#troubleshooting-error-messages"><i class="fa fa-check"></i><b>5.6</b> Troubleshooting Error Messages</a></li>
 <li class="chapter" data-level="5.7" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#summary-3"><i class="fa fa-check"></i><b>5.7</b> Summary</a></li>
 <li class="chapter" data-level="5.8" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#exercise-3"><i class="fa fa-check"></i><b>5.8</b> Exercise</a></li>
 </ul></li>
@@ -549,23 +549,23 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="workflows-for-r-coding" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Workflows for R Coding<a href="workflows-for-r-coding.html#workflows-for-r-coding" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In the previous chapter, we conducted our coding in the console, which quickly became unwieldy. To address this, we transition to using R Markdown <code>.Rmd</code> files, which we briefly talked about before. Instead of running code interactively in the console, we write code blocks within the .rmd files, creating a comprehensive document that others can follow.</p>
+<p>In the previous chapter, we conducted our coding in the console, which quickly became unwieldy. To address this, we will transition to using R Markdown <code>.Rmd</code> files, which we briefly talked about in <a href="rstudio-projects.html#a-sneak-peek-at-.rmd-files">A Sneak Peek at <code>.Rmd</code> Files</a>. Instead of running code interactively in the console, we write code blocks within the ‘.rmd’ files, creating a comprehensive document that others can follow.</p>
 <div id="creating-or-opening-an-r-markdown-document" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Creating or opening an R Markdown document<a href="workflows-for-r-coding.html#creating-or-opening-an-r-markdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To start an R Markdown document:</p>
 <ol style="list-style-type: decimal">
 <li>Go to <em>File</em> -&gt; <em>New File</em> -&gt; <em>R Markdown</em></li>
 <li>Then save your document by going to <em>File</em> -&gt; <em>Save As…</em>.
-a. Make sure to save your file with the <code>.Rmd</code> suffix.
-b. <strong>Save your script in your project folder</strong>, otherwise you’ll run into issues.</li>
+- Make sure to save your file with the <code>.Rmd</code> suffix.
+- <strong>Save your ‘.rmd’ file in your project folder</strong>, so you can easily call data files.</li>
 </ol>
 <p>We’ve also provided an example script in the R4EnvChem project template. Assuming you’re currently in the template project you can open the script as follows:</p>
 <ol style="list-style-type: decimal">
-<li>Go to <code>File</code> -&gt; <code>Open File</code> -&gt; open the <code>Rscript-example.Rmd</code> file. This action will open a new pane above the console, dedicated to writing your R Markdown content.</li>
+<li>Go to <code>File</code> -&gt; <code>Open File</code> -&gt; open the <code>Rscript-example.Rmd</code> file or double click the <code>Rscript-example.Rmd</code> in the files pane. This action will open a new pane above the console, dedicated to writing your R Markdown content.</li>
 </ol>
 </div>
 <div id="workspace-and-whats-real" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Workspace and what’s real<a href="workflows-for-r-coding.html#workspace-and-whats-real" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">5.2</span> Workspace and What’s Real<a href="workflows-for-r-coding.html#workspace-and-whats-real" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We’ve already mentioned the <em>environment</em> pane that displays objects present in your R session. While they are useful to work with, they’re not considered <em>real</em>. That is to say, if you close your R session, those objects will be lost. And while RStudio allows you to save a working environment (and its associated objects), it’s crucial to understand that <em>only your saved scripts/markdown documents are real</em>. You can’t readily share your working environment, and even so it’s bad practice as you may reference a previous iteration of an object giving you erroneous results. Think back to the chemistry labs: you may jot notes down on loose leaf, but only what’s written in your lab book is considered real… well that’s how it’s supposed to work anyways.</p>
 <p>The idea is everything you need can be generated from the original data and the instructions in your R script/markdown document. Anyone should be able to take your data and your code and get the same results you got. This is paramount for the reproducibility of your work and your results.</p>
 </div>
@@ -577,7 +577,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 </ul>
 <p>Content saved to an .Rmd file is considered real and self-contained. Variables, plots, or datasets that appear in your workspace or the <code>Environment</code> window aren’t self-contained. Whenever you close RStudio, any objects in R that are not considered <em>real</em> will be lost in that R session. Furthermore when you need to share your code (for school or publication) you’ll need to share your data and your script, but never your work-space. This is to increase predictability and helps people (and you) to make sure your work is reproducible, an underappreciated hallmark of science.</p>
 <div id="what-should-i-save" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> What should I save?<a href="workflows-for-r-coding.html#what-should-i-save" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.3.1</span> What Should I Save?<a href="workflows-for-r-coding.html#what-should-i-save" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>At this point in the chapter, two things should be clear:</p>
 <ol style="list-style-type: decimal">
 <li>R Markdown documents saved to <code>.Rmd</code> files are the real record of your work.</li>
@@ -592,7 +592,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 <p>By adhering to these practices, you ensure your R Markdown documents remain accurate, your code is complete, and your work remains reproducible.</p>
 </div>
 <div id="saving-objects" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Saving objects<a href="workflows-for-r-coding.html#saving-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.3.2</span> Saving Objects<a href="workflows-for-r-coding.html#saving-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In some cases, your code may be used to generate large datasets which require quite a bit of time to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data to a <em>real</em> file that you can simply import the next time you open the application. Also, you may be finished with your analysis and want to save the final data. You can save the data contained in your data frame as a <code>.csv</code> file using <code>write.csv()</code>.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="workflows-for-r-coding.html#cb77-1" tabindex="-1"></a><span class="co"># dummy data frame to save</span></span>
 <span id="cb77-2"><a href="workflows-for-r-coding.html#cb77-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
@@ -600,13 +600,13 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 <span id="cb77-4"><a href="workflows-for-r-coding.html#cb77-4" tabindex="-1"></a></span>
 <span id="cb77-5"><a href="workflows-for-r-coding.html#cb77-5" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> df, </span>
 <span id="cb77-6"><a href="workflows-for-r-coding.html#cb77-6" tabindex="-1"></a>          <span class="at">file =</span> <span class="st">&quot;testData.csv&quot;</span>)</span></code></pre></div>
-<p>Breaking it down:</p>
+<p>Breaking down to code above:</p>
 <ul>
 <li>we created a dummy data frame <code>df</code>; in reality you’ll already use a data frame from your analysis.</li>
 <li>we called <code>write.csv()</code> and
 <ul>
 <li><code>x = df</code> specifies we want to save the data.frame <code>df</code></li>
-<li><code>file = "data/testData.csv"</code> specifies <em>where</em> we want the file to save (in the <em>data</em> sub-directory, more later), and <em>what</em> our file will be called (<em>testData.csv</em>). It’s important to specify the file extension so R knows how to save it.</li>
+<li><code>file = "data/testData.csv"</code> specifies <em>where</em> we want the file to save (in the <em>data</em> sub-directory, more on this later), and <em>what</em> our file will be called (<em>testData.csv</em>). It’s important to specify the file extension so R knows how to save it.</li>
 </ul></li>
 </ul>
 </div>
@@ -642,7 +642,7 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 </div>
 </div>
 <div id="viewing-data-and-code-simultaneously" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Viewing data and code simultaneously<a href="workflows-for-r-coding.html#viewing-data-and-code-simultaneously" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">5.5</span> Viewing Data and Code Simultaneously<a href="workflows-for-r-coding.html#viewing-data-and-code-simultaneously" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Before we get into more about coding and workflows, you may find yourself wanting to be able to view your scripts and data side-by-side. You can open a script, plot, or data set in a new window by clicking and dragging the tab in RStudio or by clicking the button highlighted in the image below.</p>
 <div class="float">
 <img src="images/Rstudio_newwindow.png" style="width:100.0%" alt="How to open an R script/plot/data set in a new window." />
@@ -650,28 +650,21 @@ b. <strong>Save your script in your project folder</strong>, otherwise you’ll 
 </div>
 </div>
 <div id="troubleshooting-error-messages" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Troubleshooting error messages<a href="workflows-for-r-coding.html#troubleshooting-error-messages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the previous section, you were introduced to your first error message in R, and we briefly discussed how to resolve the issue. As you begin to code, many of your errors will be routine syntax error such as unmatched parenthesis (the dreaded “Incomplete expression:”). Fortunately, RStudio will highlight any syntax errors in your code with a red squiggly line and an ‘x’ in the side bar, as shown below. You can hover over the ‘x’ to see what is causing the error.</p>
-<div class="float">
-<img src="images/Rstudio_diagnostics.png" alt="Figure 3.8: RStudio highlights syntax errors in the Scripts window." />
-<div class="figcaption">Figure 3.8: RStudio highlights syntax errors in the Scripts window.</div>
-</div>
+<h2><span class="header-section-number">5.6</span> Troubleshooting Error Messages<a href="workflows-for-r-coding.html#troubleshooting-error-messages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In a previous section, you were introduced to your first error message in R, and we briefly discussed how to resolve the issue. As you begin to code, many of your errors will be routine syntax error such as unmatched parenthesis (the dreaded “Incomplete expression:”). Fortunately, RStudio will highlight any syntax errors in your code with a red squiggly line and an ‘x’ in the side bar, as shown below. You can hover over the ‘x’ to see what is causing the error.</p>
+<p><img src="images/Rstudio_diagnostics.png" /></p>
 <p>In the above message, R is telling you that it is not sure what to do with <code>b</code>. As mentioned previously, variable assignment is done in the format <code>name &lt;- assignment</code>. However, in the above example, the variable assignment statement is written as <code>name name &lt;- assignment</code>. Since variable names cannot contain spaces, R reads <code>a b</code> as two separate input variable names, not as a single string. If you wanted to assign a value of 0 to both <code>a</code> and <code>b</code>, you would need to write the statement once per variable, as shown below.</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="workflows-for-r-coding.html#cb81-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb81-2"><a href="workflows-for-r-coding.html#cb81-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
-<p>Let’s look at another example. Some functions require you to write code with nested parentheses. A good example would be the <code>aes()</code> argument that is called inside of <code>ggplot()</code>, as shown below.</p>
+<p>Let’s look at another example. Some functions require you to write code with nested parentheses. A good example would be the <code>aes()</code> argument, which is aesthetic mapping, that is called inside of <code>ggplot()</code>, as shown below.</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="workflows-for-r-coding.html#cb82-1" tabindex="-1"></a><span class="co">#plot ozone concentration vs. time</span></span>
 <span id="cb82-2"><a href="workflows-for-r-coding.html#cb82-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> airPol, </span>
 <span id="cb82-3"><a href="workflows-for-r-coding.html#cb82-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
 <span id="cb82-4"><a href="workflows-for-r-coding.html#cb82-4" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
 <span id="cb82-5"><a href="workflows-for-r-coding.html#cb82-5" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
 <span id="cb82-6"><a href="workflows-for-r-coding.html#cb82-6" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p>(For more detail about importing and using <code>ggplot2</code>, please re-visit Chapter 2, section 2.3.4, or see Chapter 11.)</p>
 <p>If you were to forget one of the parentheses in the previous line of code, RStudio would highlight it similar to below:</p>
-<div class="float">
-<img src="images/Rstudio_unmatched.png" alt="Figure 3.9: RStudio highlights unmatched parentheses in the script window." />
-<div class="figcaption">Figure 3.9: RStudio highlights unmatched parentheses in the script window.</div>
-</div>
+<p><img src="images/Rstudio_unmatched.png" /></p>
 <p>Here R is telling you that you have an unmatched opening bracket. To resolve the error, simply add a closing bracket to match.</p>
 <p>The <code>expected ',' after expression</code> is a common error that you will see accompanying unmatched opening brackets. Sometimes you might get this error in the console after running code that is missing a bracket somewhere. It is good practice to check your parentheses a few times before running your code to make sure that all the commands are closed, and that R doesn’t keep waiting for you to continue inputting code after you’ve click <em>Run</em>. If you notice that the <code>&gt;</code> in your R console has turned into a <code>+</code>, this is likely because you’ve just run a command that is missing a closing bracket, and thus, R is not aware that your code is finished. Simply input a closing bracket into the console, and the <code>&gt;</code> should return.</p>
 <p>While the script window is very useful for pointing out syntax errors in your code, there are many other errors that can arise in RStudio which the script window is not able to capture. These are generally errors that arise from trying to execute your code, rather than from mistakes in your syntax.</p>
