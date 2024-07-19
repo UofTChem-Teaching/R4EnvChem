@@ -193,11 +193,11 @@ Before diving into conditional statements, let's take a moment to understand the
 
 R, like many programming languages, uses a combination of parentheses `()`, curly braces `{}`, and other symbols to organize and structure the code.
 
-1.  Parentheses `()`: These are primarily used to enclose arguments of functions and conditions in control statements, like if. For example, in `if (x > 5)`, the condition `x > 5` is enclosed in parentheses.
+1.  Parentheses `()`: These are primarily used to enclose arguments of functions and conditions in control statements, like 'if'. For example, in `if (x > 5)`, the condition `x > 5` is enclosed in parentheses.
 
-2.  Curly Braces `{}`: These are used to group multiple lines of code into a block. This is particularly useful in control statements where more than one line of code should be executed based on a condition.
+2.  Curly Brackets `{}`: These are used to group multiple lines of code into a block. This is particularly useful in control statements where more than one line of code should be executed based on a condition.
 
-The reason the curly bracket might span multiple lines is for readability. It makes it clear where a block of code begins and ends. While it's possible to write if-else statements without braces if only one statement is being conditioned, it's a good practice to always use them for clarity.
+The reason the curly bracket might span multiple lines is for readability. It makes it clear where a block of code begins and ends. While it's possible to write if-else statements without curly brackets if only one statement is being conditioned, it's good practice to always use them for clarity.
 
 Now, with this understanding, let's move on to how R uses these in conditional statements.
 
@@ -228,7 +228,7 @@ if (x > 5) {
 
 Here, because `x` is 3 (which is not greater than 5), R prints "x is 5 or less!".
 
-For situations where multiple conditions need to be evaluated in sequence, you can use the else if construct. This allows you to add more conditions after the initial if.
+For situations where multiple conditions need to be evaluated in sequence, you can use the 'else if' construct. This allows you to add more conditions after the initial 'if'.
 
 ```{r}
 x <- 6
@@ -246,10 +246,10 @@ if (x > 10) {
 In terms of syntax, it's important to remember:
 
 -   Always enclose the condition you're testing within parentheses `()`.  
--   Use curly braces `{}` to group the lines of code that should be executed for a particular condition.  
--   Make sure each else if or else follows an if or another else if. They cannot stand alone.
+-   Use curly brackets `{}` to group the lines of code that should be executed for a particular condition.  
+-   Make sure each 'else if' or 'else' follows an 'if' or another 'else if'. They cannot stand alone.
 
-## R built-in functions
+## R built-in Functions
 
 Built-in functions are the essential tools that allow you to perform a wide range of tasks without having to write the underlying code from scratch. These functions are part of the R language itself and are readily available for your use.
 
@@ -278,7 +278,7 @@ max(c(5, 10, 15, 20))
 min(c(5, 10, 15, 20))
 ```
 
-### Function documentation
+### Function Documentation
 
 An often unappreciated aspect of packages is that they not only contain functions we can use, but documentation. Documentation provides a description of the function (what it does), what arguments it takes, details, and working examples. Often the easiest way to learn how to use a function is to take a working example and change it bit by bit to see how it works etc. To see documentation check the "help" tab in the "outputs" window or type a question mark in front of a functions name:
 
