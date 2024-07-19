@@ -45,7 +45,7 @@ variables
 data-types
 data-structures
 data-frames
-creating-a-new-dataframe-from-scratch
+creating-a-dataframe-from-scratch
 reading-data-from-a-file
 accessing-data-in-subfolders
 other-data-structures

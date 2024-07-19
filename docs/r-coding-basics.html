@@ -234,17 +234,17 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="r-coding-basics.html"><a href="r-coding-basics.html"><i class="fa fa-check"></i><b>4</b> R Coding Basics</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#variables"><i class="fa fa-check"></i><b>4.1</b> Variables</a></li>
-<li class="chapter" data-level="4.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-types"><i class="fa fa-check"></i><b>4.2</b> Data types</a></li>
-<li class="chapter" data-level="4.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-structures"><i class="fa fa-check"></i><b>4.3</b> Data structures</a>
+<li class="chapter" data-level="4.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-types"><i class="fa fa-check"></i><b>4.2</b> Data Types</a></li>
+<li class="chapter" data-level="4.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-structures"><i class="fa fa-check"></i><b>4.3</b> Data Structures</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-frames"><i class="fa fa-check"></i><b>4.3.1</b> Data Frames</a></li>
-<li class="chapter" data-level="4.3.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#accessing-data-in-subfolders"><i class="fa fa-check"></i><b>4.3.2</b> Accessing data in subfolders</a></li>
-<li class="chapter" data-level="4.3.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#other-data-structures"><i class="fa fa-check"></i><b>4.3.3</b> Other data structures</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#accessing-data-in-subfolders"><i class="fa fa-check"></i><b>4.3.2</b> Accessing Data in Subfolders</a></li>
+<li class="chapter" data-level="4.3.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#other-data-structures"><i class="fa fa-check"></i><b>4.3.3</b> Other Data Structures</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="r-coding-basics.html"><a href="r-coding-basics.html#conditional-statements"><i class="fa fa-check"></i><b>4.4</b> Conditional Statements</a>
 <ul>
 <li class="chapter" data-level="4.4.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#understanding-r-syntax"><i class="fa fa-check"></i><b>4.4.1</b> Understanding R Syntax</a></li>
-<li class="chapter" data-level="4.4.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#the-basic-if-statement"><i class="fa fa-check"></i><b>4.4.2</b> The basic <code>if</code> statement</a></li>
+<li class="chapter" data-level="4.4.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#the-basic-if-statement"><i class="fa fa-check"></i><b>4.4.2</b> The Basic <code>if</code> Statement</a></li>
 <li class="chapter" data-level="4.4.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#expanding-with-else-and-else-if"><i class="fa fa-check"></i><b>4.4.3</b> Expanding with <code>else</code> and <code>else if</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="r-coding-basics.html"><a href="r-coding-basics.html#r-built-in-functions"><i class="fa fa-check"></i><b>4.5</b> R built-in functions</a>
@@ -549,7 +549,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="r-coding-basics" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> R Coding Basics<a href="r-coding-basics.html#r-coding-basics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Now that you know how to navigate RStudio and have a working project, we’ll take a look at the basics of R. As we’re chemist first, and not computer programmers, we’ll try and avoid as much of the nitty-gritty underneath the hood aspects of R. However, a risk of this approach is being unable to understand errors and warnings preventing your code from running. As such, we’ll introduce the most important and pertinent aspects of the R language to meet your environmental chemistry needs.</p>
+<p>Now that you know how to navigate RStudio and have a working project, we’ll take a look at the basics of R. As we’re chemists first, and not computer programmers, we’ll try and avoid as much of the nitty-gritty underneath the hood aspects of R. However, a risk of this approach is being unable to understand errors and warnings preventing your code from running. As such, we’ll introduce the most important and pertinent aspects of the R language to meet your environmental chemistry needs.</p>
 <div id="variables" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Variables<a href="r-coding-basics.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We’ve already talked about how R can be used like a calculator:</p>
@@ -587,7 +587,7 @@ div.csl-indent {
 <p>The code above returns the <code>object 'y' not found</code> error because we’re adding <code>+ 1</code> to <code>y</code> which hasn’t been created yet, it’s created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn’t reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space using the ‘broom’ button in the <em>environment</em> pane. This will help you to ensure the code you’re writing is organized in the correct order; see <a href="workflows-for-r-coding.html#saving-r-markdown">Saving R Markdown</a> for why this is important.</p>
 </div>
 <div id="data-types" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Data types<a href="r-coding-basics.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">4.2</span> Data Types<a href="r-coding-basics.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data types refer to how data is stored and handled by and in R. This can get complicated quickly, but we’ll focus on the most common types here so you can get started on your work. Firstly, here are the data types you’ll likely be working with:</p>
 <ul>
 <li><strong>character</strong>: <code>"a"</code>, <code>"howdy"</code>, <code>"1"</code>, is used to represent string values in R. Basically it’s text that you’d read. Strings are wrapped in quotation marks. For example, <code>"1"</code>, despite being read as number by us, is stored as a character and treated as such by R.</li>
@@ -609,7 +609,7 @@ div.csl-indent {
 <pre><code>## [1] FALSE</code></pre>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="r-coding-basics.html#cb31-1" tabindex="-1"></a><span class="fu">is.character</span>(x) <span class="co"># test if character</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<p>So the value of <code>x</code> is a character, in other words R treats it as a word, and we can’t do math on that (think, how would you divide a word by a number?). So let’s convert the data type of <code>x</code> to numeric to proceed.</p>
+<p>So the value of <code>x</code> is a character, in other words R treats it as a word, and we can’t do math on that (note the quotation marks “” around the 6 in the code above that defined it as text). So let’s convert the data type of <code>x</code> to numeric to proceed.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r-coding-basics.html#cb33-1" tabindex="-1"></a>x </span></code></pre></div>
 <pre><code>## [1] &quot;6&quot;</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r-coding-basics.html#cb35-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span>
@@ -628,13 +628,13 @@ div.csl-indent {
 <p>“NAs introduced by coercion” means that R didn’t know how to convert “six” to a numeric value, so it instead turned it into an <em>NA</em>, representing a missing value.</p>
 </div>
 <div id="data-structures" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Data structures<a href="r-coding-basics.html#data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">4.3</span> Data Structures<a href="r-coding-basics.html#data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data structures refers to how R stores data. It’s easy to get lost in the weeds here, so we’ll start with the focus on the most common and useful data structure for your work: <em>data frames</em>.</p>
 <div id="data-frames" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Data Frames<a href="r-coding-basics.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Data frames consist of data stored in rows and columns. If you’ve ever worked with a spreadsheet (i.e. <em>Excel</em>), it’s essentially that with the caveat that <em>all data stored in a column must be of the same type</em>. Again, different columns can have different data types, but <em>within</em> a column all the data needs to be the same type. R will convert your data otherwise to make it all the same. A common error is a single character in a column of numerical values leading to the entire column to be interpreted as character values; similar to what we discussed above. Errors like this most often stem from mistakes in recording and importing your data so be careful!</p>
-<div id="creating-a-new-dataframe-from-scratch" class="section level4 hasAnchor" number="4.3.1.1">
-<h4><span class="header-section-number">4.3.1.1</span> Creating a new dataframe from scratch<a href="r-coding-basics.html#creating-a-new-dataframe-from-scratch" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="creating-a-dataframe-from-scratch" class="section level4 hasAnchor" number="4.3.1.1">
+<h4><span class="header-section-number">4.3.1.1</span> Creating a Dataframe from Scratch<a href="r-coding-basics.html#creating-a-dataframe-from-scratch" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let’s see how we can create a dataframe by explicitly listing out the values.</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-coding-basics.html#cb45-1" tabindex="-1"></a><span class="co"># data</span></span>
 <span id="cb45-2"><a href="r-coding-basics.html#cb45-2" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Eve&quot;</span>)</span>
@@ -654,9 +654,9 @@ div.csl-indent {
 ## 5     Eve  19      Sushi AYCE</code></pre>
 </div>
 <div id="reading-data-from-a-file" class="section level4 hasAnchor" number="4.3.1.2">
-<h4><span class="header-section-number">4.3.1.2</span> Reading data from a file<a href="r-coding-basics.html#reading-data-from-a-file" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">4.3.1.2</span> Reading Data from a File<a href="r-coding-basics.html#reading-data-from-a-file" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Obviously when we have many more data, it would be unrealistic to manually list them out in our code. So instead, we can create a dataframe by reading a file.</p>
-<p>From the <code>R4EnvChem-ProjectTemplate</code>, downloaded in <a href="rstudio-projects.html#importing-a-project">Importing a project</a>, let’s import some real data as follows by typing the following into the console:</p>
+<p>From the <code>R4EnvChem-ProjectTemplate</code>, downloaded in <a href="rstudio-projects.html#importing-a-project">Importing a project</a>, let’s import some real data that was included in the downloaded project by typing the following code into the console:</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-coding-basics.html#cb47-1" tabindex="-1"></a>airPol <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
 <p><code>read.csv()</code> is a useful R built-in function which, as you might guess from its name, can read a <code>.csv</code> file and convert it into a data frame. The data we just imported contains air quality data measured in downtown Toronto around January 2018. The “Column specification” summary printed to the console is a useful feature of <code>read.csv()</code>. It tells you what data type was determined for each column when it was imported. Note that <em>double</em> is simply another term for the <em>numeric</em> data type. Some of the variables are:</p>
 <ul>
@@ -665,7 +665,7 @@ div.csl-indent {
 <li><code>pollutant</code> for the chemical measured</li>
 <li><code>concentration</code> for the measured concentration in parts-per-million (ppm).</li>
 </ul>
-<p>We’ve assigned it to the variable: <code>airPol</code>. This is so we can reference it and make use of it later on (see below). If we didn’t do this our data would simply be printed to the console which isn’t helpful. Let’s take a look at the first few rows of the data:</p>
+<p>We’ve assigned it to the variable: <code>airPol</code>. This is so we can reference it and make use of it later on (see below). If we didn’t do this our data would simply be printed to the console which isn’t helpful. Let’s take a look at the first few rows of the data using the head function:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="r-coding-basics.html#cb48-1" tabindex="-1"></a><span class="fu">head</span>(airPol)</span></code></pre></div>
 <pre><code>##    naps    city  p latitude longitude           date.time pollutant
 ## 1 60430 Toronto ON 43.70944  -79.5435 2018-01-01 00:00:00        O3
@@ -685,12 +685,12 @@ div.csl-indent {
 </div>
 </div>
 <div id="accessing-data-in-subfolders" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Accessing data in subfolders<a href="r-coding-basics.html#accessing-data-in-subfolders" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">4.3.2</span> Accessing Data in Subfolders<a href="r-coding-basics.html#accessing-data-in-subfolders" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Note that <code>read.csv()</code> requires us to specify the file name, but in the above example we prefixed our file name with <code>"data/2018..."</code>. This is because the <code>.csv</code> file we want to open is stored in the <code>data</code> sub-folder. By specifying this in the prefix, we tell <code>read.csv()</code> to first go to the <code>data</code> sub folder in the working directory and <em>then</em> search for and open the specified data file.</p>
 <p>What we’ve done above is called <em>relative referencing</em> and it’s a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like <code>"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"</code>. If we weren’t in a project, this is what you’d need to type to open your file, but since we’re working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need <code>"data/2018..."</code>. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and Profs (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code &amp; data) and the receiver could open it and run it as is.</p>
 </div>
 <div id="other-data-structures" class="section level3 hasAnchor" number="4.3.3">
-<h3><span class="header-section-number">4.3.3</span> Other data structures<a href="r-coding-basics.html#other-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">4.3.3</span> Other Data Structures<a href="r-coding-basics.html#other-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R has several other data structures. They aren’t as frequently used, but it’s worth being aware of their existence. Other structures include:</p>
 <ul>
 <li><strong>Vectors</strong>, which contain multiple elements <em>of the same type</em>; either numeric, character (text), logical, or integer. Vectors are created using <code>c()</code>, which is short for combine. A data frame is just multiple vectors arranged into columns. Some examples of vectors are shown below.</li>
@@ -743,7 +743,7 @@ div.csl-indent {
 <p>Now, with this understanding, let’s move on to how R uses these in conditional statements.</p>
 </div>
 <div id="the-basic-if-statement" class="section level3 hasAnchor" number="4.4.2">
-<h3><span class="header-section-number">4.4.2</span> The basic <code>if</code> statement<a href="r-coding-basics.html#the-basic-if-statement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">4.4.2</span> The Basic <code>if</code> Statement<a href="r-coding-basics.html#the-basic-if-statement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="r-coding-basics.html#cb62-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb62-2"><a href="r-coding-basics.html#cb62-2" tabindex="-1"></a></span>
 <span id="cb62-3"><a href="r-coding-basics.html#cb62-3" tabindex="-1"></a><span class="co"># In this example, R checks if x is greater than 5. </span></span>
