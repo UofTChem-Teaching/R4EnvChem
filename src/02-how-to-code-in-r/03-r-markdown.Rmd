@@ -15,9 +15,9 @@ x <- 2+2
 x
 ```
 
-What we've done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn't anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example:
+What we've done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn't anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example here is a time series of 2018 ambient atmospheric O~3~, NO~2~, and SO~2~ concentrations (ppb) in downtown Toronto:
 
-```{r, message = FALSE, fig.cap= "Time series of 2018 ambient atmospheric O~3~, NO~2~, and SO~2~ concentrations (ppb) in downtown Toronto", fig.height=2}
+```{r, message = FALSE, fig.height=2}
 library(tidyverse) 
 library(knitr)
 
