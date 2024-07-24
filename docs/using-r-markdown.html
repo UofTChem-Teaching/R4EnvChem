@@ -557,7 +557,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="using-r-markdown.html#cb85-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
 <span id="cb85-2"><a href="using-r-markdown.html#cb85-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<p>What we’ve done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn’t anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example:</p>
+<p>What we’ve done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn’t anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example here is a time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub>, and SO<sub>2</sub> concentrations (ppb) in downtown Toronto:</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="using-r-markdown.html#cb87-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
 <span id="cb87-2"><a href="using-r-markdown.html#cb87-2" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb87-3"><a href="using-r-markdown.html#cb87-3" tabindex="-1"></a></span>
@@ -569,12 +569,7 @@ div.csl-indent {
 <span id="cb87-9"><a href="using-r-markdown.html#cb87-9" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span> </span>
 <span id="cb87-10"><a href="using-r-markdown.html#cb87-10" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb87-11"><a href="using-r-markdown.html#cb87-11" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
-<img src="R4EnvChem_files/figure-html/unnamed-chunk-36-1.png" alt="Time series of 2018 ambient atmospheric O~3~, NO~2~, and SO~2~ concentrations (ppb) in downtown Toronto" width="672" />
-<p class="caption">
-Figure 6.1: Time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub>, and SO<sub>2</sub> concentrations (ppb) in downtown Toronto
-</p>
-</div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="using-r-markdown.html#cb88-1" tabindex="-1"></a>sumAirPol <span class="ot">&lt;-</span> airPol <span class="sc">%&gt;%</span></span>
 <span id="cb88-2"><a href="using-r-markdown.html#cb88-2" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb88-3"><a href="using-r-markdown.html#cb88-3" tabindex="-1"></a>  <span class="fu">group_by</span>(city, naps, pollutant) <span class="sc">%&gt;%</span></span>

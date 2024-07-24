@@ -1,4 +1,3 @@
-fig:unnamed-chunk-36
 fig:tidy-example
 fig:reg-plot
 fig:unnamed-chunk-171
