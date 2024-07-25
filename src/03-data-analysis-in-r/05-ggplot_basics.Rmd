@@ -13,13 +13,13 @@ DT::datatable(atr_data[1:50, ])
 
 ## Building plots ups
 
-The `gg` in `ggplot2` stands for the *grammar of graphics*,[@Wickham2009] and it's a way to break down graphics (plots) into small pieces that can be discussed (hence grammar). We'll take a look at this grammar via `geoms` (what kind of plot), `aes` (aesthetic choices), etc. For now, understand that this means we need to build up graphics/plots piece-by-piece and layer-by-layer. This extends beyond code to how we code. No sense in putting lipstick on a pig. Plot often, and discard the useless ones. Take the time to pretty up your plot *after* you're satisfied with the underlying data.
+The `gg` in `ggplot2` stands for the *grammar of graphics*,[@Wickham2009] and it's a way to break down graphics (plots) into small pieces that can be discussed (hence grammar). We'll take a look at this grammar via `geoms` (what kind of plot), `aes` (aesthetic choices), etc. For now, understand that this means we need to build up graphics/plots piece-by-piece and layer-by-layer. This extends beyond code to how we code. Plot often, and discard the useless ones. Take the time to pretty up your plot *after* you're satisfied with the underlying data.
 
 ## Basic plotting
 
 `ggplot2` uses `geoms` to specify what type of plot to create. Different plots are used to tell different stories and have different strengths and weakness. We'll explore these more in [Visualizations for Env Chem], but for now we'll focus on `geom_point()`, which simply plots data as points on an [x,y] coordinate. In other words, a scatter plot.
 
-Let's plot our tided `atr_data` data:
+Let's plot our tidied `atr_data` data:
 
 ```{r}
 ggplot(data = atr_data, 

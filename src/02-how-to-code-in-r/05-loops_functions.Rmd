@@ -118,7 +118,7 @@ In this example we first created a new column called `reportedIntensities` using
 
 Some ideas to consider when working with `case-when()`:
 
-  - There's no limits to the conditions you can pass to `case_when()`.
+  - There's no limit to the conditions you can pass to `case_when()`.
   - *However* `case_when()` evaluates in order so put the more specific conditions before the more general. 
   - Remember that the point of `case_when()` and piping is legibility. If you're passing multiple conditions, consider writing a function using `else if` statements to keep the pipe legible.  
 
