@@ -646,7 +646,7 @@ div.csl-indent {
 <p>In this example we first created a new column called <code>reportedIntensities</code> using <code>mutate()</code> and used <code>case_when()</code> to conditionally fill that column. The inputs we’ve passed to <code>case_when()</code> are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (<code>~</code>) evaluate to <code>TRUE</code>, <code>case_when</code> will execute the right-hand side. The first two-sided formula is <code>intensities &lt; lod ~ lod/2</code> and checks if the intensities value is less than the previously calculated limit of detection. If <code>intensities &lt; lod</code> evaluates to <code>TRUE</code> we insert half of the LOD value for that row. If <code>intensities &lt; lod</code> evaluates to <code>FALSE</code>, we move onto the next two-side formula and reevaluate again. The second two-sided formula <code>TRUE ~ intensities</code> basically means for everything that’s remaining (greater than LOD in our instance) just use the value from the <code>intensities</code> column.</p>
 <p>Some ideas to consider when working with <code>case-when()</code>:</p>
 <ul>
-<li>There’s no limits to the conditions you can pass to <code>case_when()</code>.</li>
+<li>There’s no limit to the conditions you can pass to <code>case_when()</code>.</li>
 <li><em>However</em> <code>case_when()</code> evaluates in order so put the more specific conditions before the more general.</li>
 <li>Remember that the point of <code>case_when()</code> and piping is legibility. If you’re passing multiple conditions, consider writing a function using <code>else if</code> statements to keep the pipe legible.</li>
 </ul>
