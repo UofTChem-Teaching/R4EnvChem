@@ -547,7 +547,7 @@ div.csl-indent {
 <p>Unlike <em>Excel</em>, you can’t copy and paste your data into R (or RStudio). Instead you need to <em>import</em> your data into R so you can work with it. This chapter will discuss how your data is stored, and how to import it into R (with some accompanying nuances).</p>
 <div id="csv-files" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> .csv files<a href="importing-your-data-into-r.html#csv-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>While there are a myriad of ways data is stored, raw instrument often record results in a proprietary vendor format, the data you’re likely to encounter in an undergraduate lab will be in the form of a <code>.csv</code> or <em>comma-separated values</em> file. As the name implies, values are separated by commas (go ahead and open any <code>.csv</code> file in any text editor to observe this). Essentially you can think of each line as a row and commas as separating values into columns, which is exactly how R and <em>Excel</em> handle <code>.csv</code> files.</p>
+<p>While there are a myriad of ways data is stored, instruments often record results in a proprietary vendor format, the data you’re likely to encounter in an undergraduate lab will be in the form of a <code>.csv</code> or <em>comma-separated values</em> file. As the name implies, values are separated by commas (go ahead and open any <code>.csv</code> file in any text editor to observe this). Essentially you can think of each line as a row and commas as separating values into columns, which is exactly how R and <em>Excel</em> handle <code>.csv</code> files.</p>
 </div>
 <div id="read_csv" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> read_csv<a href="importing-your-data-into-r.html#read_csv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -571,7 +571,7 @@ div.csl-indent {
 </ul></li>
 <li><strong>lgl</strong> for logical values, either <code>TRUE</code> or <code>FALSE</code></li>
 </ul>
-<p>We can also quickly inspect either through the <em>Environment</em> pane in <em>RStudio</em> or quickly with the <code>head()</code> function. Note the column specifications under the column name.</p>
+<p>We can also quickly inspect either through the <em>Environment</em> pane in <em>RStudio</em> or quickly with the <code>head()</code> function.</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="importing-your-data-into-r.html#cb128-1" tabindex="-1"></a><span class="fu">head</span>(atr_plastics)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   wavenumber sample               absorbance
@@ -634,7 +634,7 @@ div.csl-indent {
 ## 6      4000. Sample: Shopping bag   0.0663</code></pre>
 <div id="tibbles-vs.-data-frames" class="section level3 hasAnchor" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> Tibbles vs. data frames<a href="importing-your-data-into-r.html#tibbles-vs.-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Quick eyes will notice the first line outputted above is <code># A tibble: 6 x 5</code>. <code>tibbles</code> are a variation of <code>data.frames</code> introduced in section one, but built specifically for the <code>tidyverse</code> family of packages. While <code>data.frames</code> and <code>tibbles</code> are often interchangeable, it’s important to be aware of the difference in case you do run into a rare conflict. In these situations you can readily transform a <code>tibble</code> into a <code>data.frame</code> by coercion with the <code>as.data.frame()</code> function, and vice-versa with the <code>as_tibble()</code> function.</p>
+<p>Quick eyes will notice the first line outputted above is <code># A tibble: 6 x 5</code>. <code>tibbles</code> are a variation of <code>data.frames</code> introduced in <a href="r-coding-basics.html#data-frames">Data Frames</a> in Part 2, but built specifically for the <code>tidyverse</code> family of packages. While <code>data.frames</code> and <code>tibbles</code> are often interchangeable, it’s important to be aware of the difference in case you do run into a rare conflict. In these situations you can readily transform a <code>tibble</code> into a <code>data.frame</code> by coercion with the <code>as.data.frame()</code> function, and vice-versa with the <code>as_tibble()</code> function.</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="importing-your-data-into-r.html#cb138-1" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.data.frame</span>(atr_plastics))</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
