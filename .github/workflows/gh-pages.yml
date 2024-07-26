@@ -31,7 +31,9 @@ jobs:
           restore-keys: bookdown-
 
       - name: Build site
-        run: bookdown::render_book("index.Rmd", quiet = TRUE)
+        run: |
+          renv::status()
+          bookdown::render_book("index.Rmd", quiet = TRUE)
         shell: Rscript {0}
 
       - name: Save build files to gh-pages branch
