@@ -187,7 +187,7 @@ A Couple of things to note:
   
 ### Mutate with a condition
 
-In data analysis, there are often scenarios where we want to categorize or re-label values based on certain conditions. The `case_when()` function, provided by the `dplyr` package, offers a versatile and readable solution for handling these multiple conditions.
+In data analysis, there are often scenarios where we want to categorize or re-label values based on certain conditions. The `case_when()` function, provided by the `dplyr` package, which was introduced in the [Piping conditional statements] section, offers a versatile and readable solution for handling these multiple conditions.
 
 The syntax for `case_when()` is straightforward: for each condition, you specify the logical test followed by the tilde (~) operator, and then the value or expression to return if the condition is `TRUE`.
 
