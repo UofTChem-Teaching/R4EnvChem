@@ -101,7 +101,7 @@ Let's break down the code we've executed via the `pivot_longer` function:
 3. `values_to = "absorbance"` specifies that the absorbance values under each of the selected headers be placed into the `absorbance` column. 
 
 
-Beyond what we showed here, `pivot_longer` has many other features that you can take advantage of. We highly recommend reading the examples listed on the [pivot_longer page](https://tidyr.tidyverse.org/reference/pivot_longer.html) to get a better sense of the possibilities. 
+Beyond what we showed here, `pivot_longer` has many other features that you can take advantage of. For more details and the possibilities of this function you can read the examples listed on the [pivot_longer page](https://tidyr.tidyverse.org/reference/pivot_longer.html) of the tidyverse. 
 
 
 ## Making Data Wider
