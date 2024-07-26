@@ -140,8 +140,7 @@ Do not modify the cell below.
 ```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Renaming columns", {
-  expect_true("pollutant" %in% colnames(renamed_data))s
-
+  expect_true("pollutant" %in% colnames(renamed_data))
 })
 
 ```

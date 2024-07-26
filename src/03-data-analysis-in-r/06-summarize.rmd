@@ -2,11 +2,11 @@
 
 Summarizing data is what it sounds like. You're reducing the number of rows in your dataset based on some predetermined method. Taking the average of a group of numbers is summarizing the data. Many numbers have been condensed to one: the average. In this chapter we'll go over summarizing data, and some aesthetic changes we can make for publication ready tables. 
 
-## Data to play with
+## Data to Play With
 
-We'll take a look at the 2018 hourly mean NO~2~ concentrations for the Atlantic provinces (New Brunswick, Prince Edward Island, Nova Scotia, and Newfoundland). The dataset is available in the [*R4EnvChem* Project Template](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate) repository. Also if you're keen, you can download any number of atmospheric datasets from *Environment and Climate Change Canada*'s (ECCC) National Airborne Pollution Program's (NAPS) website. [here](https://data.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en)
+For this section we'll take a look at the 2018 hourly mean NO~2~ concentrations for the Atlantic provinces (New Brunswick, Prince Edward Island, Nova Scotia, and Newfoundland). The dataset is available in the [*R4EnvChem* Project Template](https://github.com/DavidRossHall/R4EnvChem-ProjectTemplate) repository. Also if you're keen, you can download any number of atmospheric datasets from *Environment and Climate Change Canada*'s (ECCC) National Airborne Pollution Program's (NAPS) website [here](https://data.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en).
 
-We will learn `pivot_longer` function in the next chapter, but you can take the following tidying code for granted in this chapter.
+We will learn `pivot_longer` function in the next chapter, [Restructuring Your Data], but you can take the following tidying code for granted in this chapter.
 
 
 ```{r, message = FALSE}
@@ -51,9 +51,9 @@ ggplot(data = naps,
 ```
 
 
-## Summarizing data by group
+## Summarizing Data by Group
 
-While we can readily summarize an entire dataset, we often want to summarize *groups* within our dataset. In our case, it's [NO~2~] in each city. To this end, we need to combine the`group_by()` and `summarize()` functions. `summarise()` also works for the Americans. This approach allows us to (1) specify which groups we want summarized, and (2) how we want them summarized. We'll talk more about point (2) later on, for now, let's look at point (1)
+While we can readily summarize an entire dataset, we often want to summarize *groups* within our dataset. In our case, it's [NO~2~] in each city. To this end, we need to combine the`group_by()` and `summarize()` functions. This approach allows us to specify which groups we want summarized, and how we want them summarized. We'll talk more about the second point later on, for now, let's look at point how we specify which groups to summarize.
 
 Let's calculate the mean hourly NO~2~ concentrations in the `r length(unique(atlNO2$p))` provinces in our dataset:
 
@@ -91,7 +91,7 @@ Looks like there aren't any offenders. For tips on visualizing these results ple
 
 
 
-### Further summarize operations
+### Further Summarize Operations
 
 There are other options we can use to summarize out data. A handy list is provided on the [`summarize()` help page](https://dplyr.tidyverse.org/reference/summarise.html). The most common ones you'll need are:
 
@@ -118,11 +118,11 @@ sumAtl
 Note that the functions we pass to summarize adhere to rules of missing values. That is to say, if even one value in a group is an `NA`, the entire group defaults to `NA`. Consequently, if you're confident this isn't an issue, you can pass the argument `na.rm = TRUE` to any of the summarize functions, which would look like `mean = mean(conc, na.rm = TRUE)`. This will ignore any `NA` values and return a numeric value like you probably expect. 
 
 
-## Pretty tables with flextable
+## Pretty Tables with Flextable
 
 While the summarize function does an excellent job of summarizing our data, the outputted dataset isn't really fit for publication. This is doubly so if you used summarize as the last step of your chemical quantification and you want a nice and pretty table of mean sample concentration with standard deviations. 
 
-To this end we'll use the 'flextable' package. Please refer to [flextable R package](https://davidgohel.github.io/flextable/index.html). There are other packages to make tables, but we're using `flextable` as it's consistent between HTML and PDF outputs. 
+To this end we'll use the 'flextable' package. For more details refer to [flextable R package](https://davidgohel.github.io/flextable/index.html). There are other packages to make tables, but we're using `flextable` as it's consistent between HTML and PDF outputs. 
 
 ```{r, message = FALSE, warning = FALSE}
 library(flextable)
@@ -157,7 +157,7 @@ Note to round the numbers we used `sprintf()` to round out numbers. This is beca
 
 ### Pretty tables 
 
-Now we'll want to make a pretty table. Despite the emphasis on visualizations in this book, tables are an underappreciated means to convey information. Often when you're only plotting a handful of numbers, a table would better serve the reader. So don't overlook this point of your report. If you've distilled hours of your work to a handful of numbers, you best serve them up on a silver platter. 
+Now we'll want to make a pretty table. Despite the emphasis on visualizations in this book, tables are an under appreciated means to convey information. Often when you're only plotting a handful of numbers, a table would better serve the reader. So don't overlook this point of your report. If you've distilled hours of your work to a handful of numbers, you best serve them up on a silver platter. Below is an example of how you might format your table for publication.
 
 
 ```{r}

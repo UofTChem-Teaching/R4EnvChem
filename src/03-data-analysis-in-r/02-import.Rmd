@@ -9,7 +9,7 @@ Unlike *Excel*, you can't copy and paste your data into R (or RStudio). Instead 
 
 ## .csv files
 
-While there are a myriad of ways data is stored, raw instrument often record results in a proprietary vendor format, the data you're likely to encounter in an undergraduate lab will be in the form of a `.csv` or *comma-separated values* file. As the name implies, values are separated by commas (go ahead and open any `.csv` file in any text editor to observe this). Essentially you can think of each line as a row and commas as separating values into columns, which is exactly how R and *Excel* handle `.csv` files. 
+While there are a myriad of ways data is stored, instruments often record results in a proprietary vendor format, the data you're likely to encounter in an undergraduate lab will be in the form of a `.csv` or *comma-separated values* file. As the name implies, values are separated by commas (go ahead and open any `.csv` file in any text editor to observe this). Essentially you can think of each line as a row and commas as separating values into columns, which is exactly how R and *Excel* handle `.csv` files. 
 
 
 ## read_csv
@@ -27,7 +27,7 @@ A benefit of using `read_csv` is that it prints out the column specifications wi
     - note numbers can be encoded as strings, so while you might read "1" as a number, R treats it as a character, limiting how you can use this value.
   - **lgl** for logical values, either `TRUE` or `FALSE`
 
-We can also quickly inspect either through the *Environment* pane in *RStudio* or quickly with the `head()` function. Note the column specifications under the column name.
+We can also quickly inspect either through the *Environment* pane in *RStudio* or quickly with the `head()` function.
 
 ```{r}
 head(atr_plastics)
@@ -57,7 +57,7 @@ tail(atr_plastics)
 
 ### Tibbles vs. data frames
 
-Quick eyes will notice the first line outputted above is `# A tibble: 6 x 5`. `tibbles` are a variation of `data.frames` introduced in section one, but built specifically for the `tidyverse` family of packages. While `data.frames` and `tibbles` are often interchangeable, it's important to be aware of the difference in case you do run into a rare conflict. In these situations you can readily transform a `tibble` into a `data.frame` by coercion with the `as.data.frame()` function, and vice-versa with the `as_tibble()` function. 
+Quick eyes will notice the first line outputted above is `# A tibble: 6 x 5`. `tibbles` are a variation of `data.frames` introduced in [Data Frames] in Part 2, but built specifically for the `tidyverse` family of packages. While `data.frames` and `tibbles` are often interchangeable, it's important to be aware of the difference in case you do run into a rare conflict. In these situations you can readily transform a `tibble` into a `data.frame` by coercion with the `as.data.frame()` function, and vice-versa with the `as_tibble()` function. 
 
 ```{r}
 
