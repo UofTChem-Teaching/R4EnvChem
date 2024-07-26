@@ -55,7 +55,7 @@ ggplot(data = atr_plastics,
 
 ### Selection helpers
 
-As you've already seen, there are multiple ways to select columns and variables with the `dplyr` package. For a complete rundown of other useful helper functions please see [Subset columns using their names and types](https://dplyr.tidyverse.org/reference/select.html). `starts_with()` for selecting columns from a prefix, and `contains()` for selecting columns that contain a string are two of the most useful. 
+There are multiple ways to select columns and variables with the `dplyr` package. For a complete rundown of other useful helper functions please see [Subset columns using their names and types](https://dplyr.tidyverse.org/reference/select.html). `starts_with()` for selecting columns from a prefix, and `contains()` for selecting columns that contain a string are two of the most useful. 
 
 ### Separating columns
 
@@ -164,7 +164,7 @@ atr_plastics_transformed <- atr_plastics %>%
 atr_plastics_transformed
 ```
 
-We will formally introduce the unfamiliar operator `%>%` (pipe) in the next chapter (check out 12.6 if interested). For now, just remember that there is a way to chain your functions like the above example!
+We will formally introduce the unfamiliar operator `%>%` (pipe) in the next chapter [The Pipe: Chaining Functions Together]. For now, just remember that there is a way to chain your functions like the above example!
 
 
 ## Tips for recording data
