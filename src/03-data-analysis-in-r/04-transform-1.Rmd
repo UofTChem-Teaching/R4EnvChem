@@ -25,7 +25,7 @@ head(FAES)
 
 ```
 
-example
+In this dataset you can see that two important aspects of the data, sample type (sample, blank or standard) and concentration are grouped in one column.  We can use the separate function to separate these into two columns to facilitate further analysis.
 
 ```{r, message = FALSE}
 # Importing using tips from Import chapter
@@ -201,7 +201,7 @@ mutate(FAES,
          TRUE ~ "High"))
 ```
   
-For those interested in exploring further, there's a similar function called `ifelse()` which provides conditional transformations in R. You can learn more about it [here](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse).
+For those interested in exploring further, there's a similar function called `ifelse()` which provides conditional transformations in R. You can learn more about it in the [Conditional Statements] section in this resource or in the documentation for the ifelse statement that can be found [here](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse).
   
   
 ### Useful mutate function
@@ -220,7 +220,7 @@ knitr::kable(funs)
 
 ## Group and summarize data
 
-`summarize` effectively summarizes your data based on functions you've passed to it. Looking at our `FAES` data we'd probably want the mean of the triplicate signals, alongside the standard deviation. Let's see what happens when we apply the summarize function straight up: 
+`summarize` effectively summarizes your data based on functions you've passed to it. Looking at our `FAES` data we'd might want the mean and standard deviation of the triplicate signals. Let's see what happens when we apply the summarize function straight up: 
 
 ```{r}
 summarise(FAES, "mean" = mean(signal), "stdDev" = sd(signal))
@@ -241,7 +241,7 @@ We've used the `mean()` and `sd()` functions above, but there are a host of othe
 
 ## The Pipe: Chaining Functions Together 
 
-With the tools presented here we could do a decent job analyzing our `FAES` data. Let's say we wanted to subtract the mean of the `blank` from each `standard` signal and then get summarize those results. It would look something like this: 
+With the tools presented here we could do a decent job analyzing our `FAES` data. Let's say we wanted to subtract the mean of the `blank` from each `standard` signal and then summarize those results. It would look something like this: 
 
 ```{r}
 blank <- filter(FAES, type == "blank")
