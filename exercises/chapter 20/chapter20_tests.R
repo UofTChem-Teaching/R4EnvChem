@@ -109,4 +109,3 @@ test_that("Prediction Test", {
   # remove the temp directory
   unlink(tmp_dir, recursive = TRUE)
 })
-

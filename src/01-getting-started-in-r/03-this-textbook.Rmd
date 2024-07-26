@@ -2,8 +2,6 @@
 
 Before we move onto the actual coding part, let's talk about how to navigate and utilize this textbook.
 
-## Keep in mind
-
 **1. Reading and Active Engagement**
 
 This textbook encourages active learning. Don't merely read through the content---interact with it. Type out the code in your R environment and see the results firsthand. This hands-on approach will solidify your comprehension and enhance your practical skills. Observe how the code behaves, experiment with modifications, and observe how changes impact the outcomes.
@@ -20,13 +18,13 @@ This textbook is a stepping stone to your R journey. Beyond the content provided
 
 If you're using this textbook as part of a class or a group, engage in discussions with your peers. Sharing insights, clarifying doubts, and collaborating on exercises can enhance your learning experience. Don't hesitate to ask questions, seek help, and contribute to a supportive learning environment.
 
-## Useful features
+## Useful Features
 
-### Searching throughout the textbook
+### Searching the Textbook
 
 By clicking on the magnifying glass icon in the top left corner, you have the ability to search for keywords across the entire textbook without worrying about case sensitivity. For instance, entering "tidyverse" will display all chapters where tidyverse is mentioned. This gives you a glimpse into future chapters, offering a preview of the various ways you'll be engaging with tidyverse later on!
 
-### How to view the original R Markdown of textbook chapters
+### Original R Markdown of the Textbook Chapters
 
 This textbook is assembled from individual Rmd files, each representing a chapter. As you progress through the chapters, you may wish to examine the associated Rmd files to delve deeper into the code and its execution.
 
@@ -35,11 +33,11 @@ Simply click on the edit icon in the top left corner to be directed to the corre
 ![](images/view_source.png){width="70%"}
 
 
-## End-of-chapter Exercises
+## End-of-Chapter Exercises
 
 As you progress through each chapter, you'll find `.Rmd` (R Markdown) files available for practice and reinforcement. These Rmd files are designed to provide you with hands-on exercises that align with the concepts covered in the textbook.
 
-Within each Rmd file, you'll encounter straightforward exercises that give you the opportunity to apply what you've learned in each chapter. After completing an exercise, you can run the provided unittest cell to check your answers and receive instant feedback.
+Within each Rmd file, you'll encounter straightforward exercises that give you the opportunity to apply what you've learned in each chapter. After completing an exercise, you can run the provided unit test cell to check your answers and receive instant feedback.
 
 Here is an instruction to how to start on the exercises:
 

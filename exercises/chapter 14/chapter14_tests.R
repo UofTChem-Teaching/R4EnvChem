@@ -8,6 +8,7 @@ library(withr)
 library(knitr)
 library(tidyverse)
 
+
 # Define the function to run all chunks from Rmd file
 run_all_chunks <- function(rmd, envir = globalenv()) {
   tempR <- file.path("temp.R")  # Create temporary file in the same directory

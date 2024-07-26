@@ -6,7 +6,7 @@ Now, we will embark on a comprehensive journey through the data analysis process
 
 The explicit workflow we'll be teaching was originally described by Wickham and Grolemund, and consists of six key steps: 
 
-![Data science workflow describes by Wickham and Grolemund; image from *R for Data Science*, Wickham and Grolemund (2021)](images/data-science-workflow.png){width=99%}
+![](images/data-science-workflow.png){width=99%}
 
 - **Import** is the first step and consist of getting your data into R. Seems obvious, but doing it correctly will save you time and headaches down the line. 
 - **Tidy** refers to organizing your data in a *tidy* manner where each variable is a column, and each observation a row. This is often the least intuitive part about working with R, especially if you've only used Excel, but it's critical. If you don't tidy your data, you'll be fighting it every step of the way.

@@ -4,7 +4,7 @@
 
 # R Coding Basics
 
-Now that you know how to navigate RStudio and have a working project, we'll take a look at the basics of R. As we're chemist first, and not computer programmers, we'll try and avoid as much of the nitty-gritty underneath the hood aspects of R. However, a risk of this approach is being unable to understand errors and warnings preventing your code from running. As such, we'll introduce the most important and pertinent aspects of the R language to meet your environmental chemistry needs.
+Now that you know how to navigate RStudio and have a working project, we'll take a look at the basics of R. As we're chemists first, and not computer programmers, we'll try and avoid as much of the nitty-gritty underneath the hood aspects of R. However, a risk of this approach is being unable to understand errors and warnings preventing your code from running. As such, we'll introduce the most important and pertinent aspects of the R language to meet your environmental chemistry needs.
 
 ## Variables
 
@@ -54,7 +54,7 @@ y <- 12
 
 The code above returns the `object 'y' not found` error because we're adding `+ 1` to `y` which hasn't been created yet, it's created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn't reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space using the 'broom' button in the *environment* pane. This will help you to ensure the code you're writing is organized in the correct order; see [Saving R Markdown] for why this is important.
 
-## Data types
+## Data Types
 
 Data types refer to how data is stored and handled by and in R. This can get complicated quickly, but we'll focus on the most common types here so you can get started on your work. Firstly, here are the data types you'll likely be working with:
 
@@ -79,7 +79,7 @@ is.integer(x)   # test if integer
 is.character(x) # test if character
 ```
 
-So the value of `x` is a character, in other words R treats it as a word, and we can't do math on that (think, how would you divide a word by a number?). So let's convert the data type of `x` to numeric to proceed.
+So the value of `x` is a character, in other words R treats it as a word, and we can't do math on that (note the quotation marks "" around the 6 in the code above that defined it as text). So let's convert the data type of `x` to numeric to proceed.
 
 ```{r}
 x 
@@ -99,14 +99,14 @@ x
 
 "NAs introduced by coercion" means that R didn't know how to convert "six" to a numeric value, so it instead turned it into an *NA*, representing a missing value.
 
-## Data structures
+## Data Structures
 
 Data structures refers to how R stores data. It's easy to get lost in the weeds here, so we'll start with the focus on the most common and useful data structure for your work: *data frames*.
 
 ### Data Frames
 Data frames consist of data stored in rows and columns. If you've ever worked with a spreadsheet (i.e. *Excel*), it's essentially that with the caveat that *all data stored in a column must be of the same type*. Again, different columns can have different data types, but *within* a column all the data needs to be the same type. R will convert your data otherwise to make it all the same. A common error is a single character in a column of numerical values leading to the entire column to be interpreted as character values; similar to what we discussed above. Errors like this most often stem from mistakes in recording and importing your data so be careful!
 
-#### Creating a new dataframe from scratch
+#### Creating a Dataframe from Scratch
 
 Let's see how we can create a dataframe by explicitly listing out the values.
 ```{r}
@@ -123,10 +123,10 @@ print(students)
 ```
 
 
-#### Reading data from a file
+#### Reading Data from a File
 Obviously when we have many more data, it would be unrealistic to manually list them out in our code. So instead, we can create a dataframe by reading a file.
 
-From the `R4EnvChem-ProjectTemplate`, downloaded in [Importing a project], let's import some real data as follows by typing the following into the console:
+From the `R4EnvChem-ProjectTemplate`, downloaded in [Importing a project], let's import some real data that was included in the downloaded project by typing the following code into the console:
 
 ```{r}
 airPol <- read.csv("data/2018-01-01_60430_Toronto_ON.csv")
@@ -139,7 +139,7 @@ airPol <- read.csv("data/2018-01-01_60430_Toronto_ON.csv")
 -   `pollutant` for the chemical measured
 -   `concentration` for the measured concentration in parts-per-million (ppm).
 
-We've assigned it to the variable: `airPol`. This is so we can reference it and make use of it later on (see below). If we didn't do this our data would simply be printed to the console which isn't helpful. Let's take a look at the first few rows of the data:
+We've assigned it to the variable: `airPol`. This is so we can reference it and make use of it later on (see below). If we didn't do this our data would simply be printed to the console which isn't helpful. Let's take a look at the first few rows of the data using the head function:
 
 ```{r}
 head(airPol)
@@ -147,13 +147,13 @@ head(airPol)
 
 Here we see that the data is stored in a **tidy** format, which is to say each column is a variable and each row is an observation. So reading the first row, we know that the Toronto 60430 station on 2018-07-01 at midnight measured ambient O~3~ concentrations of 46 ppm (Note the concentration column isn't printed due to width). The concept of tidy data is important and is integral to working in R. It's discussed further in [Tidying Your Data]. Lastly, R will only output a small chunk of our data for us to see. If you'd like to see it in full, go the the `Environment` pane and double click on the `airPol` data.
 
-### Accessing data in subfolders
+### Accessing Data in Subfolders
 
 Note that `read.csv()` requires us to specify the file name, but in the above example we prefixed our file name with `"data/2018..."`. This is because the `.csv` file we want to open is stored in the `data` sub-folder. By specifying this in the prefix, we tell `read.csv()` to first go to the `data` sub folder in the working directory and *then* search for and open the specified data file.
 
 What we've done above is called *relative referencing* and it's a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like `"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"`. If we weren't in a project, this is what you'd need to type to open your file, but since we're working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need `"data/2018..."`. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and Profs (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code & data) and the receiver could open it and run it as is.
 
-###  Other data structures
+###  Other Data Structures
 
 R has several other data structures. They aren't as frequently used, but it's worth being aware of their existence. Other structures include:
 
@@ -193,15 +193,15 @@ Before diving into conditional statements, let's take a moment to understand the
 
 R, like many programming languages, uses a combination of parentheses `()`, curly braces `{}`, and other symbols to organize and structure the code.
 
-1.  Parentheses `()`: These are primarily used to enclose arguments of functions and conditions in control statements, like if. For example, in `if (x > 5)`, the condition `x > 5` is enclosed in parentheses.
+1.  Parentheses `()`: These are primarily used to enclose arguments of functions and conditions in control statements, like 'if'. For example, in `if (x > 5)`, the condition `x > 5` is enclosed in parentheses.
 
-2.  Curly Braces `{}`: These are used to group multiple lines of code into a block. This is particularly useful in control statements where more than one line of code should be executed based on a condition.
+2.  Curly Brackets `{}`: These are used to group multiple lines of code into a block. This is particularly useful in control statements where more than one line of code should be executed based on a condition.
 
-The reason the curly bracket might span multiple lines is for readability. It makes it clear where a block of code begins and ends. While it's possible to write if-else statements without braces if only one statement is being conditioned, it's a good practice to always use them for clarity.
+The reason the curly bracket might span multiple lines is for readability. It makes it clear where a block of code begins and ends. While it's possible to write if-else statements without curly brackets if only one statement is being conditioned, it's good practice to always use them for clarity.
 
 Now, with this understanding, let's move on to how R uses these in conditional statements.
 
-### The basic `if` statement
+### The Basic `if` Statement
 
 ```{r}
 x <- 10
@@ -228,7 +228,7 @@ if (x > 5) {
 
 Here, because `x` is 3 (which is not greater than 5), R prints "x is 5 or less!".
 
-For situations where multiple conditions need to be evaluated in sequence, you can use the else if construct. This allows you to add more conditions after the initial if.
+For situations where multiple conditions need to be evaluated in sequence, you can use the `else if` construct. This allows you to add more conditions after the initial `if`.
 
 ```{r}
 x <- 6
@@ -246,10 +246,10 @@ if (x > 10) {
 In terms of syntax, it's important to remember:
 
 -   Always enclose the condition you're testing within parentheses `()`.  
--   Use curly braces `{}` to group the lines of code that should be executed for a particular condition.  
--   Make sure each else if or else follows an if or another else if. They cannot stand alone.
+-   Use curly brackets `{}` to group the lines of code that should be executed for a particular condition.  
+-   Make sure each `else if` or `else` follows an `if` or another `else if`. They cannot stand alone.
 
-## R built-in functions
+## R built-in Functions
 
 Built-in functions are the essential tools that allow you to perform a wide range of tasks without having to write the underlying code from scratch. These functions are part of the R language itself and are readily available for your use.
 
@@ -278,7 +278,7 @@ max(c(5, 10, 15, 20))
 min(c(5, 10, 15, 20))
 ```
 
-### Function documentation
+### Function Documentation
 
 An often unappreciated aspect of packages is that they not only contain functions we can use, but documentation. Documentation provides a description of the function (what it does), what arguments it takes, details, and working examples. Often the easiest way to learn how to use a function is to take a working example and change it bit by bit to see how it works etc. To see documentation check the "help" tab in the "outputs" window or type a question mark in front of a functions name:
 

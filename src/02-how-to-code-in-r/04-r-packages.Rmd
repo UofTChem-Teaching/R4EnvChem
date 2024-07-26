@@ -94,23 +94,6 @@ mpg %>%
 The `tidyverse` allows for efficient reading of rectangular data, such as CSV and TSV files. For instance, instead of using the R built-in function `read.csv()`, you can employ a similar function, `read_csv()`, from `tidyverse` to quickly import a CSV file as a data frame. This function provides more flexibility and is optimized for faster performance.
 
 
-## Smile: Handling Chemical Structures in R
-Let's look at one more package that you might find interesting: `smile`. <More to be added>
-
-### Installation
-
-```{r}
-# to be added
-```
-
-### A simple example
-<To be added>
-
-```{r}
-# to be added
-```
-
-
 ## Summary
 
 In this chapter, we delved into the world of R packages, understanding their significance and advantages over built-in R functions. We highlighted the functionalities of `tidyverse`, showcasing practical examples. 

@@ -15,9 +15,9 @@ x <- 2+2
 x
 ```
 
-What we've done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn't anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example:
+What we've done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn't anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example here is a time series of 2018 ambient atmospheric O~3~, NO~2~, and SO~2~ concentrations (ppb) in downtown Toronto:
 
-```{r, message = FALSE, fig.cap= "Time series of 2018 ambient atmospheric O~3~, NO~2~, and SO~2~ concentrations (ppb) in downtown Toronto", fig.height=2}
+```{r, message = FALSE, fig.height=2}
 library(tidyverse) 
 library(knitr)
 
@@ -51,9 +51,9 @@ A lot of scientists work with R Markdown for writing their reports for numerous 
 
 In sum, R Markdown provides a streamlined platform for scientific communication, merging data analysis with polished publication seamlessly.
 
-## Getting started with R Markdown
+## Getting Started with R Markdown
 
-As you've already guessed, R markdown documents use R and are most easily written and assembled in RStudio. If you have not done so, revisit Chapter 1:[Installing R]. Once setup with R and R Studio, you'll need to install the `R Markdown` and `tinytex` packages by running the following code in the console:
+As you've already guessed, R markdown documents use R and are most easily written and assembled in RStudio. If you have not done so, revisit Chapter 1:[Intro to R and RStudio]. Once setup with R and R Studio, you'll need to install the `R Markdown` and `tinytex` packages by running the following code in the console:
 
 ```{r, eval = FALSE}
 # These are large packages so it'll take a couple of minutes to install
@@ -82,7 +82,7 @@ output: pdf_document
 ---
 ```
 
-This section is known as the *preamble* and it's where you specify most of the document parameters. In the example we can see that the document title is ["Temporal Analysis of Foot Impacts While Birling Down the White Water"](https://www.youtube.com/watch?v=upsZZ2s3xv8), it's written by Jean Guy Rubberboots, on the 24th of June, and the default output is a PDF document. You can modify the preamble to suit your needs. For example, if you wanted to change the title you would write `title: "Your Title Here"` in the preamble. Note that none of this is `R` code, rather it's `YAML`, the syntax for the document's metadata. Apart from what's shown you shouldn't need to worry about this much, just remember that indentation in [YAML matters](https://bookdown.org/yihui/R%20Markdown/pdf-document.html).
+This section is known as the *preamble* and it's where you specify most of the document parameters. In the example we can see that the document title is ["Temporal Analysis of Foot Impacts While Birling Down the White Water"](https://www.youtube.com/watch?v=upsZZ2s3xv8), it's written by Jean Guy Rubberboots, on the 24th of June, and the default output is a PDF document. You can modify the preamble to suit your needs. For example, if you wanted to change the title you would write `title: "Your Title Here"` in the preamble. Note that none of this is `R` code, rather it's `YAML`, the syntax for the document's metadata. Apart from what's shown you shouldn't need to worry about this much, just remember that indentation in YAML matters.
 
 #### Output Options in R Markdown
 
@@ -106,9 +106,9 @@ R Markdown offers flexibility in terms of output formats, allowing users to knit
 
     ![](images/knit_options.png){width="70%"}
 
-### Running code in R Markdown
+### Running Code in R Markdown
 
-#### How to create code chunks
+#### How to Create Code Chunks
 
 To create a code chunk within RStudio, you have several options:
 
@@ -116,7 +116,7 @@ To create a code chunk within RStudio, you have several options:
 
 ![](images/rmd_codeblock_1.png)
 
-2.  Type ```` ```{r} ```` -- three back-ticks followed by `{r}` -- to initiate a new code chunk, and type ```` ``` ```` -- three backticks (\`\`\`) -- to end the code chunk. You can specify code chunks options in the curly braces. i.e. ```` ```{r, fig.height = 2} ```` sets figure height to 2 inches. See the *Code Chunk Options* section below for more details.
+2.  Type ```` ```{r} ```` -- three back-ticks followed by `{r}` -- to initiate a new code chunk, and type ```` ``` ```` -- three backticks (\`\`\`) -- to end the code chunk. You can specify code chunk options in the curly brackets. i.e. ```` ```{r, fig.height = 2} ```` sets figure height to 2 inches. See the *Code Chunk Options* section below for more details.
 
 ![](images/rmd_codeblock_2.png)
 
@@ -124,19 +124,19 @@ To create a code chunk within RStudio, you have several options:
 
 ![When we knit the markdown file shown in the figure, the knitted document will say "We found that *x* is 4."](images/inline_code.png)
 
-#### How to run code chunks
+#### How to Run Code Chunks
 
 To run code within an R Markdown document, you again have various options to choose from.
 
 1.  You can run a specific code chunk by clicking the green triangle button located within each chunk. This action will execute the entire chunk, including all the code it contains.
 
-![Run a code chunk using its own run button.](images/run_code_1.png)
+![](images/run_code_1.png)
 
 2.  For more control, you can run selected lines or chunks. To do this, use the "Run" button at the top of the file view. This button provides a range of execution options that allow you to run code in a manner that suits your needs.
 
-![Example: Run selected line(s)](images/run_code_2.png)
+![](images/run_code_2.png)
 
-![Example: Run Current Chunk](images/run_code_3.png)
+![](images/run_code_3.png)
 
 **Note all the code chunks in a single markdown document work together like a normal R script.** That is if you assign a value to a variable in the first chunk, you can call this variable in the second chunk; the same applies for libraries. **Also note that every time you compile a markdown document, it's done in a "fresh" R session.** If you're calling a variable that exist in your working environment, but isn't explicitly created in the markdown document you'll get an error.
 
@@ -224,13 +224,13 @@ There are numerous online resources dedicated to LaTeX symbols and their usage.
 
 ## Compiling your final report
 
-To create a PDF to hand in, you'll need to compile, or knit, your entire markdown document as mentioned above. To knit your R markdown script, simply click the *knit* button in R Studio (yellow box, Figure 2). You can specify what output you would like and R Studio will (hopefully) compile your script. Remember, you can test or run individual code chunks as outlined in [Running code in R Markdown].
+To create a PDF to hand in, you'll need to compile, or knit, your entire markdown document as mentioned above. To knit your R markdown script, simply click the *knit* button in R Studio (yellow box, Figure 2). You can specify what output you would like and R Studio will (hopefully) compile your script. Remember, you can test or run individual code chunks as outlined in [Running Code in R Markdown].
 
 ## Authoring with R Markdown
 
 Below is a brief summary of the major elements required to author an R Markdown document. They should address the majority of your needs, but please see the [R Markdown resources] for more information.
 
-### R markdown syntax
+### R Markdown Syntax
 
 Unlike *Microsoft Word*, R Markdown utilizes a specific syntax for text formatting. Once you get used to it, it makes typing documents much easier than *Word*'s approach. The table below is how some of the most common text formatting is typed in your R Markdown document (syntax & example column) and how it'll appear in the final output.
 
@@ -242,9 +242,9 @@ Unlike *Microsoft Word*, R Markdown utilizes a specific syntax for text formatti
 | superscript     |     \^text\^ | this is \^superscript\^ | this is ^superscript^ |
 | monospace       |     \`text\` |  this is \`monospaced\` |   this is `monospace` |
 
-For a collection of other R Markdown syntax, please see the useful (and brief) list compiled online [here](https://R%20Markdown.rstudio.com/authoring_basics.html). This includes ordered and unordered lists, headers, code blocks, hyperlinks, and figure captions.
+For a collection of other R Markdown syntax, please see the useful (and brief) list compiled online [here](https://rmarkdown.rstudio.com/authoring_basics.html).
 
-### R code chunk options
+### R Code Chunk Options
 
 Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that'll affect how your code chunk is run and displayed in the final output document. You include options in the chunk delimiters ```` ```{r} ```` and ```` ``` ````. For example the following code tells markdown you're running code written in `R`, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption "Some Caption".
 
