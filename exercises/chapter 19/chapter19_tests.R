@@ -45,7 +45,7 @@ missing_column_error_message <- function(data, required_columns) {
 }
 
 # Specify the path to your Rmd file
-rmd_file_path <- get_rmd_path("chapter 19", "chapter19 2.Rmd")
+rmd_file_path <- get_rmd_path("chapter 19", "chapter19.Rmd")
 
 # Exercise 2: Grouping and Summarizing Data
 test_that("Grouping and Summarizing Test", {
