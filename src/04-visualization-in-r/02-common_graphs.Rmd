@@ -279,14 +279,13 @@ While you can overlap histograms, it gets difficult to read with more than a han
 ggplot(data = atlNO2, 
        aes(x = conc, fill = p)) + 
   geom_histogram(binwidth = 1, position = "identity") +
-  facet_wrap(~city) +
-  labs(y = expression(Concentration~NO[2]~(ppb)))
+  facet_wrap(~city)
 ```
 
 
-## Scatter plots
+## Scatter Plots
 
-Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point is plotted as an individual point. You've already learned the basics of scatter plots in Chapter 14. Now, we'll touch upon some things you can do to improve your scatter plots.
+Scatter plots display values of two variables, one of which is a *continuous* variable. Each data point is plotted as an individual point. You've already learned the basics of scatter plots in [Ggplot Basic Visualizations]. Now, we'll touch upon some things you can do to improve your scatter plots.
 
 ### Marginal plots
 
