@@ -441,7 +441,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="17.1.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#adding-error-bars"><i class="fa fa-check"></i><b>17.1.1</b> Adding Error Bars</a></li>
 <li class="chapter" data-level="17.1.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#ordering-bar-charts"><i class="fa fa-check"></i><b>17.1.2</b> Ordering Bar Charts</a></li>
-<li class="chapter" data-level="17.1.3" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#grouping-bar-charts"><i class="fa fa-check"></i><b>17.1.3</b> Grouping bar charts</a></li>
+<li class="chapter" data-level="17.1.3" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#grouping-bar-charts"><i class="fa fa-check"></i><b>17.1.3</b> Grouping Bar Charts</a></li>
 </ul></li>
 <li class="chapter" data-level="17.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#box-plots"><i class="fa fa-check"></i><b>17.2</b> Box Plots</a>
 <ul>
@@ -561,7 +561,7 @@ div.csl-indent {
 <li><p><code>ggplot()</code> includes <code>geom_col()</code> and <code>geom_bar()</code>. While both can be used to make bar charts. <code>geom_col()</code> is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas <code>geom_bar()</code> makes the height of the bar proportional to the number of cases in each group.</p></li>
 <li><p>To our aesthetic mappings we’ve specified which values from the <code>sumAtl</code> are supposed to be our x-axis (<code>x = city</code>) and y-axis (<code>y = mean</code>).</p></li>
 <li><p>We used <code>coord_flip()</code> to rotate our plot 90<span class="math inline">\(^\circ\)</span> therefore the supplied <code>x</code> option of <code>city</code> is now plotted on the vertical axis. This makes reading long categorical names (i.e. the names of cities) easier. <code>coord_flip()</code> doesn’t change anything else except the final orientation of the plot.</p></li>
-<li><p>We used <code>labs()</code> to provide clearer labels for our axes than those defined by the column titles. Note that because we flipped the axes the y-axis is the horizontal axis and the x-axis is the vertical axis. Also note the use of the <code>expression()</code> function within the y-axis label, this is because subscripts and superscripts are not possible in the <code>labs()' function. The way that in that the</code>expression()` function works is a bit strange, you specify a space between characters/words by using a tilde ~, a subscript is specified by square brackets [], and superscript by a caret ^.</p></li>
+<li><p>We used <code>labs()</code> to provide clearer labels for our axes than those defined by the column titles. Note that because we flipped the axes the y-axis is the horizontal axis and the x-axis is the vertical axis. Also note the use of the <code>expression()</code> function within the y-axis label, this is because subscripts and superscripts are not possible in the <code>labs()</code> function. The way that in that the <code>expression()</code> function works is a bit strange, you specify a space between characters/words by using a tilde ~, a subscript is specified by square brackets [], and superscript by a caret ^.</p></li>
 </ol>
 <div id="adding-error-bars" class="section level3 hasAnchor" number="17.1.1">
 <h3><span class="header-section-number">17.1.1</span> Adding Error Bars<a href="common-types-of-graphs.html#adding-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -579,20 +579,26 @@ div.csl-indent {
 </div>
 <div id="ordering-bar-charts" class="section level3 hasAnchor" number="17.1.2">
 <h3><span class="header-section-number">17.1.2</span> Ordering Bar Charts<a href="common-types-of-graphs.html#ordering-bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Often with bar charts (and similar plots), it’s useful to <em>order</em> the bars to help tell a story or convey information. We can effectuate this using <code>fct_reorder()</code>:</p>
+<p>Often with bar charts (and similar plots), it’s useful to <em>order</em> the bars to help tell a story or convey information. We can do this using <code>fct_reorder()</code>:</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="common-types-of-graphs.html#cb247-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
 <span id="cb247-2"><a href="common-types-of-graphs.html#cb247-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, mean),</span>
 <span id="cb247-3"><a href="common-types-of-graphs.html#cb247-3" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
 <span id="cb247-4"><a href="common-types-of-graphs.html#cb247-4" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb247-5"><a href="common-types-of-graphs.html#cb247-5" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
 <span id="cb247-6"><a href="common-types-of-graphs.html#cb247-6" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb247-7"><a href="common-types-of-graphs.html#cb247-7" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<span id="cb247-7"><a href="common-types-of-graphs.html#cb247-7" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb247-8"><a href="common-types-of-graphs.html#cb247-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;City in Atlantic Canada&quot;</span>,</span>
+<span id="cb247-9"><a href="common-types-of-graphs.html#cb247-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Mean<span class="sc">~</span>NO[<span class="dv">2</span>]<span class="sc">~</span>(ppb)))</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 <p>So in our aesthetics call for <code>geom_bar</code> we specified the <code>x</code> variable should be <code>city</code>, but ordered based on their corresponding <code>mean</code> value. Doing this has helped shed some light on trends in NO<sub>2</sub> levels. For one, despite Labrador City having lower mean [NO<sub>2</sub>], we can now easily see that it has a larger variation in [NO<sub>2</sub>] than Corner Brook.</p>
 </div>
 <div id="grouping-bar-charts" class="section level3 hasAnchor" number="17.1.3">
-<h3><span class="header-section-number">17.1.3</span> Grouping bar charts<a href="common-types-of-graphs.html#grouping-bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sometimes you’ll want to group bar charts as in the concentration of several chemicals in different locations. We can easily group bar charts in ggplot. Let’s go ahead and group our mean annual [NO<sub>2</sub>] by province by simply (1) reordering based on province, and (2) colour bars based on province:</p>
+<h3><span class="header-section-number">17.1.3</span> Grouping Bar Charts<a href="common-types-of-graphs.html#grouping-bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes you’ll want to create groups within your bar charts. One example of this in the <code>atldata</code> dataset is to group the cities by province. To visualize trends within each province in the code below we decided to:</p>
+<ol style="list-style-type: decimal">
+<li><p>Reorder the cities based on province using the <code>fct_reorder()</code> function that specifies which variable is being ordered (<code>city</code>) and what information is being used to order it (<code>p</code> column).</p></li>
+<li><p>Colour the bars based on province using <code>fill = p</code>.</p></li>
+</ol>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="common-types-of-graphs.html#cb248-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
 <span id="cb248-2"><a href="common-types-of-graphs.html#cb248-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, p),</span>
 <span id="cb248-3"><a href="common-types-of-graphs.html#cb248-3" tabindex="-1"></a>           <span class="at">y =</span> mean, </span>
@@ -600,7 +606,9 @@ div.csl-indent {
 <span id="cb248-5"><a href="common-types-of-graphs.html#cb248-5" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb248-6"><a href="common-types-of-graphs.html#cb248-6" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
 <span id="cb248-7"><a href="common-types-of-graphs.html#cb248-7" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb248-8"><a href="common-types-of-graphs.html#cb248-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<span id="cb248-8"><a href="common-types-of-graphs.html#cb248-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb248-9"><a href="common-types-of-graphs.html#cb248-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;City in Atlantic Canada&quot;</span>,</span>
+<span id="cb248-10"><a href="common-types-of-graphs.html#cb248-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Mean<span class="sc">~</span>NO[<span class="dv">2</span>]<span class="sc">~</span>(ppb)))</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <p>There are other ways to group your bar charts depending on the story you want to tell and the data you have. Please consult the <a href="https://www.r-graph-gallery.com/48-grouped-barplot-with-ggplot2.html">Grouped, stacked and percent stacked barplot in ggplot2</a> page from the <em>R-graph-gallery</em>.</p>
 </div>
