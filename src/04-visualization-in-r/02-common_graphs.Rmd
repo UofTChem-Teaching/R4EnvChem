@@ -256,7 +256,8 @@ Histograms are an approximate representation of the distributions of numerical d
 ggplot(data = subset(atlNO2, city = "St Johns"), 
        aes(x = conc)) +
   geom_histogram() +
-  labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018")
+  labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018",
+       y = expression(Concentration~NO[2]~(ppb)))
 ```
 
 We can alter the resolution of our histogram by modifying the width of the bins using the `binwidth` argument or by specifying the number of bins with the `bins` argument. The former is useful when you don't know the range of your data, whereas the latter is useful is you do (i.e. numbers between 0 and 100).
@@ -265,7 +266,8 @@ We can alter the resolution of our histogram by modifying the width of the bins 
 ggplot(data = subset(atlNO2, city = "St Johns"), 
        aes(x = conc)) +
   geom_histogram(binwidth = 1) +
-  labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018, binwidth = 1")
+  labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018, binwidth = 1"
+       y = expression(Concentration~NO[2]~(ppb)))
 ```
 
 ### Multiple histograms
@@ -277,7 +279,8 @@ While you can overlap histograms, it gets difficult to read with more than a han
 ggplot(data = atlNO2, 
        aes(x = conc, fill = p)) + 
   geom_histogram(binwidth = 1, position = "identity") +
-  facet_wrap(~city)
+  facet_wrap(~city) +
+  labs(y = expression(Concentration~NO[2]~(ppb)))
 ```
 
 
