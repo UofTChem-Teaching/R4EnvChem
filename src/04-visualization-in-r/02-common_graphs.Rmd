@@ -3,7 +3,7 @@
 In this chapter, you will learn how to create some of the most commonly used graphs, including bar plots, box plots, histograms, and scatterplots. These powerful visualization tools will enable you to explore and communicate your data effectively, gaining valuable insights along the way. 
 
 
-## Bar charts
+## Bar Charts
 
 Bar charts, also called *column* charts, represent *categorical* data with rectangular bars whose height/length is proportional to the values they represent.
 
@@ -13,21 +13,22 @@ ggplot(data = sumAtl,
            y = mean)) +
   geom_col() +
   coord_flip() +
-  labs(x = "Mean NO~2~ (ppb)",
-       y = "City in Atlantic Canada")
+  labs(x = "City in Atlantic Canada",
+       y = "Mean NO[2] (ppb)")
 ```
 
-Not an overly exciting plot, but it's gotten the job done showing the mena NO~2~ concentrations in each of the Atlantic Canada provinces. Let's break the code down:
+Not an overly exciting plot, but it's gotten the job done showing the mean NO~2~ concentrations in each of the Atlantic Canada provinces (remember that this dataset was created in the [Summarizing Data] chapter). Let's break down the code above:
+
 1. `ggplot()` includes `geom_col()` and `geom_bar()`. While both can be used to make bar charts. `geom_col()` is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas `geom_bar()` makes the height of the bar proportional to the number of cases in each group. 
 
 2. To our aesthetic mappings we've specified which values from the `sumAtl` are supposed to be our x-axis values (`x = city`) and y-axis values (`y = mean`).
 
-3. We used `coord_flip()` to rotate our plot 90$^\circ$** therefore the supplied `x` option of `city` is now plotted on the `y-axis`. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot. 
+3. We used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the `y-axis`. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot. 
 
-4. We used `labs()` to provide clearer labels for our axes than those defined by the column titles. 
+4. We used `labs()` to provide clearer labels for our axes than those defined by the column titles. Note that because we flipped the axes the horzontal axis is now defined at the y-axis and the vertical axis is defined at the y-axis. Also note that the subscript in NO~2~ is defined using square brackets ([]) and superscript about be defined using a caret (^).
 
 
-### Adding error bars
+### Adding Error Bars
 
 Any measurement always has an associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our `sumAtl` dataset we've calculated the standard deviation as a measure of uncertainty. In our example, we've used the standard deviation (`sd`) as a measure of uncertainty of our calculated annual means.
 
