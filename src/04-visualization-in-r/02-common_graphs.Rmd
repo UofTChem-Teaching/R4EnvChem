@@ -99,7 +99,9 @@ Box plots give a summary of the *distribution* of a numeric variable through the
 ggplot(data = atlNO2, 
        aes( x = city, y = conc)) +
   geom_boxplot() + 
-  coord_flip()
+  coord_flip() +
+  labs(x = "City in Atlantic Canada",
+       y = expression(Concentration~NO[2]~(ppb)))
 
 ```
 
@@ -208,22 +210,23 @@ ggpubr::ggarrange(a,b, ncol = 1, align = "v")
 
 ```
 
-Note that we've plotted the actual distribution of the data. Prior to computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren't very intuitive (see the score of text you just read to understand them). Consequently, we strongly recommend you explore some of the [Box plot alternatives] unless you explicitly need to create box-plots.
+Note that we've plotted the actual distribution of the data. Prior to computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. A useful alternative to box-plot are [Violin Plots], which are explored in the next section.
 
-### Box plot alternatives
+### Violin Plots
 
-The first alternative to box-plots is the *violin plot* which is made using `geom_violin()`. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive than box-plots. While the example below isn't the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown has days where [NO~2~] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO~2~. This might be because of differences in regional ambient levels of NO~2~.
+Violin plots are made using `geom_violin()`. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive than box-plots. While the example below isn't the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown has days where [NO~2~] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO~2~. This might be because of differences in regional ambient levels of NO~2~.
 
 ```{r atl-violin}
 ggplot(data = atlNO2, 
        aes(x = city, y = conc, fill = p)) + 
   geom_violin() +
-  coord_flip()
+  coord_flip() +
+  labs(x = "City in Atlantic Canada",
+       y = expression(Concentration~NO[2]~(ppb)))
 ```
 
-Another alternative is to plot the points over top of the box-plot. You've encountered this example in [R coding basics]. Truth be told, there are countless ways to visualize distribution.
 
-### Statistical comparisons between groups
+### Statistical Comparisons Between Groups
 
 Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as `ggpubr` have many built-in functionalities to display the results of these outcomes.
 
@@ -240,7 +243,7 @@ ggpubr::ggviolin(nfld, x = "city", y = "conc") +
                              label = "p.signif") 
 ```
 
-Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO2 values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We've included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics.
+Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO~2~ values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We've included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics.
 
 For more information on `ggpubr`, adding p-values and significance labels, and different pairwise statistical test please visit [ggpubr: Publication Ready Plots](http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/).
 
