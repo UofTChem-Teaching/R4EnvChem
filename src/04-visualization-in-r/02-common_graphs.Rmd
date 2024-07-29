@@ -25,7 +25,7 @@ Not an overly exciting plot, but it gets the job done showing the mean NO~2~ con
 
 3. We used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the vertical axis. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot. 
 
-4. We used `labs()` to provide clearer labels for our axes than those defined by the column titles. Note that because we flipped the axes the y-axis is the horizontal axis and the x-axis is the vertical axis. Also note the use of the `expression()` function within the y-axis label, this is because subscripts and superscripts are not possible in the `labs()' function. The way that in that the `expression()` function works is a bit strange, you specify a space between characters/words by using a tilde ~, a subscript is specified by square brackets [], and superscript by a caret ^.
+4. We used `labs()` to provide clearer labels for our axes than those defined by the column titles. Note that because we flipped the axes the y-axis is the horizontal axis and the x-axis is the vertical axis. Also note the use of the `expression()` function within the y-axis label, this is because subscripts and superscripts are not possible in the `labs()` function. The way that in that the `expression()` function works is a bit strange, you specify a space between characters/words by using a tilde ~, a subscript is specified by square brackets [], and superscript by a caret ^.
 
 ### Adding Error Bars
 
@@ -47,7 +47,7 @@ Some of the error bars indicate we could get a *negative* concentration of NO~2~
 
 ### Ordering Bar Charts
 
-Often with bar charts (and similar plots), it's useful to *order* the bars to help tell a story or convey information. We can effectuate this using `fct_reorder()`:
+Often with bar charts (and similar plots), it's useful to *order* the bars to help tell a story or convey information. We can do this using `fct_reorder()`:
 
 ```{r}
 
@@ -57,14 +57,20 @@ ggplot(data = sumAtl,
   geom_bar(stat = "identity") +
   geom_errorbar(aes(ymin = mean - sd, 
                     ymax = mean + sd)) +
-  coord_flip()
+  coord_flip() +
+  labs(x = "City in Atlantic Canada",
+       y = expression(Mean~NO[2]~(ppb)))
 ```
 
 So in our aesthetics call for `geom_bar` we specified the `x` variable should be `city`, but ordered based on their corresponding `mean` value. Doing this has helped shed some light on trends in NO~2~ levels. For one, despite Labrador City having lower mean [NO~2~], we can now easily see that it has a larger variation in [NO~2~] than Corner Brook.
 
-### Grouping bar charts
+### Grouping Bar Charts
 
-Sometimes you'll want to group bar charts as in the concentration of several chemicals in different locations. We can easily group bar charts in ggplot. Let's go ahead and group our mean annual [NO~2~] by province by simply (1) reordering based on province, and (2) colour bars based on province:
+Sometimes you'll want to create groups within your bar charts. One example of this in the `atldata` dataset is to group the cities by province. To visualize trends within each province in the code below we decided to:
+
+1. Reorder the cities based on province using the `fct_reorder()` function that specifies which variable is being ordered (`city`) and what information is being used to order it (`p` column). 
+
+2. Colour the bars based on province using `fill = p`.
 
 ```{r}
 
@@ -76,7 +82,9 @@ ggplot(data = sumAtl,
   geom_bar(stat = "identity") +
   geom_errorbar(aes(ymin = mean - sd, 
                     ymax = mean + sd)) +
-  coord_flip()
+  coord_flip() +
+  labs(x = "City in Atlantic Canada",
+       y = expression(Mean~NO[2]~(ppb)))
 ```
 
 There are other ways to group your bar charts depending on the story you want to tell and the data you have. Please consult the [Grouped, stacked and percent stacked barplot in ggplot2](https://www.r-graph-gallery.com/48-grouped-barplot-with-ggplot2.html) page from the *R-graph-gallery*.
