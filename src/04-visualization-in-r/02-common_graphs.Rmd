@@ -13,13 +13,19 @@ ggplot(data = sumAtl,
            y = mean)) +
   geom_col() +
   coord_flip() +
-  labs(x = "Mean NO_2 (ppb)",
+  labs(x = "Mean NO~2~ (ppb)",
        y = "City in Atlantic Canada")
 ```
 
-Pretty boring, but it's gotten the job done. **Note** that we used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the `y-axis`. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot.
+Not an overly exciting plot, but it's gotten the job done showing the mena NO~2~ concentrations in each of the Atlantic Canada provinces. Let's break the code down:
+1. `ggplot()` includes `geom_col()` and `geom_bar()`. While both can be used to make bar charts. `geom_col()` is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas `geom_bar()` makes the height of the bar proportional to the number of cases in each group. 
 
-Also note that `ggplot()` includes `geom_col()` and `geom_bar()`. While both can be used to make bar charts. `geom_col()` is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas `geom_bar()` makes the height of the bar proportional to the number of cases in each group.
+2. To our aesthetic mappings we've specified which values from the `sumAtl` are supposed to be our x-axis values (`x = city`) and y-axis values (`y = mean`).
+
+3. We used `coord_flip()` to rotate our plot 90$^\circ$** therefore the supplied `x` option of `city` is now plotted on the `y-axis`. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot. 
+
+4. We used `labs()` to provide clearer labels for our axes than those defined by the column titles. 
+
 
 ### Adding error bars
 
