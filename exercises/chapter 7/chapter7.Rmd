@@ -9,8 +9,8 @@ output:
 
 **Your Task:**
 
-1.  Install the `xgboost` package.\
-2.  Install `XML` and `mlr3` packages in one line of code by passing in two package names as a single variable.
+1. Install the `xgboost` package.
+2. Install `XML` and `mlr3` packages in one line of code by passing in two package names as a single variable.
 
 **Consider:** You might want to run `?install.packages()` to see what data type it allows for the package names.
 
@@ -52,9 +52,9 @@ test_that("Installing Packages", {
 
 # Exercise 2: Read a CSV file -- tidyverse
 
-**Your Task:** Your objective is to read a CSV file using the `tidyverse` package.\
-1. Download "sample_data.csv" from this chapter.\
-2. If you're working on the UofT JupyterHub, upload the CSV file to your JupyterHub RStudio so that the server has access to the file. If you are working on your own RStudio, make sure the CSV file is in the same folder as this Rmd file.\
+**Your Task:** Your objective is to read a CSV file using the `tidyverse` package.
+1. Download "sample_data.csv" from this chapter.
+2. If you're working on the UofT JupyterHub, upload the CSV file to your JupyterHub RStudio so that the server has access to the file. If you are working on your own RStudio, make sure the CSV file is in the same folder as this Rmd file.
 3. Use the appropriate function to read in the CSV file. **Do not use any R built-in function to read the file**. Assign the loaded data to a variable named `csv_data`.
 
 Note: Load the entire `tidyverse` package.
@@ -84,9 +84,9 @@ test_that("Reading a CSV File with readr", {
 
 **Your Task:** Your objective is to create a scatterplot using functions from ggplot2. Use the data you loaded in Exercise 2 (`csv_data`).
 
-1.  Create a scatterplot with `Age` on the x-axis and `Score` on the y-axis.\
-2.  Make sure the plot has a title "Age vs. Score".\
-3.  Save the plot to a variable named `scatter_plot`.
+1. Create a scatterplot with `Age` on the x-axis and `Score` on the y-axis.
+2. Make sure the plot has a title "Age vs. Score".
+3. Save the plot to a variable named `scatter_plot`.
 
 **Consider**: Visit this ggplot2 webpage to learn more about customizing the plot: <https://ggplot2.tidyverse.org/reference/labs.html>
 
@@ -115,9 +115,9 @@ test_that("Scatterplot with ggplot2", {
 
 **Your Task:** Using the `csv_data` dataset, your objective is to perform some data filtering and summarization.
 
-1.  Filter the `csv_data` dataset to only include individuals with an `Age` greater than the **median age** of the dataset.\
-2.  For these older individuals, compute **both** the average and the standard deviation of the `Score`.\
-3.  Save the result to a variable named `stats_result`.
+1. Filter the `csv_data` dataset to only include individuals with an `Age` greater than the **median age** of the dataset.
+2. For these older individuals, compute **both** the average and the standard deviation of the `Score`.
+3. Save the result to a variable named `stats_result`.
 
 **Consider**: You'll need to use functions you might not have encountered in the chapter. Consult the `dplyr` documentation or help files (e.g., `?summarize` in RStudio) to figure out how to compute the median for filtering and how to calculate the standard deviation within `summarize()`.
 
