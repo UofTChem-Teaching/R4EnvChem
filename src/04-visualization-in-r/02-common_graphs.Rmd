@@ -12,9 +12,8 @@ ggplot(data = sumAtl,
        aes(x = city, 
            y = mean)) +
   geom_col() +
-  coord_flip() # rotates plot 90 degrees
-
-labs(x = "Mean NO_2 (ppb)",
+  coord_flip() +
+  labs(x = "Mean NO_2 (ppb)",
        y = "City in Atlantic Canada")
 ```
 
