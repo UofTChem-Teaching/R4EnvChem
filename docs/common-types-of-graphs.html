@@ -437,9 +437,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="17" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html"><i class="fa fa-check"></i><b>17</b> Common Types of Graphs</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#bar-charts"><i class="fa fa-check"></i><b>17.1</b> Bar charts</a>
+<li class="chapter" data-level="17.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#bar-charts"><i class="fa fa-check"></i><b>17.1</b> Bar Charts</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#adding-error-bars"><i class="fa fa-check"></i><b>17.1.1</b> Adding error bars</a></li>
+<li class="chapter" data-level="17.1.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#adding-error-bars"><i class="fa fa-check"></i><b>17.1.1</b> Adding Error Bars</a></li>
 <li class="chapter" data-level="17.1.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#ordering-bar-charts"><i class="fa fa-check"></i><b>17.1.2</b> Ordering bar charts</a></li>
 <li class="chapter" data-level="17.1.3" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#grouping-bar-charts"><i class="fa fa-check"></i><b>17.1.3</b> Grouping bar charts</a></li>
 </ul></li>
@@ -546,25 +546,25 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 17</span> Common Types of Graphs<a href="common-types-of-graphs.html#common-types-of-graphs" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In this chapter, you will learn how to create some of the most commonly used graphs, including bar plots, box plots, histograms, and scatterplots. These powerful visualization tools will enable you to explore and communicate your data effectively, gaining valuable insights along the way.</p>
 <div id="bar-charts" class="section level2 hasAnchor" number="17.1">
-<h2><span class="header-section-number">17.1</span> Bar charts<a href="common-types-of-graphs.html#bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">17.1</span> Bar Charts<a href="common-types-of-graphs.html#bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Bar charts, also called <em>column</em> charts, represent <em>categorical</em> data with rectangular bars whose height/length is proportional to the values they represent.</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="common-types-of-graphs.html#cb245-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl,</span>
 <span id="cb245-2"><a href="common-types-of-graphs.html#cb245-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, </span>
 <span id="cb245-3"><a href="common-types-of-graphs.html#cb245-3" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
 <span id="cb245-4"><a href="common-types-of-graphs.html#cb245-4" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
 <span id="cb245-5"><a href="common-types-of-graphs.html#cb245-5" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb245-6"><a href="common-types-of-graphs.html#cb245-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Mean NO~2~ (ppb)&quot;</span>,</span>
-<span id="cb245-7"><a href="common-types-of-graphs.html#cb245-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;City in Atlantic Canada&quot;</span>)</span></code></pre></div>
+<span id="cb245-6"><a href="common-types-of-graphs.html#cb245-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;City in Atlantic Canada&quot;</span>,</span>
+<span id="cb245-7"><a href="common-types-of-graphs.html#cb245-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean NO[2] (ppb)&quot;</span>)</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
-<p>Not an overly exciting plot, but it’s gotten the job done showing the mena NO<sub>2</sub> concentrations in each of the Atlantic Canada provinces. Let’s break the code down:
-1. <code>ggplot()</code> includes <code>geom_col()</code> and <code>geom_bar()</code>. While both can be used to make bar charts. <code>geom_col()</code> is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas <code>geom_bar()</code> makes the height of the bar proportional to the number of cases in each group.</p>
-<ol start="2" style="list-style-type: decimal">
+<p>Not an overly exciting plot, but it’s gotten the job done showing the mean NO<sub>2</sub> concentrations in each of the Atlantic Canada provinces (remember that this dataset was created in the <a href="summarizing-data.html#summarizing-data">Summarizing Data</a> chapter). Let’s break down the code above:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>ggplot()</code> includes <code>geom_col()</code> and <code>geom_bar()</code>. While both can be used to make bar charts. <code>geom_col()</code> is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas <code>geom_bar()</code> makes the height of the bar proportional to the number of cases in each group.</p></li>
 <li><p>To our aesthetic mappings we’ve specified which values from the <code>sumAtl</code> are supposed to be our x-axis values (<code>x = city</code>) and y-axis values (<code>y = mean</code>).</p></li>
-<li><p>We used <code>coord_flip()</code> to rotate our plot 90<span class="math inline">\(^\circ\)</span>** therefore the supplied <code>x</code> option of <code>city</code> is now plotted on the <code>y-axis</code>. This makes reading long categorical names (i.e. the names of cities) easier. <code>coord_flip()</code> doesn’t change anything else except the final orientation of the plot.</p></li>
-<li><p>We used <code>labs()</code> to provide clearer labels for our axes than those defined by the column titles.</p></li>
+<li><p>We used <code>coord_flip()</code> to rotate our plot 90<span class="math inline">\(^\circ\)</span> therefore the supplied <code>x</code> option of <code>city</code> is now plotted on the <code>y-axis</code>. This makes reading long categorical names (i.e. the names of cities) easier. <code>coord_flip()</code> doesn’t change anything else except the final orientation of the plot.</p></li>
+<li><p>We used <code>labs()</code> to provide clearer labels for our axes than those defined by the column titles. Note that because we flipped the axes the horzontal axis is now defined at the y-axis and the vertical axis is defined at the y-axis. Also note that the subscript in NO<sub>2</sub> is defined using square brackets ([]) and superscript about be defined using a caret (^).</p></li>
 </ol>
 <div id="adding-error-bars" class="section level3 hasAnchor" number="17.1.1">
-<h3><span class="header-section-number">17.1.1</span> Adding error bars<a href="common-types-of-graphs.html#adding-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">17.1.1</span> Adding Error Bars<a href="common-types-of-graphs.html#adding-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Any measurement always has an associated uncertainty/variability. These values are expressed visually via <em>error bars</em> demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our <code>sumAtl</code> dataset we’ve calculated the standard deviation as a measure of uncertainty. In our example, we’ve used the standard deviation (<code>sd</code>) as a measure of uncertainty of our calculated annual means.</p>
 <p>To plot error bars we use <code>geom_errorbar()</code> and pass the min and max values we want the error bars to be. In our case, the lowest value would be <code>ymin = mean - sd</code>, and the highest would be <code>ymin = mean + sd</code>. Our plotted error bars now indicate plus or minus one standard deviation from the mean.</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="common-types-of-graphs.html#cb246-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
