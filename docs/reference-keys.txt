@@ -196,7 +196,7 @@ adding-error-bars
 ordering-bar-charts
 grouping-bar-charts
 box-plots
-box-plot-alternatives
+violin-plots
 statistical-comparisons-between-groups
 histograms
 multiple-histograms

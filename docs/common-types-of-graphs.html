@@ -445,8 +445,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="17.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#box-plots"><i class="fa fa-check"></i><b>17.2</b> Box Plots</a>
 <ul>
-<li class="chapter" data-level="17.2.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#box-plot-alternatives"><i class="fa fa-check"></i><b>17.2.1</b> Box plot alternatives</a></li>
-<li class="chapter" data-level="17.2.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#statistical-comparisons-between-groups"><i class="fa fa-check"></i><b>17.2.2</b> Statistical comparisons between groups</a></li>
+<li class="chapter" data-level="17.2.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#violin-plots"><i class="fa fa-check"></i><b>17.2.1</b> Violin Plots</a></li>
+<li class="chapter" data-level="17.2.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#statistical-comparisons-between-groups"><i class="fa fa-check"></i><b>17.2.2</b> Statistical Comparisons Between Groups</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#histograms"><i class="fa fa-check"></i><b>17.3</b> Histograms</a>
 <ul>
@@ -619,7 +619,9 @@ div.csl-indent {
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="common-types-of-graphs.html#cb249-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
 <span id="cb249-2"><a href="common-types-of-graphs.html#cb249-2" tabindex="-1"></a>       <span class="fu">aes</span>( <span class="at">x =</span> city, <span class="at">y =</span> conc)) <span class="sc">+</span></span>
 <span id="cb249-3"><a href="common-types-of-graphs.html#cb249-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb249-4"><a href="common-types-of-graphs.html#cb249-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<span id="cb249-4"><a href="common-types-of-graphs.html#cb249-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb249-5"><a href="common-types-of-graphs.html#cb249-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;City in Atlantic Canada&quot;</span>,</span>
+<span id="cb249-6"><a href="common-types-of-graphs.html#cb249-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Concentration<span class="sc">~</span>NO[<span class="dv">2</span>]<span class="sc">~</span>(ppb)))</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <p>Let’s break down how to interpret <em>one</em> box before tackling the entire set. As previously mentioned, box plots describe data in their <em>quartiles</em>. Quartiles basically arrange the data from the lowest to highest value and split the data at <em>three points</em>:</p>
 <ul>
@@ -631,19 +633,20 @@ div.csl-indent {
 <p>Rounding it out, <code>geom_boxplot()</code> includes <em>whiskers</em>, the thin lines emanating out from the box. This is used to predict outliers and is calculated as <span class="math inline">\(outliers = \pm 1.5 \times IQR\)</span>. Anything outside the whiskers is considered an “outlier” or an extreme point, and is plotted individually.</p>
 <p>Putting this all together, let’s look at the [NO<sub>2</sub>] for St. Johns city:</p>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
-<p>Note that we’ve plotted the actual distribution of the data. Prior to computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. On top of that, they aren’t very intuitive (see the score of text you just read to understand them). Consequently, we strongly recommend you explore some of the <a href="common-types-of-graphs.html#box-plot-alternatives">Box plot alternatives</a> unless you explicitly need to create box-plots.</p>
-<div id="box-plot-alternatives" class="section level3 hasAnchor" number="17.2.1">
-<h3><span class="header-section-number">17.2.1</span> Box plot alternatives<a href="common-types-of-graphs.html#box-plot-alternatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first alternative to box-plots is the <em>violin plot</em> which is made using <code>geom_violin()</code>. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive than box-plots. While the example below isn’t the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown has days where [NO<sub>2</sub>] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO<sub>2</sub>. This might be because of differences in regional ambient levels of NO<sub>2</sub>.</p>
+<p>Note that we’ve plotted the actual distribution of the data. Prior to computers, this was incredibly difficult to do, hence the use of box plots which can be drawn knowing only five points. However, the simplicity in calculating box-plots means they can hide trends and observations of your data. A useful alternative to box-plot are <a href="common-types-of-graphs.html#violin-plots">Violin Plots</a>, which are explored in the next section.</p>
+<div id="violin-plots" class="section level3 hasAnchor" number="17.2.1">
+<h3><span class="header-section-number">17.2.1</span> Violin Plots<a href="common-types-of-graphs.html#violin-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Violin plots are made using <code>geom_violin()</code>. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive than box-plots. While the example below isn’t the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown has days where [NO<sub>2</sub>] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO<sub>2</sub>. This might be because of differences in regional ambient levels of NO<sub>2</sub>.</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="common-types-of-graphs.html#cb250-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
 <span id="cb250-2"><a href="common-types-of-graphs.html#cb250-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
 <span id="cb250-3"><a href="common-types-of-graphs.html#cb250-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb250-4"><a href="common-types-of-graphs.html#cb250-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<span id="cb250-4"><a href="common-types-of-graphs.html#cb250-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb250-5"><a href="common-types-of-graphs.html#cb250-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;City in Atlantic Canada&quot;</span>,</span>
+<span id="cb250-6"><a href="common-types-of-graphs.html#cb250-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Concentration<span class="sc">~</span>NO[<span class="dv">2</span>]<span class="sc">~</span>(ppb)))</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/atl-violin-1.png" width="672" /></p>
-<p>Another alternative is to plot the points over top of the box-plot. You’ve encountered this example in <a href="r-coding-basics.html#r-coding-basics">R coding basics</a>. Truth be told, there are countless ways to visualize distribution.</p>
 </div>
 <div id="statistical-comparisons-between-groups" class="section level3 hasAnchor" number="17.2.2">
-<h3><span class="header-section-number">17.2.2</span> Statistical comparisons between groups<a href="common-types-of-graphs.html#statistical-comparisons-between-groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">17.2.2</span> Statistical Comparisons Between Groups<a href="common-types-of-graphs.html#statistical-comparisons-between-groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as <code>ggpubr</code> have many built-in functionalities to display the results of these outcomes.</p>
 <p>From our NO<sub>2</sub> data, St. Johns appears to have the highest levels of NO<sub>2</sub>. Let’s apply a pairwise test against other Newfoundland communities to see if our observation is <em>statistically significant</em> based upon the results of a <em>Wilcoxon test</em>.</p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="common-types-of-graphs.html#cb251-1" tabindex="-1"></a>nfld <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
@@ -655,7 +658,7 @@ div.csl-indent {
 <span id="cb251-7"><a href="common-types-of-graphs.html#cb251-7" tabindex="-1"></a>                             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>,</span>
 <span id="cb251-8"><a href="common-types-of-graphs.html#cb251-8" tabindex="-1"></a>                             <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>) </span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
-<p>Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO2 values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We’ve included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics.</p>
+<p>Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO<sub>2</sub> values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We’ve included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics.</p>
 <p>For more information on <code>ggpubr</code>, adding p-values and significance labels, and different pairwise statistical test please visit <a href="http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/">ggpubr: Publication Ready Plots</a>.</p>
 </div>
 </div>
