@@ -552,56 +552,48 @@ div.csl-indent {
 <span id="cb245-2"><a href="common-types-of-graphs.html#cb245-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, </span>
 <span id="cb245-3"><a href="common-types-of-graphs.html#cb245-3" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
 <span id="cb245-4"><a href="common-types-of-graphs.html#cb245-4" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb245-5"><a href="common-types-of-graphs.html#cb245-5" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="co"># rotates plot 90 degrees</span></span></code></pre></div>
+<span id="cb245-5"><a href="common-types-of-graphs.html#cb245-5" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb245-6"><a href="common-types-of-graphs.html#cb245-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Mean NO_2 (ppb)&quot;</span>,</span>
+<span id="cb245-7"><a href="common-types-of-graphs.html#cb245-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;City in Atlantic Canada&quot;</span>)</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="common-types-of-graphs.html#cb246-1" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Mean NO_2 (ppb)&quot;</span>,</span>
-<span id="cb246-2"><a href="common-types-of-graphs.html#cb246-2" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;City in Atlantic Canada&quot;</span>)</span></code></pre></div>
-<pre><code>## $x
-## [1] &quot;Mean NO_2 (ppb)&quot;
-## 
-## $y
-## [1] &quot;City in Atlantic Canada&quot;
-## 
-## attr(,&quot;class&quot;)
-## [1] &quot;labels&quot;</code></pre>
 <p>Pretty boring, but it’s gotten the job done. <strong>Note</strong> that we used <code>coord_flip()</code> to rotate our plot 90<span class="math inline">\(^\circ\)</span> therefore the supplied <code>x</code> option of <code>city</code> is now plotted on the <code>y-axis</code>. This makes reading long categorical names (i.e. the names of cities) easier. <code>coord_flip()</code> doesn’t change anything else except the final orientation of the plot.</p>
 <p>Also note that <code>ggplot()</code> includes <code>geom_col()</code> and <code>geom_bar()</code>. While both can be used to make bar charts. <code>geom_col()</code> is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas <code>geom_bar()</code> makes the height of the bar proportional to the number of cases in each group.</p>
 <div id="adding-error-bars" class="section level3 hasAnchor" number="17.1.1">
 <h3><span class="header-section-number">17.1.1</span> Adding error bars<a href="common-types-of-graphs.html#adding-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Any measurement always has an associated uncertainty/variability. These values are expressed visually via <em>error bars</em> demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our <code>sumAtl</code> dataset we’ve calculated the standard deviation as a measure of uncertainty. In our example, we’ve used the standard deviation (<code>sd</code>) as a measure of uncertainty of our calculated annual means.</p>
 <p>To plot error bars we use <code>geom_errorbar()</code> and pass the min and max values we want the error bars to be. In our case, the lowest value would be <code>ymin = mean - sd</code>, and the highest would be <code>ymin = mean + sd</code>. Our plotted error bars now indicate plus or minus one standard deviation from the mean.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="common-types-of-graphs.html#cb248-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
-<span id="cb248-2"><a href="common-types-of-graphs.html#cb248-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb248-3"><a href="common-types-of-graphs.html#cb248-3" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
-<span id="cb248-4"><a href="common-types-of-graphs.html#cb248-4" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb248-5"><a href="common-types-of-graphs.html#cb248-5" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="common-types-of-graphs.html#cb246-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb246-2"><a href="common-types-of-graphs.html#cb246-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb246-3"><a href="common-types-of-graphs.html#cb246-3" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
+<span id="cb246-4"><a href="common-types-of-graphs.html#cb246-4" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
+<span id="cb246-5"><a href="common-types-of-graphs.html#cb246-5" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <p>Some of the error bars indicate we could get a <em>negative</em> concentration of NO<sub>2</sub>. This is physically impossible, but it does suggest we should evaluate the distribution of our data (see below). Note that since we’re calculating error bar ranges on the fly, we’ve had to specify new aesthetic arguments to <code>geom_errorbar()</code>.</p>
 </div>
 <div id="ordering-bar-charts" class="section level3 hasAnchor" number="17.1.2">
 <h3><span class="header-section-number">17.1.2</span> Ordering bar charts<a href="common-types-of-graphs.html#ordering-bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Often with bar charts (and similar plots), it’s useful to <em>order</em> the bars to help tell a story or convey information. We can effectuate this using <code>fct_reorder()</code>:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="common-types-of-graphs.html#cb249-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
-<span id="cb249-2"><a href="common-types-of-graphs.html#cb249-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, mean),</span>
-<span id="cb249-3"><a href="common-types-of-graphs.html#cb249-3" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
-<span id="cb249-4"><a href="common-types-of-graphs.html#cb249-4" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb249-5"><a href="common-types-of-graphs.html#cb249-5" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
-<span id="cb249-6"><a href="common-types-of-graphs.html#cb249-6" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb249-7"><a href="common-types-of-graphs.html#cb249-7" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="common-types-of-graphs.html#cb247-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
+<span id="cb247-2"><a href="common-types-of-graphs.html#cb247-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, mean),</span>
+<span id="cb247-3"><a href="common-types-of-graphs.html#cb247-3" tabindex="-1"></a>           <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb247-4"><a href="common-types-of-graphs.html#cb247-4" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb247-5"><a href="common-types-of-graphs.html#cb247-5" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
+<span id="cb247-6"><a href="common-types-of-graphs.html#cb247-6" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
+<span id="cb247-7"><a href="common-types-of-graphs.html#cb247-7" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 <p>So in our aesthetics call for <code>geom_bar</code> we specified the <code>x</code> variable should be <code>city</code>, but ordered based on their corresponding <code>mean</code> value. Doing this has helped shed some light on trends in NO<sub>2</sub> levels. For one, despite Labrador City having lower mean [NO<sub>2</sub>], we can now easily see that it has a larger variation in [NO<sub>2</sub>] than Corner Brook.</p>
 </div>
 <div id="grouping-bar-charts" class="section level3 hasAnchor" number="17.1.3">
 <h3><span class="header-section-number">17.1.3</span> Grouping bar charts<a href="common-types-of-graphs.html#grouping-bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sometimes you’ll want to group bar charts as in the concentration of several chemicals in different locations. We can easily group bar charts in ggplot. Let’s go ahead and group our mean annual [NO<sub>2</sub>] by province by simply (1) reordering based on province, and (2) colour bars based on province:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="common-types-of-graphs.html#cb250-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
-<span id="cb250-2"><a href="common-types-of-graphs.html#cb250-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, p),</span>
-<span id="cb250-3"><a href="common-types-of-graphs.html#cb250-3" tabindex="-1"></a>           <span class="at">y =</span> mean, </span>
-<span id="cb250-4"><a href="common-types-of-graphs.html#cb250-4" tabindex="-1"></a>           <span class="at">fill =</span> p)) <span class="sc">+</span></span>
-<span id="cb250-5"><a href="common-types-of-graphs.html#cb250-5" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb250-6"><a href="common-types-of-graphs.html#cb250-6" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
-<span id="cb250-7"><a href="common-types-of-graphs.html#cb250-7" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb250-8"><a href="common-types-of-graphs.html#cb250-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="common-types-of-graphs.html#cb248-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sumAtl, </span>
+<span id="cb248-2"><a href="common-types-of-graphs.html#cb248-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(city, p),</span>
+<span id="cb248-3"><a href="common-types-of-graphs.html#cb248-3" tabindex="-1"></a>           <span class="at">y =</span> mean, </span>
+<span id="cb248-4"><a href="common-types-of-graphs.html#cb248-4" tabindex="-1"></a>           <span class="at">fill =</span> p)) <span class="sc">+</span></span>
+<span id="cb248-5"><a href="common-types-of-graphs.html#cb248-5" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb248-6"><a href="common-types-of-graphs.html#cb248-6" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd, </span>
+<span id="cb248-7"><a href="common-types-of-graphs.html#cb248-7" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
+<span id="cb248-8"><a href="common-types-of-graphs.html#cb248-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <p>There are other ways to group your bar charts depending on the story you want to tell and the data you have. Please consult the <a href="https://www.r-graph-gallery.com/48-grouped-barplot-with-ggplot2.html">Grouped, stacked and percent stacked barplot in ggplot2</a> page from the <em>R-graph-gallery</em>.</p>
 </div>
@@ -609,10 +601,10 @@ div.csl-indent {
 <div id="box-plots" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> Box Plots<a href="common-types-of-graphs.html#box-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Box plots give a summary of the <em>distribution</em> of a numeric variable through their <em>quartiles</em>. You’ve no doubt seen them before, but they’re often misinterpreted. Let’s create a box-plot using <code>geom_boxplot()</code> and our Atlantic hourly NO<sub>2</sub> measurements, then we’ll break down how to interpret it.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="common-types-of-graphs.html#cb251-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
-<span id="cb251-2"><a href="common-types-of-graphs.html#cb251-2" tabindex="-1"></a>       <span class="fu">aes</span>( <span class="at">x =</span> city, <span class="at">y =</span> conc)) <span class="sc">+</span></span>
-<span id="cb251-3"><a href="common-types-of-graphs.html#cb251-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb251-4"><a href="common-types-of-graphs.html#cb251-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="common-types-of-graphs.html#cb249-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
+<span id="cb249-2"><a href="common-types-of-graphs.html#cb249-2" tabindex="-1"></a>       <span class="fu">aes</span>( <span class="at">x =</span> city, <span class="at">y =</span> conc)) <span class="sc">+</span></span>
+<span id="cb249-3"><a href="common-types-of-graphs.html#cb249-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb249-4"><a href="common-types-of-graphs.html#cb249-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <p>Let’s break down how to interpret <em>one</em> box before tackling the entire set. As previously mentioned, box plots describe data in their <em>quartiles</em>. Quartiles basically arrange the data from the lowest to highest value and split the data at <em>three points</em>:</p>
 <ul>
@@ -628,10 +620,10 @@ div.csl-indent {
 <div id="box-plot-alternatives" class="section level3 hasAnchor" number="17.2.1">
 <h3><span class="header-section-number">17.2.1</span> Box plot alternatives<a href="common-types-of-graphs.html#box-plot-alternatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first alternative to box-plots is the <em>violin plot</em> which is made using <code>geom_violin()</code>. It is similar to the box-plot, but instead of displaying the quartiles, it plots the density within each group and is a bit more intuitive than box-plots. While the example below isn’t the most convincing given the scale of the dataset, violin plots are useful for identifying underlying trends in the distribution of data. For example, in the plot below we can see that some towns such as Marystown has days where [NO<sub>2</sub>] = 0 ppb, whereas Grand Falls-Windsor has a large number of days with low, but measurable levels of NO<sub>2</sub>. This might be because of differences in regional ambient levels of NO<sub>2</sub>.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="common-types-of-graphs.html#cb252-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
-<span id="cb252-2"><a href="common-types-of-graphs.html#cb252-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
-<span id="cb252-3"><a href="common-types-of-graphs.html#cb252-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb252-4"><a href="common-types-of-graphs.html#cb252-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="common-types-of-graphs.html#cb250-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
+<span id="cb250-2"><a href="common-types-of-graphs.html#cb250-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> city, <span class="at">y =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
+<span id="cb250-3"><a href="common-types-of-graphs.html#cb250-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb250-4"><a href="common-types-of-graphs.html#cb250-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/atl-violin-1.png" width="672" /></p>
 <p>Another alternative is to plot the points over top of the box-plot. You’ve encountered this example in <a href="r-coding-basics.html#r-coding-basics">R coding basics</a>. Truth be told, there are countless ways to visualize distribution.</p>
 </div>
@@ -639,14 +631,14 @@ div.csl-indent {
 <h3><span class="header-section-number">17.2.2</span> Statistical comparisons between groups<a href="common-types-of-graphs.html#statistical-comparisons-between-groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as <code>ggpubr</code> have many built-in functionalities to display the results of these outcomes.</p>
 <p>From our NO<sub>2</sub> data, St. Johns appears to have the highest levels of NO<sub>2</sub>. Let’s apply a pairwise test against other Newfoundland communities to see if our observation is <em>statistically significant</em> based upon the results of a <em>Wilcoxon test</em>.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="common-types-of-graphs.html#cb253-1" tabindex="-1"></a>nfld <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
-<span id="cb253-2"><a href="common-types-of-graphs.html#cb253-2" tabindex="-1"></a>  <span class="fu">filter</span>(p <span class="sc">==</span> <span class="st">&quot;NL&quot;</span>) <span class="co"># only nfld stations</span></span>
-<span id="cb253-3"><a href="common-types-of-graphs.html#cb253-3" tabindex="-1"></a></span>
-<span id="cb253-4"><a href="common-types-of-graphs.html#cb253-4" tabindex="-1"></a><span class="co"># Code from ggpubr website</span></span>
-<span id="cb253-5"><a href="common-types-of-graphs.html#cb253-5" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(nfld, <span class="at">x =</span> <span class="st">&quot;city&quot;</span>, <span class="at">y =</span> <span class="st">&quot;conc&quot;</span>) <span class="sc">+</span></span>
-<span id="cb253-6"><a href="common-types-of-graphs.html#cb253-6" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_compare_means</span>(<span class="at">ref.group =</span> <span class="st">&quot;St Johns&quot;</span>,</span>
-<span id="cb253-7"><a href="common-types-of-graphs.html#cb253-7" tabindex="-1"></a>                             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>,</span>
-<span id="cb253-8"><a href="common-types-of-graphs.html#cb253-8" tabindex="-1"></a>                             <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="common-types-of-graphs.html#cb251-1" tabindex="-1"></a>nfld <span class="ot">&lt;-</span> atlNO2 <span class="sc">%&gt;%</span></span>
+<span id="cb251-2"><a href="common-types-of-graphs.html#cb251-2" tabindex="-1"></a>  <span class="fu">filter</span>(p <span class="sc">==</span> <span class="st">&quot;NL&quot;</span>) <span class="co"># only nfld stations</span></span>
+<span id="cb251-3"><a href="common-types-of-graphs.html#cb251-3" tabindex="-1"></a></span>
+<span id="cb251-4"><a href="common-types-of-graphs.html#cb251-4" tabindex="-1"></a><span class="co"># Code from ggpubr website</span></span>
+<span id="cb251-5"><a href="common-types-of-graphs.html#cb251-5" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(nfld, <span class="at">x =</span> <span class="st">&quot;city&quot;</span>, <span class="at">y =</span> <span class="st">&quot;conc&quot;</span>) <span class="sc">+</span></span>
+<span id="cb251-6"><a href="common-types-of-graphs.html#cb251-6" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_compare_means</span>(<span class="at">ref.group =</span> <span class="st">&quot;St Johns&quot;</span>,</span>
+<span id="cb251-7"><a href="common-types-of-graphs.html#cb251-7" tabindex="-1"></a>                             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>,</span>
+<span id="cb251-8"><a href="common-types-of-graphs.html#cb251-8" tabindex="-1"></a>                             <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>) </span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>Based on the results of our test, all other stations in Newfoundland have statistically significant differences in the median NO2 values. Note the validity of this statistical approach to this particular problem is called into question based on the distribution of the data etc. We’ve included it to demonstrate how to label significance on plots, rather than an explicit discussion on statistics.</p>
 <p>For more information on <code>ggpubr</code>, adding p-values and significance labels, and different pairwise statistical test please visit <a href="http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/">ggpubr: Publication Ready Plots</a>.</p>
@@ -655,29 +647,29 @@ div.csl-indent {
 <div id="histograms" class="section level2 hasAnchor" number="17.3">
 <h2><span class="header-section-number">17.3</span> Histograms<a href="common-types-of-graphs.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Histograms are an approximate representation of the distributions of numerical data. They’re an approximation because you arbitrarily “bin” your data into groups and then count the number of values inside that bin. The frequency, or count, in each bin is represented by the height of a rectangle whose width equals that of the bin. <code>geom_histogram()</code> is used to create histograms:</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="common-types-of-graphs.html#cb254-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
-<span id="cb254-2"><a href="common-types-of-graphs.html#cb254-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
-<span id="cb254-3"><a href="common-types-of-graphs.html#cb254-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb254-4"><a href="common-types-of-graphs.html#cb254-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="common-types-of-graphs.html#cb252-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
+<span id="cb252-2"><a href="common-types-of-graphs.html#cb252-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
+<span id="cb252-3"><a href="common-types-of-graphs.html#cb252-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb252-4"><a href="common-types-of-graphs.html#cb252-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: In subset.data.frame(atlNO2, city = &quot;St Johns&quot;) :
 ##  extra argument &#39;city&#39; will be disregarded</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p>We can alter the resolution of our histogram by modifying the width of the bins using the <code>binwidth</code> argument or by specifying the number of bins with the <code>bins</code> argument. The former is useful when you don’t know the range of your data, whereas the latter is useful is you do (i.e. numbers between 0 and 100).</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="common-types-of-graphs.html#cb257-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
-<span id="cb257-2"><a href="common-types-of-graphs.html#cb257-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
-<span id="cb257-3"><a href="common-types-of-graphs.html#cb257-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb257-4"><a href="common-types-of-graphs.html#cb257-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018, binwidth = 1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="common-types-of-graphs.html#cb255-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
+<span id="cb255-2"><a href="common-types-of-graphs.html#cb255-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
+<span id="cb255-3"><a href="common-types-of-graphs.html#cb255-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb255-4"><a href="common-types-of-graphs.html#cb255-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018, binwidth = 1&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: In subset.data.frame(atlNO2, city = &quot;St Johns&quot;) :
 ##  extra argument &#39;city&#39; will be disregarded</code></pre>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <div id="multiple-histograms" class="section level3 hasAnchor" number="17.3.1">
 <h3><span class="header-section-number">17.3.1</span> Multiple histograms<a href="common-types-of-graphs.html#multiple-histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While you can overlap histograms, it gets difficult to read with more than a handful of datasets. If we wanted to plot histograms of all the cities in our dataset we would have to use a small multiple via the <code>facet_grid()</code> or <code>facet_wrap()</code> arguments. <code>facet_grid()</code> allows you to arrange many small plots on a grid defined by variables in your dataset (i.e. columns for provinces, and rows for different pollutants). In the example below we’ve used <code>facet_wrap(~city)</code> which creates a 2D layout of histograms of each cities NO<sub>2</sub> values. Note the tilde , <code>~</code>, preceding in <code>~city</code>.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="common-types-of-graphs.html#cb259-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
-<span id="cb259-2"><a href="common-types-of-graphs.html#cb259-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
-<span id="cb259-3"><a href="common-types-of-graphs.html#cb259-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb259-4"><a href="common-types-of-graphs.html#cb259-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>city)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="common-types-of-graphs.html#cb257-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> atlNO2, </span>
+<span id="cb257-2"><a href="common-types-of-graphs.html#cb257-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">fill =</span> p)) <span class="sc">+</span> </span>
+<span id="cb257-3"><a href="common-types-of-graphs.html#cb257-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb257-4"><a href="common-types-of-graphs.html#cb257-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>city)</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
 </div>
 </div>
@@ -687,7 +679,7 @@ div.csl-indent {
 <div id="marginal-plots" class="section level3 hasAnchor" number="17.4.1">
 <h3><span class="header-section-number">17.4.1</span> Marginal plots<a href="common-types-of-graphs.html#marginal-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. With the Toronto air quality data that we’ve already familiarized with, we might want to know the distribution of concentrations of the individual pollutants. Using the <code>ggExtra</code> package and the <code>ggMarginal()</code> function we can get the following:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="common-types-of-graphs.html#cb260-1" tabindex="-1"></a>torontoAir <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="common-types-of-graphs.html#cb258-1" tabindex="-1"></a>torontoAir <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 507 Columns: 8
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -697,17 +689,17 @@ div.csl-indent {
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="common-types-of-graphs.html#cb262-1" tabindex="-1"></a><span class="co"># note we&#39;re storing our plot in the variable &#39;torPlot&#39;</span></span>
-<span id="cb262-2"><a href="common-types-of-graphs.html#cb262-2" tabindex="-1"></a><span class="co"># and we&#39;re not plotting SO2</span></span>
-<span id="cb262-3"><a href="common-types-of-graphs.html#cb262-3" tabindex="-1"></a>torPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(torontoAir, pollutant <span class="sc">!=</span> <span class="st">&quot;SO2&quot;</span>), </span>
-<span id="cb262-4"><a href="common-types-of-graphs.html#cb262-4" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
-<span id="cb262-5"><a href="common-types-of-graphs.html#cb262-5" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
-<span id="cb262-6"><a href="common-types-of-graphs.html#cb262-6" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
-<span id="cb262-7"><a href="common-types-of-graphs.html#cb262-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb262-8"><a href="common-types-of-graphs.html#cb262-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
-<span id="cb262-9"><a href="common-types-of-graphs.html#cb262-9" tabindex="-1"></a></span>
-<span id="cb262-10"><a href="common-types-of-graphs.html#cb262-10" tabindex="-1"></a><span class="co"># We&#39;re passing our torPlot to the ggMarginal Function</span></span>
-<span id="cb262-11"><a href="common-types-of-graphs.html#cb262-11" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(torPlot, <span class="at">margins =</span> <span class="st">&quot;y&quot;</span>, <span class="at">groupColour =</span> <span class="cn">TRUE</span>, <span class="at">groupFill =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="common-types-of-graphs.html#cb260-1" tabindex="-1"></a><span class="co"># note we&#39;re storing our plot in the variable &#39;torPlot&#39;</span></span>
+<span id="cb260-2"><a href="common-types-of-graphs.html#cb260-2" tabindex="-1"></a><span class="co"># and we&#39;re not plotting SO2</span></span>
+<span id="cb260-3"><a href="common-types-of-graphs.html#cb260-3" tabindex="-1"></a>torPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(torontoAir, pollutant <span class="sc">!=</span> <span class="st">&quot;SO2&quot;</span>), </span>
+<span id="cb260-4"><a href="common-types-of-graphs.html#cb260-4" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
+<span id="cb260-5"><a href="common-types-of-graphs.html#cb260-5" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
+<span id="cb260-6"><a href="common-types-of-graphs.html#cb260-6" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
+<span id="cb260-7"><a href="common-types-of-graphs.html#cb260-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb260-8"><a href="common-types-of-graphs.html#cb260-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb260-9"><a href="common-types-of-graphs.html#cb260-9" tabindex="-1"></a></span>
+<span id="cb260-10"><a href="common-types-of-graphs.html#cb260-10" tabindex="-1"></a><span class="co"># We&#39;re passing our torPlot to the ggMarginal Function</span></span>
+<span id="cb260-11"><a href="common-types-of-graphs.html#cb260-11" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(torPlot, <span class="at">margins =</span> <span class="st">&quot;y&quot;</span>, <span class="at">groupColour =</span> <span class="cn">TRUE</span>, <span class="at">groupFill =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
 <p>We can now see the distributions of NO<sub>2</sub> and O<sub>3</sub> overlaid on the vertical axis. Note that <code>ggMarginal()</code> only works with scatter plots.</p>
 <p>There are plenty of other marginal options scattered about various packages. You can see many of them in action (with beautiful examples) at <a href="http://motioninsocial.com/tufte/#minimal-line-plot">Tufte in R</a> by Lukasz Piwek.</p>
