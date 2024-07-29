@@ -14,7 +14,7 @@ ggplot(data = sumAtl,
   geom_col() +
   coord_flip() +
   labs(x = "City in Atlantic Canada",
-       y = "Mean NO[2] (ppb)")
+       y = "Mean NO<sub>2</sub> (ppb)")
 ```
 
 Not an overly exciting plot, but it's gotten the job done showing the mean NO~2~ concentrations in each of the Atlantic Canada provinces (remember that this dataset was created in the [Summarizing Data] chapter). Let's break down the code above:
@@ -30,7 +30,7 @@ Not an overly exciting plot, but it's gotten the job done showing the mean NO~2~
 
 ### Adding Error Bars
 
-Any measurement always has an associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our `sumAtl` dataset we've calculated the standard deviation as a measure of uncertainty. In our example, we've used the standard deviation (`sd`) as a measure of uncertainty of our calculated annual means.
+Almost all measurements have associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In our `sumAtl` dataset in the [Further Summarize Operations] section we calculated the standard deviation of the mean NO~2~ concentration in each city as a measure of the variability around the mean. In our example, we've used the standard deviation (`sd`) as a measure of uncertainty of our calculated annual means.
 
 To plot error bars we use `geom_errorbar()` and pass the min and max values we want the error bars to be. In our case, the lowest value would be `ymin = mean - sd`, and the highest would be `ymin = mean + sd`. Our plotted error bars now indicate plus or minus one standard deviation from the mean.
 
