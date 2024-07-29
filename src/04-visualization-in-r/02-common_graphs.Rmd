@@ -1,4 +1,4 @@
-# Common types of graphs
+# Common Types of Graphs
 
 In this chapter, you will learn how to create some of the most commonly used graphs, including bar plots, box plots, histograms, and scatterplots. These powerful visualization tools will enable you to explore and communicate your data effectively, gaining valuable insights along the way. 
 
@@ -13,6 +13,9 @@ ggplot(data = sumAtl,
            y = mean)) +
   geom_col() +
   coord_flip() # rotates plot 90 degrees
+
+labs(x = "Mean NO_2 (ppb)",
+       y = "City in Atlantic Canada")
 ```
 
 Pretty boring, but it's gotten the job done. **Note** that we used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the `y-axis`. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot.
