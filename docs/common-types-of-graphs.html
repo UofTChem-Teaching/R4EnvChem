@@ -452,7 +452,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="17.3.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#multiple-histograms"><i class="fa fa-check"></i><b>17.3.1</b> Multiple histograms</a></li>
 </ul></li>
-<li class="chapter" data-level="17.4" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#scatter-plots"><i class="fa fa-check"></i><b>17.4</b> Scatter plots</a>
+<li class="chapter" data-level="17.4" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#scatter-plots"><i class="fa fa-check"></i><b>17.4</b> Scatter Plots</a>
 <ul>
 <li class="chapter" data-level="17.4.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#marginal-plots"><i class="fa fa-check"></i><b>17.4.1</b> Marginal plots</a></li>
 </ul></li>
@@ -668,7 +668,8 @@ div.csl-indent {
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="common-types-of-graphs.html#cb252-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(atlNO2, <span class="at">city =</span> <span class="st">&quot;St Johns&quot;</span>), </span>
 <span id="cb252-2"><a href="common-types-of-graphs.html#cb252-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc)) <span class="sc">+</span></span>
 <span id="cb252-3"><a href="common-types-of-graphs.html#cb252-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb252-4"><a href="common-types-of-graphs.html#cb252-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018&quot;</span>)</span></code></pre></div>
+<span id="cb252-4"><a href="common-types-of-graphs.html#cb252-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Distribution of St. Johns&#39; NO2 levels in 2018&quot;</span>,</span>
+<span id="cb252-5"><a href="common-types-of-graphs.html#cb252-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Concentration<span class="sc">~</span>NO[<span class="dv">2</span>]<span class="sc">~</span>(ppb)))</span></code></pre></div>
 <pre><code>## Warning: In subset.data.frame(atlNO2, city = &quot;St Johns&quot;) :
 ##  extra argument &#39;city&#39; will be disregarded</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
@@ -692,8 +693,8 @@ div.csl-indent {
 </div>
 </div>
 <div id="scatter-plots" class="section level2 hasAnchor" number="17.4">
-<h2><span class="header-section-number">17.4</span> Scatter plots<a href="common-types-of-graphs.html#scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Scatter plots display values of two variables, one of which is a <em>continuous</em> variable. Each data point is plotted as an individual point. You’ve already learned the basics of scatter plots in Chapter 14. Now, we’ll touch upon some things you can do to improve your scatter plots.</p>
+<h2><span class="header-section-number">17.4</span> Scatter Plots<a href="common-types-of-graphs.html#scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Scatter plots display values of two variables, one of which is a <em>continuous</em> variable. Each data point is plotted as an individual point. You’ve already learned the basics of scatter plots in <a href="ggplot-basic-visualizations.html#ggplot-basic-visualizations">Ggplot Basic Visualizations</a>. Now, we’ll touch upon some things you can do to improve your scatter plots.</p>
 <div id="marginal-plots" class="section level3 hasAnchor" number="17.4.1">
 <h3><span class="header-section-number">17.4.1</span> Marginal plots<a href="common-types-of-graphs.html#marginal-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can easily combine a scatter plot with marginal plot. This is useful to summarize one dimension of our scatter plot. With the Toronto air quality data that we’ve already familiarized with, we might want to know the distribution of concentrations of the individual pollutants. Using the <code>ggExtra</code> package and the <code>ggMarginal()</code> function we can get the following:</p>
