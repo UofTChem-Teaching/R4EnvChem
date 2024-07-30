@@ -1,7 +1,6 @@
 # Common Types of Graphs
 
-In this chapter, you will learn how to create some of the most commonly used graphs, including bar plots, box plots, histograms, and scatterplots. These powerful visualization tools will enable you to explore and communicate your data effectively, gaining valuable insights along the way. 
-
+In this chapter, you will learn how to create some of the most commonly used graphs, including bar plots, box plots, histograms, and scatterplots. These powerful visualization tools will enable you to explore and communicate your data effectively, gaining valuable insights along the way.
 
 ## Bar Charts
 
@@ -19,17 +18,17 @@ ggplot(data = sumAtl,
 
 Not an overly exciting plot, but it gets the job done showing the mean NO~2~ concentrations in each of the Atlantic Canada provinces (remember this dataset was created in the [Summarizing Data] chapter). Let's break down the code:
 
-1. `ggplot()` includes `geom_col()` and `geom_bar()`. While both can be used to make bar charts. `geom_col()` is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas `geom_bar()` makes the height of the bar proportional to the number of cases in each group. 
+1.  `ggplot()` includes `geom_col()` and `geom_bar()`. While both can be used to make bar charts. `geom_col()` is used when you want to represent values in the data (i.e. the precalculated mean as shown above), whereas `geom_bar()` makes the height of the bar proportional to the number of cases in each group.
 
-2. To our aesthetic mappings we've specified which values from the `sumAtl` are supposed to be our x-axis (`x = city`) and y-axis (`y = mean`).
+2.  To our aesthetic mappings we've specified which values from the `sumAtl` are supposed to be our x-axis (`x = city`) and y-axis (`y = mean`).
 
-3. We used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the vertical axis. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot. 
+3.  We used `coord_flip()` to rotate our plot 90$^\circ$ therefore the supplied `x` option of `city` is now plotted on the vertical axis. This makes reading long categorical names (i.e. the names of cities) easier. `coord_flip()` doesn't change anything else except the final orientation of the plot.
 
-4. We used `labs()` to provide clearer labels for our axes than those defined by the column titles. Note that because we flipped the axes the y-axis is the horizontal axis and the x-axis is the vertical axis. Also note the use of the `expression()` function within the y-axis label, this is because subscripts and superscripts are not possible in the `labs()` function. The way that in that the `expression()` function works is a bit strange, you specify a space between characters/words by using a tilde ~, a subscript is specified by square brackets [], and superscript by a caret ^.
+4.  We used `labs()` to provide clearer labels for our axes than those defined by the column titles. Note that because we flipped the axes the y-axis is the horizontal axis and the x-axis is the vertical axis. Also note the use of the `expression()` function within the y-axis label, this is because subscripts and superscripts are not possible in the `labs()` function. The way that in that the `expression()` function works is a bit strange, you specify a space between characters/words by using a tilde \~, a subscript is specified by square brackets [], and superscript by a caret \^.
 
 ### Adding Error Bars
 
-Almost all measurements have associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In the [Further Summarize Operations] section we used the standard deviation (`sd`) function to calculate the standard deviation of the mean NO~2~ concentration in each city in the `sumAtl` dataset as a measure of the variability around the mean. 
+Almost all measurements have associated uncertainty/variability. These values are expressed visually via *error bars* demarcating the minimum and maximum variability and give a general idea of how precise a measurement is. In the [Further Summarize Operations] section we used the standard deviation (`sd`) function to calculate the standard deviation of the mean NO~2~ concentration in each city in the `sumAtl` dataset as a measure of the variability around the mean.
 
 To include these standard deviation values as error bars we can use the `geom_errorbar()` and pass the min and max values we want the error bars to be. In our case, the lowest value would be `ymin = mean - sd`, and the highest would be `ymin = mean + sd`. Our plotted error bars now indicate plus or minus one standard deviation from the mean.
 
@@ -68,9 +67,9 @@ So in our aesthetics call for `geom_bar` we specified the `x` variable should be
 
 Sometimes you'll want to create groups within your bar charts. One example of this in the `atldata` dataset is to group the cities by province. To visualize trends within each province in the code below we decided to:
 
-1. Reorder the cities based on province using the `fct_reorder()` function that specifies which variable is being ordered (`city`) and what information is being used to order it (`p` column). 
+1.  Reorder the cities based on province using the `fct_reorder()` function that specifies which variable is being ordered (`city`) and what information is being used to order it (`p` column).
 
-2. Colour the bars based on province using `fill = p`.
+2.  Colour the bars based on province using `fill = p`.
 
 ```{r}
 
@@ -88,7 +87,6 @@ ggplot(data = sumAtl,
 ```
 
 There are other ways to group your bar charts depending on the story you want to tell and the data you have. Please consult the [Grouped, stacked and percent stacked barplot in ggplot2](https://www.r-graph-gallery.com/48-grouped-barplot-with-ggplot2.html) page from the *R-graph-gallery*.
-
 
 ## Box Plots
 
@@ -225,7 +223,6 @@ ggplot(data = atlNO2,
        y = expression(Concentration~NO[2]~(ppb)))
 ```
 
-
 ### Statistical Comparisons Between Groups
 
 Often box-plots are used to show differences in distributions between two groups (i.e. population in Location A vs. Location B). How you determine this statistically is a different story, but packages such as `ggpubr` have many built-in functionalities to display the results of these outcomes.
@@ -247,7 +244,6 @@ Based on the results of our test, all other stations in Newfoundland have statis
 
 For more information on `ggpubr`, adding p-values and significance labels, and different pairwise statistical test please visit [ggpubr: Publication Ready Plots](http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/).
 
-
 ## Histograms
 
 Histograms are an approximate representation of the distributions of numerical data. They're an approximation because you arbitrarily "bin" your data into groups and then count the number of values inside that bin. The frequency, or count, in each bin is represented by the height of a rectangle whose width equals that of the bin. `geom_histogram()` is used to create histograms:
@@ -266,8 +262,7 @@ We can alter the resolution of our histogram by modifying the width of the bins 
 ggplot(data = subset(atlNO2, city = "St Johns"), 
        aes(x = conc)) +
   geom_histogram(binwidth = 1) +
-  labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018, binwidth = 1"
-       y = expression(Concentration~NO[2]~(ppb)))
+  labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018, binwidth = 1")
 ```
 
 ### Multiple histograms
@@ -281,7 +276,6 @@ ggplot(data = atlNO2,
   geom_histogram(binwidth = 1, position = "identity") +
   facet_wrap(~city)
 ```
-
 
 ## Scatter Plots
 
