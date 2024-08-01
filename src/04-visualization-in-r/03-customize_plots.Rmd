@@ -63,19 +63,19 @@ Other legend positions include: "none", "left", "right", "bottom", "top", or a t
 
 ## Modifying labels
 
-The labels generated for the plots are derived from the variable names passed along to the `ggplot()` function. Consequently, variable names that are easy to code become ugly labels on the plot. You can modify labels using the `labs()` function. Note in the example below that we changed the legend's title by specifying what `aes()` option we used to create the legend; in the example below it's `colour`.
+The labels generated for the plots are derived from the variable names passed along to the `ggplot()` function. Consequently, variable names that are easy to code become ugly labels on the plot. You can modify labels using the `labs()` function. How to use the `labs()` function was also discussed in the [Bar Charts] section of the [Common Types of Graphs] chapter. Note that in this example we changed the legend's title by specifying what `aes()` option we used to create the legend; in the example below it's `colour`.
 
 ```{r}
 p + labs(title = "Toronto Air quality",
          subtitle = "from Jan 1st to 8th, 2018", 
-         xlab = "Date",
-         ylab = "Concentration (ppb)",
+         x = "Date",
+         y = "Concentration (ppb)",
          colour = "Pollutant")
 ```
 
 ## Modifying Axis
 
-We've already talked about labelling axis titles in [Modifying labels], and adding marginal plots in [Scatter plots]. So we'll just briefly touch upon some simple axis modifications.
+We've already talked about labeling axis titles in [Modifying labels], and adding marginal plots in [Scatter plots]. So we'll just briefly touch upon some simple axis modifications.
 
 ### Transforming axis
 
@@ -160,54 +160,7 @@ ggpubr::ggarrange(colchart,
                   legend = "bottom")
 ```
 
-## Anotating plots
 
-Everyplot can do with a bit of annotation. These range from providing critical information for contextualizing and understanding your plot to pointing out something you think the reader might miss but should know. These are different than *captions*, which is accomplished in the `rmarkdown` chunk header (see [R code chunk options] for a refresher).
-
-Let's quickly plot a map of annual mean 1-hr [NO2] in our dataset so we can visualize them spatially.
-
-```{r, message = FALSE, error = FALSE, warning = FALSE}
-# need lat and long value for map
-# mapNO2 <- atlNO2 %>%
-#   group_by(latitude, longitude, p,  city) %>%
-#   summarise(mean = mean(conc))
-
-# install.packages("ggmap")
-# library(ggmap)
-#
-# atlMap <- get_stamenmap(bbox = make_bbox(lon = mapNO2$longitude, 
-#                                          lat = mapNO2$latitude, 
-#                                          f = 0.1), 
-#                         zoom = 6, 
-#                         maptype = "terrain", 
-#                         crop = FALSE)
-# 
-#
-# atlMap <- ggmap(atlMap)
-# 
-# atlMap
-```
-
-Now we want to plot our annual mean 1-hr [NO2] onto the map. For this plot we specifically want to annotate each point with its corresponding city location. Doing this manually would take ages, so we're going to use the [`ggrepel` package](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html). We simply need to specify which column (`naps id`) we'll use for our labels:
-
-```{r, message = FALSE, warning = FALSE}
-# atlMap + geom_point(data = mapNO2,
-#              aes(x=longitude,
-#                  y=latitude,
-#                  colour = mean,
-#                  size = mean),
-#              alpha = 0.8) +
-#   scale_alpha(guide = "none") + # removing legend for alpha
-#   scale_size(guide = "none") + # removing legend for size
-#   ggrepel::geom_label_repel(data = mapNO2,
-#                             aes(x=longitude,
-#                                 y=latitude,
-#                                 label = city),
-#                             box.padding = 0.5,
-#                             max.overlaps = Inf)
-```
-
-Again, not the prettiest map, but that's up to you to fix in post. [`geom_text_repel()`](https://ggrepel.slowkow.com/articles/examples.html) is an incredibly useful package for quickly annotating plots. If you need to label/annotate points check it out.
 
 ```{r child='src/common/end-of-chapter-exercise.Rmd'}
 ```
