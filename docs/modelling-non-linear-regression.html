@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="modelling-multiple-linear-regressions.html"/>
+<link rel="prev" href="augmented-outputs-and-evaluating-your-model.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -477,37 +477,37 @@ div.csl-indent {
 <li class="chapter" data-level="19" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html"><i class="fa fa-check"></i><b>19</b> Modelling: Linear Regression</a>
 <ul>
 <li class="chapter" data-level="19.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#modelling-theory"><i class="fa fa-check"></i><b>19.1</b> Modelling Theory</a></li>
-<li class="chapter" data-level="19.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#modelling-in-r"><i class="fa fa-check"></i><b>19.2</b> Modelling in R</a>
+<li class="chapter" data-level="19.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#linear-regression-in-r"><i class="fa fa-check"></i><b>19.2</b> Linear Regression in R</a></li>
+<li class="chapter" data-level="19.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#building-multiple-linear-regressions"><i class="fa fa-check"></i><b>19.3</b> Building Multiple Linear Regressions</a>
 <ul>
-<li class="chapter" data-level="19.2.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#base-r-linear-model"><i class="fa fa-check"></i><b>19.2.1</b> Base R Linear Model</a></li>
-<li class="chapter" data-level="19.2.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>19.2.2</b> Cleaning up model ouputs</a></li>
-<li class="chapter" data-level="19.2.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#glanced-outputs"><i class="fa fa-check"></i><b>19.2.3</b> Glanced outputs</a></li>
-<li class="chapter" data-level="19.2.4" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#tidied-outputs"><i class="fa fa-check"></i><b>19.2.4</b> Tidied outputs</a></li>
-<li class="chapter" data-level="19.2.5" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#augmented-outputs"><i class="fa fa-check"></i><b>19.2.5</b> Augmented outputs</a></li>
-<li class="chapter" data-level="19.2.6" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#incorporating-weights-into-your-model"><i class="fa fa-check"></i><b>19.2.6</b> Incorporating weights into your model</a></li>
-<li class="chapter" data-level="19.2.7" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#why-we-approach-modelling-this-way"><i class="fa fa-check"></i><b>19.2.7</b> Why we approach modelling this way</a></li>
+<li class="chapter" data-level="19.3.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#dataset"><i class="fa fa-check"></i><b>19.3.1</b> Dataset</a></li>
+<li class="chapter" data-level="19.3.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#building-a-linear-regression-for-each-analyte"><i class="fa fa-check"></i><b>19.3.2</b> Building a Linear Regression for Each Analyte</a></li>
+<li class="chapter" data-level="19.3.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#table-with-slopes-intercepts-and-r2"><i class="fa fa-check"></i><b>19.3.3</b> Table with Slopes, Intercepts, and <span class="math inline">\(R^2\)</span></a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#visualizing-models"><i class="fa fa-check"></i><b>19.3</b> Visualizing models</a>
-<ul>
-<li class="chapter" data-level="19.3.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#visualizing-residuals"><i class="fa fa-check"></i><b>19.3.1</b> Visualizing residuals</a></li>
-<li class="chapter" data-level="19.3.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#plotting-residuals"><i class="fa fa-check"></i><b>19.3.2</b> Plotting residuals</a></li>
-</ul></li>
-<li class="chapter" data-level="19.4" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#calculating-concentrations"><i class="fa fa-check"></i><b>19.4</b> Calculating Concentrations</a></li>
-<li class="chapter" data-level="19.5" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#summary-6"><i class="fa fa-check"></i><b>19.5</b> Summary</a></li>
+<li class="chapter" data-level="19.4" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#calculating-concentration-using-the-regression-variables"><i class="fa fa-check"></i><b>19.4</b> Calculating Concentration Using the Regression Variables</a></li>
+<li class="chapter" data-level="19.5" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#conclusion"><i class="fa fa-check"></i><b>19.5</b> Conclusion</a></li>
 <li class="chapter" data-level="19.6" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#further_reading_chapter19"><i class="fa fa-check"></i><b>19.6</b> Further reading</a></li>
 <li class="chapter" data-level="19.7" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#exercise-15"><i class="fa fa-check"></i><b>19.7</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="modelling-multiple-linear-regressions.html"><a href="modelling-multiple-linear-regressions.html"><i class="fa fa-check"></i><b>20</b> Modelling: Multiple Linear Regressions</a>
+<li class="chapter" data-level="20" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html"><i class="fa fa-check"></i><b>20</b> Augmented Outputs and Evaluating Your Model</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="modelling-multiple-linear-regressions.html"><a href="modelling-multiple-linear-regressions.html#building-multiple-linear-regressions"><i class="fa fa-check"></i><b>20.1</b> Building Multiple Linear Regressions</a>
+<li class="chapter" data-level="20.1" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#cleaning-up-model-ouputs"><i class="fa fa-check"></i><b>20.1</b> Cleaning up Model Ouputs</a>
 <ul>
-<li class="chapter" data-level="20.1.1" data-path="modelling-multiple-linear-regressions.html"><a href="modelling-multiple-linear-regressions.html#dataset"><i class="fa fa-check"></i><b>20.1.1</b> Dataset</a></li>
-<li class="chapter" data-level="20.1.2" data-path="modelling-multiple-linear-regressions.html"><a href="modelling-multiple-linear-regressions.html#regressions"><i class="fa fa-check"></i><b>20.1.2</b> Regressions</a></li>
-<li class="chapter" data-level="20.1.3" data-path="modelling-multiple-linear-regressions.html"><a href="modelling-multiple-linear-regressions.html#slopes-and-intercepts"><i class="fa fa-check"></i><b>20.1.3</b> Slopes and Intercepts</a></li>
+<li class="chapter" data-level="20.1.1" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#glanced-outputs"><i class="fa fa-check"></i><b>20.1.1</b> Glanced Outputs</a></li>
+<li class="chapter" data-level="20.1.2" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#tidied-outputs"><i class="fa fa-check"></i><b>20.1.2</b> Tidied Outputs</a></li>
+<li class="chapter" data-level="20.1.3" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#augmented-outputs"><i class="fa fa-check"></i><b>20.1.3</b> Augmented Outputs</a></li>
 </ul></li>
-<li class="chapter" data-level="20.2" data-path="modelling-multiple-linear-regressions.html"><a href="modelling-multiple-linear-regressions.html#using-regression-variables-for-inference"><i class="fa fa-check"></i><b>20.2</b> Using Regression Variables for Inference</a></li>
-<li class="chapter" data-level="20.3" data-path="modelling-multiple-linear-regressions.html"><a href="modelling-multiple-linear-regressions.html#conclusion"><i class="fa fa-check"></i><b>20.3</b> Conclusion</a></li>
-<li class="chapter" data-level="20.4" data-path="modelling-multiple-linear-regressions.html"><a href="modelling-multiple-linear-regressions.html#exercise-16"><i class="fa fa-check"></i><b>20.4</b> Exercise</a></li>
+<li class="chapter" data-level="20.2" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#incorporating-weights-into-your-model"><i class="fa fa-check"></i><b>20.2</b> Incorporating Weights into your Model</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#why-we-approach-modelling-this-way"><i class="fa fa-check"></i><b>20.2.1</b> Why we approach modelling this way</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#visualizing-models"><i class="fa fa-check"></i><b>20.3</b> Visualizing models</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#visualizing-residuals"><i class="fa fa-check"></i><b>20.3.1</b> Visualizing residuals</a></li>
+<li class="chapter" data-level="20.3.2" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#plotting-residuals"><i class="fa fa-check"></i><b>20.3.2</b> Plotting residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#calculating-concentrations-from-the-augmented-outputs"><i class="fa fa-check"></i><b>20.4</b> Calculating Concentrations from the Augmented Outputs</a></li>
+<li class="chapter" data-level="20.5" data-path="augmented-outputs-and-evaluating-your-model.html"><a href="augmented-outputs-and-evaluating-your-model.html#exercise-16"><i class="fa fa-check"></i><b>20.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html"><i class="fa fa-check"></i><b>21</b> Modelling: Non-Linear Regression</a>
 <ul>
@@ -521,7 +521,7 @@ div.csl-indent {
 <li class="chapter" data-level="21.2.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>21.2.1</b> Calculating Logistic Regression</a></li>
 <li class="chapter" data-level="21.2.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-model-parameters"><i class="fa fa-check"></i><b>21.2.2</b> Extracting model parameters</a></li>
 </ul></li>
-<li class="chapter" data-level="21.3" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#summary-7"><i class="fa fa-check"></i><b>21.3</b> Summary</a></li>
+<li class="chapter" data-level="21.3" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#summary-6"><i class="fa fa-check"></i><b>21.3</b> Summary</a></li>
 <li class="chapter" data-level="21.4" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#exercise-17"><i class="fa fa-check"></i><b>21.4</b> Exercise</a></li>
 </ul></li>
 </ul>
@@ -702,7 +702,7 @@ Figure 21.1: Plot of maximal fluoresence intensity at various concentrations of 
 <span id="cb330-4"><a href="modelling-non-linear-regression.html#cb330-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">&quot;fitted&quot;</span>)) </span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
 <p>Looks pretty good, although it’s interesting how the baseline at lower concentrations doesn’t plateau like the model values. You’ll note that the line produced by <code>geom_line</code> will only draw a straight line between points. There are ways to address this, but we don’t need to for our needs right now.</p>
-<p>There doesn’t appear to be any gross outliers in our model, so it seems to have done a good job. We can verify this by checking the residuals(see <a href="modelling-linear-regression.html#plotting-residuals">Plotting residuals</a>):</p>
+<p>There doesn’t appear to be any gross outliers in our model, so it seems to have done a good job. We can verify this by checking the residuals(see <a href="augmented-outputs-and-evaluating-your-model.html#plotting-residuals">Plotting residuals</a>):</p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="modelling-non-linear-regression.html#cb331-1" tabindex="-1"></a><span class="fu">ggplot</span>(augment, <span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
 <span id="cb331-2"><a href="modelling-non-linear-regression.html#cb331-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
@@ -725,8 +725,8 @@ Figure 21.1: Plot of maximal fluoresence intensity at various concentrations of 
 <p>Looking past the scientific notation, our model values are pretty similar to what we estimated. Specifically, <code>c</code>, our midpoint value is 0.0076 M. Not too bad from our original estimate. And recall that the midpoint of our curve corresponds to the critical micelle concentration of SDS, which we’ve estimated to be 0.0076M. Not too far from the literature value of 0.0081 M.</p>
 </div>
 </div>
-<div id="summary-7" class="section level2 hasAnchor" number="21.3">
-<h2><span class="header-section-number">21.3</span> Summary<a href="modelling-non-linear-regression.html#summary-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summary-6" class="section level2 hasAnchor" number="21.3">
+<h2><span class="header-section-number">21.3</span> Summary<a href="modelling-non-linear-regression.html#summary-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this chapter we reviewed non-linear modelling using a case study with four-parameter logistic regression. While the equation covered here might not be the one you need, the steps are identical:</p>
 <ol style="list-style-type: decimal">
 <li>Tidy and visually inspect your data to see and patterns</li>
@@ -768,7 +768,7 @@ Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical 
           </div>
         </div>
       </div>
-<a href="modelling-multiple-linear-regressions.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="augmented-outputs-and-evaluating-your-model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
