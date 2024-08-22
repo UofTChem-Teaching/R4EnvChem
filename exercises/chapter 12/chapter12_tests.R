@@ -44,6 +44,20 @@ missing_column_error_message <- function(data, required_columns) {
   }
 }
 
+# Helper function to generate custom error messages for exact column match
+exact_column_match_error_message <- function(data, required_columns) {
+  actual_columns <- colnames(data)
+  if (!all(sort(required_columns) == sort(actual_columns))) {
+    sprintf(
+      "The dataframe columns do not exactly match the required columns. Required columns: %s. Existing columns: %s",
+      paste(required_columns, collapse = ", "),
+      paste(actual_columns, collapse = ", ")
+    )
+  } else {
+    NA_character_
+  }
+}
+
 # Specify the path to your Rmd file
 rmd_file_path <- get_rmd_path("chapter 12", "chapter12.Rmd")
 
@@ -222,8 +236,8 @@ test_that("Analysis of extreme days test", {
     
     # Check 2: Column names
     required_columns <- c("NAPS", "Time", "O3_Difference")
-    custom_error_message_columns <- missing_column_error_message(extreme_days_data, required_columns)
-    expect_true(all(required_columns %in% colnames(extreme_days_data)), info = custom_error_message_columns)
+    custom_error_message_columns <- exact_column_match_error_message(extreme_days_data, required_columns)
+    expect_true(is.na(custom_error_message_columns), info = custom_error_message_columns)
   })
   
   # remove the temp directory

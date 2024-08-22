@@ -13,6 +13,7 @@ Before diving into the exercises, follow the instructions below to download a da
 
 -   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
 -   Enter your student number, and then download the CSV file.
+-   Rename the downloaded file to `data.csv`.
 -   Upload the file to your RStudio.
 
 ## Load Necessary Libraries

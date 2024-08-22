@@ -53,7 +53,7 @@ ggplot(data = naps,
 
 ## Summarizing Data by Group
 
-While we can readily summarize an entire dataset, we often want to summarize *groups* within our dataset. In our case, it's [NO~2~] in each city. To this end, we need to combine the`group_by()` and `summarize()` functions. This approach allows us to specify which groups we want summarized, and how we want them summarized. We'll talk more about the second point later on, for now, let's look at point how we specify which groups to summarize.
+While we can readily summarize an entire dataset, we often want to summarize *groups* within our dataset. In our case, it's [NO~2~] in each province. To this end, we need to combine the`group_by()` and `summarize()` functions. This approach allows us to specify which groups we want summarized, and how we want them summarized. We'll talk more about the second point later on, for now, let's look at point how we specify which groups to summarize.
 
 Let's calculate the mean hourly NO~2~ concentrations in the `r length(unique(atlNO2$p))` provinces in our dataset:
 

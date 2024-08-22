@@ -11,6 +11,7 @@ We will be using the Air Quality data as we've seen before. If you don't have th
 
 -   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
 -   Enter your student number, and then download the CSV file.
+-   Rename the downloaded file to `data.csv`.
 -   Upload the file to your RStudio.
 
 ## Load Necessary Libraries
@@ -103,9 +104,9 @@ Generate a scatterplot to observe Ox concentration over time in a line, and dist
 To observe Ox concentration over time, distinguishing between NO2 and O3 pollutants:
 
 -   Change the data to long format using `pivot_longer()` function to include NO2 and O3 concentrations in the same column and create a new column for the type of pollutant.
--   Use `geom_point()` to create a scatterplot of Ox concentration vs. time, colored by the type of pollutant.
+-   Use `geom_point()` to create a scatterplot of pollutant concentration vs. time, colored by the type of pollutant.
 -   Use `geom_line()` to add a dashed line for the overall Ox concentration.
--   Title your plot "Ox Concentration Over Time by Pollutant".
+-   Title your plot "Pollutant Concentrations Over Time".
 -   label the axes appropriately and ensure the time on the x-axis is readable.
 
 ```{r}

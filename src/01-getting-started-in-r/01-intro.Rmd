@@ -8,7 +8,7 @@ You may have heard about coding or the R programming language, but figuring out 
 
 ## R Language
 
-**R** is the programming language we'll code in. R is hosted on the Comprehensive R Archive Network (CRAN) and is one of the most popular programming languages for statisticians and scientist alike due to its vast array of tools and packages.
+**R** is the programming language we'll code in. R is hosted on the Comprehensive R Archive Network (CRAN) and is one of the most popular programming languages for statisticians and scientists alike due to its vast array of tools and packages.
 
 A quick aside, but don't be intimidated by the term "coding". Coding is simply writing instructions for the computer to execute. The only catch is has to be in a language that both we, humans, and the computer can understand. For our needs we're using R, and like any language, R has it's own syntax, rules, and quirks which we'll cover in later chapters.
 
@@ -66,7 +66,7 @@ Each pane serves a specific role:
 
 ## Running R Code
 
-Y2 + 2ou can run bits of R code directly from the console. Throughout the book, code you can copy and run will look like this:
+You can run bits of R code directly from the console. Throughout the book, code you can copy and run will look like this:
 
 ```{r}
 2 + 2
@@ -102,7 +102,7 @@ As many of us spend an absurd amount of time staring at bright screens, some of 
 
 You can customize the appearance of your RStudio interface by clicking *Tools*-\>*Global Options*, or *RStudio*-\>*Preferences* on Mac, then clicking "Appearance" on the left. Select your preferred Editor Theme from the list.
 
-![](images/Rstudio_darkthemes.png){width="100%"}
+![](images/RStudio_darkthemes.png){width="100%"}
 
 ## Where to get help
 
