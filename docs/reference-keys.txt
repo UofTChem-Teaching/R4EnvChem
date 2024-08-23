@@ -18,7 +18,7 @@ summary
 exercise
 setup
 basic-r-commands
-using-the-help-function
+using-the-help-command
 reflection
 rstudio-projects
 uploading-files-to-rstudio-server-on-jupyterhub

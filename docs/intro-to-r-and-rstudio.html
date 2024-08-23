@@ -199,7 +199,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.9.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setup"><i class="fa fa-check"></i><b>1.9.1</b> Setup</a></li>
 <li class="chapter" data-level="1.9.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#basic-r-commands"><i class="fa fa-check"></i><b>1.9.2</b> Basic R Commands</a></li>
-<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Function</a></li>
+<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-command"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Command (<code>?</code>)</a></li>
 <li class="chapter" data-level="1.9.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#reflection"><i class="fa fa-check"></i><b>1.9.4</b> Reflection</a></li>
 </ul></li>
 </ul></li>
@@ -556,7 +556,7 @@ div.csl-indent {
 </div>
 <div id="setting-up-your-environment" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Setting Up Your Environment<a href="intro-to-r-and-rstudio.html#setting-up-your-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Students learning R have <strong>two options</strong>: working <em>locally</em> or <em>remotely</em></p>
+<p>Students learning R have <strong>two options</strong>: working <em>locally</em> or <em>remotely</em>.</p>
 <p><em>Working locally</em> involves installing R and RStudio on their computer, providing direct control over data and code without an internet connection. On the other hand, <em>working remotely</em> enables access to RStudio through a web browser, avoiding local installations and allowing collaboration. For R programming in chemistry courses at the University of Toronto <strong>we recommend working remotely</strong> using the University of Toronto’s JupyterHub so we can ensure a stable R Studio environment where all relevant packages are installed and ready to go. <em>Working locally</em> might make sense for independent work as it doesn’t require an internet connection. More details on each option are provided below.</p>
 <div id="working-remotely-recommended-for-coursework" class="section level3 hasAnchor" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Working Remotely (Recommended for Coursework)<a href="intro-to-r-and-rstudio.html#working-remotely-recommended-for-coursework" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -567,9 +567,9 @@ div.csl-indent {
 <ul>
 <li>While working remotely, you may need to upload data to the RStudio server or download analysis results. The RStudio interface allows you to upload files directly from your computer to the server and vice versa.</li>
 <li>When working remotely, ensure that you save your R scripts and analysis files on the server. This will allow you to continue your work from any device with internet access.</li>
-<li>Most R packages are pre-installed on the University of Toronto’s R Studio server. However, if you require additional packages, we will soon learn how to install packages.</li>
+<li>Most R packages are pre-installed on the University of Toronto’s RStudio server. However, if you require additional packages, we will soon learn how to install packages.</li>
 </ul>
-<p>Remember that while working remotely, a stable internet connection is essential to ensure a smooth and uninterrupted experience. Additionally, always remember to save your work and log out properly after each session to maintain the security of your data. Happy coding!</p>
+<p>Remember that while working remotely, a stable Internet connection is essential to ensure a smooth and uninterrupted experience. Additionally, always remember to save your work and log out properly after each session to maintain the security of your data. Happy coding!</p>
 </div>
 <div id="working-locally" class="section level3 hasAnchor" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Working Locally<a href="intro-to-r-and-rstudio.html#working-locally" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -592,8 +592,7 @@ div.csl-indent {
 <p>Each pane serves a specific role:</p>
 <ul>
 <li><strong>The console</strong> allows you to directly type and run your code. It also provides messages, warnings, and errors from any code you run.</li>
-<li><strong>The environment</strong> window lists all variables, data, and functions you’ve created since the start of your coding session.<br />
-</li>
+<li><strong>The environment</strong> window lists all variables, data, and functions you’ve created since the start of your coding session.</li>
 <li><strong>The viewer</strong> shows your outputs, help documents, etc. which each has their own tab.</li>
 </ul>
 </div>
@@ -627,16 +626,20 @@ div.csl-indent {
 <p>Places to get help include:</p>
 <ul>
 <li>Google, Stack Overflow, etc. When in doubt Google it.</li>
-<li>Using built-in documentation (<code>?help</code>)</li>
+<li>Using built-in documentation:
+<ul>
+<li>In the bottom-right pane in RStudio, click on the “Help” tab</li>
+<li>Or, in the Console type a <code>?</code> followed by a name or function you want to learn more about, like <code>?pi</code> or <code>?install.packages</code>.</li>
+</ul></li>
 <li>Reference books such as the invaluable <a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a>, which inspired this entire project.</li>
-<li>Ask for help, from TAs or Profs if using this webbook as a resource for a class, or from colleagues or peers .</li>
+<li>Ask for help, from TAs or instructors if using this book as a resource for a class, or from colleagues or peers.</li>
 </ul>
 </div>
 <div id="summary" class="section level2 hasAnchor" number="1.8">
 <h2><span class="header-section-number">1.8</span> Summary<a href="intro-to-r-and-rstudio.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this chapter we’ve covered:</p>
 <ul>
-<li>How to use RStudio to do R programming, both remotely and locally</li>
+<li>How to use RStudio to do R programming, both remotely and locally.</li>
 <li>The benefits of working remotely using platforms like the University of Toronto’s JupyterHub RStudio server.</li>
 <li>Resources for help when you get stuck, including Google, Stack Overflow, and reference books.</li>
 </ul>
@@ -656,23 +659,21 @@ div.csl-indent {
 <div id="basic-r-commands" class="section level3 hasAnchor" number="1.9.2">
 <h3><span class="header-section-number">1.9.2</span> Basic R Commands<a href="intro-to-r-and-rstudio.html#basic-r-commands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>In the <code>Console</code> tab, write an expression to calculate 10 plus 5 and press <code>enter</code>.</li>
-<li>Open a new R script and type in the following commands:</li>
+<li>In the <code>Console</code> tab, write an expression to calculate 10 plus 5 and press enter.</li>
+<li>Create a new R script and type in the following commands:</li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro-to-r-and-rstudio.html#cb7-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb7-2"><a href="intro-to-r-and-rstudio.html#cb7-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span></span>
 <span id="cb7-3"><a href="intro-to-r-and-rstudio.html#cb7-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
 <span id="cb7-4"><a href="intro-to-r-and-rstudio.html#cb7-4" tabindex="-1"></a><span class="fu">print</span>(z)</span></code></pre></div>
-<pre><code>## [1] 15</code></pre>
-<p>(In the future, we will work with an R markdown instead of an R script, which we will explain more in the following chapters.)</p>
 <ul>
 <li>Run the script. What is the output?</li>
 </ul>
 </div>
-<div id="using-the-help-function" class="section level3 hasAnchor" number="1.9.3">
-<h3><span class="header-section-number">1.9.3</span> Using the Help Function<a href="intro-to-r-and-rstudio.html#using-the-help-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="using-the-help-command" class="section level3 hasAnchor" number="1.9.3">
+<h3><span class="header-section-number">1.9.3</span> Using the Help Command (<code>?</code>)<a href="intro-to-r-and-rstudio.html#using-the-help-command" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Let’s say you’ve come across a function in R that you don’t know how to use, for example, <code>sqrt()</code>. Use the <code>?</code> command to access the documentation for this function from your console tab.</li>
+<li>Let’s say you’ve come across a function in R that you don’t know how to use, for example, <code>sqrt()</code>. Use the <code>?</code> command to access the documentation for this function from your Console tab by typing <code>?sqrt</code>.</li>
 <li>What does the <code>sqrt()</code> function do?</li>
 </ul>
 </div>

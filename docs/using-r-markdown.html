@@ -199,7 +199,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.9.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setup"><i class="fa fa-check"></i><b>1.9.1</b> Setup</a></li>
 <li class="chapter" data-level="1.9.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#basic-r-commands"><i class="fa fa-check"></i><b>1.9.2</b> Basic R Commands</a></li>
-<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-function"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Function</a></li>
+<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-command"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Command (<code>?</code>)</a></li>
 <li class="chapter" data-level="1.9.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#reflection"><i class="fa fa-check"></i><b>1.9.4</b> Reflection</a></li>
 </ul></li>
 </ul></li>
@@ -548,31 +548,31 @@ div.csl-indent {
 <p><strong>R Markdown</strong>: R Markdown (.Rmd) elevates the coding experience by harmonizing code with explanatory text. Within an R Markdown document, code blocks act like individual scripts—smaller, more focused units. These blocks merge code with explanations seamlessly, creating a coherent narrative. Unlike isolated scripts, R Markdown emphasizes both code functionality and its significance within the context. For these reasons, we’ll be sticking to working in <code>.Rmd</code> files.</p>
 <p>In a nutshell, R Markdown allows you to analyse your data with R and write your report in the same place (this entire book was written with R Markdown). This has loads of benefits including a <a href="https://www.youtube.com/watch?v=s3JldKoA0zw"><em>reproducible workflow</em></a>, and streamlined thinking. No more flipping back and forth between coding and writing to figure out what’s going on.</p>
 <p>Let’s run some simple code as an example:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="using-r-markdown.html#cb85-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
-<span id="cb85-2"><a href="using-r-markdown.html#cb85-2" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="using-r-markdown.html#cb84-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
+<span id="cb84-2"><a href="using-r-markdown.html#cb84-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>What we’ve done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn’t anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example here is a time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub>, and SO<sub>2</sub> concentrations (ppb) in downtown Toronto:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="using-r-markdown.html#cb87-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb87-2"><a href="using-r-markdown.html#cb87-2" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb87-3"><a href="using-r-markdown.html#cb87-3" tabindex="-1"></a></span>
-<span id="cb87-4"><a href="using-r-markdown.html#cb87-4" tabindex="-1"></a>airPol <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span>
-<span id="cb87-5"><a href="using-r-markdown.html#cb87-5" tabindex="-1"></a></span>
-<span id="cb87-6"><a href="using-r-markdown.html#cb87-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> airPol, </span>
-<span id="cb87-7"><a href="using-r-markdown.html#cb87-7" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time, </span>
-<span id="cb87-8"><a href="using-r-markdown.html#cb87-8" tabindex="-1"></a>           <span class="at">y =</span> concentration, </span>
-<span id="cb87-9"><a href="using-r-markdown.html#cb87-9" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span> </span>
-<span id="cb87-10"><a href="using-r-markdown.html#cb87-10" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb87-11"><a href="using-r-markdown.html#cb87-11" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="using-r-markdown.html#cb86-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb86-2"><a href="using-r-markdown.html#cb86-2" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb86-3"><a href="using-r-markdown.html#cb86-3" tabindex="-1"></a></span>
+<span id="cb86-4"><a href="using-r-markdown.html#cb86-4" tabindex="-1"></a>airPol <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span>
+<span id="cb86-5"><a href="using-r-markdown.html#cb86-5" tabindex="-1"></a></span>
+<span id="cb86-6"><a href="using-r-markdown.html#cb86-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> airPol, </span>
+<span id="cb86-7"><a href="using-r-markdown.html#cb86-7" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time, </span>
+<span id="cb86-8"><a href="using-r-markdown.html#cb86-8" tabindex="-1"></a>           <span class="at">y =</span> concentration, </span>
+<span id="cb86-9"><a href="using-r-markdown.html#cb86-9" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span> </span>
+<span id="cb86-10"><a href="using-r-markdown.html#cb86-10" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb86-11"><a href="using-r-markdown.html#cb86-11" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="R4EnvChem_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="using-r-markdown.html#cb88-1" tabindex="-1"></a>sumAirPol <span class="ot">&lt;-</span> airPol <span class="sc">%&gt;%</span></span>
-<span id="cb88-2"><a href="using-r-markdown.html#cb88-2" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb88-3"><a href="using-r-markdown.html#cb88-3" tabindex="-1"></a>  <span class="fu">group_by</span>(city, naps, pollutant) <span class="sc">%&gt;%</span></span>
-<span id="cb88-4"><a href="using-r-markdown.html#cb88-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(concentration), </span>
-<span id="cb88-5"><a href="using-r-markdown.html#cb88-5" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(concentration), </span>
-<span id="cb88-6"><a href="using-r-markdown.html#cb88-6" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(concentration), </span>
-<span id="cb88-7"><a href="using-r-markdown.html#cb88-7" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(concentration))</span>
-<span id="cb88-8"><a href="using-r-markdown.html#cb88-8" tabindex="-1"></a></span>
-<span id="cb88-9"><a href="using-r-markdown.html#cb88-9" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(sumAirPol, <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="using-r-markdown.html#cb87-1" tabindex="-1"></a>sumAirPol <span class="ot">&lt;-</span> airPol <span class="sc">%&gt;%</span></span>
+<span id="cb87-2"><a href="using-r-markdown.html#cb87-2" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb87-3"><a href="using-r-markdown.html#cb87-3" tabindex="-1"></a>  <span class="fu">group_by</span>(city, naps, pollutant) <span class="sc">%&gt;%</span></span>
+<span id="cb87-4"><a href="using-r-markdown.html#cb87-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(concentration), </span>
+<span id="cb87-5"><a href="using-r-markdown.html#cb87-5" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(concentration), </span>
+<span id="cb87-6"><a href="using-r-markdown.html#cb87-6" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(concentration), </span>
+<span id="cb87-7"><a href="using-r-markdown.html#cb87-7" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(concentration))</span>
+<span id="cb87-8"><a href="using-r-markdown.html#cb87-8" tabindex="-1"></a></span>
+<span id="cb87-9"><a href="using-r-markdown.html#cb87-9" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(sumAirPol, <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -626,23 +626,23 @@ div.csl-indent {
 <div id="getting-started-with-r-markdown" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Getting Started with R Markdown<a href="using-r-markdown.html#getting-started-with-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As you’ve already guessed, R markdown documents use R and are most easily written and assembled in RStudio. If you have not done so, revisit Chapter 1:<a href="intro-to-r-and-rstudio.html#intro-to-r-and-rstudio">Intro to R and RStudio</a>. Once setup with R and R Studio, you’ll need to install the <code>R Markdown</code> and <code>tinytex</code> packages by running the following code in the console:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="using-r-markdown.html#cb89-1" tabindex="-1"></a><span class="co"># These are large packages so it&#39;ll take a couple of minutes to install</span></span>
-<span id="cb89-2"><a href="using-r-markdown.html#cb89-2" tabindex="-1"></a></span>
-<span id="cb89-3"><a href="using-r-markdown.html#cb89-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;R Markdown&quot;</span>) <span class="co"># downloaded from CRAN</span></span>
-<span id="cb89-4"><a href="using-r-markdown.html#cb89-4" tabindex="-1"></a></span>
-<span id="cb89-5"><a href="using-r-markdown.html#cb89-5" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
-<span id="cb89-6"><a href="using-r-markdown.html#cb89-6" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="using-r-markdown.html#cb88-1" tabindex="-1"></a><span class="co"># These are large packages so it&#39;ll take a couple of minutes to install</span></span>
+<span id="cb88-2"><a href="using-r-markdown.html#cb88-2" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="using-r-markdown.html#cb88-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;R Markdown&quot;</span>) <span class="co"># downloaded from CRAN</span></span>
+<span id="cb88-4"><a href="using-r-markdown.html#cb88-4" tabindex="-1"></a></span>
+<span id="cb88-5"><a href="using-r-markdown.html#cb88-5" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb88-6"><a href="using-r-markdown.html#cb88-6" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>The <code>R Markdown</code> package is what we’ll use to generate our documents, and the <code>tinytex</code> package enables compiling documents as PDFs. There’s a lot more going on behind the <a href="https://R%20Markdown.rstudio.com/lesson-2.html">scenes</a>, but you shouldn’t need to worry about it.</p>
 <p>Now that everything is setup, you can create your first R Markdown document by opening up R Studio, selecting <code>FILE -&gt; NEW FILE -&gt; R Markdown</code>. A dialog box will appear asking for some basic input parameters for your R markdown document. Add your title and select <em>PDF</em> as your default output format (you can always change these later if you want). A new file should appear that’s already populated with some basic script illustrating the key components of an R markdown document.</p>
 <div id="understanding-r-markdown" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Understanding R Markdown<a href="using-r-markdown.html#understanding-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Your first reaction when you opened your newly created R markdown document is probably that it doesn’t look anything at all like something you’d show your prof. You’re right, what you’re seeing is the plain text code which needs to be compiled (called <em>knit</em> in R Studio) to create the final document. When you create a R markdown document like this in R Studio a bunch of example code is already written. You can compile this document (see below) to see what it looks like, but let’s break down the primary components. At the top of the document you’ll see something that looks like this:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="using-r-markdown.html#cb90-1" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb90-2"><a href="using-r-markdown.html#cb90-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Temporal Analysis of Foot Impacts While Birling Down the White Water&quot;</span></span>
-<span id="cb90-3"><a href="using-r-markdown.html#cb90-3" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Jean Guy Rubberboots&quot;</span></span>
-<span id="cb90-4"><a href="using-r-markdown.html#cb90-4" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;24/06/2021&quot;</span></span>
-<span id="cb90-5"><a href="using-r-markdown.html#cb90-5" tabindex="-1"></a>output<span class="sc">:</span> pdf_document</span>
-<span id="cb90-6"><a href="using-r-markdown.html#cb90-6" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="using-r-markdown.html#cb89-1" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb89-2"><a href="using-r-markdown.html#cb89-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Temporal Analysis of Foot Impacts While Birling Down the White Water&quot;</span></span>
+<span id="cb89-3"><a href="using-r-markdown.html#cb89-3" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Jean Guy Rubberboots&quot;</span></span>
+<span id="cb89-4"><a href="using-r-markdown.html#cb89-4" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;24/06/2021&quot;</span></span>
+<span id="cb89-5"><a href="using-r-markdown.html#cb89-5" tabindex="-1"></a>output<span class="sc">:</span> pdf_document</span>
+<span id="cb89-6"><a href="using-r-markdown.html#cb89-6" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
 <p>This section is known as the <em>preamble</em> and it’s where you specify most of the document parameters. In the example we can see that the document title is <a href="https://www.youtube.com/watch?v=upsZZ2s3xv8">“Temporal Analysis of Foot Impacts While Birling Down the White Water”</a>, it’s written by Jean Guy Rubberboots, on the 24th of June, and the default output is a PDF document. You can modify the preamble to suit your needs. For example, if you wanted to change the title you would write <code>title: "Your Title Here"</code> in the preamble. Note that none of this is <code>R</code> code, rather it’s <code>YAML</code>, the syntax for the document’s metadata. Apart from what’s shown you shouldn’t need to worry about this much, just remember that indentation in YAML matters.</p>
 <div id="output-options-in-r-markdown" class="section level4 hasAnchor" number="6.1.1.1">
 <h4><span class="header-section-number">6.1.1.1</span> Output Options in R Markdown<a href="using-r-markdown.html#output-options-in-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -850,11 +850,11 @@ div.csl-indent {
 <div id="r-code-chunk-options" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> R Code Chunk Options<a href="using-r-markdown.html#r-code-chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that’ll affect how your code chunk is run and displayed in the final output document. You include options in the chunk delimiters <code>```{r}</code> and <code>```</code>. For example the following code tells markdown you’re running code written in <code>R</code>, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption “Some Caption”.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb91-1"><a href="using-r-markdown.html#cb91-1" tabindex="-1"></a><span class="in">```{r, eval = FALSE, fig.cap = &quot;Some caption&quot;}</span></span>
-<span id="cb91-2"><a href="using-r-markdown.html#cb91-2" tabindex="-1"></a></span>
-<span id="cb91-3"><a href="using-r-markdown.html#cb91-3" tabindex="-1"></a><span class="in"># some code to generate a plot worth captioning. </span></span>
-<span id="cb91-4"><a href="using-r-markdown.html#cb91-4" tabindex="-1"></a></span>
-<span id="cb91-5"><a href="using-r-markdown.html#cb91-5" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1"><a href="using-r-markdown.html#cb90-1" tabindex="-1"></a><span class="in">```{r, eval = FALSE, fig.cap = &quot;Some caption&quot;}</span></span>
+<span id="cb90-2"><a href="using-r-markdown.html#cb90-2" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="using-r-markdown.html#cb90-3" tabindex="-1"></a><span class="in"># some code to generate a plot worth captioning. </span></span>
+<span id="cb90-4"><a href="using-r-markdown.html#cb90-4" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="using-r-markdown.html#cb90-5" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>The most common and useful chunk options are shown below. Note that they all have a default value. For example, <code>eval</code> tells R markdown whether the code within the block should be run. It’s default option is <code>TRUE</code>, so by default any code in a chunk will be run when you knit your document. If you don’t want that code to be run, but still displayed, you would set <code>eval = FALSE</code>. Another example would be setting <code>echo = FALSE</code> which allows the code to run, but the code <em>won’t</em> be displayed on the output document (the outputs will still be displayed though); useful for creating clean documents with plots only (i.e. lab reports…).</p>
 <table>
 <colgroup>
@@ -921,7 +921,7 @@ div.csl-indent {
 <div id="inserting-images" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Inserting images<a href="using-r-markdown.html#inserting-images" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Images not produced by R code can easily be inserted into your document. The markdown code isn’t R code, so between paragraphs of bodytext insert the following code.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb92-1"><a href="using-r-markdown.html#cb92-1" tabindex="-1"></a><span class="al">![Caption for the picture.](path/to/image.png)</span>{width=50%, height=50%}</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb91-1"><a href="using-r-markdown.html#cb91-1" tabindex="-1"></a><span class="al">![Caption for the picture.](path/to/image.png)</span>{width=50%, height=50%}</span></code></pre></div>
 <p>Note that in the above the use of image attributes, the <code>{width=50%, height=50%}</code> at the end. This is how you’ll adjust the size of your image. Other dimensions you can use include <code>px, cm, mm, in, inch</code>, and <code>%</code>.</p>
 <p>A final note on images: when compiling to PDF, the LaTeX call will place your image in the “optimal” location (as determined by LaTeX), so you might find your image isn’t exactly where you thought it would be. A more in-depth guide to image placement can be found <a href="https://rpubs.com/RatherBit/90926">here</a></p>
 </div>
@@ -929,11 +929,11 @@ div.csl-indent {
 <h3><span class="header-section-number">6.3.4</span> Generating tables<a href="using-r-markdown.html#generating-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are multiple methods to create tables in R markdown. Assuming you want to display results calculated through R code, you can use the <code>kable()</code> function. Or you can consult the <a href="summarizing-data.html#summarizing-data">Summarizing Data</a> chapter for making publication ready tables.</p>
 <p>Alternatively, if you want to create simple tables manually use the following code in the main body, outside of an <code>R</code> code chunk. You can increase the number of rows/columns and the location of the horizontal lines. To generate more complex tables, see the <code>kable()</code> function and the <code>kableExtra</code> package.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb93-1"><a href="using-r-markdown.html#cb93-1" tabindex="-1"></a>Header 1 | Header 2| Header 3</span>
-<span id="cb93-2"><a href="using-r-markdown.html#cb93-2" tabindex="-1"></a>---------|---------|---------|</span>
-<span id="cb93-3"><a href="using-r-markdown.html#cb93-3" tabindex="-1"></a>Row 1    | Data    | Some other Data</span>
-<span id="cb93-4"><a href="using-r-markdown.html#cb93-4" tabindex="-1"></a>Row 2    | Data    | Some other Data</span>
-<span id="cb93-5"><a href="using-r-markdown.html#cb93-5" tabindex="-1"></a>---------|---------|---------|</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb92-1"><a href="using-r-markdown.html#cb92-1" tabindex="-1"></a>Header 1 | Header 2| Header 3</span>
+<span id="cb92-2"><a href="using-r-markdown.html#cb92-2" tabindex="-1"></a>---------|---------|---------|</span>
+<span id="cb92-3"><a href="using-r-markdown.html#cb92-3" tabindex="-1"></a>Row 1    | Data    | Some other Data</span>
+<span id="cb92-4"><a href="using-r-markdown.html#cb92-4" tabindex="-1"></a>Row 2    | Data    | Some other Data</span>
+<span id="cb92-5"><a href="using-r-markdown.html#cb92-5" tabindex="-1"></a>---------|---------|---------|</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -965,10 +965,10 @@ div.csl-indent {
 <h3><span class="header-section-number">6.3.6</span> Exporting R Markdown documents<a href="using-r-markdown.html#exporting-r-markdown-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You’ll most likely be exporting your R Markdown documents as PDFs, but the beauty of R Markdown is it doesn’t stop there. Your R Markdown documents can be knitted as a HTML document, a book (or both like this book!). You can even make slideshow presentations and yes, if need be, export as a word document that you can open in <em>Microsoft Word</em>.</p>
 <p>You specify the output format in the document header. To specify you want your document to be outputted as a PDF your YAML header would look like this:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb94-1"><a href="using-r-markdown.html#cb94-1" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb94-2"><a href="using-r-markdown.html#cb94-2" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Your title here&quot;</span></span>
-<span id="cb94-3"><a href="using-r-markdown.html#cb94-3" tabindex="-1"></a><span class="an">output:</span><span class="co"> pdf_document</span></span>
-<span id="cb94-4"><a href="using-r-markdown.html#cb94-4" tabindex="-1"></a><span class="co">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb93-1"><a href="using-r-markdown.html#cb93-1" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb93-2"><a href="using-r-markdown.html#cb93-2" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Your title here&quot;</span></span>
+<span id="cb93-3"><a href="using-r-markdown.html#cb93-3" tabindex="-1"></a><span class="an">output:</span><span class="co"> pdf_document</span></span>
+<span id="cb93-4"><a href="using-r-markdown.html#cb93-4" tabindex="-1"></a><span class="co">---</span></span></code></pre></div>
 <p>Here are some links to different output formation available in R Markdown and how to use them:</p>
 <ul>
 <li><a href="https://bookdown.org/yihui/R%20Markdown/pdf-document.html"><code>pdf_document</code></a> creates a PDF document via Latex; probably your defacto output.</li>
