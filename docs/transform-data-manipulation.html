@@ -577,8 +577,8 @@ standards measured in triplicate:</p>
 <span id="cb160-6"><a href="transform-data-manipulation.html#cb160-6" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb160-7"><a href="transform-data-manipulation.html#cb160-7" tabindex="-1"></a></span>
 <span id="cb160-8"><a href="transform-data-manipulation.html#cb160-8" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-f6823da21b3eab53d599" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f6823da21b3eab53d599">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],[1,2,3,1,2,3,1,2,3,1,2,3,1,2,3],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>...1<\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"...1","targets":1},{"name":"type","targets":2},{"name":"conc_Na","targets":3},{"name":"units","targets":4},{"name":"replicate","targets":5},{"name":"signal","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-24acf4fccc87518b9ea8" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-24acf4fccc87518b9ea8">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],[1,2,3,1,2,3,1,2,3,1,2,3,1,2,3],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>...1<\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"...1","targets":1},{"name":"type","targets":2},{"name":"conc_Na","targets":3},{"name":"units","targets":4},{"name":"replicate","targets":5},{"name":"signal","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Note</strong> the use of <code>convert = TRUE</code> in the <code>separate()</code> call. This runs a type convert on new columns. If we didn’t include this, the <code>conc_Na</code> column would be of type character because the numbers originated from a string. <code>convert()</code> ensures they’re converted to numeric. <strong>Always use <code>convert = TRUE</code></strong> when you separate columns.</p>
 <div id="selecting-by-row-or-value" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Selecting by row or value<a href="transform-data-manipulation.html#selecting-by-row-or-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -932,7 +932,7 @@ standards measured in triplicate:</p>
 ## 15    15 standard     1   ppm           3 30790.      10    307898.</code></pre>
 <p>A Couple of things to note:</p>
 <ol style="list-style-type: decimal">
-<li>The variable we’re creating needs to be in quotation marks, hence <code>dil_fct</code> for our dilution factor variable</li>
+<li>Quotation marks are generally optional when creating a new variable in <code>mutate()</code>, but they become necessary if the variable name contains spaces, special characters, or starts with a number. For example, <code>"dil_fct"</code>, <code>dil_fct</code>, and <code>dil_fct1</code> are all valid, but if you had a variable name like <code>"dil fct"</code>, <code>"dil-fct"</code>, or <code>"2nd_fct"</code>, the quotes would be required.</li>
 <li>The variables we’re referencing do not need to be in quotation marks; hence <code>signal</code> because this variable already exists.</li>
 <li>Note the order of precedence: <code>dil_fct</code> is created first so we can reference in the second argument, we would get an error if we swapped the order.</li>
 </ol>
@@ -983,7 +983,7 @@ standards measured in triplicate:</p>
 <tbody>
 <tr class="odd">
 <td align="left">+</td>
-<td align="left">additon</td>
+<td align="left">addition</td>
 </tr>
 <tr class="even">
 <td align="left">-</td>
@@ -1110,7 +1110,7 @@ standards measured in triplicate:</p>
 <p>There is a set of exercises available for this chapter!</p>
 <p><strong>Not sure how to access and work on the exercise Rmd files? </strong></p>
 <ul>
-<li><p>Refer to Chapter 3.3 for step-by-step instructions on accessing the exercises and working within the UofT JupyterHub’s RStudio environment.</p></li>
+<li><p>Refer to Chapter 3.2 for step-by-step instructions on accessing the exercises and working within the UofT JupyterHub’s RStudio environment.</p></li>
 <li><p>Alternatively, if you’d like to simply access the individual files, you can download them directly from this <a href="https://github.com/UofTChem-Teaching/R4EnvChem-Exercises">repository</a>.</p></li>
 </ul>
 <p>Always remember to save your progress regularly and consult the textbook’s guidelines for submitting your completed exercises.</p>
