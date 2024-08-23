@@ -86,7 +86,7 @@ Do not modify the cell below.
 ```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Separate date and time", {
-  expect_true(all(c("year", "month", "day", "time") %in% colnames(date_time_data)))
+  expect_true(all(c("year", "month", "day", "Hour") %in% colnames(date_time_data)))
 })
 ```
 
