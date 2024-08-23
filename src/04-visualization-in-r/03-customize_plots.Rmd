@@ -54,7 +54,7 @@ You can specify the position of the legend under the `theme()` option as such:
 ```{r}
 bottom <- p + theme(legend.position = "bottom")
 
-inside <- p + theme(legend.position = c(.95, .95))
+inside <- p + theme(legend.position = c(.85, .85))
 
 gridExtra::grid.arrange(bottom, inside, ncol = 2)
 ```

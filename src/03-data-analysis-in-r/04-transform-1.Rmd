@@ -181,7 +181,7 @@ mutate(FAES,
 
 A Couple of things to note: 
 
-  1. The variable we're creating needs to be in quotation marks, hence `dil_fct` for our dilution factor variable
+  1. Quotation marks are generally optional when creating a new variable in `mutate()`, but they become necessary if the variable name contains spaces, special characters, or starts with a number. For example, `"dil_fct"`, `dil_fct`, and `dil_fct1` are all valid, but if you had a variable name like `"dil fct"`, `"dil-fct"`, or `"2nd_fct"`, the quotes would be required.
   2. The variables we're referencing do not need to be in quotation marks; hence `signal` because this variable already exists. 
   3. Note the order of precedence: `dil_fct` is created first so we can reference in the second argument, we would get an error if we swapped the order. 
   
@@ -211,7 +211,7 @@ There are a myriad of functions you can make use of with the mutate function. He
 ```{r, echo = FALSE}
 
 funs <- data.frame("Operator/Function" = c("+", "-", "*", "/", "^", "log()"),
-                   "Definition" = c("additon", "subtraction", "multiplication", "division", "exponent; to the power of...", "returns the specified base-log; see also log10() and log2()"))
+                   "Definition" = c("addition", "subtraction", "multiplication", "division", "exponent; to the power of...", "returns the specified base-log; see also log10() and log2()"))
 
 knitr::kable(funs)
 

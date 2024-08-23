@@ -39,7 +39,7 @@ Note that variable names are case sensitive, so if your variable is named `x` an
 
 -   **Variable Name Requirements** as dictated by R
     -   names must begin with a letter or with the dot character. `var` and `.var` are acceptable.
-    -   Variable names *cannot* start with a number or the `.` character cannot be preceded by number. `var1` is acceptable, `1var` and `.1var` are not.
+    -   Variable names *cannot* start with a number or the `.` character cannot be followed by a number. `var1` is acceptable, `1var` and `.1var` are not.
     -   Variable names *cannot* contain a space. `var 1` is interpreted as two separate values, `var` and `1`.
     -   Certain words are reserved for R, and cannot be used as variable names. These include, but are not limited to, `if`, `else`, `while`, `function`, `for`, `in`, `next`, `break`, `TRUE`, `FALSE`, `NULL`, `Inf`, `NA`, and `NaN`
 
@@ -287,7 +287,7 @@ An often unappreciated aspect of packages is that they not only contain function
 ?read.csv
 ```
 
-You can also write you're own functions. Please see [Writing custom functions in R] for additional details.
+You can also write your own functions. Please see [Writing custom functions in R] for additional details.
 
 
 ## Summary

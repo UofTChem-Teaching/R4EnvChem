@@ -13,6 +13,7 @@ Before diving into the exercises, follow the instructions below to download a da
 
 -   Visit the [Exploring Air Quality Data](https://uoft-chem.shinyapps.io/Air_Quality_App/) and go to `My Data` tab.
 -   Enter your student number, and then download the CSV file.
+-   Rename the downloaded file to `data.csv`.
 -   Upload the file to your RStudio. 
 
 ## Load Necessary Libraries
@@ -67,7 +68,7 @@ test_that("Making data longer", {
 # Exercise 2: Separate Date and Time
 
 **Your Task:**
-Use the `longer_data` to separate the `Time` column into distinct `year`, `month`, `day`, and `time` columns. Assign the result to `date_time_data`. Consider using the pipe operator (`%>%`) to break down into multiple separation steps.
+Use the `longer_data` to separate the `Time` column into distinct `year`, `month`, `day`, and `Hour` columns. Assign the result to `date_time_data`. Consider using the pipe operator (`%>%`) to break down into multiple separation steps.
 
 ```{r}
 # Complete the code below and run the cell.
@@ -85,7 +86,7 @@ Do not modify the cell below.
 ```{r,purl=FALSE}
 library(testthat, quietly = TRUE)
 test_that("Separate date and time", {
-  expect_true(all(c("year", "month", "day", "time") %in% colnames(date_time_data)))
+  expect_true(all(c("year", "month", "day", "Hour") %in% colnames(date_time_data)))
 })
 ```
 

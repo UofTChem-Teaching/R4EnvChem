@@ -81,9 +81,9 @@ test_that("Grouping and Summarizing Test", {
 # Exercise 3: Linear Modeling of Peak Area Relationships
 
 **Your Task:**
-You will fit a linear model to investigate the relationship between `Standard Concentration` and `Analyte Peak Area (counts)`. Use `Standard Concentration` as the predictor (independent variable) and `Analyte Peak Area (counts)` as the response (dependent variable).
+You will fit a linear model to investigate the relationship between `concentration` and `analyte_peak_area_counts`. Use `concentration` as the predictor (independent variable) and `analyte_peak_area_counts` as the response (dependent variable).
 
-1. Ensure the data format is suitable for modeling.
+1. Ensure the data format is suitable for modeling and that there are no missing values.
 2. Fit a linear model and summarize it.
 3. Plot the original data along with the regression line.
 

@@ -21,8 +21,8 @@ run_all_chunks <- function(rmd, envir = globalenv()) {
 }
 
 # Function to determine the correct path for the Rmd file
-get_rmd_path <- function(folder_name,filename) {
-  paths <- list(here(filename), here("exercises", folder_name, filename))
+get_rmd_path <- function(folder_name, filename) {
+  paths <- list(here(filename), here("exercises", folder_name, filename), here(folder_name, filename))
   for (path in paths) {
     if (file.exists(path))
       return(path)

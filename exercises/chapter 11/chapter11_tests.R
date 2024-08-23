@@ -22,7 +22,7 @@ run_all_chunks <- function(rmd, envir = globalenv()) {
 
 # Function to determine the correct path for the Rmd file
 get_rmd_path <- function(folder_name, filename) {
-  paths <- list(here(filename), here("exercises", folder_name, filename))
+  paths <- list(here(filename), here("exercises", folder_name, filename), here(folder_name, filename))
   for (path in paths) {
     if (file.exists(path))
       return(path)
@@ -78,10 +78,10 @@ test_that("Separate date and time", {
     suppressWarnings(run_all_chunks(rmd_file_path))
     
     # Custom error message for checking column names in date_time_data
-    custom_error_message_columns <- missing_column_error_message(date_time_data, c("year", "month", "day", "time"))
+    custom_error_message_columns <- missing_column_error_message(date_time_data, c("year", "month", "day", "Hour"))
     
     expect_true(all(
-      c("year", "month", "day", "time") %in% colnames(date_time_data)
+      c("year", "month", "day", "Hour") %in% colnames(date_time_data)
     ), info = custom_error_message_columns)
   })
   
