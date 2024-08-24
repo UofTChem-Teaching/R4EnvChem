@@ -76,7 +76,6 @@ separated_data <- separate(
     col = sample, 
     into = c("location", "chemical", "replicateNum"),
     sep = "_",
-    remove = TRUE, 
     convert = TRUE)
 
 separated_data
@@ -88,8 +87,7 @@ Let's break down what we did with the `separate` function:
 2. `col = sample` specifies we're selecting the `sample` column.
 3. `into = c(...)` specifies what columns we're separating our name into.
 4. `sep = "_"` specifies that each element is separated by an underscore (`_`).
-5. `remove = TRUE` removes the original sample column, to avoid duplication; setting this to `FALSE` would keep the original column. 
-6. `convert = TRUE` converts the new columns to the appropriate data format. In the original column, the replicate number is a character value because it's part of a string, `convert` ensures that it'll be converted to a numerical value. 
+5. `convert = TRUE` converts the new columns to the appropriate data format. In the original column, the replicate number is a character value because it's part of a string, `convert` ensures that it'll be converted to a numerical value. 
 
 ### Uniting/combining columns 
 
