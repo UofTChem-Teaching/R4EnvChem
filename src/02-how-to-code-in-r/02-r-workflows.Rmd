@@ -1,16 +1,16 @@
 # Workflows for R Coding
 
-In the previous chapter, we conducted our coding in the console, which quickly became unwieldy. To address this, we will transition to using R Markdown `.Rmd` files, which we briefly talked about in [A Sneak Peek at `.Rmd` Files]. Instead of running code interactively in the console, we write code blocks within the '.rmd' files, creating a comprehensive document that others can follow. 
+In the previous chapter, we conducted our coding in the console, which quickly became unwieldy. To address this, we will transition to using R Markdown `.Rmd` files, which we briefly talked about in [A Sneak Peek at `.Rmd` Files]. Instead of running code interactively in the console, we write code blocks within the `.Rmd` files, creating a comprehensive document that others can follow. 
 
 
 ## Creating or opening an R Markdown document
 
 To start an R Markdown document:
 
-  1. Go to *File* -> *New File* -> *R Markdown*
+  1. Go to *File* -> *New File* -> *R Markdown*.
   2. Then save your document by going to *File* -> *Save As...*. 
     - Make sure to save your file with the `.Rmd` suffix.
-    - **Save your '.rmd' file in your project folder**, so you can easily call data files.
+    - **Save your '.Rmd' file in your project folder**, so you can easily refer to data files.
 
 We've also provided an example script in the R4EnvChem project template. Assuming you're currently in the template project you can open the script as follows:
 
@@ -36,7 +36,7 @@ Content saved to an .Rmd file is considered real and self-contained. Variables, 
 At this point in the chapter, two things should be clear: 
 
 1. R Markdown documents saved to `.Rmd` files are the real record of your work.
-2. Objects in your work-space/environment are not real, and will not be available to you after you close and re-open RStudio unless you re-run the code used to generate the work-space. 
+2. Data in your workspace/environment are not real, and will not be available to you after you close and re-open RStudio unless you re-run the code used to generate the workspace. 
 
 So what is important to save in R, and how often should you save these files? 
 
@@ -47,9 +47,9 @@ So what is important to save in R, and how often should you save these files?
 By adhering to these practices, you ensure your R Markdown documents remain accurate, your code is complete, and your work remains reproducible.
 
 
-### Saving Objects
+### Saving Data Frames
 
-In some cases, your code may be used to generate large datasets which require quite a bit of time to create. It can be quite tedious to re-run the code used to generate these large data sets every time you open RStudio, and you might find yourself wanting to save the data to a *real* file that you can simply import the next time you open the application. Also, you may be finished with your analysis and want to save the final data. You can save the data contained in your data frame as a `.csv` file using `write.csv()`. 
+In some cases, your code may be used to generate large data frames which require quite a bit of time to create. It can be quite tedious to re-run the code used to generate these large data frames  every time you open RStudio, and you might find yourself wanting to save the data to a *real* file that you can simply import the next time you open the application. Also, you may be finished with your analysis and want to save the final data. You can save the data contained in your data frame as a `.csv` file using `write.csv()`. 
 
 
 ```{r, eval = FALSE}
@@ -57,15 +57,15 @@ In some cases, your code may be used to generate large datasets which require qu
 df <- data.frame(x = c(1,2,3),
                  y = c("yes", "no", "maybe"))
 
-write.csv(x = df, 
-          file = "testData.csv")
+# save the data frame to a file
+write.csv(df, file = "data/testData.csv")
 ```
 
-Breaking down to code above: 
+Breaking down the code above: 
 
-  - we created a dummy data frame `df`; in reality you'll already use a data frame from your analysis.
-  - we called `write.csv()` and
-    - `x = df` specifies we want to save the data.frame `df`
+  - we created a dummy data frame `df`; in reality you'll use a data frame from your analysis.
+  - we called `write.csv()` on two values
+    - `df` specifies we want to save the data frame `df`
     - `file = "data/testData.csv"` specifies *where* we want the file to save (in the *data* sub-directory, more on this later), and *what* our file will be called (*testData.csv*). It's important to specify the file extension so R knows how to save it. 
 
 ## Script formatting
@@ -74,10 +74,10 @@ You should now be familiar with how to open the Scripts window, as well as some 
 
 Before you enter any code into your script, it is good practice to fill the first few lines with text comments which indicate the script's title, author, and creation or last edit date. You can create a comment in a script by typing `#` before any text. An example is given below.
 
-```{r}
-#Title: Ozone time series script
-#Author: Georgia Green
-#Date: January 8, 2072
+```{r, eval = FALSE}
+# Title: Ozone time series script
+# Author: Georgia Green
+# Date: January 8, 2072
 ```
 
 Below your script header, you should include any packages that need to be loaded for the script to run. Including the necessary packages at the top of the script allows you, and anyone you share your code with, to easily see what packages they need to install. This also means that if you decide to run an entire script at once, the necessary packages will always be loaded before any subsequent code that requires those packages to work. 
@@ -92,24 +92,21 @@ The first few lines of your scripts should look something like the following.
 # 1. Packages ---- 
 
 # Install tidyverse if you haven't already 
-#install.packages("tidyverse")
+# install.packages("tidyverse")
 
 library(tidyverse)
-
-
 ```
 
-The rest of your script should be dedicated to executable code. It is good practice to include text comments throughout the script, and in between different chunks of code to remind yourself what the different sections of code are for (i.e., `# 1. Packages ---- ` in the above example). This also makes it easy for anyone you share your code with to understand what you're trying to do with different sections within the script.
+The rest of your script should contain the R code you want to run, and text comments in between different chunks of code to remind yourself what the different sections of code are for (e.g., `# 1. Packages ---- ` in the above example). This also makes it easy for anyone you share your code with to understand what you're trying to do with different sections within the script.
 
 You can also use headers and sub-headers in your scripts using `#`, `##`, and `###` before your text and `---` after as shown below:
-```{r, eval = FALSE}
+```{r eval = FALSE}
 # Section ----
 ## Subsection ----
 ### Sub-subsection ----
 ```
 
 Headings and subheadings are picked up by RStudio and displayed in the Document Outline box. You can open the Document Outline box by clicking the button highlighted in the image below. Use of these headings allows easy navigation of long scripts, as you can navigate between sections using the Document Outline box. 
-
 
 ![Example script headings, document outlines, and comments. Note the "---" which tells RStudio this comment is to be treated as a script heading.](images/Rstudio_documentoutline2.png){width=100%}
 
@@ -138,12 +135,12 @@ Let's look at another example. Some functions require you to write code with nes
 library(readr)
 library(ggplot2)
 
-#import ozone data set
+# import ozone data set
 airPol <- read_csv("data/2018-01-01_60430_Toronto_ON.csv")
 ```
 
 ```{r eval = FALSE}
-#plot ozone concentration vs. time
+# plot ozone concentration vs. time
 ggplot(data = airPol, 
        aes(x = date.time,
            y = concentration,
@@ -169,7 +166,7 @@ q <- 8 + "hi"
 
 Here we are trying to add a numeric value (8) to a character string ("hi"), then set the sum of the two to variable `q`. R has given us an error in return, because there is no logical way for R to add a numeric value to non-numeric text. The error indicates that we have passed a `non-numeric argument to binary operator`, meaning we have used a non-numeric data type for an expression which is exclusively reserved for numeric data. 
 
-It is important to be aware of error codes as many functions require specific data types as their inputs. You can always consult the function documentation via the *Help* tab of the *Viewer* pane or by typing a `?` followed by the name of the function in the console (i.e. `?ggplot`). 
+It is important to be aware of error codes as many functions require specific data types as their inputs. Remember, you can always consult the function documentation using `?`.
 
 ## Summary
 
@@ -180,7 +177,7 @@ In this chapter we've covered:
   - How to format your markdown for legibility (Remember you're the one who's going to be stuck rereading it!)
   - Troubleshooting some common error messages
   
-Now that you're familiar with the above, we'll introduce [Using R Markdown], a way to combine your R code, it's outputs, and your writing all in one dynamic document (like your lab reports!).  
+Now that you're familiar with the above, we'll introduce [Using R Markdown], a way to combine your R code, its outputs, and your writing all in one dynamic document (like your lab reports!).  
 
 ```{r child='src/common/end-of-chapter-exercise.Rmd'}
 ```
