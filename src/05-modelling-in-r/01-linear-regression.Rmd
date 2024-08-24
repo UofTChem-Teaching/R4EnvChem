@@ -254,7 +254,7 @@ slope_ca <- metal_results$Ca$slope
 intercept_ca <- metal_results$Ca$intercept
 
 # Print the slope and intercept values
-print("Slope for Ca:", slope_ca, "\n")
+cat("Slope for Ca:", slope_ca, "\n")
 cat("Intercept for Ca:", intercept_ca, "\n")
 ```
 
