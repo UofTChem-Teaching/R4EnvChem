@@ -548,12 +548,9 @@ div.csl-indent {
 <li><code>summarize()</code> to collapse many values down to a single summary.</li>
 </ul>
 <p>We’ll go through each of these functions, for more details you can read <a href="https://r4ds.had.co.nz/transform.html">Chapter 3: Data Transformation</a> from <em>R for Data Science</em> which provides a more comprehensive breakdown of these functions. Note that the information here is based on a <code>tidyverse</code> approach, but this is only one way of doing things. See the <a href="transform-data-manipulation.html#further_reading_chapter12">Further reading</a> section for links to other suitable approaches to data transformation.</p>
-<p>Let’s explore the functionality of <code>dplyr</code> using some flame absorption/emission spectroscopy (FAES) data from a <em>CHM317</em> lab. This data represents the emission signal of five sodium (Na)
-standards measured in triplicate:</p>
-<p>standards measured in triplicate:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="transform-data-manipulation.html#cb147-1" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
-<span id="cb147-2"><a href="transform-data-manipulation.html#cb147-2" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAES.csv&quot;</span>)</span>
-<span id="cb147-3"><a href="transform-data-manipulation.html#cb147-3" tabindex="-1"></a><span class="fu">head</span>(FAES)</span></code></pre></div>
+<p>Let’s explore the functionality of <code>dplyr</code> using some flame absorption/emission spectroscopy (FAES) data from a <em>CHM317</em> lab. This data represents the emission signal of five sodium (Na) standards measured in triplicate:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="transform-data-manipulation.html#cb147-1" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAES.csv&quot;</span>)</span>
+<span id="cb147-2"><a href="transform-data-manipulation.html#cb147-2" tabindex="-1"></a><span class="fu">head</span>(FAES)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##    ...1 std_Na_conc      replicate signal
 ##   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;  &lt;dbl&gt;
@@ -563,18 +560,19 @@ standards measured in triplicate:</p>
 ## 4     4 standard 0.1 ppm         1  5656.
 ## 5     5 standard 0.1 ppm         2  5654.
 ## 6     6 standard 0.1 ppm         3  5667.</code></pre>
-<p>In this dataset you can see that two important aspects of the data, sample type (sample, blank or standard) and concentration are grouped in one column. We can use the separate function to separate these into two columns to facilitate further analysis.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="transform-data-manipulation.html#cb149-1" tabindex="-1"></a><span class="co"># Importing using tips from Import chapter</span></span>
-<span id="cb149-2"><a href="transform-data-manipulation.html#cb149-2" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAES.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># see section on Pipe</span></span>
-<span id="cb149-3"><a href="transform-data-manipulation.html#cb149-3" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
-<span id="cb149-4"><a href="transform-data-manipulation.html#cb149-4" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
-<span id="cb149-5"><a href="transform-data-manipulation.html#cb149-5" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
-<span id="cb149-6"><a href="transform-data-manipulation.html#cb149-6" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb149-7"><a href="transform-data-manipulation.html#cb149-7" tabindex="-1"></a></span>
-<span id="cb149-8"><a href="transform-data-manipulation.html#cb149-8" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-4274d1826b6cb9411f86" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4274d1826b6cb9411f86">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],[1,2,3,1,2,3,1,2,3,1,2,3,1,2,3],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>...1<\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"...1","targets":1},{"name":"type","targets":2},{"name":"conc_Na","targets":3},{"name":"units","targets":4},{"name":"replicate","targets":5},{"name":"signal","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<p><strong>Note</strong> the use of <code>convert = TRUE</code> in the <code>separate()</code> call. This runs a type convert on new columns. If we didn’t include this, the <code>conc_Na</code> column would be of type character because the numbers originated from a string. <code>convert()</code> ensures they’re converted to numeric. <strong>Always use <code>convert = TRUE</code></strong> when you separate columns.</p>
+<p>In this dataset you can see that two important aspects of the data, sample type (sample, blank or standard) and concentration are grouped in one column.
+We can use the <code>separate()</code> function we learned about in <a href="tidying-your-data.html#separating-columns">Separating columns</a> to separate these values into two columns to facilitate further analysis.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="transform-data-manipulation.html#cb149-1" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">separate</span>(</span>
+<span id="cb149-2"><a href="transform-data-manipulation.html#cb149-2" tabindex="-1"></a>  FAES,</span>
+<span id="cb149-3"><a href="transform-data-manipulation.html#cb149-3" tabindex="-1"></a>  <span class="at">col =</span> std_Na_conc,</span>
+<span id="cb149-4"><a href="transform-data-manipulation.html#cb149-4" tabindex="-1"></a>  <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
+<span id="cb149-5"><a href="transform-data-manipulation.html#cb149-5" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb149-6"><a href="transform-data-manipulation.html#cb149-6" tabindex="-1"></a>  <span class="at">convert =</span> <span class="cn">TRUE</span></span>
+<span id="cb149-7"><a href="transform-data-manipulation.html#cb149-7" tabindex="-1"></a>)</span>
+<span id="cb149-8"><a href="transform-data-manipulation.html#cb149-8" tabindex="-1"></a></span>
+<span id="cb149-9"><a href="transform-data-manipulation.html#cb149-9" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-a2a1eaef109d7cc8df6a" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a2a1eaef109d7cc8df6a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],["blank","blank","blank","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],[1,2,3,1,2,3,1,2,3,1,2,3,1,2,3],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>...1<\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"...1","targets":1},{"name":"type","targets":2},{"name":"conc_Na","targets":3},{"name":"units","targets":4},{"name":"replicate","targets":5},{"name":"signal","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <div id="selecting-by-row-or-value" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Selecting by row or value<a href="transform-data-manipulation.html#selecting-by-row-or-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>filter()</code> allows up to subset our data based on observation (row) values.</p>
@@ -651,28 +649,23 @@ standards measured in triplicate:</p>
 </tbody>
 </table>
 <ul>
-<li>Selecting all signals below a threshold value</li>
-</ul>
+<li><p>Selecting all signals below a threshold value:</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="transform-data-manipulation.html#cb152-1" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&lt;</span> <span class="dv">4450</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 6
 ##    ...1 type  conc_Na units replicate signal
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     1 blank       0 ppm           1   502.
 ## 2     2 blank       0 ppm           2   592.
-## 3     3 blank       0 ppm           3   581.</code></pre>
-<ul>
-<li>Selecting signals between values</li>
-</ul>
+## 3     3 blank       0 ppm           3   581.</code></pre></li>
+<li><p>Selecting signals between values:</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="transform-data-manipulation.html#cb154-1" tabindex="-1"></a><span class="fu">filter</span>(FAES, signal <span class="sc">&gt;=</span> <span class="dv">4450</span> <span class="sc">&amp;</span> signal <span class="sc">&lt;</span> <span class="dv">8150</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 6
 ##    ...1 type     conc_Na units replicate signal
 ##   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     4 standard     0.1 ppm           1  5656.
 ## 2     5 standard     0.1 ppm           2  5654.
-## 3     6 standard     0.1 ppm           3  5667.</code></pre>
-<ul>
-<li>Selecting all other replicates other than replicate <code>2</code></li>
-</ul>
+## 3     6 standard     0.1 ppm           3  5667.</code></pre></li>
+<li><p>Selecting all other replicates other than replicate <code>2</code>:</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="transform-data-manipulation.html#cb156-1" tabindex="-1"></a><span class="fu">filter</span>(FAES, replicate <span class="sc">!=</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 6
 ##     ...1 type     conc_Na units replicate signal
@@ -686,10 +679,8 @@ standards measured in triplicate:</p>
 ##  7    10 standard     0.5 ppm           1 20187.
 ##  8    12 standard     0.5 ppm           3 20153.
 ##  9    13 standard     1   ppm           1 30798.
-## 10    15 standard     1   ppm           3 30790.</code></pre>
-<ul>
-<li>selecting the first standard replicate OR any of the blanks.</li>
-</ul>
+## 10    15 standard     1   ppm           3 30790.</code></pre></li>
+<li><p>Selecting the first standard replicate OR any of the blanks:</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="transform-data-manipulation.html#cb158-1" tabindex="-1"></a><span class="fu">filter</span>(FAES, (type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span> <span class="sc">&amp;</span> replicate <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|</span> (type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 6
 ##    ...1 type     conc_Na units replicate signal
@@ -700,10 +691,8 @@ standards measured in triplicate:</p>
 ## 4     4 standard     0.1 ppm           1  5656.
 ## 5     7 standard     0.2 ppm           1  9393.
 ## 6    10 standard     0.5 ppm           1 20187.
-## 7    13 standard     1   ppm           1 30798.</code></pre>
-<ul>
-<li>Removing any missing values (<code>NA</code>) using <code>is.na()</code>. Note there are no missing values in our data set so nothing will be removed, if we removed the NOT operator (<code>!</code>) we would have selected all rows <em>with</em> missing values.</li>
-</ul>
+## 7    13 standard     1   ppm           1 30798.</code></pre></li>
+<li><p>Removing any rows with missing signal values (<code>NA</code>) using <code>is.na()</code>. Note there are no missing values in our data set so nothing will be removed, if we removed the NOT operator (<code>!</code>) we would have selected all rows <em>with</em> missing values.</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="transform-data-manipulation.html#cb160-1" tabindex="-1"></a><span class="fu">filter</span>(FAES, <span class="sc">!</span><span class="fu">is.na</span>(signal))</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 6
 ##     ...1 type     conc_Na units replicate signal
@@ -722,14 +711,15 @@ standards measured in triplicate:</p>
 ## 12    12 standard     0.5 ppm           3 20153.
 ## 13    13 standard     1   ppm           1 30798.
 ## 14    14 standard     1   ppm           2 30837.
-## 15    15 standard     1   ppm           3 30790.</code></pre>
+## 15    15 standard     1   ppm           3 30790.</code></pre></li>
+</ul>
 <p>These are just some examples, but you can combine the logical operators in any way that works for you. Likewise, there are multiple combinations that will yield the same result, it’s up to you do figure out which works best for you.</p>
 </div>
 </div>
 <div id="arranging-rows" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Arranging rows<a href="transform-data-manipulation.html#arranging-rows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>arrange()</code> reorders the rows based on the value you passed to it. By default it arranges the specified values into ascending order. Let’s arrange our data our data by increasing order of signal value:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="transform-data-manipulation.html#cb162-1" tabindex="-1"></a><span class="fu">arrange</span>( FAES, signal)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="transform-data-manipulation.html#cb162-1" tabindex="-1"></a><span class="fu">arrange</span>(FAES, signal)</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 6
 ##     ...1 type     conc_Na units replicate signal
 ##    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;
@@ -883,8 +873,8 @@ standards measured in triplicate:</p>
 </div>
 <div id="adding-new-variables" class="section level2 hasAnchor" number="12.5">
 <h2><span class="header-section-number">12.5</span> Adding new variables<a href="transform-data-manipulation.html#adding-new-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>mutate()</code> allows you to add new variables (read columns) to your existing data set. It’ll probably be the workhorse function you’ll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let’s suppose that our standards were diluted by a factor of 10, we can add a new column for this:</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="transform-data-manipulation.html#cb178-1" tabindex="-1"></a><span class="fu">mutate</span>(FAES, <span class="st">&quot;dil_fct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><code>mutate()</code> allows you to add new variables (read columns) to your existing data set. It’ll probably be the workhorse function you’ll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let’s suppose that our standards were diluted by a factor of 10, we can add a new column <code>dil_fct</code> for this:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="transform-data-manipulation.html#cb178-1" tabindex="-1"></a><span class="fu">mutate</span>(FAES, <span class="at">dil_fct =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 7
 ##     ...1 type     conc_Na units replicate signal dil_fct
 ##    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
@@ -925,22 +915,23 @@ standards measured in triplicate:</p>
 ## 13    13 standard     1   ppm           1 30798.      10    307977.
 ## 14    14 standard     1   ppm           2 30837.      10    308365.
 ## 15    15 standard     1   ppm           3 30790.      10    307898.</code></pre>
-<p>A Couple of things to note:</p>
+<p>A couple of things to note:</p>
 <ol style="list-style-type: decimal">
 <li>Quotation marks are generally optional when creating a new variable in <code>mutate()</code>, but they become necessary if the variable name contains spaces, special characters, or starts with a number. For example, <code>"dil_fct"</code>, <code>dil_fct</code>, and <code>dil_fct1</code> are all valid, but if you had a variable name like <code>"dil fct"</code>, <code>"dil-fct"</code>, or <code>"2nd_fct"</code>, the quotes would be required.</li>
 <li>The variables we’re referencing do not need to be in quotation marks; hence <code>signal</code> because this variable already exists.</li>
-<li>Note the order of precedence: <code>dil_fct</code> is created first so we can reference in the second argument, we would get an error if we swapped the order.</li>
+<li>Note the order of precedence: <code>dil_fct</code> is created first so we can reference in the second column being added, we would get an error if we swapped the order.</li>
 </ol>
 <div id="mutate-with-a-condition" class="section level3 hasAnchor" number="12.5.1">
 <h3><span class="header-section-number">12.5.1</span> Mutate with a condition<a href="transform-data-manipulation.html#mutate-with-a-condition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In data analysis, there are often scenarios where we want to categorize or re-label values based on certain conditions. The <code>case_when()</code> function, provided by the <code>dplyr</code> package, which was introduced in the [Piping conditional statements] section, offers a versatile and readable solution for handling these multiple conditions.</p>
-<p>The syntax for <code>case_when()</code> is straightforward: for each condition, you specify the logical test followed by the tilde (~) operator, and then the value or expression to return if the condition is <code>TRUE</code>.</p>
+<p>In data analysis, there are often scenarios where we want to categorize or re-label values based on certain conditions. The <code>case_when()</code> function offers a versatile and readable solution for handling these multiple conditions.</p>
+<p>The syntax for <code>case_when()</code> is straightforward: for each condition, you specify the logical test followed by the tilde (~) operator, and then the value or expression to return if the condition is <code>TRUE</code>.
+A <code>.default</code> value can be provided for cases when none of the conditions are <code>TRUE</code>.</p>
 <p>With our FAES data, say you want to label each <code>conc_Na</code> as “Low”, “Medium”, or “High” based on its value. You can use <code>case_when()</code> within <code>mutate()</code> as follows:</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="transform-data-manipulation.html#cb182-1" tabindex="-1"></a><span class="fu">mutate</span>(FAES, </span>
 <span id="cb182-2"><a href="transform-data-manipulation.html#cb182-2" tabindex="-1"></a>       <span class="at">conc_Na_level =</span> <span class="fu">case_when</span>(</span>
 <span id="cb182-3"><a href="transform-data-manipulation.html#cb182-3" tabindex="-1"></a>         conc_Na <span class="sc">&lt;</span> <span class="fl">0.2</span> <span class="sc">~</span> <span class="st">&quot;Low&quot;</span>,</span>
 <span id="cb182-4"><a href="transform-data-manipulation.html#cb182-4" tabindex="-1"></a>         conc_Na <span class="sc">&lt;</span> <span class="fl">0.4</span> <span class="sc">~</span> <span class="st">&quot;Medium&quot;</span>,</span>
-<span id="cb182-5"><a href="transform-data-manipulation.html#cb182-5" tabindex="-1"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;High&quot;</span>))</span></code></pre></div>
+<span id="cb182-5"><a href="transform-data-manipulation.html#cb182-5" tabindex="-1"></a>         <span class="at">.default =</span> <span class="st">&quot;High&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 7
 ##     ...1 type     conc_Na units replicate signal conc_Na_level
 ##    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;        
@@ -959,7 +950,7 @@ standards measured in triplicate:</p>
 ## 13    13 standard     1   ppm           1 30798. High         
 ## 14    14 standard     1   ppm           2 30837. High         
 ## 15    15 standard     1   ppm           3 30790. High</code></pre>
-<p>For those interested in exploring further, there’s a similar function called <code>ifelse()</code> which provides conditional transformations in R. You can learn more about it in the <a href="r-coding-basics.html#conditional-statements">Conditional Statements</a> section in this resource or in the documentation for the ifelse statement that can be found <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse">here</a>.</p>
+<p>For those interested in exploring further, there’s a similar function called <code>ifelse()</code> which provides conditional transformations in R. You can learn more about it in R documentation found <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse">here</a>.</p>
 </div>
 <div id="useful-mutate-function" class="section level3 hasAnchor" number="12.5.2">
 <h3><span class="header-section-number">12.5.2</span> Useful mutate function<a href="transform-data-manipulation.html#useful-mutate-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1007,14 +998,14 @@ standards measured in triplicate:</p>
 <div id="group-and-summarize-data" class="section level2 hasAnchor" number="12.6">
 <h2><span class="header-section-number">12.6</span> Group and summarize data<a href="transform-data-manipulation.html#group-and-summarize-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>summarize</code> effectively summarizes your data based on functions you’ve passed to it. Looking at our <code>FAES</code> data we’d might want the mean and standard deviation of the triplicate signals. Let’s see what happens when we apply the summarize function straight up:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="transform-data-manipulation.html#cb184-1" tabindex="-1"></a><span class="fu">summarise</span>(FAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="transform-data-manipulation.html#cb184-1" tabindex="-1"></a><span class="fu">summarise</span>(FAES, <span class="at">mean =</span> <span class="fu">mean</span>(signal), <span class="at">stdDev =</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##     mean stdDev
 ##    &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 13310. 11242.</code></pre>
 <p>This doesn’t look like what we wanted. What we got was the mean and standard deviation of <em>all</em> of the signals, regardless of the concentration of the standard. Also note how we’ve lost the other columns/variables and are only left with the mean and stdDev. This is all because we need to <strong>group</strong> our observations by a variable. We can do this by using the <code>group_by()</code> function.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="transform-data-manipulation.html#cb186-1" tabindex="-1"></a>groupedFAES <span class="ot">&lt;-</span> <span class="fu">group_by</span>(FAES, type, conc_Na)</span>
-<span id="cb186-2"><a href="transform-data-manipulation.html#cb186-2" tabindex="-1"></a><span class="fu">summarise</span>(groupedFAES, <span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(signal), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
+<span id="cb186-2"><a href="transform-data-manipulation.html#cb186-2" tabindex="-1"></a><span class="fu">summarise</span>(groupedFAES, <span class="at">mean =</span> <span class="fu">mean</span>(signal), <span class="at">stdDev =</span> <span class="fu">sd</span>(signal))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;type&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 5 × 4
@@ -1026,7 +1017,7 @@ standards measured in triplicate:</p>
 ## 3 standard     0.2  9363.  30.7 
 ## 4 standard     0.5 20160.  24.0 
 ## 5 standard     1   30808.  25.0</code></pre>
-<p>Here we’ve created a new data set, <code>groupedFAES</code>, that we grouped by the variables <code>type</code> and <code>conc_Na</code> so we could get the mean and standard deviation of each group. Note the multiple levels of grouping. For this data set we could have omitted the <code>type</code> variable, but in larger datasets you may have multiple groupings (i.e. from different location), so you can group by multiple variables to get smaller groups.</p>
+<p>Here we’ve created a new data set, <code>groupedFAES</code>, that we grouped by the variables <code>type</code> and <code>conc_Na</code> so we could get the mean and standard deviation of each group. Note the multiple levels of grouping. Depending on your dataset and the analysis you’re performing, you’ll need to decide how to group your data: the more variables you use, the smaller each group will be.</p>
 <div id="useful-summarize-functions" class="section level3 hasAnchor" number="12.6.1">
 <h3><span class="header-section-number">12.6.1</span> Useful summarize functions<a href="transform-data-manipulation.html#useful-summarize-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We’ve used the <code>mean()</code> and <code>sd()</code> functions above, but there are a host of other useful functions you can use in conjunction with summarize. See <strong>Useful Functions</strong> in the <code>summarise()</code> documentation (enter <code>?summarise</code>) in the console. This is also discussed in more depth in the <a href="summarizing-data.html#summarizing-data">Summarizing Data</a> chapter.</p>
@@ -1054,9 +1045,9 @@ standards measured in triplicate:</p>
 ## 3     0.5 19602.  24.0 
 ## 4     1   30249.  25.0</code></pre>
 <p>While the code above did its job, it’s certainly wasn’t easy to type and certainly not easy to read. At every step of the way we’ve saved our updated data outputs to a new variable (<code>stds_1</code>, <code>stds_2</code>, etc.). However, most of these intermediates aren’t important, and moreover the repetitive names clutter our code. As the code above is written, we’ve had to pay special attention to the variable suffix to make sure we’re calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. <code>stds_1 &lt;- mutate(stds_1, ...)</code>), but that doesn’t solve the issue of readability as there’s still redundant assigning.</p>
-<p>A solution for this is the pipe operator <code>%&gt;%</code> ( pronounced as “then”), an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you’re working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we’d get something like:</p>
+<p>A solution for this is the <strong>pipe operator</strong> <code>%&gt;%</code>, an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you’re working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we’d get something like:</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="transform-data-manipulation.html#cb193-1" tabindex="-1"></a>meanBlank <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
-<span id="cb193-2"><a href="transform-data-manipulation.html#cb193-2" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span><span class="st">&quot;blank&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb193-2"><a href="transform-data-manipulation.html#cb193-2" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;blank&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb193-3"><a href="transform-data-manipulation.html#cb193-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(signal)) <span class="sc">%&gt;%</span></span>
 <span id="cb193-4"><a href="transform-data-manipulation.html#cb193-4" tabindex="-1"></a>  <span class="fu">as.numeric</span>()</span>
 <span id="cb193-5"><a href="transform-data-manipulation.html#cb193-5" tabindex="-1"></a></span>
@@ -1066,12 +1057,12 @@ standards measured in triplicate:</p>
 <blockquote>
 <p>“Take the <code>FAES</code> dataset, <em>then</em> filter for <code>type == "blank"</code> <em>then</em> collapse the dataset to the mean <code>signal</code> value and <em>then</em> convert to numeric value <em>then</em> pass this final output to the new variable <code>meanBlank</code>.”</p>
 </blockquote>
-<p>Not only is the pipe less typing, but the emphasis is on the functions so you can better understand what you’re doing vs. where all the intermediates are going. Extending our piping to the second batch of code we get:</p>
+<p>Not only is the pipe less typing, but the emphasis is on the functions so you can better understand what you’re doing vs. where all the intermediate values are going. Extending our piping to the second batch of code we get:</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="transform-data-manipulation.html#cb195-1" tabindex="-1"></a>stds <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
 <span id="cb195-2"><a href="transform-data-manipulation.html#cb195-2" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;standard&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb195-3"><a href="transform-data-manipulation.html#cb195-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;cor_sig&quot;</span> <span class="ot">=</span> signal <span class="sc">-</span> meanBlank) <span class="sc">%&gt;%</span> </span>
+<span id="cb195-3"><a href="transform-data-manipulation.html#cb195-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cor_sig =</span> signal <span class="sc">-</span> meanBlank) <span class="sc">%&gt;%</span> </span>
 <span id="cb195-4"><a href="transform-data-manipulation.html#cb195-4" tabindex="-1"></a>  <span class="fu">group_by</span>(conc_Na) <span class="sc">%&gt;%</span></span>
-<span id="cb195-5"><a href="transform-data-manipulation.html#cb195-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">&quot;mean&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(cor_sig), <span class="st">&quot;stdDev&quot;</span> <span class="ot">=</span> <span class="fu">sd</span>(cor_sig))</span>
+<span id="cb195-5"><a href="transform-data-manipulation.html#cb195-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(cor_sig), <span class="at">stdDev =</span> <span class="fu">sd</span>(cor_sig))</span>
 <span id="cb195-6"><a href="transform-data-manipulation.html#cb195-6" tabindex="-1"></a></span>
 <span id="cb195-7"><a href="transform-data-manipulation.html#cb195-7" tabindex="-1"></a>stds</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
@@ -1084,7 +1075,7 @@ standards measured in triplicate:</p>
 <p>Same thing. The underlying code hasn’t changed much, but it’s much more legible and we can clearly see we’re subtracting the <code>meanBlank</code> value from each measured signal then summarizing the corrected signals.</p>
 <div id="notes-on-piping" class="section level3 hasAnchor" number="12.7.1">
 <h3><span class="header-section-number">12.7.1</span> Notes on piping<a href="transform-data-manipulation.html#notes-on-piping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The pipe is great and especially useful with <em>tidyverse</em> packages, but it does have some limitations:</p>
+<p>The pipe is great, but it does have some limitations:</p>
 <ul>
 <li>You can’t easily extract intermediate steps. So you’ll need to break up your pipping chain to output any intermediate steps you can.</li>
 <li>The benefit of piping is legibility; this goes away as you increase the number of steps as you lose track of what’s going on. Keep the piping short and thematically similar.</li>
