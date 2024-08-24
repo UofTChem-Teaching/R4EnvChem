@@ -206,7 +206,7 @@ legends
 modifying-labels
 modifying-axis
 transforming-axis
-limits
+axis-limits
 axis-tickslabels
 arranging-plots
 exercise-12
