@@ -1,7 +1,7 @@
 fig:tidy-example
 fig:reg-plot
-fig:unnamed-chunk-177
 fig:unnamed-chunk-178
+fig:unnamed-chunk-179
 fig:sdsMaxPlot
 intro-to-r-and-rstudio
 r-language
@@ -44,7 +44,7 @@ variables
 data-types
 data-structures
 data-frames
-creating-a-dataframe-from-scratch
+creating-a-data-frame-from-scratch
 reading-data-from-a-file
 accessing-data-in-subfolders
 other-data-structures

@@ -213,12 +213,12 @@ div.csl-indent {
 <li class="chapter" data-level="2.6" data-path="rstudio-projects.html"><a href="rstudio-projects.html#summary-1"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
 <li class="chapter" data-level="2.7" data-path="rstudio-projects.html"><a href="rstudio-projects.html#exercise-1"><i class="fa fa-check"></i><b>2.7</b> Exercise</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#get-started"><i class="fa fa-check"></i><b>2.7.1</b> Get Started:</a></li>
+<li class="chapter" data-level="2.7.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#get-started"><i class="fa fa-check"></i><b>2.7.1</b> Get Started</a></li>
 <li class="chapter" data-level="2.7.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#confirm-your-working-directory"><i class="fa fa-check"></i><b>2.7.2</b> Confirm Your Working Directory</a></li>
-<li class="chapter" data-level="2.7.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#creating-your-own-project"><i class="fa fa-check"></i><b>2.7.3</b> Creating Your Own Project:</a></li>
-<li class="chapter" data-level="2.7.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-your-rmd-file"><i class="fa fa-check"></i><b>2.7.4</b> Create Your Rmd File:</a></li>
-<li class="chapter" data-level="2.7.5" data-path="rstudio-projects.html"><a href="rstudio-projects.html#upload-a-file-from-your-computer"><i class="fa fa-check"></i><b>2.7.5</b> Upload a file from your computer:</a></li>
-<li class="chapter" data-level="2.7.6" data-path="rstudio-projects.html"><a href="rstudio-projects.html#reflection-1"><i class="fa fa-check"></i><b>2.7.6</b> Reflection:</a></li>
+<li class="chapter" data-level="2.7.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#creating-your-own-project"><i class="fa fa-check"></i><b>2.7.3</b> Creating Your Own Project</a></li>
+<li class="chapter" data-level="2.7.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-your-rmd-file"><i class="fa fa-check"></i><b>2.7.4</b> Create Your Rmd File</a></li>
+<li class="chapter" data-level="2.7.5" data-path="rstudio-projects.html"><a href="rstudio-projects.html#upload-a-file-from-your-computer"><i class="fa fa-check"></i><b>2.7.5</b> Upload a file from your computer</a></li>
+<li class="chapter" data-level="2.7.6" data-path="rstudio-projects.html"><a href="rstudio-projects.html#reflection-1"><i class="fa fa-check"></i><b>2.7.6</b> Reflection</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html"><i class="fa fa-check"></i><b>3</b> How to Use This Textbook</a>
@@ -556,14 +556,12 @@ div.csl-indent {
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-coding-basics.html#cb13-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">12</span></span>
 <span id="cb13-2"><a href="r-coding-basics.html#cb13-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
-<p>In addition to reading code top to bottom, you often <em>read it from right to left</em>. <code>x &lt;- 12</code> would be read as “take the value <code>12</code> and store it into the variable <code>x</code>”. The second line of code, <code>x</code>, simply returns the value stored inside <code>x</code>. Note that when a variable is typed on it own, R will print out it’s contents. You can now use this variable in snippets of code:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-coding-basics.html#cb15-1" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>## [1] 12</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r-coding-basics.html#cb17-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="fl">6.022e23</span></span>
-<span id="cb17-2"><a href="r-coding-basics.html#cb17-2" tabindex="-1"></a>x</span></code></pre></div>
+<p>Codes using <code>&lt;-</code> should be read <em>right to left</em>: <code>x &lt;- 12</code> would be read as “take the value <code>12</code> and store it into the variable <code>x</code>”. The second line of code, <code>x</code>, simply evaluates the value that <code>x</code> is assigned to. Note that when a variable is typed on it own, R will print out its contents. You can now use this variable in snippets of code:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-coding-basics.html#cb15-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="fl">6.022e23</span></span>
+<span id="cb15-2"><a href="r-coding-basics.html#cb15-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 7.2264e+24</code></pre>
-<p>Remember, R evaluates from right to left, so the code above is taking the number <code>6.022e23</code> and multiplying it by the value of <code>x</code>, which is 12 and storing that value back into <code>x</code>. That’s how we’re able to modifying the contents of a variable using it’s current value. You can also overwrite the contents of a variable at anytime (i.e. <code>x &lt;- 25</code>).</p>
-<p>Note that variable names are case sensitive, so if your variable is named <code>x</code> and you type <code>X</code> into the console, R will not be able to print the contents of <code>x</code>. Variable names can consist of letters, numbers, dots (<code>.</code>) and/or underlines (<code>_</code>). Here are some rules and guidelines for naming variables in R:</p>
+<p>Remember, R evaluates <code>&lt;-</code> from right to left, so the code above is taking the number <code>6.022e23</code> and multiplying it by the value of <code>x</code>, which is 12 and storing that value back into <code>x</code>. That’s how we’re able to modifying the contents of a variable using its current value. You can also overwrite the contents of a variable at anytime (i.e. <code>x &lt;- 25</code>).</p>
+<p>Variable names are case sensitive, so if your variable is named <code>x</code> and you type <code>X</code> into the console, R will not be able to print the contents of <code>x</code>. Variable names can consist of letters, numbers, dots (<code>.</code>) and/or underlines (<code>_</code>). Here are some rules and guidelines for naming variables in R:</p>
 <ul>
 <li><strong>Variable Name Requirements</strong> as dictated by R
 <ul>
@@ -574,72 +572,75 @@ div.csl-indent {
 </ul></li>
 </ul>
 <p>Good names for variables are short, sweet, and easy to type while also being somewhat descriptive. For example, let’s say you have an air pollution data set. A good name to assign the data set to would be <code>airPol</code> or <code>air_pol</code>, as these names tell us what is contained in the data set and are easy to type. A bad name for the data set would be <code>airPollution_NOx_O3_June20_1968</code>. While this name is much more descriptive than the previous names, it will take you a long time to type, and will become a bit of a nuisance when you have to type it 10+ times to refer to the data set in a single script. Please refer to the <a href="http://adv-r.had.co.nz/Style.html"><em>Style Guide</em></a> found in <em>Advanced R</em> by H. Wickham for more information.</p>
-<p>Lastly, R evaluates code from top-to-bottom of your script. So if you reference a variable it must have already been created at an earlier point in your script. For example:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-coding-basics.html#cb19-1" tabindex="-1"></a>y <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<p>Lastly, R evaluates multiple lines of code one at a time, from top-to-bottom. So if you reference a variable it must have already been created at an earlier point in your script. For example:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r-coding-basics.html#cb17-1" tabindex="-1"></a>y <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r-coding-basics.html#cb21-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">12</span></span></code></pre></div>
-<p>The code above returns the <code>object 'y' not found</code> error because we’re adding <code>+ 1</code> to <code>y</code> which hasn’t been created yet, it’s created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn’t reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space using the ‘broom’ button in the <em>environment</em> pane. This will help you to ensure the code you’re writing is organized in the correct order; see <a href="workflows-for-r-coding.html#saving-r-markdown">Saving R Markdown</a> for why this is important.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-coding-basics.html#cb19-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">12</span></span></code></pre></div>
+<p>The code above returns the <code>object 'y' not found</code> error because we’re adding <code>+ 1</code> to <code>y</code> which hasn’t been created yet, it’s created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn’t reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space using the ‘broom’ button in the <em>Environment</em> pane. This will help you to ensure the code you’re writing is organized in the correct order; see <a href="workflows-for-r-coding.html#saving-r-markdown">Saving R Markdown</a> for why this is important.</p>
 </div>
 <div id="data-types" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Data Types<a href="r-coding-basics.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data types refer to how data is stored and handled by and in R. This can get complicated quickly, but we’ll focus on the most common types here so you can get started on your work. Firstly, here are the data types you’ll likely be working with:</p>
 <ul>
-<li><strong>character</strong>: <code>"a"</code>, <code>"howdy"</code>, <code>"1"</code>, is used to represent string values in R. Basically it’s text that you’d read. Strings are wrapped in quotation marks. For example, <code>"1"</code>, despite being read as number by us, is stored as a character and treated as such by R.</li>
-<li><strong>numeric</strong> is any real or decimal number such as <code>2</code>, <code>3.14</code>, <code>6.022e23</code>.</li>
-<li><strong>integer</strong> such as <code>2L</code>, note the ‘L’ tells R this is an integer.<br />
-</li>
-<li><strong>logical</strong> is a Boolean logic value, they can only be <code>TRUE</code> or <code>FALSE</code></li>
+<li><strong>character</strong>: <code>"a"</code>, <code>"howdy"</code>, <code>"1"</code>, is used to represent text values in R. Character values may be wrapped in either single-quotes or double-quotes; for consistency in this textbook, we’ll always use double-quotes. For example, <code>"1"</code>, despite being read as number by us, is stored as a character and treated as such by R. Also known as <strong>string</strong> values.</li>
+<li><strong>numeric</strong>: any real or decimal number such as <code>2</code>, <code>3.14</code>, <code>6.022e23</code>.</li>
+<li><strong>integer</strong> such as <code>2L</code>, note the ‘L’ tells R this is an integer.</li>
+<li><strong>logical</strong>: either <code>TRUE</code> or <code>FALSE</code>; also known as a <strong>boolean</strong> values.</li>
 </ul>
-<p>Sometimes R will misinterpret a value as the wrong data type. This can hamper your work as you can’t do arithmetic on a string! So let’s look at some helpful functions to test the data type of a value in R, and how to fix it.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-coding-basics.html#cb22-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;6&quot;</span></span>
-<span id="cb22-2"><a href="r-coding-basics.html#cb22-2" tabindex="-1"></a>x <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
+<p>Sometimes R will misinterpret a value as the wrong data type. This can hamper your work as you can’t do arithmetic on a string!</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-coding-basics.html#cb20-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;6&quot;</span></span>
+<span id="cb20-2"><a href="r-coding-basics.html#cb20-2" tabindex="-1"></a>x <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## Error in x/2: non-numeric argument to binary operator</code></pre>
-<p>“non-numeric argument to binary operator” is a commonly encountered error, and it’s simply telling you that you’re trying to do math on something you can’t do math on. You might think if <code>x</code> is 6, why can’t I divide it by 2? Let’s see what type of data <code>x</code> is:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-coding-basics.html#cb24-1" tabindex="-1"></a><span class="fu">is.numeric</span>(x)   <span class="co"># test if numeric </span></span></code></pre></div>
+<p>“non-numeric argument to binary operator” is a commonly encountered error, and it’s simply telling you that you’re trying to do math on something you can’t do math on. You might think if <code>x</code> is 6, why can’t I divide it by 2?</p>
+<p>Let’s look at some helpful functions to test the data type of a value in R, and how to fix errors like this one.
+First, let’s see what type of data <code>x</code> is:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-coding-basics.html#cb22-1" tabindex="-1"></a><span class="fu">is.numeric</span>(x)   <span class="co"># test if numeric </span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r-coding-basics.html#cb26-1" tabindex="-1"></a><span class="fu">is.logical</span>(x)   <span class="co"># test if logical</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-coding-basics.html#cb24-1" tabindex="-1"></a><span class="fu">is.logical</span>(x)   <span class="co"># test if logical</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r-coding-basics.html#cb28-1" tabindex="-1"></a><span class="fu">is.integer</span>(x)   <span class="co"># test if integer </span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r-coding-basics.html#cb26-1" tabindex="-1"></a><span class="fu">is.integer</span>(x)   <span class="co"># test if integer </span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="r-coding-basics.html#cb30-1" tabindex="-1"></a><span class="fu">is.character</span>(x) <span class="co"># test if character</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r-coding-basics.html#cb28-1" tabindex="-1"></a><span class="fu">is.character</span>(x) <span class="co"># test if character</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>So the value of <code>x</code> is a character, in other words R treats it as a word, and we can’t do math on that (note the quotation marks “” around the 6 in the code above that defined it as text). So let’s convert the data type of <code>x</code> to numeric to proceed.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-coding-basics.html#cb32-1" tabindex="-1"></a>x </span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="r-coding-basics.html#cb30-1" tabindex="-1"></a>x </span></code></pre></div>
 <pre><code>## [1] &quot;6&quot;</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-coding-basics.html#cb34-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span>
-<span id="cb34-2"><a href="r-coding-basics.html#cb34-2" tabindex="-1"></a><span class="fu">is.numeric</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-coding-basics.html#cb32-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span>
+<span id="cb32-2"><a href="r-coding-basics.html#cb32-2" tabindex="-1"></a><span class="fu">is.numeric</span>(x)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-coding-basics.html#cb36-1" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-coding-basics.html#cb34-1" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r-coding-basics.html#cb38-1" tabindex="-1"></a>x <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-coding-basics.html#cb36-1" tabindex="-1"></a>x <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>So we’ve converted our character string <code>"6"</code> to the numerical value <code>6</code>. Keep in mind there are other conversion functions which are described <a href="https://www.geeksforgeeks.org/conversion-functions-in-r-programming/">elsewhere</a>, but you can’t always convert types. In the above example we could convert a character to numeric because it was ultimately a number, but we couldn’t do the same if the value of <code>x</code> was <code>"six"</code>.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-coding-basics.html#cb40-1" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="st">&quot;six&quot;</span></span>
-<span id="cb40-2"><a href="r-coding-basics.html#cb40-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r-coding-basics.html#cb38-1" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="st">&quot;six&quot;</span></span>
+<span id="cb38-2"><a href="r-coding-basics.html#cb38-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span></code></pre></div>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-coding-basics.html#cb42-1" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-coding-basics.html#cb40-1" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<p>“NAs introduced by coercion” means that R didn’t know how to convert “six” to a numeric value, so it instead turned it into an <em>NA</em>, representing a missing value.</p>
+<p>“NAs introduced by coercion” means that <code>as.numeric</code> didn’t know how to convert “six” to a numeric value, so it instead turned it into an <em>NA</em>, representing a missing value.</p>
 </div>
 <div id="data-structures" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Data Structures<a href="r-coding-basics.html#data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data structures refers to how R stores data. It’s easy to get lost in the weeds here, so we’ll start with the focus on the most common and useful data structure for your work: <em>data frames</em>.</p>
 <div id="data-frames" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Data Frames<a href="r-coding-basics.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Data frames consist of data stored in rows and columns. If you’ve ever worked with a spreadsheet (i.e. <em>Excel</em>), it’s essentially that with the caveat that <em>all data stored in a column must be of the same type</em>. Again, different columns can have different data types, but <em>within</em> a column all the data needs to be the same type. R will convert your data otherwise to make it all the same. A common error is a single character in a column of numerical values leading to the entire column to be interpreted as character values; similar to what we discussed above. Errors like this most often stem from mistakes in recording and importing your data so be careful!</p>
-<div id="creating-a-dataframe-from-scratch" class="section level4 hasAnchor" number="4.3.1.1">
-<h4><span class="header-section-number">4.3.1.1</span> Creating a Dataframe from Scratch<a href="r-coding-basics.html#creating-a-dataframe-from-scratch" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Let’s see how we can create a dataframe by explicitly listing out the values.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-coding-basics.html#cb44-1" tabindex="-1"></a><span class="co"># data</span></span>
-<span id="cb44-2"><a href="r-coding-basics.html#cb44-2" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Eve&quot;</span>)</span>
-<span id="cb44-3"><a href="r-coding-basics.html#cb44-3" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">19</span>)</span>
-<span id="cb44-4"><a href="r-coding-basics.html#cb44-4" tabindex="-1"></a>food <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bubble Tea&quot;</span>, <span class="st">&quot;Pineapple Pizza&quot;</span>, <span class="st">&quot;Diet Pepsi&quot;</span>, <span class="st">&quot;Korean BBQ&quot;</span>, <span class="st">&quot;Sushi AYCE&quot;</span>)</span>
-<span id="cb44-5"><a href="r-coding-basics.html#cb44-5" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="r-coding-basics.html#cb44-6" tabindex="-1"></a><span class="co"># Creating the dataframe</span></span>
-<span id="cb44-7"><a href="r-coding-basics.html#cb44-7" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> names, <span class="at">Age =</span> ages, <span class="at">Food =</span> food)</span>
-<span id="cb44-8"><a href="r-coding-basics.html#cb44-8" tabindex="-1"></a></span>
-<span id="cb44-9"><a href="r-coding-basics.html#cb44-9" tabindex="-1"></a><span class="co"># Displaying the dataframe</span></span>
-<span id="cb44-10"><a href="r-coding-basics.html#cb44-10" tabindex="-1"></a><span class="fu">print</span>(students)</span></code></pre></div>
+<p>Data frames consist of data stored in rows and columns. If you’ve ever worked with a spreadsheet, it’s essentially that with the caveat that <em>all data stored in a column must be of the same type</em>. Different columns can have different data types, but <em>within</em> a column all the data needs to be the same type.</p>
+<p>When importing data into a data frame, R will automatically convert data to ensure consistency in each column. This can lead to surprising behaviour: a common error is a single character in a column of numerical values leading to the entire column to be interpreted as character values. We’ll need to be careful about this when importing our own data, which we’ll start doing shortly!</p>
+<div id="creating-a-data-frame-from-scratch" class="section level4 hasAnchor" number="4.3.1.1">
+<h4><span class="header-section-number">4.3.1.1</span> Creating a Data Frame from Scratch<a href="r-coding-basics.html#creating-a-data-frame-from-scratch" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let’s see how we can create a data frame by explicitly listing out the values.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-coding-basics.html#cb42-1" tabindex="-1"></a><span class="co"># First, create data for each column. We use the &quot;c&quot; function to create</span></span>
+<span id="cb42-2"><a href="r-coding-basics.html#cb42-2" tabindex="-1"></a><span class="co"># one *vector* for each column. We&#39;ll discuss vectors in more detail below.</span></span>
+<span id="cb42-3"><a href="r-coding-basics.html#cb42-3" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Eve&quot;</span>)</span>
+<span id="cb42-4"><a href="r-coding-basics.html#cb42-4" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">19</span>)</span>
+<span id="cb42-5"><a href="r-coding-basics.html#cb42-5" tabindex="-1"></a>food <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bubble Tea&quot;</span>, <span class="st">&quot;Pineapple Pizza&quot;</span>, <span class="st">&quot;Diet Pepsi&quot;</span>, <span class="st">&quot;Korean BBQ&quot;</span>, <span class="st">&quot;Sushi AYCE&quot;</span>)</span>
+<span id="cb42-6"><a href="r-coding-basics.html#cb42-6" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="r-coding-basics.html#cb42-7" tabindex="-1"></a><span class="co"># Creating the data frame</span></span>
+<span id="cb42-8"><a href="r-coding-basics.html#cb42-8" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> names, <span class="at">Age =</span> ages, <span class="at">Food =</span> food)</span>
+<span id="cb42-9"><a href="r-coding-basics.html#cb42-9" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="r-coding-basics.html#cb42-10" tabindex="-1"></a><span class="co"># Displaying the data frame</span></span>
+<span id="cb42-11"><a href="r-coding-basics.html#cb42-11" tabindex="-1"></a><span class="fu">print</span>(students)</span></code></pre></div>
 <pre><code>##      Name Age            Food
 ## 1   Alice  20      Bubble Tea
 ## 2     Bob  21 Pineapple Pizza
@@ -649,9 +650,9 @@ div.csl-indent {
 </div>
 <div id="reading-data-from-a-file" class="section level4 hasAnchor" number="4.3.1.2">
 <h4><span class="header-section-number">4.3.1.2</span> Reading Data from a File<a href="r-coding-basics.html#reading-data-from-a-file" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Obviously when we have many more data, it would be unrealistic to manually list them out in our code. So instead, we can create a dataframe by reading a file.</p>
+<p>Obviously when we have many more data, it would be unrealistic to manually list them out in our code. So instead, we can create a data frame by reading a file.</p>
 <p>From the <code>R4EnvChem-ProjectTemplate</code>, downloaded in <a href="rstudio-projects.html#importing-a-project">Importing a project</a>, let’s import some real data that was included in the downloaded project by typing the following code into the console:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r-coding-basics.html#cb46-1" tabindex="-1"></a>airPol <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-coding-basics.html#cb44-1" tabindex="-1"></a>airPol <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/2018-01-01_60430_Toronto_ON.csv&quot;</span>)</span></code></pre></div>
 <p><code>read.csv()</code> is a useful R built-in function which, as you might guess from its name, can read a <code>.csv</code> file and convert it into a data frame. The data we just imported contains air quality data measured in downtown Toronto around January 2018. The “Column specification” summary printed to the console is a useful feature of <code>read.csv()</code>. It tells you what data type was determined for each column when it was imported. Note that <em>double</em> is simply another term for the <em>numeric</em> data type. Some of the variables are:</p>
 <ul>
 <li><code>naps</code>, <code>city</code>, <code>p</code>, <code>latitude</code>, <code>longitude</code> to tell you where the data was measured.</li>
@@ -659,8 +660,8 @@ div.csl-indent {
 <li><code>pollutant</code> for the chemical measured</li>
 <li><code>concentration</code> for the measured concentration in parts-per-million (ppm).</li>
 </ul>
-<p>We’ve assigned it to the variable: <code>airPol</code>. This is so we can reference it and make use of it later on (see below). If we didn’t do this our data would simply be printed to the console which isn’t helpful. Let’s take a look at the first few rows of the data using the head function:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-coding-basics.html#cb47-1" tabindex="-1"></a><span class="fu">head</span>(airPol)</span></code></pre></div>
+<p>We’ve assigned it to the variable <code>airPol</code>. This is so we can reference it and make use of it later on (see below). If we didn’t do this our data would simply be printed to the console which isn’t helpful. Let’s take a look at the first few rows of the data using the head function:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-coding-basics.html#cb45-1" tabindex="-1"></a><span class="fu">head</span>(airPol)</span></code></pre></div>
 <pre><code>##    naps    city  p latitude longitude           date.time pollutant
 ## 1 60430 Toronto ON 43.70944  -79.5435 2018-01-01 00:00:00        O3
 ## 2 60430 Toronto ON 43.70944  -79.5435 2018-01-01 00:00:00       NO2
@@ -675,39 +676,32 @@ div.csl-indent {
 ## 4             1
 ## 5            47
 ## 6             3</code></pre>
-<p>Here we see that the data is stored in a <strong>tidy</strong> format, which is to say each column is a variable and each row is an observation. So reading the first row, we know that the Toronto 60430 station on 2018-07-01 at midnight measured ambient O<sub>3</sub> concentrations of 46 ppm (Note the concentration column isn’t printed due to width). The concept of tidy data is important and is integral to working in R. It’s discussed further in <a href="tidying-your-data.html#tidying-your-data">Tidying Your Data</a>. Lastly, R will only output a small chunk of our data for us to see. If you’d like to see it in full, go the the <code>Environment</code> pane and double click on the <code>airPol</code> data.</p>
+<p>In this data frame, each column is a variable and each row is an observation. So reading the first row, we know that the Toronto 60430 station on 2018-07-01 at midnight measured ambient O<sub>3</sub> concentrations of 46 ppm (Note the concentration column isn’t printed due to width). Using <code>head</code> will only output a small chunk of our data for us to see. If you’d like to see it in full, go to the <code>Environment</code> pane and double-click on the <code>airPol</code> variable.</p>
 </div>
 </div>
 <div id="accessing-data-in-subfolders" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Accessing Data in Subfolders<a href="r-coding-basics.html#accessing-data-in-subfolders" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Note that <code>read.csv()</code> requires us to specify the file name, but in the above example we prefixed our file name with <code>"data/2018..."</code>. This is because the <code>.csv</code> file we want to open is stored in the <code>data</code> sub-folder. By specifying this in the prefix, we tell <code>read.csv()</code> to first go to the <code>data</code> sub folder in the working directory and <em>then</em> search for and open the specified data file.</p>
-<p>What we’ve done above is called <em>relative referencing</em> and it’s a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like <code>"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"</code>. If we weren’t in a project, this is what you’d need to type to open your file, but since we’re working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need <code>"data/2018..."</code>. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and Profs (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code &amp; data) and the receiver could open it and run it as is.</p>
+<p>Note that <code>read.csv()</code> requires us to specify the file name, but in the above example we prefixed our file name with <code>"data/2018..."</code>. This is because the <code>.csv</code> file we want to open is stored in the <code>data</code> subfolder. By specifying this in the prefix, we tell <code>read.csv()</code> to first go to the <code>data</code> sub folder in the working directory and <em>then</em> search for and open the specified data file.</p>
+<p>What we’ve done above is called <em>relative referencing</em> and it’s a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like <code>"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"</code>. If we weren’t in a project, this is what you’d need to type to open your file, but since we’re working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need <code>"data/2018..."</code>. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and instructors (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code &amp; data) and the receiver could open it and run it as is.</p>
 </div>
 <div id="other-data-structures" class="section level3 hasAnchor" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> Other Data Structures<a href="r-coding-basics.html#other-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R has several other data structures. They aren’t as frequently used, but it’s worth being aware of their existence. Other structures include:</p>
 <ul>
-<li><strong>Vectors</strong>, which contain multiple elements <em>of the same type</em>; either numeric, character (text), logical, or integer. Vectors are created using <code>c()</code>, which is short for combine. A data frame is just multiple vectors arranged into columns. Some examples of vectors are shown below.</li>
-</ul>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r-coding-basics.html#cb49-1" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb49-2"><a href="r-coding-basics.html#cb49-2" tabindex="-1"></a>num</span></code></pre></div>
+<li><p><strong>Vectors</strong>, which contain multiple elements <em>of the same type</em>; either numeric, character, logical, or integer. Vectors are created using <code>c()</code>, which is short for <em>combine</em>. A data frame is just multiple vectors arranged into columns. Some examples of vectors are shown below.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-coding-basics.html#cb47-1" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb47-2"><a href="r-coding-basics.html#cb47-2" tabindex="-1"></a>num</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-coding-basics.html#cb51-1" tabindex="-1"></a>char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb51-2"><a href="r-coding-basics.html#cb51-2" tabindex="-1"></a>char</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r-coding-basics.html#cb49-1" tabindex="-1"></a>char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb49-2"><a href="r-coding-basics.html#cb49-2" tabindex="-1"></a>char</span></code></pre></div>
 <pre><code>## [1] &quot;blue&quot;  &quot;green&quot; &quot;red&quot;</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="r-coding-basics.html#cb53-1" tabindex="-1"></a>log <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb53-2"><a href="r-coding-basics.html#cb53-2" tabindex="-1"></a>log</span></code></pre></div>
-<pre><code>## [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
-<ul>
-<li><strong>Lists</strong> are similar to vectors in that they are one dimensional data structures which contain multiple elements. However, lists can contain multiple elements of different types, while vectors only contain a single type of data. You can create lists using <code>list()</code>. Some examples of lists are shown below. You can use <code>str()</code> to reveal the different components of a list, in a more detailed format than if you were to simply type the assigned name of the list.</li>
-</ul>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="r-coding-basics.html#cb55-1" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;Greetings&quot;</span> <span class="ot">=</span> <span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;someNumbers&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>), <span class="st">&quot;someBooleans&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb55-2"><a href="r-coding-basics.html#cb55-2" tabindex="-1"></a><span class="fu">str</span>(hi)</span></code></pre></div>
-<pre><code>## List of 3
-##  $ Greetings   : chr &quot;Hello&quot;
-##  $ someNumbers : num [1:4] 5 10 15 20
-##  $ someBooleans: logi [1:3] TRUE TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="r-coding-basics.html#cb57-1" tabindex="-1"></a>hi</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-coding-basics.html#cb51-1" tabindex="-1"></a>log <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb51-2"><a href="r-coding-basics.html#cb51-2" tabindex="-1"></a>log</span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE</code></pre></li>
+<li><p><strong>Lists</strong> are similar to vectors in that they are one dimensional data structures which contain multiple elements. However, there are two important differences: (1) lists can contain multiple elements of different types, while vectors only contain a single type of data; and (2) each piece of data in the list is given a name with which we can refer to that data. You can create lists using <code>list()</code>, as illustrated below.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="r-coding-basics.html#cb53-1" tabindex="-1"></a><span class="co"># Creating a list with three components: &quot;Greetings&quot;, &quot;someNumbers&quot;, and &quot;someBooleans&quot;</span></span>
+<span id="cb53-2"><a href="r-coding-basics.html#cb53-2" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;Greetings&quot;</span> <span class="ot">=</span> <span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;someNumbers&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>), <span class="st">&quot;someBooleans&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb53-3"><a href="r-coding-basics.html#cb53-3" tabindex="-1"></a>hi</span></code></pre></div>
 <pre><code>## $Greetings
 ## [1] &quot;Hello&quot;
 ## 
@@ -716,8 +710,14 @@ div.csl-indent {
 ## 
 ## $someBooleans
 ## [1]  TRUE  TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="r-coding-basics.html#cb59-1" tabindex="-1"></a>hi<span class="sc">$</span>Greetings</span></code></pre></div>
+<p>We can access individual components of the list by using the <code>$</code> operator:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="r-coding-basics.html#cb55-1" tabindex="-1"></a><span class="co"># Access the &quot;Greetings&quot; component of list &quot;hi&quot;</span></span>
+<span id="cb55-2"><a href="r-coding-basics.html#cb55-2" tabindex="-1"></a>hi<span class="sc">$</span>Greetings</span></code></pre></div>
 <pre><code>## [1] &quot;Hello&quot;</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="r-coding-basics.html#cb57-1" tabindex="-1"></a><span class="co"># Access the &quot;someNumbers&quot; component of list &quot;hi&quot;</span></span>
+<span id="cb57-2"><a href="r-coding-basics.html#cb57-2" tabindex="-1"></a>hi<span class="sc">$</span>someNumbers</span></code></pre></div>
+<pre><code>## [1]  5 10 15 20</code></pre></li>
+</ul>
 <p>There are many freely available resources online which dive more in depth into different data structures in R. If you are interested in learning more about different structures, you can check out the <a href="http://adv-r.had.co.nz/Data-structures.html"><em>Data structure</em></a> chapter of <em>Advanced R</em> by Hadley Wickham.</p>
 </div>
 </div>
@@ -738,36 +738,36 @@ div.csl-indent {
 </div>
 <div id="the-basic-if-statement" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> The Basic <code>if</code> Statement<a href="r-coding-basics.html#the-basic-if-statement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="r-coding-basics.html#cb61-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb61-2"><a href="r-coding-basics.html#cb61-2" tabindex="-1"></a></span>
-<span id="cb61-3"><a href="r-coding-basics.html#cb61-3" tabindex="-1"></a><span class="co"># In this example, R checks if x is greater than 5. </span></span>
-<span id="cb61-4"><a href="r-coding-basics.html#cb61-4" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
-<span id="cb61-5"><a href="r-coding-basics.html#cb61-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 5!&quot;</span>)</span>
-<span id="cb61-6"><a href="r-coding-basics.html#cb61-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="r-coding-basics.html#cb59-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb59-2"><a href="r-coding-basics.html#cb59-2" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="r-coding-basics.html#cb59-3" tabindex="-1"></a><span class="co"># In this example, R checks if x is greater than 5. </span></span>
+<span id="cb59-4"><a href="r-coding-basics.html#cb59-4" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb59-5"><a href="r-coding-basics.html#cb59-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 5!&quot;</span>)</span>
+<span id="cb59-6"><a href="r-coding-basics.html#cb59-6" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is greater than 5!&quot;</code></pre>
 </div>
 <div id="expanding-with-else-and-else-if" class="section level3 hasAnchor" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> Expanding with <code>else</code> and <code>else if</code><a href="r-coding-basics.html#expanding-with-else-and-else-if" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For situations where you want to specify actions for both true and false conditions, you can add an <code>else</code> section.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="r-coding-basics.html#cb63-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb63-2"><a href="r-coding-basics.html#cb63-2" tabindex="-1"></a></span>
-<span id="cb63-3"><a href="r-coding-basics.html#cb63-3" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
-<span id="cb63-4"><a href="r-coding-basics.html#cb63-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 5!&quot;</span>)</span>
-<span id="cb63-5"><a href="r-coding-basics.html#cb63-5" tabindex="-1"></a>} <span class="cf">else</span> { <span class="co"># if x &lt;= 5</span></span>
-<span id="cb63-6"><a href="r-coding-basics.html#cb63-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is 5 or less!&quot;</span>)</span>
-<span id="cb63-7"><a href="r-coding-basics.html#cb63-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="r-coding-basics.html#cb61-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb61-2"><a href="r-coding-basics.html#cb61-2" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="r-coding-basics.html#cb61-3" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb61-4"><a href="r-coding-basics.html#cb61-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 5!&quot;</span>)</span>
+<span id="cb61-5"><a href="r-coding-basics.html#cb61-5" tabindex="-1"></a>} <span class="cf">else</span> { <span class="co"># if x &lt;= 5</span></span>
+<span id="cb61-6"><a href="r-coding-basics.html#cb61-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is 5 or less!&quot;</span>)</span>
+<span id="cb61-7"><a href="r-coding-basics.html#cb61-7" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is 5 or less!&quot;</code></pre>
 <p>Here, because <code>x</code> is 3 (which is not greater than 5), R prints “x is 5 or less!”.</p>
 <p>For situations where multiple conditions need to be evaluated in sequence, you can use the <code>else if</code> construct. This allows you to add more conditions after the initial <code>if</code>.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="r-coding-basics.html#cb65-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb65-2"><a href="r-coding-basics.html#cb65-2" tabindex="-1"></a></span>
-<span id="cb65-3"><a href="r-coding-basics.html#cb65-3" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
-<span id="cb65-4"><a href="r-coding-basics.html#cb65-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 10!&quot;</span>)</span>
-<span id="cb65-5"><a href="r-coding-basics.html#cb65-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
-<span id="cb65-6"><a href="r-coding-basics.html#cb65-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 5 but less than or equal to 10!&quot;</span>)</span>
-<span id="cb65-7"><a href="r-coding-basics.html#cb65-7" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb65-8"><a href="r-coding-basics.html#cb65-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is 5 or less!&quot;</span>)</span>
-<span id="cb65-9"><a href="r-coding-basics.html#cb65-9" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="r-coding-basics.html#cb63-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb63-2"><a href="r-coding-basics.html#cb63-2" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="r-coding-basics.html#cb63-3" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
+<span id="cb63-4"><a href="r-coding-basics.html#cb63-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 10!&quot;</span>)</span>
+<span id="cb63-5"><a href="r-coding-basics.html#cb63-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb63-6"><a href="r-coding-basics.html#cb63-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 5 but less than or equal to 10!&quot;</span>)</span>
+<span id="cb63-7"><a href="r-coding-basics.html#cb63-7" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb63-8"><a href="r-coding-basics.html#cb63-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is 5 or less!&quot;</span>)</span>
+<span id="cb63-9"><a href="r-coding-basics.html#cb63-9" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is greater than 5 but less than or equal to 10!&quot;</code></pre>
 <p>In terms of syntax, it’s important to remember:</p>
 <ul>
@@ -787,22 +787,22 @@ div.csl-indent {
 <h3><span class="header-section-number">4.5.1</span> Exploring More Built-In Functions<a href="r-coding-basics.html#exploring-more-built-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s delve into a few more built-in functions that are integral to your R experience:</p>
 <p><strong>print()</strong>: The <code>print()</code> function displays output on the console. When you want to see the result of an expression or the contents of a variable, <code>print()</code> makes it effortless.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="r-coding-basics.html#cb67-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello, R!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="r-coding-basics.html#cb65-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello, R!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, R!&quot;</code></pre>
 <p><strong>mean()</strong>: The <code>mean()</code> function calculates the average of a numeric vector.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="r-coding-basics.html#cb69-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="r-coding-basics.html#cb67-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
 <pre><code>## [1] 12.5</code></pre>
 <p><strong>max()/min()</strong>: With the <code>max()</code> function, you can effortlessly determine the maximum value within a numeric vector. Similarly, <code>min()</code> function returns the minimum value within a vector.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="r-coding-basics.html#cb71-1" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="r-coding-basics.html#cb69-1" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="r-coding-basics.html#cb73-1" tabindex="-1"></a><span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="r-coding-basics.html#cb71-1" tabindex="-1"></a><span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 </div>
 <div id="function-documentation" class="section level3 hasAnchor" number="4.5.2">
 <h3><span class="header-section-number">4.5.2</span> Function Documentation<a href="r-coding-basics.html#function-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An often unappreciated aspect of packages is that they not only contain functions we can use, but documentation. Documentation provides a description of the function (what it does), what arguments it takes, details, and working examples. Often the easiest way to learn how to use a function is to take a working example and change it bit by bit to see how it works etc. To see documentation check the “help” tab in the “outputs” window or type a question mark in front of a functions name:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="r-coding-basics.html#cb75-1" tabindex="-1"></a><span class="co"># Takes you to the help document for the read.csv function</span></span>
-<span id="cb75-2"><a href="r-coding-basics.html#cb75-2" tabindex="-1"></a>?read.csv</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="r-coding-basics.html#cb73-1" tabindex="-1"></a><span class="co"># Takes you to the help document for the read.csv function</span></span>
+<span id="cb73-2"><a href="r-coding-basics.html#cb73-2" tabindex="-1"></a>?read.csv</span></code></pre></div>
 <p>You can also write your own functions. Please see <a href="loops-and-functions-in-r.html#writing-custom-functions-in-r">Writing custom functions in R</a> for additional details.</p>
 </div>
 </div>
