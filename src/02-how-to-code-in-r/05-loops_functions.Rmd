@@ -11,12 +11,13 @@ Repetition is a key component of programming. Loops enable you to execute the sa
 The `for` loop in R is used to iterate over elements in a vector or list.
 
 ```{r}
-for (i in 1:5) {
+data <- c(1, 2, 3, 4, 5)
+for (i in data) {
   print(i)
 }
 ```
 
-This will print numbers from 1 to 5. The loop iterates over each element in the sequence `1:5`, setting the value to `i` and executing the code inside the loop.
+This will print numbers from 1 to 5. The loop iterates over each element in the vector `c(1, 2, 3, 4, 5)`, setting the value to `i` and executing the code inside the loop.
 
 #### The `while` loop
 
@@ -33,9 +34,7 @@ while (count <= 5) {
 
 In this example, the loop will keep printing and incrementing the value of counter until counter is no longer less than or equal to 5.
 
-Remember, be cautious with while loops. If the condition never becomes false, the loop will run indefinitely!
-
-
+Be cautious with while loops: if the condition never becomes false, the loop will run indefinitely!
 
 ## Writing custom functions in R
 
@@ -71,6 +70,7 @@ add_two(20, 35.5)
 At this time, we shall keep it simple. You will eventually see more complex usages of custom functions.
 
 
+<!--
 ## Conditional arguments 
 
 Conditional arguments are used to specify a path in a function depending on whether a statement is `TRUE` or `FALSE`. These are explored in greater detail via the links in the [Further reading](#further_reading_chapter8) section, but here's a quick example of a function that uses the conditional `if` statement to print out which number is largest:
@@ -121,13 +121,15 @@ Some ideas to consider when working with `case-when()`:
   - There's no limit to the conditions you can pass to `case_when()`.
   - *However* `case_when()` evaluates in order so put the more specific conditions before the more general. 
   - Remember that the point of `case_when()` and piping is legibility. If you're passing multiple conditions, consider writing a function using `else if` statements to keep the pipe legible.  
+-->
 
 
+<!-- -   The `%>%` symbol (pipe operator) is a key part of tidyverse. The operator is used to pass an object into a function, allowing for sequential operations to be performed without the need for intermediate variables. For the example above, it's using the operator for data manipulation (filter and summarizing). The result of the left-hand side of the `%>%` is used as the first argument to the function on the right-hand side.
+-->
 
 ## Further reading {#further_reading_chapter8}
 
 This chapter has been intentionally succinct. We've omitted several other aspects of programming in R such as `for` loops, and other aspects of iterative programming. To get a better sense of programming in R and to learn more, please see the following links:
 
-  - [case_when()](https://dplyr.tidyverse.org/reference/case_when.html): the documentation for the `case_when()` function and several useful examples. 
   - [Chapter 19: Functions](https://r4ds.had.co.nz/functions.html), [Chapter 20: Vectors](https://r4ds.had.co.nz/vectors.html), and [Chapter 21: Iteration](https://r4ds.had.co.nz/iteration.html) of [*R for Data Science*](https://r4ds.had.co.nz/index.html) by H. Wickham and G. Grolemund.  
   - [Hands-on Programming in R](https://rstudio-education.github.io/hopr/) by G. Grolemund for a more in-depth (but still approachable) take on programming in R. 
