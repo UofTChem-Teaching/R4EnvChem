@@ -7,11 +7,12 @@ Up until now we haven't paid much attention to the explicit aesthetics of plots 
 Ultimately your visualizations will be printed to a static PDF document, but in the interim having an interactive plot can be helpful for data exploration. The `plotly` package magically makes most `ggplots` interactive with a simple command. Here's an example with our Toronto air quality data:
 
 ```{r}
+torontoAir <- read_csv("data/2018-01-01_60430_Toronto_ON.csv")
 
 torPlot2 <- ggplot(data = torontoAir,
-       aes(x = date.time,
-           y = concentration,
-           colour = pollutant)) +
+                   aes(x = date.time,
+                       y = concentration,
+                       colour = pollutant)) +
   geom_line()
 
 plotly::ggplotly(torPlot2)
@@ -26,25 +27,21 @@ Overall themes can be applied to ggplot. The simple and minimalist `theme_classi
 ```{r}
 # generating example plot to modify 
 p <- ggplot(data = torontoAir, 
-       aes(x = date.time,
-           y = concentration,
-           colour = pollutant)) +
+            aes(x = date.time,
+                y = concentration,
+                colour = pollutant)) +
   geom_point() 
 
-# default theme
-default <- p + labs(subtitle = "Default geom_scatter")
-
+# Default theme
+default <- p + labs(title = "Default theme")
 
 # Classic theme
 classic <- p + 
   theme_classic() +
-  labs(title = "theme_classic()")
+  labs(title = "Classic theme")
  
-
-# arranging into grid
+# Arranging into grid
 gridExtra::grid.arrange(default, classic, ncol = 2)
-
-
 ```
 
 ## Legends
@@ -54,12 +51,12 @@ You can specify the position of the legend under the `theme()` option as such:
 ```{r}
 bottom <- p + theme(legend.position = "bottom")
 
-inside <- p + theme(legend.position = c(.85, .85))
+inside <- p + theme(legend.position.inside = c(.85, .85))
 
 gridExtra::grid.arrange(bottom, inside, ncol = 2)
 ```
 
-Other legend positions include: "none", "left", "right", "bottom", "top", or a two-element numeric vector to specify the location such as `c(0.95, 0.95)` for inside the top-right corner. `c(0.05, 0.05)` would place it inside the bottom right corner, and so on. Also note that `legend.position = "none"` will remove the legend entirely.
+Other legend positions include: `"left"`, `"right"`, `"bottom"`, `"top"` and `"none"` (remove legend entirely). Use `legend.position.inside` with a two-element numeric vector to specify the location. For example, use `c(0.95, 0.95)` for inside the top-right corner and `c(0.05, 0.05)` for inside the bottom right corner.
 
 ## Modifying labels
 
@@ -89,7 +86,7 @@ p +
 
 Other useful transformations include "log2" for base-2 logs, "date" for dates, and "hms" for time. The latter two are useful if R hasn't correctly interpreted your dataset. The data type for the `data.time` column of our dataset was correctly interpreted during our initial importation using `read_csv()`. Hooray for doing it right the first time.
 
-### Limits
+### Axis limits
 
 The limits of plots created with `ggplot()` are automatically assigned, but you can override these using the `lims()` function. For example we can specify the limits of our example plot to show from 0 to 100 ppb:
 
@@ -103,9 +100,9 @@ p + lims(y = c(0, 100))
 Sometimes when you are plotting, the length of the axis labels is unreadable. This is often the case with categorical data, such as the names of cities like we've encountered earlier. We addressed this earlier in [Bar charts] by rotating the plot 90$^\circ$ with the `coord_flip()` function. This is often the best solution as it's how we read English. Another solution is to rotate the axis labels themselves:
 
 ```{r}
-basePlot <- ggplot(data = subset(sumAtl, p == "NL"),
-       aes(x = city, 
-           y = mean)) +
+basePlot <- ggplot(data = filter(sumAtl, p == "NL"),
+                   aes(x = city, 
+                       y = mean)) +
   geom_col()
 
 default <- basePlot +
@@ -143,10 +140,10 @@ colchart <- ggplot(data = sumAtl,
   coord_flip() 
 
 boxplot <- ggplot(data = atlNO2, 
-                  aes( x = city, 
-                       y = conc,
-                       fill = p)) +
-  geom_boxplot() + 
+                  aes(x = city, 
+                      y = conc,
+                      fill = p)) +
+  geom_boxplot() +
   coord_flip()
 
 boxplot
