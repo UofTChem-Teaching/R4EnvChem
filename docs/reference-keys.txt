@@ -1,7 +1,7 @@
 fig:tidy-example
 fig:reg-plot
+fig:unnamed-chunk-173
 fig:unnamed-chunk-174
-fig:unnamed-chunk-175
 fig:sdsMaxPlot
 intro-to-r-and-rstudio
 r-language
@@ -186,7 +186,6 @@ exercise-10
 visualizations-for-env-chem
 discrete-vs.-continuous-variables
 prerequisites
-exercise-11
 common-types-of-graphs
 bar-charts
 adding-error-bars
@@ -199,7 +198,7 @@ histograms
 multiple-histograms
 scatter-plots
 marginal-plots
-exercise-12
+exercise-11
 customizing-your-plots
 interactive-plots
 plot-themes
@@ -210,7 +209,7 @@ transforming-axis
 limits
 axis-tickslabels
 arranging-plots
-exercise-13
+exercise-12
 modelling-linear-regression
 modelling-theory
 linear-regression-in-r
@@ -221,7 +220,7 @@ table-with-slopes-intercepts-and-r2
 calculating-concentration-using-the-regression-variables
 conclusion
 further_reading_chapter19
-exercise-14
+exercise-13
 augmented-outputs-and-evaluating-your-model
 cleaning-up-model-ouputs
 glanced-outputs
@@ -233,7 +232,7 @@ visualizing-models
 visualizing-residuals
 plotting-residuals
 calculating-concentrations-from-the-augmented-outputs
-exercise-15
+exercise-14
 modelling-non-linear-regression
 experimental-background
 annotating-maximal-values
@@ -242,4 +241,4 @@ modelling-sigmoid-curve
 calculating-logistic-regression
 extracting-model-parameters
 summary-6
-exercise-16
+exercise-15
