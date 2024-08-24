@@ -262,7 +262,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-r-markdown"><i class="fa fa-check"></i><b>5.3</b> Saving R Markdown</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#what-should-i-save"><i class="fa fa-check"></i><b>5.3.1</b> What Should I Save?</a></li>
-<li class="chapter" data-level="5.3.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-objects"><i class="fa fa-check"></i><b>5.3.2</b> Saving Objects</a></li>
+<li class="chapter" data-level="5.3.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-data-frames"><i class="fa fa-check"></i><b>5.3.2</b> Saving Data Frames</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#script-formatting"><i class="fa fa-check"></i><b>5.4</b> Script formatting</a></li>
 <li class="chapter" data-level="5.5" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>5.5</b> Viewing Data and Code Simultaneously</a></li>
@@ -551,7 +551,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="using-r-markdown.html#cb82-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
 <span id="cb82-2"><a href="using-r-markdown.html#cb82-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<p>What we’ve done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn’t anything special, we can extend this concept so that our R markdown document contains any data, figures or plots we generate throughout our analysis in R. For example here is a time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub>, and SO<sub>2</sub> concentrations (ppb) in downtown Toronto:</p>
+<p>What we’ve done here is write a snippet of R code, ran it, and printed the results (as they would appear in the console). While the above code isn’t anything special, we can extend this concept so that our R Markdown document contains any data, figures or plots we generate throughout our analysis in R. For example here is a time series of 2018 ambient atmospheric O<sub>3</sub>, NO<sub>2</sub>, and SO<sub>2</sub> concentrations (ppb) in downtown Toronto:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="using-r-markdown.html#cb84-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
 <span id="cb84-2"><a href="using-r-markdown.html#cb84-2" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb84-3"><a href="using-r-markdown.html#cb84-3" tabindex="-1"></a></span>
@@ -615,7 +615,7 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p>Pretty neat, eh? You might not think so, but let’s imagine a scenario you’ll encounter soon enough. You’re about to submit your assignment, you’ve spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to <em>subtract</em> value <code>x</code> and not value <code>y</code> in your analysis. If you did all your work in <em>Excel</em> (tsk tsk), you’ll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which it never does with looming deadlines). Now if you did all your work in R markdown, you go to your one <code>.rmd</code> document, briefly apply the changes and re-compile your document.</p>
+<p>Pretty neat, eh? You might not think so, but let’s imagine a scenario you’ll encounter soon enough. You’re about to submit your assignment, you’ve spent hours analyzing your data and beautifying your plots. Everything is good to go until you notice at the last minute you were supposed to <em>subtract</em> value <code>x</code> and not value <code>y</code> in your analysis. If you did all your work in <em>Excel</em> (tsk tsk), you’ll need to find the correct worksheet, apply the changes, reformat your plots, and import them into word (assuming everything is going well, which it never does with looming deadlines). Now if you did all your work in R Markdown, you go to your one <code>.rmd</code> document, briefly apply the changes and re-compile your document.</p>
 <p>A lot of scientists work with R Markdown for writing their reports for numerous reasons:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Integrated Workflow</strong>: Combines narrative, data analyses, and visualizations in one document, promoting reproducibility and transparency.</li>
@@ -625,39 +625,37 @@ div.csl-indent {
 <p>In sum, R Markdown provides a streamlined platform for scientific communication, merging data analysis with polished publication seamlessly.</p>
 <div id="getting-started-with-r-markdown" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Getting Started with R Markdown<a href="using-r-markdown.html#getting-started-with-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As you’ve already guessed, R markdown documents use R and are most easily written and assembled in RStudio. If you have not done so, revisit Chapter 1:<a href="intro-to-r-and-rstudio.html#intro-to-r-and-rstudio">Intro to R and RStudio</a>. Once setup with R and R Studio, you’ll need to install the <code>R Markdown</code> and <code>tinytex</code> packages by running the following code in the console:</p>
+<p>As you’ve already guessed, R Markdown documents use R and are most easily written and assembled in RStudio. If you have not done so, revisit Chapter 1: <a href="intro-to-r-and-rstudio.html#intro-to-r-and-rstudio">Intro to R and RStudio</a>. Once setup with R and RStudio, you’ll need to install the <code>R Markdown</code> and <code>tinytex</code> packages by running the following code in the console:</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="using-r-markdown.html#cb86-1" tabindex="-1"></a><span class="co"># These are large packages so it&#39;ll take a couple of minutes to install</span></span>
-<span id="cb86-2"><a href="using-r-markdown.html#cb86-2" tabindex="-1"></a></span>
-<span id="cb86-3"><a href="using-r-markdown.html#cb86-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;R Markdown&quot;</span>) <span class="co"># downloaded from CRAN</span></span>
-<span id="cb86-4"><a href="using-r-markdown.html#cb86-4" tabindex="-1"></a></span>
-<span id="cb86-5"><a href="using-r-markdown.html#cb86-5" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
-<span id="cb86-6"><a href="using-r-markdown.html#cb86-6" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
-<p>The <code>R Markdown</code> package is what we’ll use to generate our documents, and the <code>tinytex</code> package enables compiling documents as PDFs. There’s a lot more going on behind the <a href="https://R%20Markdown.rstudio.com/lesson-2.html">scenes</a>, but you shouldn’t need to worry about it.</p>
-<p>Now that everything is setup, you can create your first R Markdown document by opening up R Studio, selecting <code>FILE -&gt; NEW FILE -&gt; R Markdown</code>. A dialog box will appear asking for some basic input parameters for your R markdown document. Add your title and select <em>PDF</em> as your default output format (you can always change these later if you want). A new file should appear that’s already populated with some basic script illustrating the key components of an R markdown document.</p>
+<span id="cb86-2"><a href="using-r-markdown.html#cb86-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;R Markdown&quot;</span>)</span>
+<span id="cb86-3"><a href="using-r-markdown.html#cb86-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb86-4"><a href="using-r-markdown.html#cb86-4" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<p>The <code>R Markdown</code> package is what we’ll use to generate our documents, and the <code>tinytex</code> package enables compiling documents as PDFs. There’s a lot more going on <a href="https://R%20Markdown.rstudio.com/lesson-2.html">behind the scenes</a>, but you shouldn’t need to worry about it.</p>
+<p>Now that everything is set up, you can create your first R Markdown document by opening up RStudio, selecting <code>File -&gt; New File -&gt; R Markdown...</code>. A dialog box will appear asking for some basic information for your R Markdown document. Add your title and select <em>PDF</em> as your default output format (you can always change these later if you want). A new file should appear using a basic template that illustrates the key components of an R Markdown document.</p>
 <div id="understanding-r-markdown" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Understanding R Markdown<a href="using-r-markdown.html#understanding-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Your first reaction when you opened your newly created R markdown document is probably that it doesn’t look anything at all like something you’d show your prof. You’re right, what you’re seeing is the plain text code which needs to be compiled (called <em>knit</em> in R Studio) to create the final document. When you create a R markdown document like this in R Studio a bunch of example code is already written. You can compile this document (see below) to see what it looks like, but let’s break down the primary components. At the top of the document you’ll see something that looks like this:</p>
+<p>Your first reaction when you opened your newly created R Markdown document is probably that it doesn’t look anything at all like something you’d show your prof. You’re right, what you’re seeing is the plain text code which needs to be <em>knit</em> to create the final document. When you create a R Markdown document like this in R Studio a bunch of example code is already written. You can knit this document (see below) to see what it looks like, but let’s break down the primary components. At the top of the document you’ll see something that looks like this:</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="using-r-markdown.html#cb87-1" tabindex="-1"></a><span class="sc">---</span></span>
 <span id="cb87-2"><a href="using-r-markdown.html#cb87-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Temporal Analysis of Foot Impacts While Birling Down the White Water&quot;</span></span>
 <span id="cb87-3"><a href="using-r-markdown.html#cb87-3" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Jean Guy Rubberboots&quot;</span></span>
 <span id="cb87-4"><a href="using-r-markdown.html#cb87-4" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;24/06/2021&quot;</span></span>
 <span id="cb87-5"><a href="using-r-markdown.html#cb87-5" tabindex="-1"></a>output<span class="sc">:</span> pdf_document</span>
 <span id="cb87-6"><a href="using-r-markdown.html#cb87-6" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
-<p>This section is known as the <em>preamble</em> and it’s where you specify most of the document parameters. In the example we can see that the document title is <a href="https://www.youtube.com/watch?v=upsZZ2s3xv8">“Temporal Analysis of Foot Impacts While Birling Down the White Water”</a>, it’s written by Jean Guy Rubberboots, on the 24th of June, and the default output is a PDF document. You can modify the preamble to suit your needs. For example, if you wanted to change the title you would write <code>title: "Your Title Here"</code> in the preamble. Note that none of this is <code>R</code> code, rather it’s <code>YAML</code>, the syntax for the document’s metadata. Apart from what’s shown you shouldn’t need to worry about this much, just remember that indentation in YAML matters.</p>
+<p>This section is known as the <em>preamble</em> and it’s where you specify most of the document parameters. In the example we can see that the document title is <a href="https://www.youtube.com/watch?v=upsZZ2s3xv8">“Temporal Analysis of Foot Impacts While Birling Down the White Water”</a>, it’s written by Jean Guy Rubberboots, on the 24th of June, and the default output is a PDF document. You can modify the preamble to suit your needs. For example, if you wanted to change the title you would write <code>title: "Your Title Here"</code> in the preamble.</p>
 <div id="output-options-in-r-markdown" class="section level4 hasAnchor" number="6.1.1.1">
 <h4><span class="header-section-number">6.1.1.1</span> Output Options in R Markdown<a href="using-r-markdown.html#output-options-in-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>You can compile your entire document using the <em>Knit document</em> button. This is a great way to tinker with your code before you compile your document. Knitting will sequentially run all of your code chunks, generate all the text, knit the two together and output a PDF. You’ll basically save this for the end.</p>
 <p>R Markdown offers flexibility in terms of output formats, allowing users to knit their documents into various outputs tailored to their needs.</p>
 <p><strong>Three Common Output Options:</strong></p>
 <ul>
-<li><p><strong>HTML</strong> (html_document): Produces an HTML file, suitable for hosting on websites or for sharing via email. This format allows for interactive content, making it ideal for interactive graphs or web applications.</p></li>
-<li><p><strong>PDF</strong> (pdf_document): Creates a PDF file. This format is best for documents intended for print or formal submissions, as it maintains consistent formatting across different devices and platforms.</p></li>
-<li><p><strong>Word</strong> (word_document): Generates a Microsoft Word document, which can be useful when sharing drafts or collaborating with colleagues who use Word for edits.</p></li>
+<li><p><strong>HTML</strong> (<code>html_document</code>): Produces an HTML file, suitable for hosting on websites or for sharing via email. This format allows for interactive content, making it ideal for interactive graphs or web applications.</p></li>
+<li><p><strong>PDF</strong> (<code>pdf_document</code>): Creates a PDF file. This format is best for documents intended for print or formal submissions, as it maintains consistent formatting across different devices and platforms.</p></li>
+<li><p><strong>Word</strong> (<code>word_document</code>): Generates a Microsoft Word document, which can be useful when sharing drafts or collaborating with colleagues who use Word for edits.</p></li>
 </ul>
 <p><strong>Controlling the Output:</strong></p>
 <ul>
-<li><p><strong>Modifying the YAML Header</strong>: You can change the output format directly in the YAML header of your Rmd file. In the last example, replacing <code>output: pdf_document</code> with <code>output: html_document</code> or <code>output: word_document</code> would knit the document into HTML or Word, respectively.</p></li>
-<li><p><strong>Using RStudio’s Knit Button</strong>: In the RStudio IDE, at the top of the script editor pane, there’s a Knit button. Clicking the small dropdown arrow next to this button allows you to choose the output format you desire. Selecting one of the options will knit the document into that format and update the YAML header accordingly.</p>
+<li><p><strong>Modifying the metadata header</strong>: You can change the output format directly in the header of your R Markdown file. In the last example, replacing <code>output: pdf_document</code> with <code>output: html_document</code> or <code>output: word_document</code> would knit the document into HTML or Word, respectively.</p></li>
+<li><p><strong>Using RStudio’s Knit Button</strong>: In RStudio, at the top of the script editor pane, there’s a Knit button. Clicking the small dropdown arrow next to this button allows you to choose the output format you desire. Selecting one of the options will knit the document into that format and update the header accordingly.</p>
 <p><img src="images/knit_options.png" style="width:70.0%" /></p></li>
 </ul>
 </div>
@@ -668,39 +666,34 @@ div.csl-indent {
 <h4><span class="header-section-number">6.1.2.1</span> How to Create Code Chunks<a href="using-r-markdown.html#how-to-create-code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To create a code chunk within RStudio, you have several options:</p>
 <ol style="list-style-type: decimal">
-<li>Use the green “c” button located at the top right corner of your file view and select “R”. Make sure your cursor is positioned at the desired location within your .rmd file when you do this.</li>
-</ol>
-<p><img src="images/rmd_codeblock_1.png" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Type <code>```{r}</code> – three back-ticks followed by <code>{r}</code> – to initiate a new code chunk, and type <code>```</code> – three backticks (```) – to end the code chunk. You can specify code chunk options in the curly brackets. i.e. <code>```{r, fig.height = 2}</code> sets figure height to 2 inches. See the <em>Code Chunk Options</em> section below for more details.</li>
-</ol>
-<p><img src="images/rmd_codeblock_2.png" /></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Inline code expression, which starts with <code>`r</code> and ends with <code>`</code> in the body text. Earlier we calculated <code>x &lt;- 2 + 2</code>, we can use inline expressions to recall that value.</li>
-</ol>
+<li><p>Use the green “c” button located at the top right corner of your file view and select “R”. Make sure your cursor is positioned at the desired location within your .rmd file when you do this.</p>
+<p><img src="images/rmd_codeblock_1.png" /></p></li>
+<li><p>Type <code>```{r}</code> – three back-ticks followed by <code>{r}</code> – to initiate a new code chunk, and type <code>```</code> – three backticks (```) – to end the code chunk. You can specify code chunk options in the curly brackets. i.e. <code>```{r, fig.height = 2}</code> sets figure height to 2 inches. See the <em>Code Chunk Options</em> section below for more details.</p>
+<p><img src="images/rmd_codeblock_2.png" /></p></li>
+<li><p>Inline code expression, which starts with <code>`r</code> and ends with <code>`</code> in the body text. Earlier we calculated <code>x &lt;- 2 + 2</code>, we can use inline expressions to recall that value.</p>
 <div class="float">
 <img src="images/inline_code.png" alt="When we knit the markdown file shown in the figure, the knitted document will say “We found that x is 4.”" />
 <div class="figcaption">When we knit the markdown file shown in the figure, the knitted document will say “We found that <em>x</em> is 4.”</div>
-</div>
+</div></li>
+</ol>
 </div>
 <div id="how-to-run-code-chunks" class="section level4 hasAnchor" number="6.1.2.2">
 <h4><span class="header-section-number">6.1.2.2</span> How to Run Code Chunks<a href="using-r-markdown.html#how-to-run-code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To run code within an R Markdown document, you again have various options to choose from.</p>
 <ol style="list-style-type: decimal">
-<li>You can run a specific code chunk by clicking the green triangle button located within each chunk. This action will execute the entire chunk, including all the code it contains.</li>
-</ol>
-<p><img src="images/run_code_1.png" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li>For more control, you can run selected lines or chunks. To do this, use the “Run” button at the top of the file view. This button provides a range of execution options that allow you to run code in a manner that suits your needs.</li>
-</ol>
+<li><p>You can run a specific code chunk by clicking the green triangle button located within each chunk. This action will execute the entire chunk, including all the code it contains.</p>
+<p><img src="images/run_code_1.png" /></p></li>
+<li><p>For more control, you can run selected lines or chunks. To do this, use the “Run” button at the top of the file view. This button provides a range of execution options that allow you to run code in a manner that suits your needs.</p>
 <p><img src="images/run_code_2.png" /></p>
 <p><img src="images/run_code_3.png" /></p>
-<p><strong>Note all the code chunks in a single markdown document work together like a normal R script.</strong> That is if you assign a value to a variable in the first chunk, you can call this variable in the second chunk; the same applies for libraries. <strong>Also note that every time you compile a markdown document, it’s done in a “fresh” R session.</strong> If you’re calling a variable that exist in your working environment, but isn’t explicitly created in the markdown document you’ll get an error.</p>
+<p><strong>Note all the code chunks in a single document work together like a normal R script.</strong> That is, if you assign a value to a variable in the first chunk, you can use this variable in the second chunk. <strong>Also note that every time you knit an R Markdown document, it’s done in a “fresh” R session.</strong> If you’re using a variable that exist in your working environment, but isn’t explicitly created in the document, you’ll get an error.</p></li>
+</ol>
 </div>
 </div>
 <div id="headings-and-subheadings" class="section level3 hasAnchor" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Headings and Subheadings<a href="using-r-markdown.html#headings-and-subheadings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In R Markdown, structuring your document with clear headings and subheadings is simple using the pound (<code>#</code>) sign. This not only helps in organizing content but also aids in creating a table of contents if required.</p>
+<p>Structure your document with clear headings and subheadings by using the pound (<code>#</code>) sign. This not only helps in organizing content but also aids in creating a table of contents if required.
+The level of heading is denoted by the number of <code>#</code> signs, as you saw with R script headings in the previous section.</p>
 <ul>
 <li><strong>Main Headings</strong>: Use a single pound sign (i.e. <code># Main Heading</code>)</li>
 <li><strong>Subheadings</strong>: Increase the number of pound signs based on the level of the subheading.
@@ -716,25 +709,24 @@ div.csl-indent {
 </div>
 <div id="latex-basics" class="section level3 hasAnchor" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> LaTeX Basics<a href="using-r-markdown.html#latex-basics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>LaTeX</strong> (pronounced “Lay-tech”) is a typesetting system that’s popular in academia due to its high-quality output format and the ability to handle complex formatting tasks. It’s especially favored for documents that contain mathematical symbols, equations, and other specialized notation.</p>
-<p>In R Markdown, LaTeX code can be integrated directly into your document to allow for advanced formatting, especially for mathematical expressions and equations. When you knit your R Markdown document, the LaTeX code is rendered into beautifully formatted text.</p>
+<p><strong>LaTeX</strong> (pronounced “lay-tech”) is a typesetting system that’s popular in academia due to its high-quality output format and the ability to handle complex formatting tasks. It’s especially favored for documents that contain mathematical symbols, equations, and other specialized notation.</p>
+<p>In R Markdown, LaTeX code can be integrated directly into text chunks to allow for advanced formatting, especially for mathematical expressions and equations. When you knit your R Markdown document, the LaTeX code is rendered into beautifully formatted text. <em>Note</em>: LaTeX code should always be written in text chunks, not code chunks!</p>
 <p>There are two common ways to turn your expressions in a math mode.</p>
 <ol style="list-style-type: decimal">
-<li><strong>Display mathematical expressions</strong>: centers the mathematical expression on its own line<br />
-</li>
-<li><strong>Inline mathematical expressions</strong>: appears within the flow of a sentence or text</li>
+<li><strong>Display mathematical expressions</strong>: centers the mathematical expression on its own line.</li>
+<li><strong>Inline mathematical expressions</strong>: appears within the text of a paragraph.</li>
 </ol>
 <p>For chemistry students, one common use of LaTeX is to typeset chemical equations. We will provide examples on the combustion of methane:</p>
 <p><img src="images/methane_example.jpeg" style="width:50.0%" /></p>
 <div id="display-math-mode" class="section level4 hasAnchor" number="6.1.4.1">
 <h4><span class="header-section-number">6.1.4.1</span> Display math mode<a href="using-r-markdown.html#display-math-mode" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>You can have an entire line in a math mode using either <code>\[...\]</code> or <code>$$...$$</code>.</p>
-<p>When you write it in rmd, it would look like :</p>
+<p>You can have an entire line in a math mode using either <code>\[...\]</code> or <code>$$...$$</code>.
+For example, writing the following in R Markdown</p>
 <ul>
-<li><code>\[ \text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O} \]</code> <em>or</em> <code>$$ \text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O} $$</code></li>
+<li><code>\[ \text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O} \]</code></li>
 </ul>
-<p>When you knit it, it will be displayed as:<br />
-<span class="math display">\[ \text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O} \]</span></p>
+<p>produces the following output in the generated PDF:</p>
+<p><span class="math display">\[ \text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O} \]</span></p>
 </div>
 <div id="inline-math-mode" class="section level4 hasAnchor" number="6.1.4.2">
 <h4><span class="header-section-number">6.1.4.2</span> Inline math mode<a href="using-r-markdown.html#inline-math-mode" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -774,22 +766,22 @@ div.csl-indent {
 <li>Italics: <code>\textit{Text}</code> for <span class="math inline">\(\textit{Text}\)</span></li>
 </ul></li>
 </ol>
-<p>In R Markdown, you can place your cursor over a LaTeX expression to preview its rendered output. This allows you to verify that the LaTeX formatting is correct before knitting the document.</p>
+<p><em>Tip</em>: In RStudio, you can place your cursor over LaTeX code to preview its generated output.</p>
 </div>
 <div id="more-latex-resources" class="section level4 hasAnchor" number="6.1.4.4">
 <h4><span class="header-section-number">6.1.4.4</span> More LaTeX Resources<a href="using-r-markdown.html#more-latex-resources" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>There are numerous online resources dedicated to LaTeX symbols and their usage.</p>
 <ul>
-<li>A popular starting point is the <a href="https://ctan.org/pkg/comprehensive">Comprehensive LaTeX Symbol List</a>, available on CTAN (Comprehensive TeX Archive Network). This extensive compilation offers a wide range of symbols used in various disciplines.</li>
-<li>Additionally, platforms like <a href="http://detexify.kirelabs.org/classify.html">Detexify</a> allow users to sketch a symbol, and the tool then identifies the corresponding LaTeX command.</li>
-<li>Engaging with online communities, such as the <a href="https://tex.stackexchange.com/">TeX - LaTeX Stack Exchange</a>, can also be invaluable for finding specific symbols or seeking advice on LaTeX-related challenges.</li>
+<li>A popular starting point is the <a href="https://mirror.its.dal.ca/ctan/info/symbols/comprehensive/symbols-letter.pdf">Comprehensive LaTeX Symbol List</a>. This extensive compilation offers a wide range of symbols used in various disciplines.</li>
+<li>Platforms like <a href="http://detexify.kirelabs.org/classify.html">Detexify</a> allow users to sketch a symbol, and the tool then identifies the corresponding LaTeX command.</li>
+<li>Engaging with online communities, such as the <a href="https://tex.stackexchange.com/">TeX Stack Exchange</a>, can also be invaluable for finding specific symbols or seeking advice on LaTeX-related challenges.</li>
 </ul>
 </div>
 </div>
 </div>
 <div id="compiling-your-final-report" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Compiling your final report<a href="using-r-markdown.html#compiling-your-final-report" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To create a PDF to hand in, you’ll need to compile, or knit, your entire markdown document as mentioned above. To knit your R markdown script, simply click the <em>knit</em> button in R Studio (yellow box, Figure 2). You can specify what output you would like and R Studio will (hopefully) compile your script. Remember, you can test or run individual code chunks as outlined in <a href="using-r-markdown.html#running-code-in-r-markdown">Running Code in R Markdown</a>.</p>
+<p>To hand in your work, you’ll need to knit your document to generate a PDF. To knit your R Markdown file, click the <em>knit</em> button in RStudio (yellow box, Figure 2).</p>
 </div>
 <div id="authoring-with-r-markdown" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Authoring with R Markdown<a href="using-r-markdown.html#authoring-with-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -797,12 +789,12 @@ div.csl-indent {
 <div id="r-markdown-syntax" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> R Markdown Syntax<a href="using-r-markdown.html#r-markdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Unlike <em>Microsoft Word</em>, R Markdown utilizes a specific syntax for text formatting. Once you get used to it, it makes typing documents much easier than <em>Word</em>’s approach. The table below is how some of the most common text formatting is typed in your R Markdown document (syntax &amp; example column) and how it’ll appear in the final output.</p>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="24%" />
-<col width="24%" />
-<col width="26%" />
-<col width="24%" />
+<col width="21%" />
+<col width="17%" />
+<col width="31%" />
+<col width="29%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -849,13 +841,13 @@ div.csl-indent {
 </div>
 <div id="r-code-chunk-options" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> R Code Chunk Options<a href="using-r-markdown.html#r-code-chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that’ll affect how your code chunk is run and displayed in the final output document. You include options in the chunk delimiters <code>```{r}</code> and <code>```</code>. For example the following code tells markdown you’re running code written in <code>R</code>, that when you compile your document this code chunk should be evaluated, and that the resulting figure should have the caption “Some Caption”.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb88-1"><a href="using-r-markdown.html#cb88-1" tabindex="-1"></a><span class="in">```{r, eval = FALSE, fig.cap = &quot;Some caption&quot;}</span></span>
+<p>Your R code is run in chunks and the results will be embedded in the final output file. To each chunk you can specify options that’ll affect how your code chunk is run and displayed in the final output document. You include options in the chunk delimiters <code>```{r}</code> and <code>```</code>. For example the following options indicate that the code chunk contains R code, that when you knit your document the code in this chunk should be evaluated, and that the resulting figure should have the caption “Some Caption”.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb88-1"><a href="using-r-markdown.html#cb88-1" tabindex="-1"></a><span class="in">```{r, eval = TRUE, fig.cap = &quot;Some caption&quot;}</span></span>
 <span id="cb88-2"><a href="using-r-markdown.html#cb88-2" tabindex="-1"></a></span>
 <span id="cb88-3"><a href="using-r-markdown.html#cb88-3" tabindex="-1"></a><span class="in"># some code to generate a plot worth captioning. </span></span>
 <span id="cb88-4"><a href="using-r-markdown.html#cb88-4" tabindex="-1"></a></span>
 <span id="cb88-5"><a href="using-r-markdown.html#cb88-5" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
-<p>The most common and useful chunk options are shown below. Note that they all have a default value. For example, <code>eval</code> tells R markdown whether the code within the block should be run. It’s default option is <code>TRUE</code>, so by default any code in a chunk will be run when you knit your document. If you don’t want that code to be run, but still displayed, you would set <code>eval = FALSE</code>. Another example would be setting <code>echo = FALSE</code> which allows the code to run, but the code <em>won’t</em> be displayed on the output document (the outputs will still be displayed though); useful for creating clean documents with plots only (i.e. lab reports…).</p>
+<p>The most common and useful chunk options are shown below. Note that they all have a default value. For example, <code>eval</code> tells R Markdown whether the code within the block should be run. It’s default option is <code>TRUE</code>, so by default any code in a chunk will be run when you knit your document. If you don’t want that code to be run, but still displayed, you would set <code>eval = FALSE</code>. Another example would be setting <code>echo = FALSE</code> which allows the code to run, but the code <em>won’t</em> be displayed on the output document (the outputs will still be displayed though); useful for creating clean documents with plots only (i.e. lab reports…).</p>
 <table>
 <colgroup>
 <col width="29%" />
@@ -920,38 +912,37 @@ div.csl-indent {
 </div>
 <div id="inserting-images" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Inserting images<a href="using-r-markdown.html#inserting-images" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Images not produced by R code can easily be inserted into your document. The markdown code isn’t R code, so between paragraphs of bodytext insert the following code.</p>
+<p>Images not produced by R code can easily be inserted into your document.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb89-1"><a href="using-r-markdown.html#cb89-1" tabindex="-1"></a><span class="al">![Caption for the picture.](path/to/image.png)</span>{width=50%, height=50%}</span></code></pre></div>
-<p>Note that in the above the use of image attributes, the <code>{width=50%, height=50%}</code> at the end. This is how you’ll adjust the size of your image. Other dimensions you can use include <code>px, cm, mm, in, inch</code>, and <code>%</code>.</p>
-<p>A final note on images: when compiling to PDF, the LaTeX call will place your image in the “optimal” location (as determined by LaTeX), so you might find your image isn’t exactly where you thought it would be. A more in-depth guide to image placement can be found <a href="https://rpubs.com/RatherBit/90926">here</a></p>
+<p>Note that in the above the use of image attributes, the <code>{width=50%, height=50%}</code> at the end. This is how you’ll adjust the size of your image. Size dimensions you can use include <code>px, cm, mm, in, inch</code>, and <code>%</code>.</p>
+<p>A final note on images: when compiling to PDF, your image will be placed in the “optimal” location (as determined by LaTeX), so you might find your image isn’t exactly where you thought it would be. A more in-depth guide to image placement can be found <a href="https://rpubs.com/RatherBit/90926">here</a>.</p>
 </div>
 <div id="generating-tables" class="section level3 hasAnchor" number="6.3.4">
 <h3><span class="header-section-number">6.3.4</span> Generating tables<a href="using-r-markdown.html#generating-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>There are multiple methods to create tables in R markdown. Assuming you want to display results calculated through R code, you can use the <code>kable()</code> function. Or you can consult the <a href="summarizing-data.html#summarizing-data">Summarizing Data</a> chapter for making publication ready tables.</p>
+<p>There are multiple ways of creating tables in R Markdown. Assuming you want to display results calculated through R code, you can use the <code>kable()</code> function. Or you can consult the <a href="summarizing-data.html#summarizing-data">Summarizing Data</a> chapter for making publication ready tables.</p>
 <p>Alternatively, if you want to create simple tables manually use the following code in the main body, outside of an <code>R</code> code chunk. You can increase the number of rows/columns and the location of the horizontal lines. To generate more complex tables, see the <code>kable()</code> function and the <code>kableExtra</code> package.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1"><a href="using-r-markdown.html#cb90-1" tabindex="-1"></a>Header 1 | Header 2| Header 3</span>
-<span id="cb90-2"><a href="using-r-markdown.html#cb90-2" tabindex="-1"></a>---------|---------|---------|</span>
-<span id="cb90-3"><a href="using-r-markdown.html#cb90-3" tabindex="-1"></a>Row 1    | Data    | Some other Data</span>
-<span id="cb90-4"><a href="using-r-markdown.html#cb90-4" tabindex="-1"></a>Row 2    | Data    | Some other Data</span>
-<span id="cb90-5"><a href="using-r-markdown.html#cb90-5" tabindex="-1"></a>---------|---------|---------|</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1"><a href="using-r-markdown.html#cb90-1" tabindex="-1"></a><span class="pp">|</span> Header 1 <span class="pp">|</span> Header 2 <span class="pp">|</span> Header 3        <span class="pp">|</span></span>
+<span id="cb90-2"><a href="using-r-markdown.html#cb90-2" tabindex="-1"></a><span class="pp">|:---------|:---------|:----------------|</span></span>
+<span id="cb90-3"><a href="using-r-markdown.html#cb90-3" tabindex="-1"></a><span class="pp">|</span> Row 1    <span class="pp">|</span> Data     <span class="pp">|</span> Some other Data <span class="pp">|</span></span>
+<span id="cb90-4"><a href="using-r-markdown.html#cb90-4" tabindex="-1"></a><span class="pp">|</span> Row 2    <span class="pp">|</span> Data     <span class="pp">|</span> Some other Data <span class="pp">|</span></span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th>Header 1</th>
-<th>Header 2</th>
-<th>Header 3</th>
+<th align="left">Header 1</th>
+<th align="left">Header 2</th>
+<th align="left">Header 3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Row 1</td>
-<td>Data</td>
-<td>Some other Data</td>
+<td align="left">Row 1</td>
+<td align="left">Data</td>
+<td align="left">Some other Data</td>
 </tr>
 <tr class="even">
-<td>Row 2</td>
-<td>Data</td>
-<td>Some other Data</td>
+<td align="left">Row 2</td>
+<td align="left">Data</td>
+<td align="left">Some other Data</td>
 </tr>
 </tbody>
 </table>
@@ -959,12 +950,12 @@ div.csl-indent {
 </div>
 <div id="spellcheck-in-r-markdown" class="section level3 hasAnchor" number="6.3.5">
 <h3><span class="header-section-number">6.3.5</span> Spellcheck in R Markdown<a href="using-r-markdown.html#spellcheck-in-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>While writing an R markdown document in R studio, go to the <code>Edit</code> tab at the top of the window and select <code>Check Spelling</code>. You can also use the <code>F7</code> key as a shortcut. The spell checker will literally go through every word it thinks you’ve misspelled in your document. You can add words to it so your spell checker’s utility grows as you use it. <strong>Note</strong> that the spell check may also check your R code; be wary of changing words in your code chunks because you may get an error down the line.</p>
+<p>While writing an R Markdown document in R studio, go to the <code>Edit</code> tab at the top of the window and select <code>Check Spelling</code>. You can also use the <code>F7</code> key as a shortcut. The spell checker will literally go through every word it thinks you’ve misspelled in your document. You can add words to it so your spell checker’s utility grows as you use it. <strong>Note</strong> that the spell check may also check your R code; be wary of changing words in your code chunks because you may get an error down the line.</p>
 </div>
 <div id="exporting-r-markdown-documents" class="section level3 hasAnchor" number="6.3.6">
 <h3><span class="header-section-number">6.3.6</span> Exporting R Markdown documents<a href="using-r-markdown.html#exporting-r-markdown-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You’ll most likely be exporting your R Markdown documents as PDFs, but the beauty of R Markdown is it doesn’t stop there. Your R Markdown documents can be knitted as a HTML document, a book (or both like this book!). You can even make slideshow presentations and yes, if need be, export as a word document that you can open in <em>Microsoft Word</em>.</p>
-<p>You specify the output format in the document header. To specify you want your document to be outputted as a PDF your YAML header would look like this:</p>
+<p>You specify the output format in the document header. To specify you want your document to be outputted as a PDF your header would look like this:</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb91-1"><a href="using-r-markdown.html#cb91-1" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb91-2"><a href="using-r-markdown.html#cb91-2" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Your title here&quot;</span></span>
 <span id="cb91-3"><a href="using-r-markdown.html#cb91-3" tabindex="-1"></a><span class="an">output:</span><span class="co"> pdf_document</span></span>
@@ -974,7 +965,7 @@ div.csl-indent {
 <li><a href="https://bookdown.org/yihui/R%20Markdown/pdf-document.html"><code>pdf_document</code></a> creates a PDF document via Latex; probably your defacto output.</li>
 <li><a href="https://bookdown.org/yihui/R%20Markdown/word-document.html"><code>word_document</code></a> creates a Word document. Note that the formatting options are pretty basic, so while everything will be where you want it to be, you’ll need to pretty it up in Word to comply with your instructor’s specifications.</li>
 <li><a href="https://bookdown.org/yihui/R%20Markdown/tufte-handouts.html"><code>tufte_handout</code></a> for a PDF handout in the style of Edward Tufte. Check it out.</li>
-<li><a href="https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html"><code>ioslides_presentation</code></a>, <a href="https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html"><code>revealjs::revealjs_presentation</code></a>, and <a href="https://bookdown.org/yihui/R%20Markdown/powerpoint-presentation.html"><code>powerpoint_presentation</code></a> are all options to create slideshow presentations. I personally use <code>revealjs</code> for my own work. It has the steepest learning curve of the bunch, but once setup, you can make incredibly slick slides with ease.
+<li><a href="https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html"><code>ioslides_presentation</code></a>, <a href="https://bookdown.org/yihui/R%20Markdown/ioslides-presentation.html"><code>revealjs::revealjs_presentation</code></a>, and <a href="https://bookdown.org/yihui/R%20Markdown/powerpoint-presentation.html"><code>powerpoint_presentation</code></a> are all options to create slideshow presentations. <code>revealjs</code> has the steepest learning curve of the bunch, but once set up, you can make incredibly slick slides with ease.
 <ul>
 <li>Note: like <code>word_document</code>, <code>powerpoint_presentation</code>’s outputs are stylistically simple. You’ll definitely need to pretty them up manually in Powerpoint.</li>
 </ul></li>
@@ -991,11 +982,11 @@ div.csl-indent {
 </div>
 <div id="r-markdown-resources" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> R Markdown resources<a href="using-r-markdown.html#r-markdown-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There’s a plethora of helpful online resources to help hone your R markdown skills. We’ll list a couple below (the titles are links to the corresponding document):</p>
+<p>There’s a plethora of helpful online resources to help hone your R Markdown skills. We’ll list a couple below (the titles are links to the corresponding document):</p>
 <ul>
-<li><a href="https://bookdown.org/yihui/R%20Markdown/basics.html">Chapter 2</a> of the <a href="https://bookdown.org/yihui/R%20Markdown/"><em>R Markdown: The Definitive Guide</em></a> by Xie, Allaire &amp; Grolemund (2020). This is the simplest, most comprehensive, guide to learning R markdown and it’s available freely online.</li>
-<li><a href="https://rstudio.com/wp-content/uploads/2015/02/R%20Markdown-cheatsheet.pdf"><em>The R markdown cheat sheet</em></a>, a great resource with the most common R markdown operations; keep on hand for quick referencing.</li>
-<li><a href="https://bookdown.org/yihui/bookdown/"><em>Bookdown: Authoring Books and Technical Documents with R Markdown</em></a> (2020) by Yihui Xie. Explains the <code>bookdown</code> package which greatly expands the capabilities of R markdown. For example, the table of contents of this document is created with <code>bookdown</code>.</li>
+<li><a href="https://bookdown.org/yihui/R%20Markdown/basics.html">Chapter 2</a> of the <a href="https://bookdown.org/yihui/R%20Markdown/"><em>R Markdown: The Definitive Guide</em></a> by Xie, Allaire &amp; Grolemund (2020). This is the simplest, most comprehensive, guide to learning R Markdown and it’s available freely online.</li>
+<li><a href="https://rstudio.com/wp-content/uploads/2015/02/R%20Markdown-cheatsheet.pdf"><em>The R Markdown cheat sheet</em></a>, a great resource with the most common R Markdown operations; keep on hand for quick referencing.</li>
+<li><a href="https://bookdown.org/yihui/bookdown/"><em>Bookdown: Authoring Books and Technical Documents with R Markdown</em></a> (2020) by Yihui Xie. Explains the <code>bookdown</code> package which greatly expands the capabilities of R Markdown. For example, the table of contents of this document is created with <code>bookdown</code>.</li>
 </ul>
 
 </div>

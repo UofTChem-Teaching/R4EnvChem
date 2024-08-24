@@ -62,7 +62,7 @@ creating-or-opening-an-r-markdown-document
 workspace-and-whats-real
 saving-r-markdown
 what-should-i-save
-saving-objects
+saving-data-frames
 script-formatting
 viewing-data-and-code-simultaneously
 troubleshooting-error-messages
