@@ -16,8 +16,8 @@ The *linear calibration model* relates the response of an instrument to the valu
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
 library(tidyverse)
-df <- data.frame("conc" = c(0, 0.05, 0.1, 0.2, 0.4, 0.6, 0.8),
-                 "abs" = c(0, 0.057, 0.119, 0.261, 0.353, 0.599, 0.730))
+df <- data.frame(conc = c(0, 0.05, 0.1, 0.2, 0.4, 0.6, 0.8),
+                 abs = c(0, 0.057, 0.119, 0.261, 0.353, 0.599, 0.730))
 
 df <- df %>%
   nest() %>%
@@ -30,9 +30,6 @@ df <- df %>%
 ```
 
 ```{r reg-plot, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.cap = "Linear calibration model; figure modified from Hibbert and Gooding (2006)."}
-
-
-
 ggplot(df, 
        aes( x = conc, y = abs)) +
   geom_point() +
@@ -43,34 +40,34 @@ ggplot(df,
   # actual measurement
   geom_segment(aes(xend = conc, yend = .fitted)) +
   
-  
   # y4 measurement
-  geom_segment(aes( x = 0, y = 0.261 , xend = 0.20, yend = 0.261),
+  geom_segment(aes(x = 0, y = 0.261, xend = 0.20, yend = 0.261),
                alpha = 0.6, linetype = "dashed") +
   annotate("text", x = 0.025, y = 0.281, label = expression(y[4] )) +
 
   # y4 fitted
-  geom_segment(aes( x = 0, y = 0.20391462 , xend = 0.20, yend = 0.20391462),
+  geom_segment(aes(x = 0, y = 0.20391462, xend = 0.20, yend = 0.20391462),
                alpha = 0.6, linetype = "dashed") +
     annotate("text", x = 0.025, y = 0.23, label = expression(widehat(y)[4])) +
 
   # residual annotation
   annotate("text", x = 0.25, y = 0.1, label = "This is a\n residual", hjust = 1) +
-  geom_curve(aes( x = 0.24, y = 0.15, xend = 0.205, yend = 0.245),
+  geom_curve(aes(x = 0.24, y = 0.15, xend = 0.205, yend = 0.245),
               curvature = 0.5, arrow = arrow(length = unit(0.03, "npc"))) +
 
   # measured point annotation
   annotate("text", x = 0.5, y = 0.3, label = "This is the \n measurement \n of a standard", hjust = 0) +
-  geom_curve(aes(x =0.5, y = 0.3, xend = 0.4, yend = 0.33),
+  geom_curve(aes(x = 0.5, y = 0.3, xend = 0.4, yend = 0.33),
               curvature = -0.7, arrow = arrow(length = unit(0.03, "npc"))) +
 
   # fitted line annotation
   annotate("text", x = 0.65, y = 0.45, label = "This is the \n calibration line") +
   geom_curve(aes(x = 0.65, y = 0.5, xend = 0.65, yend = 0.6),
               curvature = 0, arrow = arrow(length = unit(0.03, "npc"))) +
-  # unknown inst. response annotation
+
+    # unknown inst. response annotation
   geom_point(aes(x = 0, y = 0.35), colour = "red", shape = "square") +
-  geom_curve(aes(x =0, y = 0.35, xend = 0.359, yend = 0.35),
+  geom_curve(aes(x = 0, y = 0.35, xend = 0.359, yend = 0.35),
             curvature = 0, 
             arrow = arrow(length = unit(0.03, "npc")), 
             linetype = "longdash", colour = "red") +
@@ -80,7 +77,7 @@ ggplot(df,
              arrow = arrow(length = unit(0.03, "npc"))) +
   
   # unknown calculated conc
-  geom_curve(aes(x =0.359, y = 0.35, xend = 0.359, yend = 0),
+  geom_curve(aes(x = 0.359, y = 0.35, xend = 0.359, yend = 0),
             curvature = 0, 
             arrow = arrow(length = unit(0.03, "npc")), 
             linetype = "longdash",
@@ -90,23 +87,20 @@ ggplot(df,
              curvature = -0.35, 
              arrow = arrow(length = unit(0.03, "npc"))) +
   
-  # so residual lines touch y axis
-  scale_x_continuous(expand = c(0,0)) +
+  # so residual lines touch y-axis
+  scale_x_continuous(expand = c(0, 0)) +
   coord_cartesian(clip = "off") +
   labs(x = "concentration",
        y = "instrument response") +
   theme_classic() +
-  theme(
-  axis.text.x = element_blank(),
-  axis.text.y = element_blank(),
-  axis.ticks = element_blank())
-
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank())
 ```
 
 Before we can calculate concentrations, we need a measurement model. In other words, an equation that relates instrument response to sample concentration (or other factors). For simple linear calibration, we use:
 
-$$ y = a + bx$$
-
+$$y = a + bx$$
 Where:
 
 -   $y$ is the instrument response
@@ -116,15 +110,15 @@ Where:
 We'll gloss over some of the more technical aspects of modelling, and discuss other in more detail below. For now, know that:
 
 -   We're assuming our linear model is correct (i.e. the instruments actually respond linearly to concentration).
--   All uncertainties reside in the dependant variable $y$ (i.e. no errors in preparation of the standards).
+-   All uncertainties reside in the dependent variable $y$ (i.e., no errors in preparation of the standards).
 -   The values of $a$ and $b$ are determined by minimizing the *sum of the residuals squared*.
     -   The residuals are the difference between the actual measured response and where it would be if it were on the calibration line.
 
-Once we have our line of best fit, we can calculate the concentration of our unknown sample $i$, from it's measured response $y_i$ by:
+Once we have our line of best fit, we can calculate the concentration of our unknown sample $i$, from its measured response $y_i$ by:
 
-$$ x_i = \frac{y_i ~-~b}{a}$$
+$$x_i = \frac{y_i - b}{a}$$
 
-There is more going on under the hood than what we're describing here, but this should be enough to get you up and running. If you would like a greater breakdown of linear calibration modelling, we suggest you read Chapter 5 of *Data Analysis for Chemistry* by Hibbert and Gooding. An online version is accessible via the University of Toronto's Library. Also there is no reason the instrument response must be linear. In fact, we spend a great deal of time arranging our experiment to that we land in the 'linear range'. For details on non-linear modelling in R see [Modelling: Non-Linear Regression]
+There is more going on under the hood than what we're describing here, but this should be enough to get you up and running. If you would like a greater breakdown of linear calibration modelling, we suggest you read Chapter 5 of *Data Analysis for Chemistry* by Hibbert and Gooding. An online version is accessible via the University of Toronto's Library. Also there is no reason the instrument response must be linear. In fact, we spend a great deal of time arranging our experiment to that we land in the 'linear range'. For details on non-linear modelling in R see [Modelling: Non-Linear Regression].
 
 ## Linear Regression in R
 
@@ -133,9 +127,6 @@ Now that we have a rough understanding of what we're trying to do, let's go over
 For our example dataset we'll import a dataset consisting of four analytical standards of sodium plus a calibration blank all run in triplicate. The standards were measured via flame atomic emission spectroscopy (FAES). Let's import the FAES calibration results we saw in [Transform: Data manipulation]. As we've already seen, our data is composed of four standards and a blank analyzed in triplicate. Since we're focusing on modelling, *we'll treat the blank as a standard in our model fitting*. So let's import our dataset:
 
 ```{r, message = FALSE}
-
-# Importing using tips from Import chapter
-
 FAES <- read_csv(file = "data/FAES_original_wide.csv") %>%
   pivot_longer(cols = -std_Na_conc,
                names_to = "replicate", 
@@ -153,26 +144,25 @@ DT::datatable(FAES)
 And let's quickly plot our data. You should always visualize your data before modelling, especially for linear calibration modelling. Visualizing your data is an easy way to spot trends and gross errors in your data.
 
 ```{r}
-
 ggplot(data = FAES,
        aes(x = conc_Na, 
            y = signal)) +
   geom_point()
 ```
 
-R's base `lm()` function for linear regression is excellent, but its outputs have some messy quirks. It's easier to show that, so let's calculate the linear relationship between the `signal` as a function of `conc_Na`:
+Let's use the `lm()` function to calculate the linear relationship between the `signal` as a function of `conc_Na`:
 
 ```{r}
 lm_fit <- lm(signal ~ conc_Na, data = FAES)
 lm_fit
 ```
 
-Reading the code above (recall that we're reading it from *right to left* because it's base R):
+Reading the code above:
 
-1.  We're taking the FAES data we created earlier; `data = FAES`
-2.  We're comparing `signal` (the dependent, y, variable) to `conc_Na` (the independent, x, variable) via the tilde `~`. The way to read this is: *"Signal depends on concentration"*.
-3.  We're comparing these two variables using the `lm()` function for generalized linear models.
-4.  All of the model outputs are stored in the `lm_fit` variable.
+1.  We're using the FAES data we created earlier: `data = FAES`.
+2.  We're comparing `signal` (the dependent variable) to `conc_Na` (the independent variable) via the tilde `~`. The way to read this is: *"signal depends on concentration"*.
+3.  We're fitting a *linear model* for comparing these two variables.
+4.  The model's outputs are stored in the `lm_fit` variable.
 
 As we can see, the model outputs are pretty brief and not much more than *Excel*'s outputs. We can use `summary()` to extract more information to better understand our model:
 
@@ -191,13 +181,7 @@ In this section, we will delve into the world of multiple linear regressions, wh
 The dataset `metal_conc` contains information on metal concentrations measured in parts per million, or ppm, and corresponding signal values (counts per seconds, or cps) from the inductively coupled plasma optical emission spectrometer (ICP-OES) in ANALEST for 4 metals: Aluminum, Magnesium, Calcium, and Potassium. Take a look at the data before proceeding with our analysis:
 
 ```{r}
-# Load the necessary libraries
-library(readr)
-library(dplyr)
-library(DT)
-
-# Read the CSV file
-metal_conc <- read_csv("data/metal_concentration.csv", show_col_types = FALSE)
+metal_conc <- read_csv("data/metal_concentration.csv")
 DT::datatable(metal_conc)
 ```
 
@@ -212,19 +196,17 @@ metal_results <- list()
 # Iterate over each metal
 for (metal in colnames(metal_conc)[-1]) {
   # Build linear regression model
-  model <- lm(metal_conc[[metal]] ~ metal_conc[["Concentration"]], data = metal_conc)
+  model <- lm(metal_conc[[metal]] ~ Concentration, data = metal_conc)
   
   # Extract slope and intercept
   slope <- coef(model)[2]
   intercept <- coef(model)[1]
   r_squared <- summary(model)$r.squared
 
-  
   # Print slope and intercept
   cat("For:", metal, "\n")
   cat("Slope:", slope, "\n")
   cat("Intercept:", intercept, "\n\n")
-  
   
   # Store slope and intercept in metal_results list
   metal_results[[metal]] <- list(slope = slope, intercept = intercept, r2=r_squared)
@@ -235,7 +217,10 @@ The code above uses a `for` loop, that was discussed in the [Loops] section of t
 
 ```{r}
 # Use pivot_longer to reshape the data frame for ggplot
-metal_conc_long <- pivot_longer(metal_conc, cols = c("Al", "Mg", "Ca", "K"), names_to = "Metal", values_to = "Signal")
+metal_conc_long <- pivot_longer(metal_conc,
+                                cols = c("Al", "Mg", "Ca", "K"),
+                                names_to = "Metal",
+                                values_to = "Signal")
 
 # Create a scatterplot for each metal with its regression line
 ggplot(metal_conc_long, aes(x = Concentration, y = Signal, color = Metal)) +
@@ -244,7 +229,6 @@ ggplot(metal_conc_long, aes(x = Concentration, y = Signal, color = Metal)) +
   labs(title = "Regression Lines for Selected Metals", x = "Concentration", y = "Signal") +
   theme_minimal() +
   scale_color_manual(values = c("red", "blue", "green", "purple"))
-
 ```
 
 To make this plot we used many of the skills we have learned throughout this resource such as the `pivot_longer` function in [Making Data Longer] and the functionality of `ggplot()` in [Ggplot Basic Visualizations].
@@ -256,9 +240,9 @@ We have successfully built linear regression models for each metal, and the slop
 ```{r, echo=FALSE}
 # Display metal_results variable
 metal_results_df <- data.frame(Metal = names(metal_results),
-                                Slope = sapply(metal_results, function(x) x$slope),
-                                Intercept = sapply(metal_results, function(x) x$intercept),
-                                R2 = sapply(metal_results, function(x) x$r2))
+                               Slope = sapply(metal_results, function(x) x$slope),
+                               Intercept = sapply(metal_results, function(x) x$intercept),
+                               R2 = sapply(metal_results, function(x) x$r2))
 metal_results_df
 ```
 
@@ -270,7 +254,7 @@ slope_ca <- metal_results$Ca$slope
 intercept_ca <- metal_results$Ca$intercept
 
 # Print the slope and intercept values
-cat("Slope for Ca:", slope_ca, "\n")
+print("Slope for Ca:", slope_ca, "\n")
 cat("Intercept for Ca:", intercept_ca, "\n")
 ```
 
@@ -309,7 +293,6 @@ metal_signals$K_concentration <- calculate_concentration(metal_signals$K, "K")
 
 # Print the updated dataset with calculated concentrations (Aluminum as the example)
 DT::datatable(metal_signals)
-
 ```
 
 *Note*: In the provided code snippet, the use of `[[]]` (double brackets) allows for dynamic access to list elements using a variable name. This is particularly useful when the exact name of the element is stored as a string in another variable, such as `metal_name`. The double brackets evaluate the variable to get its value, thereby accessing the corresponding list element. This method is distinct from the use of `$`, which requires a direct, literal name of the element and cannot interpret a variable's value as an element name. 
