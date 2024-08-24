@@ -315,11 +315,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.1" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#loops"><i class="fa fa-check"></i><b>8.1</b> Loops</a></li>
 <li class="chapter" data-level="8.2" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#writing-custom-functions-in-r"><i class="fa fa-check"></i><b>8.2</b> Writing custom functions in R</a></li>
-<li class="chapter" data-level="8.3" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#conditional-arguments"><i class="fa fa-check"></i><b>8.3</b> Conditional arguments</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#piping-conditional-statements"><i class="fa fa-check"></i><b>8.3.1</b> Piping conditional statements</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#further_reading_chapter8"><i class="fa fa-check"></i><b>8.4</b> Further reading</a></li>
+<li class="chapter" data-level="8.3" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#further_reading_chapter8"><i class="fa fa-check"></i><b>8.3</b> Further reading</a></li>
 </ul></li>
 <li class="part"><span><b>Part 3: Data Analysis in R</b></span></li>
 <li class="chapter" data-level="9" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>9</b> Intro to Data Analysis</a>
@@ -551,7 +547,7 @@ div.csl-indent {
 <div id="read_csv" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> read_csv<a href="importing-your-data-into-r.html#read_csv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Importing a <code>.csv</code> file into R simply requires the <code>read.csv</code> or the <code>read_csv</code> function from tidyverse. The first variable is the most important as it’s the file path. Recall that R, unless specified, uses relative referencing. So in the example below we’re importing the <code>ATR_plastics.csv</code> from the <code>data</code> sub-folder in our project by specifying <code>"data/ATR_plastics.csv"</code> and assigning it to the variable <code>atr_plastics</code>. Note the inclusion of the file extension.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="importing-your-data-into-r.html#cb123-1" tabindex="-1"></a>atr_plastics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="importing-your-data-into-r.html#cb115-1" tabindex="-1"></a>atr_plastics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 28628 Columns: 3
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -571,7 +567,7 @@ div.csl-indent {
 <li><strong>lgl</strong> for logical values, either <code>TRUE</code> or <code>FALSE</code></li>
 </ul>
 <p>We can also quickly inspect either through the <em>Environment</em> pane in <em>RStudio</em> or quickly with the <code>head()</code> function.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="importing-your-data-into-r.html#cb125-1" tabindex="-1"></a><span class="fu">head</span>(atr_plastics)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="importing-your-data-into-r.html#cb117-1" tabindex="-1"></a><span class="fu">head</span>(atr_plastics)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   wavenumber sample               absorbance
 ##        &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;
@@ -583,7 +579,7 @@ div.csl-indent {
 ## 6       551. Polystyrene            0.0746</code></pre>
 <p>As you can see, the <code>head()</code> function, by default, shows the first six rows of the dataframe. If you want to inspect more or fewer rows, you can provide an optional <code>n</code> argument like <code>head(data, n=10)</code>. Note the column specifications under the column name.</p>
 <p>Also note how the first line of the <code>ATR_plastics.csv</code> has been interpreted as columns names (or <em>headers</em>) by R. This is common practice, and gives you a handle by which you can manipulate your data. If you did not intend for R to interpret the first row as headers you can suppress this with the additional argument <code>col_names = FALSE</code>.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="importing-your-data-into-r.html#cb127-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="importing-your-data-into-r.html#cb119-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 <pre><code>## Rows: 28629 Columns: 3
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -601,7 +597,7 @@ div.csl-indent {
 ## 5 550.0952   Sample: Shopping bag 0.02364882 
 ## 6 550.5773   EPDM                 0.2124079</code></pre>
 <p>Note in the example above that since the headers are now considered data, and are composed of a string of characters, the entire column is then interpreted as character values. This will happen if a single non-numeric character is introduced in the column, so beware of typos when recording data! If we wanted to skip rows (i.e. to avoid blank rows at the top of our <code>.csv</code>), we can use the <code>skip = n</code> to skip n rows:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="importing-your-data-into-r.html#cb130-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="importing-your-data-into-r.html#cb122-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/ATR_plastics.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## Rows: 28628 Columns: 3
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -621,7 +617,7 @@ div.csl-indent {
 ## 6  551. Polystyrene          0.0746</code></pre>
 <p>Note in the example above that we skipped our headers, so <code>read_csv()</code> created placeholder headers (<code>X1</code>, <code>X2</code>, etc.).</p>
 <p>Another useful function to inspect data is <code>tail()</code>, which displays the last six rows of a dataframe. Similarly, it accepts an optional <code>n</code> argument to specify the number of rows you want to view.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="importing-your-data-into-r.html#cb133-1" tabindex="-1"></a><span class="fu">tail</span>(atr_plastics)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="importing-your-data-into-r.html#cb125-1" tabindex="-1"></a><span class="fu">tail</span>(atr_plastics)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   wavenumber sample               absorbance
 ##        &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;
@@ -634,7 +630,7 @@ div.csl-indent {
 <div id="tibbles-vs.-data-frames" class="section level3 hasAnchor" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> Tibbles vs. data frames<a href="importing-your-data-into-r.html#tibbles-vs.-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Quick eyes will notice the first line outputted above is <code># A tibble: 6 x 5</code>. <code>tibbles</code> are a variation of <code>data.frames</code> introduced in <a href="r-coding-basics.html#data-frames">Data Frames</a> in Part 2, but built specifically for the <code>tidyverse</code> family of packages. While <code>data.frames</code> and <code>tibbles</code> are often interchangeable, it’s important to be aware of the difference in case you do run into a rare conflict. In these situations you can readily transform a <code>tibble</code> into a <code>data.frame</code> by coercion with the <code>as.data.frame()</code> function, and vice-versa with the <code>as_tibble()</code> function.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="importing-your-data-into-r.html#cb135-1" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.data.frame</span>(atr_plastics))</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="importing-your-data-into-r.html#cb127-1" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.data.frame</span>(atr_plastics))</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
 </div>
@@ -645,7 +641,7 @@ div.csl-indent {
 <div id="saving-data" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Saving data<a href="importing-your-data-into-r.html#saving-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As you progress with your analysis you may want to save intermediate or final datasets. This is readily accomplished using the <code>write_csv()</code> from the <code>readr</code> package. Similar rules apply to how we used <code>read_csv</code>, but now the second argument specifies the save location and file name, while the first argument is which <code>tibble</code>/<code>data.frame</code> we’re saving. Note that R <em>will not</em> create a folder this way, so if you’re saving to a sub-folder you’ll have to make sure it exists or create it yourself.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="importing-your-data-into-r.html#cb137-1" tabindex="-1"></a><span class="fu">write_csv</span>(atr_plastics, <span class="st">&quot;data/ATRSaveExample.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="importing-your-data-into-r.html#cb129-1" tabindex="-1"></a><span class="fu">write_csv</span>(atr_plastics, <span class="st">&quot;data/ATRSaveExample.csv&quot;</span>)</span></code></pre></div>
 <p>A benefit of <code>write_csv</code> is that it will always save in <code>UTF-8</code> encoding and ISO8601 time format. This standardization makes it easier to share your <code>.csv</code> files with collaborators/yourself.</p>
 </div>
 <div id="further_reading_chapter10" class="section level2 hasAnchor" number="10.5">

@@ -315,11 +315,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.1" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#loops"><i class="fa fa-check"></i><b>8.1</b> Loops</a></li>
 <li class="chapter" data-level="8.2" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#writing-custom-functions-in-r"><i class="fa fa-check"></i><b>8.2</b> Writing custom functions in R</a></li>
-<li class="chapter" data-level="8.3" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#conditional-arguments"><i class="fa fa-check"></i><b>8.3</b> Conditional arguments</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#piping-conditional-statements"><i class="fa fa-check"></i><b>8.3.1</b> Piping conditional statements</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#further_reading_chapter8"><i class="fa fa-check"></i><b>8.4</b> Further reading</a></li>
+<li class="chapter" data-level="8.3" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#further_reading_chapter8"><i class="fa fa-check"></i><b>8.3</b> Further reading</a></li>
 </ul></li>
 <li class="part"><span><b>Part 3: Data Analysis in R</b></span></li>
 <li class="chapter" data-level="9" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>9</b> Intro to Data Analysis</a>
@@ -550,15 +546,16 @@ div.csl-indent {
 <div id="the-for-loop" class="section level4 hasAnchor" number="8.1.0.1">
 <h4><span class="header-section-number">8.1.0.1</span> The <code>for</code> loop<a href="loops-and-functions-in-r.html#the-for-loop" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>for</code> loop in R is used to iterate over elements in a vector or list.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="loops-and-functions-in-r.html#cb98-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
-<span id="cb98-2"><a href="loops-and-functions-in-r.html#cb98-2" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb98-3"><a href="loops-and-functions-in-r.html#cb98-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="loops-and-functions-in-r.html#cb98-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb98-2"><a href="loops-and-functions-in-r.html#cb98-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> data) {</span>
+<span id="cb98-3"><a href="loops-and-functions-in-r.html#cb98-3" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb98-4"><a href="loops-and-functions-in-r.html#cb98-4" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
 ## [1] 4
 ## [1] 5</code></pre>
-<p>This will print numbers from 1 to 5. The loop iterates over each element in the sequence <code>1:5</code>, setting the value to <code>i</code> and executing the code inside the loop.</p>
+<p>This will print numbers from 1 to 5. The loop iterates over each element in the vector <code>c(1, 2, 3, 4, 5)</code>, setting the value to <code>i</code> and executing the code inside the loop.</p>
 </div>
 <div id="the-while-loop" class="section level4 hasAnchor" number="8.1.0.2">
 <h4><span class="header-section-number">8.1.0.2</span> The <code>while</code> loop<a href="loops-and-functions-in-r.html#the-while-loop" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -575,7 +572,7 @@ div.csl-indent {
 ## [1] 4
 ## [1] 5</code></pre>
 <p>In this example, the loop will keep printing and incrementing the value of counter until counter is no longer less than or equal to 5.</p>
-<p>Remember, be cautious with while loops. If the condition never becomes false, the loop will run indefinitely!</p>
+<p>Be cautious with while loops: if the condition never becomes false, the loop will run indefinitely!</p>
 </div>
 </div>
 <div id="writing-custom-functions-in-r" class="section level2 hasAnchor" number="8.2">
@@ -605,57 +602,89 @@ div.csl-indent {
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="loops-and-functions-in-r.html#cb105-1" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">20</span>, <span class="fl">35.5</span>)</span></code></pre></div>
 <pre><code>## [1] 55.5</code></pre>
 <p>At this time, we shall keep it simple. You will eventually see more complex usages of custom functions.</p>
-</div>
-</div>
-<div id="conditional-arguments" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Conditional arguments<a href="loops-and-functions-in-r.html#conditional-arguments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Conditional arguments are used to specify a path in a function depending on whether a statement is <code>TRUE</code> or <code>FALSE</code>. These are explored in greater detail via the links in the <a href="loops-and-functions-in-r.html#further_reading_chapter8">Further reading</a> section, but here’s a quick example of a function that uses the conditional <code>if</code> statement to print out which number is largest:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="loops-and-functions-in-r.html#cb107-1" tabindex="-1"></a>isGreater <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb107-2"><a href="loops-and-functions-in-r.html#cb107-2" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> y){</span>
-<span id="cb107-3"><a href="loops-and-functions-in-r.html#cb107-3" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">paste</span>(x, <span class="st">&quot;is greater than&quot;</span>, y, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb107-4"><a href="loops-and-functions-in-r.html#cb107-4" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> y){ </span>
-<span id="cb107-5"><a href="loops-and-functions-in-r.html#cb107-5" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">paste</span>(x, <span class="st">&quot;is less than&quot;</span>, y, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb107-6"><a href="loops-and-functions-in-r.html#cb107-6" tabindex="-1"></a>  }</span>
-<span id="cb107-7"><a href="loops-and-functions-in-r.html#cb107-7" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">paste</span>(x, <span class="st">&quot;is equal to&quot;</span>, y, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb107-8"><a href="loops-and-functions-in-r.html#cb107-8" tabindex="-1"></a>}</span>
-<span id="cb107-9"><a href="loops-and-functions-in-r.html#cb107-9" tabindex="-1"></a></span>
-<span id="cb107-10"><a href="loops-and-functions-in-r.html#cb107-10" tabindex="-1"></a><span class="fu">isGreater</span> (<span class="dv">2</span>, <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2 is greater than 1&quot;</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="loops-and-functions-in-r.html#cb109-1" tabindex="-1"></a><span class="fu">isGreater</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;1 is less than 2&quot;</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="loops-and-functions-in-r.html#cb111-1" tabindex="-1"></a><span class="fu">isGreater</span> (<span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;1 is equal to 1&quot;</code></pre>
-<p>Our simple function compares two numbers, <code>x</code> and <code>y</code> and if <code>x &gt; y</code> evaluate to <code>TRUE</code> it returns the pasted string <code>x is greater than y</code>. If <code>x &lt; y</code> evaluates to <code>FALSE</code>, as in <code>y &gt; x</code>, our function returns the pasted string <code>x is less than y</code>, and finally if neither <code>x &gt; y</code> and <code>x &lt; y</code> evaluate to TRUE, they must be equal! Therefore the final output is <code>x is equal to y</code>. This is an example of an <code>else if</code> statement. If you’re simply evaluating two conditions (<code>TRUE</code> or <code>FALSE</code>) you only need the <code>if()</code> conditional, see <a href="loops-and-functions-in-r.html#further_reading_chapter8">Further reading</a> for more details.</p>
-<div id="piping-conditional-statements" class="section level3 hasAnchor" number="8.3.1">
-<h3><span class="header-section-number">8.3.1</span> Piping conditional statements<a href="loops-and-functions-in-r.html#piping-conditional-statements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>You can already see the potential for simple conditional statements in the pipe. However, to keep piping operations legible, <code>dplyr</code> offers the <code>case_when</code> function, which works similarly to the <code>else if</code> statements showcased above. Let’s see how it works using a real world example. More details on piping can be found in the <a href="transform-data-manipulation.html#the-pipe-chaining-functions-together">The Pipe: Chaining Functions Together</a> and the <code>case_when</code> function is explored again in the <a href="transform-data-manipulation.html#mutate-with-a-condition">Mutate with a condition</a> section.</p>
-<p>In mass spectrometry data it is common practice to define a limit of detection (LOD) and then for all chemicals with an intensity below the defined LOD to replace their value with <span class="math inline">\(\frac{LOD}{2}\)</span> for subsequent analysis. We can use the <code>case_when()</code> function to filter through data to replace every values with an intensity below the LOD with <span class="math inline">\(\frac{LOD}{2}\)</span>. Let’s look at an example dataset with a defined LOD of 4000.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="loops-and-functions-in-r.html#cb113-1" tabindex="-1"></a>lod <span class="ot">&lt;-</span> <span class="dv">4000</span> <span class="co"># previously calculated LOD </span></span>
-<span id="cb113-2"><a href="loops-and-functions-in-r.html#cb113-2" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;mz&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">308.97</span>, <span class="fl">380.81</span>, <span class="fl">410.11</span>, <span class="fl">445.34</span> ), <span class="co"># dummy data</span></span>
-<span id="cb113-3"><a href="loops-and-functions-in-r.html#cb113-3" tabindex="-1"></a>                      <span class="st">&quot;intensities&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>)) </span>
-<span id="cb113-4"><a href="loops-and-functions-in-r.html#cb113-4" tabindex="-1"></a></span>
-<span id="cb113-5"><a href="loops-and-functions-in-r.html#cb113-5" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb113-6"><a href="loops-and-functions-in-r.html#cb113-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">reportedIntensities =</span> <span class="fu">case_when</span>(intensities <span class="sc">&lt;</span> lod <span class="sc">~</span> lod<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb113-7"><a href="loops-and-functions-in-r.html#cb113-7" tabindex="-1"></a>                                 <span class="cn">TRUE</span> <span class="sc">~</span> intensities))</span></code></pre></div>
-<pre><code>##       mz intensities reportedIntensities
+<!--
+## Conditional arguments 
+
+Conditional arguments are used to specify a path in a function depending on whether a statement is `TRUE` or `FALSE`. These are explored in greater detail via the links in the [Further reading](#further_reading_chapter8) section, but here's a quick example of a function that uses the conditional `if` statement to print out which number is largest:
+
+
+
+```r
+isGreater <- function(x, y){
+  if(x > y){
+    return(paste(x, "is greater than", y, sep = " "))
+  } else if (x < y){ 
+    return(paste(x, "is less than", y, sep = " "))
+  }
+  return(paste(x, "is equal to", y, sep = " "))
+}
+
+isGreater (2, 1)
+```
+
+```
+## [1] "2 is greater than 1"
+```
+
+```r
+isGreater (1, 2)
+```
+
+```
+## [1] "1 is less than 2"
+```
+
+```r
+isGreater (1, 1)
+```
+
+```
+## [1] "1 is equal to 1"
+```
+
+Our simple function compares two numbers, `x` and `y` and if `x > y` evaluate to `TRUE` it returns the pasted string `x is greater than y`. If `x < y` evaluates to `FALSE`, as in `y > x`, our function returns the pasted string `x is less than y`, and finally if neither `x > y` and `x < y` evaluate to TRUE, they must be equal! Therefore the final output is `x is equal to y`. This is an example of an `else if` statement. If you're simply evaluating two conditions (`TRUE` or `FALSE`) you only need the `if()` conditional, see [Further reading](#further_reading_chapter8) for more details. 
+
+### Piping conditional statements
+
+You can already see the potential for simple conditional statements in the pipe. However, to keep piping operations legible, `dplyr` offers the `case_when` function, which works similarly to the `else if` statements showcased above. Let's see how it works using a real world example. More details on piping can be found in the [The Pipe: Chaining Functions Together] and the `case_when` function is explored again in the [Mutate with a condition] section.
+
+In mass spectrometry data it is common practice to define a limit of detection (LOD) and then for all chemicals with an intensity below the defined LOD to replace their value with $\frac{LOD}{2}$ for subsequent analysis. We can use the `case_when()` function to filter through data to replace every values with an intensity below the LOD with $\frac{LOD}{2}$. Let's look at an example dataset with a defined LOD of 4000.
+
+
+```r
+lod <- 4000 # previously calculated LOD 
+results <- data.frame("mz" = c(308.97, 380.81, 410.11, 445.34 ), # dummy data
+                      "intensities" = c(0, 1000, 5000, 10000)) 
+
+results %>%
+  mutate(reportedIntensities = case_when(intensities < lod ~ lod/2,
+                                 TRUE ~ intensities))
+```
+
+```
+##       mz intensities reportedIntensities
 ## 1 308.97           0                2000
 ## 2 380.81        1000                2000
 ## 3 410.11        5000                5000
-## 4 445.34       10000               10000</code></pre>
-<p>In this example we first created a new column called <code>reportedIntensities</code> using <code>mutate()</code> and used <code>case_when()</code> to conditionally fill that column. The inputs we’ve passed to <code>case_when()</code> are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (<code>~</code>) evaluate to <code>TRUE</code>, <code>case_when</code> will execute the right-hand side. The first two-sided formula is <code>intensities &lt; lod ~ lod/2</code> and checks if the intensities value is less than the previously calculated limit of detection. If <code>intensities &lt; lod</code> evaluates to <code>TRUE</code> we insert half of the LOD value for that row. If <code>intensities &lt; lod</code> evaluates to <code>FALSE</code>, we move onto the next two-side formula and reevaluate again. The second two-sided formula <code>TRUE ~ intensities</code> basically means for everything that’s remaining (greater than LOD in our instance) just use the value from the <code>intensities</code> column.</p>
-<p>Some ideas to consider when working with <code>case-when()</code>:</p>
-<ul>
-<li>There’s no limit to the conditions you can pass to <code>case_when()</code>.</li>
-<li><em>However</em> <code>case_when()</code> evaluates in order so put the more specific conditions before the more general.</li>
-<li>Remember that the point of <code>case_when()</code> and piping is legibility. If you’re passing multiple conditions, consider writing a function using <code>else if</code> statements to keep the pipe legible.</li>
-</ul>
+## 4 445.34       10000               10000
+```
+
+In this example we first created a new column called `reportedIntensities` using `mutate()` and used `case_when()` to conditionally fill that column. The inputs we've passed to `case_when()` are two-sided formulas. Essentially if the conditions on the left-hand side of the tilda (`~`) evaluate to `TRUE`, `case_when` will execute the right-hand side. The first two-sided formula is `intensities < lod ~ lod/2` and checks if the intensities value is less than the previously calculated limit of detection. If `intensities < lod` evaluates to `TRUE` we insert half of the LOD value for that row. If `intensities < lod` evaluates to `FALSE`, we move onto the next two-side formula and reevaluate again. The second two-sided formula `TRUE ~ intensities` basically means for everything that's remaining (greater than LOD in our instance) just use the value from the `intensities` column.
+
+Some ideas to consider when working with `case-when()`:
+
+  - There's no limit to the conditions you can pass to `case_when()`.
+  - *However* `case_when()` evaluates in order so put the more specific conditions before the more general. 
+  - Remember that the point of `case_when()` and piping is legibility. If you're passing multiple conditions, consider writing a function using `else if` statements to keep the pipe legible.  
+-->
+<!-- -   The `%>%` symbol (pipe operator) is a key part of tidyverse. The operator is used to pass an object into a function, allowing for sequential operations to be performed without the need for intermediate variables. For the example above, it's using the operator for data manipulation (filter and summarizing). The result of the left-hand side of the `%>%` is used as the first argument to the function on the right-hand side.
+-->
 </div>
 </div>
-<div id="further_reading_chapter8" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Further reading<a href="loops-and-functions-in-r.html#further_reading_chapter8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="further_reading_chapter8" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Further reading<a href="loops-and-functions-in-r.html#further_reading_chapter8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter has been intentionally succinct. We’ve omitted several other aspects of programming in R such as <code>for</code> loops, and other aspects of iterative programming. To get a better sense of programming in R and to learn more, please see the following links:</p>
 <ul>
-<li><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a>: the documentation for the <code>case_when()</code> function and several useful examples.</li>
 <li><a href="https://r4ds.had.co.nz/functions.html">Chapter 19: Functions</a>, <a href="https://r4ds.had.co.nz/vectors.html">Chapter 20: Vectors</a>, and <a href="https://r4ds.had.co.nz/iteration.html">Chapter 21: Iteration</a> of <a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a> by H. Wickham and G. Grolemund.<br />
 </li>
 <li><a href="https://rstudio-education.github.io/hopr/">Hands-on Programming in R</a> by G. Grolemund for a more in-depth (but still approachable) take on programming in R.</li>

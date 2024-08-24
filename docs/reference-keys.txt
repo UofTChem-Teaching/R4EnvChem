@@ -111,8 +111,6 @@ the-for-loop
 the-while-loop
 writing-custom-functions-in-r
 simple-example
-conditional-arguments
-piping-conditional-statements
 further_reading_chapter8
 intro-to-data-analysis
 example-data

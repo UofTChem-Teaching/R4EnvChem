@@ -315,11 +315,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.1" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#loops"><i class="fa fa-check"></i><b>8.1</b> Loops</a></li>
 <li class="chapter" data-level="8.2" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#writing-custom-functions-in-r"><i class="fa fa-check"></i><b>8.2</b> Writing custom functions in R</a></li>
-<li class="chapter" data-level="8.3" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#conditional-arguments"><i class="fa fa-check"></i><b>8.3</b> Conditional arguments</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#piping-conditional-statements"><i class="fa fa-check"></i><b>8.3.1</b> Piping conditional statements</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#further_reading_chapter8"><i class="fa fa-check"></i><b>8.4</b> Further reading</a></li>
+<li class="chapter" data-level="8.3" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#further_reading_chapter8"><i class="fa fa-check"></i><b>8.3</b> Further reading</a></li>
 </ul></li>
 <li class="part"><span><b>Part 3: Data Analysis in R</b></span></li>
 <li class="chapter" data-level="9" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>9</b> Intro to Data Analysis</a>
@@ -563,21 +559,19 @@ div.csl-indent {
 <div id="how-to-install-packages" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> How to install packages<a href="r-packages.html#how-to-install-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before using a package, you must first install it. This is a one-time process unless you need to update the package to a newer version. To install a package, use the <code>install.packages()</code> function.</p>
-<p>This book will make frequent use of a family of packages called the <code>tidyverse</code> (a popular collection of packages for data manipulation). These packages all share a common thought process and integrate naturally with one another. If you want to install the package named “tidyverse”, you would use:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="r-packages.html#cb92-1" tabindex="-1"></a><span class="co"># You can run this code in your R console as well. </span></span>
-<span id="cb92-2"><a href="r-packages.html#cb92-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<p>This book will make frequent use of a family of packages called the <code>tidyverse</code> (a popular collection of packages for data manipulation). These packages all share a common thought process and integrate naturally with one another. If you want to install the package named “tidyverse”, you would use the following code:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="r-packages.html#cb92-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 </div>
 <div id="how-to-load-packages" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> How to load packages<a href="r-packages.html#how-to-load-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>You’ll see a flurry of lines printed to the console indicating the status of the installation. Once installed you won’t be able to use these functions until you load it with <code>library()</code>. For example, to load the <code>tidyverse</code> package:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="r-packages.html#cb93-1" tabindex="-1"></a><span class="co"># You can run this code in your R console as well. </span></span>
-<span id="cb93-2"><a href="r-packages.html#cb93-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>After installing a package, you need to tell R to load the package so that you can actually use it! You do so with the <code>library()</code> function. For example, to load the <code>tidyverse</code> package:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="r-packages.html#cb93-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>The output shows us which packages are included in the <code>tidyverse()</code> and their current version numbers, as well as conflicts (where functions from different packages share the same name). Don’t worry about these for now.</p>
 <p>After this, all the functions and data sets contained in the “tidyverse” package are available for you to use in your session. If you’re ever uncertain about how to use a particular function, the R community and the package’s documentation are excellent resources. For example, you can take a look at the official tidyverse documentation <a href="https://tidyverse.tidyverse.org/">here</a>.</p>
 </div>
 <div id="calling-specific-functions" class="section level3 hasAnchor" number="7.2.3">
 <h3><span class="header-section-number">7.2.3</span> Calling specific functions<a href="r-packages.html#calling-specific-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We’ve called functions like <code>ggplot()</code> and <code>read_csv()</code> from the <code>ggplot2</code> and <code>readr</code> packages, respectively. When we did so, they were implicitly imported when we called <code>library(tidyverse)</code>. What library does is import <em>all</em> of the functions within a package into the R workspace, so we can simply refer to them by name later on. Sometimes you’ll want to be explicit to which function you call, as you can run into conflicts where different functions from different packages have the same name. Or you might not want to import the entire package when you only need to call one function. Either way, to explicitly call a function from a specific package you type the package name, followed by <code>::</code>, and the function name. I.e. We can use <code>read_csv()</code> without importing the <code>tidyverse</code>/<code>readr</code> packages by simply typing: <code>readr::read_csv()</code>. Note the package still needs to be installed on your computer for this to work.</p>
+<p>We’ve called functions like <code>ggplot()</code> and <code>read_csv()</code> from the <code>ggplot2</code> and <code>readr</code> packages, respectively. When we did so, they were implicitly imported when we called <code>library(tidyverse)</code>. What library does is import <em>all</em> of the functions within a package into the R workspace, so we can simply refer to them by name later on. Sometimes you’ll want to be explicit to which function you call, as you can run into conflicts where different functions from different packages have the same name. Either way, to explicitly call a function from a specific package you type the package name, followed by <code>::</code>, and the function name. For example, we can use <code>read_csv()</code> by simply typing <code>readr::read_csv()</code>, without needing to load the <code>readr</code> package.</p>
 </div>
 </div>
 <div id="tidyverse-the-golden-toolbox-of-r" class="section level2 hasAnchor" number="7.3">
@@ -585,12 +579,12 @@ div.csl-indent {
 <p>We’ve emphasized before that <code>tidyverse</code> is an indispensable collection of R packages tailored specifically for data science and in-depth data analysis. As you proceed, you’ll find that our chapters heavily, if not exclusively, rely on its functionalities. Let’s dive into some of its pivotal functions.</p>
 <div id="loading-the-tidyverse" class="section level3 hasAnchor" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Loading the Tidyverse<a href="r-packages.html#loading-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Before using the functions from the <code>tidyverse</code>, make sure to load the entire collection.</p>
+<p>Before using the functions from the tidyverse, make sure to load the entire collection.</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="r-packages.html#cb94-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="data-visualization" class="section level3 hasAnchor" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Data Visualization<a href="r-packages.html#data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>One of the strengths of the <code>tidyverse</code> is data visualization. The example below shows how you can iteratively build plots by adding layers of details.</p>
+<p>One of the strengths of the tidyverse is data visualization. The example below shows how you can iteratively build plots by adding layers of details.</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="r-packages.html#cb95-1" tabindex="-1"></a><span class="co"># ggplot2 built-in dataset on fuel economy</span></span>
 <span id="cb95-2"><a href="r-packages.html#cb95-2" tabindex="-1"></a><span class="fu">data</span>(mpg)</span>
 <span id="cb95-3"><a href="r-packages.html#cb95-3" tabindex="-1"></a></span>
@@ -601,23 +595,21 @@ div.csl-indent {
 <div id="data-manipulation" class="section level3 hasAnchor" number="7.3.3">
 <h3><span class="header-section-number">7.3.3</span> Data Manipulation<a href="r-packages.html#data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The tidyverse provides a set of functions to help solve common data manipulation challenges. The syntax is intuitive and readable, which simplifies both writing and understanding the code.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="r-packages.html#cb96-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb96-2"><a href="r-packages.html#cb96-2" tabindex="-1"></a>  <span class="fu">filter</span>(class <span class="sc">==</span> <span class="st">&quot;suv&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb96-3"><a href="r-packages.html#cb96-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_hwy =</span> <span class="fu">mean</span>(hwy))</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="r-packages.html#cb96-1" tabindex="-1"></a>filtered_mpg <span class="ot">&lt;-</span> <span class="fu">filter</span>(mpg, class <span class="sc">==</span> <span class="st">&quot;suv&quot;</span>)</span>
+<span id="cb96-2"><a href="r-packages.html#cb96-2" tabindex="-1"></a><span class="fu">summarize</span>(filtered_mpg, <span class="at">mean_hwy =</span> <span class="fu">mean</span>(hwy))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   mean_hwy
 ##      &lt;dbl&gt;
 ## 1     18.1</code></pre>
-<p><strong>Code explanation</strong> (Optional for now; For your curiosity):</p>
+<p><strong>Code explanation</strong> (optional for now):</p>
 <ul>
-<li><p>The <code>%&gt;%</code> symbol (pipe operator) is a key part of tidyverse. The operator is used to pass an object into a function, allowing for sequential operations to be performed without the need for intermediate variables. For the example above, it’s using the operator for data manipulation (filter and summarizing). The result of the left-hand side of the <code>%&gt;%</code> is used as the first argument to the function on the right-hand side.</p></li>
 <li><p>The <code>filter()</code> function is used to extract a subset of rows from a data frame based on logical conditions. It returns all rows where the condition is <code>TRUE</code>.</p></li>
 <li><p>The <code>summarize()</code> function is used to create summary statistics for different variables. You provide named arguments where the name will be the name of a new column, and the value will be the summary statistic to compute.</p></li>
 </ul>
 </div>
 <div id="efficient-data-reading" class="section level3 hasAnchor" number="7.3.4">
 <h3><span class="header-section-number">7.3.4</span> Efficient Data Reading<a href="r-packages.html#efficient-data-reading" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The <code>tidyverse</code> allows for efficient reading of rectangular data, such as CSV and TSV files. For instance, instead of using the R built-in function <code>read.csv()</code>, you can employ a similar function, <code>read_csv()</code>, from <code>tidyverse</code> to quickly import a CSV file as a data frame. This function provides more flexibility and is optimized for faster performance.</p>
+<p>The <code>tidyverse</code> allows for efficient reading of tabular data, such as csv files. For instance, instead of using the R built-in function <code>read.csv()</code>, you can employ a similar function, <code>read_csv()</code>, from <code>tidyverse</code> to quickly import a csv file as a data frame. This function provides more flexibility and is optimized for faster performance.</p>
 </div>
 </div>
 <div id="summary-4" class="section level2 hasAnchor" number="7.4">
