@@ -1,7 +1,7 @@
 # Restructuring Your Data
 
 
-In the realm of data analysis, the structure of your data can be just as crucial as the data itself. When dealing with complex datasets in R, or any other analytical environment, the way you organize and reshape your data can significantly impact the efficiency and clarity of your analyses. This chapter delves into the art of restructuring data in R, focusing on two powerful functions: `pivot_longer` and `pivot_wider`. These tools, part of the `tidyr` package, are essential for transforming data into a format that aligns perfectly with your analytical objectives.
+In the realm of data analysis, the structure of your data can be just as crucial as the data itself. When dealing with complex datasets in R, or any other analytical environment, the way you organize and reshape your data can significantly impact the efficiency and clarity of your analyses. This chapter delves into the art of restructuring data in R, focusing on two powerful tidyverse functions: `pivot_longer` and `pivot_wider`. These tools are essential for transforming data into a format that aligns perfectly with your analytical objectives.
 
 Understanding and mastering these functions will equip you with the skills to seamlessly toggle between different data layouts. Whether you need to condense wide datasets into longer, more detailed formats using `pivot_longer`, or expand long datasets into a wider, more summarized form with `pivot_wider`, this chapter will guide you through each step with practical examples and insights. By the end of this chapter, you'll not only be adept at manipulating your data's structure in R but also appreciate how such transformations can unveil new perspectives and insights in your data analysis journey.
 
@@ -14,8 +14,7 @@ Let's revisit our ATR plastics data from previous chapters:
 ```{r, echo=TRUE, message=FALSE}
 atr_plastics <- read.csv("data/ATR_plastics.csv")
 
-# This just outputs a table you can explore within your browser
-DT::datatable(atr_plastics)
+DT::datatable(head(atr_plastics, 50))
 ```
 
 
@@ -25,7 +24,6 @@ The original (wide) data looks like this:
 
 ```{r, echo=TRUE, message=FALSE}
 atr_plastics_wide <- read.csv("data/ATR_plastics_original_wide.csv")
-
 
 # This just outputs a table you can explore within your browser
 DT::datatable(atr_plastics_wide)
@@ -53,8 +51,8 @@ ggplot(data = atr_plastics_wide,
 
 # Plotting Polystyrene and Polyethylene absorbance spectra
 ggplot(data = atr_plastics_wide, 
-       aes( x = wavenumber,
-            y = Polystyrene)) +
+       aes(x = wavenumber,
+           y = Polystyrene)) +
   geom_point() +
   geom_point(data = atr_plastics_wide, 
              aes(x = wavenumber, 
@@ -90,7 +88,7 @@ atr_long <- pivot_longer(atr_plastics_wide, cols = -wavenumber,
                names_to = "sample",
                values_to = "absorbance")
 
-DT::datatable(atr_long)
+DT::datatable(head(atr_long, 50))
 ```
 
 Let's break down the code we've executed via the `pivot_longer` function:
@@ -153,7 +151,6 @@ In summary, the relationship between wide and long data formats in R is inverse,
 Understanding both `pivot_longer` and `pivot_wider` equips you with a versatile toolkit for shaping your data. Whether you're preparing data for specific package requirements, like `matrixStats` or `matrixTests`, or simply need to restructure your dataset for clarity and analysis, these functions are invaluable in the R programming environment.
 
 By understanding the inverse relationship between wide and long data formats and knowing when to use each format, we can also effectively manage and analyze our data to derive meaningful insights and conclusions.
-
 
 
 ## Further reading {#further_reading_chapter15}

@@ -231,7 +231,7 @@ From our NO~2~ data, St. Johns appears to have the highest levels of NO~2~. Let'
 
 ```{r}
 nfld <- atlNO2 %>%
-  filter(p == "NL") # only nfld stations
+  filter(p == "NL") # only Newfoundland stations
 
 # Code from ggpubr website
 ggpubr::ggviolin(nfld, x = "city", y = "conc") +
@@ -249,7 +249,7 @@ For more information on `ggpubr`, adding p-values and significance labels, and d
 Histograms are an approximate representation of the distributions of numerical data. They're an approximation because you arbitrarily "bin" your data into groups and then count the number of values inside that bin. The frequency, or count, in each bin is represented by the height of a rectangle whose width equals that of the bin. `geom_histogram()` is used to create histograms:
 
 ```{r}
-ggplot(data = subset(atlNO2, city = "St Johns"), 
+ggplot(data = filter(atlNO2, city == "St Johns"), 
        aes(x = conc)) +
   geom_histogram() +
   labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018",
@@ -259,7 +259,7 @@ ggplot(data = subset(atlNO2, city = "St Johns"),
 We can alter the resolution of our histogram by modifying the width of the bins using the `binwidth` argument or by specifying the number of bins with the `bins` argument. The former is useful when you don't know the range of your data, whereas the latter is useful is you do (i.e. numbers between 0 and 100).
 
 ```{r}
-ggplot(data = subset(atlNO2, city = "St Johns"), 
+ggplot(data = filter(atlNO2, city == "St Johns"), 
        aes(x = conc)) +
   geom_histogram(binwidth = 1) +
   labs(subtitle = "Distribution of St. Johns' NO2 levels in 2018, binwidth = 1")
@@ -289,7 +289,7 @@ You can easily combine a scatter plot with marginal plot. This is useful to summ
 
 torontoAir <- read_csv("data/2018-01-01_60430_Toronto_ON.csv")
 
-# note we're storing our plot in the variable 'torPlot'
+# note we're storing our plot in the variable torPlot
 # and we're not plotting SO2
 torPlot <- ggplot(data = subset(torontoAir, pollutant != "SO2"), 
        aes(x = date.time,

@@ -11,7 +11,7 @@ We will learn `pivot_longer` function in the next chapter, [Restructuring Your D
 
 ```{r, message = FALSE}
 
-atlNO2 <- read_csv("data/2018hourlyNO2_Atl_wide.csv", skip = 7, na =c("-999")) %>%
+atlNO2 <- read_csv("data/2018hourlyNO2_Atl_wide.csv", skip = 7, na = c("-999")) %>%
   rename_with(~tolower(gsub("/.*", "", .x))) %>%
   pivot_longer(cols = starts_with("h"), 
                names_prefix = "h", 
@@ -22,7 +22,7 @@ atlNO2 <- read_csv("data/2018hourlyNO2_Atl_wide.csv", skip = 7, na =c("-999")) %
                values_drop_na = TRUE) 
 
 # First 50 rows of dataset
-DT::datatable(atlNO2[1:50, ])
+DT::datatable(head(atlNO2, 50))
 ```
 
 Note in our dataset that both Halifax NS and Saint John NB have three NAPS stations each. It won't matter for our aggregation, but if we were exploring this data in more depth this is something we would want to take into account. 
@@ -33,16 +33,16 @@ naps <- atlNO2 %>%
   group_by(p, city) %>%
   summarise(napsID = n_distinct(`naps id`))
 
-
 ggplot(data = naps, 
-       aes(x=fct_reorder(city, p), 
+       aes(x = fct_reorder(city, p), 
            y = napsID,
            colour = p)) +
-  geom_segment( aes(x=fct_reorder(city, p), 
-                    xend=fct_reorder(city, p),
-                    y=0, yend=napsID,
-                    colour = p)) +
-  geom_point( aes(color = p), size=4, alpha=0.6) +
+  geom_segment(aes(x = fct_reorder(city, p), 
+                   xend = fct_reorder(city, p),
+                   y = 0,
+                   yend = napsID,
+                   colour = p)) +
+  geom_point(aes(color = p), size = 4, alpha = 0.6) +
   theme_light() +
   coord_flip() +
   theme_classic() + 
@@ -67,12 +67,12 @@ sumAtl
 
 ```
 
-That's it. `r length(atlNO2$conc)` unique rows summarized like that. Note that `summarize` produces a *new* data frame, so you'll want to double check on the outputted data types. Let's break down what our code does: 
+That's it. `r length(atlNO2$conc)` unique rows summarized like that. Note that `summarize` produces a *new* data frame, so you'll want to double check the outputted data types. Let's break down what our code does: 
 
   - We're creating a new data frame, so we store it in `sumAtl`.
-  - We then take our `atlNO2` dataset and  group our dataset by province using `group_by(p)`.
+  - We then take our `atlNO2` dataset and group it by province using `group_by(p)`.
   - We then summarize our grouped data by summarizing the NO~2~ concentration with `summarize(mean = mean(conc))`. 
-    - Note that since we're creating a new dataset, we need to create new columns. This is what `mean = mean(conc)` does. We're creating a column *called mean*, which contains the *numerical mean* 1-hr NO~2~ values which were calculated using the `mean()` function. Simple...
+    - Note that since we're creating a new dataset, we need to create new columns. This is what `mean = mean(conc)` does. We're creating a column *called mean*, which contains the *numerical mean* 1-hr NO~2~ values which were calculated using the `mean()` function.
     
     
 Let's dig a little deeper. The [*Canadian Ambient Air Quality Standards*](https://ccme.ca/en/air-quality-report) stipulates that the annual mean of 1-hour means for NO~2~ cannot exceed 17.0 ppb in 2020, and 12.0 ppb in 2025. Let's see if any city in our dataset violated these standards in 2018. 
@@ -99,7 +99,7 @@ There are other options we can use to summarize out data. A handy list is provid
   - `median()` which calculates the sample median, the value separating the higher 50% of data from the lower 50% of a data sample.
   - `sd()` which calculates the sample standard deviation. 
   - `min()` and `max()` which returns the smallest and largest value in the dataset. 
-  - `n()` which provides the number of entries in a group. Note you don't specify a variable for n. 
+  - `n()` which provides the number of entries in a group. Note you don't specify an input variable for this function.
 
 Let's see them in action: 
 
@@ -122,7 +122,7 @@ Note that the functions we pass to summarize adhere to rules of missing values. 
 
 While the summarize function does an excellent job of summarizing our data, the outputted dataset isn't really fit for publication. This is doubly so if you used summarize as the last step of your chemical quantification and you want a nice and pretty table of mean sample concentration with standard deviations. 
 
-To this end we'll use the 'flextable' package. For more details refer to [flextable R package](https://davidgohel.github.io/flextable/index.html). There are other packages to make tables, but we're using `flextable` as it's consistent between HTML and PDF outputs. 
+To this end we'll use the `flextable` package. For more details refer to [flextable R package](https://davidgohel.github.io/flextable/index.html). There are other packages to make tables, but we're using `flextable` as it's consistent between HTML and PDF outputs. 
 
 ```{r, message = FALSE, warning = FALSE}
 library(flextable)
@@ -146,13 +146,13 @@ Firstly, our `mean` and `sd` columns contain way too many decimal places. We'll 
 prettySumAtl <- sumAtl %>%
   mutate(mean = sprintf("%.1f", mean), 
          sd = sprintf("%.1f", sd)) %>%
-  unite("mean ± sd", mean:sd, sep = " ± " ) %>%
+  unite("mean ± sd", c("mean", "sd"), sep = " ± " ) %>%
   select(-n) # removing n column
 
 prettySumAtl
 ```
 
-Note to round the numbers we used `sprintf()` to round out numbers. This is because in the final publication it's important to keep trailing zeros (i.e. `1.0` and not `1`), but R's `round()` will drop these. `mean = sprintf("%.1f", mean)` takes the existing values in the `mean` column, rounds them to one digit, that's what `"%.1f"` means ("%.2f" would be two digits and so on), and pastes them back into the `mean` column. Same situation for the `sd` column. 
+Note to round the numbers we used `sprintf()` This is because in the final publication it's important to keep trailing zeros (i.e. `1.0` and not `1`), but R's `round()` will drop these. `mean = sprintf("%.1f", mean)` takes the existing values in the `mean` column, rounds them to one digit, that's what `"%.1f"` means ("%.2f" would be two digits and so on), and pastes them back into the `mean` column. Same situation for the `sd` column. 
 
 
 ### Pretty tables 
@@ -174,4 +174,3 @@ ft
 
 ```{r child='src/common/end-of-chapter-exercise.Rmd'}
 ```
-

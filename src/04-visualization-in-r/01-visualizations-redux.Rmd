@@ -1,4 +1,3 @@
-
 # (PART\*) Part 4: Visualization in R {-}
 
 # Visualizations for Env Chem
@@ -48,8 +47,4 @@ sumAtl <- atlNO2 %>%
             median = median(conc),
             min = min(conc),
             max = max(conc))
-```
-
-
-```{r child='src/common/end-of-chapter-exercise.Rmd'}
 ```
