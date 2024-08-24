@@ -1,7 +1,7 @@
 fig:tidy-example
 fig:reg-plot
-fig:unnamed-chunk-178
-fig:unnamed-chunk-179
+fig:unnamed-chunk-174
+fig:unnamed-chunk-175
 fig:sdsMaxPlot
 intro-to-r-and-rstudio
 r-language
@@ -122,7 +122,6 @@ analyzing-powerful-storms
 yearly-trends
 visualization-geographical-distribution
 further_reading_chapter9
-exercise-5
 importing-your-data-into-r
 csv-files
 read_csv
@@ -130,7 +129,7 @@ tibbles-vs.-data-frames
 importing-other-data-types
 saving-data
 further_reading_chapter10
-exercise-6
+exercise-5
 tidying-your-data
 what-is-tidy-data
 tools-to-tidy-your-data
@@ -142,7 +141,7 @@ chaining-multiple-operations
 tips-for-recording-data
 further_reading_chapter11
 chapter-references
-exercise-7
+exercise-6
 transform-data-manipulation
 selecting-by-row-or-value
 logical-operators
@@ -159,14 +158,14 @@ useful-summarize-functions
 the-pipe-chaining-functions-together
 notes-on-piping
 further_reading_chapter12
-exercise-8
+exercise-7
 ggplot-basic-visualizations
 building-plots-ups
 basic-plotting
 changing-plot-labels
 small-multiples
 plotting-subsets-of-data
-exercise-9
+exercise-8
 summarizing-data
 data-to-play-with
 summarizing-data-by-group
@@ -174,7 +173,7 @@ further-summarize-operations
 pretty-tables-with-flextable
 uniting-columns
 pretty-tables
-exercise-10
+exercise-9
 restructuring-your-data
 long-vs-wide-data
 long-data
@@ -183,11 +182,11 @@ making-data-longer
 making-data-wider
 summary-5
 further_reading_chapter15
-exercise-11
+exercise-10
 visualizations-for-env-chem
 discrete-vs.-continuous-variables
 prerequisites
-exercise-12
+exercise-11
 common-types-of-graphs
 bar-charts
 adding-error-bars
@@ -200,7 +199,7 @@ histograms
 multiple-histograms
 scatter-plots
 marginal-plots
-exercise-13
+exercise-12
 customizing-your-plots
 interactive-plots
 plot-themes
@@ -211,7 +210,7 @@ transforming-axis
 limits
 axis-tickslabels
 arranging-plots
-exercise-14
+exercise-13
 modelling-linear-regression
 modelling-theory
 linear-regression-in-r
@@ -222,7 +221,7 @@ table-with-slopes-intercepts-and-r2
 calculating-concentration-using-the-regression-variables
 conclusion
 further_reading_chapter19
-exercise-15
+exercise-14
 augmented-outputs-and-evaluating-your-model
 cleaning-up-model-ouputs
 glanced-outputs
@@ -234,7 +233,7 @@ visualizing-models
 visualizing-residuals
 plotting-residuals
 calculating-concentrations-from-the-augmented-outputs
-exercise-16
+exercise-15
 modelling-non-linear-regression
 experimental-background
 annotating-maximal-values
@@ -243,4 +242,4 @@ modelling-sigmoid-curve
 calculating-logistic-regression
 extracting-model-parameters
 summary-6
-exercise-17
+exercise-16
