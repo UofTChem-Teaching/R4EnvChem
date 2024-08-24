@@ -12,33 +12,27 @@ The essential `dplyr` functions are :
   
 We'll go through each of these functions, for more details you can read [Chapter 3: Data Transformation](https://r4ds.had.co.nz/transform.html) from *R for Data Science* which provides a more comprehensive breakdown of these functions. Note that the information here is based on a `tidyverse` approach, but this is only one way of doing things. See the [Further reading](#further_reading_chapter12) section for links to other suitable approaches to data transformation. 
 
-Let's explore the functionality of `dplyr` using some flame absorption/emission spectroscopy (FAES) data from a *CHM317* lab. This data represents the emission signal of five sodium (Na)
-standards measured in triplicate:
-
-standards measured in triplicate:
-
+Let's explore the functionality of `dplyr` using some flame absorption/emission spectroscopy (FAES) data from a *CHM317* lab. This data represents the emission signal of five sodium (Na) standards measured in triplicate:
 
 ```{r, message = FALSE}
-# Importing using tips from Import chapter
 FAES <- read_csv(file = "data/FAES.csv")
 head(FAES)
-
 ```
 
-In this dataset you can see that two important aspects of the data, sample type (sample, blank or standard) and concentration are grouped in one column.  We can use the separate function to separate these into two columns to facilitate further analysis.
+In this dataset you can see that two important aspects of the data, sample type (sample, blank or standard) and concentration are grouped in one column.
+We can use the `separate()` function we learned about in [Separating columns] to separate these values into two columns to facilitate further analysis.
 
 ```{r, message = FALSE}
-# Importing using tips from Import chapter
-FAES <- read_csv(file = "data/FAES.csv") %>% # see section on Pipe
-  separate(col = std_Na_conc,
-           into = c("type", "conc_Na", "units"),
-           sep = " ",
-           convert = TRUE)
+FAES <- separate(
+  FAES,
+  col = std_Na_conc,
+  into = c("type", "conc_Na", "units"),
+  sep = " ",
+  convert = TRUE
+)
 
 DT::datatable(FAES)
 ```
-
-**Note** the use of `convert = TRUE` in the `separate()` call. This runs a type convert on new columns. If we didn't include this, the `conc_Na` column would be of type character because the numbers originated from a string. `convert()` ensures they're converted to numeric. **Always use `convert = TRUE`** when you separate columns. 
 
 ## Selecting by row or value
 
@@ -55,45 +49,44 @@ Note how we need to pass logical operations to `filter()` to specify which rows 
 `filter()` can use other *relational* and *logical* operators or combinations thereof. Relational operators compare values and logical operators carry out Boolean operations (TRUE or FALSE). Logical operators are used to combine multiple relational operators... let's just list what they are and how we can use them:
 
 ```{r, echo = FALSE}
-
-ops <- data.frame("Operator" = c(">", "<","<=",">=","==","!=", "&","!","|", "is.na()"),
-                  "Type" = c("relational", "relational", "relational", "relational", "relational", "relational", "logical", "logical", "logical", "function"), 
-                  Description = c("Less than", "Greater than", "Less than or equal to", "Greater than or equal to", "Equal to", "Not equal to", "AND", "NOT", "OR", "Checks for missing values, TRUE if NA" ))
-
+ops <- data.frame(
+  Operator = c(">", "<","<=",">=","==","!=", "&","!","|", "is.na()"),
+  Type = c("relational", "relational", "relational", "relational", "relational", "relational", "logical", "logical", "logical", "function"), 
+  Description = c("Less than", "Greater than", "Less than or equal to", "Greater than or equal to", "Equal to", "Not equal to", "AND", "NOT", "OR", "Checks for missing values, TRUE if NA")
+)
 
 knitr::kable(ops)
 ```
 
-- Selecting all signals below a threshold value
+- Selecting all signals below a threshold value:
 
-```{r}
-filter(FAES, signal < 4450)
-```
+  ```{r}
+  filter(FAES, signal < 4450)
+  ```
 
-- Selecting signals between values 
+- Selecting signals between values:
 
-```{r}
-filter(FAES, signal >= 4450 & signal < 8150)
-```
+  ```{r}
+  filter(FAES, signal >= 4450 & signal < 8150)
+  ```
 
-- Selecting all other replicates other than replicate `2`
+- Selecting all other replicates other than replicate `2`:
 
-```{r}
-filter(FAES, replicate != 2)
-```
+  ```{r}
+  filter(FAES, replicate != 2)
+  ```
 
-- selecting the first standard replicate OR any of the blanks.
+- Selecting the first standard replicate OR any of the blanks:
 
-```{r}
-filter(FAES, (type == "standard" & replicate == 1) | (type == "blank"))
-```
-- Removing any missing values (`NA`) using `is.na()`. Note there are no missing values in our data set so nothing will be removed, if we removed the NOT operator (`!`) we would have selected all rows *with* missing values. 
+  ```{r}
+  filter(FAES, (type == "standard" & replicate == 1) | (type == "blank"))
+  ```
 
-```{r}
-filter(FAES, !is.na(signal))
-```
+- Removing any rows with missing signal values (`NA`) using `is.na()`. Note there are no missing values in our data set so nothing will be removed, if we removed the NOT operator (`!`) we would have selected all rows *with* missing values. 
 
-
+  ```{r}
+  filter(FAES, !is.na(signal))
+  ```
 
 These are just some examples, but you can combine the logical operators in any way that works for you. Likewise, there are multiple combinations that will yield the same result, it's up to you do figure out which works best for you. 
 
@@ -102,7 +95,7 @@ These are just some examples, but you can combine the logical operators in any w
 `arrange()` reorders the rows based on the value you passed to it. By default it arranges the specified values into ascending order. Let's arrange our data our data by increasing order of signal value:
 
 ```{r}
-arrange( FAES, signal)
+arrange(FAES, signal)
 ```
 
 Since our original `FAES` data is already arranged by increasing `conc_Na` and `replicate`, let's inverse that order by arranging `conc_Na` into descending order using the `desc()` function WHILE arranging the `signal` values in ascending order:
@@ -164,10 +157,10 @@ The key here is the use of the `!` (NOT) operator which excludes rows that meet 
 
 ##  Adding new variables
 
-`mutate()` allows you to add new variables (read columns) to your existing data set. It'll probably be the workhorse function you'll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let's suppose that our standards were diluted by a factor of 10, we can add a new column for this:
+`mutate()` allows you to add new variables (read columns) to your existing data set. It'll probably be the workhorse function you'll use during your data transformation as you can readily pass other functions and mathematical operators to it to transform your data. let's suppose that our standards were diluted by a factor of 10, we can add a new column `dil_fct` for this:
 
 ```{r}
-mutate(FAES, "dil_fct" = 10)
+mutate(FAES, dil_fct = 10)
 ```
 
 We can also create multiple columns in the same `mutate()` call: 
@@ -179,17 +172,18 @@ mutate(FAES,
 ```
 
 
-A Couple of things to note: 
+A couple of things to note: 
 
-  1. Quotation marks are generally optional when creating a new variable in `mutate()`, but they become necessary if the variable name contains spaces, special characters, or starts with a number. For example, `"dil_fct"`, `dil_fct`, and `dil_fct1` are all valid, but if you had a variable name like `"dil fct"`, `"dil-fct"`, or `"2nd_fct"`, the quotes would be required.
+1. Quotation marks are generally optional when creating a new variable in `mutate()`, but they become necessary if the variable name contains spaces, special characters, or starts with a number. For example, `"dil_fct"`, `dil_fct`, and `dil_fct1` are all valid, but if you had a variable name like `"dil fct"`, `"dil-fct"`, or `"2nd_fct"`, the quotes would be required.
   2. The variables we're referencing do not need to be in quotation marks; hence `signal` because this variable already exists. 
-  3. Note the order of precedence: `dil_fct` is created first so we can reference in the second argument, we would get an error if we swapped the order. 
+  3. Note the order of precedence: `dil_fct` is created first so we can reference in the second column being added, we would get an error if we swapped the order. 
   
 ### Mutate with a condition
 
-In data analysis, there are often scenarios where we want to categorize or re-label values based on certain conditions. The `case_when()` function, provided by the `dplyr` package, which was introduced in the [Piping conditional statements] section, offers a versatile and readable solution for handling these multiple conditions.
+In data analysis, there are often scenarios where we want to categorize or re-label values based on certain conditions. The `case_when()` function offers a versatile and readable solution for handling these multiple conditions.
 
 The syntax for `case_when()` is straightforward: for each condition, you specify the logical test followed by the tilde (~) operator, and then the value or expression to return if the condition is `TRUE`.
+A `.default` value can be provided for cases when none of the conditions are `TRUE`.
 
 With our FAES data, say you want to label each `conc_Na` as "Low", "Medium", or "High" based on its value. You can use `case_when()` within `mutate()` as follows:
 
@@ -198,10 +192,10 @@ mutate(FAES,
        conc_Na_level = case_when(
          conc_Na < 0.2 ~ "Low",
          conc_Na < 0.4 ~ "Medium",
-         TRUE ~ "High"))
+         .default = "High"))
 ```
   
-For those interested in exploring further, there's a similar function called `ifelse()` which provides conditional transformations in R. You can learn more about it in the [Conditional Statements] section in this resource or in the documentation for the ifelse statement that can be found [here](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse).
+For those interested in exploring further, there's a similar function called `ifelse()` which provides conditional transformations in R. You can learn more about it in R documentation found [here](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse).
   
   
 ### Useful mutate function
@@ -210,12 +204,12 @@ There are a myriad of functions you can make use of with the mutate function. He
 
 ```{r, echo = FALSE}
 
-funs <- data.frame("Operator/Function" = c("+", "-", "*", "/", "^", "log()"),
-                   "Definition" = c("addition", "subtraction", "multiplication", "division", "exponent; to the power of...", "returns the specified base-log; see also log10() and log2()"))
+funs <- data.frame(
+  "Operator/Function" = c("+", "-", "*", "/", "^", "log()"),
+  Definition = c("addition", "subtraction", "multiplication", "division", "exponent; to the power of...", "returns the specified base-log; see also log10() and log2()")
+)
 
 knitr::kable(funs)
-
-
 ```
 
 ## Group and summarize data
@@ -223,23 +217,23 @@ knitr::kable(funs)
 `summarize` effectively summarizes your data based on functions you've passed to it. Looking at our `FAES` data we'd might want the mean and standard deviation of the triplicate signals. Let's see what happens when we apply the summarize function straight up: 
 
 ```{r}
-summarise(FAES, "mean" = mean(signal), "stdDev" = sd(signal))
+summarise(FAES, mean = mean(signal), stdDev = sd(signal))
 ```
 
 This doesn't look like what we wanted. What we got was the mean and standard deviation of *all* of the signals, regardless of the concentration of the standard. Also note how we've lost the other columns/variables and are only left with the mean and stdDev. This is all because we need to **group** our observations by a variable. We can do this by using the `group_by()` function.
 
 ```{r}
 groupedFAES <- group_by(FAES, type, conc_Na)
-summarise(groupedFAES, "mean" = mean(signal), "stdDev" = sd(signal))
+summarise(groupedFAES, mean = mean(signal), stdDev = sd(signal))
 ```
 
-Here we've created a new data set, `groupedFAES`, that we grouped by the variables `type` and `conc_Na` so we could get the mean and standard deviation of each group. Note the multiple levels of grouping. For this data set we could have omitted the `type` variable, but in larger datasets you may have multiple groupings (i.e. from different location), so you can group by multiple variables to get smaller groups. 
+Here we've created a new data set, `groupedFAES`, that we grouped by the variables `type` and `conc_Na` so we could get the mean and standard deviation of each group. Note the multiple levels of grouping. Depending on your dataset and the analysis you're performing, you'll need to decide how to group your data: the more variables you use, the smaller each group will be.
 
 ### Useful summarize functions
 
 We've used the `mean()` and `sd()` functions above, but there are a host of other useful functions you can use in conjunction with summarize. See **Useful Functions** in the `summarise()` documentation (enter `?summarise`) in the console. This is also discussed in more depth in the [Summarizing Data] chapter. 
 
-## The Pipe: Chaining Functions Together 
+## The Pipe: Chaining Functions Together
 
 With the tools presented here we could do a decent job analyzing our `FAES` data. Let's say we wanted to subtract the mean of the `blank` from each `standard` signal and then summarize those results. It would look something like this: 
 
@@ -259,11 +253,11 @@ stds_4
 
 While the code above did its job, it's certainly wasn't easy to type and certainly not easy to read. At every step of the way we've saved our updated data outputs to a new variable (`stds_1`, `stds_2`, etc.). However, most of these intermediates aren't important, and moreover the repetitive names clutter our code. As the code above is written, we've had to pay special attention to the variable suffix to make sure we're calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. `stds_1 <- mutate(stds_1, ...)`), but that doesn't solve the issue of readability as there's still redundant assigning. 
 
-A solution for this is the pipe operator `%>%` ( pronounced as "then"), an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you're working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we'd get something like: 
+A solution for this is the **pipe operator** `%>%`, an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you're working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we'd get something like: 
 
 ```{r}
 meanBlank <- FAES %>%
-  filter(type =="blank") %>%
+  filter(type == "blank") %>%
   summarise(mean(signal)) %>%
   as.numeric()
 
@@ -274,15 +268,15 @@ Things may look a bit different, but our underlying code hasn't changed much. Wh
 
 >"Take the `FAES` dataset, *then* filter for `type == "blank"` *then* collapse the dataset to the mean `signal` value and *then* convert to numeric value *then* pass this final output to the new variable `meanBlank`." 
 
-Not only is the pipe less typing, but the emphasis is on the functions so you can better understand what you're doing vs. where all the intermediates are going. Extending our piping to the second batch of code we get:  
+Not only is the pipe less typing, but the emphasis is on the functions so you can better understand what you're doing vs. where all the intermediate values are going. Extending our piping to the second batch of code we get:  
 
 
 ```{r}
 stds <- FAES %>%
   filter(type == "standard") %>%
-  mutate("cor_sig" = signal - meanBlank) %>% 
+  mutate(cor_sig = signal - meanBlank) %>% 
   group_by(conc_Na) %>%
-  summarize("mean" = mean(cor_sig), "stdDev" = sd(cor_sig))
+  summarize(mean = mean(cor_sig), stdDev = sd(cor_sig))
 
 stds
 ```
@@ -291,7 +285,7 @@ Same thing. The underlying code hasn't changed much, but it's much more legible 
 
 ### Notes on piping
 
-The pipe is great and especially useful with *tidyverse* packages, but it does have some limitations: 
+The pipe is great, but it does have some limitations: 
 
   - You can't easily extract intermediate steps. So you'll need to break up your pipping chain to output any intermediate steps you can. 
   - The benefit of piping is legibility; this goes away as you increase the number of steps as you lose track of what's going on. Keep the piping short and thematically similar. 

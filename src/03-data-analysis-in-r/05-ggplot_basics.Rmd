@@ -8,16 +8,16 @@ library(tidyverse)
 atr_data <- read_csv("data/ATR_plastics.csv")
 
 # First 50 rows of data
-DT::datatable(atr_data[1:50, ])
+DT::datatable(head(atr_data, 50))
 ```
 
 ## Building plots ups
 
-The `gg` in `ggplot2` stands for the *grammar of graphics*,[@Wickham2009] and it's a way to break down graphics (plots) into small pieces that can be discussed (hence grammar). We'll take a look at this grammar via `geoms` (what kind of plot), `aes` (aesthetic choices), etc. For now, understand that this means we need to build up graphics/plots piece-by-piece and layer-by-layer. This extends beyond code to how we code. Plot often, and discard the useless ones. Take the time to pretty up your plot *after* you're satisfied with the underlying data.
+The `gg` in `ggplot2` stands for the *grammar of graphics*, [@Wickham2009] and it's a way to break down graphics (plots) into small pieces that can be discussed (hence grammar). We'll take a look at this grammar via `geoms` (what kind of plot), `aes` (aesthetic choices), etc. For now, understand that this means we need to build up graphics/plots piece-by-piece and layer-by-layer. This extends beyond code to how we code. Plot often, and discard the useless ones. Take the time to pretty up your plot *after* you're satisfied with the underlying data.
 
 ## Basic plotting
 
-`ggplot2` uses `geoms` to specify what type of plot to create. Different plots are used to tell different stories and have different strengths and weakness. We'll explore these more in [Visualizations for Env Chem], but for now we'll focus on `geom_point()`, which simply plots data as points on an [x,y] coordinate. In other words, a scatter plot.
+`ggplot2` uses `geoms` to specify what type of plot to create. Different plots are used to tell different stories and have different strengths and weakness. We'll explore these more in [Visualizations for Env Chem], but for now we'll focus on `geom_point()`, which simply plots data as points on the 2-D plane. In other words, a scatter plot.
 
 Let's plot our tidied `atr_data` data:
 
@@ -30,11 +30,10 @@ ggplot(data = atr_data,
 
 Let's ignore the plot for now and look at our code below:
 
-  1. `ggplot()` initializes a *ggplot object*, basically an empty plot. 
-  2. We then specified we want to plot data from our `atr_data` dataset (`data = atr_data`).
-  3. We then specified our *aesthetic mappings* via `aes()`. Here we'll pass information for how we want the plot to look. 
-  4. To our aesthetic mappings we've specified which values from `atr_data` are supposed to be our x-axis values (`x = wavenumber`) and y-axis values (`y = absorbance`).
-  4. We then add the `geom_point()` layer to create a scatter plot of [x,y] points .
+1. `ggplot()` creates a *ggplot object* that contains specifications for the plot:
+  - We want to plot data from our `atr_data` dataset (`data = atr_data`).
+  - We specified our *aesthetic mappings* via `aes()`, which communicates how we want the plot to look. In this case, we've specified which values from `atr_data` are the x-axis values (`x = wavenumber`) and y-axis values (`y = absorbance`).
+2. We then add the `geom_point()` layer to create a scatter plot of (x,y) points.
 
 Now let's look at our result. What we see is a point for every recorded absorbance measurements from our ATR analysis. We can clearly see the spectra of the different plastics in our data, however they're all coloured the same. This is because we've only specified the x and y values. As far as `ggplot()` is concerned, these are the only values that matter, but we know different.
 
@@ -129,7 +128,7 @@ ggplot(data = subset(atr_data, sample == "EPDM"),
 or 
 
 ```{r}
-ggplot(data = subset(atr_data, wavenumber >=2500),
+ggplot(data = subset(atr_data, wavenumber >= 2500),
        aes(x = wavenumber, 
            y = absorbance)) +
   geom_point()
@@ -138,13 +137,10 @@ ggplot(data = subset(atr_data, wavenumber >=2500),
 Another approach is to use `filter()` and pipe to `ggplot()`:
 
 ```{r}
-
 atr_data %>%
-  filter(sample != "EPDM" & wavenumber <= 2500 |sample == "EPDM" & wavenumber >= 3500 ) %>%
-  ggplot(., aes(x = wavenumber, y = absorbance, colour = sample)) +
+  filter((sample != "EPDM" & wavenumber <= 2500) | (sample == "EPDM" & wavenumber >= 3500)) %>%
+  ggplot(aes(x = wavenumber, y = absorbance, colour = sample)) +
   geom_point()
-
-
 ```
 
 There are pros and cons to either approach. `subset()` on the fly is best for simple task, like plotting a single city, whereas the piping approach is best for more complex sorting. 
