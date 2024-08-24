@@ -699,7 +699,7 @@ div.csl-indent {
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="common-types-of-graphs.html#cb245-1" tabindex="-1"></a><span class="co"># note we&#39;re storing our plot in the variable torPlot</span></span>
 <span id="cb245-2"><a href="common-types-of-graphs.html#cb245-2" tabindex="-1"></a><span class="co"># and we&#39;re not plotting SO2</span></span>
-<span id="cb245-3"><a href="common-types-of-graphs.html#cb245-3" tabindex="-1"></a>torPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(torontoAir, pollutant <span class="sc">!=</span> <span class="st">&quot;SO2&quot;</span>), </span>
+<span id="cb245-3"><a href="common-types-of-graphs.html#cb245-3" tabindex="-1"></a>torPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filter</span>(torontoAir, pollutant <span class="sc">!=</span> <span class="st">&quot;SO2&quot;</span>), </span>
 <span id="cb245-4"><a href="common-types-of-graphs.html#cb245-4" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date.time,</span>
 <span id="cb245-5"><a href="common-types-of-graphs.html#cb245-5" tabindex="-1"></a>           <span class="at">y =</span> concentration,</span>
 <span id="cb245-6"><a href="common-types-of-graphs.html#cb245-6" tabindex="-1"></a>           <span class="at">colour =</span> pollutant)) <span class="sc">+</span></span>
