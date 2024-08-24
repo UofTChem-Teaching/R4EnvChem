@@ -25,17 +25,16 @@ x <- 12
 x
 ```
 
-In addition to reading code top to bottom, you often *read it from right to left*. `x <- 12` would be read as "take the value `12` and store it into the variable `x`". The second line of code, `x`, simply returns the value stored inside `x`. Note that when a variable is typed on it own, R will print out it's contents. You can now use this variable in snippets of code:
+Codes using `<-` should be read *right to left*: `x <- 12` would be read as "take the value `12` and store it into the variable `x`". The second line of code, `x`, simply evaluates the value that `x` is assigned to. Note that when a variable is typed on it own, R will print out its contents. You can now use this variable in snippets of code:
 
 ```{r}
-x
 x <- x * 6.022e23
 x
 ```
 
-Remember, R evaluates from right to left, so the code above is taking the number `6.022e23` and multiplying it by the value of `x`, which is 12 and storing that value back into `x`. That's how we're able to modifying the contents of a variable using it's current value. You can also overwrite the contents of a variable at anytime (i.e. `x <- 25`).
+Remember, R evaluates `<-` from right to left, so the code above is taking the number `6.022e23` and multiplying it by the value of `x`, which is 12 and storing that value back into `x`. That's how we're able to modifying the contents of a variable using its current value. You can also overwrite the contents of a variable at anytime (i.e. `x <- 25`).
 
-Note that variable names are case sensitive, so if your variable is named `x` and you type `X` into the console, R will not be able to print the contents of `x`. Variable names can consist of letters, numbers, dots (`.`) and/or underlines (`_`). Here are some rules and guidelines for naming variables in R:
+Variable names are case sensitive, so if your variable is named `x` and you type `X` into the console, R will not be able to print the contents of `x`. Variable names can consist of letters, numbers, dots (`.`) and/or underlines (`_`). Here are some rules and guidelines for naming variables in R:
 
 -   **Variable Name Requirements** as dictated by R
     -   names must begin with a letter or with the dot character. `var` and `.var` are acceptable.
@@ -45,32 +44,35 @@ Note that variable names are case sensitive, so if your variable is named `x` an
 
 Good names for variables are short, sweet, and easy to type while also being somewhat descriptive. For example, let's say you have an air pollution data set. A good name to assign the data set to would be `airPol` or `air_pol`, as these names tell us what is contained in the data set and are easy to type. A bad name for the data set would be `airPollution_NOx_O3_June20_1968`. While this name is much more descriptive than the previous names, it will take you a long time to type, and will become a bit of a nuisance when you have to type it 10+ times to refer to the data set in a single script. Please refer to the [*Style Guide*](http://adv-r.had.co.nz/Style.html) found in *Advanced R* by H. Wickham for more information.
 
-Lastly, R evaluates code from top-to-bottom of your script. So if you reference a variable it must have already been created at an earlier point in your script. For example:
+Lastly, R evaluates multiple lines of code one at a time, from top-to-bottom. So if you reference a variable it must have already been created at an earlier point in your script. For example:
 
 ```{r, error = TRUE}
 y + 1
 y <- 12
 ```
 
-The code above returns the `object 'y' not found` error because we're adding `+ 1` to `y` which hasn't been created yet, it's created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn't reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space using the 'broom' button in the *environment* pane. This will help you to ensure the code you're writing is organized in the correct order; see [Saving R Markdown] for why this is important.
+The code above returns the `object 'y' not found` error because we're adding `+ 1` to `y` which hasn't been created yet, it's created on the next line. These errors also pop up when you edit your code without clearing your workplace. All variables created in a session are stored in the working environment so you can call them, even if you change your code. This means you can accidentally reference a variable that isn't reproduced in the latest iteration of your code. Consequently, a good practice is to frequently clear your work-space using the 'broom' button in the *Environment* pane. This will help you to ensure the code you're writing is organized in the correct order; see [Saving R Markdown] for why this is important.
 
 ## Data Types
 
 Data types refer to how data is stored and handled by and in R. This can get complicated quickly, but we'll focus on the most common types here so you can get started on your work. Firstly, here are the data types you'll likely be working with:
 
--   **character**: `"a"`, `"howdy"`, `"1"`, is used to represent string values in R. Basically it's text that you'd read. Strings are wrapped in quotation marks. For example, `"1"`, despite being read as number by us, is stored as a character and treated as such by R.
--   **numeric** is any real or decimal number such as `2`, `3.14`, `6.022e23`.
--   **integer** such as `2L`, note the 'L' tells R this is an integer.\
--   **logical** is a Boolean logic value, they can only be `TRUE` or `FALSE`
+-   **character**: `"a"`, `"howdy"`, `"1"`, is used to represent text values in R. Character values may be wrapped in either single-quotes or double-quotes; for consistency in this textbook, we'll always use double-quotes. For example, `"1"`, despite being read as number by us, is stored as a character and treated as such by R. Also known as **string** values.
+-   **numeric**: any real or decimal number such as `2`, `3.14`, `6.022e23`.
+-   **integer** such as `2L`, note the 'L' tells R this is an integer.
+-   **logical**: either `TRUE` or `FALSE`; also known as a **boolean** values.
 
-Sometimes R will misinterpret a value as the wrong data type. This can hamper your work as you can't do arithmetic on a string! So let's look at some helpful functions to test the data type of a value in R, and how to fix it.
+Sometimes R will misinterpret a value as the wrong data type. This can hamper your work as you can't do arithmetic on a string!
 
 ```{r, error = TRUE}
 x <- "6"
 x / 2
 ```
 
-"non-numeric argument to binary operator" is a commonly encountered error, and it's simply telling you that you're trying to do math on something you can't do math on. You might think if `x` is 6, why can't I divide it by 2? Let's see what type of data `x` is:
+"non-numeric argument to binary operator" is a commonly encountered error, and it's simply telling you that you're trying to do math on something you can't do math on. You might think if `x` is 6, why can't I divide it by 2?
+
+Let's look at some helpful functions to test the data type of a value in R, and how to fix errors like this one.
+First, let's see what type of data `x` is:
 
 ```{r}
 is.numeric(x)   # test if numeric 
@@ -97,34 +99,38 @@ x <- as.numeric(x)
 x
 ```
 
-"NAs introduced by coercion" means that R didn't know how to convert "six" to a numeric value, so it instead turned it into an *NA*, representing a missing value.
+"NAs introduced by coercion" means that `as.numeric` didn't know how to convert "six" to a numeric value, so it instead turned it into an *NA*, representing a missing value.
 
 ## Data Structures
 
 Data structures refers to how R stores data. It's easy to get lost in the weeds here, so we'll start with the focus on the most common and useful data structure for your work: *data frames*.
 
 ### Data Frames
-Data frames consist of data stored in rows and columns. If you've ever worked with a spreadsheet (i.e. *Excel*), it's essentially that with the caveat that *all data stored in a column must be of the same type*. Again, different columns can have different data types, but *within* a column all the data needs to be the same type. R will convert your data otherwise to make it all the same. A common error is a single character in a column of numerical values leading to the entire column to be interpreted as character values; similar to what we discussed above. Errors like this most often stem from mistakes in recording and importing your data so be careful!
+Data frames consist of data stored in rows and columns. If you've ever worked with a spreadsheet, it's essentially that with the caveat that *all data stored in a column must be of the same type*. Different columns can have different data types, but *within* a column all the data needs to be the same type. 
 
-#### Creating a Dataframe from Scratch
+When importing data into a data frame, R will automatically convert data to ensure consistency in each column. This can lead to surprising behaviour: a common error is a single character in a column of numerical values leading to the entire column to be interpreted as character values. We'll need to be careful about this when importing our own data, which we'll start doing shortly!
 
-Let's see how we can create a dataframe by explicitly listing out the values.
+#### Creating a Data Frame from Scratch
+
+Let's see how we can create a data frame by explicitly listing out the values.
+
 ```{r}
-# data
+# First, create data for each column. We use the "c" function to create
+# one *vector* for each column. We'll discuss vectors in more detail below.
 names <- c("Alice", "Bob", "Charlie", "David", "Eve")
 ages <- c(20, 21, 22, 23, 19)
 food <- c("Bubble Tea", "Pineapple Pizza", "Diet Pepsi", "Korean BBQ", "Sushi AYCE")
 
-# Creating the dataframe
+# Creating the data frame
 students <- data.frame(Name = names, Age = ages, Food = food)
 
-# Displaying the dataframe
+# Displaying the data frame
 print(students)
 ```
 
 
 #### Reading Data from a File
-Obviously when we have many more data, it would be unrealistic to manually list them out in our code. So instead, we can create a dataframe by reading a file.
+Obviously when we have many more data, it would be unrealistic to manually list them out in our code. So instead, we can create a data frame by reading a file.
 
 From the `R4EnvChem-ProjectTemplate`, downloaded in [Importing a project], let's import some real data that was included in the downloaded project by typing the following code into the console:
 
@@ -139,45 +145,54 @@ airPol <- read.csv("data/2018-01-01_60430_Toronto_ON.csv")
 -   `pollutant` for the chemical measured
 -   `concentration` for the measured concentration in parts-per-million (ppm).
 
-We've assigned it to the variable: `airPol`. This is so we can reference it and make use of it later on (see below). If we didn't do this our data would simply be printed to the console which isn't helpful. Let's take a look at the first few rows of the data using the head function:
+We've assigned it to the variable `airPol`. This is so we can reference it and make use of it later on (see below). If we didn't do this our data would simply be printed to the console which isn't helpful. Let's take a look at the first few rows of the data using the head function:
 
 ```{r}
 head(airPol)
 ```
 
-Here we see that the data is stored in a **tidy** format, which is to say each column is a variable and each row is an observation. So reading the first row, we know that the Toronto 60430 station on 2018-07-01 at midnight measured ambient O~3~ concentrations of 46 ppm (Note the concentration column isn't printed due to width). The concept of tidy data is important and is integral to working in R. It's discussed further in [Tidying Your Data]. Lastly, R will only output a small chunk of our data for us to see. If you'd like to see it in full, go the the `Environment` pane and double click on the `airPol` data.
+In this data frame, each column is a variable and each row is an observation. So reading the first row, we know that the Toronto 60430 station on 2018-07-01 at midnight measured ambient O~3~ concentrations of 46 ppm (Note the concentration column isn't printed due to width). Using `head` will only output a small chunk of our data for us to see. If you'd like to see it in full, go to the `Environment` pane and double-click on the `airPol` variable.
 
 ### Accessing Data in Subfolders
 
-Note that `read.csv()` requires us to specify the file name, but in the above example we prefixed our file name with `"data/2018..."`. This is because the `.csv` file we want to open is stored in the `data` sub-folder. By specifying this in the prefix, we tell `read.csv()` to first go to the `data` sub folder in the working directory and *then* search for and open the specified data file.
+Note that `read.csv()` requires us to specify the file name, but in the above example we prefixed our file name with `"data/2018..."`. This is because the `.csv` file we want to open is stored in the `data` subfolder. By specifying this in the prefix, we tell `read.csv()` to first go to the `data` sub folder in the working directory and *then* search for and open the specified data file.
 
-What we've done above is called *relative referencing* and it's a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like `"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"`. If we weren't in a project, this is what you'd need to type to open your file, but since we're working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need `"data/2018..."`. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and Profs (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code & data) and the receiver could open it and run it as is.
+What we've done above is called *relative referencing* and it's a huge benefit of projects. The actual data file is stored somewhere on your computer in a folder like `"C:/User/Your_name/Documents/School/Undergrad/Second_Year/R4EnvChemTemplate/data/2018-01-01_60430_Toronto_ON.csv"`. If we weren't in a project, this is what you'd need to type to open your file, but since we're working in the project, R assumes the long part, and begins searching for files inside the project folder. Hence, why we only need `"data/2018..."`. Not only is this much simpler to type, and but it makes sharing your work with colleagues, TAs, and instructors (and yourself!) much easier. In other words, if you wanted to share your code, you would send the entire project folder (code & data) and the receiver could open it and run it as is.
 
 ###  Other Data Structures
 
 R has several other data structures. They aren't as frequently used, but it's worth being aware of their existence. Other structures include:
 
--   **Vectors**, which contain multiple elements *of the same type*; either numeric, character (text), logical, or integer. Vectors are created using `c()`, which is short for combine. A data frame is just multiple vectors arranged into columns. Some examples of vectors are shown below.
+-   **Vectors**, which contain multiple elements *of the same type*; either numeric, character, logical, or integer. Vectors are created using `c()`, which is short for _combine_. A data frame is just multiple vectors arranged into columns. Some examples of vectors are shown below.
 
-```{r}
-num <- c(1, 2, 3, 4, 5)
-num
+    ```{r}
+    num <- c(1, 2, 3, 4, 5)
+    num
+    
+    char <- c("blue", "green", "red")
+    char
+    
+    log <- c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE)
+    log
+    ```
 
-char <- c("blue", "green", "red")
-char
+-   **Lists** are similar to vectors in that they are one dimensional data structures which contain multiple elements. However, there are two important differences: (1) lists can contain multiple elements of different types, while vectors only contain a single type of data; and (2) each piece of data in the list is given a name with which we can refer to that data. You can create lists using `list()`, as illustrated below.
 
-log <- c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE)
-log
-```
+    ```{r}
+    # Creating a list with three components: "Greetings", "someNumbers", and "someBooleans"
+    hi <- list("Greetings" = "Hello", "someNumbers" = c(5,10,15,20), "someBooleans" = c(TRUE, TRUE, FALSE))
+    hi
+    ```
 
--   **Lists** are similar to vectors in that they are one dimensional data structures which contain multiple elements. However, lists can contain multiple elements of different types, while vectors only contain a single type of data. You can create lists using `list()`. Some examples of lists are shown below. You can use `str()` to reveal the different components of a list, in a more detailed format than if you were to simply type the assigned name of the list.
-
-```{r}
-hi <- list("Greetings" = "Hello", "someNumbers" = c(5,10,15,20), "someBooleans" = c(TRUE, TRUE, FALSE))
-str(hi)
-hi
-hi$Greetings
-```
+    We can access individual components of the list by using the `$` operator:
+    
+    ```{r}
+    # Access the "Greetings" component of list "hi"
+    hi$Greetings
+    
+    # Access the "someNumbers" component of list "hi"
+    hi$someNumbers
+    ```
 
 There are many freely available resources online which dive more in depth into different data structures in R. If you are interested in learning more about different structures, you can check out the [*Data structure*](http://adv-r.had.co.nz/Data-structures.html) chapter of *Advanced R* by Hadley Wickham.
 
