@@ -9,21 +9,20 @@ The explicit workflow we'll be teaching was originally described by Wickham and 
 ![](images/data-science-workflow.png){width=99%}
 
 - **Import** is the first step and consist of getting your data into R. Seems obvious, but doing it correctly will save you time and headaches down the line. 
-- **Tidy** refers to organizing your data in a *tidy* manner where each variable is a column, and each observation a row. This is often the least intuitive part about working with R, especially if you've only used Excel, but it's critical. If you don't tidy your data, you'll be fighting it every step of the way.
-- **Transform** is anything you do to your data including any mathematical operations or narrowing in on a set of observations. It's often the first stage of the cycle as you'll need to transform your data in some manner to obtain a desired plot.
+- **Tidy** refers to organizing your data in a *tidy* manner where each variable is a column, and each observation a row. - **Transform** is anything you do to your data including any mathematical operations or narrowing in on a set of observations. It's often the first stage of the cycle as you'll need to transform your data in some manner to obtain a desired plot.
 - **Visualize** is any of the plots/graphics you'll generate with R. Take advantage of R and plot often, it's the easiest way to spot an error. 
 - **Model** is an extension of mathematical operations to help understand your data. The *linear regressions* needed for a calibration curve are an example of a model. 
 - **Communicate** is the final step and is where you share the *knowledge* you've squeezed out of the information in the original data. 
 
-*Import*, *Tidy*, and *Transformation* go hand-in-hand in a process called *wrangling*. Wrangling is all of the steps needed to get your data ready for analysis. It's often the most tedious and frustrating, hence wrangling (it's a fight...), but once done make the subsequent cycle of understanding your data via *transformation*, *visualizations*, and *modelling* much easier and more predictable. 
+*Import*, *Tidy*, and *Transformation* go hand-in-hand in a process called *wrangling*, which encompasses all of the steps needed to get your data ready for analysis. It's often the most tedious and frustrating, hence "wrangling" (it's a fight...), but once done make the subsequent cycle of understanding your data via *transformation*, *visualizations*, and *modelling* much easier and more predictable. 
 
 
 ## Example Data
 
-Throughout this section and the next we'll be making use of a couple of example datasets. These datasets are all available in the `data` subfolder of the *R4EnvChem Project Template*. If you haven't already, read [Importing a project] for instructions on downloading the repository and data.  
+Throughout this chapter and the next chapter we'll be making use of a couple of example datasets. These datasets are all available in the `data` subfolder of the *R4EnvChem Project Template*. If you haven't already, read [Importing a project] for instructions on downloading the repository and data.  
 
 ## Sneak Peek at Data Analysis
-In this trailer section, we'll explore how data analysis can provide insights into real-world phenomena. We'll use the `storm` dataset from the `tidyverse` suite in R to investigate the patterns and relationships of storms over the years.
+As a preview, we'll explore how data analysis can provide insights into real-world phenomena. We'll use the `storm` dataset from the `tidyverse` suite in R to investigate the patterns and relationships of storms over the years.
 
 
 ### Setting Up
@@ -131,12 +130,3 @@ Through this brief exploration, we've seen how data analysis can provide insight
 ## Further Reading {#further_reading_chapter9}
 
 In case it hasn't been apparent enough, this entire endeavour was inspired by the *R for Data Science* reference book by Hadley Wickham and Garrett Grolemund. Every step described above is explored in more detail in their book, which can be read freely online at [https://r4ds.had.co.nz/](https://r4ds.had.co.nz/). We strongly encourage you to read through the book to supplement your R data analysis skills. 
-
-
-
-```{r child='src/common/end-of-chapter-exercise.Rmd'}
-```
-
-
-
-

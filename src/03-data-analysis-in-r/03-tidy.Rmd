@@ -17,7 +17,7 @@ Organizing data into distinct variables (like *Sample*, *Chemical*, and *Reading
 
 ## Tools to tidy your data
 
-Now one of the more laborious parts of data science is tidying your data. If you can, follow the tips in the [Tips for recording data] section, but the truth is you often won't have control. To this end, the `tidyverse` offers several tools, notable `dplyr` (pronounces 'd-pliers'), to help you get there. 
+Now one of the more laborious parts of data science is tidying your data. If you can, follow the tips in the [Tips for recording data] section, but the truth is you often won't have control. To this end, the tidyverse offers several tools, notable `dplyr` (pronounces "dee-plier"), to help you get there. 
 
 Let's revisit our spectroscopy data from the previous chapter, but in a slightly different format. We will learn a variety of tools to change the format of a dataset as we move through Part 3 of this resource, but for now just observe some of the changes we make to the ATR plastics data in comparison to what we did in the previous chapter.
 
@@ -26,10 +26,7 @@ Let's revisit our spectroscopy data from the previous chapter, but in a slightly
 
 atr_plastics <- read_csv("data/ATR_plastics_original_wide.csv")
 
-# This just outputs a table you can explore within your browser
 DT::datatable(atr_plastics)
-
-
 ```
 
 
@@ -38,14 +35,14 @@ As we can see this our ATR spectroscopy results of several plastics, as recorded
 ```{r}
 # Plotting Polystyrene absorbance spectra
 ggplot(data = atr_plastics, 
-       aes( x = wavenumber,
-            y = Polystyrene)) +
+       aes(x = wavenumber,
+           y = Polystyrene)) +
   geom_point()
 
 # Plotting Polystyrene and Polyethylene absorbance spectra
 ggplot(data = atr_plastics, 
-       aes( x = wavenumber,
-            y = Polystyrene)) +
+       aes(x = wavenumber,
+           y = Polystyrene)) +
   geom_point() +
   geom_point(data = atr_plastics, 
              aes(x = wavenumber, 
@@ -61,42 +58,38 @@ There are multiple ways to select columns and variables with the `dplyr` package
 
 Sometimes your data has already been recorded in a tidy-ish fashion, but there may be multiple observations recorded under one apparent variable, something like `1 mM` for concentration. As it stands we cannot easily access the numerical value in the concentration recording because R will encode this as a string due to the `mM`. We can **separate** data like this using the `separate` function. 
 
-```{r, echo = FALSE}
-
-sep_example <- data.frame("sample" = c("Toronto_O3_1","Toronto_O3_2", "Toronto_NO2_1"), 
-                          "reading" = c("10", "22", "30"))
-
-```
+Consider the following example scenario. You have sample names you'll pass along to your TA where you crammed as much information as possible into that name so you and your TAs know exactly what's being analyzed. In this example, the sample name contains the location (`Toronto`), the chemical measured (`O3` or `NO2`) and the replicate number (i.e. `1`).
 
 ```{r}
 # Example with multiple encoded observations
+sep_example <- data.frame("sample" = c("Toronto_O3_1","Toronto_O3_2", "Toronto_NO2_1"), 
+                          "reading" = c("10", "22", "30"))
 sep_example
 ```
 
-The example above is something you'll come across in the lab, most often with the sample names you'll pass along to your TA where you crammed as much information as possible into that name so you and your TAs know exactly what's being analyzed. In this example, the sample name contains the location (`Toronto`), the chemical measured (`O3` or `NO2`) and the replicate number (i.e. `1`). Using the `separate` function we can split up these three observations so we can properly group our data later on in our analysis.
+Using the `separate` function we can split up these three observations so we can properly group our data later on in our analysis.
 
 ```{r}
 # Separating observations
-
-sep_data <- separate(sep_example,
+separated_data <- separate(
+    sep_example,
     col = sample, 
     into = c("location", "chemical", "replicateNum"),
     sep = "_",
     remove = TRUE, 
     convert = TRUE)
 
-sep_data
-
+separated_data
 ```
-Again, let's break down what we did with the `separate` function: 
 
-1. `col = sample` specifies we're selecting the `sample` column
-2. `into = c(...)` specifies what columns we're separating our name into. 
-3. `sep = "_"1` specifies that each element is separated by an underscore (`_`); you can use `sep = " "` if they were separated by spaces. 
-4. `remove = TRUE` removes the original sample column, no need for duplication; setting this to `FALSE` would keep the original column. 
-5. `convert = TRUE` converts the new columns to the appropriate data format. In the original column ,the replicate number is a character value because it's part of a string, `convert` ensures that it'll be converted to a numerical value. 
+Let's break down what we did with the `separate` function: 
 
-Another example why it's paramount to **be consistent when recording data**. 
+1. The first input, `sep_example`, is the data frame that we're operating on.
+2. `col = sample` specifies we're selecting the `sample` column.
+3. `into = c(...)` specifies what columns we're separating our name into.
+4. `sep = "_"` specifies that each element is separated by an underscore (`_`).
+5. `remove = TRUE` removes the original sample column, to avoid duplication; setting this to `FALSE` would keep the original column. 
+6. `convert = TRUE` converts the new columns to the appropriate data format. In the original column, the replicate number is a character value because it's part of a string, `convert` ensures that it'll be converted to a numerical value. 
 
 ### Uniting/combining columns 
 
@@ -104,39 +97,34 @@ The opposite of the `separate` function is the `unite` function. You'll use it f
 
 ```{r, warning=FALSE}
 # Uniting observations
-
-united_data <- unite(sep_data,
+united_data <- unite(separated_data,
                      col=sample_reunited,
-                     location:chemical:replicateNum, 
+                     c("location", "chemical", "replicateNum"), 
                      sep = "_",
                      remove = TRUE)
 
 united_data
-
 ```
 
 You can read more about the `unite` function [here](https://tidyr.tidyverse.org/reference/unite.html).
 
 ### Renaming columns/headers
 
-Sometimes a name is lengthy, or cumbersome to work with in R. While something like `This_is_a_valid_header` is valid and compatible with R and tidyverse functions, you may want to change it to make it easier to work with (i.e. less typing). Simply use the `rename()` function:
+Sometimes a name is lengthy, or cumbersome to work with in R. While something like `This_is_a_valid_header` is valid and compatible with R and tidyverse functions, you may want to change it to make it easier to work with (i.e. less typing).
 
-```{r, echo = FALSE}
-badHeader <- data.frame("UVVis_Wave_Length_nM" = c(500, 501),
-                        "Absorbance" = c(1, 0.999))
+First, here's an example with some awkward column names:
+```{r}
+bad_col_names <- data.frame("UVVis_Wave_Length_nM" = c(500, 501),
+                            "Absorbance" = c(1, 0.999))
 
+colnames(bad_col_names)
 ```
 
-Inspect the original column names:
+Use `rename()` to change the column name and save the result to a new data frame:
 ```{r}
-colnames(badHeader)
-```
+renamed_data <- rename(bad_col_names, wavelength_nM = UVVis_Wave_Length_nM)
 
-Use `rename()` to change the column name and save the result to a new dataframe:
-```{r}
-renamed_data <- rename(badHeader, wavelength_nM = UVVis_Wave_Length_nM)
-
-# Inspect the column names of the renamed dataframe
+# Inspect the column names of the renamed data frame
 colnames(renamed_data)
 ```
 
@@ -151,7 +139,6 @@ selected_data <- select(atr_plastics, wavenumber, EPDM, `Sample: Shopping bag`)
 atr_plastics_transformed <- rename(selected_data, Wave_Num = wavenumber)
 
 atr_plastics_transformed
-
 ```
 
 Now, let's see how we can transform the same `atr_plastics` tibble using the `%>%` operator by chaining operations.
@@ -178,7 +165,7 @@ In case you haven't picked up on it, tidying data in R is much easier if the dat
 
 ## Further reading {#further_reading_chapter11}
 
-As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. For the material covered here you may want to read [Chapter 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
+As always, the *R for Data Science* book goes into more detail on all of the elements discussed above. Topics covered here are explored in more detail in [Chapter 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html).
 
 `r if (knitr:::is_html_output()) '## Chapter References'`
 
