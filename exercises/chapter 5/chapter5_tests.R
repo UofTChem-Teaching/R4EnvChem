@@ -30,16 +30,6 @@ get_rmd_path <- function(folder_name, filename) {
   stop("Rmd file not found!")
 }
 
-# Function to determine the correct path for the Rmd file
-get_rmd_path <- function(folder_name, filename) {
-  paths <- list(here(filename), here("exercises", folder_name, filename))
-  for (path in paths) {
-    if (file.exists(path))
-      return(path)
-  }
-  stop("Rmd file not found!")
-}
-
 # Specify the path to your Rmd file
 rmd_file_path <- get_rmd_path("chapter 5", "chapter5.Rmd")
 

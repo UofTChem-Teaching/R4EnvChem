@@ -116,7 +116,7 @@ test_that("Scatterplot with ggplot2", {
 **Your Task:** Using the `csv_data` dataset, your objective is to perform some data filtering and summarization.
 
 1. Filter the `csv_data` dataset to only include individuals with an `Age` greater than the **median age** of the dataset.
-2. For these older individuals, compute **both** the average and the standard deviation of the `Score`. Label them as mean_score and sd_score, respectively.
+2. For these older individuals, compute **both** the average and the standard deviation of the `Score`. Label them as `mean_score` and `sd_score`, respectively.
 3. Save the result to a variable named `stats_result`.
 
 **Consider**: You'll need to use functions you might not have encountered in the chapter. Consult the `dplyr` documentation or help files (e.g., `?summarize` in RStudio) to figure out how to compute the median for filtering and how to calculate the standard deviation within `summarize()`.
