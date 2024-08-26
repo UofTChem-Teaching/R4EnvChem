@@ -95,19 +95,26 @@ test_that("Ox", {
 
 At the end of Chapter 10 exercise, you learned that there are some bad data in our dataset.
 
-1. Before revisiting that, let's once again transform the `data` to a longer format where the headers `NO2` and `O3` become values in a new column called `analyte`, and their respective values fill a new column called `concentration`. Assign the result to `longer_data`.
+Similar to Chapter 11, we will transform the `data` to a longer format where the headers `NO2` and `O3` become values in a new column called `analyte`, and their respective values fill a new column called `concentration`. We assign the result to a variable named `longer_data`. You should not modify the provided code related to this transformation. The `pivot_longer()` function is covered in Chapter 15, where you will have the opportunity to learn and practice it in detail.
 
-2. Visualize the `Time`(x-axis) vs. `concentration`(y-axis) values as a scatterplot with `longer_data`.
+Here’s the code for this transformation:
 
 ```{r}
-# Your code to make the data longer
-longer_data <- 
+# Transform data to a longer format
+longer_data <- data %>%
+  pivot_longer(cols = c(NO2, O3), names_to = "analyte", values_to = "concentration")
+```
 
+**Your Task:**
+
+1. Visualize the `Time`(x-axis) vs. `concentration`(y-axis) values as a scatterplot with `longer_data`.
+
+```{r}
 # Your code for the scatterplot of Time vs concentration.
 
 ```
 
-3. Now, let's ensure the reliability of your data by removing potential measurement errors. Filter out any rows in data where the `concentration` values are less than 0. Update `longer_data` with the filter data.
+2. Now, let's ensure the reliability of your data by removing potential measurement errors. Filter out any rows in data where the `concentration` values are less than 0. Update `longer_data` with the filter data.
 
 ```{r}
 # Your code to filter out rows with concentration values less than 0 goes here.

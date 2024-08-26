@@ -43,7 +43,7 @@ In this exercise, we will work with the EPDM values.
 
 **Your Task:**
 
-Create a summary table named `summary_EPDM` by calculating the mean, median, minimum, maximum, and standard deviation of the `EPDM` values. Label these statistics as Mean_EPDM, Median_EPDM, Min_EPDM, Max_EPDM, and Std_Dev_EPDM, respectively. Then, make it into a flextable "summary_EPDM_ft".
+Create a summary table named `summary_EPDM` by calculating the mean, median, minimum, maximum, and standard deviation of the `EPDM` values. Label these statistics as `Mean_EPDM`, `Median_EPDM`, `Min_EPDM`, `Max_EPDM`, and `Std_Dev_EPDM`, respectively. Then, make it into a flextable "summary_EPDM_ft".
 
 ```{r}
 summary_EPDM <- # Your code here
@@ -81,7 +81,7 @@ In this exercise, you will group the data by rounded `wavenumber` values (rounde
 
 1. Round the `wavenumber` values to the nearest 10s (e.g., 1008.1060 and 1005.9078 will be rounded together).  
 2. Group the data by the rounded `wavenumber` values.  
-3. Calculate the mean and median of the `EPDM`, `Polystyrene`, and `Polyethylene` values within each group. Label these statistics as Mean_EPDM, Median_EPDM, Mean_Polystyrene, Median_Polystyrene, Mean_Polyethylene, and Median_Polyethylene, respectively.
+3. Calculate the mean and median of the `EPDM`, `Polystyrene`, and `Polyethylene` values within each group. Label these statistics as `Mean_EPDM`, `Median_EPDM`, `Mean_Polystyrene`, `Median_Polystyrene`, `Mean_Polyethylen`, and `Median_Polyethylen`, respectively.
 4. Create a summary table using the `flextable()` function with appropriate headers and labels for the summary statistics.
 
 

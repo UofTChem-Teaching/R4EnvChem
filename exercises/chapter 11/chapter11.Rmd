@@ -36,36 +36,28 @@ data <-
 
 ------------------------------------------------------------------------
 
-# Exercise 1: Making Data Longer
+# Preprocessing Data
 
-**Your Task:**
+To prepare the data for the exercises, we first need to transform it to a longer format. This step is done for you and helps in simplifying the following tasks. You should not modify the provided code related to this transformation.
 
-Transform the `data` to a longer format where the headers `NO2` and `O3` become values in a new column called `analyte`, and their respective values fill a new column called `concentration`. Assign the result to `longer_data`.
+We use the `pivot_longer()` function to transform the dataset. This step changes the columns `NO2` and `O3` into a longer format where:
+
+- `NO2` and `O3` become values in a new column called `analyte`.
+- Their corresponding values fill a new column called `concentration`.
+
+The `pivot_longer()` function is covered in Chapter 15, where you will have the opportunity to learn and practice it in detail.
+
+Here’s the code for this transformation:
 
 ```{r}
-# Complete the code below and run the cell.
-
-# Your code here
-longer_data <- 
+# Transform data to a longer format
+longer_data <- data %>%
+  pivot_longer(cols = c(NO2, O3), names_to = "analyte", values_to = "concentration")
 ```
-
-#### Test Your Code (Exercise 1)
-
-Do not modify the cell below. 
-
-```{r,purl=FALSE}
-library(testthat, quietly = TRUE)
-test_that("Making data longer", {
-  expect_true("analyte" %in% colnames(longer_data))
-  expect_true("concentration" %in% colnames(longer_data))
-})
-
-```
-
 
 ------------------------------------------------------------------------
 
-# Exercise 2: Separate Date and Time
+# Exercise 1: Separate Date and Time
 
 **Your Task:**
 Use the `longer_data` to separate the `Time` column into distinct `year`, `month`, `day`, and `Hour` columns. Assign the result to `date_time_data`. Consider using the pipe operator (`%>%`) to break down into multiple separation steps.
@@ -79,7 +71,7 @@ date_time_data <-
 You might notice that there are NA values in the `Hour` column. Why do you think this is happening? It's okay to leave this for now, but feel free to figure out how to resolve this issue.
 
 
-#### Test Your Code (Exercise 2)
+#### Test Your Code (Exercise 1)
 
 Do not modify the cell below. 
 
@@ -93,7 +85,7 @@ test_that("Separate date and time", {
 
 ------------------------------------------------------------------------
 
-# Exercise 3: Uniting Columns
+# Exercise 2: Uniting Columns
 
 **Your Task:**
 
@@ -107,7 +99,7 @@ united_data <-
 ```
 
 
-#### Test Your Code (Exercise 3)
+#### Test Your Code (Exercise 2)
 
 Do not modify the cell below. 
 ```{r,purl=FALSE}
@@ -120,7 +112,7 @@ test_that("Uniting Columns", {
 
 ------------------------------------------------------------------------
 
-# Exercise 4: Renaming Columns
+# Exercise 3: Renaming Columns
 
 **Your Task:**
 
@@ -135,7 +127,7 @@ renamed_data <-
 ```
 
 
-#### Test Your Code (Exercise 4)
+#### Test Your Code (Exercise 3)
 
 Do not modify the cell below. 
 ```{r,purl=FALSE}
@@ -147,7 +139,7 @@ test_that("Renaming columns", {
 ```
 
 
-# Exercise 5: Visualization
+# Exercise 4: Visualization
 
 Before we finish, let's visualize the `Time`(x-axis) vs. `concentration`(y-axis) values in `longer_data`. By plotting these values, you'll get a clearer idea of any outliers or potentially erroneous data points. 
 

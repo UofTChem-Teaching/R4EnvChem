@@ -47,27 +47,7 @@ missing_column_error_message <- function(data, required_columns) {
 # Specify the path to your Rmd file
 rmd_file_path <- get_rmd_path("chapter 11", "chapter11.Rmd")
 
-# Exercise 1: Making Data Longer
-test_that("Making data longer", {
-  tmp_dir <- tempdir()
-  # Copy contents of current directory to temp directory
-  dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
-  
-  with_dir(tempdir(), {
-    # Run all chunks in the Rmd file to execute the exercises
-    suppressWarnings(run_all_chunks(rmd_file_path))
-    
-    # Custom error messages for checking column names in longer_data
-    custom_error_message_columns <- missing_column_error_message(longer_data, c("analyte", "concentration"))
-    
-    expect_true(all(c("analyte", "concentration") %in% colnames(longer_data)), info = custom_error_message_columns)
-  })
-  
-  # Remove the temp directory
-  unlink(tmp_dir, recursive = TRUE)
-})
-
-# Exercise 2: Separate Date and Time
+# Exercise 1: Separate Date and Time
 test_that("Separate date and time", {
   tmp_dir <- tempdir()
   # Copy contents of current directory to temp directory
@@ -89,7 +69,7 @@ test_that("Separate date and time", {
   unlink(tmp_dir, recursive = TRUE)
 })
 
-# Exercise 3: Uniting Columns
+# Exercise 2: Uniting Columns
 test_that("Uniting Columns", {
   tmp_dir <- tempdir()
   # Copy contents of current directory to temp directory
@@ -108,7 +88,7 @@ test_that("Uniting Columns", {
   unlink(tmp_dir, recursive = TRUE)
 })
 
-# Exercise 4: Renaming Columns
+# Exercise 3: Renaming Columns
 test_that("Renaming columns", {
   tmp_dir <- tempdir()
   # Copy contents of current directory to temp directory
