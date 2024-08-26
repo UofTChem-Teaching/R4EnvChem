@@ -38,12 +38,14 @@ data <-
 
 # Preprocessing Data
 
-To prepare the data for the exercises, we first need to transform it to a longer format. This step is done for you and helps in simplifying the following tasks.
+To prepare the data for the exercises, we first need to transform it to a longer format. This step is done for you and helps in simplifying the following tasks. You should not modify the provided code related to this transformation.
 
 We use the `pivot_longer()` function to transform the dataset. This step changes the columns `NO2` and `O3` into a longer format where:
 
 - `NO2` and `O3` become values in a new column called `analyte`.
 - Their corresponding values fill a new column called `concentration`.
+
+The `pivot_longer()` function is covered in Chapter 15, where you will have the opportunity to learn and practice it in detail.
 
 Here’s the code for this transformation:
 
