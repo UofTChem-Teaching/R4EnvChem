@@ -15,14 +15,14 @@ rmd_files: [
   # Part 1: Getting Started in R
   "src/01-getting-started-in-r/01-intro.Rmd",
   "src/01-getting-started-in-r/02-r-studio-projects.Rmd",
-  "src/01-getting-started-in-r/03-this-textbook.Rmd",
+  "src/01-getting-started-in-r/03-r-markdown.Rmd",
+  "src/01-getting-started-in-r/04-this-textbook.Rmd",
 
   # Part 2: How to Code in R
   "src/02-how-to-code-in-r/01-running-r-code.Rmd",
   "src/02-how-to-code-in-r/02-r-workflows.Rmd",
-  "src/02-how-to-code-in-r/03-r-markdown.Rmd",
-  "src/02-how-to-code-in-r/04-r-packages.Rmd",
-  "src/02-how-to-code-in-r/05-loops_functions.Rmd",
+  "src/02-how-to-code-in-r/03-r-packages.Rmd",
+  "src/02-how-to-code-in-r/04-loops_functions.Rmd",
 
   # Part 3: Data Analysis in R
   "src/03-data-analysis-in-r/01-intro-data-analysis.Rmd",

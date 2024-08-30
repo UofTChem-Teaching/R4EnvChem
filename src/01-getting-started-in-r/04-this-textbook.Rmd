@@ -1,0 +1,103 @@
+# How to Use This Textbook
+
+Before we move onto the actual coding part, let's talk about how to navigate and utilize this textbook.
+
+**1. Reading and Active Engagement**
+
+This textbook encourages active learning. Don't merely read through the content---interact with it. Type out the code in your R environment and see the results firsthand. This hands-on approach will solidify your comprehension and enhance your practical skills. Observe how the code behaves, experiment with modifications, and observe how changes impact the outcomes.
+
+**2. Curiosity and Inquisitiveness**
+
+When you encounter code you don't fully understand or want to know the underlying process, lean into your curiosity. Don't hesitate to ask "Why?" and explore concepts beyond the immediate scope. Seek to understand the "why" and "how" alongside the "what."
+
+**3. Resources and Further Explanation**
+
+This textbook is a stepping stone to your R journey. Beyond the content provided, explore the references, suggested readings, and online resources mentioned throughout the chapters. Embrace a curious attitude and continue to expand your knowledge by delving into more advanced topics or specific applications that align with your interests.
+
+**4. Discussion and Collaboration**
+
+If you're using this textbook as part of a class or a group, engage in discussions with your peers. Sharing insights, clarifying doubts, and collaborating on exercises can enhance your learning experience. Don't hesitate to ask questions, seek help, and contribute to a supportive learning environment.
+
+## Useful Features
+
+### Searching the Textbook
+
+By clicking on the magnifying glass icon in the top left corner, you have the ability to search for keywords across the entire textbook without worrying about case sensitivity. For instance, entering "tidyverse" will display all chapters where tidyverse is mentioned. This gives you a glimpse into future chapters, offering a preview of the various ways you'll be engaging with tidyverse later on!
+
+### Original R Markdown of the Textbook Chapters
+
+This textbook is assembled from individual Rmd files, each representing a chapter. As you progress through the chapters, you may wish to examine the associated Rmd files to delve deeper into the code and its execution.
+
+Simply click on the edit icon in the top left corner to be directed to the corresponding Rmd file on GitHub, opened in a new tab. You're encouraged to download these files, experiment with the code, and observe our Rmd formatting techniques!
+
+![](images/view_source.png){width="70%"}
+
+
+## Running Tests for Your Exercises
+
+Each chapter's exercise folder also contains an R test file (e.g., `chapterX_test.R`). This file includes unit tests to verify the correctness of your solutions.
+
+### How to Run the Tests
+
+1. **Complete the Exercises**:
+   - Work through the exercises in the Rmd file that you encountered in [Using R Markdown], adding your solutions to the code chunks, and save your progress. You can save the progress by choosing "File" from the top menu and then clicking on "Save" or by using the keyboard shortcut `Ctrl + S` (Windows/Linux) or `Cmd + S` (Mac) for the current Rmd file.
+   ![](images/save_file.png){width="70%"}
+   
+2. **Set the Working Directory**:
+   - Whether you are working on the exercises in the UofT JupyterHub or on your local machine, set the working directory to the folder containing your exercise files. To do this in RStudio, choose "Session" from the top menu, click on "Set Working Directory," and then select "Choose Directory."
+   
+   ![](images/choose_directory.png){width="70%"}
+   
+   - Navigate to the folder containing the exercise files and click "Choose."
+   
+   ![](images/choose_directory2.png){width="70%"}
+
+3. **Open the Test File**:
+   - After setting the working directory, open the corresponding R test file located in the same chapter folder.
+
+4. **Run the Tests**:
+   - To run the tests inside the R test file, click on the "Run Tests" button in the top-right corner of the script editor. This will execute the unit tests and provide feedback on your solutions.
+   ![](images/running_tests.png){width="70%"}
+
+5. **Review the Test Results**:
+   - The test results will be displayed in the R console, showing which tests passed or failed.
+   - **Expected Output**: If all tests pass, you’ll see a summary indicating success.
+   ![](images/test_passed.png){width="70%"}
+   - **Expected Errors**: If any tests fail, the console will show which tests didn’t pass, along with error messages that provide details on the issue.
+   ![](images/test_failed.png){width="70%"}
+
+6. **Troubleshooting**:
+
+- **Syntax Errors**: Ensure your R code is syntactically correct (e.g., missing commas, unmatched parentheses).
+- **Logical Errors**: Double-check that your calculations or logic align with the problem requirements. In these cases, you will see an error message indicating the expected output and the actual output, or missing output.
+
+   ![](images/logical_error.png){width="70%"}
+- **Missing Variables or Functions**: Make sure all necessary variables and functions are correctly defined and used. In these cases, the error message will indicate that the object or function is missing.
+
+   ![](images/missing_error.png){width="70%"}
+   
+### Optional: Autotests on MarkUs
+
+For those who have access to MarkUs, you have the option to use it for autotests on your assignments. These autotests provide automated feedback to help ensure your solutions are correct.
+
+1. **Submit Your Work**:
+   - From the list of assessments, select the chapter exercise you wish to submit. Go to the `Submissions` section. Click on `Submit File` and then on `Choose Files` to upload your Rmd file. Ensure that the files you submit match exactly the names listed in the `Required Files` section. If you prefer not to rename the files locally, you can use the `Rename file to` option, which will show you a list of files you need to submit. Choose the correct file name from this list for your upload.
+   
+      ![](images/markus_submission.png)
+
+2. **Run Autotests**:
+   - Go to the `Automated Testing` section and click on `Run Tests`. This will trigger the autotests to check your submission against the provided test cases.
+   
+3. **Review Feedback**:
+   - MarkUs will provide immediate feedback on your submission, indicating which tests passed or failed. Examine this feedback to identify any issues.
+   
+  ![](images/markus_autotest.png)
+
+4. **Resubmit if Necessary**:
+   - If any autotests fail, revise your Rmd file based on the feedback and resubmit it for further testing.
+   
+### Optional Extra Questions
+
+For those seeking an additional challenge and a chance to delve into topics beyond the textbook, we offer optional extra questions. Resources and explanations will be provided to support you in tackling these optional questions.
+
+By engaging with these interactive Rmd files, you can actively reinforce your learning, gain practical experience, and explore R concepts in depth. We encourage you to make the most of these resources to enhance your R proficiency. Happy learning!
