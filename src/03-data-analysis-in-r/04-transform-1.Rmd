@@ -265,20 +265,34 @@ Here’s what’s happening:
 
 This sequence of operations could be written without pipes by nesting function calls, but the use of pipes makes the flow of data more explicit and easier to read.
 
-### A Simple Example of Piping
+### Simple Examples of Piping
 
 Let’s start with a simple, single use of piping:
+
+```{r,eval=FALSE}
+FAES %>% nrow()
+```
+
+In this case, the `%>%` operator pipes the `FAES` dataset directly into the `nrow()` function, which returns the number of rows in the dataset. This is functionally equivalent to:
+
+```{r,eval=FALSE}
+nrow(FAES)
+```
+
+Now, let's consider an example where the function takes an additional argument:
 
 ```{r,eval=FALSE}
 meanBlank <- FAES %>%
   filter(type == "blank")
 ```
 
-In this case, piping might seem redundant because it only removes the need to specify the first argument explicitly. This is functionally equivalent to:
+This is functionally equivalent to:
 
 ```{r,eval=FALSE}
 meanBlank <- filter(FAES, type == "blank")
 ```
+
+In both cases, piping might seem redundant because it only removes the need to specify the first argument explicitly.
 
 ### Piping in Practice
 

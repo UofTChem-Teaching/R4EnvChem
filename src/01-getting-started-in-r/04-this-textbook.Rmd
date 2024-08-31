@@ -35,7 +35,7 @@ Simply click on the edit icon in the top left corner to be directed to the corre
 
 ## Running Tests for Your Exercises
 
-Each chapter's exercise folder also contains an R test file (e.g., `chapterX_test.R`). This file includes unit tests to verify the correctness of your solutions.
+Each chapter's exercise folder also contains an R test file (e.g., `chapterX_tests.R`). This file includes unit tests to verify the correctness of your solutions.
 
 ### How to Run the Tests
 
