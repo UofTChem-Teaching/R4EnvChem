@@ -234,7 +234,69 @@ We've used the `mean()` and `sd()` functions above, but there are a host of othe
 
 ## The Pipe: Chaining Functions Together
 
-With the tools presented here we could do a decent job analyzing our `FAES` data. Let's say we wanted to subtract the mean of the `blank` from each `standard` signal and then summarize those results. It would look something like this: 
+Piping is a concept that allows you to chain functions together in a way that simplifies and clarifies your code. At its core, piping is similar to function composition in mathematics, where the output of one function becomes the input to the next. This helps you build complex operations in a readable and logical sequence.
+
+### Function Composition Example
+
+Consider a mathematical example of function composition:
+
+\[ f(g(x)) \]
+
+Here, the function \( g(x) \) is applied first, and its output is then passed as the input to the function \( f(x) \). In programming, this concept can be translated to chaining functions together.
+
+### Abstract Example of Piping
+
+The **pipe operator** `%>%`, an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you're working with by passing the intermediate steps to hidden processes in the background.
+
+Now, consider the following abstract example of piping in R:
+
+```{r,eval=FALSE}
+result <- data %>%
+  step1() %>%
+  step2() %>%
+  step3()
+```
+
+Here’s what’s happening:
+
+- **`step1()`**: Takes `data` as its input.
+- **`step2()`**: Takes the result of `step1()` as its input.
+- **`step3()`**: Takes the result of `step2()` as its input.
+
+This sequence of operations could be written without pipes by nesting function calls, but the use of pipes makes the flow of data more explicit and easier to read.
+
+### Simple Examples of Piping
+
+Let’s start with a simple, single use of piping:
+
+```{r,eval=FALSE}
+FAES %>% nrow()
+```
+
+In this case, the `%>%` operator pipes the `FAES` dataset directly into the `nrow()` function, which returns the number of rows in the dataset. This is functionally equivalent to:
+
+```{r,eval=FALSE}
+nrow(FAES)
+```
+
+Now, let's consider an example where the function takes an additional argument:
+
+```{r,eval=FALSE}
+meanBlank <- FAES %>%
+  filter(type == "blank")
+```
+
+This is functionally equivalent to:
+
+```{r,eval=FALSE}
+meanBlank <- filter(FAES, type == "blank")
+```
+
+In both cases, piping might seem redundant because it only removes the need to specify the first argument explicitly.
+
+### Piping in Practice
+
+With the tools presented in this chapter without using pipe operator we could do a decent job analyzing our `FAES` data. Let's say we wanted to subtract the mean of the `blank` from each `standard` signal and then summarize those results. It would look something like this:
 
 ```{r}
 blank <- filter(FAES, type == "blank")
@@ -250,9 +312,7 @@ stds_4 <- summarize(stds_3, mean = mean(cor_sig), stdDev = sd(cor_sig))
 stds_4
 ```
 
-While the code above did its job, it's certainly wasn't easy to type and certainly not easy to read. At every step of the way we've saved our updated data outputs to a new variable (`stds_1`, `stds_2`, etc.). However, most of these intermediates aren't important, and moreover the repetitive names clutter our code. As the code above is written, we've had to pay special attention to the variable suffix to make sure we're calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. `stds_1 <- mutate(stds_1, ...)`), but that doesn't solve the issue of readability as there's still redundant assigning. 
-
-A solution for this is the **pipe operator** `%>%`, an incredibly useful tool for writing more legible and understandable code. The pipe basically changes how you read code to emphasize the functions you're working with by passing the intermediate steps to hidden processes in the background. Re-writing the code above, we'd get something like: 
+If we use pipes, we can make this code much more legible and easier to understand. The code with pipes would look like this:
 
 ```{r}
 meanBlank <- FAES %>%
@@ -261,16 +321,7 @@ meanBlank <- FAES %>%
   as.numeric()
 
 paste("The mean signal from the blank triplicate is:", meanBlank)
-```
 
-Things may look a bit different, but our underlying code hasn't changed much. What's happening is the pipe operator passes the output to the first argument of the next function. So the output of `filter...` is passed to the first argument of `sumamrise...`, and the argument we specified in `summarise` is actually the *second* argument it receives. You're probably wondering how hiding stuff makes your code more legible, but think of `%>%` as being equivalent to "then". We can read our code as:
-
->"Take the `FAES` dataset, *then* filter for `type == "blank"` *then* collapse the dataset to the mean `signal` value and *then* convert to numeric value *then* pass this final output to the new variable `meanBlank`." 
-
-Not only is the pipe less typing, but the emphasis is on the functions so you can better understand what you're doing vs. where all the intermediate values are going. Extending our piping to the second batch of code we get:  
-
-
-```{r}
 stds <- FAES %>%
   filter(type == "standard") %>%
   mutate(cor_sig = signal - meanBlank) %>% 
@@ -280,7 +331,13 @@ stds <- FAES %>%
 stds
 ```
 
-Same thing. The underlying code hasn't changed much, but it's much more legible and we can clearly see we're subtracting the `meanBlank` value from each measured signal then summarizing the corrected signals. 
+While the initial code did its job, it's certainly wasn't easy to type and certainly not easy to read. At every step of the way we've saved our updated data outputs to a new variable (`stds_1`, `stds_2`, etc.). However, most of these intermediates aren't important, and moreover the repetitive names clutter our code. As the code above is written, we've had to pay special attention to the variable suffix to make sure we're calling the correct data set as our code has progresses. An alternative would be to reassign the outputs back to the original variable name (i.e. `stds_1 <- mutate(stds_1, ...)`), but that doesn't solve the issue of readability as there's still redundant assigning.
+
+Things may look a bit different, but our underlying code hasn't changed much. What's happening is the pipe operator passes the output to the first argument of the next function. So the output of `filter...` is passed to the first argument of `sumamrise...`, and the argument we specified in `summarise` is actually the *second* argument it receives. You're probably wondering how hiding stuff makes your code more legible, but think of `%>%` as being equivalent to "then". We can read our code as:
+
+>"Take the `FAES` dataset, *then* filter for `type == "blank"` *then* collapse the dataset to the mean `signal` value and *then* convert to numeric value *then* pass this final output to the new variable `meanBlank`."
+
+Not only is the pipe less typing, but the emphasis is on the functions so you can better understand what you're doing vs. where all the intermediate values are going.
 
 ### Notes on piping
 

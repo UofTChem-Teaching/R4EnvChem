@@ -5,7 +5,7 @@ There is a set of exercises available for this chapter!
 
 **Not sure how to access and work on the exercise Rmd files? **
 
--   Refer to Chapter 3.2 for step-by-step instructions on accessing the exercises and working within the UofT JupyterHub's RStudio environment.
+-   Refer to [Running Tests for Your Exercises] for step-by-step instructions on accessing the exercises and working within the UofT JupyterHub's RStudio environment.
 
 -   Alternatively, if you'd like to simply access the individual files, you can download them directly from this [repository](https://github.com/UofTChem-Teaching/R4EnvChem-Exercises).
 
