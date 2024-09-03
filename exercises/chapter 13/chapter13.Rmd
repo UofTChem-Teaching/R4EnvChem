@@ -103,7 +103,15 @@ Generate a scatterplot to observe Ox concentration over time in a line, and dist
 
 To observe Ox concentration over time, distinguishing between NO2 and O3 pollutants:
 
--   Change the data to long format using `pivot_longer()` function to include NO2 and O3 concentrations in the same column and create a new column for the type of pollutant.
+- We use the pivot_longer() function to transform the data into a long format. This function combines the NO2 and O3 concentrations into a single column and creates a new column for the pollutant type. The transformation has already been completed for you, so the code should not be modified. You can learn more about this function in Chapter 15 of the textbook. The dataset you’ll be using is named `ox_long`.
+
+```{r}
+ox_long <- ox_data %>%
+  pivot_longer(cols = c(NO2, O3),
+               names_to = "Pollutant",
+               values_to = "Concentration")
+```
+
 -   Use `geom_point()` to create a scatterplot of pollutant concentration vs. time, colored by the type of pollutant.
 -   Use `geom_line()` to add a dashed line for the overall Ox concentration.
 -   Title your plot "Pollutant Concentrations Over Time".
