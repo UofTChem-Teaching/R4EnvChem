@@ -250,11 +250,14 @@ div.csl-indent {
 <li class="chapter" data-level="4.1.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#searching-the-textbook"><i class="fa fa-check"></i><b>4.1.1</b> Searching the Textbook</a></li>
 <li class="chapter" data-level="4.1.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#original-r-markdown-of-the-textbook-chapters"><i class="fa fa-check"></i><b>4.1.2</b> Original R Markdown of the Textbook Chapters</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#running-tests-for-your-exercises"><i class="fa fa-check"></i><b>4.2</b> Running Tests for Your Exercises</a>
+<li class="chapter" data-level="4.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#end-of-chapter-exercises"><i class="fa fa-check"></i><b>4.2</b> End-of-Chapter Exercises</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#how-to-run-the-tests"><i class="fa fa-check"></i><b>4.2.1</b> How to Run the Tests</a></li>
-<li class="chapter" data-level="4.2.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#optional-autotests-on-markus"><i class="fa fa-check"></i><b>4.2.2</b> Optional: Autotests on MarkUs</a></li>
-<li class="chapter" data-level="4.2.3" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#optional-extra-questions"><i class="fa fa-check"></i><b>4.2.3</b> Optional Extra Questions</a></li>
+<li class="chapter" data-level="4.2.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#optional-extra-questions"><i class="fa fa-check"></i><b>4.2.1</b> Optional Extra Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#running-tests-for-your-exercises"><i class="fa fa-check"></i><b>4.3</b> Running Tests for Your Exercises</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#how-to-run-the-tests"><i class="fa fa-check"></i><b>4.3.1</b> How to Run the Tests</a></li>
+<li class="chapter" data-level="4.3.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#optional-autotests-on-markus"><i class="fa fa-check"></i><b>4.3.2</b> Optional: Autotests on MarkUs</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Part 2: How to Code in R</b></span></li>
@@ -568,11 +571,37 @@ div.csl-indent {
 <p><img src="images/view_source.png" style="width:70.0%" /></p>
 </div>
 </div>
-<div id="running-tests-for-your-exercises" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Running Tests for Your Exercises<a href="how-to-use-this-textbook.html#running-tests-for-your-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="end-of-chapter-exercises" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> End-of-Chapter Exercises<a href="how-to-use-this-textbook.html#end-of-chapter-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As you progress through each chapter, you’ll find <code>.Rmd</code> (R Markdown) files available for practice and reinforcement. These Rmd files are designed to provide you with hands-on exercises that align with the concepts covered in the textbook.</p>
+<p>Within each Rmd file, you’ll encounter straightforward exercises that give you the opportunity to apply what you’ve learned in each chapter. After completing an exercise, you can run the provided unit test cell to check your answers and receive instant feedback.</p>
+<p>Here is an instruction to how to start on the exercises:</p>
+<ol style="list-style-type: decimal">
+<li>Access the Repository:
+<ul>
+<li><strong>Recommended for those who have access to UofT JupyterHub</strong>: Click on the following link to automatically clone the “R4EnvChem-Exercises” repository to your UofT JupyterHub:
+<a href="https://r.datatools.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FUofTChem-Teaching%2FR4EnvChem-Exercises&amp;urlpath=rstudio%2F">R4EnvChem-Exercises Repository</a>. This is a preferred method for anyone completing exercises as part of a UofT course.</li>
+<li>Alternatively, you can directly download the files from this <a href="https://github.com/UofTChem-Teaching/R4EnvChem-Exercises">repository</a>.</li>
+</ul></li>
+<li>Work on the Exercise:
+<ul>
+<li>Once inside your JupyterHub’s RStudio environment, in the “Files” pane you’ll see “R4EnvChem-Exercises” folder (figure below). If you click into this folder, you will see a list of chapter folders. Each chapter folder contains the respective exercise Rmd files. Navigate to the desired chapter’s folder and click on the exercise Rmd file you wish to work on. This will open the file in the RStudio editor.
+<img src="images/gitpuller.png" /></li>
+<li>Once the Rmd file is open, you can edit, run code chunks, and add your solutions directly in the file. Remember to save your progress regularly. If you want to generate an output document (like a PDF or HTML) to view your results, click on the “Knit” button usually located at the top of the script editor.</li>
+<li>To enhance readability, you optionally click on the <code>Visual</code> tab at the top of the file view and work on the exercises.</li>
+</ul></li>
+</ol>
+<div id="optional-extra-questions" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Optional Extra Questions<a href="how-to-use-this-textbook.html#optional-extra-questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For those seeking an additional challenge and a chance to delve into topics beyond the textbook, we offer optional extra questions. Resources and explanations will be provided to support you in tackling these optional questions.</p>
+<p>By engaging with these interactive Rmd files, you can actively reinforce your learning, gain practical experience, and explore R concepts in depth. We encourage you to make the most of these resources to enhance your R proficiency. Happy learning!</p>
+</div>
+</div>
+<div id="running-tests-for-your-exercises" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Running Tests for Your Exercises<a href="how-to-use-this-textbook.html#running-tests-for-your-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Each chapter’s exercise folder also contains an R test file (e.g., <code>chapterX_tests.R</code>). This file includes unit tests to verify the correctness of your solutions.</p>
-<div id="how-to-run-the-tests" class="section level3 hasAnchor" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> How to Run the Tests<a href="how-to-use-this-textbook.html#how-to-run-the-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="how-to-run-the-tests" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> How to Run the Tests<a href="how-to-use-this-textbook.html#how-to-run-the-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li><p><strong>Complete the Exercises</strong>:</p>
 <ul>
@@ -615,8 +644,8 @@ div.csl-indent {
 <p><img src="images/missing_error.png" style="width:70.0%" /></p></li>
 </ul>
 </div>
-<div id="optional-autotests-on-markus" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Optional: Autotests on MarkUs<a href="how-to-use-this-textbook.html#optional-autotests-on-markus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="optional-autotests-on-markus" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Optional: Autotests on MarkUs<a href="how-to-use-this-textbook.html#optional-autotests-on-markus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For those who have access to MarkUs, you have the option to use it for autotests on your assignments. These autotests provide automated feedback to help ensure your solutions are correct.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Submit Your Work</strong>:
@@ -640,11 +669,6 @@ div.csl-indent {
 <li>If any autotests fail, revise your Rmd file based on the feedback and resubmit it for further testing.</li>
 </ul></li>
 </ol>
-</div>
-<div id="optional-extra-questions" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Optional Extra Questions<a href="how-to-use-this-textbook.html#optional-extra-questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For those seeking an additional challenge and a chance to delve into topics beyond the textbook, we offer optional extra questions. Resources and explanations will be provided to support you in tackling these optional questions.</p>
-<p>By engaging with these interactive Rmd files, you can actively reinforce your learning, gain practical experience, and explore R concepts in depth. We encourage you to make the most of these resources to enhance your R proficiency. Happy learning!</p>
 
 <!-- This header creates the chapter -->
 </div>

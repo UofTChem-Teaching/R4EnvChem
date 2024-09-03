@@ -61,10 +61,11 @@ how-to-use-this-textbook
 useful-features
 searching-the-textbook
 original-r-markdown-of-the-textbook-chapters
+end-of-chapter-exercises
+optional-extra-questions
 running-tests-for-your-exercises
 how-to-run-the-tests
 optional-autotests-on-markus
-optional-extra-questions
 r-coding-basics
 variables
 data-types
