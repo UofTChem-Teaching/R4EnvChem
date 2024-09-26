@@ -558,7 +558,7 @@ FAESresultsfiltered <- FAESresults %>%
   #Set instConc to LOQ/2 when its value is < LOQ and to 0 when its value is < LOD
   mutate(instConc = case_when(
     instConc > LOQresid ~ instConc,
-    instConc > LODresid ~ LOQ/2,
+    instConc > LODresid ~ LOQresid/2,
     instConc < LODresid ~ 0)) %>%
   #Create a note that indicates whether the concentration is < LOQ or < LOD
   mutate(note = case_when(
