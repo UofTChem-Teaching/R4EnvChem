@@ -41,7 +41,7 @@ rmd_files: [
 
   # Part 5: Modelling in R
   "src/05-modelling-in-r/01-linear-regression.Rmd",
-  "src/05-modelling-in-r/02-multiple-linear-models.Rmd",
+  "src/05-modelling-in-r/02-improving-models.Rmd",
   "src/05-modelling-in-r/03-non-linear-models.Rmd"
   
   # Part 6: CHM410 Labs
