@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 20 Evaluating and Improving Model Performance | R for Environmental Chemistry</title>
+  <meta name="description" content="This is a proof-of-concept for a further full length textbook." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 20 Evaluating and Improving Model Performance | R for Environmental Chemistry" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a proof-of-concept for a further full length textbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 20 Evaluating and Improving Model Performance | R for Environmental Chemistry" />
+  
+  <meta name="twitter:description" content="This is a proof-of-concept for a further full length textbook." />
+  
+
+<meta name="author" content="David Hall, Steven Kutarna, Kristen Yeh, Hui Peng, Chaerin Song, and Jessica D’eon" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelling-linear-regression.html"/>
+<link rel="next" href="modelling-non-linear-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.32/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">R for Environmental Chemistry</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#providing-feedback"><i class="fa fa-check"></i>Providing Feedback</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowlegements"><i class="fa fa-check"></i>Acknowlegements</a></li>
+</ul></li>
+<li class="part"><span><b>Part 1: Getting Started in R</b></span></li>
+<li class="chapter" data-level="1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Intro to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#r-language"><i class="fa fa-check"></i><b>1.1</b> R Language</a></li>
+<li class="chapter" data-level="1.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#rstudio"><i class="fa fa-check"></i><b>1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setting-up-your-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up Your Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#working-remotely-recommended-for-coursework"><i class="fa fa-check"></i><b>1.3.1</b> Working Remotely (Recommended for Coursework)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#working-locally"><i class="fa fa-check"></i><b>1.3.2</b> Working Locally</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-rstudio"><i class="fa fa-check"></i><b>1.4</b> Using RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#running-r-code"><i class="fa fa-check"></i><b>1.5</b> Running R Code</a></li>
+<li class="chapter" data-level="1.6" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#customizing-rstudio"><i class="fa fa-check"></i><b>1.6</b> Customizing RStudio</a></li>
+<li class="chapter" data-level="1.7" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#where-to-get-help"><i class="fa fa-check"></i><b>1.7</b> Where to get help</a></li>
+<li class="chapter" data-level="1.8" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#summary"><i class="fa fa-check"></i><b>1.8</b> Summary</a></li>
+<li class="chapter" data-level="1.9" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#exercise"><i class="fa fa-check"></i><b>1.9</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="1.9.1" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#setup"><i class="fa fa-check"></i><b>1.9.1</b> Setup</a></li>
+<li class="chapter" data-level="1.9.2" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#basic-r-commands"><i class="fa fa-check"></i><b>1.9.2</b> Basic R Commands</a></li>
+<li class="chapter" data-level="1.9.3" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#using-the-help-command"><i class="fa fa-check"></i><b>1.9.3</b> Using the Help Command (<code>?</code>)</a></li>
+<li class="chapter" data-level="1.9.4" data-path="intro-to-r-and-rstudio.html"><a href="intro-to-r-and-rstudio.html#reflection"><i class="fa fa-check"></i><b>1.9.4</b> Reflection</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>2</b> RStudio Projects</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#uploading-files-to-rstudio-server-on-jupyterhub"><i class="fa fa-check"></i><b>2.1</b> Uploading Files to RStudio server on JupyterHub</a></li>
+<li class="chapter" data-level="2.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#paths-and-directories"><i class="fa fa-check"></i><b>2.2</b> Paths and Directories</a></li>
+<li class="chapter" data-level="2.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#importing-a-project"><i class="fa fa-check"></i><b>2.3</b> Importing a Project</a></li>
+<li class="chapter" data-level="2.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#creating-an-rstudio-project"><i class="fa fa-check"></i><b>2.4</b> Creating an RStudio Project</a></li>
+<li class="chapter" data-level="2.5" data-path="rstudio-projects.html"><a href="rstudio-projects.html#a-sneak-peek-at-.rmd-files"><i class="fa fa-check"></i><b>2.5</b> A Sneak Peek at <code>.Rmd</code> Files</a></li>
+<li class="chapter" data-level="2.6" data-path="rstudio-projects.html"><a href="rstudio-projects.html#summary-1"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+<li class="chapter" data-level="2.7" data-path="rstudio-projects.html"><a href="rstudio-projects.html#exercise-1"><i class="fa fa-check"></i><b>2.7</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#get-started"><i class="fa fa-check"></i><b>2.7.1</b> Get Started</a></li>
+<li class="chapter" data-level="2.7.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#confirm-your-working-directory"><i class="fa fa-check"></i><b>2.7.2</b> Confirm Your Working Directory</a></li>
+<li class="chapter" data-level="2.7.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#creating-your-own-project"><i class="fa fa-check"></i><b>2.7.3</b> Creating Your Own Project</a></li>
+<li class="chapter" data-level="2.7.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-your-rmd-file"><i class="fa fa-check"></i><b>2.7.4</b> Create Your Rmd File</a></li>
+<li class="chapter" data-level="2.7.5" data-path="rstudio-projects.html"><a href="rstudio-projects.html#upload-a-file-from-your-computer"><i class="fa fa-check"></i><b>2.7.5</b> Upload a file from your computer</a></li>
+<li class="chapter" data-level="2.7.6" data-path="rstudio-projects.html"><a href="rstudio-projects.html#reflection-1"><i class="fa fa-check"></i><b>2.7.6</b> Reflection</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="using-r-markdown.html"><a href="using-r-markdown.html"><i class="fa fa-check"></i><b>3</b> Using R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="using-r-markdown.html"><a href="using-r-markdown.html#getting-started-with-r-markdown"><i class="fa fa-check"></i><b>3.1</b> Getting Started with R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="using-r-markdown.html"><a href="using-r-markdown.html#understanding-r-markdown"><i class="fa fa-check"></i><b>3.1.1</b> Understanding R Markdown</a></li>
+<li class="chapter" data-level="3.1.2" data-path="using-r-markdown.html"><a href="using-r-markdown.html#running-code-in-r-markdown"><i class="fa fa-check"></i><b>3.1.2</b> Running Code in R Markdown</a></li>
+<li class="chapter" data-level="3.1.3" data-path="using-r-markdown.html"><a href="using-r-markdown.html#headings-and-subheadings"><i class="fa fa-check"></i><b>3.1.3</b> Headings and Subheadings</a></li>
+<li class="chapter" data-level="3.1.4" data-path="using-r-markdown.html"><a href="using-r-markdown.html#latex-basics"><i class="fa fa-check"></i><b>3.1.4</b> LaTeX Basics</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="using-r-markdown.html"><a href="using-r-markdown.html#compiling-your-final-report"><i class="fa fa-check"></i><b>3.2</b> Compiling your final report</a></li>
+<li class="chapter" data-level="3.3" data-path="using-r-markdown.html"><a href="using-r-markdown.html#authoring-with-r-markdown"><i class="fa fa-check"></i><b>3.3</b> Authoring with R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="using-r-markdown.html"><a href="using-r-markdown.html#r-markdown-syntax"><i class="fa fa-check"></i><b>3.3.1</b> R Markdown Syntax</a></li>
+<li class="chapter" data-level="3.3.2" data-path="using-r-markdown.html"><a href="using-r-markdown.html#r-code-chunk-options"><i class="fa fa-check"></i><b>3.3.2</b> R Code Chunk Options</a></li>
+<li class="chapter" data-level="3.3.3" data-path="using-r-markdown.html"><a href="using-r-markdown.html#inserting-images"><i class="fa fa-check"></i><b>3.3.3</b> Inserting images</a></li>
+<li class="chapter" data-level="3.3.4" data-path="using-r-markdown.html"><a href="using-r-markdown.html#generating-tables"><i class="fa fa-check"></i><b>3.3.4</b> Generating tables</a></li>
+<li class="chapter" data-level="3.3.5" data-path="using-r-markdown.html"><a href="using-r-markdown.html#spellcheck-in-r-markdown"><i class="fa fa-check"></i><b>3.3.5</b> Spellcheck in R Markdown</a></li>
+<li class="chapter" data-level="3.3.6" data-path="using-r-markdown.html"><a href="using-r-markdown.html#exporting-r-markdown-documents"><i class="fa fa-check"></i><b>3.3.6</b> Exporting R Markdown documents</a></li>
+<li class="chapter" data-level="3.3.7" data-path="using-r-markdown.html"><a href="using-r-markdown.html#rstudio-tips-and-tricks"><i class="fa fa-check"></i><b>3.3.7</b> RStudio tips and tricks</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="using-r-markdown.html"><a href="using-r-markdown.html#r-markdown-resources"><i class="fa fa-check"></i><b>3.4</b> R Markdown resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html"><i class="fa fa-check"></i><b>4</b> How to Use This Textbook</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#useful-features"><i class="fa fa-check"></i><b>4.1</b> Useful Features</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#searching-the-textbook"><i class="fa fa-check"></i><b>4.1.1</b> Searching the Textbook</a></li>
+<li class="chapter" data-level="4.1.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#original-r-markdown-of-the-textbook-chapters"><i class="fa fa-check"></i><b>4.1.2</b> Original R Markdown of the Textbook Chapters</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#end-of-chapter-exercises"><i class="fa fa-check"></i><b>4.2</b> End-of-Chapter Exercises</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#optional-extra-questions"><i class="fa fa-check"></i><b>4.2.1</b> Optional Extra Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#running-tests-for-your-exercises"><i class="fa fa-check"></i><b>4.3</b> Running Tests for Your Exercises</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#how-to-run-the-tests"><i class="fa fa-check"></i><b>4.3.1</b> How to Run the Tests</a></li>
+<li class="chapter" data-level="4.3.2" data-path="how-to-use-this-textbook.html"><a href="how-to-use-this-textbook.html#optional-autotests-on-markus"><i class="fa fa-check"></i><b>4.3.2</b> Optional: Autotests on MarkUs</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part 2: How to Code in R</b></span></li>
+<li class="chapter" data-level="5" data-path="r-coding-basics.html"><a href="r-coding-basics.html"><i class="fa fa-check"></i><b>5</b> R Coding Basics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#variables"><i class="fa fa-check"></i><b>5.1</b> Variables</a></li>
+<li class="chapter" data-level="5.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-types"><i class="fa fa-check"></i><b>5.2</b> Data Types</a></li>
+<li class="chapter" data-level="5.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-structures"><i class="fa fa-check"></i><b>5.3</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#data-frames"><i class="fa fa-check"></i><b>5.3.1</b> Data Frames</a></li>
+<li class="chapter" data-level="5.3.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#accessing-data-in-subfolders"><i class="fa fa-check"></i><b>5.3.2</b> Accessing Data in Subfolders</a></li>
+<li class="chapter" data-level="5.3.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#other-data-structures"><i class="fa fa-check"></i><b>5.3.3</b> Other Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="r-coding-basics.html"><a href="r-coding-basics.html#conditional-statements"><i class="fa fa-check"></i><b>5.4</b> Conditional Statements</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#understanding-r-syntax"><i class="fa fa-check"></i><b>5.4.1</b> Understanding R Syntax</a></li>
+<li class="chapter" data-level="5.4.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#the-basic-if-statement"><i class="fa fa-check"></i><b>5.4.2</b> The Basic <code>if</code> Statement</a></li>
+<li class="chapter" data-level="5.4.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#expanding-with-else-and-else-if"><i class="fa fa-check"></i><b>5.4.3</b> Expanding with <code>else</code> and <code>else if</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="r-coding-basics.html"><a href="r-coding-basics.html#r-built-in-functions"><i class="fa fa-check"></i><b>5.5</b> R built-in Functions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#exploring-more-built-in-functions"><i class="fa fa-check"></i><b>5.5.1</b> Exploring More Built-In Functions</a></li>
+<li class="chapter" data-level="5.5.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#function-documentation"><i class="fa fa-check"></i><b>5.5.2</b> Function Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="r-coding-basics.html"><a href="r-coding-basics.html#summary-2"><i class="fa fa-check"></i><b>5.6</b> Summary</a></li>
+<li class="chapter" data-level="5.7" data-path="r-coding-basics.html"><a href="r-coding-basics.html#exercise-2"><i class="fa fa-check"></i><b>5.7</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html"><i class="fa fa-check"></i><b>6</b> Workflows for R Coding</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#creating-or-opening-an-r-markdown-document"><i class="fa fa-check"></i><b>6.1</b> Creating or opening an R Markdown document</a></li>
+<li class="chapter" data-level="6.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#workspace-and-whats-real"><i class="fa fa-check"></i><b>6.2</b> Workspace and What’s Real</a></li>
+<li class="chapter" data-level="6.3" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-r-markdown"><i class="fa fa-check"></i><b>6.3</b> Saving R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#what-should-i-save"><i class="fa fa-check"></i><b>6.3.1</b> What Should I Save?</a></li>
+<li class="chapter" data-level="6.3.2" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#saving-data-frames"><i class="fa fa-check"></i><b>6.3.2</b> Saving Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#script-formatting"><i class="fa fa-check"></i><b>6.4</b> Script formatting</a></li>
+<li class="chapter" data-level="6.5" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#viewing-data-and-code-simultaneously"><i class="fa fa-check"></i><b>6.5</b> Viewing Data and Code Simultaneously</a></li>
+<li class="chapter" data-level="6.6" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#troubleshooting-error-messages"><i class="fa fa-check"></i><b>6.6</b> Troubleshooting Error Messages</a></li>
+<li class="chapter" data-level="6.7" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#summary-3"><i class="fa fa-check"></i><b>6.7</b> Summary</a></li>
+<li class="chapter" data-level="6.8" data-path="workflows-for-r-coding.html"><a href="workflows-for-r-coding.html#exercise-3"><i class="fa fa-check"></i><b>6.8</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>7</b> R Packages</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-packages.html"><a href="r-packages.html#what-are-r-packages"><i class="fa fa-check"></i><b>7.1</b> What are R packages?</a></li>
+<li class="chapter" data-level="7.2" data-path="r-packages.html"><a href="r-packages.html#how-to-use-r-packages"><i class="fa fa-check"></i><b>7.2</b> How to use R packages</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="r-packages.html"><a href="r-packages.html#how-to-install-packages"><i class="fa fa-check"></i><b>7.2.1</b> How to install packages</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-packages.html"><a href="r-packages.html#how-to-load-packages"><i class="fa fa-check"></i><b>7.2.2</b> How to load packages</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-packages.html"><a href="r-packages.html#calling-specific-functions"><i class="fa fa-check"></i><b>7.2.3</b> Calling specific functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-packages.html"><a href="r-packages.html#tidyverse-the-golden-toolbox-of-r"><i class="fa fa-check"></i><b>7.3</b> Tidyverse: The Golden Toolbox of R</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-packages.html"><a href="r-packages.html#loading-the-tidyverse"><i class="fa fa-check"></i><b>7.3.1</b> Loading the Tidyverse</a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-packages.html"><a href="r-packages.html#data-visualization"><i class="fa fa-check"></i><b>7.3.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-packages.html"><a href="r-packages.html#data-manipulation"><i class="fa fa-check"></i><b>7.3.3</b> Data Manipulation</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-packages.html"><a href="r-packages.html#efficient-data-reading"><i class="fa fa-check"></i><b>7.3.4</b> Efficient Data Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-packages.html"><a href="r-packages.html#summary-4"><i class="fa fa-check"></i><b>7.4</b> Summary</a></li>
+<li class="chapter" data-level="7.5" data-path="r-packages.html"><a href="r-packages.html#exercise-4"><i class="fa fa-check"></i><b>7.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html"><i class="fa fa-check"></i><b>8</b> Loops and Functions in R</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#loops"><i class="fa fa-check"></i><b>8.1</b> Loops</a></li>
+<li class="chapter" data-level="8.2" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#writing-custom-functions-in-r"><i class="fa fa-check"></i><b>8.2</b> Writing custom functions in R</a></li>
+<li class="chapter" data-level="8.3" data-path="loops-and-functions-in-r.html"><a href="loops-and-functions-in-r.html#further_reading_chapter8"><i class="fa fa-check"></i><b>8.3</b> Further reading</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Data Analysis in R</b></span></li>
+<li class="chapter" data-level="9" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html"><i class="fa fa-check"></i><b>9</b> Intro to Data Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#example-data"><i class="fa fa-check"></i><b>9.1</b> Example Data</a></li>
+<li class="chapter" data-level="9.2" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#sneak-peek-at-data-analysis"><i class="fa fa-check"></i><b>9.2</b> Sneak Peek at Data Analysis</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#setting-up"><i class="fa fa-check"></i><b>9.2.1</b> Setting Up</a></li>
+<li class="chapter" data-level="9.2.2" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#tidying-our-data"><i class="fa fa-check"></i><b>9.2.2</b> Tidying Our Data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#investigating-storm-patterns"><i class="fa fa-check"></i><b>9.2.3</b> Investigating Storm Patterns</a></li>
+<li class="chapter" data-level="9.2.4" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#visualization-geographical-distribution"><i class="fa fa-check"></i><b>9.2.4</b> Visualization: Geographical Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="intro-to-data-analysis.html"><a href="intro-to-data-analysis.html#further_reading_chapter9"><i class="fa fa-check"></i><b>9.3</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html"><i class="fa fa-check"></i><b>10</b> Importing Your Data Into R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#csv-files"><i class="fa fa-check"></i><b>10.1</b> csv files</a></li>
+<li class="chapter" data-level="10.2" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#read_csv"><i class="fa fa-check"></i><b>10.2</b> <code>read_csv</code></a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#tibbles-vs.-data-frames"><i class="fa fa-check"></i><b>10.2.1</b> Tibbles vs. data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#importing-other-data-types"><i class="fa fa-check"></i><b>10.3</b> Importing other data types</a></li>
+<li class="chapter" data-level="10.4" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#saving-data"><i class="fa fa-check"></i><b>10.4</b> Saving data</a></li>
+<li class="chapter" data-level="10.5" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#further_reading_chapter10"><i class="fa fa-check"></i><b>10.5</b> Further Reading</a></li>
+<li class="chapter" data-level="10.6" data-path="importing-your-data-into-r.html"><a href="importing-your-data-into-r.html#exercise-5"><i class="fa fa-check"></i><b>10.6</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="tidying-your-data.html"><a href="tidying-your-data.html"><i class="fa fa-check"></i><b>11</b> Tidying Your Data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="tidying-your-data.html"><a href="tidying-your-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>11.1</b> What is tidy data?</a></li>
+<li class="chapter" data-level="11.2" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tools-to-tidy-your-data"><i class="fa fa-check"></i><b>11.2</b> Tools to tidy your data</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="tidying-your-data.html"><a href="tidying-your-data.html#selection-helpers"><i class="fa fa-check"></i><b>11.2.1</b> Selection helpers</a></li>
+<li class="chapter" data-level="11.2.2" data-path="tidying-your-data.html"><a href="tidying-your-data.html#separating-columns"><i class="fa fa-check"></i><b>11.2.2</b> Separating columns</a></li>
+<li class="chapter" data-level="11.2.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#unitingcombining-columns"><i class="fa fa-check"></i><b>11.2.3</b> Uniting/combining columns</a></li>
+<li class="chapter" data-level="11.2.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#renaming-columnsheaders"><i class="fa fa-check"></i><b>11.2.4</b> Renaming columns/headers</a></li>
+<li class="chapter" data-level="11.2.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#chaining-multiple-operations"><i class="fa fa-check"></i><b>11.2.5</b> Chaining multiple operations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="tidying-your-data.html"><a href="tidying-your-data.html#tips-for-recording-data"><i class="fa fa-check"></i><b>11.3</b> Tips for recording data</a></li>
+<li class="chapter" data-level="11.4" data-path="tidying-your-data.html"><a href="tidying-your-data.html#further_reading_chapter11"><i class="fa fa-check"></i><b>11.4</b> Further reading</a></li>
+<li class="chapter" data-level="11.5" data-path="tidying-your-data.html"><a href="tidying-your-data.html#chapter-references"><i class="fa fa-check"></i><b>11.5</b> Chapter References</a></li>
+<li class="chapter" data-level="11.6" data-path="tidying-your-data.html"><a href="tidying-your-data.html#exercise-6"><i class="fa fa-check"></i><b>11.6</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html"><i class="fa fa-check"></i><b>12</b> Transform: Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#selecting-by-row-or-value"><i class="fa fa-check"></i><b>12.1</b> Selecting by row or value</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#logical-operators"><i class="fa fa-check"></i><b>12.1.1</b> Logical operators</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#arranging-rows"><i class="fa fa-check"></i><b>12.2</b> Arranging rows</a></li>
+<li class="chapter" data-level="12.3" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#selecting-column-name"><i class="fa fa-check"></i><b>12.3</b> Selecting column name</a></li>
+<li class="chapter" data-level="12.4" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#deleting-columns-or-rows"><i class="fa fa-check"></i><b>12.4</b> Deleting Columns or Rows</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#deleting-columns"><i class="fa fa-check"></i><b>12.4.1</b> Deleting columns</a></li>
+<li class="chapter" data-level="12.4.2" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#deleting-rows"><i class="fa fa-check"></i><b>12.4.2</b> Deleting rows</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#adding-new-variables"><i class="fa fa-check"></i><b>12.5</b> Adding new variables</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#mutate-with-a-condition"><i class="fa fa-check"></i><b>12.5.1</b> Mutate with a condition</a></li>
+<li class="chapter" data-level="12.5.2" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#useful-mutate-function"><i class="fa fa-check"></i><b>12.5.2</b> Useful mutate function</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#group-and-summarize-data"><i class="fa fa-check"></i><b>12.6</b> Group and summarize data</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#useful-summarize-functions"><i class="fa fa-check"></i><b>12.6.1</b> Useful summarize functions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#the-pipe-chaining-functions-together"><i class="fa fa-check"></i><b>12.7</b> The Pipe: Chaining Functions Together</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#function-composition-example"><i class="fa fa-check"></i><b>12.7.1</b> Function Composition Example</a></li>
+<li class="chapter" data-level="12.7.2" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#abstract-example-of-piping"><i class="fa fa-check"></i><b>12.7.2</b> Abstract Example of Piping</a></li>
+<li class="chapter" data-level="12.7.3" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#simple-examples-of-piping"><i class="fa fa-check"></i><b>12.7.3</b> Simple Examples of Piping</a></li>
+<li class="chapter" data-level="12.7.4" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#piping-in-practice"><i class="fa fa-check"></i><b>12.7.4</b> Piping in Practice</a></li>
+<li class="chapter" data-level="12.7.5" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#notes-on-piping"><i class="fa fa-check"></i><b>12.7.5</b> Notes on piping</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#further_reading_chapter12"><i class="fa fa-check"></i><b>12.8</b> Further reading</a></li>
+<li class="chapter" data-level="12.9" data-path="transform-data-manipulation.html"><a href="transform-data-manipulation.html#exercise-7"><i class="fa fa-check"></i><b>12.9</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html"><i class="fa fa-check"></i><b>13</b> Ggplot Basic Visualizations</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html#building-plots-ups"><i class="fa fa-check"></i><b>13.1</b> Building plots ups</a></li>
+<li class="chapter" data-level="13.2" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html#basic-plotting"><i class="fa fa-check"></i><b>13.2</b> Basic plotting</a></li>
+<li class="chapter" data-level="13.3" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html#changing-plot-labels"><i class="fa fa-check"></i><b>13.3</b> Changing plot labels</a></li>
+<li class="chapter" data-level="13.4" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html#small-multiples"><i class="fa fa-check"></i><b>13.4</b> Small Multiples</a></li>
+<li class="chapter" data-level="13.5" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html#plotting-subsets-of-data"><i class="fa fa-check"></i><b>13.5</b> Plotting subsets of data</a></li>
+<li class="chapter" data-level="13.6" data-path="ggplot-basic-visualizations.html"><a href="ggplot-basic-visualizations.html#exercise-8"><i class="fa fa-check"></i><b>13.6</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>14</b> Summarizing Data</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="summarizing-data.html"><a href="summarizing-data.html#data-to-play-with"><i class="fa fa-check"></i><b>14.1</b> Data to Play With</a></li>
+<li class="chapter" data-level="14.2" data-path="summarizing-data.html"><a href="summarizing-data.html#summarizing-data-by-group"><i class="fa fa-check"></i><b>14.2</b> Summarizing Data by Group</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="summarizing-data.html"><a href="summarizing-data.html#further-summarize-operations"><i class="fa fa-check"></i><b>14.2.1</b> Further Summarize Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables-with-flextable"><i class="fa fa-check"></i><b>14.3</b> Pretty Tables with Flextable</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="summarizing-data.html"><a href="summarizing-data.html#uniting-columns"><i class="fa fa-check"></i><b>14.3.1</b> Uniting columns</a></li>
+<li class="chapter" data-level="14.3.2" data-path="summarizing-data.html"><a href="summarizing-data.html#pretty-tables"><i class="fa fa-check"></i><b>14.3.2</b> Pretty tables</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="summarizing-data.html"><a href="summarizing-data.html#exercise-9"><i class="fa fa-check"></i><b>14.4</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html"><i class="fa fa-check"></i><b>15</b> Restructuring Your Data</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html#long-vs-wide-data"><i class="fa fa-check"></i><b>15.1</b> Long vs Wide Data</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html#long-data"><i class="fa fa-check"></i><b>15.1.1</b> Long Data</a></li>
+<li class="chapter" data-level="15.1.2" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html#wide-data"><i class="fa fa-check"></i><b>15.1.2</b> Wide Data</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html#making-data-longer"><i class="fa fa-check"></i><b>15.2</b> Making Data Longer</a></li>
+<li class="chapter" data-level="15.3" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html#making-data-wider"><i class="fa fa-check"></i><b>15.3</b> Making Data Wider</a></li>
+<li class="chapter" data-level="15.4" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html#summary-5"><i class="fa fa-check"></i><b>15.4</b> Summary</a></li>
+<li class="chapter" data-level="15.5" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html#further_reading_chapter15"><i class="fa fa-check"></i><b>15.5</b> Further reading</a></li>
+<li class="chapter" data-level="15.6" data-path="restructuring-your-data.html"><a href="restructuring-your-data.html#exercise-10"><i class="fa fa-check"></i><b>15.6</b> Exercise</a></li>
+</ul></li>
+<li class="part"><span><b>Part 4: Visualization in R</b></span></li>
+<li class="chapter" data-level="16" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html"><i class="fa fa-check"></i><b>16</b> Visualizations for Env Chem</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#discrete-vs.-continuous-variables"><i class="fa fa-check"></i><b>16.1</b> Discrete vs. Continuous variables</a></li>
+<li class="chapter" data-level="16.2" data-path="visualizations-for-env-chem.html"><a href="visualizations-for-env-chem.html#prerequisites"><i class="fa fa-check"></i><b>16.2</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html"><i class="fa fa-check"></i><b>17</b> Common Types of Graphs</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#bar-charts"><i class="fa fa-check"></i><b>17.1</b> Bar Charts</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#adding-error-bars"><i class="fa fa-check"></i><b>17.1.1</b> Adding Error Bars</a></li>
+<li class="chapter" data-level="17.1.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#ordering-bar-charts"><i class="fa fa-check"></i><b>17.1.2</b> Ordering Bar Charts</a></li>
+<li class="chapter" data-level="17.1.3" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#grouping-bar-charts"><i class="fa fa-check"></i><b>17.1.3</b> Grouping Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#box-plots"><i class="fa fa-check"></i><b>17.2</b> Box Plots</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#violin-plots"><i class="fa fa-check"></i><b>17.2.1</b> Violin Plots</a></li>
+<li class="chapter" data-level="17.2.2" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#statistical-comparisons-between-groups"><i class="fa fa-check"></i><b>17.2.2</b> Statistical Comparisons Between Groups</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#histograms"><i class="fa fa-check"></i><b>17.3</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#multiple-histograms"><i class="fa fa-check"></i><b>17.3.1</b> Multiple histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#scatter-plots"><i class="fa fa-check"></i><b>17.4</b> Scatter Plots</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#marginal-plots"><i class="fa fa-check"></i><b>17.4.1</b> Marginal plots</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="common-types-of-graphs.html"><a href="common-types-of-graphs.html#exercise-11"><i class="fa fa-check"></i><b>17.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html"><i class="fa fa-check"></i><b>18</b> Customizing your plots</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#interactive-plots"><i class="fa fa-check"></i><b>18.1</b> Interactive Plots</a></li>
+<li class="chapter" data-level="18.2" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#plot-themes"><i class="fa fa-check"></i><b>18.2</b> Plot Themes</a></li>
+<li class="chapter" data-level="18.3" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#legends"><i class="fa fa-check"></i><b>18.3</b> Legends</a></li>
+<li class="chapter" data-level="18.4" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#modifying-labels"><i class="fa fa-check"></i><b>18.4</b> Modifying labels</a></li>
+<li class="chapter" data-level="18.5" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#modifying-axis"><i class="fa fa-check"></i><b>18.5</b> Modifying Axis</a>
+<ul>
+<li class="chapter" data-level="18.5.1" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#transforming-axis"><i class="fa fa-check"></i><b>18.5.1</b> Transforming axis</a></li>
+<li class="chapter" data-level="18.5.2" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#axis-limits"><i class="fa fa-check"></i><b>18.5.2</b> Axis limits</a></li>
+<li class="chapter" data-level="18.5.3" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#axis-tickslabels"><i class="fa fa-check"></i><b>18.5.3</b> Axis ticks/labels</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#arranging-plots"><i class="fa fa-check"></i><b>18.6</b> Arranging plots</a></li>
+<li class="chapter" data-level="18.7" data-path="customizing-your-plots.html"><a href="customizing-your-plots.html#exercise-12"><i class="fa fa-check"></i><b>18.7</b> Exercise</a></li>
+</ul></li>
+<li class="part"><span><b>Part 5: Modelling in R</b></span></li>
+<li class="chapter" data-level="19" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html"><i class="fa fa-check"></i><b>19</b> Modelling: Linear Regression</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#modelling-theory"><i class="fa fa-check"></i><b>19.1</b> Modelling Theory</a></li>
+<li class="chapter" data-level="19.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#linear-regression-in-r"><i class="fa fa-check"></i><b>19.2</b> Linear Regression in R</a></li>
+<li class="chapter" data-level="19.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#visualizing-your-models"><i class="fa fa-check"></i><b>19.3</b> Visualizing your models</a></li>
+<li class="chapter" data-level="19.4" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#accessing-and-using-model-outputs"><i class="fa fa-check"></i><b>19.4</b> Accessing and using model outputs</a></li>
+<li class="chapter" data-level="19.5" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#augmented-glanced-and-tidied-model-outputs"><i class="fa fa-check"></i><b>19.5</b> Augmented, glanced, and tidied model outputs</a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#tidied-outputs"><i class="fa fa-check"></i><b>19.5.1</b> Tidied outputs</a></li>
+<li class="chapter" data-level="19.5.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#glanced-outputs"><i class="fa fa-check"></i><b>19.5.2</b> Glanced outputs</a></li>
+<li class="chapter" data-level="19.5.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#augmented-outputs"><i class="fa fa-check"></i><b>19.5.3</b> Augmented outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#building-linear-regressions-for-multiple-analytes"><i class="fa fa-check"></i><b>19.6</b> Building Linear Regressions for Multiple Analytes</a>
+<ul>
+<li class="chapter" data-level="19.6.1" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#dataset"><i class="fa fa-check"></i><b>19.6.1</b> Dataset</a></li>
+<li class="chapter" data-level="19.6.2" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#building-a-linear-regression-for-each-analyte"><i class="fa fa-check"></i><b>19.6.2</b> Building a Linear Regression for Each Analyte</a></li>
+<li class="chapter" data-level="19.6.3" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#visualizing-linear-regressions-for-each-analyte"><i class="fa fa-check"></i><b>19.6.3</b> Visualizing Linear Regressions for Each Analyte</a></li>
+</ul></li>
+<li class="chapter" data-level="19.7" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#conclusion"><i class="fa fa-check"></i><b>19.7</b> Conclusion</a></li>
+<li class="chapter" data-level="19.8" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#further_reading_chapter19"><i class="fa fa-check"></i><b>19.8</b> Further reading</a></li>
+<li class="chapter" data-level="19.9" data-path="modelling-linear-regression.html"><a href="modelling-linear-regression.html#exercise-13"><i class="fa fa-check"></i><b>19.9</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html"><i class="fa fa-check"></i><b>20</b> Evaluating and Improving Model Performance</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#residuals-for-model-appropriateness"><i class="fa fa-check"></i><b>20.1</b> Residuals for Model Appropriateness</a></li>
+<li class="chapter" data-level="20.2" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#nonlinear-calibration-curves"><i class="fa fa-check"></i><b>20.2</b> Nonlinear Calibration Curves</a></li>
+<li class="chapter" data-level="20.3" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#weighted-calibration-curves"><i class="fa fa-check"></i><b>20.3</b> Weighted Calibration Curves</a></li>
+<li class="chapter" data-level="20.4" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#removing-outliers"><i class="fa fa-check"></i><b>20.4</b> Removing outliers</a></li>
+<li class="chapter" data-level="20.5" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#evaluating-model-performance"><i class="fa fa-check"></i><b>20.5</b> Evaluating Model Performance</a>
+<ul>
+<li class="chapter" data-level="20.5.1" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#choosing-the-best-model"><i class="fa fa-check"></i><b>20.5.1</b> Choosing the best model</a></li>
+<li class="chapter" data-level="20.5.2" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#to-weight-or-not-to-weight"><i class="fa fa-check"></i><b>20.5.2</b> To weight or not to weight?</a></li>
+<li class="chapter" data-level="20.5.3" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#do-i-need-an-intercept"><i class="fa fa-check"></i><b>20.5.3</b> Do I Need an Intercept?</a></li>
+<li class="chapter" data-level="20.5.4" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#model-selection-conclusions"><i class="fa fa-check"></i><b>20.5.4</b> Model Selection: Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="20.6" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#using-calibration-curves-to-estimate-lod-and-loq"><i class="fa fa-check"></i><b>20.6</b> Using Calibration Curves to Estimate LOD and LOQ</a></li>
+<li class="chapter" data-level="20.7" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#inverse-calibration-curves"><i class="fa fa-check"></i><b>20.7</b> Inverse Calibration Curves</a></li>
+<li class="chapter" data-level="20.8" data-path="evaluating-and-improving-model-performance.html"><a href="evaluating-and-improving-model-performance.html#exercise-14"><i class="fa fa-check"></i><b>20.8</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html"><i class="fa fa-check"></i><b>21</b> Modelling: Non-Linear Regression</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#experimental-background"><i class="fa fa-check"></i><b>21.1</b> Experimental Background</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#annotating-maximal-values"><i class="fa fa-check"></i><b>21.1.1</b> Annotating maximal values</a></li>
+<li class="chapter" data-level="21.1.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-maximal-values"><i class="fa fa-check"></i><b>21.1.2</b> Extracting maximal values</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#modelling-sigmoid-curve"><i class="fa fa-check"></i><b>21.2</b> Modelling Sigmoid Curve</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#calculating-logistic-regression"><i class="fa fa-check"></i><b>21.2.1</b> Calculating Logistic Regression</a></li>
+<li class="chapter" data-level="21.2.2" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#extracting-model-parameters"><i class="fa fa-check"></i><b>21.2.2</b> Extracting model parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#summary-6"><i class="fa fa-check"></i><b>21.3</b> Summary</a></li>
+<li class="chapter" data-level="21.4" data-path="modelling-non-linear-regression.html"><a href="modelling-non-linear-regression.html#exercise-15"><i class="fa fa-check"></i><b>21.4</b> Exercise</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Environmental Chemistry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="evaluating-and-improving-model-performance" class="section level1 hasAnchor" number="20">
+<h1><span class="header-section-number">Chapter 20</span> Evaluating and Improving Model Performance<a href="evaluating-and-improving-model-performance.html#evaluating-and-improving-model-performance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we will be discussing methods to evaluate model performance and eventually generate more effective models in R, again in the context of calibration curves in analytical chemistry. As in the previous chapter, we will be using the FAES dataset to demonstrate these concepts. Here is a reminder of what that data looks like:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="evaluating-and-improving-model-performance.html#cb292-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb292-2"><a href="evaluating-and-improving-model-performance.html#cb292-2" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb292-3"><a href="evaluating-and-improving-model-performance.html#cb292-3" tabindex="-1"></a></span>
+<span id="cb292-4"><a href="evaluating-and-improving-model-performance.html#cb292-4" tabindex="-1"></a><span class="co">#Load the data file</span></span>
+<span id="cb292-5"><a href="evaluating-and-improving-model-performance.html#cb292-5" tabindex="-1"></a>FAES <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAES_original_wide.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb292-6"><a href="evaluating-and-improving-model-performance.html#cb292-6" tabindex="-1"></a>  <span class="co">#Pivot the data into long (i.e. tidy) format</span></span>
+<span id="cb292-7"><a href="evaluating-and-improving-model-performance.html#cb292-7" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>std_Na_conc,</span>
+<span id="cb292-8"><a href="evaluating-and-improving-model-performance.html#cb292-8" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>, </span>
+<span id="cb292-9"><a href="evaluating-and-improving-model-performance.html#cb292-9" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
+<span id="cb292-10"><a href="evaluating-and-improving-model-performance.html#cb292-10" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb292-11"><a href="evaluating-and-improving-model-performance.html#cb292-11" tabindex="-1"></a>  <span class="co">#Clean up the data columns</span></span>
+<span id="cb292-12"><a href="evaluating-and-improving-model-performance.html#cb292-12" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> std_Na_conc,</span>
+<span id="cb292-13"><a href="evaluating-and-improving-model-performance.html#cb292-13" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;conc_Na&quot;</span>, <span class="st">&quot;units&quot;</span>),</span>
+<span id="cb292-14"><a href="evaluating-and-improving-model-performance.html#cb292-14" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb292-15"><a href="evaluating-and-improving-model-performance.html#cb292-15" tabindex="-1"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb292-16"><a href="evaluating-and-improving-model-performance.html#cb292-16" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">&quot;standard&quot;</span>)</span>
+<span id="cb292-17"><a href="evaluating-and-improving-model-performance.html#cb292-17" tabindex="-1"></a></span>
+<span id="cb292-18"><a href="evaluating-and-improving-model-performance.html#cb292-18" tabindex="-1"></a><span class="co">#Output a html-friendly data table</span></span>
+<span id="cb292-19"><a href="evaluating-and-improving-model-performance.html#cb292-19" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-391c41937f099b32ccba" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-391c41937f099b32ccba">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"type","targets":1},{"name":"conc_Na","targets":2},{"name":"units","targets":3},{"name":"replicate","targets":4},{"name":"signal","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>And, as always we visualize the data before attempting any modelling:</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="evaluating-and-improving-model-performance.html#cb293-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FAES,</span>
+<span id="cb293-2"><a href="evaluating-and-improving-model-performance.html#cb293-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, </span>
+<span id="cb293-3"><a href="evaluating-and-improving-model-performance.html#cb293-3" tabindex="-1"></a>           <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb293-4"><a href="evaluating-and-improving-model-performance.html#cb293-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<div id="residuals-for-model-appropriateness" class="section level2 hasAnchor" number="20.1">
+<h2><span class="header-section-number">20.1</span> Residuals for Model Appropriateness<a href="evaluating-and-improving-model-performance.html#residuals-for-model-appropriateness" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The residuals of a model are defined as the difference between a measured and fitted value at each datapoint. We briefly showed them last chapter, but they are actually far more important to this modelling framework than we have given them credit for. In the least-squares method we are using for linear modelling, the goal of the model is actually to minimize the sum of the squares of the residuals.</p>
+<p>However, the residuals also have some additional uses beyond defining the goal of our model fitting algorithm, which we will explore here. The basic idea is that the residuals can show patterns in the underlying data that the model we use doesn’t capture. If a model is missing that pattern, that might mean that our model is not the best option. To assess this, we visualize our residuals after making our models. Below are some examples of what these kinds of visualization will look like in the context of a linear calibration curve.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-188"></span>
+<img src="R4EnvChem_files/figure-html/unnamed-chunk-188-1.png" alt="Example residual patterns; figure adapted from Hibbert and Gooding (2006). " width="672" />
+<p class="caption">
+Figure 20.1: Example residual patterns; figure adapted from Hibbert and Gooding (2006).
+</p>
+</div>
+<p>A <em>good</em> linear (or any) model will have residuals normally distributed about zero, shown in the upper left-hand corner below. The remaining examples show other types of patterns you might see when plotting residuals. The upper right-hand example shows residuals with a quadratic trend, indicating that there is nonlinearity in our data that the model used does not capture. The lower left-hand example shows increasing magnitude of the residuals, which is indicative of <em>heteroscedasticity</em> in our data, meaning the magnitude of the uncertainty in each data point is changing as the concentration changing This is a problem because one of the assumptions of the model fitting process is <em>homoscedasticity</em> (i.e. the magnitude of error is the same for each data point). Finally, in the lower right-hand corner, we can identify an outlier in the data based on the residual plot. We will discuss how to fix the other two issues in later sections, but first let’s generate a residual plot for our own data.</p>
+<p>We start by developing our linear model as we did last chapter:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="evaluating-and-improving-model-performance.html#cb294-1" tabindex="-1"></a><span class="co">#Generate a linear model between conc_Na and signal</span></span>
+<span id="cb294-2"><a href="evaluating-and-improving-model-performance.html#cb294-2" tabindex="-1"></a>lmfit <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> FAES)</span>
+<span id="cb294-3"><a href="evaluating-and-improving-model-performance.html#cb294-3" tabindex="-1"></a>lmfit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = signal ~ conc_Na, data = FAES)
+## 
+## Coefficients:
+## (Intercept)      conc_Na  
+##        2615        29707</code></pre>
+<p>We can extract the residuals of this model two different ways. First is the built-in method using the <code>resid</code> function:</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="evaluating-and-improving-model-performance.html#cb296-1" tabindex="-1"></a>lmresid <span class="ot">&lt;-</span> <span class="fu">resid</span>(lmfit)</span>
+<span id="cb296-2"><a href="evaluating-and-improving-model-performance.html#cb296-2" tabindex="-1"></a>lmresid</span></code></pre></div>
+<pre><code>##           1           2           3           4           5           6 
+## -2112.78035 -2023.34265 -2033.66065    70.50554    67.72194    81.60224 
+##           7           8           9          10          11          12 
+##   836.86322   806.13232   775.49632  2718.19878  2671.80698  2684.28108 
+##          13          14          15 
+## -1524.59609 -1485.76569 -1532.46299</code></pre>
+<p>However, as always Tidyverse has a nicer way of doing it. Recall the <code>augment</code> function within the <code>broom</code> library that we discussed in the previous chapter. Along with some other outputs, it provides a well-organized dataframe containing residuals and standardized residuals. Let’s look at that output again here:</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="evaluating-and-improving-model-performance.html#cb298-1" tabindex="-1"></a><span class="co">#Generate the augmented dataframe</span></span>
+<span id="cb298-2"><a href="evaluating-and-improving-model-performance.html#cb298-2" tabindex="-1"></a>augmented <span class="ot">&lt;-</span> <span class="fu">augment</span>(lmfit)</span>
+<span id="cb298-3"><a href="evaluating-and-improving-model-performance.html#cb298-3" tabindex="-1"></a><span class="co">#Output an html-friendly table of the augmented results</span></span>
+<span id="cb298-4"><a href="evaluating-and-improving-model-performance.html#cb298-4" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(augmented, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-86b42df7f4ec57c91c09" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-86b42df7f4ec57c91c09">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],[2615.119450306747,2615.119450306747,2615.119450306747,5585.836464110429,5585.836464110429,5585.836464110429,8556.553477914111,8556.553477914111,8556.553477914111,17468.70451932515,17468.70451932515,17468.70451932515,32322.28958834356,32322.28958834356,32322.28958834356],[-2112.780350306747,-2023.342650306747,-2033.660650306747,70.50553588957064,67.72193588957089,81.60223588957069,836.863222085889,806.1323220858885,775.4963220858899,2718.198780674848,2671.806980674846,2684.281080674846,-1524.596088343558,-1485.765688343559,-1532.462988343559],[0.1329243353783231,0.1329243353783231,0.1329243353783231,0.1012269938650307,0.1012269938650307,0.1012269938650307,0.07975460122699385,0.07975460122699385,0.07975460122699385,0.07668711656441718,0.07668711656441718,0.07668711656441718,0.2760736196319019,0.2760736196319019,0.2760736196319019],[1782.461636681907,1792.406887720477,1791.284269553551,1898.873766080493,1898.883159911906,1898.832557030242,1882.22283642461,1883.437023694713,1884.601515256309,1714.446309338632,1721.015550114476,1719.262746690816,1827.187626774323,1830.866076538774,1826.429906811357],[0.1185451010681178,0.1087210868870077,0.1098327566613702,9.356795665990394e-05,8.632556675094507e-05,0.0001253385963399713,0.009906992026245356,0.009192751458027922,0.008507311478872374,0.09983238686436907,0.09645376583510391,0.09735651263606972,0.1839204904480307,0.1746711435215482,0.1858234430672667],[-1.243606700787078,-1.190962646706001,-1.197035939623959,0.040761993067928,0.03915268562174976,0.04717742701605555,0.4781452634015676,0.4605870365763488,0.4430830312586598,1.550472146055519,1.524010066013116,1.531125345710324,-0.9821205599872512,-0.9571066336863108,-0.9871882918884651]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>signal<\/th>\n      <th>conc_Na<\/th>\n      <th>.fitted<\/th>\n      <th>.resid<\/th>\n      <th>.hat<\/th>\n      <th>.sigma<\/th>\n      <th>.cooksd<\/th>\n      <th>.std.resid<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"signal","targets":1},{"name":"conc_Na","targets":2},{"name":".fitted","targets":3},{"name":".resid","targets":4},{"name":".hat","targets":5},{"name":".sigma","targets":6},{"name":".cooksd","targets":7},{"name":".std.resid","targets":8}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>It is useful to have this information pre-organized into a dataframe, as it makes for easy plotting. Let’s try plotting the residuals (stored as <code>.resid</code> in the <code>augmented</code> dataframe) against our independent variable, the known concentration of Na in these standards (stored as <code>conc_Na</code>), along with a straight horizontal line at zero for comparison. We are doing this with the residuals themselves, but you could also plot the standardized residuals (this just means they are normalized by the mean and standard deviation of the residuals) or the Cooks Distance - each is a different but valid way of representing the model error as a function of the independent variable. We also draw the calibration curve itself for comparison:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="evaluating-and-improving-model-performance.html#cb299-1" tabindex="-1"></a><span class="co">#Plot the residuals of the linear model (in .resid) vs concentration</span></span>
+<span id="cb299-2"><a href="evaluating-and-improving-model-performance.html#cb299-2" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> augmented,</span>
+<span id="cb299-3"><a href="evaluating-and-improving-model-performance.html#cb299-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb299-4"><a href="evaluating-and-improving-model-performance.html#cb299-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb299-5"><a href="evaluating-and-improving-model-performance.html#cb299-5" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span>  <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb299-6"><a href="evaluating-and-improving-model-performance.html#cb299-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Na Concentration (ppm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residual&quot;</span>) <span class="sc">+</span></span>
+<span id="cb299-7"><a href="evaluating-and-improving-model-performance.html#cb299-7" tabindex="-1"></a>  <span class="co">#theme_classic() makes the plot look a little nicer</span></span>
+<span id="cb299-8"><a href="evaluating-and-improving-model-performance.html#cb299-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span>
+<span id="cb299-9"><a href="evaluating-and-improving-model-performance.html#cb299-9" tabindex="-1"></a></span>
+<span id="cb299-10"><a href="evaluating-and-improving-model-performance.html#cb299-10" tabindex="-1"></a><span class="co">#Plot the calibration data with a calibration curve overlaid on top</span></span>
+<span id="cb299-11"><a href="evaluating-and-improving-model-performance.html#cb299-11" tabindex="-1"></a>cal <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> augmented,</span>
+<span id="cb299-12"><a href="evaluating-and-improving-model-performance.html#cb299-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb299-13"><a href="evaluating-and-improving-model-performance.html#cb299-13" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb299-14"><a href="evaluating-and-improving-model-performance.html#cb299-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Na Concentration (ppm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Signal&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb299-15"><a href="evaluating-and-improving-model-performance.html#cb299-15" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb299-16"><a href="evaluating-and-improving-model-performance.html#cb299-16" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb299-17"><a href="evaluating-and-improving-model-performance.html#cb299-17" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_poly_eq</span>(<span class="at">formula =</span> y <span class="sc">~</span> x, <span class="co"># formula uses aesthetic names</span></span>
+<span id="cb299-18"><a href="evaluating-and-improving-model-performance.html#cb299-18" tabindex="-1"></a>                      <span class="at">rr.digits =</span> <span class="dv">4</span>, <span class="co"># reported digits of r-squared</span></span>
+<span id="cb299-19"><a href="evaluating-and-improving-model-performance.html#cb299-19" tabindex="-1"></a>                      <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="fu">after_stat</span>(eq.label), <span class="fu">after_stat</span>(rr.label), <span class="at">sep =</span> <span class="st">&quot;~~~&quot;</span>)), </span>
+<span id="cb299-20"><a href="evaluating-and-improving-model-performance.html#cb299-20" tabindex="-1"></a>                      <span class="at">parse =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">2</span>) </span>
+<span id="cb299-21"><a href="evaluating-and-improving-model-performance.html#cb299-21" tabindex="-1"></a></span>
+<span id="cb299-22"><a href="evaluating-and-improving-model-performance.html#cb299-22" tabindex="-1"></a></span>
+<span id="cb299-23"><a href="evaluating-and-improving-model-performance.html#cb299-23" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(cal, resid, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<p>Based on this plot, we can see that our data has a pretty clear nonlinear trend - the residuals look like a parabola. This indicates that we might have some nonlinearity in our standard curve, likely due to nonlinearity in the instrument response. We can also see how much easier it is to spot that trend in the residual plot than it is in the original calibration curve plot.</p>
+<p>It is always a good idea to plot residuals after making a model to check how well your model is performing and to see if there are ways you could improve your results. Next, we will discuss ways to modify our calibration models to improve their performance.</p>
+</div>
+<div id="nonlinear-calibration-curves" class="section level2 hasAnchor" number="20.2">
+<h2><span class="header-section-number">20.2</span> Nonlinear Calibration Curves<a href="evaluating-and-improving-model-performance.html#nonlinear-calibration-curves" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you plot your residuals for a linear model and they have a clear curvature (see the top right example at the start of the section 20.1), the next step is to try a nonlinear model, the most common and useful of which is the second-order polynomial. Many instruments in analytical chemistry have a nonlinear response profile once you reach a certain concentration, at which point the response follows a quadratic curve. This is particularly common in LC-MS analysis as so much of an analyte is being ionized and detected that it suppresses some ionization and/or reduces the detector response. It is easy to create quadratic calibration curves in R - in fact, we can use exactly the same function as we used for a linear model, with just a slight adjustment:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="evaluating-and-improving-model-performance.html#cb300-1" tabindex="-1"></a><span class="co">#Generate the quadratic model using the lm function</span></span>
+<span id="cb300-2"><a href="evaluating-and-improving-model-performance.html#cb300-2" tabindex="-1"></a>quadFit <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> FAES)</span>
+<span id="cb300-3"><a href="evaluating-and-improving-model-performance.html#cb300-3" tabindex="-1"></a>quadFit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = signal ~ conc_Na + I(conc_Na^2), data = FAES)
+## 
+## Coefficients:
+##  (Intercept)       conc_Na  I(conc_Na^2)  
+##        717.6       47698.6      -17613.3</code></pre>
+<p>Here, we must put the second-order term (conc_Na^2) within the <code>I</code> function, which tells R to read the term conc_Na^2 “as-is”, allowing R to understand that we mean we want this term to be squared instead of treating it as code. The output coefficients have names that are a little difficult to read, but the <code>(Intercept)</code> is the intercept, conc_Na<code>is the linear term, and</code>I(conc_Na^2)` is the quadratic term.</p>
+<p>As with the linear model, we can plot the fitted model over our data and extract the residuals. Let’s do that now to compare our results. Note that this time, we have to provide the formula for <code>geom_smooth</code> to use, and for the purposes of <code>stat_poly_eq</code>, we have to use the <code>poly(x,2,raw=TRUE)</code> syntax instead of using the <code>I</code> function to allow it to interpret the equation correctly. Also, when we extract the residuals using the <code>broom</code> <code>augment</code> function, we resupply the original dataset <code>FAES</code>. This is because <code>augment</code> will otherwise try to reconstruct the original dataset, splitting <code>conc_NA</code> into a linear and quadratic term, which will get messy.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="evaluating-and-improving-model-performance.html#cb302-1" tabindex="-1"></a><span class="co">#Generate the augmented summary of the quadFit model on the FAES dataset</span></span>
+<span id="cb302-2"><a href="evaluating-and-improving-model-performance.html#cb302-2" tabindex="-1"></a>quadAugmented <span class="ot">&lt;-</span> <span class="fu">augment</span>(quadFit, FAES)</span>
+<span id="cb302-3"><a href="evaluating-and-improving-model-performance.html#cb302-3" tabindex="-1"></a></span>
+<span id="cb302-4"><a href="evaluating-and-improving-model-performance.html#cb302-4" tabindex="-1"></a><span class="co">#Plot the calibration curve with a quadratic model overlaid on top of it</span></span>
+<span id="cb302-5"><a href="evaluating-and-improving-model-performance.html#cb302-5" tabindex="-1"></a>cal <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> quadAugmented,</span>
+<span id="cb302-6"><a href="evaluating-and-improving-model-performance.html#cb302-6" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb302-7"><a href="evaluating-and-improving-model-performance.html#cb302-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb302-8"><a href="evaluating-and-improving-model-performance.html#cb302-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Na Concentration (ppm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Signal&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb302-9"><a href="evaluating-and-improving-model-performance.html#cb302-9" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb302-10"><a href="evaluating-and-improving-model-performance.html#cb302-10" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">formula =</span> y <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>), <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb302-11"><a href="evaluating-and-improving-model-performance.html#cb302-11" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_poly_eq</span>(<span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>, <span class="at">raw=</span><span class="cn">TRUE</span>), <span class="co"># formula uses aesthetic names</span></span>
+<span id="cb302-12"><a href="evaluating-and-improving-model-performance.html#cb302-12" tabindex="-1"></a>                      <span class="at">rr.digits =</span> <span class="dv">4</span>, <span class="co"># reported digits of r-squared</span></span>
+<span id="cb302-13"><a href="evaluating-and-improving-model-performance.html#cb302-13" tabindex="-1"></a>                      <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="fu">after_stat</span>(eq.label), <span class="fu">after_stat</span>(rr.label), <span class="at">sep =</span> <span class="st">&quot;~~~&quot;</span>)), </span>
+<span id="cb302-14"><a href="evaluating-and-improving-model-performance.html#cb302-14" tabindex="-1"></a>                      <span class="at">parse =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">2</span>) </span>
+<span id="cb302-15"><a href="evaluating-and-improving-model-performance.html#cb302-15" tabindex="-1"></a></span>
+<span id="cb302-16"><a href="evaluating-and-improving-model-performance.html#cb302-16" tabindex="-1"></a><span class="co">#Plot the residuals of the quadratic model</span></span>
+<span id="cb302-17"><a href="evaluating-and-improving-model-performance.html#cb302-17" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> quadAugmented,</span>
+<span id="cb302-18"><a href="evaluating-and-improving-model-performance.html#cb302-18" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb302-19"><a href="evaluating-and-improving-model-performance.html#cb302-19" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb302-20"><a href="evaluating-and-improving-model-performance.html#cb302-20" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span>  <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb302-21"><a href="evaluating-and-improving-model-performance.html#cb302-21" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Na Concentration (ppm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residual&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb302-22"><a href="evaluating-and-improving-model-performance.html#cb302-22" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb302-23"><a href="evaluating-and-improving-model-performance.html#cb302-23" tabindex="-1"></a></span>
+<span id="cb302-24"><a href="evaluating-and-improving-model-performance.html#cb302-24" tabindex="-1"></a></span>
+<span id="cb302-25"><a href="evaluating-and-improving-model-performance.html#cb302-25" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(cal, resid, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<p>This is definitely looking better! The magnitude of the residuals has decreased by an order of magnitude.</p>
+<p>To use a quadratic calibration curve to calculate new concentration values, we cannot just solve for x in the calibration curve equation - we must plug in our ‘y’ value, subtract it from our intercept to get an expression equal to zero and use the quadratic equation to solve for the roots of x. Alternatively, an inverse calibration curve can be constructed - this will be discussed in a later section.</p>
+<p>We will discuss more about how to decide whether a quadratic or linear model is better in a later section, but for now, notice how the residuals still have a shape - let’s try to fix that using another modeling trick.</p>
+</div>
+<div id="weighted-calibration-curves" class="section level2 hasAnchor" number="20.3">
+<h2><span class="header-section-number">20.3</span> Weighted Calibration Curves<a href="evaluating-and-improving-model-performance.html#weighted-calibration-curves" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you run into residuals with a ‘cone’ shape, such as in the bottom-left of the examples in section 20.1, you have data that are heteroscedastic. The best solution to this issue is to develop a weighted model. Weighting a calibration curve (or any model) is the process of applying a multiplicative factor to each data point during the modeling process. The goal of this process (assuming data collected perfectly with normally distributed, predictable errors) is to normalize the residuals of each data point collected, such that no data point has undue influence over the model.</p>
+<p>There are actually two situations where weighting a model is particularly helpful: The first is what we just discussed, as weighting can solve the problem of heteroscedasticity by reducing the reliance of the model on data with larger uncertainties. If a the weighting scheme is chosen such that:</p>
+<p><span class="math display">\[w = \frac{1}{\sigma^2}\]</span>
+Where <span class="math inline">\(w\)</span> is the weight and <span class="math inline">\(\sigma\)</span> is the standard deviation of our dependent variable (recall that standard deviation is the square root of the variance), then the error associated with each data point is normalized out and the model can be fit accurately. Practically, the variance of data is rarely known, so instead we use one of several weighting schemes related to our observations, such as:</p>
+<p><span class="math display">\[w = \frac{1}{y^2} \ \ \ OR \ \ \ w = \frac{1}{x^2} \ \ \ OR \ \ \ w = \frac{1}{x} \ \ \ OR \ \ \ w = \frac{1}{s(y)^2}\]</span></p>
+<p>Where <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are the independent and dependent variables of the model respectively, and <span class="math inline">\(s(y)\)</span> is the experimental standard deviation of the dependent variable. The first three options assume that the standard deviation or variance of the dependent variable (in this case instrument signal response) is proportional to either the dependent or independent variables. The final option does not make this assumption, but it requires averaging replicates, resulting in fewer data points for regression.</p>
+<p>The second area where weighting can help is when a calibration curve spans a large range of concentrations. When this happens, the fitting algorithm based on the squares of the residuals starts to consider higher concentrations more than lower concentrations because the residuals of those values tend to be higher if the model does not pass close to them. To correct for this issue, the <span class="math inline">\(1/x\)</span> weighting scheme is generally quite effective.</p>
+<p>There is no all-purpose answer for what weighting scheme to use - this is an area where you will have to use your judgement, and maybe try multiple options to see what gives you the best-performing model. Generally speaking, if you are more concerned about heteroscedasticity in your results (maybe you plotted your residuals and the magnitude of the residuals is increasing), then the <span class="math inline">\(1/x^2\)</span> or <span class="math inline">\(1/y^2\)</span> (or <span class="math inline">\(1/s(y)^2\)</span> if you have a measurement of standard error) options are good. If you just want to correct for your calibration crossing multiple orders of magnitude, use the <span class="math inline">\(1/x\)</span> scheme.</p>
+<p>For the purposes of our quadratic calibration curve example, the magnitude of the residuals is not increasing with respect to concentration - it looks more like the model is doing a better job at higher concentrations than lower ones. That sounds like the second case where weighting is useful, so in practice the <span class="math inline">\(1/x\)</span> scheme is probably our best bet. However, for illustrative purposes we’ll try all of the first three weighting schemes to compare them. Here is how you add weights to a model in R. Note that we have to remove concentrations of 0, as a 1/x weight would be infinite for these points, and we also will recalculate the unweighted calibration curve without these points for comparison. We also use the <code>cbind</code> function, which binds together a set of columns into a dataframe:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="evaluating-and-improving-model-performance.html#cb303-1" tabindex="-1"></a><span class="co">#Removing standard with concentrations = 0 (our blanks)</span></span>
+<span id="cb303-2"><a href="evaluating-and-improving-model-performance.html#cb303-2" tabindex="-1"></a>FAESweighted <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb303-3"><a href="evaluating-and-improving-model-performance.html#cb303-3" tabindex="-1"></a>  <span class="fu">filter</span>(conc_Na <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb303-4"><a href="evaluating-and-improving-model-performance.html#cb303-4" tabindex="-1"></a></span>
+<span id="cb303-5"><a href="evaluating-and-improving-model-performance.html#cb303-5" tabindex="-1"></a><span class="co">#Re-calculating an unweighted quadratic model</span></span>
+<span id="cb303-6"><a href="evaluating-and-improving-model-performance.html#cb303-6" tabindex="-1"></a>unweightedCal <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> FAESweighted)</span>
+<span id="cb303-7"><a href="evaluating-and-improving-model-performance.html#cb303-7" tabindex="-1"></a><span class="co">#Weighted quadratic model with a 1/x scheme</span></span>
+<span id="cb303-8"><a href="evaluating-and-improving-model-performance.html#cb303-8" tabindex="-1"></a>weighted1overxCal <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> FAESweighted, <span class="at">weights =</span> <span class="dv">1</span><span class="sc">/</span>conc_Na)</span>
+<span id="cb303-9"><a href="evaluating-and-improving-model-performance.html#cb303-9" tabindex="-1"></a><span class="co">#Weighted quadratic model with a 1/x^2 scheme</span></span>
+<span id="cb303-10"><a href="evaluating-and-improving-model-performance.html#cb303-10" tabindex="-1"></a>weighted1overx2Cal <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> FAESweighted, <span class="at">weights =</span> <span class="dv">1</span><span class="sc">/</span>conc_Na<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb303-11"><a href="evaluating-and-improving-model-performance.html#cb303-11" tabindex="-1"></a><span class="co">#Weighted quadratic model with a 1/y^2 scheme</span></span>
+<span id="cb303-12"><a href="evaluating-and-improving-model-performance.html#cb303-12" tabindex="-1"></a>weighted1overy2Cal <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> FAESweighted, <span class="at">weights =</span> <span class="dv">1</span><span class="sc">/</span>signal<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb303-13"><a href="evaluating-and-improving-model-performance.html#cb303-13" tabindex="-1"></a></span>
+<span id="cb303-14"><a href="evaluating-and-improving-model-performance.html#cb303-14" tabindex="-1"></a><span class="co">#Bind together a &#39;term&#39; column and the coefficients of the different models produced above as separate columns with specified names based on their weighting scheme</span></span>
+<span id="cb303-15"><a href="evaluating-and-improving-model-performance.html#cb303-15" tabindex="-1"></a>compareFits <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="st">&quot;term&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;x^2&quot;</span>), <span class="st">&quot;unweighted&quot;</span> <span class="ot">=</span> <span class="fu">tidy</span>(unweightedCal)<span class="sc">$</span>estimate, <span class="st">&quot;1/x&quot;</span> <span class="ot">=</span> <span class="fu">tidy</span>(weighted1overxCal)<span class="sc">$</span>estimate, <span class="st">&quot;1/x^2&quot;</span> <span class="ot">=</span> <span class="fu">tidy</span>(weighted1overx2Cal)<span class="sc">$</span>estimate, <span class="st">&quot;1/y^2&quot;</span> <span class="ot">=</span> <span class="fu">tidy</span>(weighted1overy2Cal)<span class="sc">$</span>estimate)</span>
+<span id="cb303-16"><a href="evaluating-and-improving-model-performance.html#cb303-16" tabindex="-1"></a></span>
+<span id="cb303-17"><a href="evaluating-and-improving-model-performance.html#cb303-17" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(compareFits, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-d7997be2311a470857d8" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d7997be2311a470857d8">{"x":{"filter":"none","vertical":false,"data":[["Intercept","x","x^2"],["1015.26222719459","46351.4317610498","-16541.267291283"],["1221.85361366367","45059.6473513513","-15388.3085285285"],["1430.53914972222","43334.7975125","-13642.1642472222"],["1347.00242526815","44038.8566911019","-14422.4652029107"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>term<\/th>\n      <th>unweighted<\/th>\n      <th>1/x<\/th>\n      <th>1/x^2<\/th>\n      <th>1/y^2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"name":"term","targets":0},{"name":"unweighted","targets":1},{"name":"1/x","targets":2},{"name":"1/x^2","targets":3},{"name":"1/y^2","targets":4}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>You can see how the results, particularly in the quadratic term, are somewhat different depending on the weighting scheme. The weighted models are deemphasizing the higher concentration points, resulting in a lower magnitude of the quadratic term.</p>
+<p>Finally, let’s look at the residuals for these three weighting schemes vs. without a weighting scheme:</p>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
+<p>We can see that the weighted residual plots are a little more normally distributed than the unweighted curve and that with the stronger weights (<span class="math inline">\(1/x^2\)</span> and <span class="math inline">\(1/y^2\)</span>), the residuals of the lowest concentration points are closer to zero. However, we will need to do additional analysis to determine whether weighting has meaningfully improved our model performance. We will talk about that next.</p>
+<p>There is one major caveat when using weighted fits with approximate weights as we are doing here: The standard errors reported by the model outputs become inaccurate. This is because when you include weights, they are incorporated into the equations used to calculate standard errors of the model parameters. Therefore, if your weights are estimated, your standard errors become unreliable. Keep that in mind when using weighted fits - this means that you cannot use a weighted fit to calculate results such as LOD and LOQ.</p>
+</div>
+<div id="removing-outliers" class="section level2 hasAnchor" number="20.4">
+<h2><span class="header-section-number">20.4</span> Removing outliers<a href="evaluating-and-improving-model-performance.html#removing-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finally you visually identify an outlier within a calibration curve (or any model) by plotting your residuals as in the example in the bottom right of the plot in section 20.1, you can test whether that outlier is statistically outside the range of the model using a basic statistical test on the residuals. The dataset we’ve been working with doesn’t have any outliers (generally these are removed and rerun prior to making calibration curves), so let’s work with a simple toy dataset similar to the one used to generate the example outlier residual plot:</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="evaluating-and-improving-model-performance.html#cb304-1" tabindex="-1"></a><span class="co">#Generating a toy dataset</span></span>
+<span id="cb304-2"><a href="evaluating-and-improving-model-performance.html#cb304-2" tabindex="-1"></a>residData <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;x&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">10</span>),</span>
+<span id="cb304-3"><a href="evaluating-and-improving-model-performance.html#cb304-3" tabindex="-1"></a>                        <span class="st">&quot;y&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.0</span>,<span class="fl">1.1</span>, <span class="fl">2.0</span>,<span class="fl">2.1</span>, <span class="fl">3.3</span>,<span class="fl">3.2</span>, <span class="fl">4.2</span>, <span class="fl">4.3</span>, <span class="fl">5.2</span>, <span class="fl">2.3</span>, <span class="fl">6.3</span>,<span class="fl">6.4</span>, <span class="fl">7.3</span>,<span class="fl">7.4</span>, <span class="fl">8.4</span>, <span class="fl">8.5</span>, <span class="fl">9.3</span>,<span class="fl">9.5</span>, <span class="fl">10.4</span>,<span class="fl">10.6</span>))</span>
+<span id="cb304-4"><a href="evaluating-and-improving-model-performance.html#cb304-4" tabindex="-1"></a></span>
+<span id="cb304-5"><a href="evaluating-and-improving-model-performance.html#cb304-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> residData,</span>
+<span id="cb304-6"><a href="evaluating-and-improving-model-performance.html#cb304-6" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb304-7"><a href="evaluating-and-improving-model-performance.html#cb304-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb304-8"><a href="evaluating-and-improving-model-performance.html#cb304-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<p>We can see we have a pretty clear outlier at x = 5, but otherwise our data seems pretty linear. Here’s what it would look like if we added a linear model to this data:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="evaluating-and-improving-model-performance.html#cb305-1" tabindex="-1"></a><span class="co">#Generating a linear model on the toy dataset</span></span>
+<span id="cb305-2"><a href="evaluating-and-improving-model-performance.html#cb305-2" tabindex="-1"></a>lmWithOutlier <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> residData)</span>
+<span id="cb305-3"><a href="evaluating-and-improving-model-performance.html#cb305-3" tabindex="-1"></a></span>
+<span id="cb305-4"><a href="evaluating-and-improving-model-performance.html#cb305-4" tabindex="-1"></a><span class="co">#Plotting the generated model over the data</span></span>
+<span id="cb305-5"><a href="evaluating-and-improving-model-performance.html#cb305-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> residData,</span>
+<span id="cb305-6"><a href="evaluating-and-improving-model-performance.html#cb305-6" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb305-7"><a href="evaluating-and-improving-model-performance.html#cb305-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb305-8"><a href="evaluating-and-improving-model-performance.html#cb305-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb305-9"><a href="evaluating-and-improving-model-performance.html#cb305-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb305-10"><a href="evaluating-and-improving-model-performance.html#cb305-10" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_poly_eq</span>(<span class="at">formula =</span> y <span class="sc">~</span> x, <span class="co"># formula uses aesthetic names</span></span>
+<span id="cb305-11"><a href="evaluating-and-improving-model-performance.html#cb305-11" tabindex="-1"></a>                      <span class="at">rr.digits =</span> <span class="dv">4</span>, <span class="co"># reported digits of r-squared</span></span>
+<span id="cb305-12"><a href="evaluating-and-improving-model-performance.html#cb305-12" tabindex="-1"></a>                      <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="fu">after_stat</span>(eq.label), <span class="fu">after_stat</span>(rr.label), <span class="at">sep =</span> <span class="st">&quot;~~~&quot;</span>)), </span>
+<span id="cb305-13"><a href="evaluating-and-improving-model-performance.html#cb305-13" tabindex="-1"></a>                      <span class="at">parse =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">5</span>) </span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p>We can see that the linear model isn’t fitting any of our datapoints that well and has a relatively low <span class="math inline">\(R^2\)</span> value. This is because it’s being pulled down or <em>leveraged</em> by the outlier, which is called a <em>high-leverage point</em>. We can see this well in the residual plot:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="evaluating-and-improving-model-performance.html#cb306-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">augment</span>(lmWithOutlier),</span>
+<span id="cb306-2"><a href="evaluating-and-improving-model-performance.html#cb306-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb306-3"><a href="evaluating-and-improving-model-performance.html#cb306-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb306-4"><a href="evaluating-and-improving-model-performance.html#cb306-4" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span>  <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb306-5"><a href="evaluating-and-improving-model-performance.html#cb306-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Independent variable&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residual&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb306-6"><a href="evaluating-and-improving-model-performance.html#cb306-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p>Again, we can clearly see the outlier at x = 5. To test whether this point is really an outlier, we can use <em>studentized residuals</em>, which are called <em>standardized residuals</em> when calculated using the <code>broom</code> <code>augment</code> function. These studentized residuals are calculated by normalizing to the standard error of the model with the data point being calculated removed, and they are often used to identify outliers in datasets used for regression. The rule of thumb is if the absolute value of the studentized residual is greater than 3, then that data point is likely an outlier. If we plot the studentized residuals here:</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="evaluating-and-improving-model-performance.html#cb307-1" tabindex="-1"></a><span class="co">#Plotting studentized residuals of the model</span></span>
+<span id="cb307-2"><a href="evaluating-and-improving-model-performance.html#cb307-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">augment</span>(lmWithOutlier),</span>
+<span id="cb307-3"><a href="evaluating-and-improving-model-performance.html#cb307-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb307-4"><a href="evaluating-and-improving-model-performance.html#cb307-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb307-5"><a href="evaluating-and-improving-model-performance.html#cb307-5" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span>  <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb307-6"><a href="evaluating-and-improving-model-performance.html#cb307-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Independent variable&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residual&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb307-7"><a href="evaluating-and-improving-model-performance.html#cb307-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+<p>We see that our studentized residual for our suspected outlier is less than -4, so we can conclude it is a likely outlier, and it is probably better to remove it when creating our calibration curve.</p>
+</div>
+<div id="evaluating-model-performance" class="section level2 hasAnchor" number="20.5">
+<h2><span class="header-section-number">20.5</span> Evaluating Model Performance<a href="evaluating-and-improving-model-performance.html#evaluating-model-performance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Often, we will run into a situation where we have multiple possible models we can create, and we want to decide which of them is the best for our purposes. For calibration curves, this might mean that we want to compare a linear vs. nonlinear calibration curve or a weighted vs. unweighted calibration curve. So far, we have done so by comparing the shapes of the resulting residual plots, but this can become subjective and unclear in many cases. By performing the modeling in R, you have access to a variety of quantitative tools to compare models. A few of these options will be discussed in this section.</p>
+<div id="choosing-the-best-model" class="section level3 hasAnchor" number="20.5.1">
+<h3><span class="header-section-number">20.5.1</span> Choosing the best model<a href="evaluating-and-improving-model-performance.html#choosing-the-best-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s start by performing this analysis of which model is best on our example dataset. Say we want to start by deciding whether our linear model or quadratic model is the better choice. We will also add in a cubic function for illustrative purposes. We start by constructing these models, and then we will make use of the <code>broom</code> <code>glance</code> function to compare several goodness-of-fit measurements between the two models. We also use the <code>rbind</code> function to bind together the single-rowed glanced outputs into a single multi-row table with defined row names:</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="evaluating-and-improving-model-performance.html#cb308-1" tabindex="-1"></a><span class="co">#Generating a linear model</span></span>
+<span id="cb308-2"><a href="evaluating-and-improving-model-performance.html#cb308-2" tabindex="-1"></a>linear <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> FAES)</span>
+<span id="cb308-3"><a href="evaluating-and-improving-model-performance.html#cb308-3" tabindex="-1"></a><span class="co">#Generating a quadratic model</span></span>
+<span id="cb308-4"><a href="evaluating-and-improving-model-performance.html#cb308-4" tabindex="-1"></a>quadratic <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> FAES)</span>
+<span id="cb308-5"><a href="evaluating-and-improving-model-performance.html#cb308-5" tabindex="-1"></a><span class="co">#Generating a cubic model</span></span>
+<span id="cb308-6"><a href="evaluating-and-improving-model-performance.html#cb308-6" tabindex="-1"></a>cubic <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">3</span>), <span class="at">data =</span> FAES)</span>
+<span id="cb308-7"><a href="evaluating-and-improving-model-performance.html#cb308-7" tabindex="-1"></a></span>
+<span id="cb308-8"><a href="evaluating-and-improving-model-performance.html#cb308-8" tabindex="-1"></a><span class="co">#Binding together the glanced outputs of the three models rowwise into a single dataframe</span></span>
+<span id="cb308-9"><a href="evaluating-and-improving-model-performance.html#cb308-9" tabindex="-1"></a>glanced <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="st">&quot;linear&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(linear), <span class="st">&quot;quadratic&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(quadratic), <span class="st">&quot;cubic&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(cubic))</span>
+<span id="cb308-10"><a href="evaluating-and-improving-model-performance.html#cb308-10" tabindex="-1"></a></span>
+<span id="cb308-11"><a href="evaluating-and-improving-model-performance.html#cb308-11" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(glanced, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-1d9b6deac0be49d27fc4" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1d9b6deac0be49d27fc4">{"x":{"filter":"none","vertical":false,"data":[["linear","quadratic","cubic"],[0.9755440568488399,0.9996855245444491,0.9996974081336578],[0.9736628304525968,0.999633111968524,0.9996148830792009],[1824.495501646355,215.3401540640597,220.6249109450279],[518.5681312983147,19073.39043919867,12113.86547651402],[7.341364277346169e-12,9.672094464561933e-22,1.245166332370885e-19],[1,2,3],[-132.846703525965,-100.1937847107075,-99.90487639637452],[271.69340705193,208.3875694214151,209.809752792749],[273.8175576552366,211.2197702258239,213.3500037982601],[43274189.86186122,556456.5834279954,535428.8646245165],[13,12,11],[15,15,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>r.squared<\/th>\n      <th>adj.r.squared<\/th>\n      <th>sigma<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>df<\/th>\n      <th>logLik<\/th>\n      <th>AIC<\/th>\n      <th>BIC<\/th>\n      <th>deviance<\/th>\n      <th>df.residual<\/th>\n      <th>nobs<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"r.squared","targets":1},{"name":"adj.r.squared","targets":2},{"name":"sigma","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5},{"name":"df","targets":6},{"name":"logLik","targets":7},{"name":"AIC","targets":8},{"name":"BIC","targets":9},{"name":"deviance","targets":10},{"name":"df.residual","targets":11},{"name":"nobs","targets":12}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Let’s go through what these results tell us.
+- We will ignore the first value, the multiple <span class="math inline">\(R^2\)</span>, as this value will strictly increase as we add more parameters into the model.
+- A more useful measure of goodness of fit is the adjusted <span class="math inline">\(R^2\)</span> value, which is a measurement of how much of the variance in our dependent variable this model captures. We can see that from the linear to quadratic model, there is a significant improvement, while there is actually a slight decrease in adjusted <span class="math inline">\(R^2\)</span> between the quadratic and cubic model. This evidence supports using the quadratic model.
+- Comparing the F-statistic and p-value of the three functions, we can see that the quadratic fit has the lowest p-value, followed by the cubic and then the linear model. Again, this supports using the quadratic model.
+- Finally, the AIC (Akaike Information Criterion) and BIC (Bayesian Information Criterion) are parameters that evaluate the relative quality of different models applied to the same set of data. Technically speaking, they are measurements of the amount of information lost in the models we are generating relative to underlying the process used to generate the data. A lower AIC/BIC indicates that less information is lost when using this model. For our models, we can see that the quadratic model has the lowest AIC and BIC, followed by the cubic model, then the linear model. These parameters also support using the quadratic model.</p>
+<p>There is one other test you can try to compare different models like this, which is specifically useful when deciding whether to include an extra term in a model or not - the p-value of each specific fit parameter. These are accessible directly from the <code>summary</code> function or in the <code>broom</code> <code>tidy</code> function. Recall the <code>tidy</code> format of models in R for the cubic model:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="evaluating-and-improving-model-performance.html#cb309-1" tabindex="-1"></a><span class="co">#Generate the tidied summary of the cubic model</span></span>
+<span id="cb309-2"><a href="evaluating-and-improving-model-performance.html#cb309-2" tabindex="-1"></a>tidycubic <span class="ot">&lt;-</span> <span class="fu">tidy</span>(cubic) <span class="sc">%&gt;%</span> </span>
+<span id="cb309-3"><a href="evaluating-and-improving-model-performance.html#cb309-3" tabindex="-1"></a>  <span class="co">#replace the &#39;term&#39; column with more legible values</span></span>
+<span id="cb309-4"><a href="evaluating-and-improving-model-performance.html#cb309-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">term =</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;x^2&quot;</span>, <span class="st">&quot;x^3&quot;</span>))</span>
+<span id="cb309-5"><a href="evaluating-and-improving-model-performance.html#cb309-5" tabindex="-1"></a></span>
+<span id="cb309-6"><a href="evaluating-and-improving-model-performance.html#cb309-6" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(tidycubic, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-92be2ec0336d06c42d9a" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-92be2ec0336d06c42d9a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["Intercept","x","x^2","x^3"],[673.9421453533316,48686.52633147715,-20615.1063007735,2065.858525202836],[122.4458008619383,1628.740124647121,4605.686577134778,3143.106116558595],[5.504003735605632,29.8921390802142,-4.476011546925164,0.6572665537187642],[0.0001851172888742267,6.93330566503408e-12,0.0009375484709510584,0.5245236544793369]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"estimate","targets":2},{"name":"std.error","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Looking at this table in the <code>p.value</code> column, we can see the p-values of a t-test of whether each parameter is statistically significantly different from zero. The intercept, first, and second-order terms have very low p-values. However, the cubic term is around 0.5, much too high, indicating that the fit value of the cubic term is statistically indistinguishable from zero. This alone is grounds to reject the cubic model over the quadratic and linear models. Let’s look at the p-values of the quadratic model just to be sure:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="evaluating-and-improving-model-performance.html#cb310-1" tabindex="-1"></a><span class="co">#Generating the tidied summary of the quadratic model</span></span>
+<span id="cb310-2"><a href="evaluating-and-improving-model-performance.html#cb310-2" tabindex="-1"></a>tidyquadratic <span class="ot">&lt;-</span> <span class="fu">tidy</span>(quadratic) <span class="sc">%&gt;%</span> </span>
+<span id="cb310-3"><a href="evaluating-and-improving-model-performance.html#cb310-3" tabindex="-1"></a>  <span class="co">#replace the &#39;term&#39; column with more legible values</span></span>
+<span id="cb310-4"><a href="evaluating-and-improving-model-performance.html#cb310-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">term =</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;x^2&quot;</span>))</span>
+<span id="cb310-5"><a href="evaluating-and-improving-model-performance.html#cb310-5" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(tidyquadratic, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-fce6be302d420728d65b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-fce6be302d420728d65b">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Intercept","x","x^2"],[717.6406198460212,47698.64082549188,-17613.27160393498],[100.360627472506,612.4424372492579,580.3111988987358],[7.150619101525851,77.88265137165702,-30.35142461038132],[1.163246739798359e-05,1.337607183534639e-17,1.025494024043614e-12]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"estimate","targets":2},{"name":"std.error","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Sure enough, the p-values for all three of the terms of the quadratic model are very low, indicating that it is likely these terms are statistically nonzero in the best form of the model. Keep in mind that this test is not perfect - just because a parameter has a p-value less than some cutoff (0.05, 0.01, or even lower) does not necessarily mean that it is a useful parameter to include in your model.</p>
+<p>The best approach in model selection is always to assemble a weight of evidence, like we have done here: The residual plot, adjusted <span class="math inline">\(R^2\)</span>, F-test p-value, AIC and BIC, and t-test p-value for the individual parameters all indicate that the quadratic model is the best fit for our data, so we can be reasonably sure that the quadratic model is the best choice in this case. The linear model appears to miss some of the nonlinearity in the dataset, while the cubic model seems to overfit the results slightly.</p>
+<p>However, there will be situations where these parameters do not all agree, and you will have to make a judgement call about which model you want to use. A good additional factor to consider in these cases is what you want to use the model for: Are you using it to describe your data effectively to learn something fundamental about your results (say, if you want to calculate LOD and LOQ)? Or, are you more interested in using the model to best predict new outcomes? In the first case, you likely want to use the simplest possible model that explains most of your results. In the second choice, you may be okay with using a more complex model that can capture more of the nuances in your data. Therefore, the choice of the best model may vary depending on your goals.</p>
+</div>
+<div id="to-weight-or-not-to-weight" class="section level3 hasAnchor" number="20.5.2">
+<h3><span class="header-section-number">20.5.2</span> To weight or not to weight?<a href="evaluating-and-improving-model-performance.html#to-weight-or-not-to-weight" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also use some of these parameters describing model goodness-of-fit to compare different weighting schemes quantitatively to choose between them. Let’s try this with the four different weighted models we created earlier:</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="evaluating-and-improving-model-performance.html#cb311-1" tabindex="-1"></a><span class="co">#Generate a table by binding the glanced outputs of models with different weighting schemes into a single dataframe</span></span>
+<span id="cb311-2"><a href="evaluating-and-improving-model-performance.html#cb311-2" tabindex="-1"></a>weightedGOF <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="st">&quot;unweighted&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(unweightedCal), <span class="st">&quot;1/x&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(weighted1overxCal), <span class="st">&quot;1/x^2&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(weighted1overx2Cal), <span class="st">&quot;1/y^2&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(weighted1overy2Cal))</span>
+<span id="cb311-3"><a href="evaluating-and-improving-model-performance.html#cb311-3" tabindex="-1"></a></span>
+<span id="cb311-4"><a href="evaluating-and-improving-model-performance.html#cb311-4" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(weightedGOF, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-bebb7314ff9fe0152391" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bebb7314ff9fe0152391">{"x":{"filter":"none","vertical":false,"data":[["unweighted","1/x","1/x^2","1/y^2"],[0.9997123119926015,0.9993461159207377,0.998728434747322,0.999056104584946],[0.9996483813242907,0.9992008083475683,0.9984458646911714,0.9988463500482673],[192.5402759863739,424.8810126213436,818.0725390204644,0.01863676737147581],[15637.44503862166,6877.453763238248,3534.445398612176,4762.977337245341],[1.161844247178004e-16,4.674696660478378e-15,9.322318413231893e-14,2.438694755715817e-14],[2,2,2,2],[-78.4248342567021,-81.01512459783558,-81.9690715399431,-81.60724594567405],[164.8496685134042,170.0302491956712,171.9381430798862,171.2144918913481],[166.7892951125562,171.9698757948232,173.8777696790382,173.1541184905001],[333645.8208921812,1624714.873975246,6023184.111894504,0.003125961882526549],[9,9,9,9],[12,12,12,12]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>r.squared<\/th>\n      <th>adj.r.squared<\/th>\n      <th>sigma<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>df<\/th>\n      <th>logLik<\/th>\n      <th>AIC<\/th>\n      <th>BIC<\/th>\n      <th>deviance<\/th>\n      <th>df.residual<\/th>\n      <th>nobs<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"r.squared","targets":1},{"name":"adj.r.squared","targets":2},{"name":"sigma","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5},{"name":"df","targets":6},{"name":"logLik","targets":7},{"name":"AIC","targets":8},{"name":"BIC","targets":9},{"name":"deviance","targets":10},{"name":"df.residual","targets":11},{"name":"nobs","targets":12}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Notice how some of the parameters such as <code>sigma</code> and <code>deviance</code> have completely different orders of magnitude depending on the weighting scheme - this is because the weights are directly used to calculate these values. However, we can still compare AIC and BIC between models, and between adjusted <span class="math inline">\(R^2\)</span> values if we use caution. The AIC and BIC here are unambiguious - the addition of weights does not significantly increase the information gain within this model. Adjusted <span class="math inline">\(R^2\)</span> values are a little more complicated, because they mean something different in a weighted fit vs. an unweighted fit. Recall that an unweighted adjusted <span class="math inline">\(R^2\)</span> describes the proportion of variance in the dependent variable explained by the model regressing on the independent variable. In a weighted regression model, adjusted <span class="math inline">\(R^2\)</span> describes the proportion of variance in the <em>weighted</em> dependent variable explained by the model regressed on the <em>weighted</em> independent variable. As such, use caution when comparing adjusted <span class="math inline">\(R^2\)</span> between unweighted and weighted models. That being said, in this case the adjusted <span class="math inline">\(R^2\)</span> value agrees with the AIC and BIC that the quadratic model creates the best fit on the data.</p>
+<p>With this in mind, we would likely choose not to include weights in this particular calibration curve. However, if the results of these goodness-of-fit measurements were more ambiguous and the heteroscedasticity in the unweighted regression residuals were more obvious, you might have to use your judgement when deciding whether to weight a fit. It is often okay to add a weighting scheme to a fit even if the goodness-of-fit measurements do not support it if you believe it improves the <em>predictive power</em> of your calibration curve. Generally speaking, if a weighting scheme is unnecessary and you still include one, it will not significantly influence your concentrations calculated with a calibration curve, but if you need a weighting scheme and do not include one, low concentrations calculated with your calibration curve may be unreliable. Hence, many researchers choose to always include weighting schemes, even if it is not always strictly necessary.</p>
+</div>
+<div id="do-i-need-an-intercept" class="section level3 hasAnchor" number="20.5.3">
+<h3><span class="header-section-number">20.5.3</span> Do I Need an Intercept?<a href="evaluating-and-improving-model-performance.html#do-i-need-an-intercept" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You might wonder, particularly if your instrument has very low background noise, whether it is worth including an intercept within your calibration curve. It is possible to create linear and polynomial models without an intercept in R - simply add <code>-1</code> to the end of the function definition within the <code>lm</code> function. However, you must do so with extreme caution. <strong>It is almost always better to include an intercept in a calibration curve than to remove it.</strong> If you really want to try a model without an intercept, there are three things you need to check: 1. Do your blanks support the fact that your instrument response is zero when the concentration of your analyte is zero? 2. When you generate your model with the intercept, is the intercept statistically indistinguishable from zero? 3. When you generate your model without the intercept, does it improve the model goodness-of-fit over not having the intercept?</p>
+<p>Let’s test these three conditions for our data. We can easily test the first condition just by looking at our data:</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="evaluating-and-improving-model-performance.html#cb312-1" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAES)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2b8e40a164e05693de20" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2b8e40a164e05693de20">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard","standard"],[0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.5,0.5,0.5,1,1,1],["ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm","ppm"],["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"],[502.3391,591.7768,581.4588,5656.342,5653.5584,5667.4387,9393.4167,9362.685799999999,9332.049800000001,20186.9033,20140.5115,20152.9856,30797.6935,30836.5239,30789.8266]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>type<\/th>\n      <th>conc_Na<\/th>\n      <th>units<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"type","targets":1},{"name":"conc_Na","targets":2},{"name":"units","targets":3},{"name":"replicate","targets":4},{"name":"signal","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Clearly, the signal is nonzero in our standards even when the concentration of our analyte is 0 ppm. Thus, we fail our first test. This would be enough to force us to include the intercept in our model fits normally, but we will test the other two conditions here for illustrative purposes. Next, let’s see what the p-value of our model intercept being statistically significantly different from zero says:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="evaluating-and-improving-model-performance.html#cb313-1" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">tidy</span>(quadratic), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b80eea496afb73edc4ae" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b80eea496afb73edc4ae">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["(Intercept)","conc_Na","I(conc_Na^2)"],[717.6406198460212,47698.64082549188,-17613.27160393498],[100.360627472506,612.4424372492579,580.3111988987358],[7.150619101525851,77.88265137165702,-30.35142461038132],[1.163246739798359e-05,1.337607183534639e-17,1.025494024043614e-12]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"estimate","targets":2},{"name":"std.error","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>The p-value of our intercept here is around <span class="math inline">\(10^-5\)</span>, which is pretty definitive in indicating that we cannot ignore our intercept. Just to check, let’s create the model without the intercept:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="evaluating-and-improving-model-performance.html#cb314-1" tabindex="-1"></a><span class="co">#Generate a quadratic model without the intercept by adding &#39;-1 to the equation</span></span>
+<span id="cb314-2"><a href="evaluating-and-improving-model-performance.html#cb314-2" tabindex="-1"></a>quadraticnoint <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na <span class="sc">+</span> <span class="fu">I</span>(conc_Na<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span><span class="dv">1</span>, <span class="at">data =</span> FAES)</span>
+<span id="cb314-3"><a href="evaluating-and-improving-model-performance.html#cb314-3" tabindex="-1"></a></span>
+<span id="cb314-4"><a href="evaluating-and-improving-model-performance.html#cb314-4" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">tidy</span>(quadraticnoint), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-5f1f77788355d9c32009" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5f1f77788355d9c32009">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["conc_Na","I(conc_Na^2)"],[50947.1010319987,-20198.14387266164],[905.1398324361154,1000.404706276506],[56.28644238855165,-20.18997286392112],[6.47467509326256e-17,3.371080874437729e-11]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"estimate","targets":2},{"name":"std.error","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Now let’s compare the glanced versions of the model with and without an intercept:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="evaluating-and-improving-model-performance.html#cb315-1" tabindex="-1"></a><span class="co">#Binding together the glanced outputs of the two models into a dataframe to compare </span></span>
+<span id="cb315-2"><a href="evaluating-and-improving-model-performance.html#cb315-2" tabindex="-1"></a>interceptGOF <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="st">&quot;With intercept&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(quadratic), <span class="st">&quot;No intercept&quot;</span> <span class="ot">=</span> <span class="fu">glance</span>(quadraticnoint))</span>
+<span id="cb315-3"><a href="evaluating-and-improving-model-performance.html#cb315-3" tabindex="-1"></a></span>
+<span id="cb315-4"><a href="evaluating-and-improving-model-performance.html#cb315-4" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(interceptGOF, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-93c65f9c18e80f12cd00" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-93c65f9c18e80f12cd00">{"x":{"filter":"none","vertical":false,"data":[["With intercept","No intercept"],[0.9996855245444491,0.9993386744456388],[0.999633111968524,0.9992369320526602],[215.3401540640597,474.5433519909264],[19073.39043919867,9822.244643445911],[9.672094464561933e-22,2.151292584694049e-21],[2,2],[-100.1937847107075,-112.6461163317356],[208.3875694214151,231.2922326634712],[211.2197702258239,233.4163832667778],[556456.5834279954,2927488.107944196],[12,13],[15,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>r.squared<\/th>\n      <th>adj.r.squared<\/th>\n      <th>sigma<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>df<\/th>\n      <th>logLik<\/th>\n      <th>AIC<\/th>\n      <th>BIC<\/th>\n      <th>deviance<\/th>\n      <th>df.residual<\/th>\n      <th>nobs<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"r.squared","targets":1},{"name":"adj.r.squared","targets":2},{"name":"sigma","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5},{"name":"df","targets":6},{"name":"logLik","targets":7},{"name":"AIC","targets":8},{"name":"BIC","targets":9},{"name":"deviance","targets":10},{"name":"df.residual","targets":11},{"name":"nobs","targets":12}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>We can see based on all of our model goodness-of-fit parameters that the quadratic model with an intercept is a better fit for our data than without the intercept. Therefore, we must include the intercept in our calibration curve for this dataset.</p>
+</div>
+<div id="model-selection-conclusions" class="section level3 hasAnchor" number="20.5.4">
+<h3><span class="header-section-number">20.5.4</span> Model Selection: Conclusions<a href="evaluating-and-improving-model-performance.html#model-selection-conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far this chapter, we have discussed a variety of tools you can use in R to improve and evaluate regression models.</p>
+<ul>
+<li>To improve a model, you can:
+<ul>
+<li>Add or remove nonlinear terms to the model to capture additional complexities within the data</li>
+<li>Weight the model appropriately to minimize issues of heteroscedasticity and magnitude differences between different data points</li>
+</ul></li>
+<li>To evaluate a model, you can:
+<ul>
+<li>Plot residuals of the model fit to look for additional patterns in the data, heteroscedasticity, or outliers</li>
+<li>Compare goodness-of-fit metrics for different models such as adjusted <span class="math inline">\(R^2\)</span>, AIC, BIC or F-statistic and its corresponding P-value.</li>
+<li>Test whether parameter fits are statistically different from zero to evaluate whether they improve the model</li>
+</ul></li>
+</ul>
+<p>Let’s pause for a moment and discuss the practicality of all of this. Using these model evaluation and improvement tools is a lot of work for something as simple as a calibration curve, and you might wonder whether it’s even worth it to go to all of this trouble to choose the correct model. In truth, many professional scientists don’t validate their calibration curves this rigorously, and in many cases you probably won’t need to either. You may just go ahead and try a linear fit, weighted linear fit, and a quadratic fit and see which one gives you the best adjusted <span class="math inline">\(R^2\)</span> value. That being said, it’s worth knowing how to rigorously evaluate calibration curves so that if you ever need to do so, you can.</p>
+<p>All of the work we’ve done here is also broadly applicable beyond just calibration curves - if you need to create nonlinear models (like we will discuss next chapter) to capture real-world phenomena, these model development and evaluation tools can be far more important.</p>
+<p>In the end, it is up to you as the researcher to choose how rigorously you need to be when constructing your models, whether it be for a calibration curve or a large, multivariable regression. That’s part of the job of a scientist!</p>
+<p>With that, let’s move on to a couple of additional practicalities in model development that are specific to calibration curves. If you came to this chapter specifically for model development and evaluation, this is the end of that section of this chapter - feel free to skip to the conclusion.</p>
+</div>
+</div>
+<div id="using-calibration-curves-to-estimate-lod-and-loq" class="section level2 hasAnchor" number="20.6">
+<h2><span class="header-section-number">20.6</span> Using Calibration Curves to Estimate LOD and LOQ<a href="evaluating-and-improving-model-performance.html#using-calibration-curves-to-estimate-lod-and-loq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One of the most useful applications of calibration curves (beyond their usage as a calibration curve of course) is calculating the <em>limit of detection</em> (LOD) and <em>limit of quantification</em> (LOQ) of the instrument you are using. The approach we will take is defined by the International Committee on Harmonization (of Technical Requirements for Pharmaceuticals for Human Use). There are two other approaches: one based on visual evaluation and another based on directly calculating signal to noise ratio. However, using calibration curves is broadly applicable, does not require complex evaluation of chromatograms themselves, and is not prone to operator bias like visual evaluation.</p>
+<p>Calculating LOD and LOQ from calibration curves is pretty easy! All we need is the slope and standard error of the slope of our calibration curve, both of which we already know how to calculate. The exact definitions are:
+<span class="math display">\[LOD = 3.3\frac{\sigma}{S} \ \ \ \ \ \ LOQ = 10\frac{\sigma}{S}\]</span>
+Where <span class="math inline">\(\sigma\)</span> is the standard deviation of the response and <span class="math inline">\(S\)</span> is the slope of the calibration curve. <span class="math inline">\(\sigma\)</span> may be defined as <em>either</em> the standard deviation of the y-intercept of the calibration curve <em>or</em> the residual standard deviation of the calibration curve itself. In R, the standard deviation of the y-intercept is a standard output of the <code>summary</code> or <code>tidy</code> functions on a linear model. The residual standard deviation of the calibration curve can be accessed using the <code>sigma</code> function or in the output of the <code>glance</code> function under <code>sigma</code>. Note that in R, all model errors are called <em>standard errors</em>, however, in R, these standard errors actually refer to the <em>estimated standard deviation</em> of that variable. Hence, when the above equations call for residual standard deviation and standard deviation of the intercept, we use the values that R calls the residual standard error and standard error of the intercept.</p>
+<p>There are two caveats. First, the calibration curve must be linear and unweighted for this to work, and it should be a relatively good fit. Often, this means that you will have to cut off higher concentrations where instrument response becomes more nonlinear and remake the calibration curve specifically for the LOD/LOQ calculation. It’s okay to only use lower concentrations for this purpose because LOD and LOQ are defined by the lower limits of the instrument. Second, it is always best practice to cross-validate the calculated values of LOD and LOQ, ideally by running standards at the calculated concentrations and visually ensuring that you can see a signal outside of the noise of the instrument.</p>
+<p>Let’s try calculating LOD and LOQ for our example dataset now. First, we need to select the linear range that we will use to construct our calibration curve. The best way to do this is by looking at the data itself, so once again, let’s plot our original dataset with a linear calibration to see where the datapoints start deviating from linearity:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="evaluating-and-improving-model-performance.html#cb316-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FAES,</span>
+<span id="cb316-2"><a href="evaluating-and-improving-model-performance.html#cb316-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, </span>
+<span id="cb316-3"><a href="evaluating-and-improving-model-performance.html#cb316-3" tabindex="-1"></a>           <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb316-4"><a href="evaluating-and-improving-model-performance.html#cb316-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb316-5"><a href="evaluating-and-improving-model-performance.html#cb316-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
+<p>At the very least, we need to remove the point at Na concentration = 1 ppm. Let’s remove that and check again:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="evaluating-and-improving-model-performance.html#cb317-1" tabindex="-1"></a>limitData <span class="ot">&lt;-</span> FAES <span class="sc">%&gt;%</span></span>
+<span id="cb317-2"><a href="evaluating-and-improving-model-performance.html#cb317-2" tabindex="-1"></a>  <span class="co">#Filter out values with concentrations less than 1 ppm</span></span>
+<span id="cb317-3"><a href="evaluating-and-improving-model-performance.html#cb317-3" tabindex="-1"></a>  <span class="fu">filter</span>(conc_Na <span class="sc">&lt;</span> <span class="dv">1</span>)</span>
+<span id="cb317-4"><a href="evaluating-and-improving-model-performance.html#cb317-4" tabindex="-1"></a></span>
+<span id="cb317-5"><a href="evaluating-and-improving-model-performance.html#cb317-5" tabindex="-1"></a></span>
+<span id="cb317-6"><a href="evaluating-and-improving-model-performance.html#cb317-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> limitData,</span>
+<span id="cb317-7"><a href="evaluating-and-improving-model-performance.html#cb317-7" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> conc_Na, </span>
+<span id="cb317-8"><a href="evaluating-and-improving-model-performance.html#cb317-8" tabindex="-1"></a>           <span class="at">y =</span> signal)) <span class="sc">+</span></span>
+<span id="cb317-9"><a href="evaluating-and-improving-model-performance.html#cb317-9" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb317-10"><a href="evaluating-and-improving-model-performance.html#cb317-10" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="R4EnvChem_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
+<p>That looks a lot better. We could also remove the point at 0.5 ppm, but even our lowest three concentrations look a little bit nonlinear, and we will get diminishing returns on the goodness of fit of the linear calibration curve as we remove more datapoints, so let’s just work with what we have above for now. Calculating LOD and LOQ now is as simple as creating our linear calibration curve and extracting the slope and residual standard deviation or standard deviation of the y-intercept. Using the <code>broom</code> <code>tidy</code> and <code>glance</code> outputs may be helpful here to get your information in workable form (this would be very helpful if you were generating many calibration curves for many analytes at once and want to calculate LOD and LOQ for all of the analytes). We will generate LOD and LOQ both ways here:</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="evaluating-and-improving-model-performance.html#cb318-1" tabindex="-1"></a><span class="co">#Generate the linear model on our filtered data and its glanced and tidied summaries</span></span>
+<span id="cb318-2"><a href="evaluating-and-improving-model-performance.html#cb318-2" tabindex="-1"></a>limitsLM <span class="ot">&lt;-</span> <span class="fu">lm</span>(signal <span class="sc">~</span> conc_Na, <span class="at">data =</span> limitData)</span>
+<span id="cb318-3"><a href="evaluating-and-improving-model-performance.html#cb318-3" tabindex="-1"></a>limitsGOF <span class="ot">&lt;-</span> <span class="fu">glance</span>(limitsLM)</span>
+<span id="cb318-4"><a href="evaluating-and-improving-model-performance.html#cb318-4" tabindex="-1"></a>limitsCoef <span class="ot">&lt;-</span> <span class="fu">tidy</span>(limitsLM)</span>
+<span id="cb318-5"><a href="evaluating-and-improving-model-performance.html#cb318-5" tabindex="-1"></a></span>
+<span id="cb318-6"><a href="evaluating-and-improving-model-performance.html#cb318-6" tabindex="-1"></a><span class="co">#Calculate the LOD based on the residual standard deviation</span></span>
+<span id="cb318-7"><a href="evaluating-and-improving-model-performance.html#cb318-7" tabindex="-1"></a>LODresid <span class="ot">&lt;-</span> <span class="fl">3.3</span><span class="sc">*</span>limitsGOF[[<span class="dv">3</span>]]<span class="sc">/</span>limitsCoef[[<span class="dv">2</span>,<span class="dv">2</span>]]</span>
+<span id="cb318-8"><a href="evaluating-and-improving-model-performance.html#cb318-8" tabindex="-1"></a><span class="co">#Calculate the LOQ based on the residual standard deviation</span></span>
+<span id="cb318-9"><a href="evaluating-and-improving-model-performance.html#cb318-9" tabindex="-1"></a>LOQresid <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span>limitsGOF[[<span class="dv">3</span>]]<span class="sc">/</span>limitsCoef[[<span class="dv">2</span>,<span class="dv">2</span>]]</span>
+<span id="cb318-10"><a href="evaluating-and-improving-model-performance.html#cb318-10" tabindex="-1"></a></span>
+<span id="cb318-11"><a href="evaluating-and-improving-model-performance.html#cb318-11" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;For the FAES dataset, the LOD = &quot;</span>, LODresid, <span class="st">&quot;ppm and the LOQ = &quot;</span>, LOQresid, <span class="st">&quot;ppm when calculated using residual standard deviation.&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;For the FAES dataset, the LOD =  0.0488676828127103 ppm and the LOQ =  0.148083887311243 ppm when calculated using residual standard deviation.&quot;</code></pre>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="evaluating-and-improving-model-performance.html#cb320-1" tabindex="-1"></a><span class="co">#Calculate the LOD based on the y-intercept&#39;s standard deviation</span></span>
+<span id="cb320-2"><a href="evaluating-and-improving-model-performance.html#cb320-2" tabindex="-1"></a>LODyint <span class="ot">&lt;-</span> <span class="fl">3.3</span><span class="sc">*</span>limitsCoef[[<span class="dv">1</span>,<span class="dv">3</span>]]<span class="sc">/</span>limitsCoef[[<span class="dv">2</span>,<span class="dv">2</span>]]</span>
+<span id="cb320-3"><a href="evaluating-and-improving-model-performance.html#cb320-3" tabindex="-1"></a><span class="co">#Calculate the LOQ based on the y-intercept&#39;s standard deviation</span></span>
+<span id="cb320-4"><a href="evaluating-and-improving-model-performance.html#cb320-4" tabindex="-1"></a>LOQyint <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span>limitsCoef[[<span class="dv">1</span>,<span class="dv">3</span>]]<span class="sc">/</span>limitsCoef[[<span class="dv">2</span>,<span class="dv">2</span>]]</span>
+<span id="cb320-5"><a href="evaluating-and-improving-model-performance.html#cb320-5" tabindex="-1"></a></span>
+<span id="cb320-6"><a href="evaluating-and-improving-model-performance.html#cb320-6" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;For the FAES dataset, the LOD = &quot;</span>, LODyint, <span class="st">&quot;ppm and the LOQ = &quot;</span>, LOQyint, <span class="st">&quot;ppm when calculated using y-intercept standard deviation.&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;For the FAES dataset, the LOD =  0.0206503650239429 ppm and the LOQ =  0.0625768637089178 ppm when calculated using y-intercept standard deviation.&quot;</code></pre>
+<p>The first thing you’ll notice is that the LOD and LOQ are quite different depending on which estimate of <span class="math inline">\(\sigma\)</span> we use! This is where testing and validation come in. Ideally, you would want to run standards near these two limits of detection and see which one is actually detectable on the instrument.</p>
+<p>You’ll notice that the LOQ using residual standard deviation is somewhat high - higher than our 0.1 ppm calibration point! This is likely because the quality of the calibration curve matters quite a lot when calculating LOD and LOQ. If you have nonlinearity or few calibration points like we have in this case, you could be artificially inflating your LOD and LOQ due to statistical, not instrumental uncertainty. If you were performing these experiments yourself, you might want to run additional standards in the 0 to 0.5 ppm region to improve the calibration curve both for better concentration calculations and to see if you end up with a lower LOD and LOQ, or just use the LOD and LOQ calculated using the standard deviation of the intercept instead if you are confident that those values are reasonable. That being said, it is always possible that you have higher than expected instrument noise, so you cannot just throw out high values of LOD and LOQ if you have a low-quality calibration curve. Instead, you would likely need to cross-validate with different method of calculating LOD and LOQ.</p>
+<p>The general practice in environmental analytical chemistry is to report values &lt; LOD directly as “&lt;LOD” - i.e. not to report a quantitative value, and values &lt; LOQ and half of the LOQ. Applying the quadratic calibration curve we calculated and evaluated earlier and the LOD and LOQ values we found here (let’s use the higher ones for illustrative purposes), we could properly calculate new concentrations for our sample dataset. First, let’s import the data and tabulate it to remind ourselves what it looks like:</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="evaluating-and-improving-model-performance.html#cb322-1" tabindex="-1"></a>FAESsamples <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/FAESUnknowns.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb322-2"><a href="evaluating-and-improving-model-performance.html#cb322-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(sample, <span class="st">`</span><span class="at">dilution factor</span><span class="st">`</span>), </span>
+<span id="cb322-3"><a href="evaluating-and-improving-model-performance.html#cb322-3" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;replicate&quot;</span>,</span>
+<span id="cb322-4"><a href="evaluating-and-improving-model-performance.html#cb322-4" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;reading_&quot;</span>,</span>
+<span id="cb322-5"><a href="evaluating-and-improving-model-performance.html#cb322-5" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;signal&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 3 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): sample
+## dbl (4): dilution factor, reading_1, reading_2, reading_3
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="evaluating-and-improving-model-performance.html#cb324-1" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAESsamples)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-946506edb303b70b3def" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-946506edb303b70b3def">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["wine","wine","wine","tap-water","tap-water","tap-water","fish-tank","fish-tank","fish-tank"],[10,10,10,10,10,10,100,100,100],["1","2","3","1","2","3","1","2","3"],[12775.1255,12650.6561,12745.6284,8013.9588,7199.6695,7203.2021,12085.29012,12073.45137,12155.61549]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sample<\/th>\n      <th>dilution factor<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"sample","targets":1},{"name":"dilution factor","targets":2},{"name":"replicate","targets":3},{"name":"signal","targets":4}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>First, we calculate a concentration column from our quadratic calibration curve using the quadratic formula. Remember that we can use the <code>coef</code> function to extract coefficients of a fit into a list, and we can use base R bracket notation to extract specific values</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="evaluating-and-improving-model-performance.html#cb325-1" tabindex="-1"></a><span class="co">#Extracting the coefficients of the quadratic fit</span></span>
+<span id="cb325-2"><a href="evaluating-and-improving-model-performance.html#cb325-2" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(quadratic)[<span class="dv">3</span>]</span>
+<span id="cb325-3"><a href="evaluating-and-improving-model-performance.html#cb325-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">coef</span>(quadratic)[<span class="dv">2</span>]</span>
+<span id="cb325-4"><a href="evaluating-and-improving-model-performance.html#cb325-4" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="fu">coef</span>(quadratic)[<span class="dv">1</span>]</span>
+<span id="cb325-5"><a href="evaluating-and-improving-model-performance.html#cb325-5" tabindex="-1"></a></span>
+<span id="cb325-6"><a href="evaluating-and-improving-model-performance.html#cb325-6" tabindex="-1"></a><span class="co">#Calculating new concentrations using the quadratic formula (solving the fit equation for x)</span></span>
+<span id="cb325-7"><a href="evaluating-and-improving-model-performance.html#cb325-7" tabindex="-1"></a>FAESresults <span class="ot">&lt;-</span> FAESsamples <span class="sc">%&gt;%</span></span>
+<span id="cb325-8"><a href="evaluating-and-improving-model-performance.html#cb325-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">instConc =</span> (<span class="sc">-</span>x <span class="sc">+</span> <span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2-4</span><span class="sc">*</span>x2<span class="sc">*</span>(intercept<span class="sc">-</span>signal)))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>x2))</span>
+<span id="cb325-9"><a href="evaluating-and-improving-model-performance.html#cb325-9" tabindex="-1"></a>  </span>
+<span id="cb325-10"><a href="evaluating-and-improving-model-performance.html#cb325-10" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAESresults)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-0ea9a3853a13409edb3e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0ea9a3853a13409edb3e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["wine","wine","wine","tap-water","tap-water","tap-water","fish-tank","fish-tank","fish-tank"],[10,10,10,10,10,10,100,100,100],["1","2","3","1","2","3","1","2","3"],[12775.1255,12650.6561,12745.6284,8013.9588,7199.6695,7203.2021,12085.29012,12073.45137,12155.61549],[0.2821892401801384,0.2788977975501976,0.281408311932384,0.1627475460414216,0.1434993155810508,0.1435821584048452,0.2640724759635277,0.2637641889129696,0.2659055846665508]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sample<\/th>\n      <th>dilution factor<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n      <th>instConc<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"sample","targets":1},{"name":"dilution factor","targets":2},{"name":"replicate","targets":3},{"name":"signal","targets":4},{"name":"instConc","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Then, let’s filter out data that is below our LOD and LOQ as follows:</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="evaluating-and-improving-model-performance.html#cb326-1" tabindex="-1"></a>FAESresultsfiltered <span class="ot">&lt;-</span> FAESresults <span class="sc">%&gt;%</span></span>
+<span id="cb326-2"><a href="evaluating-and-improving-model-performance.html#cb326-2" tabindex="-1"></a>  <span class="co">#Set instConc to LOQ/2 when its value is &lt; LOQ and to 0 when its value is &lt; LOD</span></span>
+<span id="cb326-3"><a href="evaluating-and-improving-model-performance.html#cb326-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">instConc =</span> <span class="fu">case_when</span>(</span>
+<span id="cb326-4"><a href="evaluating-and-improving-model-performance.html#cb326-4" tabindex="-1"></a>    instConc <span class="sc">&gt;</span> LOQresid <span class="sc">~</span> instConc,</span>
+<span id="cb326-5"><a href="evaluating-and-improving-model-performance.html#cb326-5" tabindex="-1"></a>    instConc <span class="sc">&gt;</span> LODresid <span class="sc">~</span> LOQresid<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb326-6"><a href="evaluating-and-improving-model-performance.html#cb326-6" tabindex="-1"></a>    instConc <span class="sc">&lt;</span> LODresid <span class="sc">~</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb326-7"><a href="evaluating-and-improving-model-performance.html#cb326-7" tabindex="-1"></a>  <span class="co">#Create a note that indicates whether the concentration is &lt; LOQ or &lt; LOD</span></span>
+<span id="cb326-8"><a href="evaluating-and-improving-model-performance.html#cb326-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">note =</span> <span class="fu">case_when</span>(</span>
+<span id="cb326-9"><a href="evaluating-and-improving-model-performance.html#cb326-9" tabindex="-1"></a>    instConc <span class="sc">&gt;</span> LOQresid <span class="sc">~</span> <span class="st">&quot;N/A&quot;</span>,</span>
+<span id="cb326-10"><a href="evaluating-and-improving-model-performance.html#cb326-10" tabindex="-1"></a>    instConc <span class="sc">&gt;</span> LODresid <span class="sc">~</span> <span class="st">&quot;&lt;LOQ&quot;</span>,</span>
+<span id="cb326-11"><a href="evaluating-and-improving-model-performance.html#cb326-11" tabindex="-1"></a>    instConc <span class="sc">&lt;</span> LODresid <span class="sc">~</span> <span class="st">&quot;&lt;LOD&quot;</span>))</span>
+<span id="cb326-12"><a href="evaluating-and-improving-model-performance.html#cb326-12" tabindex="-1"></a></span>
+<span id="cb326-13"><a href="evaluating-and-improving-model-performance.html#cb326-13" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(FAESresultsfiltered)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b381a8c017407a63751e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b381a8c017407a63751e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["wine","wine","wine","tap-water","tap-water","tap-water","fish-tank","fish-tank","fish-tank"],[10,10,10,10,10,10,100,100,100],["1","2","3","1","2","3","1","2","3"],[12775.1255,12650.6561,12745.6284,8013.9588,7199.6695,7203.2021,12085.29012,12073.45137,12155.61549],[0.2821892401801384,0.2788977975501976,0.281408311932384,0.1627475460414216,0.07404194365562171,0.07404194365562171,0.2640724759635277,0.2637641889129696,0.2659055846665508],["N/A","N/A","N/A","N/A","&lt;LOQ","&lt;LOQ","N/A","N/A","N/A"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sample<\/th>\n      <th>dilution factor<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n      <th>instConc<\/th>\n      <th>note<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"sample","targets":1},{"name":"dilution factor","targets":2},{"name":"replicate","targets":3},{"name":"signal","targets":4},{"name":"instConc","targets":5},{"name":"note","targets":6}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>Notice how it has taken the tap water values and set all but one to 1/2 the LOQ - this is because we are not confident in the actual concentrations. This is artificially lowering their values, and since they’re right on the edge of the LOQ in this case, it might be better to report them as-is instead of as 1/2 the LOQ, or to use the lower LOQ value we calculated ealier using the standard deviation of the intercept. If you were reporting these values in a publication, you would flag these values as &lt; LOQ for clarity. As before, before reporting these values you would want to correct for the dilution factor and summarize them.</p>
+</div>
+<div id="inverse-calibration-curves" class="section level2 hasAnchor" number="20.7">
+<h2><span class="header-section-number">20.7</span> Inverse Calibration Curves<a href="evaluating-and-improving-model-performance.html#inverse-calibration-curves" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we have exclusively been constructing conventional calibration curves - that is, the instrument response has been the dependent variable and the known concentrations have been the independent variable. It is also possible to construct a calibration curve by inverting these two variables - i.e. you use the concentration as the dependent variable and the instrument response as the independent variable. There are two main benefits to doing it this way: First, the least squares fitting algorithm is designed to minimize error along the <em>dependent variable</em> axis. If we are using a calibration curve to predict new concentrations then, an inverse calibration curve which uses concentration as the dependent variable should be minimizing error in that concentration better than a conventional calibration curve. Second, the equation for an inverse calibration curve can be used directly when calculating new concentrations. This is particularly important when using nonlinear calibration curves, as it means you don’t need to solve for roots of a polynomial - you just plug in your instrument response as <span class="math inline">\(x\)</span>.</p>
+<p>With this in mind, you might wonder why conventional calibration curves are, well, conventional. There are two main reasons. First, conventional calibration curves can be used to define and calculate LOD and LOQ as discussed above. <strong>You cannot use inverse calibration curves to calculate LOD and LOQ.</strong> Because of this fact, conventional calibration curves will always have a place in analytical chemistry. Second, when performing a least squares fit, one of the underlying assumptions is that there is no uncertainty in the independent variable, i.e. for a calibration curve the concentration of each standard is known exactly. Historically, this was generally true - analytical instrumentation tended to have larger errors than measurements made using analytical balances and glassware. In modern chemistry labs, this is not strictly true - modern instrumentation is sometimes now more precise than our solution preparation can be, and so this second factor becomes less important.</p>
+<p>Now that you know why inverse calibration curves are convenient and why we might choose to use them, let’s generate an inverse quadratic calibration curve from our dataset and use it to calculate new concentrations directly, instead of having to use the quadratic equation. Notice how all we do is switch the variables in the <code>lm</code> function. We’ll also add the values from our conventional calibration curve and the difference between them to compare:</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="evaluating-and-improving-model-performance.html#cb327-1" tabindex="-1"></a><span class="co">#Generate a model using conc_NA as the dependent variable and signal as the independent variable</span></span>
+<span id="cb327-2"><a href="evaluating-and-improving-model-performance.html#cb327-2" tabindex="-1"></a>inverseCal <span class="ot">&lt;-</span> <span class="fu">lm</span>(conc_Na <span class="sc">~</span> signal <span class="sc">+</span> <span class="fu">I</span>(signal<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> FAES)</span>
+<span id="cb327-3"><a href="evaluating-and-improving-model-performance.html#cb327-3" tabindex="-1"></a></span>
+<span id="cb327-4"><a href="evaluating-and-improving-model-performance.html#cb327-4" tabindex="-1"></a><span class="co">#Extracting the coefficients using the `coef` function</span></span>
+<span id="cb327-5"><a href="evaluating-and-improving-model-performance.html#cb327-5" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(inverseCal)[<span class="dv">3</span>]</span>
+<span id="cb327-6"><a href="evaluating-and-improving-model-performance.html#cb327-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">coef</span>(inverseCal)[<span class="dv">2</span>]</span>
+<span id="cb327-7"><a href="evaluating-and-improving-model-performance.html#cb327-7" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="fu">coef</span>(inverseCal)[<span class="dv">1</span>]</span>
+<span id="cb327-8"><a href="evaluating-and-improving-model-performance.html#cb327-8" tabindex="-1"></a></span>
+<span id="cb327-9"><a href="evaluating-and-improving-model-performance.html#cb327-9" tabindex="-1"></a><span class="co">#Calculating new concentrations using the base fit equation</span></span>
+<span id="cb327-10"><a href="evaluating-and-improving-model-performance.html#cb327-10" tabindex="-1"></a>inverseFAESResults <span class="ot">&lt;-</span> FAESsamples <span class="sc">%&gt;%</span></span>
+<span id="cb327-11"><a href="evaluating-and-improving-model-performance.html#cb327-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">instConc =</span> x2<span class="sc">*</span>signal<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> x<span class="sc">*</span>signal <span class="sc">+</span> intercept, </span>
+<span id="cb327-12"><a href="evaluating-and-improving-model-performance.html#cb327-12" tabindex="-1"></a>         <span class="co">#Then adding a new column with the conventional calibration curve results</span></span>
+<span id="cb327-13"><a href="evaluating-and-improving-model-performance.html#cb327-13" tabindex="-1"></a>         <span class="at">instConcConventional =</span> <span class="fu">select</span>(FAESresults, instConc)[[<span class="dv">1</span>]],</span>
+<span id="cb327-14"><a href="evaluating-and-improving-model-performance.html#cb327-14" tabindex="-1"></a>         <span class="co">#And a column with the difference between the two</span></span>
+<span id="cb327-15"><a href="evaluating-and-improving-model-performance.html#cb327-15" tabindex="-1"></a>         <span class="at">instConcDiff =</span> instConc <span class="sc">-</span> instConcConventional)</span>
+<span id="cb327-16"><a href="evaluating-and-improving-model-performance.html#cb327-16" tabindex="-1"></a></span>
+<span id="cb327-17"><a href="evaluating-and-improving-model-performance.html#cb327-17" tabindex="-1"></a></span>
+<span id="cb327-18"><a href="evaluating-and-improving-model-performance.html#cb327-18" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(inverseFAESResults, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-0b148aabd572d271adf6" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0b148aabd572d271adf6">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["wine","wine","wine","tap-water","tap-water","tap-water","fish-tank","fish-tank","fish-tank"],[10,10,10,10,10,10,100,100,100],["1","2","3","1","2","3","1","2","3"],[12775.1255,12650.6561,12745.6284,8013.9588,7199.6695,7203.2021,12085.29012,12073.45137,12155.61549],[0.2722079609197053,0.2686109628636022,0.2713538215662307,0.1481147805034194,0.1296674062651449,0.1297456845979275,0.2525111133432827,0.2521781610615759,0.2544924727684276],[0.2821892401801384,0.2788977975501976,0.281408311932384,0.1627475460414216,0.1434993155810508,0.1435821584048452,0.2640724759635277,0.2637641889129696,0.2659055846665508],[-0.009981279260433129,-0.01028683468659541,-0.01005449036615336,-0.01463276553800219,-0.01383190931590583,-0.01383647380691766,-0.01156136262024504,-0.01158602785139368,-0.01141311189812327]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sample<\/th>\n      <th>dilution factor<\/th>\n      <th>replicate<\/th>\n      <th>signal<\/th>\n      <th>instConc<\/th>\n      <th>instConcConventional<\/th>\n      <th>instConcDiff<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,4,5,6,7]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"sample","targets":1},{"name":"dilution factor","targets":2},{"name":"replicate","targets":3},{"name":"signal","targets":4},{"name":"instConc","targets":5},{"name":"instConcConventional","targets":6},{"name":"instConcDiff","targets":7}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<p>You’ll notice that the new values of <code>instConc</code> are slightly different from those in the previous section. Generally speaking, inverse calibration curves will give slightly different results from a conventional calibration curve, but the differences are around 0.01 ppm, well within the uncertainty of the two models.</p>
+<p>##Summary</p>
+<p>In this chapter we extended the concepts we learned in Chapter 19 beyond simple linear regressions, discussing a variety of topics related to improving and evaluating your models, including:
+- How to evaluate models using residuals to identify patterns in your data that your model might not be capturing.
+- Two new ways to improve models: nonlinear regression and weighted regression.
+- How to quantitatively decide which model provides the best fit for a given dataset.
+- Some practical methods related to using and interpreting regression models in the context of calibration curves.</p>
+<p>As mentioned earlier in the chapter, all of the model evaluation, improvement, and selection we have discussed is broadly applicable to regressions beyond calibration curves. There are many reasons why an environmental scientist may decide to create a regression model between two (or more) variables, and it is important to know how to rigorously evaluate those regressions, especially when they are being used to extract fundamental information about the system being studied. Keep this in mind as you move to the next chapter, <a href="modelling-non-linear-regression.html#modelling-non-linear-regression">Modelling: Non-Linear Regression</a>.</p>
+</div>
+<div id="exercise-14" class="section level2 hasAnchor" number="20.8">
+<h2><span class="header-section-number">20.8</span> Exercise<a href="evaluating-and-improving-model-performance.html#exercise-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There is a set of exercises available for this chapter!</p>
+<p><strong>Not sure how to access and work on the exercise Rmd files? </strong></p>
+<ul>
+<li><p>Refer to <a href="how-to-use-this-textbook.html#running-tests-for-your-exercises">Running Tests for Your Exercises</a> for step-by-step instructions on accessing the exercises and working within the UofT JupyterHub’s RStudio environment.</p></li>
+<li><p>Alternatively, if you’d like to simply access the individual files, you can download them directly from this <a href="https://github.com/UofTChem-Teaching/R4EnvChem-Exercises">repository</a>.</p></li>
+</ul>
+<p>Always remember to save your progress regularly and consult the textbook’s guidelines for submitting your completed exercises.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelling-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelling-non-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/UofTChem-Teaching/R4EnvChem/edit/main/src/05-modelling-in-r/02-improving-models.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/UofTChem-Teaching/R4EnvChem/blob/main/src/05-modelling-in-r/02-improving-models.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
