@@ -1,18 +1,17 @@
-
 ---
 title: 'Chapter 19: Modelling: Linear Regression'
 output:
   html_document:
     df_print: paged
 ---
-
+  
 # Getting Started
-
+  
 Before diving into the exercises, ensure you have the OPFR dataset. If you don't, download the OPFR dataset provided in the same folder as this exercise. Try to save the file in the same folder where you saved this Rmd file.
 
-In these exercises, you will be analyzing data collected from a study performed by CHM410 students on dust samples from their homes. The study focused on detecting organophosphate flame retardants (OPFRs), which are chemicals used to make materials fire-resistant. The dataset you will work with includes several important columns:
+In these exercises, you will be analyzing data collected from a study performed by CHM410 students on dust samples from their homes. The study focused on detecting organophosphate flame retardants (OPFRs), which are chemicals used to make materials fire-resistant. The dataset you will work with includes several important columns: 
 
-- **chemical**: This column identifies the type of OPFR being analyzed.
+- **chemical**: This column identifies the type of OPFR being analyzed. 
 - **concentration**: This indicates the concentration of the OPFR in the calibration standards, which is crucial for developing a relationship between the amount of chemical present and the instrument's signal.
 - **analyte_peak_area_counts**: This measures the signal intensity from the OPFR of interest, reflecting the quantity detected by the analytical instrument.
 - **IS_peak_area_counts**: This measures the signal intensity from an internal standard added to each sample and standard. The internal standard is structurally similar to the target OPFR and helps correct for variations in sample analysis, such as differences in injection volume or signal suppression by other substances in the dust.
@@ -30,7 +29,7 @@ DT::datatable(data)
 
 To start with, let's focus on a single chemical - TCEP. Then, let's plot the calibration data to see what it looks like before we start modelling.
 
-**Your Task:**
+**Your Task:** 
 Filter the `data` by `chemical` so that it only contains TCEP. Store this new dataset in a variable called `TCEP`
 
 ```{r}
@@ -50,15 +49,15 @@ Now, create a scatterplot of the instrument response (`analyte_peak_area_counts`
 # Exercise 2: Creating a calibration curve
 
 **Your Task:**
-1. Fit a linear model between `concentration` (as the independent variable) and `analyte_peak_area_counts` (as the dependent variable).
-2. Then, generate a summary (using the `summary()` function) of this calibration curve.
-3. Finally, plot the original data along with the regression line.
+1. Fit a linear model between `concentration` (as the independent variable) and `analyte_peak_area_counts` (as the dependent variable). 
+2. Then, generate a summary (using the `summary()` function) of this calibration curve. 
+3. Finally, plot the original data along with the regression line. 
 
 ```{r}
 # 1. Create the calibration curve
 model <- #Your code here
 
-# 2. Summarize the model and print it out
+# 2. Summarize the model and print it out 
 modelSummary <- #Your code here
 
 paste(modelSummary)
@@ -88,14 +87,14 @@ test_that("Linear Model Test", {
 
 Now we are going to go back to the unfiltered dataset and create calibration curves for each compound instead of just one. This unfiltered dataset is still in the variable `data`.
 
-**Your Task:**
+**Your Task:** 
 
 For each chemical, build a linear regression model using `analyte_peak_area_counts` as the dependent variable and `concentration` as the independent variable. Finally, create a dataframe named `models` that at least has the columns `chemical`, `model`, `slope`, and `intercept`, containing the chemical name, the actual model object, the slope of that model, and the intercept of that model. It should have a total of 3 rows (one row each for each compound). Feel free to have extra columns or restructure the data at your convenience.
 
-We recommend using the tidyverse framework for this.
+We recommend using the tidyverse framework for this. 
 
 ```{r}
-#Build linear regression models for each chemical and store them in a dataframe called `models`.
+#Build linear regression models for each chemical and store them in a dataframe called `models`. 
 ```
 
 
@@ -115,7 +114,7 @@ test_that("Linear Model Test", {
 
 # Exercise 4: Predicting concentrations for a new dataset
 
-**Your Task:**
+**Your Task:** 
 
 Here, you will use the models you just  created to predict the `analyte_peak_area_counts` for hypothetical new samples in the `OPFR_samples.csv` file. Make sure this file is in your working directory so that the following code works. Start by loading our new data:
 
