@@ -67,9 +67,45 @@ get_rmd_path <- function(folder_name, filename) {
 }
 
 # Specify the path to your Rmd file
-rmd_file_path <- get_rmd_path("chapter 20","chapter20.Rmd")
+rmd_file_path <- get_rmd_path("chapter 19","chapter19.Rmd")
 
-# Exercise 2: Building Multiple Linear Regression Models
+# Exercise 2: Creating a calibration curve
+test_that("Linear Model Test", {
+  tmp_dir <- tempdir()
+  # copy contents of current directory to temp directory
+  dir_copy(dirname(rmd_file_path), tmp_dir, overwrite = TRUE)
+  
+  with_dir(tempdir(), {
+    # # Run all chunks in the Rmd file to execute the exercises
+    suppressWarnings(run_all_chunks(rmd_file_path))
+    
+    # Custom error messages for required checks
+    # Custom error messages for required checks
+    custom_error_message <- case_when(
+      !"concentration" %in% names(coef(model)) ~
+        "The 'concentration' variable is not in the model coefficients.",
+      !"analyte_peak_area_counts" %in% names(model$model) ~
+        "The 'analyte_peak_area_counts' variable is not in the model.",
+      summary(model)$coefficients[2, 4] >= 0.05 ~
+        sprintf(
+          "The p-value for the slope is not less than 0.05. It is %f.",
+          summary(model)$coefficients[2, 4]
+        ),
+      TRUE ~ NA_character_
+    )
+    
+    # Check for required conditions in the models dataframe
+    expect_true("concentration" %in% names(coef(model)), info = custom_error_message)
+    expect_true("analyte_peak_area_counts" %in% names(model$model) , info = custom_error_message)
+    # Test for a significant relationship
+    expect_true(summary(model)$coefficients[2, 4] < 0.05 , info = custom_error_message) # P-value for the slope
+  })
+  
+  # remove the temp directory
+  unlink(tmp_dir, recursive = TRUE)
+})
+
+# Exercise 3: Generating linear regressions for multiple analytes
 test_that("Linear Model Test", {
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory
@@ -115,7 +151,7 @@ test_that("Linear Model Test", {
   unlink(tmp_dir, recursive = TRUE)
 })
 
-# Exercise 3: Applying the Model for Prediction
+# Exercise 4: Predicting concentrations for a new dataset
 test_that("Prediction Test", {
   tmp_dir <- tempdir()
   # copy contents of current directory to temp directory

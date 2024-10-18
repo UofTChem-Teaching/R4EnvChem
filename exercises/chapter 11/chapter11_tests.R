@@ -13,11 +13,47 @@ run_all_chunks <- function(rmd, envir = globalenv()) {
   tempR <- file.path("temp.R")  # Create temporary file in the same directory
   on.exit(unlink(tempR))
   
-  purl(input = rmd, output = tempR)
+  purl(input = rmd, output = tempR)  # Extract R code from the Rmd file
   
-  # Source the temporary R script with chdir = TRUE so that the working directory is set to the Rmd file's directory
-  source(tempR, chdir = TRUE, local = envir)
+  # Read the purled R script into a vector of code lines
+  code_lines <- readLines(tempR)
   
+  # Split the code into individual chunks based on the `##` comment lines (as chunk separators)
+  chunk_indices <- grep("^##\\s-+\\s*$", code_lines)
+
+  if (length(chunk_indices) == 0) {
+    # If no chunk separators are found, run the entire code as one chunk
+    tryCatch({
+      eval(parse(text = code_lines), envir = envir)
+    }, error = function(e) {
+      message("Error in script: ", e$message)
+    })
+  } else {
+    # Iterate through the chunk indices and execute each chunk
+    for (i in seq_along(chunk_indices)) {
+      # Define the start and end of each chunk
+      chunk_start <- chunk_indices[i] + 1
+      
+      chunk_end <- if (i < length(chunk_indices)) {
+        chunk_indices[i + 1] - 1
+      } else {
+        length(code_lines)  # Last chunk goes until the end of the file
+      }
+      
+      # Extract the chunk lines
+      chunk_lines <- code_lines[chunk_start:chunk_end]
+      
+      # Combine lines of the chunk into a single string
+      chunk_code <- paste(chunk_lines, collapse = "\n")
+      
+      # Try to evaluate the chunk
+      tryCatch({
+        eval(parse(text = chunk_code), envir = envir)
+      }, error = function(e) {
+        message("Error in chunk ", i, ": ", e$message)
+      })
+    }
+  }
 }
 
 # Function to determine the correct path for the Rmd file
