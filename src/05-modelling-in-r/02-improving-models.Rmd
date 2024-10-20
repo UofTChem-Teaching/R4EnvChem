@@ -569,7 +569,7 @@ FAESresultsfiltered <- FAESresults %>%
 DT::datatable(FAESresultsfiltered)
 ```
 
-Notice how it has taken the tap water values and sets all but one to 1/2 the LOQ - this is because we are not confident in the actual concentrations. This is artificially lowering their values, and since they're right on the edge of the LOQ in this case, it might be better to report them as-is instead of as 1/2 the LOQ, or to use the lower LOQ value we calculated earlier using the standard deviation of the intercept. If you were reporting these values in a publication, you would flag these values as < LOQ for clarity. As before, before reporting these values you would want to correct for the dilution factor and summarize them.
+Notice how it has taken the tap water values and set all but one to 1/2 the LOQ - this is because we are not confident in the actual concentrations. This is artificially lowering their values, and since they're right on the edge of the LOQ in this case, it might be better to report them as-is instead of as 1/2 the LOQ, or to use the lower LOQ value we calculated earlier using the standard deviation of the intercept. If you were reporting these values in a publication, you would flag these values as < LOQ for clarity. As before, before reporting these values you would want to correct for the dilution factor and summarize them.
 
 ## Inverse Calibration Curves
 
