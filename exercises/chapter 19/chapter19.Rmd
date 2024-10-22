@@ -49,13 +49,9 @@ Now, create a scatterplot of the instrument response (`analyte_peak_area_counts`
 # Exercise 2: Creating a calibration curve
 
 **Your Task:**
-1. Fit a linear model between `concentration` (as the independent variable) and `analyte_peak_area_counts` (as the depdendent variable). 
+1. Fit a linear model between `concentration` (as the independent variable) and `analyte_peak_area_counts` (as the dependent variable). 
 2. Then, generate a summary (using the `summary()` function) of this calibration curve. 
 3. Finally, plot the original data along with the regression line. 
-
-1. Ensure the data format is suitable for modeling and that there are no missing values.
-2. Fit a linear model and summarize it.
-3. Plot the original data along with the regression line.
 
 ```{r}
 # 1. Create the calibration curve
