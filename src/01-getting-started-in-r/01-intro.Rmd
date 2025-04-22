@@ -4,6 +4,8 @@
 
 # Intro to R and RStudio
 
+Hello!!!
+
 You may have heard about coding or the R programming language, but figuring out how to get started can be a hurdle; at least it was for us. In this guide, we will walk you through the process of setting up R and RStudio, both locally on your computer and remotely using the University of Toronto's JupyterHub R Studio server.
 
 ## R Language
